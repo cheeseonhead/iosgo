@@ -38,6 +38,7 @@
 		56BD88791E551C990098E50B /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886A1E551C990098E50B /* Oswald-Regular.ttf */; };
 		56BD887A1E551C990098E50B /* Oswald-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886B1E551C990098E50B /* Oswald-RegularItalic.ttf */; };
 		56BD887B1E551C990098E50B /* Oswald-Stencil.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */; };
+		56BD888F1E5522530098E50B /* OGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BD888E1E5522530098E50B /* OGSButton.swift */; };
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		56BD886A1E551C990098E50B /* Oswald-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Regular.ttf"; sourceTree = "<group>"; };
 		56BD886B1E551C990098E50B /* Oswald-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-RegularItalic.ttf"; sourceTree = "<group>"; };
 		56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Stencil.ttf"; sourceTree = "<group>"; };
+		56BD888E1E5522530098E50B /* OGSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSButton.swift; sourceTree = "<group>"; };
 		F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -144,6 +146,7 @@
 		565D246D1E54A5A500EF62CD /* iosgo */ = {
 			isa = PBXGroup;
 			children = (
+				56BD888D1E5522530098E50B /* Components */,
 				565D24941E550BAE00EF62CD /* Login */,
 				565D246E1E54A5A500EF62CD /* AppDelegate.swift */,
 				565D24701E54A5A500EF62CD /* GameScene.sks */,
@@ -202,6 +205,14 @@
 				56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		56BD888D1E5522530098E50B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				56BD888E1E5522530098E50B /* OGSButton.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		E4DEFB86F4E965A3CC8D8761 /* Frameworks */ = {
@@ -387,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				565D24751E54A5A500EF62CD /* GameScene.swift in Sources */,
+				56BD888F1E5522530098E50B /* OGSButton.swift in Sources */,
 				565D249E1E550C1900EF62CD /* OGSLoginPresenter.swift in Sources */,
 				565D249F1E550C1900EF62CD /* OGSLoginRouter.swift in Sources */,
 				565D24771E54A5A500EF62CD /* GameViewController.swift in Sources */,
