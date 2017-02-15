@@ -22,6 +22,7 @@
 		565D249E1E550C1900EF62CD /* OGSLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565D24981E550C1900EF62CD /* OGSLoginPresenter.swift */; };
 		565D249F1E550C1900EF62CD /* OGSLoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565D24991E550C1900EF62CD /* OGSLoginRouter.swift */; };
 		565D24A01E550C1900EF62CD /* OGSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565D249A1E550C1900EF62CD /* OGSLoginViewController.swift */; };
+		568D7C9A1E551068006E0B07 /* OGSLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 568D7C991E551068006E0B07 /* OGSLoginViewController.storyboard */; };
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		565D24981E550C1900EF62CD /* OGSLoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginPresenter.swift; sourceTree = "<group>"; };
 		565D24991E550C1900EF62CD /* OGSLoginRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginRouter.swift; sourceTree = "<group>"; };
 		565D249A1E550C1900EF62CD /* OGSLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginViewController.swift; sourceTree = "<group>"; };
+		568D7C991E551068006E0B07 /* OGSLoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OGSLoginViewController.storyboard; sourceTree = "<group>"; };
 		F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 				565D24981E550C1900EF62CD /* OGSLoginPresenter.swift */,
 				565D24991E550C1900EF62CD /* OGSLoginRouter.swift */,
 				565D249A1E550C1900EF62CD /* OGSLoginViewController.swift */,
+				568D7C991E551068006E0B07 /* OGSLoginViewController.storyboard */,
 			);
 			name = Login;
 			path = Scenes/Login;
@@ -247,6 +250,7 @@
 				565D247A1E54A5A500EF62CD /* Main.storyboard in Resources */,
 				565D24711E54A5A500EF62CD /* GameScene.sks in Resources */,
 				565D247C1E54A5A500EF62CD /* Assets.xcassets in Resources */,
+				568D7C9A1E551068006E0B07 /* OGSLoginViewController.storyboard in Resources */,
 				565D247F1E54A5A500EF62CD /* LaunchScreen.storyboard in Resources */,
 				565D24731E54A5A500EF62CD /* Actions.sks in Resources */,
 			);
