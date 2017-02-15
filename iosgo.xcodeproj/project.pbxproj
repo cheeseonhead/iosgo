@@ -23,6 +23,36 @@
 		565D249F1E550C1900EF62CD /* OGSLoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565D24991E550C1900EF62CD /* OGSLoginRouter.swift */; };
 		565D24A01E550C1900EF62CD /* OGSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565D249A1E550C1900EF62CD /* OGSLoginViewController.swift */; };
 		568D7C9A1E551068006E0B07 /* OGSLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 568D7C991E551068006E0B07 /* OGSLoginViewController.storyboard */; };
+		56BD886D1E551C990098E50B /* Oswald-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD885E1E551C990098E50B /* Oswald-Bold.ttf */; };
+		56BD886E1E551C990098E50B /* Oswald-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD885F1E551C990098E50B /* Oswald-BoldItalic.ttf */; };
+		56BD886F1E551C990098E50B /* Oswald-Demi-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD88601E551C990098E50B /* Oswald-Demi-BoldItalic.ttf */; };
+		56BD88701E551C990098E50B /* Oswald-DemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD88611E551C990098E50B /* Oswald-DemiBold.ttf */; };
+		56BD88711E551C990098E50B /* Oswald-Extra-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD88621E551C990098E50B /* Oswald-Extra-LightItalic.ttf */; };
+		56BD88721E551C990098E50B /* Oswald-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD88631E551C990098E50B /* Oswald-ExtraLight.ttf */; };
+		56BD88731E551C990098E50B /* Oswald-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD88641E551C990098E50B /* Oswald-Heavy.ttf */; };
+		56BD88741E551C990098E50B /* Oswald-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD88651E551C990098E50B /* Oswald-HeavyItalic.ttf */; };
+		56BD88751E551C990098E50B /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD88661E551C990098E50B /* Oswald-Light.ttf */; };
+		56BD88761E551C990098E50B /* Oswald-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD88671E551C990098E50B /* Oswald-LightItalic.ttf */; };
+		56BD88771E551C990098E50B /* Oswald-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD88681E551C990098E50B /* Oswald-Medium.ttf */; };
+		56BD88781E551C990098E50B /* Oswald-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD88691E551C990098E50B /* Oswald-MediumItalic.ttf */; };
+		56BD88791E551C990098E50B /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886A1E551C990098E50B /* Oswald-Regular.ttf */; };
+		56BD887A1E551C990098E50B /* Oswald-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886B1E551C990098E50B /* Oswald-RegularItalic.ttf */; };
+		56BD887B1E551C990098E50B /* Oswald-Stencil.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */; };
+		56BD887C1E551CB50098E50B /* Oswald-Bold.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD885E1E551C990098E50B /* Oswald-Bold.ttf */; };
+		56BD887D1E551CB50098E50B /* Oswald-BoldItalic.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD885F1E551C990098E50B /* Oswald-BoldItalic.ttf */; };
+		56BD887E1E551CB50098E50B /* Oswald-Demi-BoldItalic.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88601E551C990098E50B /* Oswald-Demi-BoldItalic.ttf */; };
+		56BD887F1E551CB50098E50B /* Oswald-DemiBold.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88611E551C990098E50B /* Oswald-DemiBold.ttf */; };
+		56BD88801E551CB50098E50B /* Oswald-Extra-LightItalic.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88621E551C990098E50B /* Oswald-Extra-LightItalic.ttf */; };
+		56BD88811E551CB50098E50B /* Oswald-ExtraLight.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88631E551C990098E50B /* Oswald-ExtraLight.ttf */; };
+		56BD88821E551CB50098E50B /* Oswald-Heavy.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88641E551C990098E50B /* Oswald-Heavy.ttf */; };
+		56BD88831E551CB50098E50B /* Oswald-HeavyItalic.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88651E551C990098E50B /* Oswald-HeavyItalic.ttf */; };
+		56BD88841E551CB50098E50B /* Oswald-Light.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88661E551C990098E50B /* Oswald-Light.ttf */; };
+		56BD88851E551CB50098E50B /* Oswald-LightItalic.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88671E551C990098E50B /* Oswald-LightItalic.ttf */; };
+		56BD88861E551CB50098E50B /* Oswald-Medium.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88681E551C990098E50B /* Oswald-Medium.ttf */; };
+		56BD88871E551CB50098E50B /* Oswald-MediumItalic.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88691E551C990098E50B /* Oswald-MediumItalic.ttf */; };
+		56BD88881E551CB50098E50B /* Oswald-Regular.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD886A1E551C990098E50B /* Oswald-Regular.ttf */; };
+		56BD88891E551CB50098E50B /* Oswald-RegularItalic.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD886B1E551C990098E50B /* Oswald-RegularItalic.ttf */; };
+		56BD888A1E551CB50098E50B /* Oswald-Stencil.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */; };
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +89,21 @@
 		565D24991E550C1900EF62CD /* OGSLoginRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginRouter.swift; sourceTree = "<group>"; };
 		565D249A1E550C1900EF62CD /* OGSLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginViewController.swift; sourceTree = "<group>"; };
 		568D7C991E551068006E0B07 /* OGSLoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OGSLoginViewController.storyboard; sourceTree = "<group>"; };
+		56BD885E1E551C990098E50B /* Oswald-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Bold.ttf"; sourceTree = "<group>"; };
+		56BD885F1E551C990098E50B /* Oswald-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-BoldItalic.ttf"; sourceTree = "<group>"; };
+		56BD88601E551C990098E50B /* Oswald-Demi-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Demi-BoldItalic.ttf"; sourceTree = "<group>"; };
+		56BD88611E551C990098E50B /* Oswald-DemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-DemiBold.ttf"; sourceTree = "<group>"; };
+		56BD88621E551C990098E50B /* Oswald-Extra-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Extra-LightItalic.ttf"; sourceTree = "<group>"; };
+		56BD88631E551C990098E50B /* Oswald-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-ExtraLight.ttf"; sourceTree = "<group>"; };
+		56BD88641E551C990098E50B /* Oswald-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Heavy.ttf"; sourceTree = "<group>"; };
+		56BD88651E551C990098E50B /* Oswald-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-HeavyItalic.ttf"; sourceTree = "<group>"; };
+		56BD88661E551C990098E50B /* Oswald-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Light.ttf"; sourceTree = "<group>"; };
+		56BD88671E551C990098E50B /* Oswald-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-LightItalic.ttf"; sourceTree = "<group>"; };
+		56BD88681E551C990098E50B /* Oswald-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Medium.ttf"; sourceTree = "<group>"; };
+		56BD88691E551C990098E50B /* Oswald-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-MediumItalic.ttf"; sourceTree = "<group>"; };
+		56BD886A1E551C990098E50B /* Oswald-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Regular.ttf"; sourceTree = "<group>"; };
+		56BD886B1E551C990098E50B /* Oswald-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-RegularItalic.ttf"; sourceTree = "<group>"; };
+		56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Stencil.ttf"; sourceTree = "<group>"; };
 		F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -155,6 +200,21 @@
 		56BD885D1E551C4C0098E50B /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				56BD885E1E551C990098E50B /* Oswald-Bold.ttf */,
+				56BD885F1E551C990098E50B /* Oswald-BoldItalic.ttf */,
+				56BD88601E551C990098E50B /* Oswald-Demi-BoldItalic.ttf */,
+				56BD88611E551C990098E50B /* Oswald-DemiBold.ttf */,
+				56BD88621E551C990098E50B /* Oswald-Extra-LightItalic.ttf */,
+				56BD88631E551C990098E50B /* Oswald-ExtraLight.ttf */,
+				56BD88641E551C990098E50B /* Oswald-Heavy.ttf */,
+				56BD88651E551C990098E50B /* Oswald-HeavyItalic.ttf */,
+				56BD88661E551C990098E50B /* Oswald-Light.ttf */,
+				56BD88671E551C990098E50B /* Oswald-LightItalic.ttf */,
+				56BD88681E551C990098E50B /* Oswald-Medium.ttf */,
+				56BD88691E551C990098E50B /* Oswald-MediumItalic.ttf */,
+				56BD886A1E551C990098E50B /* Oswald-Regular.ttf */,
+				56BD886B1E551C990098E50B /* Oswald-RegularItalic.ttf */,
+				56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -257,10 +317,25 @@
 			files = (
 				565D247A1E54A5A500EF62CD /* Main.storyboard in Resources */,
 				565D24711E54A5A500EF62CD /* GameScene.sks in Resources */,
+				56BD88791E551C990098E50B /* Oswald-Regular.ttf in Resources */,
+				56BD887A1E551C990098E50B /* Oswald-RegularItalic.ttf in Resources */,
+				56BD887B1E551C990098E50B /* Oswald-Stencil.ttf in Resources */,
+				56BD88701E551C990098E50B /* Oswald-DemiBold.ttf in Resources */,
 				565D247C1E54A5A500EF62CD /* Assets.xcassets in Resources */,
 				568D7C9A1E551068006E0B07 /* OGSLoginViewController.storyboard in Resources */,
+				56BD88781E551C990098E50B /* Oswald-MediumItalic.ttf in Resources */,
 				565D247F1E54A5A500EF62CD /* LaunchScreen.storyboard in Resources */,
+				56BD88751E551C990098E50B /* Oswald-Light.ttf in Resources */,
+				56BD88761E551C990098E50B /* Oswald-LightItalic.ttf in Resources */,
+				56BD88711E551C990098E50B /* Oswald-Extra-LightItalic.ttf in Resources */,
+				56BD886D1E551C990098E50B /* Oswald-Bold.ttf in Resources */,
+				56BD88721E551C990098E50B /* Oswald-ExtraLight.ttf in Resources */,
+				56BD886F1E551C990098E50B /* Oswald-Demi-BoldItalic.ttf in Resources */,
 				565D24731E54A5A500EF62CD /* Actions.sks in Resources */,
+				56BD886E1E551C990098E50B /* Oswald-BoldItalic.ttf in Resources */,
+				56BD88741E551C990098E50B /* Oswald-HeavyItalic.ttf in Resources */,
+				56BD88771E551C990098E50B /* Oswald-Medium.ttf in Resources */,
+				56BD88731E551C990098E50B /* Oswald-Heavy.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +401,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56BD887C1E551CB50098E50B /* Oswald-Bold.ttf in Sources */,
+				56BD887D1E551CB50098E50B /* Oswald-BoldItalic.ttf in Sources */,
+				56BD887E1E551CB50098E50B /* Oswald-Demi-BoldItalic.ttf in Sources */,
+				56BD887F1E551CB50098E50B /* Oswald-DemiBold.ttf in Sources */,
+				56BD88801E551CB50098E50B /* Oswald-Extra-LightItalic.ttf in Sources */,
+				56BD88811E551CB50098E50B /* Oswald-ExtraLight.ttf in Sources */,
+				56BD88821E551CB50098E50B /* Oswald-Heavy.ttf in Sources */,
+				56BD88831E551CB50098E50B /* Oswald-HeavyItalic.ttf in Sources */,
+				56BD88841E551CB50098E50B /* Oswald-Light.ttf in Sources */,
+				56BD88851E551CB50098E50B /* Oswald-LightItalic.ttf in Sources */,
+				56BD88861E551CB50098E50B /* Oswald-Medium.ttf in Sources */,
+				56BD88871E551CB50098E50B /* Oswald-MediumItalic.ttf in Sources */,
+				56BD88881E551CB50098E50B /* Oswald-Regular.ttf in Sources */,
+				56BD88891E551CB50098E50B /* Oswald-RegularItalic.ttf in Sources */,
+				56BD888A1E551CB50098E50B /* Oswald-Stencil.ttf in Sources */,
 				565D24751E54A5A500EF62CD /* GameScene.swift in Sources */,
 				565D249E1E550C1900EF62CD /* OGSLoginPresenter.swift in Sources */,
 				565D249F1E550C1900EF62CD /* OGSLoginRouter.swift in Sources */,
