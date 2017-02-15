@@ -7,6 +7,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Oswald-Heavy.ttf">
+            <string>Oswald-Heavy</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="DGn-Yg-ADR">
@@ -20,15 +25,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tlY-FL-waF">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tlY-FL-waF">
                                 <rect key="frame" x="138" y="137" width="264" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="264" id="zvG-uF-CV5"/>
+                                </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LDx-dz-GDy">
+                                <rect key="frame" x="138" y="175" width="264" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="264" id="78Y-Nw-7TV"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Vd-uy-jhx">
+                                <rect key="frame" x="138" y="213" width="264" height="40"/>
+                                <color key="backgroundColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="20"/>
+                                <state key="normal" title="Login"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="LDx-dz-GDy" firstAttribute="width" secondItem="tlY-FL-waF" secondAttribute="width" id="3as-av-B2B"/>
+                            <constraint firstItem="7Vd-uy-jhx" firstAttribute="width" secondItem="LDx-dz-GDy" secondAttribute="width" id="5zN-Wl-uA0"/>
+                            <constraint firstItem="7Vd-uy-jhx" firstAttribute="top" secondItem="LDx-dz-GDy" secondAttribute="bottom" constant="8" id="7u6-qQ-Seo"/>
+                            <constraint firstItem="7Vd-uy-jhx" firstAttribute="centerX" secondItem="LDx-dz-GDy" secondAttribute="centerX" id="CO1-yf-9bX"/>
+                            <constraint firstItem="LDx-dz-GDy" firstAttribute="top" secondItem="tlY-FL-waF" secondAttribute="bottom" constant="8" id="Fp3-IZ-OcT"/>
+                            <constraint firstItem="tlY-FL-waF" firstAttribute="top" secondItem="fhS-mZ-KGT" secondAttribute="bottom" constant="117" id="PN1-VX-efM"/>
+                            <constraint firstItem="LDx-dz-GDy" firstAttribute="centerX" secondItem="tlY-FL-waF" secondAttribute="centerX" id="Wat-wE-31B"/>
+                            <constraint firstItem="tlY-FL-waF" firstAttribute="centerX" secondItem="V8a-MR-cXm" secondAttribute="centerX" id="hFd-Q3-w8w"/>
+                        </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
