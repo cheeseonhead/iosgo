@@ -3,7 +3,7 @@ platform :ios, '10.0'
 
 use_frameworks!
 
-target "ClanManagerTests" do
+target "iosgoTests" do
     pod 'Quick'
     pod 'Nimble'
 end
