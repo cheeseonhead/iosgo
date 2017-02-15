@@ -38,21 +38,6 @@
 		56BD88791E551C990098E50B /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886A1E551C990098E50B /* Oswald-Regular.ttf */; };
 		56BD887A1E551C990098E50B /* Oswald-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886B1E551C990098E50B /* Oswald-RegularItalic.ttf */; };
 		56BD887B1E551C990098E50B /* Oswald-Stencil.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */; };
-		56BD887C1E551CB50098E50B /* Oswald-Bold.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD885E1E551C990098E50B /* Oswald-Bold.ttf */; };
-		56BD887D1E551CB50098E50B /* Oswald-BoldItalic.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD885F1E551C990098E50B /* Oswald-BoldItalic.ttf */; };
-		56BD887E1E551CB50098E50B /* Oswald-Demi-BoldItalic.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88601E551C990098E50B /* Oswald-Demi-BoldItalic.ttf */; };
-		56BD887F1E551CB50098E50B /* Oswald-DemiBold.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88611E551C990098E50B /* Oswald-DemiBold.ttf */; };
-		56BD88801E551CB50098E50B /* Oswald-Extra-LightItalic.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88621E551C990098E50B /* Oswald-Extra-LightItalic.ttf */; };
-		56BD88811E551CB50098E50B /* Oswald-ExtraLight.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88631E551C990098E50B /* Oswald-ExtraLight.ttf */; };
-		56BD88821E551CB50098E50B /* Oswald-Heavy.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88641E551C990098E50B /* Oswald-Heavy.ttf */; };
-		56BD88831E551CB50098E50B /* Oswald-HeavyItalic.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88651E551C990098E50B /* Oswald-HeavyItalic.ttf */; };
-		56BD88841E551CB50098E50B /* Oswald-Light.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88661E551C990098E50B /* Oswald-Light.ttf */; };
-		56BD88851E551CB50098E50B /* Oswald-LightItalic.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88671E551C990098E50B /* Oswald-LightItalic.ttf */; };
-		56BD88861E551CB50098E50B /* Oswald-Medium.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88681E551C990098E50B /* Oswald-Medium.ttf */; };
-		56BD88871E551CB50098E50B /* Oswald-MediumItalic.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD88691E551C990098E50B /* Oswald-MediumItalic.ttf */; };
-		56BD88881E551CB50098E50B /* Oswald-Regular.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD886A1E551C990098E50B /* Oswald-Regular.ttf */; };
-		56BD88891E551CB50098E50B /* Oswald-RegularItalic.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD886B1E551C990098E50B /* Oswald-RegularItalic.ttf */; };
-		56BD888A1E551CB50098E50B /* Oswald-Stencil.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */; };
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -401,21 +386,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56BD887C1E551CB50098E50B /* Oswald-Bold.ttf in Sources */,
-				56BD887D1E551CB50098E50B /* Oswald-BoldItalic.ttf in Sources */,
-				56BD887E1E551CB50098E50B /* Oswald-Demi-BoldItalic.ttf in Sources */,
-				56BD887F1E551CB50098E50B /* Oswald-DemiBold.ttf in Sources */,
-				56BD88801E551CB50098E50B /* Oswald-Extra-LightItalic.ttf in Sources */,
-				56BD88811E551CB50098E50B /* Oswald-ExtraLight.ttf in Sources */,
-				56BD88821E551CB50098E50B /* Oswald-Heavy.ttf in Sources */,
-				56BD88831E551CB50098E50B /* Oswald-HeavyItalic.ttf in Sources */,
-				56BD88841E551CB50098E50B /* Oswald-Light.ttf in Sources */,
-				56BD88851E551CB50098E50B /* Oswald-LightItalic.ttf in Sources */,
-				56BD88861E551CB50098E50B /* Oswald-Medium.ttf in Sources */,
-				56BD88871E551CB50098E50B /* Oswald-MediumItalic.ttf in Sources */,
-				56BD88881E551CB50098E50B /* Oswald-Regular.ttf in Sources */,
-				56BD88891E551CB50098E50B /* Oswald-RegularItalic.ttf in Sources */,
-				56BD888A1E551CB50098E50B /* Oswald-Stencil.ttf in Sources */,
 				565D24751E54A5A500EF62CD /* GameScene.swift in Sources */,
 				565D249E1E550C1900EF62CD /* OGSLoginPresenter.swift in Sources */,
 				565D249F1E550C1900EF62CD /* OGSLoginRouter.swift in Sources */,
