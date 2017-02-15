@@ -13,10 +13,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="DGn-Yg-ADR">
             <objects>
-                <viewController id="DXz-HO-taR" sceneMemberID="viewController">
+                <viewController id="DXz-HO-taR" customClass="OGSLoginViewController" customModule="iosgo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fhS-mZ-KGT"/>
                         <viewControllerLayoutGuide type="bottom" id="Ifi-Xg-2p3"/>
@@ -64,6 +64,11 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="loginButton" destination="7Vd-uy-jhx" id="M36-oJ-dx8"/>
+                        <outlet property="passwordTextField" destination="LDx-dz-GDy" id="ULs-pQ-L7z"/>
+                        <outlet property="usernameTextField" destination="tlY-FL-waF" id="uUD-Qq-6Vm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dfh-aL-PRM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

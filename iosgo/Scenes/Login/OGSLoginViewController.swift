@@ -25,18 +25,21 @@ protocol OGSLoginViewControllerRouter {}
 
 class OGSLoginViewController: UIViewController, OGSLoginViewControllerInput
 {
+    // MARK: - Views
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+
     var output: OGSLoginViewControllerOutput!
     var router: OGSLoginViewControllerRouter!
 
-    // MARK: - Object lifecycle
+    // MARK: - Lifecycle
 
     override func awakeFromNib()
     {
         super.awakeFromNib()
         OGSLoginConfigurator.sharedInstance.configure(viewController: self)
     }
-
-    // MARK: - Display logic
 
     func displayLogin(viewModel _: OGSLogin.Login.ViewModel)
     {
