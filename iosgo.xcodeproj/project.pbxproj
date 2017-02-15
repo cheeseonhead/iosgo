@@ -94,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				565D246D1E54A5A500EF62CD /* iosgo */,
+				56BD885D1E551C4C0098E50B /* Resource */,
 				565D24881E54A5A500EF62CD /* iosgoTests */,
 				565D246C1E54A5A500EF62CD /* Products */,
 				3176CD49A89C56C411571F86 /* Pods */,
@@ -149,6 +150,13 @@
 			);
 			name = Login;
 			path = Scenes/Login;
+			sourceTree = "<group>";
+		};
+		56BD885D1E551C4C0098E50B /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		E4DEFB86F4E965A3CC8D8761 /* Frameworks */ = {
