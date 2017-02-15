@@ -16,6 +16,12 @@
 		565D247C1E54A5A500EF62CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 565D247B1E54A5A500EF62CD /* Assets.xcassets */; };
 		565D247F1E54A5A500EF62CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 565D247D1E54A5A500EF62CD /* LaunchScreen.storyboard */; };
 		565D248A1E54A5A500EF62CD /* iosgoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565D24891E54A5A500EF62CD /* iosgoTests.swift */; };
+		565D249B1E550C1900EF62CD /* OGSLoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565D24951E550C1900EF62CD /* OGSLoginConfigurator.swift */; };
+		565D249C1E550C1900EF62CD /* OGSLoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565D24961E550C1900EF62CD /* OGSLoginInteractor.swift */; };
+		565D249D1E550C1900EF62CD /* OGSLoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565D24971E550C1900EF62CD /* OGSLoginModels.swift */; };
+		565D249E1E550C1900EF62CD /* OGSLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565D24981E550C1900EF62CD /* OGSLoginPresenter.swift */; };
+		565D249F1E550C1900EF62CD /* OGSLoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565D24991E550C1900EF62CD /* OGSLoginRouter.swift */; };
+		565D24A01E550C1900EF62CD /* OGSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565D249A1E550C1900EF62CD /* OGSLoginViewController.swift */; };
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +51,12 @@
 		565D24851E54A5A500EF62CD /* iosgoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosgoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		565D24891E54A5A500EF62CD /* iosgoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosgoTests.swift; sourceTree = "<group>"; };
 		565D248B1E54A5A500EF62CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		565D24951E550C1900EF62CD /* OGSLoginConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginConfigurator.swift; sourceTree = "<group>"; };
+		565D24961E550C1900EF62CD /* OGSLoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginInteractor.swift; sourceTree = "<group>"; };
+		565D24971E550C1900EF62CD /* OGSLoginModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginModels.swift; sourceTree = "<group>"; };
+		565D24981E550C1900EF62CD /* OGSLoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginPresenter.swift; sourceTree = "<group>"; };
+		565D24991E550C1900EF62CD /* OGSLoginRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginRouter.swift; sourceTree = "<group>"; };
+		565D249A1E550C1900EF62CD /* OGSLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginViewController.swift; sourceTree = "<group>"; };
 		F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -99,6 +111,7 @@
 		565D246D1E54A5A500EF62CD /* iosgo */ = {
 			isa = PBXGroup;
 			children = (
+				565D24941E550BAE00EF62CD /* Login */,
 				565D246E1E54A5A500EF62CD /* AppDelegate.swift */,
 				565D24701E54A5A500EF62CD /* GameScene.sks */,
 				565D24721E54A5A500EF62CD /* Actions.sks */,
@@ -119,6 +132,20 @@
 				565D248B1E54A5A500EF62CD /* Info.plist */,
 			);
 			path = iosgoTests;
+			sourceTree = "<group>";
+		};
+		565D24941E550BAE00EF62CD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				565D24951E550C1900EF62CD /* OGSLoginConfigurator.swift */,
+				565D24961E550C1900EF62CD /* OGSLoginInteractor.swift */,
+				565D24971E550C1900EF62CD /* OGSLoginModels.swift */,
+				565D24981E550C1900EF62CD /* OGSLoginPresenter.swift */,
+				565D24991E550C1900EF62CD /* OGSLoginRouter.swift */,
+				565D249A1E550C1900EF62CD /* OGSLoginViewController.swift */,
+			);
+			name = Login;
+			path = Scenes/Login;
 			sourceTree = "<group>";
 		};
 		E4DEFB86F4E965A3CC8D8761 /* Frameworks */ = {
@@ -288,8 +315,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				565D24751E54A5A500EF62CD /* GameScene.swift in Sources */,
+				565D249E1E550C1900EF62CD /* OGSLoginPresenter.swift in Sources */,
+				565D249F1E550C1900EF62CD /* OGSLoginRouter.swift in Sources */,
 				565D24771E54A5A500EF62CD /* GameViewController.swift in Sources */,
+				565D249C1E550C1900EF62CD /* OGSLoginInteractor.swift in Sources */,
+				565D249B1E550C1900EF62CD /* OGSLoginConfigurator.swift in Sources */,
 				565D246F1E54A5A500EF62CD /* AppDelegate.swift in Sources */,
+				565D24A01E550C1900EF62CD /* OGSLoginViewController.swift in Sources */,
+				565D249D1E550C1900EF62CD /* OGSLoginModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
