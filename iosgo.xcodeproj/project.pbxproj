@@ -41,6 +41,7 @@
 		56BD887B1E551C990098E50B /* Oswald-Stencil.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */; };
 		56BD888F1E5522530098E50B /* OGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BD888E1E5522530098E50B /* OGSButton.swift */; };
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
+		AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Stencil.ttf"; sourceTree = "<group>"; };
 		56BD888E1E5522530098E50B /* OGSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSButton.swift; sourceTree = "<group>"; };
 		716E1A03A77525183735DD47 /* Pods-iosgo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iosgo/Pods-iosgo.debug.xcconfig"; sourceTree = "<group>"; };
+		AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		AF12002656677CCFB6D8EAF8 /* Pods_iosgo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -172,6 +174,7 @@
 				565D247B1E54A5A500EF62CD /* Assets.xcassets */,
 				565D247D1E54A5A500EF62CD /* LaunchScreen.storyboard */,
 				565D24801E54A5A500EF62CD /* Info.plist */,
+				AD05A9249FEBFC41418217D5 /* Additions */,
 			);
 			path = iosgo;
 			sourceTree = "<group>";
@@ -228,6 +231,14 @@
 				56BD888E1E5522530098E50B /* OGSButton.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		AD05A9249FEBFC41418217D5 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */,
+			);
+			path = Additions;
 			sourceTree = "<group>";
 		};
 		E4DEFB86F4E965A3CC8D8761 /* Frameworks */ = {
@@ -295,7 +306,7 @@
 				TargetAttributes = {
 					565D246A1E54A5A500EF62CD = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = R73WSN5T33;
+						DevelopmentTeam = 9QWSV3PV48;
 						ProvisioningStyle = Automatic;
 					};
 					565D24841E54A5A500EF62CD = {
@@ -471,6 +482,7 @@
 				565D246F1E54A5A500EF62CD /* AppDelegate.swift in Sources */,
 				565D24A01E550C1900EF62CD /* OGSLoginViewController.swift in Sources */,
 				565D249D1E550C1900EF62CD /* OGSLoginModels.swift in Sources */,
+				AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,11 +622,11 @@
 			baseConfigurationReference = 716E1A03A77525183735DD47 /* Pods-iosgo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = R73WSN5T33;
+				DEVELOPMENT_TEAM = 9QWSV3PV48;
 				INFOPLIST_FILE = iosgo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cheeseonhead.iosgo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cheeseonhead.iosgogame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -625,11 +637,11 @@
 			baseConfigurationReference = 01BA5FDBCD62AB45B53CC1A9 /* Pods-iosgo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = R73WSN5T33;
+				DEVELOPMENT_TEAM = 9QWSV3PV48;
 				INFOPLIST_FILE = iosgo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cheeseonhead.iosgo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cheeseonhead.iosgogame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
