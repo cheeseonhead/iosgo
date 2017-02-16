@@ -29,6 +29,7 @@ struct OGSLogin
 
         struct ViewModel
         {
+            var readyToNavigate: Bool
             var userInputState: UserInputState
 
             var errorLabelHidden: Bool
