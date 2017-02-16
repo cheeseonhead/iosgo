@@ -23,11 +23,23 @@ class OGSButtonFactory
     {
         guard button.buttonType == .custom else { return }
 
-        button.layer.cornerRadius = 3
+        button.setRoundCorner()
+        button.addShadow()
+    }
+}
 
-        button.layer.shadowOffset = CGSize(width: 0, height: 1)
-        button.layer.shadowColor = UIColor.init(white: 0.8, alpha: 1.0).cgColor
-        button.layer.shadowOpacity = 1
-        button.layer.shadowRadius = 0.2
+fileprivate extension UIButton
+{
+    func setRoundCorner()
+    {
+        self.layer.cornerRadius = 3
+    }
+
+    func addShadow()
+    {
+        self.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.layer.shadowColor = UIColor.init(white: 0.1, alpha: 1.0).cgColor
+        self.layer.shadowOpacity = 1
+        self.layer.shadowRadius = 0.2
     }
 }
