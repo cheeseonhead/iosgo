@@ -122,6 +122,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		34CFDCA41E555F6100A9294B /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				565D24941E550BAE00EF62CD /* Login */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
 		565D24621E54A5A500EF62CD = {
 			isa = PBXGroup;
 			children = (
@@ -147,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				56BD888D1E5522530098E50B /* Components */,
-				565D24941E550BAE00EF62CD /* Login */,
+				34CFDCA41E555F6100A9294B /* Scenes */,
 				565D246E1E54A5A500EF62CD /* AppDelegate.swift */,
 				565D24701E54A5A500EF62CD /* GameScene.sks */,
 				565D24721E54A5A500EF62CD /* Actions.sks */,
