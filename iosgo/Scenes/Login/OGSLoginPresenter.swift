@@ -31,7 +31,7 @@ class OGSLoginPresenter: OGSLoginPresenterInput
     {
         // NOTE: Format the response from the Interactor and pass the result back to the View Controller
 
-        let viewModel = OGSLogin.Login.ViewModel()
+        let viewModel = OGSLogin.Login.ViewModel(readyToNavigate: false, userInputState: .pending, errorLabelHidden: true, errorLabelMessage: nil)
         output.displayLogin(viewModel: viewModel)
     }
 }
