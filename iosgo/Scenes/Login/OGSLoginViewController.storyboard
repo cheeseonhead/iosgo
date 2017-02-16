@@ -45,12 +45,12 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Vd-uy-jhx" customClass="OGSButton" customModule="iosgo" customModuleProvider="target">
                                 <rect key="frame" x="138" y="213" width="264" height="40"/>
-                                <color key="backgroundColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="20"/>
                                 <state key="normal" title="Login"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="LDx-dz-GDy" firstAttribute="width" secondItem="tlY-FL-waF" secondAttribute="width" id="3as-av-B2B"/>
                             <constraint firstItem="7Vd-uy-jhx" firstAttribute="width" secondItem="LDx-dz-GDy" secondAttribute="width" id="5zN-Wl-uA0"/>
