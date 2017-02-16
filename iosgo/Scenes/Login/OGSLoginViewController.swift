@@ -29,6 +29,12 @@ class OGSLoginViewController: UIViewController, OGSLoginViewControllerInput
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    {
+        didSet
+        {
+            OGSButtonFactory.sharedInstance.setupPrimaryButton(button: loginButton)
+        }
+    }
 
     var output: OGSLoginViewControllerOutput!
     var router: OGSLoginViewControllerRouter!
