@@ -28,11 +28,11 @@ class OGSLoginViewController: UIViewController, OGSLoginViewControllerInput
     // MARK: - Views
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var loginButton: OGSButton!
     {
         didSet
         {
-            OGSButtonFactory.sharedInstance.setupPrimaryButton(button: loginButton)
+            loginButton.setupAsButtonType(.primary)
         }
     }
 
