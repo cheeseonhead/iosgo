@@ -18,7 +18,18 @@ class OGSButton: UIButton
 {
     var highlightedBackgroundColor: UIColor?
     var normalBackgroundColor: UIColor?
-
+    var isPending: Bool = false {
+        didSet {
+            isUserInteractionEnabled = !isPending
+            if isPending {
+                setTitleColor(normalBackgroundColor, for: .normal)
+            }
+            else {
+                setTitleColor(UIColor.white, for: .normal)
+            }
+        }
+    }
+    
     override var buttonType: UIButtonType
     {
         return .custom
