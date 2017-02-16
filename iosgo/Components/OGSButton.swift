@@ -71,7 +71,7 @@ extension OGSButton
     {
         layer.shadowOffset = CGSize.zero
         layer.shadowColor = UIColor.init(white: 0.1, alpha: 1.0).cgColor
-        layer.shadowOpacity = 0.7
+        layer.shadowOpacity = 0.5
         layer.shadowRadius = 2
     }
 
@@ -81,7 +81,7 @@ extension OGSButton
         UIView.animate(withDuration: 0.2)
         {
             self.backgroundColor = self.highlightedBackgroundColor
-            self.layer.shadowRadius = 4
+            self.layer.shadowRadius = 3
         }
     }
 
