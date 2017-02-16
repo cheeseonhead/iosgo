@@ -3,6 +3,10 @@ platform :ios, '10.0'
 
 use_frameworks!
 
+target "iosgo" do
+    pod 'SnapKit'
+end
+
 target "iosgoTests" do
     pod 'Quick'
     pod 'Nimble'
