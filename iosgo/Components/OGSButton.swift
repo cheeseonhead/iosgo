@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SnapKit
 import UIKit
 
 enum OGSButtonType
@@ -16,16 +17,22 @@ enum OGSButtonType
 
 class OGSButton: UIButton
 {
+    // MARK: - Views
+    var indicatorView: UIActivityIndicatorView!
+    
+    // MARK: - States
     var highlightedBackgroundColor: UIColor?
     var normalBackgroundColor: UIColor?
     var isPending: Bool = false {
         didSet {
             isUserInteractionEnabled = !isPending
             if isPending {
-                setTitleColor(normalBackgroundColor, for: .normal)
+                titleLabel?.layer.opacity = 0;
+                indicatorView.startAnimating()
             }
             else {
-                setTitleColor(UIColor.white, for: .normal)
+                titleLabel?.layer.opacity = 1;
+                indicatorView.stopAnimating()
             }
         }
     }
@@ -34,13 +41,14 @@ class OGSButton: UIButton
     {
         return .custom
     }
-
+    
     func setupAsButtonType(_: OGSButtonType)
     {
         self.setAllBackgroundColors()
         self.addAllTouchHandlers()
         self.setRoundCorner()
         self.addShadow()
+        self.addIndicator()
     }
 }
 
@@ -57,7 +65,8 @@ extension UIColor
     }
 }
 
-extension OGSButton
+// MARK: - Button setup
+fileprivate extension OGSButton
 {
     func addAllTouchHandlers()
     {
@@ -85,8 +94,21 @@ extension OGSButton
         layer.shadowOpacity = 0.5
         layer.shadowRadius = 2
     }
+    
+    func addIndicator()
+    {
+        indicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .white)
+        addSubview(indicatorView)
+        indicatorView.snp.makeConstraints { (make) in
+            make.center.equalTo(self)
+        }
+        bringSubview(toFront: indicatorView)
+    }
+}
 
-    // MARK: - Touch Handlers
+// MARK: - Touch Handlers
+extension OGSButton
+{
     func changeToHighlightedState()
     {
         UIView.animate(withDuration: 0.2)
