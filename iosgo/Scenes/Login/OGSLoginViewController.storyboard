@@ -79,6 +79,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="errorLabel" destination="PFl-Yq-tZD" id="PeH-xI-irW"/>
                         <outlet property="loginButton" destination="7Vd-uy-jhx" id="M36-oJ-dx8"/>
                         <outlet property="passwordTextField" destination="LDx-dz-GDy" id="ULs-pQ-L7z"/>
                         <outlet property="usernameTextField" destination="tlY-FL-waF" id="uUD-Qq-6Vm"/>

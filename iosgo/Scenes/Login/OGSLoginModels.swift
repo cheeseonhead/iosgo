@@ -22,18 +22,18 @@ struct OGSLogin
         {
         }
 
-        enum UserInputState {
-            case ready
-            case pending
-        }
-
         struct ViewModel
         {
+            enum UserInputState {
+                case ready
+                case pending
+            }
+
             var readyToNavigate: Bool
             var userInputState: UserInputState
 
             var errorLabelHidden: Bool
-            var errorLabelMessage: String
+            var errorLabelMessage: String?
         }
     }
 }

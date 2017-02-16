@@ -28,6 +28,7 @@ class OGSLoginViewController: UIViewController, OGSLoginViewControllerInput
     // MARK: - Views
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var loginButton: OGSButton!
     {
         didSet
@@ -47,10 +48,31 @@ class OGSLoginViewController: UIViewController, OGSLoginViewControllerInput
         OGSLoginConfigurator.sharedInstance.configure(viewController: self)
     }
 
-    func displayLogin(viewModel _: OGSLogin.Login.ViewModel)
+    func displayLogin(viewModel: OGSLogin.Login.ViewModel)
     {
-        // NOTE: Display the result from the Presenter
+        if viewModel.readyToNavigate {
 
-        // nameTextField.text = viewModel.name
+        }
+
+        setupInputsFor(state: viewModel.userInputState)
+        setupErrorLabel(hide: viewModel.errorLabelHidden, errorText: viewModel.errorLabelMessage)
+    }
+}
+
+fileprivate extension OGSLoginViewController
+{
+    func setupInputsFor(state: OGSLogin.Login.ViewModel.UserInputState)
+    {
+        let isInputReady = state == .ready
+
+        usernameTextField.isEnabled = isInputReady
+        passwordTextField.isEnabled = isInputReady
+        loginButton.isPending = !isInputReady
+    }
+
+    func setupErrorLabel(hide isHidden:Bool, errorText text:String?)
+    {
+        errorLabel.isHidden = isHidden
+        errorLabel.text = text
     }
 }
