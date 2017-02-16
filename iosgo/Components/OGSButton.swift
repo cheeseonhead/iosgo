@@ -42,7 +42,7 @@ extension UIColor
         var b: CGFloat = 0.0
         var a: CGFloat = 0.0
         getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-        return UIColor.init(hue: h, saturation: s, brightness: min(b * 1.3, 1.0), alpha: a)
+        return UIColor.init(hue: h, saturation: s, brightness: min(b * 1.05, 1.0), alpha: a)
     }
 }
 
@@ -69,26 +69,28 @@ extension OGSButton
 
     func addShadow()
     {
-        layer.shadowOffset = CGSize(width: 0, height: 1)
+        layer.shadowOffset = CGSize.zero
         layer.shadowColor = UIColor.init(white: 0.1, alpha: 1.0).cgColor
-        layer.shadowOpacity = 1
-        layer.shadowRadius = 0.2
+        layer.shadowOpacity = 0.7
+        layer.shadowRadius = 2
     }
 
     // MARK: - Touch Handlers
     func changeToHighlightedState()
     {
-        UIView.animate(withDuration: 0.1)
+        UIView.animate(withDuration: 0.2)
         {
             self.backgroundColor = self.highlightedBackgroundColor
+            self.layer.shadowRadius = 4
         }
     }
 
     func changeToNormalState()
     {
-        UIView.animate(withDuration: 0.1)
+        UIView.animate(withDuration: 0.2)
         {
             self.backgroundColor = self.normalBackgroundColor
+            self.layer.shadowRadius = 2
         }
     }
 }
