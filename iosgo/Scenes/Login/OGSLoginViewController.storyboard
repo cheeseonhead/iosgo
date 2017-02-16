@@ -49,6 +49,10 @@
                                 <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="20"/>
                                 <state key="normal" title="Login"/>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4pv-UP-jMe">
+                                <rect key="frame" x="373" y="223" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
