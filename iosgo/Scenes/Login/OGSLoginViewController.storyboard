@@ -11,6 +11,9 @@
         <array key="Oswald-Heavy.ttf">
             <string>Oswald-Heavy</string>
         </array>
+        <array key="Oswald-Medium.ttf">
+            <string>Oswald-Medium</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Login View Controller-->
@@ -52,6 +55,12 @@
                                 <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="20"/>
                                 <state key="normal" title="Login"/>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFl-Yq-tZD">
+                                <rect key="frame" x="238.5" y="261" width="63.5" height="21"/>
+                                <fontDescription key="fontDescription" name="Oswald-Medium" family="Oswald" pointSize="15"/>
+                                <color key="textColor" red="0.97623580682272892" green="0.19502082082833139" blue="0.20845150560224085" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -61,7 +70,9 @@
                             <constraint firstItem="7Vd-uy-jhx" firstAttribute="centerX" secondItem="LDx-dz-GDy" secondAttribute="centerX" id="CO1-yf-9bX"/>
                             <constraint firstItem="LDx-dz-GDy" firstAttribute="top" secondItem="tlY-FL-waF" secondAttribute="bottom" constant="8" id="Fp3-IZ-OcT"/>
                             <constraint firstItem="tlY-FL-waF" firstAttribute="top" secondItem="fhS-mZ-KGT" secondAttribute="bottom" constant="117" id="PN1-VX-efM"/>
+                            <constraint firstItem="PFl-Yq-tZD" firstAttribute="top" secondItem="7Vd-uy-jhx" secondAttribute="bottom" constant="8" id="QwS-uY-9UY"/>
                             <constraint firstItem="LDx-dz-GDy" firstAttribute="centerX" secondItem="tlY-FL-waF" secondAttribute="centerX" id="Wat-wE-31B"/>
+                            <constraint firstItem="PFl-Yq-tZD" firstAttribute="centerX" secondItem="7Vd-uy-jhx" secondAttribute="centerX" id="h2k-SF-ugu"/>
                             <constraint firstItem="tlY-FL-waF" firstAttribute="centerX" secondItem="V8a-MR-cXm" secondAttribute="centerX" id="hFd-Q3-w8w"/>
                         </constraints>
                     </view>

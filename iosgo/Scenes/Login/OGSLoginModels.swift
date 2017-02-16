@@ -21,8 +21,18 @@ struct OGSLogin
         struct Response
         {
         }
+
+        enum UserInputState {
+            case ready
+            case pending
+        }
+
         struct ViewModel
         {
+            var userInputState: UserInputState
+
+            var errorLabelHidden: Bool
+            var errorLabelMessage: String
         }
     }
 }
