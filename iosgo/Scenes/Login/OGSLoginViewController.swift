@@ -55,7 +55,7 @@ class OGSLoginViewController: UIViewController, OGSLoginViewControllerInput
         }
 
         setupInputsFor(state: viewModel.userInputState)
-        setupErrorLabel(hide: viewModel.errorLabelHidden, errorText: viewModel.errorLabelMessage)
+        setupErrorLabel(for: viewModel.errorLabelState)
     }
 }
 
@@ -70,9 +70,16 @@ fileprivate extension OGSLoginViewController
         loginButton.isPending = !isInputReady
     }
 
-    func setupErrorLabel(hide isHidden:Bool, errorText text:String?)
+    func setupErrorLabel(for state: OGSLogin.Login.ViewModel.ErrorLabelState)
     {
-        errorLabel.isHidden = isHidden
-        errorLabel.text = text
+        switch(state) {
+            case .hidden:
+                errorLabel.isHidden = true
+                break
+        case .showing(let message):
+            errorLabel.isHidden = false
+            errorLabel.text = message
+            break
+        }
     }
 }
