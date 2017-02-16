@@ -29,11 +29,15 @@ struct OGSLogin
                 case pending
             }
 
+            enum ErrorLabelState {
+                case hidden
+                case showing(message: String)
+            }
+
             var readyToNavigate: Bool
             var userInputState: UserInputState
 
-            var errorLabelHidden: Bool
-            var errorLabelMessage: String?
+            var errorLabelState: ErrorLabelState
         }
     }
 }
