@@ -23,6 +23,7 @@ class OGSButton: UIButton
     // MARK: - States
     var highlightedBackgroundColor: UIColor?
     var normalBackgroundColor: UIColor?
+    var disabledBackgroundColor: UIColor?
     var isPending: Bool = false {
         didSet {
             isUserInteractionEnabled = !isPending
@@ -41,14 +42,36 @@ class OGSButton: UIButton
     {
         return .custom
     }
+
+    override var isEnabled: Bool {
+        didSet {
+            updateBackgroundWithCurrentState()
+        }
+    }
     
     func setupAsButtonType(_: OGSButtonType)
     {
+        self.setAllTextColors()
         self.setAllBackgroundColors()
         self.addAllTouchHandlers()
         self.setRoundCorner()
         self.addShadow()
         self.addIndicator()
+
+        updateBackgroundWithCurrentState()
+    }
+
+    func updateBackgroundWithCurrentState()
+    {
+        if !isEnabled {
+            changeToDisabledState()
+        }
+        else if isHighlighted {
+            changeToHighlightedState()
+        }
+        else if isEnabled {
+            changeToNormalState()
+        }
     }
 }
 
@@ -63,10 +86,16 @@ fileprivate extension OGSButton
         addTarget(self, action: #selector(self.changeToNormalState), for: .touchUpInside)
     }
 
+    func setAllTextColors()
+    {
+        setTitleColor(OGSColor.primaryTextDisabled, for: .disabled)
+    }
+
     func setAllBackgroundColors()
     {
         normalBackgroundColor = self.backgroundColor
         highlightedBackgroundColor = self.backgroundColor?.lighterColor()
+        disabledBackgroundColor = OGSColor.primaryBackgroundDisabled
     }
 
     func setRoundCorner()
@@ -112,5 +141,11 @@ extension OGSButton
             self.backgroundColor = self.normalBackgroundColor
             self.layer.shadowRadius = 2
         }
+    }
+
+    func changeToDisabledState()
+    {
+        self.backgroundColor = self.disabledBackgroundColor
+        self.layer.shadowRadius = 0
     }
 }
