@@ -31,6 +31,7 @@ class OGSLoginPresenter: OGSLoginPresenterInput
     {
         let readyToNavigate = readyToNavigateFrom(response: response)
         let userInputState = userInputStateFrom(response: response)
+        let errorLabelState = errorLabelStateFrom(response: response)
     }
 }
 
@@ -39,10 +40,10 @@ fileprivate extension OGSLoginPresenter
     func readyToNavigateFrom(response: OGSLogin.Login.Response) -> Bool
     {
         switch response.loadingStatus {
-        case .success:
-            return true
-        case .error, .loading:
-            return false
+            case .success:
+                return true
+            case .error, .loading:
+                return false
         }
     }
 
@@ -50,9 +51,20 @@ fileprivate extension OGSLoginPresenter
     {
         switch response.loadingStatus {
             case .loading:
-        return .pending
-        case .error, .success:
-        return .ready
+                return .pending
+            case .error, .success:
+                return .ready
+        }
+    }
+
+    func errorLabelStateFrom(response: OGSLogin.Login.Response) -> OGSLogin.Login.ViewModel.ErrorLabelState
+    {
+        switch response.loadingStatus {
+            case .success, .loading:
+                return .hidden
+            case .error(let type):
+                let errorText = type.rawValue
+                return .showing(message: errorText)
         }
     }
 }

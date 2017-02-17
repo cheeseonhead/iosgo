@@ -18,6 +18,7 @@ struct OGSLogin
         struct Request
         {
         }
+
         struct Response
         {
             enum LoadingStatus {
