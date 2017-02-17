@@ -29,14 +29,14 @@ class OGSLoginPresenter: OGSLoginPresenterInput
 
     func presentLogin(response: OGSLogin.Login.Response)
     {
-        let readyToNavigate = readyToNavigate(from: response)
-        let userInputState = userInputState(from: response)
+        let readyToNavigate = readyToNavigateFrom(response: response)
+        let userInputState = userInputStateFrom(response: response)
     }
 }
 
 fileprivate extension OGSLoginPresenter
 {
-    func readyToNavigate(from response: OGSLogin.Login.Response) -> Bool
+    func readyToNavigateFrom(response: OGSLogin.Login.Response) -> Bool
     {
         switch response.loadingStatus {
         case .success:
@@ -46,7 +46,7 @@ fileprivate extension OGSLoginPresenter
         }
     }
 
-    func userInputState(from response: OGSLogin.Login.Response) -> OGSLogin.Login.ViewModel.UserInputState
+    func userInputStateFrom(response: OGSLogin.Login.Response) -> OGSLogin.Login.ViewModel.UserInputState
     {
         switch response.loadingStatus {
             case .loading:
