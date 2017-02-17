@@ -39,7 +39,7 @@ class OGSLoginInteractor: OGSLoginInteractorInput
                 response.loadingStatus = .success
             }
             else {
-                let errorType = errorType(from: result.loginError)
+                let errorType = self.getErrorType(from: result.loginError)
                 response.loadingStatus = .error(errorType)
             }
 
@@ -56,7 +56,7 @@ fileprivate extension OGSLoginInteractor
         return response
     }
 
-    func errorType(from error: OGSLoginWorker.LoginErrorType) -> OGSLogin.Login.Response.ErrorType
+    func getErrorType(from error: OGSLoginWorker.LoginErrorType) -> OGSLogin.Login.Response.ErrorType
     {
         switch error {
             case .usernameNotFound:
