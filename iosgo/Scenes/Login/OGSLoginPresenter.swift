@@ -32,6 +32,9 @@ class OGSLoginPresenter: OGSLoginPresenterInput
         let readyToNavigate = readyToNavigateFrom(response: response)
         let userInputState = userInputStateFrom(response: response)
         let errorLabelState = errorLabelStateFrom(response: response)
+
+        let viewModel = OGSLogin.Login.ViewModel(readyToNavigate: readyToNavigate, userInputState: userInputState, errorLabelState: errorLabelState)
+        output.displayLogin(viewModel: viewModel)
     }
 }
 
