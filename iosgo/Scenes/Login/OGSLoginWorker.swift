@@ -28,6 +28,10 @@ class OGSLoginWorker
             loginError = .passwordIncorrect
         }
         let result = LoginResult(success: success, loginError: loginError)
-        completion(result)
+
+        let smallDelayAfter = DispatchTime.now() + DispatchTimeInterval.milliseconds(3000)
+        DispatchQueue.main.asyncAfter(deadline: smallDelayAfter, execute: {
+            completion(result)
+        })
     }
 }
