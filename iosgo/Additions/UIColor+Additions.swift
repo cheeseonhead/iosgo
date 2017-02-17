@@ -6,6 +6,22 @@
 import Foundation
 import UIKit
 
+// MARK: - Custom Colors
+class OGSColor: UIColor
+{
+    static var primaryBackground {
+        return super.init(hex: 0x79859E)
+    }
+
+    static var primaryBackgroundDisabled {
+        return super.init(hex: 0xECEFF1)
+    }
+
+    static var primaryTextDisabled {
+        return super.init(hex: 0xD2D8DB)
+    }
+}
+
 // MARK: - Hex
 // https://gist.github.com/berikv/ecf1f79c5bc9921c47ef
 extension UIColor
