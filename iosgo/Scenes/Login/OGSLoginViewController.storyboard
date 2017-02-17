@@ -51,6 +51,9 @@
                                 <color key="backgroundColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="20"/>
                                 <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButtonTapped:" destination="DXz-HO-taR" eventType="touchUpInside" id="vkj-0l-l5S"/>
+                                </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFl-Yq-tZD">
                                 <rect key="frame" x="238.5" y="261" width="63.5" height="21"/>

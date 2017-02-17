@@ -48,6 +48,17 @@ class OGSLoginViewController: UIViewController, OGSLoginViewControllerInput
         OGSLoginConfigurator.sharedInstance.configure(viewController: self)
     }
 
+    @IBAction func loginButtonTapped(_ sender: Any)
+    {
+        guard let username = usernameTextField.text,
+              let password = passwordTextField.text
+                else {return}
+
+        let request = OGSLogin.Login.Request(username: username, password: password)
+
+        output.login(request: request)
+    }
+    
     func displayLogin(viewModel: OGSLogin.Login.ViewModel)
     {
         if viewModel.readyToNavigate {
