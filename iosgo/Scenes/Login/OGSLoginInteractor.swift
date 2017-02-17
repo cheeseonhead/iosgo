@@ -30,5 +30,39 @@ class OGSLoginInteractor: OGSLoginInteractorInput
 
     func login(request: OGSLogin.Login.Request)
     {
+        var response = createInitialResponse()
+        output.presentLogin(response: response)
+
+        loginWorker.loginWith(username: request.username, password: request.password)
+        { result in
+            if result.success {
+                response.loadingStatus = .success
+            }
+            else {
+                let errorType = errorType(from: result.loginError)
+                response.loadingStatus = .error(errorType)
+            }
+
+            self.output.presentLogin(response: response)
+        }
+    }
+}
+
+fileprivate extension OGSLoginInteractor
+{
+    func createInitialResponse() -> OGSLogin.Login.Response
+    {
+        let response = OGSLogin.Login.Response(loadingStatus: .loading)
+        return response
+    }
+
+    func errorType(from error: OGSLoginWorker.LoginErrorType) -> OGSLogin.Login.Response.ErrorType
+    {
+        switch error {
+            case .usernameNotFound:
+                return .usernameNotFound
+            case .passwordIncorrect:
+                return .incorrectPassword
+        }
     }
 }
