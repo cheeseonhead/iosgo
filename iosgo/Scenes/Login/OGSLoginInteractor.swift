@@ -24,16 +24,11 @@ protocol OGSLoginInteractorOutput
 class OGSLoginInteractor: OGSLoginInteractorInput
 {
     var output: OGSLoginInteractorOutput!
+    var loginWorker = OGSLoginWorker()
 
     // MARK: - Business logic
 
-    func login(request _: OGSLogin.Login.Request)
+    func login(request: OGSLogin.Login.Request)
     {
-        // NOTE: Create some Worker to do the work
-
-        // NOTE: Pass the result to the Presenter
-
-        let response = OGSLogin.Login.Response(loadingStatus: .success)
-        output.presentLogin(response: response)
     }
 }

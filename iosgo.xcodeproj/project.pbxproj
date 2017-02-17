@@ -41,6 +41,7 @@
 		56BD887B1E551C990098E50B /* Oswald-Stencil.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */; };
 		56BD888F1E5522530098E50B /* OGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BD888E1E5522530098E50B /* OGSButton.swift */; };
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
+		AD05A4734C55AAC0688E561B /* OGSLoginWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AE0AB9F1931225BB3D0C /* OGSLoginWorker.swift */; };
 		AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,7 @@
 		56BD888E1E5522530098E50B /* OGSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSButton.swift; sourceTree = "<group>"; };
 		716E1A03A77525183735DD47 /* Pods-iosgo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iosgo/Pods-iosgo.debug.xcconfig"; sourceTree = "<group>"; };
 		AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
+		AD05AE0AB9F1931225BB3D0C /* OGSLoginWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginWorker.swift; sourceTree = "<group>"; };
 		AF12002656677CCFB6D8EAF8 /* Pods_iosgo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -198,6 +200,7 @@
 				565D24991E550C1900EF62CD /* OGSLoginRouter.swift */,
 				565D249A1E550C1900EF62CD /* OGSLoginViewController.swift */,
 				568D7C991E551068006E0B07 /* OGSLoginViewController.storyboard */,
+				AD05AE0AB9F1931225BB3D0C /* OGSLoginWorker.swift */,
 			);
 			name = Login;
 			path = Scenes/Login;
@@ -483,6 +486,7 @@
 				565D24A01E550C1900EF62CD /* OGSLoginViewController.swift in Sources */,
 				565D249D1E550C1900EF62CD /* OGSLoginModels.swift in Sources */,
 				AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */,
+				AD05A4734C55AAC0688E561B /* OGSLoginWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
