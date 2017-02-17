@@ -6,6 +6,8 @@
 import Foundation
 import UIKit
 
+// MARK: - Hex
+// https://gist.github.com/berikv/ecf1f79c5bc9921c47ef
 extension UIColor
 {
     // Usage: UIColor(hex: 0xFC0ACE)
@@ -21,7 +23,10 @@ extension UIColor
                 blue: CGFloat(hex & 0xff) / 255,
                 alpha: CGFloat(alpha))
     }
+}
 
+extension UIColor
+{
     func lighterColor() -> UIColor
     {
         var h: CGFloat = 0.0
