@@ -18,7 +18,7 @@ protocol OGSLoginViewControllerInput
 
 protocol OGSLoginViewControllerOutput
 {
-    func doSomething(request: OGSLogin.Login.Request)
+    func login(request: OGSLogin.Login.Request)
 }
 
 protocol OGSLoginViewControllerRouter {}

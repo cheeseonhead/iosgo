@@ -13,7 +13,7 @@ import UIKit
 
 protocol OGSLoginInteractorInput
 {
-    func doSomething(request: OGSLogin.Login.Request)
+    func login(request: OGSLogin.Login.Request)
 }
 
 protocol OGSLoginInteractorOutput
@@ -27,7 +27,7 @@ class OGSLoginInteractor: OGSLoginInteractorInput
 
     // MARK: - Business logic
 
-    func doSomething(request _: OGSLogin.Login.Request)
+    func login(request _: OGSLogin.Login.Request)
     {
         // NOTE: Create some Worker to do the work
 
