@@ -27,11 +27,32 @@ class OGSLoginPresenter: OGSLoginPresenterInput
 
     // MARK: - Presentation logic
 
-    func presentLogin(response _: OGSLogin.Login.Response)
+    func presentLogin(response: OGSLogin.Login.Response)
     {
-        // NOTE: Format the response from the Interactor and pass the result back to the View Controller
+        let readyToNavigate = readyToNavigate(from: response)
+        let userInputState = userInputState(from: response)
+    }
+}
 
-        let viewModel = OGSLogin.Login.ViewModel(readyToNavigate: false, userInputState: .ready, errorLabelState: .showing(message: "Some error"))
-        output.displayLogin(viewModel: viewModel)
+fileprivate extension OGSLoginPresenter
+{
+    func readyToNavigate(from response: OGSLogin.Login.Response) -> Bool
+    {
+        switch response.loadingStatus {
+        case .success:
+            return true
+        case .error, .loading:
+            return false
+        }
+    }
+
+    func userInputState(from response: OGSLogin.Login.Response) -> OGSLogin.Login.ViewModel.UserInputState
+    {
+        switch response.loadingStatus {
+            case .loading:
+        return .pending
+        case .error, .success:
+        return .ready
+        }
     }
 }
