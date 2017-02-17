@@ -20,6 +20,17 @@ struct OGSLogin
         }
         struct Response
         {
+            enum LoadingStatus {
+                case loading, success
+                case error(ErrorType)
+            }
+
+            enum ErrorType: String {
+                case usernameNotFound = "Username not found"
+                case incorrectPassword = "Password incorrect"
+            }
+
+            var loadingStatus: LoadingStatus
         }
 
         struct ViewModel

@@ -33,7 +33,7 @@ class OGSLoginInteractor: OGSLoginInteractorInput
 
         // NOTE: Pass the result to the Presenter
 
-        let response = OGSLogin.Login.Response()
+        let response = OGSLogin.Login.Response(loadingStatus: .success)
         output.presentLogin(response: response)
     }
 }
