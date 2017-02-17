@@ -17,6 +17,8 @@ struct OGSLogin
     {
         struct Request
         {
+            var username: String
+            var password: String
         }
 
         struct Response
