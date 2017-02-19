@@ -37,6 +37,7 @@
 		8405C17C969AC4488D2E1025 /* OGSLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8405CF546D963204AC2350EC /* OGSLoginViewController.storyboard */; };
 		8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CDF76C6E046EFBE5BCA7 /* OGSLoginModels.swift */; };
 		8405C28F83F104CEC08F0244 /* OGSOauthApiStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CAD187F0510292BEF3BF /* OGSOauthApiStore.swift */; };
+		8405C2F9E3BB909C3FB99D0D /* OGSDiskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CFDC3572F74D8EBE0FBD /* OGSDiskManager.swift */; };
 		8405C3C9E1790ACD829F597C /* OGSLoginWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C28DF70477E87F3C32BB /* OGSLoginWorker.swift */; };
 		8405C3EF4B45726E0EC70766 /* OGSAppConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C70C34A8FC953482040E /* OGSAppConfigurator.swift */; };
 		8405C6E5D3897A1BBF7653B2 /* OGSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C8F03743E98C9A565610 /* OGSLoginViewController.swift */; };
@@ -107,6 +108,7 @@
 		8405CDF76C6E046EFBE5BCA7 /* OGSLoginModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginModels.swift; sourceTree = "<group>"; };
 		8405CF546D963204AC2350EC /* OGSLoginViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OGSLoginViewController.storyboard; sourceTree = "<group>"; };
 		8405CF5B5FD5BE2E3B1BFCDC /* Temp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
+		8405CFDC3572F74D8EBE0FBD /* OGSDiskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSDiskManager.swift; sourceTree = "<group>"; };
 		AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		AF12002656677CCFB6D8EAF8 /* Pods_iosgo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +184,7 @@
 				8405CA6ED574B6A9F2DF0E71 /* Stores */,
 				8405C84FB937A3E2F342CD24 /* Models */,
 				8405C70C34A8FC953482040E /* OGSAppConfigurator.swift */,
+				8405CFDC3572F74D8EBE0FBD /* OGSDiskManager.swift */,
 			);
 			path = iosgo;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				8405C07D0C32F31FC969AB9A /* OGSApiManager.swift in Sources */,
 				8405CB5F7BAD2E27B9786979 /* Temp.swift in Sources */,
 				8405C3EF4B45726E0EC70766 /* OGSAppConfigurator.swift in Sources */,
+				8405C2F9E3BB909C3FB99D0D /* OGSDiskManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
