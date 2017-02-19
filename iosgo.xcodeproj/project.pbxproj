@@ -33,12 +33,18 @@
 		56BD887A1E551C990098E50B /* Oswald-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886B1E551C990098E50B /* Oswald-RegularItalic.ttf */; };
 		56BD887B1E551C990098E50B /* Oswald-Stencil.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */; };
 		56BD888F1E5522530098E50B /* OGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BD888E1E5522530098E50B /* OGSButton.swift */; };
+		8405C07D0C32F31FC969AB9A /* OGSApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C86919E0281F0A8D34AA /* OGSApiManager.swift */; };
 		8405C17C969AC4488D2E1025 /* OGSLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8405CF546D963204AC2350EC /* OGSLoginViewController.storyboard */; };
+		8405C1951316D498D11E9168 /* OGSStoreStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CD4590E62FC6E8390196 /* OGSStoreStatusCode.swift */; };
 		8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CDF76C6E046EFBE5BCA7 /* OGSLoginModels.swift */; };
+		8405C28F83F104CEC08F0244 /* OGSOauthApiStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CAD187F0510292BEF3BF /* OGSOauthApiStore.swift */; };
 		8405C3C9E1790ACD829F597C /* OGSLoginWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C28DF70477E87F3C32BB /* OGSLoginWorker.swift */; };
+		8405C3EF4B45726E0EC70766 /* OGSAppConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C70C34A8FC953482040E /* OGSAppConfigurator.swift */; };
 		8405C6E5D3897A1BBF7653B2 /* OGSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C8F03743E98C9A565610 /* OGSLoginViewController.swift */; };
+		8405C770AEC788A09A99DC5D /* OGSOauthStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C1F1FF4673A8BCF00090 /* OGSOauthStoreProtocol.swift */; };
 		8405CA49BF8044F3F0B76F31 /* OGSLoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C352FE0AD49BF149BB22 /* OGSLoginInteractor.swift */; };
 		8405CA6A133748D9049413CA /* OGSLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CA28D0B815E0BA8C2995 /* OGSLoginPresenter.swift */; };
+		8405CB5F7BAD2E27B9786979 /* Temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CF5B5FD5BE2E3B1BFCDC /* Temp.swift */; };
 		8405CC0C6DBB4D5102EE60CF /* OGSLoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C835964EBE64454849A1 /* OGSLoginConfigurator.swift */; };
 		8405CDE4965C7493BA13D163 /* OGSLoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CCBEDED129DD31C31BA8 /* OGSLoginRouter.swift */; };
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
@@ -89,14 +95,20 @@
 		56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Stencil.ttf"; sourceTree = "<group>"; };
 		56BD888E1E5522530098E50B /* OGSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSButton.swift; sourceTree = "<group>"; };
 		716E1A03A77525183735DD47 /* Pods-iosgo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iosgo/Pods-iosgo.debug.xcconfig"; sourceTree = "<group>"; };
+		8405C1F1FF4673A8BCF00090 /* OGSOauthStoreProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSOauthStoreProtocol.swift; sourceTree = "<group>"; };
 		8405C28DF70477E87F3C32BB /* OGSLoginWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginWorker.swift; sourceTree = "<group>"; };
 		8405C352FE0AD49BF149BB22 /* OGSLoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginInteractor.swift; sourceTree = "<group>"; };
+		8405C70C34A8FC953482040E /* OGSAppConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSAppConfigurator.swift; sourceTree = "<group>"; };
 		8405C835964EBE64454849A1 /* OGSLoginConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginConfigurator.swift; sourceTree = "<group>"; };
+		8405C86919E0281F0A8D34AA /* OGSApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSApiManager.swift; sourceTree = "<group>"; };
 		8405C8F03743E98C9A565610 /* OGSLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginViewController.swift; sourceTree = "<group>"; };
 		8405CA28D0B815E0BA8C2995 /* OGSLoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginPresenter.swift; sourceTree = "<group>"; };
+		8405CAD187F0510292BEF3BF /* OGSOauthApiStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSOauthApiStore.swift; sourceTree = "<group>"; };
 		8405CCBEDED129DD31C31BA8 /* OGSLoginRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginRouter.swift; sourceTree = "<group>"; };
+		8405CD4590E62FC6E8390196 /* OGSStoreStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSStoreStatusCode.swift; sourceTree = "<group>"; };
 		8405CDF76C6E046EFBE5BCA7 /* OGSLoginModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginModels.swift; sourceTree = "<group>"; };
 		8405CF546D963204AC2350EC /* OGSLoginViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OGSLoginViewController.storyboard; sourceTree = "<group>"; };
+		8405CF5B5FD5BE2E3B1BFCDC /* Temp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
 		AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		AF12002656677CCFB6D8EAF8 /* Pods_iosgo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +181,9 @@
 				565D24801E54A5A500EF62CD /* Info.plist */,
 				AD05A9249FEBFC41418217D5 /* Additions */,
 				8405CC7312AC75881BD6ADB1 /* Scenes */,
+				8405CA6ED574B6A9F2DF0E71 /* Stores */,
+				8405C84FB937A3E2F342CD24 /* Models */,
+				8405C70C34A8FC953482040E /* OGSAppConfigurator.swift */,
 			);
 			path = iosgo;
 			sourceTree = "<group>";
@@ -212,6 +227,24 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		8405C84FB937A3E2F342CD24 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8405CA6ED574B6A9F2DF0E71 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				8405CAD187F0510292BEF3BF /* OGSOauthApiStore.swift */,
+				8405C1F1FF4673A8BCF00090 /* OGSOauthStoreProtocol.swift */,
+				8405C86919E0281F0A8D34AA /* OGSApiManager.swift */,
+				8405CD4590E62FC6E8390196 /* OGSStoreStatusCode.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
 		8405CBDC2EBC9E1083363911 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */,
+				8405CF5B5FD5BE2E3B1BFCDC /* Temp.swift */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -486,6 +520,12 @@
 				8405CA49BF8044F3F0B76F31 /* OGSLoginInteractor.swift in Sources */,
 				8405CC0C6DBB4D5102EE60CF /* OGSLoginConfigurator.swift in Sources */,
 				8405C6E5D3897A1BBF7653B2 /* OGSLoginViewController.swift in Sources */,
+				8405C28F83F104CEC08F0244 /* OGSOauthApiStore.swift in Sources */,
+				8405C770AEC788A09A99DC5D /* OGSOauthStoreProtocol.swift in Sources */,
+				8405C07D0C32F31FC969AB9A /* OGSApiManager.swift in Sources */,
+				8405C1951316D498D11E9168 /* OGSStoreStatusCode.swift in Sources */,
+				8405CB5F7BAD2E27B9786979 /* Temp.swift in Sources */,
+				8405C3EF4B45726E0EC70766 /* OGSAppConfigurator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
