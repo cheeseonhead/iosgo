@@ -35,7 +35,6 @@
 		56BD888F1E5522530098E50B /* OGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BD888E1E5522530098E50B /* OGSButton.swift */; };
 		8405C07D0C32F31FC969AB9A /* OGSApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C86919E0281F0A8D34AA /* OGSApiManager.swift */; };
 		8405C17C969AC4488D2E1025 /* OGSLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8405CF546D963204AC2350EC /* OGSLoginViewController.storyboard */; };
-		8405C1951316D498D11E9168 /* OGSStoreStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CD4590E62FC6E8390196 /* OGSStoreStatusCode.swift */; };
 		8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CDF76C6E046EFBE5BCA7 /* OGSLoginModels.swift */; };
 		8405C28F83F104CEC08F0244 /* OGSOauthApiStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CAD187F0510292BEF3BF /* OGSOauthApiStore.swift */; };
 		8405C3C9E1790ACD829F597C /* OGSLoginWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C28DF70477E87F3C32BB /* OGSLoginWorker.swift */; };
@@ -105,7 +104,6 @@
 		8405CA28D0B815E0BA8C2995 /* OGSLoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginPresenter.swift; sourceTree = "<group>"; };
 		8405CAD187F0510292BEF3BF /* OGSOauthApiStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSOauthApiStore.swift; sourceTree = "<group>"; };
 		8405CCBEDED129DD31C31BA8 /* OGSLoginRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginRouter.swift; sourceTree = "<group>"; };
-		8405CD4590E62FC6E8390196 /* OGSStoreStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSStoreStatusCode.swift; sourceTree = "<group>"; };
 		8405CDF76C6E046EFBE5BCA7 /* OGSLoginModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginModels.swift; sourceTree = "<group>"; };
 		8405CF546D963204AC2350EC /* OGSLoginViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OGSLoginViewController.storyboard; sourceTree = "<group>"; };
 		8405CF5B5FD5BE2E3B1BFCDC /* Temp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
@@ -240,7 +238,6 @@
 				8405CAD187F0510292BEF3BF /* OGSOauthApiStore.swift */,
 				8405C1F1FF4673A8BCF00090 /* OGSOauthStoreProtocol.swift */,
 				8405C86919E0281F0A8D34AA /* OGSApiManager.swift */,
-				8405CD4590E62FC6E8390196 /* OGSStoreStatusCode.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -523,7 +520,6 @@
 				8405C28F83F104CEC08F0244 /* OGSOauthApiStore.swift in Sources */,
 				8405C770AEC788A09A99DC5D /* OGSOauthStoreProtocol.swift in Sources */,
 				8405C07D0C32F31FC969AB9A /* OGSApiManager.swift in Sources */,
-				8405C1951316D498D11E9168 /* OGSStoreStatusCode.swift in Sources */,
 				8405CB5F7BAD2E27B9786979 /* Temp.swift in Sources */,
 				8405C3EF4B45726E0EC70766 /* OGSAppConfigurator.swift in Sources */,
 			);
