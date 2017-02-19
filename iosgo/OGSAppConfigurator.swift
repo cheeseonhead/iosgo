@@ -5,5 +5,7 @@
 
 import Foundation
 
-class OGSAppConfigurator {
+class OGSAppConfigurator
+{
+    var domainName = "https://beta.online-go.com/"
 }
