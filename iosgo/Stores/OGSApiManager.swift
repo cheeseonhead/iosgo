@@ -10,7 +10,15 @@ enum HTTPMethod: String
     case POST
 }
 
-typealias OGSApiResultBlock = (Bool, [String: Any]?, Error?, Int) -> Void
+enum HTTPStatusCode: Int
+{
+    case clientError = -1
+    case ok = 200
+    case badRequest = 401
+    case notFound = 404
+}
+
+typealias OGSApiResultBlock = (_ success: Bool, _ payload: [String: Any]?, _ error: Error?, _ statusCode: HTTPStatusCode) -> Void
 
 class OGSApiManager
 {
@@ -21,10 +29,10 @@ class OGSApiManager
     func request(toUrl url: String, method: HTTPMethod, parameters: [String: String], completion: @escaping OGSApiResultBlock)
     {
         guard let fullURL = URL(string: domainName.appending(url)) else { return }
+
         var request = URLRequest(url: fullURL)
         request.httpMethod = method.rawValue
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-
         request.httpBody = parameters.stringFromHttpParameters().data(using: .utf8)
 
         let task = URLSession.shared.dataTask(with: request)
@@ -35,7 +43,7 @@ class OGSApiManager
                 do
                 {
                     json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
-                    completion(true, json, error, httpResponse.statusCode)
+                    completion(true, json, error, HTTPStatusCode(rawValue: httpResponse.statusCode)!)
                 }
                 catch _
                 {
@@ -44,7 +52,7 @@ class OGSApiManager
             }
             else
             {
-                completion(false, nil, error, -1)
+                completion(false, nil, error, .clientError)
             }
         }
 
