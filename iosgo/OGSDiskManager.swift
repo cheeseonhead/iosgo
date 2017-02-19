@@ -17,9 +17,9 @@ class OGSDiskManager
         return type(of: self).docPath.appending(fileName)
     }
 
-    func saveData(_ data: Any, fileName: String)
+    func saveData(_ data: Any, objectName: String)
     {
-        var dataPath = absoluteFileName(fileName)
+        var dataPath = absoluteFileName(objectName)
         var objectData = NSArray.init(object: data)
 
         NSKeyedArchiver.archiveRootObject(objectData, toFile: dataPath)
