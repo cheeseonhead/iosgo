@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         // Override point for customization after application launch.
 
         configurator = OGSAppConfigurator()
+        configurator!.configureApp()
 
         return true
     }

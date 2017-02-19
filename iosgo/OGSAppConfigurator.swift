@@ -8,4 +8,9 @@ import Foundation
 class OGSAppConfigurator
 {
     var domainName = "https://beta.online-go.com/"
+
+    func configureApp()
+    {
+        OGSApiManager.sharedInstance.domainName = domainName
+    }
 }
