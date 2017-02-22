@@ -30,10 +30,7 @@ class OGSApiManager
     {
         guard let fullURL = URL(string: domainName.appending(url)) else { return }
 
-        var request = URLRequest(url: fullURL)
-        request.httpMethod = method.rawValue
-        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.httpBody = parameters.stringFromHttpParameters().data(using: .utf8)
+        let request = createRequest(fullURL: fullURL, method: method, parameters: parameters)
 
         let task = URLSession.shared.dataTask(with: request)
         { data, response, error in
@@ -57,5 +54,15 @@ class OGSApiManager
         }
 
         task.resume()
+    }
+
+    func createRequest(fullURL: URL, method: HTTPMethod, parameters: [String: String]) -> URLRequest
+    {
+        var request = URLRequest(url: fullURL)
+        request.httpMethod = method.rawValue
+        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpBody = parameters.stringFromHttpParameters().data(using: .utf8)
+
+        return request
     }
 }
