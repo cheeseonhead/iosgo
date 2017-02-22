@@ -18,7 +18,7 @@ enum HTTPStatusCode: Int
     case notFound = 404
 }
 
-typealias OGSApiResultBlock = (_ success: Bool, _ payload: [String: Any]?, _ error: Error?, _ statusCode: HTTPStatusCode) -> Void
+typealias OGSApiResultBlock = (_ statusCode: HTTPStatusCode, _ payload: [String: Any]?, _ error: Error?) -> Void
 
 class OGSApiManager
 {
@@ -38,14 +38,14 @@ class OGSApiManager
         { data, response, error in
             guard let httpResponse = response as? HTTPURLResponse, let data = data else
             {
-                completion(false, nil, error, .clientError)
+                completion(.clientError, nil, error)
                 return
             }
 
             do
             {
                 let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
-                completion(true, json, error, HTTPStatusCode(rawValue: httpResponse.statusCode)!)
+                completion(HTTPStatusCode(rawValue: httpResponse.statusCode)!, json, error)
             }
             catch _
             {
