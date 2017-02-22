@@ -7,31 +7,35 @@ import Foundation
 
 class OGSLoginWorker
 {
-    enum LoginErrorType {
+    enum LoginErrorType
+    {
         case usernameNotFound
         case passwordIncorrect
     }
 
-    struct LoginResult {
+    struct LoginResult
+    {
         var success: Bool
         var loginError: LoginErrorType
     }
 
-    func loginWith(username: String, password: String, completion: @escaping (_: LoginResult) -> Void)
-    {
-        let success = username == "jeffwoo" && password == "123qweasdzxc"
-        var loginError: LoginErrorType!
-        if username != "jeffwoo" {
-            loginError = .usernameNotFound
-        }
-        else {
-            loginError = .passwordIncorrect
-        }
-        let result = LoginResult(success: success, loginError: loginError)
+    var authStore: OGSOauthStoreProtocol
 
-        let smallDelayAfter = DispatchTime.now() + DispatchTimeInterval.milliseconds(3000)
-        DispatchQueue.main.asyncAfter(deadline: smallDelayAfter, execute: {
-            completion(result)
-        })
+    init(authStore: OGSOauthStoreProtocol)
+    {
+        self.authStore = authStore
+    }
+
+    func loginWith(username: String, password: String, completion _: @escaping (_: OGSLogin.Login.Response) -> Void)
+    {
+        authStore.getToken(with: username, password: password)
+        { tokenResult in
+            switch tokenResult {
+            case .success(let tokenInfo):
+                break
+            case .error(let errorType):
+                break
+            }
+        }
     }
 }
