@@ -24,7 +24,7 @@ protocol OGSLoginInteractorOutput
 class OGSLoginInteractor: OGSLoginInteractorInput
 {
     var output: OGSLoginInteractorOutput!
-    var loginWorker = OGSLoginWorker()
+    var loginWorker = OGSLoginWorker(authStore: OGSOauthApiStore())
 
     // MARK: - Business logic
 
@@ -34,16 +34,8 @@ class OGSLoginInteractor: OGSLoginInteractorInput
         output.presentLogin(response: response)
 
         loginWorker.loginWith(username: request.username, password: request.password)
-        { result in
-            if result.success {
-                response.loadingStatus = .success
-            }
-            else {
-                let errorType = self.getErrorType(from: result.loginError)
-                response.loadingStatus = .error(errorType)
-            }
-
-            self.output.presentLogin(response: response)
+        { workerResponse in
+            self.output.presentLogin(response: workerResponse)
         }
     }
 }
@@ -59,10 +51,12 @@ fileprivate extension OGSLoginInteractor
     func getErrorType(from error: OGSLoginWorker.LoginErrorType) -> OGSLogin.Login.Response.ErrorType
     {
         switch error {
-            case .usernameNotFound:
-                return .usernameNotFound
-            case .passwordIncorrect:
-                return .incorrectPassword
+        case .usernameNotFound:
+            return .usernameNotFound
+        case .passwordIncorrect:
+            return .incorrectPassword
         }
     }
 }
+
+extension OGSOauthApiStore: OGSOauthStoreProtocol {}
