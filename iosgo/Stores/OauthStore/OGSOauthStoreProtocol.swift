@@ -17,7 +17,7 @@ struct OGSOauthStore
     {
         var accessToken: String?
         var tokenType: String?
-        var expiresIn: String?
+        var expiresIn: Int?
         var refreshToken: String?
         var scope: String?
     }
@@ -26,6 +26,7 @@ struct OGSOauthStore
     {
         case invalidLoginInfo
         case unknownError
+        case clientError
     }
 }
 
