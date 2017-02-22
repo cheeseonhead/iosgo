@@ -5,6 +5,12 @@
 
 import Foundation
 
+protocol OGSCoding: NSCoding
+{
+    static var DataName: String { get }
+    static var DataVersion: Int { get }
+}
+
 class OGSDiskManager
 {
     static var docPath: String = {
