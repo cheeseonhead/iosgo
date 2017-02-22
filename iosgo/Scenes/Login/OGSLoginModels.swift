@@ -23,12 +23,15 @@ struct OGSLogin
 
         struct Response
         {
-            enum LoadingStatus {
+            enum LoadingStatus
+            {
                 case loading, success
                 case error(ErrorType)
             }
 
-            enum ErrorType: String {
+            enum ErrorType: String
+            {
+                case networkError = "An error has occurred because of the network"
                 case usernameNotFound = "Username not found"
                 case incorrectPassword = "Password incorrect"
             }
@@ -38,12 +41,14 @@ struct OGSLogin
 
         struct ViewModel
         {
-            enum UserInputState {
+            enum UserInputState
+            {
                 case ready
                 case pending
             }
 
-            enum ErrorLabelState {
+            enum ErrorLabelState
+            {
                 case hidden
                 case showing(message: String)
             }
