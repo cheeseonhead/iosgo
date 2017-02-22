@@ -25,6 +25,8 @@ class OGSApiManager
     static var sharedInstance = OGSApiManager()
 
     var domainName: String!
+    var clientId: String!
+    var clientSecret: String!
 
     func request(toUrl url: String, method: HTTPMethod, parameters: [String: String], completion: @escaping OGSApiResultBlock)
     {
