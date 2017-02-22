@@ -25,7 +25,7 @@ class OGSOauthApiStore
             switch statusCode
             {
             case .ok:
-                guard let correctPayload = payload as? [String: String],
+                guard let correctPayload = payload,
                     let tokenInfo = self.createTokenInfo(from: correctPayload) else
                 {
                     completion(.error(type: .unknownError))
@@ -35,19 +35,22 @@ class OGSOauthApiStore
             case .unauthorized:
                 completion(.error(type: .invalidLoginInfo))
                 break
+            case .clientError:
+                completion(.error(type: .clientError))
+                break
             default:
                 completion(.error(type: .unknownError))
             }
         }
     }
 
-    fileprivate func createTokenInfo(from payload: [String: String]) -> OGSOauthStore.TokenInfo?
+    fileprivate func createTokenInfo(from payload: [String: Any]) -> OGSOauthStore.TokenInfo?
     {
-        guard let accessToken = payload["access_token"],
-            let tokenType = payload["token_type"],
-            let expiresIn = payload["expires_in"],
-            let refreshToken = payload["refresh_token"],
-            let scope = payload["scope"] else
+        guard let accessToken = payload["access_token"] as? String,
+            let tokenType = payload["token_type"] as? String,
+            let expiresIn = payload["expires_in"] as? Int,
+            let refreshToken = payload["refresh_token"] as? String,
+            let scope = payload["scope"] as? String else
         {
             return nil
         }
