@@ -34,22 +34,20 @@ class OGSApiManager
 
         let task = URLSession.shared.dataTask(with: request)
         { data, response, error in
-            if let httpResponse = response as? HTTPURLResponse, let data = data
-            {
-                var json: [String: Any]?
-                do
-                {
-                    json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
-                    completion(true, json, error, HTTPStatusCode(rawValue: httpResponse.statusCode)!)
-                }
-                catch _
-                {
-                    print("Error Occurred")
-                }
-            }
-            else
+            guard let httpResponse = response as? HTTPURLResponse, let data = data else
             {
                 completion(false, nil, error, .clientError)
+                return
+            }
+
+            do
+            {
+                let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+                completion(true, json, error, HTTPStatusCode(rawValue: httpResponse.statusCode)!)
+            }
+            catch _
+            {
+                print("Error Occurred")
             }
         }
 
