@@ -5,5 +5,27 @@
 
 import Foundation
 
-class OGSNotificationCenter {
+class OGSNotificationCenter
+{
+    enum NotificationName: String
+    {
+        case accessTokenUpdated
+        case refreshTokenUpdated
+    }
+
+    static var sharedInstance = OGSNotificationCenter()
+
+    private var notificationCenter = NotificationCenter.default
+
+    func addObserver(observer: Any, selector: Selector, name: NotificationName, object: Any?)
+    {
+        let notificationName = Notification.Name(name.rawValue)
+        notificationCenter.addObserver(observer, selector: selector, name: notificationName, object: object)
+    }
+
+    func post(name: NotificationName, object: Any?)
+    {
+        let notificationName = Notification.Name(name.rawValue)
+        notificationCenter.post(name: notificationName, object: object)
+    }
 }
