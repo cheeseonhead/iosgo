@@ -30,7 +30,7 @@ class OGSLoginInteractor: OGSLoginInteractorInput
 
     func login(request: OGSLogin.Login.Request)
     {
-        var response = createInitialResponse()
+        let response = createInitialResponse()
         output.presentLogin(response: response)
 
         loginWorker.loginWith(username: request.username, password: request.password)
