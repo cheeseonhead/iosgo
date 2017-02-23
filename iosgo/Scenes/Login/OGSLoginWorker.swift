@@ -32,6 +32,8 @@ class OGSLoginWorker
         { tokenResult in
             switch tokenResult {
             case .success(let tokenInfo):
+                OGSNotificationCenter.sharedInstance.post(name: .accessTokenUpdated, object: tokenInfo.accessToken)
+                OGSNotificationCenter.sharedInstance.post(name: .refreshTokenUpdated, object: tokenInfo.refreshToken)
                 break
             case .error(let errorType):
                 break
