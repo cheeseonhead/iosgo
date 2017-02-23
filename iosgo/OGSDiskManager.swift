@@ -28,7 +28,12 @@ class OGSDiskManager
 
     static func saveObject<PayloadClass: NSObject>(_ objectToStore: PayloadClass) -> Bool where PayloadClass: OGSVersionedCoding
     {
-        var dataPath = absoluteFileName(type(of: objectToStore).DataName)
+        return saveObject(objectToStore, message: "")
+    }
+
+    static func saveObject<PayloadClass: OGSVersionedCoding>(_ objectToStore: PayloadClass, message: String) -> Bool where PayloadClass: NSObject
+    {
+        var dataPath = absoluteFileName(type(of: objectToStore).DataName.appending(message))
         var objectData: [String: Any] = [
             stringFor(dataKey: .version): type(of: objectToStore).DataVersion,
             stringFor(dataKey: .payload): objectToStore,
