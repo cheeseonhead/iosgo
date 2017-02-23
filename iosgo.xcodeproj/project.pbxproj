@@ -33,6 +33,7 @@
 		56BD887A1E551C990098E50B /* Oswald-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886B1E551C990098E50B /* Oswald-RegularItalic.ttf */; };
 		56BD887B1E551C990098E50B /* Oswald-Stencil.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */; };
 		56BD888F1E5522530098E50B /* OGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BD888E1E5522530098E50B /* OGSButton.swift */; };
+		8405C06692E15B7D16D86610 /* OGSNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C2D09201FEEC8BA27848 /* OGSNotificationCenter.swift */; };
 		8405C17C969AC4488D2E1025 /* OGSLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8405CF546D963204AC2350EC /* OGSLoginViewController.storyboard */; };
 		8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CDF76C6E046EFBE5BCA7 /* OGSLoginModels.swift */; };
 		8405C2F9E3BB909C3FB99D0D /* OGSDiskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CFDC3572F74D8EBE0FBD /* OGSDiskManager.swift */; };
@@ -96,6 +97,7 @@
 		56BD888E1E5522530098E50B /* OGSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSButton.swift; sourceTree = "<group>"; };
 		716E1A03A77525183735DD47 /* Pods-iosgo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iosgo/Pods-iosgo.debug.xcconfig"; sourceTree = "<group>"; };
 		8405C28DF70477E87F3C32BB /* OGSLoginWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginWorker.swift; sourceTree = "<group>"; };
+		8405C2D09201FEEC8BA27848 /* OGSNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSNotificationCenter.swift; sourceTree = "<group>"; };
 		8405C352FE0AD49BF149BB22 /* OGSLoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginInteractor.swift; sourceTree = "<group>"; };
 		8405C70C34A8FC953482040E /* OGSAppConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSAppConfigurator.swift; sourceTree = "<group>"; };
 		8405C835964EBE64454849A1 /* OGSLoginConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginConfigurator.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				8405CF99F5F6B69F12701D7C /* OGSApiManager.swift */,
+				8405C2D09201FEEC8BA27848 /* OGSNotificationCenter.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				8405CFF13D3EB80D401D7117 /* OGSOauthStoreProtocol.swift in Sources */,
 				8405CEA1C88BF254C0A34A28 /* OGSOauthApiStore.swift in Sources */,
 				8405C70502F5C73B7923682A /* OGSApiManager.swift in Sources */,
+				8405C06692E15B7D16D86610 /* OGSNotificationCenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
