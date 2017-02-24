@@ -34,7 +34,9 @@ class OGSLoginPresenter: OGSLoginPresenterInput
         let errorLabelState = errorLabelStateFrom(response: response)
 
         let viewModel = OGSLogin.Login.ViewModel(readyToNavigate: readyToNavigate, userInputState: userInputState, errorLabelState: errorLabelState)
-        output.displayLogin(viewModel: viewModel)
+        OGSDispatcher.asyncMain {
+            self.output.displayLogin(viewModel: viewModel)
+        }
     }
 }
 
