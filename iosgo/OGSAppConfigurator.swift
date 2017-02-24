@@ -7,6 +7,26 @@ import Foundation
 
 class OGSAppConfigurator
 {
+// MARK: - Broadcast Handlers
+fileprivate extension OGSAppConfigurator
+{
+    func handleAccessTokenUpdated(notification: NSNotification)
+    {
+        guard let accessToken = notification.object as? String else { return }
+        OGSApiManager.sharedInstance.accessToken = accessToken
+
+        setAndSave(accessToken: accessToken)
+    }
+
+    func handleRefreshTokenUpdated(notification: NSNotification)
+    {
+        guard let refreshToken = notification.object as? String else { return }
+        OGSApiManager.sharedInstance.refreshToken = refreshToken
+
+        setAndSave(refreshToken: refreshToken)
+    }
+}
+
 // MARK: - Set and Save
 fileprivate extension OGSAppConfigurator
 {
