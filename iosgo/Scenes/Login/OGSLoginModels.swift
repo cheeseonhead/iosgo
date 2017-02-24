@@ -32,8 +32,8 @@ struct OGSLogin
             enum ErrorType: String
             {
                 case networkError = "An error has occurred because of the network"
-                case usernameNotFound = "Username not found"
-                case incorrectPassword = "Password incorrect"
+                case invalidLoginInfo = "Invalid username or password"
+                case unknownError = "An unknown error has occurred"
             }
 
             var loadingStatus: LoadingStatus
