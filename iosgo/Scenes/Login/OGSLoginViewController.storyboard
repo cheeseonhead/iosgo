@@ -36,6 +36,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next"/>
+                                <connections>
+                                    <action selector="usernameFieldChanged:" destination="DXz-HO-taR" eventType="editingChanged" id="Ov2-y3-2oD"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LDx-dz-GDy">
                                 <rect key="frame" x="138" y="175" width="264" height="30"/>
@@ -45,9 +48,12 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="done" secureTextEntry="YES"/>
+                                <connections>
+                                    <action selector="passwordFieldChanged:" destination="DXz-HO-taR" eventType="editingChanged" id="PAR-u9-lz1"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Vd-uy-jhx" customClass="OGSButton" customModule="iosgo" customModuleProvider="target">
-                                <rect key="frame" x="138" y="213" width="264" height="40"/>
+                                <rect key="frame" x="138" y="213" width="264" height="36"/>
                                 <color key="backgroundColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="20"/>
                                 <state key="normal" title="Login"/>
@@ -56,7 +62,7 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFl-Yq-tZD">
-                                <rect key="frame" x="238.5" y="261" width="63.5" height="21"/>
+                                <rect key="frame" x="233.5" y="257" width="73.5" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Oswald-Medium" family="Oswald" pointSize="15"/>
                                 <color key="textColor" red="0.97623580682272892" green="0.19502082082833139" blue="0.20845150560224085" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>

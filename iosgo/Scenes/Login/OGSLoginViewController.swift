@@ -19,6 +19,7 @@ protocol OGSLoginViewControllerInput
 protocol OGSLoginViewControllerOutput
 {
     func login(request: OGSLogin.Login.Request)
+    func fieldsChange(request: OGSLogin.FieldsChanged.Request)
 }
 
 protocol OGSLoginViewControllerRouter {}
@@ -63,6 +64,32 @@ extension OGSLoginViewController
         let request = OGSLogin.Login.Request(username: username, password: password)
 
         output.login(request: request)
+    }
+    
+    @IBAction func usernameFieldChanged(_ sender: Any)
+    {
+        sendFieldsChangedRequest()
+    }
+    
+    @IBAction func passwordFieldChanged(_ sender: Any)
+    {
+        sendFieldsChangedRequest()
+    }
+}
+
+// MARK: - IBAction Helpers
+fileprivate extension OGSLoginViewController
+{
+    func sendFieldsChangedRequest()
+    {
+        guard let username = usernameTextField.text,
+              let password = passwordTextField.text
+                else {return}
+
+        let strings = [username, password]
+        let request = OGSLogin.FieldsChanged.Request(textFieldTexts: strings)
+
+        output.fieldsChange(request: request)
     }
 }
 
