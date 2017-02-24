@@ -14,7 +14,7 @@ import UIKit
 protocol OGSLoginViewControllerInput
 {
     func displayLogin(viewModel: OGSLogin.Login.ViewModel)
-    func displayFieldsChange(viewModel: OGSLogin.Login.ViewModel)
+    func displayFieldsChange(viewModel: OGSLogin.FieldsChanged.ViewModel)
 }
 
 protocol OGSLoginViewControllerOutput
@@ -97,7 +97,7 @@ fileprivate extension OGSLoginViewController
 // MARK: - Display
 extension OGSLoginViewController
 {
-    func displayFieldsChange(viewModel: OGSLogin.Login.ViewModel)
+    func displayFieldsChange(viewModel: OGSLogin.FieldsChanged.ViewModel)
     {
 
     }
