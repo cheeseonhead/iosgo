@@ -47,16 +47,6 @@ fileprivate extension OGSLoginInteractor
         let response = OGSLogin.Login.Response(loadingStatus: .loading)
         return response
     }
-
-    func getErrorType(from error: OGSLoginWorker.LoginErrorType) -> OGSLogin.Login.Response.ErrorType
-    {
-        switch error {
-        case .usernameNotFound:
-            return .usernameNotFound
-        case .passwordIncorrect:
-            return .incorrectPassword
-        }
-    }
 }
 
 extension OGSOauthApiStore: OGSOauthStoreProtocol {}
