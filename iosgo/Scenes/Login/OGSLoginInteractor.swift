@@ -20,6 +20,7 @@ protocol OGSLoginInteractorInput
 protocol OGSLoginInteractorOutput
 {
     func presentLogin(response: OGSLogin.Login.Response)
+    func presentFieldsChange(response: OGSLogin.FieldsChanged.Response)
 }
 
 class OGSLoginInteractor: OGSLoginInteractorInput
@@ -42,7 +43,8 @@ class OGSLoginInteractor: OGSLoginInteractorInput
 
     func fieldsChange(request: OGSLogin.FieldsChanged.Request)
     {
-        
+        let response = OGSLogin.FieldsChanged.Response(textFieldTexts: request.textFieldTexts)
+        output.presentFieldsChange(response: response)
     }
 }
 
