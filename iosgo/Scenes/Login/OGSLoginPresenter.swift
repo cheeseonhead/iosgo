@@ -14,6 +14,7 @@ import UIKit
 protocol OGSLoginPresenterInput
 {
     func presentLogin(response: OGSLogin.Login.Response)
+    func presentFieldsChange(response: OGSLogin.FieldsChanged.Response)
 }
 
 protocol OGSLoginPresenterOutput: class
@@ -37,6 +38,11 @@ class OGSLoginPresenter: OGSLoginPresenterInput
         OGSDispatcher.asyncMain {
             self.output.displayLogin(viewModel: viewModel)
         }
+    }
+
+    func presentFieldsChange(response: OGSLogin.FieldsChanged.Response)
+    {
+
     }
 }
 
