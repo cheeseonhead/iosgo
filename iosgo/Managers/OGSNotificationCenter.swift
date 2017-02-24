@@ -17,7 +17,7 @@ class OGSNotificationCenter
 
     private var notificationCenter = NotificationCenter.default
 
-    func addObserver(observer: Any, selector: Selector, name: NotificationName, object: Any?)
+    func addObserver(_ observer: Any, selector: Selector, name: NotificationName, object: Any?)
     {
         let notificationName = Notification.Name(name.rawValue)
         notificationCenter.addObserver(observer, selector: selector, name: notificationName, object: object)
