@@ -30,14 +30,39 @@ class OGSLoginWorker
     {
         authStore.getToken(with: username, password: password)
         { tokenResult in
+            var response: OGSLogin.Login.Response!
+
             switch tokenResult {
             case .success(let tokenInfo):
-                OGSNotificationCenter.sharedInstance.post(name: .accessTokenUpdated, object: tokenInfo.accessToken)
-                OGSNotificationCenter.sharedInstance.post(name: .refreshTokenUpdated, object: tokenInfo.refreshToken)
+                broadcastTokensUpdated(with: tokenInfo)
+                response = createLoginSuccessResponse()
                 break
             case .error(let errorType):
-                break
+                response =
+                    break
             }
+
         }
+    }
+}
+
+fileprivate extension OGSLoginWorker
+{
+    func broadcastTokensUpdated(with tokenInfo: OGSOauthStore.TokenInfo)
+    {
+        OGSNotificationCenter.sharedInstance.post(name: .accessTokenUpdated, object: tokenInfo.accessToken)
+        OGSNotificationCenter.sharedInstance.post(name: .refreshTokenUpdated, object: tokenInfo.refreshToken)
+    }
+
+    func createLoginSuccessResponse() -> OGSLogin.Login.Response
+    {
+        var response = OGSLogin.Login.Response(loadingStatus: .success)
+
+        return response
+    }
+
+    func createLoginErrorResponse(errorType: OGSOauthStore.ErrorType) -> OGSLogin.Login.Response
+    {
+
     }
 }
