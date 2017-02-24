@@ -33,40 +33,33 @@ class OGSDiskManager
 
     static func saveObject<PayloadClass: OGSVersionedCoding>(_ objectToStore: PayloadClass, message: String) -> Bool where PayloadClass: NSObject
     {
-        var dataPath = absoluteFileName(type(of: objectToStore).DataName.appending(message))
-        var objectData: [String: Any] = [
+        let dataPath = absoluteFileName(type(of: objectToStore).DataName.appending(message))
+        let objectData: [String: Any] = [
             stringFor(dataKey: .version): type(of: objectToStore).DataVersion,
             stringFor(dataKey: .payload): objectToStore,
         ]
 
-        var success = NSKeyedArchiver.archiveRootObject(objectData, toFile: dataPath)
+        let success = NSKeyedArchiver.archiveRootObject(objectData, toFile: dataPath)
         return success
     }
 
     static func getData<PayloadClass: OGSVersionedCoding>(forClass payLoadClass: PayloadClass.Type) -> PayloadClass?
     {
-        var dataPath = absoluteFileName(payLoadClass.DataName)
+        let dataPath = absoluteFileName(payLoadClass.DataName)
 
-        do
-        {
-            guard let objectData = try NSKeyedUnarchiver.unarchiveObject(withFile: dataPath) as? [String: Any],
-                let storedVersion = objectData[stringFor(dataKey: .version)] as? Int,
-                let payload = objectData[stringFor(dataKey: .payload)] as? PayloadClass else
-            {
-                return nil
-            }
-
-            guard storedVersion == payLoadClass.DataVersion else
-            {
-                return nil
-            }
-
-            return payload
-        }
-        catch
+        guard let objectData = NSKeyedUnarchiver.unarchiveObject(withFile: dataPath) as? [String: Any],
+            let storedVersion = objectData[stringFor(dataKey: .version)] as? Int,
+            let payload = objectData[stringFor(dataKey: .payload)] as? PayloadClass else
         {
             return nil
         }
+
+        guard storedVersion == payLoadClass.DataVersion else
+        {
+            return nil
+        }
+
+        return payload
     }
 }
 
