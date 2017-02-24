@@ -145,7 +145,10 @@ extension OGSButton
 
     func changeToDisabledState()
     {
-        self.backgroundColor = self.disabledBackgroundColor
-        self.layer.shadowRadius = 0
+        UIView.animate(withDuration: 0.2)
+        {
+            self.backgroundColor = self.disabledBackgroundColor
+            self.layer.shadowRadius = 0
+        }
     }
 }
