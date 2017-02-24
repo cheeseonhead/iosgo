@@ -5,5 +5,12 @@
 
 import Foundation
 
-class OGSDispatcher {
+class OGSDispatcher
+{
+    static func asyncMain(completion: @escaping ()->(Void))
+    {
+        DispatchQueue.main.async {
+            completion()
+        }
+    }
 }
