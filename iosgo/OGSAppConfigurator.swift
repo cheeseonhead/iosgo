@@ -5,8 +5,31 @@
 
 import Foundation
 
-class OGSAppConfigurator
+class OGSAppConfigurator: NSObject
 {
+    fileprivate var userSetting: UserSetting!
+    fileprivate let configuration = Configuration()
+
+    required override init()
+    {
+        userSetting = OGSDiskManager.getData(forClass: UserSetting.self)
+        if userSetting == nil
+        {
+            userSetting = UserSetting()
+        }
+    }
+
+    func configureApp()
+    {
+        OGSApiManager.sharedInstance.domainName = configuration.domainName
+        OGSApiManager.sharedInstance.clientId = configuration.clientID
+        OGSApiManager.sharedInstance.clientSecret = configuration.clientSecret
+
+        OGSNotificationCenter.sharedInstance.addObserver(self, selector: #selector(self.handleAccessTokenUpdated), name: .accessTokenUpdated, object: nil)
+        OGSNotificationCenter.sharedInstance.addObserver(self, selector: #selector(self.handleRefreshTokenUpdated), name: .refreshTokenUpdated, object: nil)
+    }
+}
+
 // MARK: - Broadcast Handlers
 fileprivate extension OGSAppConfigurator
 {
