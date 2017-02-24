@@ -39,15 +39,21 @@ class OGSLoginViewController: UIViewController, OGSLoginViewControllerInput
 
     var output: OGSLoginViewControllerOutput!
     var router: OGSLoginViewControllerRouter!
+}
 
-    // MARK: - Lifecycle
-
+// MARK: - Lifecycle
+extension OGSLoginViewController
+{
     override func awakeFromNib()
     {
         super.awakeFromNib()
         OGSLoginConfigurator.sharedInstance.configure(viewController: self)
     }
+}
 
+// MARK: - IBActions
+extension OGSLoginViewController
+{
     @IBAction func loginButtonTapped(_ sender: Any)
     {
         guard let username = usernameTextField.text,
@@ -58,7 +64,11 @@ class OGSLoginViewController: UIViewController, OGSLoginViewControllerInput
 
         output.login(request: request)
     }
-    
+}
+
+// MARK: - Display Login
+extension OGSLoginViewController
+{
     func displayLogin(viewModel: OGSLogin.Login.ViewModel)
     {
         if viewModel.readyToNavigate {
@@ -68,10 +78,7 @@ class OGSLoginViewController: UIViewController, OGSLoginViewControllerInput
         setupInputsFor(state: viewModel.userInputState)
         setupErrorLabel(for: viewModel.errorLabelState)
     }
-}
 
-fileprivate extension OGSLoginViewController
-{
     func setupInputsFor(state: OGSLogin.Login.ViewModel.UserInputState)
     {
         let isInputReady = state == .ready
