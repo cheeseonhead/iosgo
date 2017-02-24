@@ -31,7 +31,7 @@ class OGSAppConfigurator: NSObject
 }
 
 // MARK: - Broadcast Handlers
-fileprivate extension OGSAppConfigurator
+extension OGSAppConfigurator
 {
     func handleAccessTokenUpdated(notification: NSNotification)
     {
@@ -56,13 +56,19 @@ fileprivate extension OGSAppConfigurator
     func setAndSave(accessToken: String)
     {
         userSetting.accessToken = accessToken
-        OGSDiskManager.saveObject(userSetting)
+        guard OGSDiskManager.saveObject(userSetting) else
+        {
+            fatalError("Failed to save accessToken")
+        }
     }
 
     func setAndSave(refreshToken: String)
     {
         userSetting.refreshToken = refreshToken
-        OGSDiskManager.saveObject(userSetting)
+        guard OGSDiskManager.saveObject(userSetting) else
+        {
+            fatalError("Failed to save refreshToken")
+        }
     }
 }
 
