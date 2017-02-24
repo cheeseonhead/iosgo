@@ -14,6 +14,7 @@ import UIKit
 protocol OGSLoginInteractorInput
 {
     func login(request: OGSLogin.Login.Request)
+    func fieldsChange(request: OGSLogin.FieldsChanged.Request)
 }
 
 protocol OGSLoginInteractorOutput
@@ -37,6 +38,11 @@ class OGSLoginInteractor: OGSLoginInteractorInput
         { workerResponse in
             self.output.presentLogin(response: workerResponse)
         }
+    }
+
+    func fieldsChange(request: OGSLogin.FieldsChanged.Request)
+    {
+        
     }
 }
 
