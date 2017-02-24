@@ -26,7 +26,7 @@ class OGSLoginWorker
         self.authStore = authStore
     }
 
-    func loginWith(username: String, password: String, completion _: @escaping (_: OGSLogin.Login.Response) -> Void)
+    func loginWith(username: String, password: String, completion: @escaping (_: OGSLogin.Login.Response) -> Void)
     {
         authStore.getToken(with: username, password: password)
         { tokenResult in
@@ -34,14 +34,15 @@ class OGSLoginWorker
 
             switch tokenResult {
             case .success(let tokenInfo):
-                broadcastTokensUpdated(with: tokenInfo)
-                response = createLoginSuccessResponse()
+                self.broadcastTokensUpdated(with: tokenInfo)
+                response = self.createLoginSuccessResponse()
                 break
             case .error(let errorType):
-                response =
-                    break
+                response = self.createLoginErrorResponse(errorType: errorType)
+                break
             }
 
+            completion(response)
         }
     }
 }
@@ -56,13 +57,29 @@ fileprivate extension OGSLoginWorker
 
     func createLoginSuccessResponse() -> OGSLogin.Login.Response
     {
-        var response = OGSLogin.Login.Response(loadingStatus: .success)
+        let response = OGSLogin.Login.Response(loadingStatus: .success)
 
         return response
     }
 
     func createLoginErrorResponse(errorType: OGSOauthStore.ErrorType) -> OGSLogin.Login.Response
     {
+        var responseError: OGSLogin.Login.Response.ErrorType!
 
+        switch errorType
+        {
+        case .invalidLoginInfo:
+            responseError = .invalidLoginInfo
+            break
+        case .clientError:
+            responseError = .networkError
+            break
+        case .unknownError:
+            responseError = .unknownError
+            break
+        }
+
+        let response = OGSLogin.Login.Response(loadingStatus: .error(responseError))
+        return response
     }
 }
