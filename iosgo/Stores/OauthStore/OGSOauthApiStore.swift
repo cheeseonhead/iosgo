@@ -9,9 +9,9 @@ class OGSOauthApiStore
 {
     func getToken(with username: String, password: String, completion: @escaping (OGSOauthStore.GetTokenResult) -> Void)
     {
-        var url = "oauth2/token/"
+        let url = "oauth2/token/"
 
-        var params = [
+        let params = [
             "client_id": OGSApiManager.sharedInstance.clientId!,
             "client_secret": OGSApiManager.sharedInstance.clientSecret!,
             "grant_type": "password",
