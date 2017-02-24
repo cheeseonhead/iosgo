@@ -20,7 +20,7 @@ protocol OGSLoginPresenterInput
 protocol OGSLoginPresenterOutput: class
 {
     func displayLogin(viewModel: OGSLogin.Login.ViewModel)
-    func displayFieldsChange(viewModel: OGSLogin.Login.ViewModel)
+    func displayFieldsChange(viewModel: OGSLogin.FieldsChanged.ViewModel)
 }
 
 class OGSLoginPresenter: OGSLoginPresenterInput
