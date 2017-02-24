@@ -27,8 +27,6 @@ class OGSLoginPresenter: OGSLoginPresenterInput
 {
     weak var output: OGSLoginPresenterOutput!
 
-    // MARK: - Presentation logic
-
     func presentLogin(response: OGSLogin.Login.Response)
     {
         let readyToNavigate = readyToNavigateFrom(response: response)
