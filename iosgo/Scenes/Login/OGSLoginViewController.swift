@@ -99,7 +99,7 @@ extension OGSLoginViewController
 {
     func displayFieldsChange(viewModel: OGSLogin.FieldsChanged.ViewModel)
     {
-
+        loginButton.isEnabled = viewModel.buttonEnabled
     }
 }
 
