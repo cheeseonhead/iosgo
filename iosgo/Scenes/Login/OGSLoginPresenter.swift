@@ -20,6 +20,7 @@ protocol OGSLoginPresenterInput
 protocol OGSLoginPresenterOutput: class
 {
     func displayLogin(viewModel: OGSLogin.Login.ViewModel)
+    func displayFieldsChange(viewModel: OGSLogin.Login.ViewModel)
 }
 
 class OGSLoginPresenter: OGSLoginPresenterInput
@@ -42,7 +43,19 @@ class OGSLoginPresenter: OGSLoginPresenterInput
 
     func presentFieldsChange(response: OGSLogin.FieldsChanged.Response)
     {
+        var viewModel = OGSLogin.FieldsChanged.ViewModel(buttonEnabled: true)
 
+        for text in response.textFieldTexts
+        {
+            if text.characters.count == 0
+            {
+                viewModel.buttonEnabled = false
+            }
+        }
+
+        OGSDispatcher.asyncMain {
+            self.output.displayFieldsChange(viewModel: viewModel)
+        }
     }
 }
 
