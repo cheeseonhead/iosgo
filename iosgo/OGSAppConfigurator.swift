@@ -53,10 +53,24 @@ fileprivate class Configuration
     var clientSecret = "6YMRzrSCoKYvu5iTxH6cHl8WZUsr5G8pHghsYxc03rHOSsrLSk2fAzPwLvrOItYwixKE1elPAiAmrLH9vkftKCK3KNGxpME67MxazWrIMJ2kE08Yc2foyIcH3IYnfjhk"
 }
 
-    func configureApp()
+fileprivate class UserSetting: NSObject, OGSVersionedCoding
+{
+    static var DataName: String = "UserSetting"
+    static var DataVersion: Int = 1
+
+    var accessToken: String?
+    var refreshToken: String?
+
+    required convenience init?(coder aDecoder: NSCoder)
     {
-        OGSApiManager.sharedInstance.domainName = domainName
-        OGSApiManager.sharedInstance.clientId = clientID
-        OGSApiManager.sharedInstance.clientSecret = clientSecret
+        self.init()
+        accessToken = aDecoder.decodeObject(forKey: "accessToken") as? String
+        refreshToken = aDecoder.decodeObject(forKey: "refreshToken") as? String
+    }
+
+    public func encode(with aCoder: NSCoder)
+    {
+        aCoder.encode(accessToken, forKey: "accessToken")
+        aCoder.encode(refreshToken, forKey: "refreshToken")
     }
 }
