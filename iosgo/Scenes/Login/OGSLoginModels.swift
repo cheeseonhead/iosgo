@@ -59,4 +59,22 @@ struct OGSLogin
             var errorLabelState: ErrorLabelState
         }
     }
+
+    struct FieldsChanged
+    {
+        struct Request
+        {
+            var textFieldTexts: [String]
+        }
+
+        struct Response
+        {
+            var textFieldTexts: [String]
+        }
+
+        struct ViewModel
+        {
+            var buttonEnabled: Bool
+        }
+    }
 }
