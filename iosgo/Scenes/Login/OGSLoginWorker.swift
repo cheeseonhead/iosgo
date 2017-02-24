@@ -66,8 +66,7 @@ fileprivate extension OGSLoginWorker
     {
         var responseError: OGSLogin.Login.Response.ErrorType!
 
-        switch errorType
-        {
+        switch errorType {
         case .invalidLoginInfo:
             responseError = .invalidLoginInfo
             break
