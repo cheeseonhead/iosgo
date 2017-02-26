@@ -7,41 +7,61 @@ import Foundation
 
 class OGSAppConfigurator: NSObject
 {
-    fileprivate var userSettings: OGSUserSettingsProtocol!
-    fileprivate var configuration: OGSConfigurationProtocol!
+    fileprivate var userSetting: OGSUserSettingsProtocol! { didSet { configureApp() } }
+    fileprivate var configuration: OGSConfigurationProtocol! { didSet { configureApp() } }
 
-    func configureApp(userSettings: OGSUserSettingsProtocol, configuration: OGSConfigurationProtocol)
+    required init(userSetting: OGSUserSettingsProtocol, configuration: OGSConfigurationProtocol)
     {
-        self.userSettings = userSettings
+        self.userSetting = userSetting
         self.configuration = configuration
 
         OGSApiManager.sharedInstance.domainName = configuration.domainName
         OGSApiManager.sharedInstance.clientId = configuration.clientID
         OGSApiManager.sharedInstance.clientSecret = configuration.clientSecret
-    }
 
-    func change(configuration: OGSConfigurationProtocol)
-    {
-        self.configuration = configuration
-        configureApp(configuration: self.configuration)
-    }
-
-    func change(userSettings: OGSUserSettingsProtocol)
-    {
-        self.userSettings = userSettings
-        configureApp(userSettings: self.userSettings)
+        OGSNotificationCenter.sharedInstance.addObserver(self, selector: #selector(self.handleAccessTokenUpdated), name: .accessTokenUpdated, object: nil)
+        OGSNotificationCenter.sharedInstance.addObserver(self, selector: #selector(self.handleRefreshTokenUpdated), name: .refreshTokenUpdated, object: nil)
     }
 }
 
-fileprivate extension OGSAppConfigurator
+// MARK: - Broadcast Handlers
+extension OGSAppConfigurator
 {
-    func configureApp(configuration _: OGSConfigurationProtocol)
+    func handleAccessTokenUpdated(notification: NSNotification)
     {
+        guard let accessToken = notification.object as? String else { return }
+        OGSApiManager.sharedInstance.accessToken = accessToken
 
+        setAndSave(accessToken: accessToken)
     }
 
-    func configureApp(userSettings _: OGSUserSettingsProtocol)
+    func handleRefreshTokenUpdated(notification: NSNotification)
     {
+        guard let refreshToken = notification.object as? String else { return }
+        OGSApiManager.sharedInstance.refreshToken = refreshToken
 
+        setAndSave(refreshToken: refreshToken)
+    }
+}
+
+// MARK: - Set and Save
+fileprivate extension OGSAppConfigurator
+{
+    func setAndSave(accessToken: String)
+    {
+        userSetting.accessToken = accessToken
+        guard OGSDiskManager.saveObject(userSetting) else
+        {
+            fatalError("Failed to save accessToken")
+        }
+    }
+
+    func setAndSave(refreshToken: String)
+    {
+        userSetting.refreshToken = refreshToken
+        guard OGSDiskManager.saveObject(userSetting) else
+        {
+            fatalError("Failed to save refreshToken")
+        }
     }
 }
