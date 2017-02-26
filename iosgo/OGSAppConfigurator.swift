@@ -5,18 +5,28 @@
 
 import Foundation
 
+protocol OGSConfigurationProtocol
+{
+    var domainName: String { get set }
+    var clientID: String { get set }
+    var clientSecret: String { get set }
+}
+
+protocol OGSUserSettingsProtocol
+{
+    var accessToken: String? { get set }
+    var refreshToken: String? { get set }
+}
+
 class OGSAppConfigurator: NSObject
 {
-    fileprivate var userSetting: UserSetting!
-    fileprivate let configuration = Configuration()
+    fileprivate var userSetting: OGSUserSettingsProtocol! { didSet { configureApp() } }
+    fileprivate var configuration: OGSConfigurationProtocol! { didSet { configureApp() } }
 
-    required override init()
+    required init(userSetting: OGSUserSettingsProtocol, configuration: OGSConfigurationProtocol)
     {
-        userSetting = OGSDiskManager.getData(forClass: UserSetting.self)
-        if userSetting == nil
-        {
-            userSetting = UserSetting()
-        }
+        self.userSetting = userSetting
+        self.configuration = configuration
     }
 
     func configureApp()
