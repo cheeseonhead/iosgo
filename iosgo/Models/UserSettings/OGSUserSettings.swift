@@ -5,6 +5,24 @@
 
 import Foundation
 
-class OGSUserSettings: OGSUserSettingsProtocol
+class OGSUserSettings: NSObject, OGSUserSettingsProtocol
 {
+    static var DataName: String = "UserSetting"
+    static var DataVersion: Int = 1
+
+    var accessToken: String?
+    var refreshToken: String?
+
+    required convenience init?(coder aDecoder: NSCoder)
+    {
+        self.init()
+        accessToken = aDecoder.decodeObject(forKey: "accessToken") as? String
+        refreshToken = aDecoder.decodeObject(forKey: "refreshToken") as? String
+    }
+
+    public func encode(with aCoder: NSCoder)
+    {
+        aCoder.encode(accessToken, forKey: "accessToken")
+        aCoder.encode(refreshToken, forKey: "refreshToken")
+    }
 }
