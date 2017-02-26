@@ -5,7 +5,7 @@
 
 import Foundation
 
-protocol OGSConfigurationProtocol: OGSVersionedCoding
+protocol OGSConfigurationProtocol
 {
     var domainName: String { get set }
     var clientID: String { get set }
