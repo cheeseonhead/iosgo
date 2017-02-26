@@ -6,11 +6,7 @@
 import Foundation
 
 
-protocol OGSUserSettingsProtocol
-{
-    var accessToken: String? { get set }
-    var refreshToken: String? { get set }
-}
+
 
 class OGSAppConfigurator: NSObject
 {
