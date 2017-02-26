@@ -10,14 +10,11 @@ class OGSAppConfigurator: NSObject
     fileprivate var userSettings: OGSUserSettingsProtocol!
     fileprivate var configuration: OGSConfigurationProtocol!
 
-    required init(userSettings: OGSUserSettingsProtocol, configuration: OGSConfigurationProtocol)
+    func configureApp(userSettings: OGSUserSettingsProtocol, configuration: OGSConfigurationProtocol)
     {
         self.userSettings = userSettings
         self.configuration = configuration
-    }
 
-    func configureApp()
-    {
         OGSApiManager.sharedInstance.domainName = configuration.domainName
         OGSApiManager.sharedInstance.clientId = configuration.clientID
         OGSApiManager.sharedInstance.clientSecret = configuration.clientSecret
