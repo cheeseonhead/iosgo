@@ -7,4 +7,7 @@ import Foundation
 
 protocol OGSUserSettingsStoreProtocol
 {
+    func save(accessToken: String)
+    func save(refreshToken: String)
+    func getUserSettings() -> OGSUserSettings
 }
