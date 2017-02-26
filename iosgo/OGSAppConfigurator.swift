@@ -5,12 +5,6 @@
 
 import Foundation
 
-protocol OGSConfigurationProtocol
-{
-    var domainName: String { get set }
-    var clientID: String { get set }
-    var clientSecret: String { get set }
-}
 
 protocol OGSUserSettingsProtocol
 {
