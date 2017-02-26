@@ -7,20 +7,24 @@ import Foundation
 
 class OGSAppConfigurator: NSObject
 {
-    fileprivate var userSetting: OGSUserSettingsProtocol! { didSet { configureApp() } }
-    fileprivate var configuration: OGSConfigurationProtocol! { didSet { configureApp() } }
+    fileprivate var userSettingsStore: OGSUserSettingsStoreProtocol!
+    fileprivate var configuration: OGSConfigurationProtocol!
 
-    required init(userSetting: OGSUserSettingsProtocol, configuration: OGSConfigurationProtocol)
+    required init(userSettingsStore: OGSUserSettingsStoreProtocol, configuration: OGSConfigurationProtocol)
     {
-        self.userSetting = userSetting
+        super.init()
+        self.userSettingsStore = userSettingsStore
         self.configuration = configuration
-
-        OGSApiManager.sharedInstance.domainName = configuration.domainName
-        OGSApiManager.sharedInstance.clientId = configuration.clientID
-        OGSApiManager.sharedInstance.clientSecret = configuration.clientSecret
 
         OGSNotificationCenter.sharedInstance.addObserver(self, selector: #selector(self.handleAccessTokenUpdated), name: .accessTokenUpdated, object: nil)
         OGSNotificationCenter.sharedInstance.addObserver(self, selector: #selector(self.handleRefreshTokenUpdated), name: .refreshTokenUpdated, object: nil)
+    }
+
+    func configureApp()
+    {
+        OGSApiManager.sharedInstance.domainName = configuration.domainName
+        OGSApiManager.sharedInstance.clientId = configuration.clientID
+        OGSApiManager.sharedInstance.clientSecret = configuration.clientSecret
     }
 }
 
@@ -49,19 +53,11 @@ fileprivate extension OGSAppConfigurator
 {
     func setAndSave(accessToken: String)
     {
-        userSetting.accessToken = accessToken
-        guard OGSDiskManager.saveObject(userSetting) else
-        {
-            fatalError("Failed to save accessToken")
-        }
+        userSettingsStore.save(accessToken: accessToken)
     }
 
     func setAndSave(refreshToken: String)
     {
-        userSetting.refreshToken = refreshToken
-        guard OGSDiskManager.saveObject(userSetting) else
-        {
-            fatalError("Failed to save refreshToken")
-        }
+        userSettingsStore.save(refreshToken: refreshToken)
     }
 }
