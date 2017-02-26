@@ -7,15 +7,10 @@ import Foundation
 
 class OGSUserSettingsStore: OGSUserSettingsStoreProtocol
 {
-    fileprivate var userSettings: OGSUserSettings!
+    fileprivate lazy var userSettings: OGSUserSettings = self.retrieveUserSettings()
 
     func save(accessToken: String)
     {
-        guard userSettings != nil else
-        {
-            return
-        }
-
         userSettings.accessToken = accessToken
         guard OGSDiskManager.saveObject(userSettings) else
         {
@@ -25,11 +20,6 @@ class OGSUserSettingsStore: OGSUserSettingsStoreProtocol
 
     func save(refreshToken: String)
     {
-        guard userSettings != nil else
-        {
-            return
-        }
-
         userSettings.refreshToken = refreshToken
         guard OGSDiskManager.saveObject(userSettings) else
         {
@@ -37,18 +27,21 @@ class OGSUserSettingsStore: OGSUserSettingsStoreProtocol
         }
     }
 
-    func getUserSettings() -> OGSUserSettings
+    func getUserSettings() -> OGSUserSettingsProtocol
     {
-        guard userSettings == nil else
+        return userSettings
+    }
+}
+
+fileprivate extension OGSUserSettingsStore
+{
+    func retrieveUserSettings() -> OGSUserSettings
+    {
+        guard let oldUserSettings = OGSDiskManager.getData(forClass: OGSUserSettings.self) else
         {
-            return userSettings
+            return OGSUserSettings()
         }
 
-        userSettings = OGSDiskManager.getData(forClass: OGSUserSettings.self)
-        if userSettings == nil
-        {
-            userSettings = OGSUserSettings()
-        }
-        return userSettings
+        return oldUserSettings
     }
 }
