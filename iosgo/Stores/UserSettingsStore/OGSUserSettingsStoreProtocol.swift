@@ -9,5 +9,5 @@ protocol OGSUserSettingsStoreProtocol
 {
     func save(accessToken: String)
     func save(refreshToken: String)
-    func getUserSettings() -> OGSUserSettings
+    func getUserSettings() -> OGSUserSettingsProtocol
 }
