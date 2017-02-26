@@ -22,6 +22,11 @@ class OGSAppConfigurator: NSObject
 
     func configureApp()
     {
+        var userSettings = userSettingsStore.getUserSettings()
+
+        OGSApiManager.sharedInstance.accessToken = userSettings.accessToken
+        OGSApiManager.sharedInstance.refreshToken = userSettings.refreshToken
+
         OGSApiManager.sharedInstance.domainName = configuration.domainName
         OGSApiManager.sharedInstance.clientId = configuration.clientID
         OGSApiManager.sharedInstance.clientSecret = configuration.clientSecret
