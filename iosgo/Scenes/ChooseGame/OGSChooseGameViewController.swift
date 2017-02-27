@@ -13,7 +13,6 @@ import UIKit
 
 protocol OGSChooseGameViewControllerInput
 {
-    func displaya(viewModel: OGSChooseGame.aa.ViewModel)
 }
 
 protocol OGSChooseGameViewControllerOutput
@@ -26,38 +25,9 @@ class OGSChooseGameViewController: UIViewController, OGSChooseGameViewController
     var output: OGSChooseGameViewControllerOutput!
     var router: OGSChooseGameRouter!
 
-    // MARK: - Object lifecycle
-
     override func awakeFromNib()
     {
         super.awakeFromNib()
         OGSChooseGameConfigurator.sharedInstance.configure(viewController: self)
-    }
-
-    // MARK: - View lifecycle
-
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        doSomethingOnLoad()
-    }
-
-    // MARK: - Event handling
-
-    func doSomethingOnLoad()
-    {
-        // NOTE: Ask the Interactor to do some work
-
-        let request = OGSChooseGame.aa.Request()
-        output.doSomething(request: request)
-    }
-
-    // MARK: - Display logic
-
-    func displaya(viewModel _: OGSChooseGame.aa.ViewModel)
-    {
-        // NOTE: Display the result from the Presenter
-
-        // nameTextField.text = viewModel.name
     }
 }
