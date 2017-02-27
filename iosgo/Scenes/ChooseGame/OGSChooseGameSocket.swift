@@ -5,5 +5,12 @@
 
 import Foundation
 
-class OGSChooseGameSocket {
+protocol OGSChooseGameSocketOutput
+{
+    func listGame(request: OGSChooseGame.ListGames.Request)
+}
+
+class OGSChooseGameSocket
+{
+
 }
