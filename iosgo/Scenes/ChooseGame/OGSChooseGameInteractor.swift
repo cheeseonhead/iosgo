@@ -13,12 +13,11 @@ import UIKit
 
 protocol OGSChooseGameInteractorInput
 {
-    func doSomething(request: OGSChooseGame.aa.Request)
+    func listGame(request: OGSChooseGame.ListGames.Request)
 }
 
 protocol OGSChooseGameInteractorOutput
 {
-    func presenta(response: OGSChooseGame.aa.Response)
 }
 
 class OGSChooseGameInteractor: OGSChooseGameInteractorInput
@@ -27,13 +26,8 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
 
     // MARK: - Business logic
 
-    func doSomething(request _: OGSChooseGame.aa.Request)
+    func listGame(request _: OGSChooseGame.ListGames.Request)
     {
-        // NOTE: Create some Worker to do the work
 
-        // NOTE: Pass the result to the Presenter
-
-        let response = OGSChooseGame.aa.Response()
-        output.presenta(response: response)
     }
 }
