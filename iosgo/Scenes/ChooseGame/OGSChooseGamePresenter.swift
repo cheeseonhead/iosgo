@@ -13,12 +13,10 @@ import UIKit
 
 protocol OGSChooseGamePresenterInput
 {
-    func presenta(response: OGSChooseGame.aa.Response)
 }
 
 protocol OGSChooseGamePresenterOutput: class
 {
-    func displaya(viewModel: OGSChooseGame.aa.ViewModel)
 }
 
 class OGSChooseGamePresenter: OGSChooseGamePresenterInput
@@ -27,11 +25,4 @@ class OGSChooseGamePresenter: OGSChooseGamePresenterInput
 
     // MARK: - Presentation logic
 
-    func presenta(response _: OGSChooseGame.aa.Response)
-    {
-        // NOTE: Format the response from the Interactor and pass the result back to the View Controller
-
-        let viewModel = OGSChooseGame.aa.ViewModel()
-        output.displaya(viewModel: viewModel)
-    }
 }

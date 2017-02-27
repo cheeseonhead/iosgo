@@ -17,7 +17,6 @@ protocol OGSChooseGameViewControllerInput
 
 protocol OGSChooseGameViewControllerOutput
 {
-    func doSomething(request: OGSChooseGame.aa.Request)
 }
 
 class OGSChooseGameViewController: UIViewController, OGSChooseGameViewControllerInput
