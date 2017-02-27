@@ -40,6 +40,7 @@
 		56BD887B1E551C990098E50B /* Oswald-Stencil.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */; };
 		56BD888F1E5522530098E50B /* OGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BD888E1E5522530098E50B /* OGSButton.swift */; };
 		8405C06692E15B7D16D86610 /* OGSNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C2D09201FEEC8BA27848 /* OGSNotificationCenter.swift */; };
+		8405C11C9A6C8C0AF0B235AC /* OGSChooseGameSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C23C61E0A6D900542F8D /* OGSChooseGameSocket.swift */; };
 		8405C17C969AC4488D2E1025 /* OGSLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8405CF546D963204AC2350EC /* OGSLoginViewController.storyboard */; };
 		8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CDF76C6E046EFBE5BCA7 /* OGSLoginModels.swift */; };
 		8405C2F9E3BB909C3FB99D0D /* OGSDiskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CFDC3572F74D8EBE0FBD /* OGSDiskManager.swift */; };
@@ -120,6 +121,7 @@
 		8405C11EE91D3441F632A247 /* OGSUserSettingsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSUserSettingsProtocol.swift; sourceTree = "<group>"; };
 		8405C16171C1170044A8637E /* OGSBetaConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSBetaConfiguration.swift; sourceTree = "<group>"; };
 		8405C1866AC6187A07DF36F9 /* OGSUserSettingsStoreProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSUserSettingsStoreProtocol.swift; sourceTree = "<group>"; };
+		8405C23C61E0A6D900542F8D /* OGSChooseGameSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameSocket.swift; sourceTree = "<group>"; };
 		8405C28DF70477E87F3C32BB /* OGSLoginWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginWorker.swift; sourceTree = "<group>"; };
 		8405C2D09201FEEC8BA27848 /* OGSNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSNotificationCenter.swift; sourceTree = "<group>"; };
 		8405C352FE0AD49BF149BB22 /* OGSLoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginInteractor.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				5612FD0B1E63C60B000B1973 /* OGSChooseGamePresenter.swift */,
 				5612FD0C1E63C60B000B1973 /* OGSChooseGameRouter.swift */,
 				5612FD0D1E63C60B000B1973 /* OGSChooseGameViewController.swift */,
+				8405C23C61E0A6D900542F8D /* OGSChooseGameSocket.swift */,
 			);
 			path = ChooseGame;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				8405C33DABB22CF98928A07E /* OGSUserSettings.swift in Sources */,
 				8405CAFECD503F292EE529F6 /* OGSUserSettingsStoreProtocol.swift in Sources */,
 				8405C7E3B16ED3B0EF86C0F7 /* OGSUserSettingsStore.swift in Sources */,
+				8405C11C9A6C8C0AF0B235AC /* OGSChooseGameSocket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
