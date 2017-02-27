@@ -13,7 +13,7 @@ import UIKit
 
 struct OGSChooseGame
 {
-    struct aa
+    struct ListGames
     {
         struct Request
         {
