@@ -29,9 +29,6 @@ class OGSChooseGameConfigurator
 
         viewController.output = interactor
         viewController.router = router
-
-        let socket = OGSChooseGameSocket()
-        socket.output = interactor
     }
 }
 
@@ -43,6 +40,6 @@ extension OGSChooseGameViewController: OGSChooseGamePresenterOutput
     }
 }
 
-extension OGSChooseGameInteractor: OGSChooseGameViewControllerOutput, OGSChooseGameSocketOutput, OGSChooseGameRouterDataProvider, OGSChooseGameRouterDataReceiver {}
+extension OGSChooseGameInteractor: OGSChooseGameViewControllerOutput, OGSChooseGameRouterDataProvider, OGSChooseGameRouterDataReceiver {}
 
 extension OGSChooseGamePresenter: OGSChooseGameInteractorOutput {}
