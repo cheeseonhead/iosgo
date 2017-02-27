@@ -12,5 +12,5 @@ protocol OGSChooseGameSocketOutput
 
 class OGSChooseGameSocket
 {
-
+    var output: OGSChooseGameSocketOutput!
 }

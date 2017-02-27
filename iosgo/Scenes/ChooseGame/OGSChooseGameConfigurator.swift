@@ -29,6 +29,9 @@ class OGSChooseGameConfigurator
 
         viewController.output = interactor
         viewController.router = router
+
+        let socket = OGSChooseGameSocket()
+        socket.output = interactor
     }
 }
 
