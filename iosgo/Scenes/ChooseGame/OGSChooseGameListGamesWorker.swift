@@ -5,5 +5,24 @@
 
 import Foundation
 
-class OGSChooseGameListGamesWorker {
+protocol OGSChooseGameListGamesWorkerDelegate: class
+{
+    func sendListGamesResponse(_ response: OGSChooseGame.ListGames.Response)
+}
+
+class OGSChooseGameListGamesWorker: OGSSeekGraphStoreDelegate
+{
+    weak var delegate: OGSChooseGameListGamesWorkerDelegate?
+    var seekGraphStore: OGSSeekGraphStoreProtocol!
+
+    required init(store: OGSSeekGraphStoreProtocol)
+    {
+        seekGraphStore = store
+        seekGraphStore.delegate = self
+    }
+
+    func connect()
+    {
+        seekGraphStore.connect()
+    }
 }
