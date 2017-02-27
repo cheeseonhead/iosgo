@@ -21,12 +21,10 @@ protocol OGSChooseGameViewControllerOutput
     func doSomething(request: OGSChooseGame.aa.Request)
 }
 
-protocol OGSChooseGameViewControllerRouter: Router {}
-
 class OGSChooseGameViewController: UIViewController, OGSChooseGameViewControllerInput
 {
     var output: OGSChooseGameViewControllerOutput!
-    var router: OGSChooseGameViewControllerRouter!
+    var router: OGSChooseGameRouter!
 
     // MARK: - Object lifecycle
 

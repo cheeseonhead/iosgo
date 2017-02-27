@@ -43,5 +43,3 @@ extension OGSChooseGameViewController: OGSChooseGamePresenterOutput
 extension OGSChooseGameInteractor: OGSChooseGameViewControllerOutput, OGSChooseGameRouterDataProvider, OGSChooseGameRouterDataReceiver {}
 
 extension OGSChooseGamePresenter: OGSChooseGameInteractorOutput {}
-
-extension OGSChooseGameRouter: OGSChooseGameViewControllerRouter {}
