@@ -5,5 +5,14 @@
 
 import Foundation
 
-class OGSSeekGraphStoreProtocol {
+protocol OGSSeekGraphStoreDelegate: class
+{
+
+}
+
+class OGSSeekGraphStoreProtocol
+{
+    weak var delegate: OGSSeekGraphStoreDelegate { get set }
+
+    func connect()
 }
