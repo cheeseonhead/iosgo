@@ -10,9 +10,9 @@ protocol OGSSeekGraphStoreDelegate: class
 
 }
 
-class OGSSeekGraphStoreProtocol
+protocol OGSSeekGraphStoreProtocol
 {
-    weak var delegate: OGSSeekGraphStoreDelegate { get set }
+    weak var delegate: OGSSeekGraphStoreDelegate? { set get }
 
     func connect()
 }
