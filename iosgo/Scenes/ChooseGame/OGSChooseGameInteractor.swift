@@ -23,6 +23,7 @@ protocol OGSChooseGameInteractorOutput
 class OGSChooseGameInteractor: OGSChooseGameInteractorInput
 {
     var output: OGSChooseGameInteractorOutput!
+    var listGamesWorker: OGSChooseGameListGamesWorker!
 
     // MARK: - Business logic
 
