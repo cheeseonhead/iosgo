@@ -5,9 +5,17 @@
 
 import Foundation
 
+struct OGSSeekGraphStore
+{
+    struct Challenges
+    {
+
+    }
+}
+
 protocol OGSSeekGraphStoreDelegate: class
 {
-
+    func listChallenges()
 }
 
 protocol OGSSeekGraphStoreProtocol

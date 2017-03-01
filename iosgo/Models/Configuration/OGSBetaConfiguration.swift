@@ -5,7 +5,7 @@
 
 import Foundation
 
-class OGSBetaConfiguration: OGSConfigurationProtocol
+struct OGSBetaConfiguration: OGSConfigurationProtocol
 {
     var domainName = "https://beta.online-go.com/"
     var clientID = "T0upLgPLIiuDt1zozbgEAqt1Cho3wWDRc2Iw6iJQ"

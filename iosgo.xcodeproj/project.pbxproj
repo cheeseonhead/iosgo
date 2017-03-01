@@ -41,6 +41,7 @@
 		56BD888F1E5522530098E50B /* OGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BD888E1E5522530098E50B /* OGSButton.swift */; };
 		8405C06692E15B7D16D86610 /* OGSNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C2D09201FEEC8BA27848 /* OGSNotificationCenter.swift */; };
 		8405C17C969AC4488D2E1025 /* OGSLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8405CF546D963204AC2350EC /* OGSLoginViewController.storyboard */; };
+		8405C1BD724D953FE34DDC35 /* OGSSeekGraphSocketStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CDF23994EB7077BA78B8 /* OGSSeekGraphSocketStore.swift */; };
 		8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CDF76C6E046EFBE5BCA7 /* OGSLoginModels.swift */; };
 		8405C28A55343B18BDCDB408 /* OGSChooseGameListGamesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CDA75B5CF30293568E35 /* OGSChooseGameListGamesWorker.swift */; };
 		8405C2F9E3BB909C3FB99D0D /* OGSDiskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CFDC3572F74D8EBE0FBD /* OGSDiskManager.swift */; };
@@ -55,6 +56,7 @@
 		8405CA49BF8044F3F0B76F31 /* OGSLoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C352FE0AD49BF149BB22 /* OGSLoginInteractor.swift */; };
 		8405CA6A133748D9049413CA /* OGSLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CA28D0B815E0BA8C2995 /* OGSLoginPresenter.swift */; };
 		8405CAFECD503F292EE529F6 /* OGSUserSettingsStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C1866AC6187A07DF36F9 /* OGSUserSettingsStoreProtocol.swift */; };
+		8405CAFEE0C897EE31ED6865 /* OGSChallenges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C4C2A11D12F3BF6DA2D7 /* OGSChallenges.swift */; };
 		8405CB5F7BAD2E27B9786979 /* Temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CF5B5FD5BE2E3B1BFCDC /* Temp.swift */; };
 		8405CC0C6DBB4D5102EE60CF /* OGSLoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C835964EBE64454849A1 /* OGSLoginConfigurator.swift */; };
 		8405CD093E23DC1A0921DAA5 /* OGSConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CE5732ACA22D3DD45431 /* OGSConfigurationProtocol.swift */; };
@@ -126,6 +128,7 @@
 		8405C28DF70477E87F3C32BB /* OGSLoginWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginWorker.swift; sourceTree = "<group>"; };
 		8405C2D09201FEEC8BA27848 /* OGSNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSNotificationCenter.swift; sourceTree = "<group>"; };
 		8405C352FE0AD49BF149BB22 /* OGSLoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginInteractor.swift; sourceTree = "<group>"; };
+		8405C4C2A11D12F3BF6DA2D7 /* OGSChallenges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChallenges.swift; sourceTree = "<group>"; };
 		8405C70C34A8FC953482040E /* OGSAppConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSAppConfigurator.swift; sourceTree = "<group>"; };
 		8405C7E803F0E983A087BF29 /* OGSUserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSUserSettings.swift; sourceTree = "<group>"; };
 		8405C835964EBE64454849A1 /* OGSLoginConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginConfigurator.swift; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 		8405CB3B6D134DFC861A3E6A /* OGSOauthApiStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSOauthApiStore.swift; sourceTree = "<group>"; };
 		8405CCBEDED129DD31C31BA8 /* OGSLoginRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginRouter.swift; sourceTree = "<group>"; };
 		8405CDA75B5CF30293568E35 /* OGSChooseGameListGamesWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameListGamesWorker.swift; sourceTree = "<group>"; };
+		8405CDF23994EB7077BA78B8 /* OGSSeekGraphSocketStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSSeekGraphSocketStore.swift; sourceTree = "<group>"; };
 		8405CDF76C6E046EFBE5BCA7 /* OGSLoginModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginModels.swift; sourceTree = "<group>"; };
 		8405CE5732ACA22D3DD45431 /* OGSConfigurationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSConfigurationProtocol.swift; sourceTree = "<group>"; };
 		8405CF546D963204AC2350EC /* OGSLoginViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OGSLoginViewController.storyboard; sourceTree = "<group>"; };
@@ -274,6 +278,14 @@
 			path = UserSettings;
 			sourceTree = "<group>";
 		};
+		8405C66D470818B9A9828DEE /* Challenges */ = {
+			isa = PBXGroup;
+			children = (
+				8405C4C2A11D12F3BF6DA2D7 /* OGSChallenges.swift */,
+			);
+			path = Challenges;
+			sourceTree = "<group>";
+		};
 		8405C8F1A41EC1425EF79C9C /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +311,7 @@
 			children = (
 				8405CDAFCC8C4C8565D8A86D /* Configuration */,
 				8405C26D800A88F561D724BE /* UserSettings */,
+				8405C66D470818B9A9828DEE /* Challenges */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -372,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				8405C19C0E7E578D1394D703 /* OGSSeekGraphStoreProtocol.swift */,
+				8405CDF23994EB7077BA78B8 /* OGSSeekGraphSocketStore.swift */,
 			);
 			path = SeekGraph;
 			sourceTree = "<group>";
@@ -654,6 +668,8 @@
 				8405C7E3B16ED3B0EF86C0F7 /* OGSUserSettingsStore.swift in Sources */,
 				8405C28A55343B18BDCDB408 /* OGSChooseGameListGamesWorker.swift in Sources */,
 				8405C389F628E7D8E9238052 /* OGSSeekGraphStoreProtocol.swift in Sources */,
+				8405C1BD724D953FE34DDC35 /* OGSSeekGraphSocketStore.swift in Sources */,
+				8405CAFEE0C897EE31ED6865 /* OGSChallenges.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
