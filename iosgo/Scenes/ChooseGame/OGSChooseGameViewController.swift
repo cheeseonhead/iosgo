@@ -17,6 +17,7 @@ protocol OGSChooseGameViewControllerInput
 
 protocol OGSChooseGameViewControllerOutput
 {
+    func listGames(request: OGSChooseGame.ListGames.Request)
 }
 
 class OGSChooseGameViewController: UIViewController, OGSChooseGameViewControllerInput
@@ -28,5 +29,12 @@ class OGSChooseGameViewController: UIViewController, OGSChooseGameViewController
     {
         super.awakeFromNib()
         OGSChooseGameConfigurator.sharedInstance.configure(viewController: self)
+    }
+
+    override func viewDidLoad()
+    {
+        let request = OGSChooseGame.ListGames.Request()
+
+        output.listGames(request: request)
     }
 }

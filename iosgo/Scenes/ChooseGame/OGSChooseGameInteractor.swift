@@ -13,7 +13,7 @@ import UIKit
 
 protocol OGSChooseGameInteractorInput
 {
-    func listGame(request: OGSChooseGame.ListGames.Request)
+    func listGames(request: OGSChooseGame.ListGames.Request)
 }
 
 protocol OGSChooseGameInteractorOutput
@@ -23,12 +23,12 @@ protocol OGSChooseGameInteractorOutput
 class OGSChooseGameInteractor: OGSChooseGameInteractorInput
 {
     var output: OGSChooseGameInteractorOutput!
-    var listGamesWorker: OGSChooseGameListGamesWorker!
+    var listGamesWorker = OGSChooseGameListGamesWorker(store: OGSSeekGraphSocketStore())
 
     // MARK: - Business logic
 
-    func listGame(request _: OGSChooseGame.ListGames.Request)
+    func listGames(request _: OGSChooseGame.ListGames.Request)
     {
-
+        listGamesWorker.connect()
     }
 }
