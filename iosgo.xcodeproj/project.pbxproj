@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		347B42F71E67D8CF00CAFB47 /* OGSChooseGameTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 347B42F61E67D8CF00CAFB47 /* OGSChooseGameTableViewController.storyboard */; };
+		347B42F91E67DF9100CAFB47 /* OGSChooseGameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347B42F81E67DF9100CAFB47 /* OGSChooseGameTableViewController.swift */; };
 		490D5ED58103542F7917F833 /* Pods_iosgo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF12002656677CCFB6D8EAF8 /* Pods_iosgo.framework */; };
 		5612FD0E1E63C60B000B1973 /* OGSChooseGameConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612FD081E63C60B000B1973 /* OGSChooseGameConfigurator.swift */; };
 		5612FD0F1E63C60B000B1973 /* OGSChooseGameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612FD091E63C60B000B1973 /* OGSChooseGameInteractor.swift */; };
@@ -86,6 +88,8 @@
 /* Begin PBXFileReference section */
 		01BA5FDBCD62AB45B53CC1A9 /* Pods-iosgo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgo.release.xcconfig"; path = "Pods/Target Support Files/Pods-iosgo/Pods-iosgo.release.xcconfig"; sourceTree = "<group>"; };
 		2F833FBBB73B7CCEE7D54A54 /* Pods-iosgoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iosgoTests/Pods-iosgoTests.release.xcconfig"; sourceTree = "<group>"; };
+		347B42F61E67D8CF00CAFB47 /* OGSChooseGameTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OGSChooseGameTableViewController.storyboard; sourceTree = "<group>"; };
+		347B42F81E67DF9100CAFB47 /* OGSChooseGameTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameTableViewController.swift; sourceTree = "<group>"; };
 		3A3A74F5D326BE5E0E2D52ED /* Pods-iosgoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iosgoTests/Pods-iosgoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5612FD081E63C60B000B1973 /* OGSChooseGameConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameConfigurator.swift; sourceTree = "<group>"; };
 		5612FD091E63C60B000B1973 /* OGSChooseGameInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameInteractor.swift; sourceTree = "<group>"; };
@@ -373,6 +377,7 @@
 				5612FD0D1E63C60B000B1973 /* OGSChooseGameViewController.swift */,
 				8405CDA75B5CF30293568E35 /* OGSChooseGameListGamesWorker.swift */,
 				5645E9191E679EAA00602FF5 /* OGSChooseGameViewController.storyboard */,
+				AD05AB8363F29637E7E51A81 /* TableView */,
 			);
 			path = ChooseGame;
 			sourceTree = "<group>";
@@ -405,6 +410,15 @@
 				AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */,
 			);
 			path = Additions;
+			sourceTree = "<group>";
+		};
+		AD05AB8363F29637E7E51A81 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				347B42F61E67D8CF00CAFB47 /* OGSChooseGameTableViewController.storyboard */,
+				347B42F81E67DF9100CAFB47 /* OGSChooseGameTableViewController.swift */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		E4DEFB86F4E965A3CC8D8761 /* Frameworks */ = {
@@ -508,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				565D247A1E54A5A500EF62CD /* Main.storyboard in Resources */,
+				347B42F71E67D8CF00CAFB47 /* OGSChooseGameTableViewController.storyboard in Resources */,
 				565D24711E54A5A500EF62CD /* GameScene.sks in Resources */,
 				56BD88791E551C990098E50B /* Oswald-Regular.ttf in Resources */,
 				56BD887A1E551C990098E50B /* Oswald-RegularItalic.ttf in Resources */,
@@ -651,6 +666,7 @@
 				8405CA49BF8044F3F0B76F31 /* OGSLoginInteractor.swift in Sources */,
 				8405CC0C6DBB4D5102EE60CF /* OGSLoginConfigurator.swift in Sources */,
 				8405C6E5D3897A1BBF7653B2 /* OGSLoginViewController.swift in Sources */,
+				347B42F91E67DF9100CAFB47 /* OGSChooseGameTableViewController.swift in Sources */,
 				8405CB5F7BAD2E27B9786979 /* Temp.swift in Sources */,
 				5612FD0F1E63C60B000B1973 /* OGSChooseGameInteractor.swift in Sources */,
 				8405C3EF4B45726E0EC70766 /* OGSAppConfigurator.swift in Sources */,
