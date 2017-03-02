@@ -46,3 +46,29 @@ class OGSSeekGraphSocketStore: OGSSeekGraphStoreProtocol
         ]
     }
 }
+
+extension OGSSeekGraphStore.Challenge: Unboxable
+{
+    init(unboxer: Unboxer) throws
+    {
+        self.username = try unboxer.unbox(key: "username")
+        self.name = try unboxer.unbox(key: "name")
+        self.timePerMove = try unboxer.unbox(key: "time_per_move")
+        self.userId = try unboxer.unbox(key: "user_id")
+        self.width = try unboxer.unbox(key: "width")
+        self.height = try unboxer.unbox(key: "height")
+        self.handicap = try unboxer.unbox(key: "handicap")
+        self.challengeId = try unboxer.unbox(key: "challenge_id")
+        self.pro = try unboxer.unbox(key: "pro")
+        self.maxRank = try unboxer.unbox(key: "max_rank")
+        self.disableAnalysis = try unboxer.unbox(key: "disable_analysis")
+        self.rank = try unboxer.unbox(key: "rank")
+        self.rules = try unboxer.unbox(key: "rules")
+        self.timeControl = try unboxer.unbox(key: "time_control")
+        self.ranked = try unboxer.unbox(key: "ranked")
+        self.minRank = try unboxer.unbox(key: "min_rank")
+        self.komi = unboxer.unbox(key: "komi")
+        self.gameId = try unboxer.unbox(key: "game_id")
+        self.challengerColor = try unboxer.unbox(key: "challenger_color")
+    }
+}
