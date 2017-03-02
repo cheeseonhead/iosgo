@@ -21,16 +21,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="slu-oh-YR1">
-                                <rect key="frame" x="227" y="20" width="571" height="748"/>
+                                <rect key="frame" x="12" y="20" width="1000" height="748"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="571" id="sNQ-QF-Idn"/>
+                                    <constraint firstAttribute="width" constant="1000" id="sNQ-QF-Idn"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="kk2-YP-aU3" kind="embed" id="pNC-Tr-bqS"/>
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" red="0.62745098040000002" green="0.56470588239999997" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.86220639944076538" green="0.84232503175735474" blue="0.72034388780593872" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="slu-oh-YR1" firstAttribute="top" secondItem="G1S-2d-zbQ" secondAttribute="bottom" id="15d-3N-cLB"/>
                             <constraint firstItem="slu-oh-YR1" firstAttribute="centerX" secondItem="HJS-Fr-7uA" secondAttribute="centerX" id="Io0-5l-GAj"/>
