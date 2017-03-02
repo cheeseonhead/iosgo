@@ -42,10 +42,10 @@
             </objects>
             <point key="canvasLocation" x="-302.34375" y="197.65625"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--OGSChooseGameTableViewController-->
         <scene sceneID="WB8-zQ-SOV">
             <objects>
-                <viewControllerPlaceholder id="kk2-YP-aU3" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="OGSChooseGameTableViewController" storyboardName="OGSChooseGameTableViewController" id="kk2-YP-aU3" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vf8-N7-wgq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="223" y="172"/>
