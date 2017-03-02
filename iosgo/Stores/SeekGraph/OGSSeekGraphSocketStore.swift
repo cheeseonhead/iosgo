@@ -4,6 +4,8 @@
 //
 
 import Foundation
+import Unbox
+
 
 class OGSSeekGraphSocketStore: OGSSeekGraphStoreProtocol
 {
@@ -15,10 +17,13 @@ class OGSSeekGraphSocketStore: OGSSeekGraphStoreProtocol
 
     func createChallengeFrom(payload: [String: Any?]) -> OGSSeekGraphStore.Challenge
     {
-        var challenge = OGSSeekGraphStore.Challenge(username: payload["username"],
-                timePerMove: payload["time_per_move"], userId: payload["user_id"], name: payload["name"], width: payload["width"], height: payload["height"],
-                handicap: payload["handicap"], challengeId: payload["challenge_id"], pro: payload["pro"], maxRank: payload, minRank: <#T##Int?##Swift.Int?#>, disableAnalysis: <#T##NetworkBool?##iosgo.NetworkBool?#>, rank: <#T##Int?##Swift.Int?#>, rules: <#T##RuleTypes?##iosgo.OGSSeekGraphStore.RuleTypes?#>, timeControl: <#T##TimeControlTypes?##iosgo.OGSSeekGraphStore.TimeControlTypes?#>, ranked: <#T##NetworkBool?##iosgo.NetworkBool?#>, komi: <#T##Float?##Swift.Float?#>, gameId: <#T##Int?##Swift.Int?#>, challengerColor: <#T##ChallengerColorType?##iosgo.OGSSeekGraphStore.ChallengerColorType?#>)
-
+        do {
+            let challenge: OGSSeekGraphStore.Challenge = try unbox(dictionary: payload)
+            return challenge
+        }
+        catch _ {
+            fatalError("Unable to parse Challenge")
+        }
     }
 
     func fakeData1() -> [String: Any?]
