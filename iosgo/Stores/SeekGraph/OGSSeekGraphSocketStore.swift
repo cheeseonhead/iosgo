@@ -13,6 +13,8 @@ class OGSSeekGraphSocketStore: OGSSeekGraphStoreProtocol
 
     func connect()
     {
+        let challenge = self.createChallengeFrom(payload: fakeData1())
+        delegate?.listChallenges([challenge])
     }
 
     func createChallengeFrom(payload: [String: Any?]) -> OGSSeekGraphStore.Challenge
@@ -47,7 +49,16 @@ class OGSSeekGraphSocketStore: OGSSeekGraphStoreProtocol
             "min_rank": -3,
             "komi": nil,
             "game_id": 809,
-            "challenger_color": "automatic"
+            "challenger_color": "automatic",
+            "time_control_parameters": [
+                "system": "fischer",
+                "pause_on_weekends": true,
+                "time_control": "fischer",
+                "initial_time": 259200,
+                "max_time": 604800,
+                "time_increment": 86400,
+                "speed": "correspondence"
+            ]
         ]
     }
 }
@@ -75,5 +86,44 @@ extension OGSSeekGraphStore.Challenge: Unboxable
         self.komi = unboxer.unbox(key: "komi")
         self.gameId = try unboxer.unbox(key: "game_id")
         self.challengerColor = try unboxer.unbox(key: "challenger_color")
+
+        switch timeControl {
+        case .fischer:
+            let parameters: OGSSeekGraphStore.Fischer = try unboxer.unbox(key: "time_control_parameters")
+            self.timeControlParameters = .fischer(parameters: parameters)
+            break
+        case .simple:
+            let parameters: OGSSeekGraphStore.Simple = try unboxer.unbox(key: "time_control_parameters")
+            self.timeControlParameters = .simple(parameters: parameters)
+            break
+        }
+    }
+}
+
+extension OGSSeekGraphStore.Fischer: Unboxable
+{
+    init(unboxer: Unboxer) throws
+    {
+        pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
+        speed = try unboxer.unbox(key: "speed")
+        system = try unboxer.unbox(key: "system")
+        timeControl = try unboxer.unbox(key: "time_control")
+
+        initialTime = try unboxer.unbox(key: "initial_time")
+        maxTime = try unboxer.unbox(key: "max_time")
+        timeIncrement = try unboxer.unbox(key: "time_increment")
+    }
+}
+
+extension OGSSeekGraphStore.Simple: Unboxable
+{
+    init(unboxer: Unboxer) throws
+    {
+        pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
+        speed = try unboxer.unbox(key: "speed")
+        system = try unboxer.unbox(key: "system")
+        timeControl = try unboxer.unbox(key: "time_control")
+
+        perMove = try unboxer.unbox(key: "per_move")
     }
 }
