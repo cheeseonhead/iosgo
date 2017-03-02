@@ -8,7 +8,7 @@ import Foundation
 class OGSUserSettings: NSObject, OGSUserSettingsProtocol
 {
     static var DataName: String = "UserSetting"
-    static var DataVersion: Int = 1
+    static var DataVersion: Int = 2
 
     var accessToken: String?
     var refreshToken: String?
