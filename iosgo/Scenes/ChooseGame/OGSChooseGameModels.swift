@@ -21,8 +21,24 @@ struct OGSChooseGame
         struct Response
         {
         }
+
         struct ViewModel
         {
+            enum ChallengeCellType
+            {
+                case owner
+                case other
+            }
+
+            struct Challenge
+            {
+                var userInfo: String
+                var sizeString: String
+                var timeString: String
+                var cellType: ChallengeCellType
+            }
+
+            var challengeList: [Challenge]
         }
     }
 }
