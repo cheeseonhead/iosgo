@@ -27,40 +27,40 @@
                         <color key="backgroundColor" red="0.86220639944076538" green="0.84232503175735474" blue="0.72034388780593872" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OGSChooseGameOtherTableViewCell" rowHeight="131" id="a7E-ps-Gqx" customClass="OGSChooseGameOtherTableViewCell" customModule="iosgo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="1000" height="131"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OGSChooseGameOtherTableViewCell" rowHeight="85" id="a7E-ps-Gqx" customClass="OGSChooseGameOtherTableViewCell" customModule="iosgo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="1000" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a7E-ps-Gqx" id="Syb-cY-ypz">
-                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="130"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="84"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wstudjeff2 [20k]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvE-qw-p8b">
-                                            <rect key="frame" x="28" y="49" width="163" height="33"/>
-                                            <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="24"/>
+                                            <rect key="frame" x="28" y="30" width="122.5" height="24.5"/>
+                                            <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="18"/>
                                             <color key="textColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3z0-JK-99V" customClass="OGSButton" customModule="iosgo" customModuleProvider="target">
-                                            <rect key="frame" x="863" y="45.5" width="109" height="40"/>
+                                            <rect key="frame" x="863" y="24" width="109" height="37"/>
                                             <color key="backgroundColor" red="0.3803921569" green="0.75294117650000003" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="109" id="Gld-AE-c4s"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="20"/>
+                                            <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="18"/>
                                             <state key="normal" title="Play"/>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rFx-KE-tEF">
-                                            <rect key="frame" x="412.5" y="18" width="175.5" height="95"/>
+                                            <rect key="frame" x="434.5" y="8" width="132" height="68.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19x19" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uqx-QW-FQP">
-                                                    <rect key="frame" x="49" y="0.0" width="77.5" height="47.5"/>
-                                                    <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="30"/>
+                                                    <rect key="frame" x="43" y="0.0" width="46.5" height="34.5"/>
+                                                    <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="18"/>
                                                     <color key="textColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3d + 1d up to 1wk" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCa-eT-wfY">
-                                                    <rect key="frame" x="0.0" y="47.5" width="175.5" height="47.5"/>
-                                                    <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="24"/>
+                                                    <rect key="frame" x="0.0" y="34.5" width="132" height="34"/>
+                                                    <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="18"/>
                                                     <color key="textColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -68,8 +68,8 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="rFx-KE-tEF" secondAttribute="bottom" constant="10" id="Ead-oV-cDU"/>
-                                        <constraint firstItem="rFx-KE-tEF" firstAttribute="top" secondItem="Syb-cY-ypz" secondAttribute="topMargin" constant="10" id="X3J-IS-BbO"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="rFx-KE-tEF" secondAttribute="bottom" id="Ead-oV-cDU"/>
+                                        <constraint firstItem="rFx-KE-tEF" firstAttribute="top" secondItem="Syb-cY-ypz" secondAttribute="topMargin" id="X3J-IS-BbO"/>
                                         <constraint firstItem="3z0-JK-99V" firstAttribute="centerY" secondItem="Syb-cY-ypz" secondAttribute="centerY" id="aph-Rg-3o6"/>
                                         <constraint firstItem="BvE-qw-p8b" firstAttribute="leading" secondItem="Syb-cY-ypz" secondAttribute="leadingMargin" constant="20" id="nUC-jk-taK"/>
                                         <constraint firstItem="rFx-KE-tEF" firstAttribute="centerX" secondItem="Syb-cY-ypz" secondAttribute="centerX" id="srT-2r-6lA"/>
@@ -85,42 +85,42 @@
                                     <outlet property="timeLabel" destination="fCa-eT-wfY" id="adr-Lz-s0d"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OGSChooseGameOwnerTableViewCell" rowHeight="139" id="jK8-1a-jBM" customClass="OGSChooseGameOwnerTableViewCell" customModule="iosgo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="159" width="1000" height="139"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OGSChooseGameOwnerTableViewCell" rowHeight="73" id="jK8-1a-jBM" customClass="OGSChooseGameOwnerTableViewCell" customModule="iosgo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="113" width="1000" height="73"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jK8-1a-jBM" id="RBH-aL-pS2">
-                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="138"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="72"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="S0b-9v-xc8">
-                                            <rect key="frame" x="469.5" y="18" width="61.5" height="103"/>
+                                            <rect key="frame" x="477" y="8" width="46.5" height="56.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="9x9" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEB-Fg-6qE">
-                                                    <rect key="frame" x="8" y="0.0" width="45.5" height="70"/>
-                                                    <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="30"/>
+                                                    <rect key="frame" x="9.5" y="0.0" width="27.5" height="32"/>
+                                                    <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="18"/>
                                                     <color key="textColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="10 yrs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NE-Kt-Jg0">
-                                                    <rect key="frame" x="0.0" y="70" width="61.5" height="33"/>
-                                                    <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="24"/>
+                                                    <rect key="frame" x="0.0" y="32" width="46.5" height="24.5"/>
+                                                    <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="18"/>
                                                     <color key="textColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFu-cM-13W" userLabel="Remove Button" customClass="OGSButton" customModule="iosgo" customModuleProvider="target">
-                                            <rect key="frame" x="863" y="49.5" width="109" height="40"/>
+                                            <rect key="frame" x="863" y="18.5" width="109" height="37"/>
                                             <color key="backgroundColor" red="0.96078431369999995" green="0.54117647059999996" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="109" id="87t-Ni-nuc"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="20"/>
+                                            <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="18"/>
                                             <state key="normal" title="Remove"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wstudjeff2 [200d]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDZ-1j-q0W">
-                                            <rect key="frame" x="28" y="53" width="175" height="33"/>
-                                            <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="24"/>
+                                            <rect key="frame" x="28" y="24.5" width="131.5" height="24.5"/>
+                                            <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="18"/>
                                             <color key="textColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -128,10 +128,10 @@
                                     <constraints>
                                         <constraint firstItem="vFu-cM-13W" firstAttribute="centerY" secondItem="RBH-aL-pS2" secondAttribute="centerY" id="9aA-Wt-SuG"/>
                                         <constraint firstItem="S0b-9v-xc8" firstAttribute="centerX" secondItem="RBH-aL-pS2" secondAttribute="centerX" id="Nnl-xt-5xg"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="S0b-9v-xc8" secondAttribute="bottom" constant="10" id="RGr-sU-TSS"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="S0b-9v-xc8" secondAttribute="bottom" id="RGr-sU-TSS"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="vFu-cM-13W" secondAttribute="trailing" constant="20" id="dfa-Eh-3yV"/>
                                         <constraint firstItem="HDZ-1j-q0W" firstAttribute="leading" secondItem="RBH-aL-pS2" secondAttribute="leadingMargin" constant="20" id="hGf-KO-Bye"/>
-                                        <constraint firstItem="S0b-9v-xc8" firstAttribute="top" secondItem="RBH-aL-pS2" secondAttribute="topMargin" constant="10" id="jeS-3z-f7F"/>
+                                        <constraint firstItem="S0b-9v-xc8" firstAttribute="top" secondItem="RBH-aL-pS2" secondAttribute="topMargin" id="jeS-3z-f7F"/>
                                         <constraint firstItem="HDZ-1j-q0W" firstAttribute="centerY" secondItem="RBH-aL-pS2" secondAttribute="centerY" id="z6x-Ia-RBY"/>
                                     </constraints>
                                 </tableViewCellContentView>
