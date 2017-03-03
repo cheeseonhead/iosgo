@@ -13,6 +13,7 @@ import UIKit
 
 protocol OGSChooseGameViewControllerInput
 {
+    func displayListGames(viewModel: OGSChooseGame.ListGames.ViewModel)
 }
 
 protocol OGSChooseGameViewControllerOutput
@@ -48,7 +49,18 @@ fileprivate extension OGSChooseGameViewController
 
         output.listGames(request: request)
     }
-}// MARK: - SubViewControllers
+}
+
+// MARK: - Display Logic
+extension OGSChooseGameViewController
+{
+    func displayListGames(viewModel: OGSChooseGame.ListGames.ViewModel)
+    {
+        tableViewController.challengeList = viewModel.challengeList
+    }
+}
+
+// MARK: - SubViewControllers
 extension OGSChooseGameViewController
 {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
