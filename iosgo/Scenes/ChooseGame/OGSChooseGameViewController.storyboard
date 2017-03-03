@@ -7,6 +7,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Oswald-Heavy.ttf">
+            <string>Oswald-Heavy</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Choose Game View Controller-->
         <scene sceneID="we9-LM-jEB">
@@ -37,7 +42,26 @@
                             <constraint firstItem="slu-oh-YR1" firstAttribute="top" secondItem="G1S-2d-zbQ" secondAttribute="bottom" id="wdN-0O-o0p"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="9Mn-EK-zpd"/>
+                    <navigationItem key="navigationItem" id="9Mn-EK-zpd">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="lvG-D9-kX3">
+                            <rect key="frame" x="124" y="6" width="776" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Challenges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qka-wK-adR">
+                                    <rect key="frame" x="323.5" y="0.5" width="129.5" height="33"/>
+                                    <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="28"/>
+                                    <color key="textColor" red="0.12363310903310776" green="0.22363260388374329" blue="0.24621641635894775" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="qka-wK-adR" firstAttribute="centerY" secondItem="lvG-D9-kX3" secondAttribute="centerY" id="86V-aj-KsC"/>
+                                <constraint firstItem="qka-wK-adR" firstAttribute="height" secondItem="lvG-D9-kX3" secondAttribute="height" id="LfV-Z7-FXW"/>
+                                <constraint firstItem="qka-wK-adR" firstAttribute="centerX" secondItem="lvG-D9-kX3" secondAttribute="centerX" id="vlF-AH-t2u"/>
+                            </constraints>
+                        </view>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1o-j2-wds" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -56,7 +80,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FgE-uA-NVX" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ij0-aJ-5mS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ij0-aJ-5mS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
