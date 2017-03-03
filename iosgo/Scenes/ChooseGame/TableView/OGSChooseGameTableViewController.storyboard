@@ -21,20 +21,20 @@
         <scene sceneID="sFL-EA-EBu">
             <objects>
                 <tableViewController storyboardIdentifier="OGSChooseGameTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9mv-gU-aYw" customClass="OGSChooseGameTableViewController" customModule="iosgo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" sectionIndexMinimumDisplayRowCount="1" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" id="uBu-NE-xs9">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" sectionIndexMinimumDisplayRowCount="1" rowHeight="61" sectionHeaderHeight="28" sectionFooterHeight="28" id="uBu-NE-xs9">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.86220639944076538" green="0.84232503175735474" blue="0.72034388780593872" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OGSChooseGameTableViewCell" rowHeight="88" id="a7E-ps-Gqx" customClass="OGSChooseGameTableViewCell" customModule="iosgo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="1000" height="88"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OGSChooseGameTableViewCell" rowHeight="61" id="a7E-ps-Gqx" customClass="OGSChooseGameTableViewCell" customModule="iosgo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="1000" height="61"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a7E-ps-Gqx" id="Syb-cY-ypz">
-                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="88"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="61"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="XJA-q3-XHr">
-                                            <rect key="frame" x="28" y="24" width="944" height="40"/>
+                                            <rect key="frame" x="28" y="10.5" width="944" height="40"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wstudjeff2 [20k]" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvE-qw-p8b">
                                                     <rect key="frame" x="0.0" y="0.0" width="163" height="40"/>
@@ -91,7 +91,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qZF-fb-sDa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-87.5" y="117.77343749999999"/>
+            <point key="canvasLocation" x="-88" y="117"/>
         </scene>
     </scenes>
 </document>
