@@ -13,16 +13,30 @@ import UIKit
 
 protocol OGSChooseGamePresenterInput
 {
+    func presentListGames(response: OGSChooseGame.ListGames.Response)
 }
 
 protocol OGSChooseGamePresenterOutput: class
 {
+    func displayListGames(viewModel: OGSChooseGame.ListGames.ViewModel)
 }
 
 class OGSChooseGamePresenter: OGSChooseGamePresenterInput
 {
+    typealias Challenge = OGSChooseGame.ListGames.ViewModel.Challenge
+
     weak var output: OGSChooseGamePresenterOutput!
 
-    // MARK: - Presentation logic
+    func presentListGames(response: OGSChooseGame.ListGames.Response)
+    {
+        typealias UseCase = OGSChooseGame.ListGames
 
+        let game1 = Challenge(userInfo: "studjeff2 [20k]", sizeString: "19x19", timeString: "3d + up to 1 wk", cellType: .owner)
+        let game2 = Challenge(userInfo: "timeToDie [100d]", sizeString: "13x13", timeString: "10 yrs", cellType: .other)
+        let gameList = [game1, game2,game1, game2,game1, game2,game1, game2,game1, game2,game1, game2,game1, game2,game1, game2,game1, game2,game1, game2]
+
+        let viewModel = UseCase.ViewModel(challengeList: gameList)
+
+        output.displayListGames(viewModel: viewModel)
+    }
 }
