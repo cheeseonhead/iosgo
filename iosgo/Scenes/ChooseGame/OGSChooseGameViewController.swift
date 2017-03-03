@@ -33,6 +33,16 @@ class OGSChooseGameViewController: UIViewController, OGSChooseGameViewController
 
     override func viewDidLoad()
     {
+        super.viewDidLoad()
+        listGamesOnLoad()
+    }
+}
+
+// MARK: - Event Handling
+fileprivate extension OGSChooseGameViewController
+{
+    func listGamesOnLoad()
+    {
         let request = OGSChooseGame.ListGames.Request()
 
         output.listGames(request: request)
