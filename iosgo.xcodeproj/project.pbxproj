@@ -70,7 +70,8 @@
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
 		AD05A00EC3EF1F09DFBC5597 /* Dictionary+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */; };
 		AD05A21671A192B337421704 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A2B5931F24B08CD0F38B /* String+Additions.swift */; };
-		AD05A38E9ED6F87B95B69C14 /* OGSChooseGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A98FB44914FAC675922D /* OGSChooseGameTableViewCell.swift */; };
+		AD05A38E9ED6F87B95B69C14 /* OGSChooseGameOtherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A98FB44914FAC675922D /* OGSChooseGameOtherTableViewCell.swift */; };
+		AD05A3F9439D627981FA3891 /* OGSChooseGameOwnerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A86B965F221E3FDE151B /* OGSChooseGameOwnerTableViewCell.swift */; };
 		AD05A80BEC2CB5241DE0E375 /* OGSSeekGraphModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A6B9FE870017912C7637 /* OGSSeekGraphModels.swift */; };
 		AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */; };
 		AD05AF37C68CBA22A3DC256C /* OGSDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A8CBB6DCEBEA0F2DBE28 /* OGSDispatcher.swift */; };
@@ -157,9 +158,10 @@
 		AD05A2B5931F24B08CD0F38B /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Additions.swift"; sourceTree = "<group>"; };
 		AD05A6B9FE870017912C7637 /* OGSSeekGraphModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSSeekGraphModels.swift; sourceTree = "<group>"; };
+		AD05A86B965F221E3FDE151B /* OGSChooseGameOwnerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameOwnerTableViewCell.swift; sourceTree = "<group>"; };
 		AD05A8CBB6DCEBEA0F2DBE28 /* OGSDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSDispatcher.swift; sourceTree = "<group>"; };
 		AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
-		AD05A98FB44914FAC675922D /* OGSChooseGameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameTableViewCell.swift; sourceTree = "<group>"; };
+		AD05A98FB44914FAC675922D /* OGSChooseGameOtherTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameOtherTableViewCell.swift; sourceTree = "<group>"; };
 		AF12002656677CCFB6D8EAF8 /* Pods_iosgo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -419,7 +421,8 @@
 			children = (
 				347B42F61E67D8CF00CAFB47 /* OGSChooseGameTableViewController.storyboard */,
 				347B42F81E67DF9100CAFB47 /* OGSChooseGameTableViewController.swift */,
-				AD05A98FB44914FAC675922D /* OGSChooseGameTableViewCell.swift */,
+				AD05A98FB44914FAC675922D /* OGSChooseGameOtherTableViewCell.swift */,
+				AD05A86B965F221E3FDE151B /* OGSChooseGameOwnerTableViewCell.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -697,7 +700,8 @@
 				8405C1BD724D953FE34DDC35 /* OGSSeekGraphSocketStore.swift in Sources */,
 				8405CAFEE0C897EE31ED6865 /* OGSChallenges.swift in Sources */,
 				AD05A80BEC2CB5241DE0E375 /* OGSSeekGraphModels.swift in Sources */,
-				AD05A38E9ED6F87B95B69C14 /* OGSChooseGameTableViewCell.swift in Sources */,
+				AD05A38E9ED6F87B95B69C14 /* OGSChooseGameOtherTableViewCell.swift in Sources */,
+				AD05A3F9439D627981FA3891 /* OGSChooseGameOwnerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

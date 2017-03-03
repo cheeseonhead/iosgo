@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-class OGSChooseGameTableViewCell: UITableViewCell
+class OGSChooseGameOtherTableViewCell: UITableViewCell
 {
     @IBOutlet weak var challengerInfoLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
