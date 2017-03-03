@@ -32,13 +32,7 @@ class OGSChooseGameConfigurator
     }
 }
 
-extension OGSChooseGameViewController: OGSChooseGamePresenterOutput
-{
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        router.passDataToNextScene(for: segue)
-    }
-}
+extension OGSChooseGameViewController: OGSChooseGamePresenterOutput {}
 
 extension OGSChooseGameInteractor: OGSChooseGameViewControllerOutput, OGSChooseGameRouterDataProvider, OGSChooseGameRouterDataReceiver {}
 
