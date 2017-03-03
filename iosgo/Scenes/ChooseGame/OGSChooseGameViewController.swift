@@ -24,6 +24,7 @@ class OGSChooseGameViewController: UIViewController, OGSChooseGameViewController
 {
     var output: OGSChooseGameViewControllerOutput!
     var router: OGSChooseGameRouter!
+    var tableViewController: OGSChooseGameTableViewController!
 
     override func awakeFromNib()
     {
@@ -46,5 +47,14 @@ fileprivate extension OGSChooseGameViewController
         let request = OGSChooseGame.ListGames.Request()
 
         output.listGames(request: request)
+    }
+}// MARK: - SubViewControllers
+extension OGSChooseGameViewController
+{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "EmbedTableViewController" {
+            tableViewController = segue.destination as! OGSChooseGameTableViewController
+        }
     }
 }
