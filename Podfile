@@ -5,6 +5,7 @@ use_frameworks!
 
 target "iosgo" do
     pod 'SnapKit'
+    pod 'Unbox'
 end
 
 target "iosgoTests" do
