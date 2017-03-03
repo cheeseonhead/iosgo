@@ -16,7 +16,7 @@ class OGSChooseGameTableViewController: UITableViewController
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "OGSChooseGameTableViewCell") as? OGSChooseGameTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "OGSChooseGameTableViewCell") as? OGSChooseGameOtherTableViewCell
                 else { fatalError() }
         cell.challengerInfoLabel.text = "studjeff [20k]"
         cell.sizeLabel.text = "19x19"
