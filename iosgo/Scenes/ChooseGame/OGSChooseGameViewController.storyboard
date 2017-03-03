@@ -31,7 +31,7 @@
                                     <constraint firstAttribute="width" constant="1000" id="sNQ-QF-Idn"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="kk2-YP-aU3" kind="embed" id="pNC-Tr-bqS"/>
+                                    <segue destination="kk2-YP-aU3" kind="embed" identifier="EmbedTableViewController" id="pNC-Tr-bqS"/>
                                 </connections>
                             </containerView>
                         </subviews>
