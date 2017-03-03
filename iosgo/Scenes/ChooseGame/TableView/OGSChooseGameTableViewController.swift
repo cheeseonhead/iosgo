@@ -11,16 +11,59 @@ import UIKit
 
 class OGSChooseGameTableViewController: UITableViewController
 {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    typealias Challenge = OGSChooseGame.ListGames.ViewModel.Challenge
+
+    var challengeList: [Challenge] = [] {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        tableView.estimatedRowHeight = 44.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return challengeList.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "OGSChooseGameTableViewCell") as? OGSChooseGameOtherTableViewCell
-                else { fatalError() }
-        cell.challengerInfoLabel.text = "studjeff [20k]"
-        cell.sizeLabel.text = "19x19"
-        cell.timeLabel.text = "3d + 1d up to 1wk"
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let challenge = challengeList[indexPath.row]
+
+        switch challenge.cellType
+        {
+            case .owner:
+                return createOwnerCell(from: challenge)
+            case .other:
+                return createOtherCell(from: challenge)
+        }
+    }
+}
+
+// MARK: - Cell Creation
+fileprivate extension OGSChooseGameTableViewController
+{
+    func createOwnerCell(from challenge: Challenge) -> OGSChooseGameOwnerTableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OGSChooseGameOwnerTableViewCell") as! OGSChooseGameOwnerTableViewCell
+        cell.userInfoLabel.text = challenge.userInfo
+        cell.sizeLabel.text = challenge.sizeString
+        cell.timeLabel.text = challenge.timeString
+
+        return cell
+    }
+
+    func createOtherCell(from challenge: Challenge) -> OGSChooseGameOtherTableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OGSChooseGameOtherTableViewCell") as! OGSChooseGameOtherTableViewCell
+        cell.challengerInfoLabel.text = challenge.userInfo
+        cell.sizeLabel.text = challenge.sizeString
+        cell.timeLabel.text = challenge.timeString
 
         return cell
     }
