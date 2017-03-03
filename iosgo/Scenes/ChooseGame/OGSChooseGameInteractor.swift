@@ -18,6 +18,7 @@ protocol OGSChooseGameInteractorInput
 
 protocol OGSChooseGameInteractorOutput
 {
+    func presentListGames(response: OGSChooseGame.ListGames.Response)
 }
 
 class OGSChooseGameInteractor: OGSChooseGameInteractorInput
@@ -29,6 +30,8 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
 
     func listGames(request _: OGSChooseGame.ListGames.Request)
     {
+        let response = OGSChooseGame.ListGames.Response()
+        output.presentListGames(response: response)
         listGamesWorker.connect()
     }
 }
