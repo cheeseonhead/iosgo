@@ -3,7 +3,17 @@
 // Copyright (c) 2017 Cheeseonhead. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class OGSChooseGameOwnerTableViewCell {
+class OGSChooseGameOwnerTableViewCell: UITableViewCell
+{
+    @IBOutlet weak var userInfoLabel: UILabel!
+    @IBOutlet weak var sizeLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var removeButton: OGSButton! {
+        didSet {
+            removeButton.setupAsButtonType(.primary)
+        }
+    }
+
 }

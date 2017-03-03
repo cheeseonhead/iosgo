@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.86220639944076538" green="0.84232503175735474" blue="0.72034388780593872" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OGSChooseGameTableViewCell" rowHeight="61" id="a7E-ps-Gqx" customClass="OGSChooseGameTableViewCell" customModule="iosgo" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OGSChooseGameTableViewCell" rowHeight="61" id="a7E-ps-Gqx" customClass="OGSChooseGameOtherTableViewCell" customModule="iosgo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="1000" height="61"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a7E-ps-Gqx" id="Syb-cY-ypz">
@@ -78,6 +78,60 @@
                                     <outlet property="playButton" destination="3z0-JK-99V" id="6Pq-vy-CN7"/>
                                     <outlet property="sizeLabel" destination="Uqx-QW-FQP" id="4Jk-2S-fdH"/>
                                     <outlet property="timeLabel" destination="fCa-eT-wfY" id="adr-Lz-s0d"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OGSChooseGameOwnerTableViewCell" rowHeight="61" id="jK8-1a-jBM" customClass="OGSChooseGameOwnerTableViewCell" customModule="iosgo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="89" width="1000" height="61"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jK8-1a-jBM" id="RBH-aL-pS2">
+                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="61"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="AHV-yQ-8fh">
+                                            <rect key="frame" x="28" y="10.5" width="944" height="40"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wstudjeff2 [20k]" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDZ-1j-q0W">
+                                                    <rect key="frame" x="0.0" y="0.0" width="163" height="40"/>
+                                                    <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="24"/>
+                                                    <color key="textColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19x19" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEB-Fg-6qE">
+                                                    <rect key="frame" x="308" y="0.0" width="62" height="40"/>
+                                                    <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="24"/>
+                                                    <color key="textColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3d + 1d up to 1wk" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NE-Kt-Jg0">
+                                                    <rect key="frame" x="514.5" y="0.0" width="175.5" height="40"/>
+                                                    <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="24"/>
+                                                    <color key="textColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFu-cM-13W" userLabel="Remove Button" customClass="OGSButton" customModule="iosgo" customModuleProvider="target">
+                                                    <rect key="frame" x="835" y="0.0" width="109" height="40"/>
+                                                    <color key="backgroundColor" red="0.96078431369999995" green="0.54117647059999996" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="109" id="87t-Ni-nuc"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="20"/>
+                                                    <state key="normal" title="Remove"/>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="AHV-yQ-8fh" firstAttribute="leading" secondItem="RBH-aL-pS2" secondAttribute="leadingMargin" constant="20" id="8Mn-Iq-pG3"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="AHV-yQ-8fh" secondAttribute="trailing" constant="20" id="Nr7-9E-sZB"/>
+                                        <constraint firstItem="AHV-yQ-8fh" firstAttribute="centerY" secondItem="RBH-aL-pS2" secondAttribute="centerY" id="pSO-Wr-fL2"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.98931068180000004" green="0.94624549150000004" blue="0.83439797159999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="removeButton" destination="vFu-cM-13W" id="USP-tb-fE9"/>
+                                    <outlet property="sizeLabel" destination="xEB-Fg-6qE" id="R7H-8j-rSw"/>
+                                    <outlet property="timeLabel" destination="3NE-Kt-Jg0" id="Vv3-hY-69Z"/>
+                                    <outlet property="userInfoLabel" destination="HDZ-1j-q0W" id="zsb-OC-O7E"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
