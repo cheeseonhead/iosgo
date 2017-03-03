@@ -26,7 +26,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.12363310903310776" green="0.22363260388374329" blue="0.24621641635894775" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" red="0.98931068181991577" green="0.94624549150466919" blue="0.83439797163009644" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="rgK-TT-LCN" kind="relationship" relationship="viewControllers" id="uIb-ch-ZsV"/>
