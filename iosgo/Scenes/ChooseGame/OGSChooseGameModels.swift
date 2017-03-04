@@ -20,17 +20,38 @@ struct OGSChooseGame
         }
         struct Response
         {
+            var username: String
+            var userRank: Int
+            var challenges: [Challenge]
+
             struct Challenge
             {
                 var challengerUsername: String
-                var challengerLevel: Int
+                var challengerRank: Int
                 var minLevel: Int
                 var maxLevel: Int
+                var width: Int
+                var height: Int
+                var timeControlParameters: TimeControlParametersType
             }
 
-            var username: String
-            var userLevel: Int
-            var challenges: [Challenge]
+            enum TimeControlParametersType
+            {
+                case fischer(parameters: Fischer)
+                case simple(parameters: Simple)
+
+                struct Fischer
+                {
+                    var initialTime: Int
+                    var maxTime: Int
+                    var timeIncrement: Int
+                }
+
+                struct Simple
+                {
+                    var timePerMove: Int
+                }
+            }
         }
 
         struct ViewModel
