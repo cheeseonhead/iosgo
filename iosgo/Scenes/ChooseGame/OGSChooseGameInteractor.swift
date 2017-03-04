@@ -30,7 +30,7 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
 
     func listGames(request _: OGSChooseGame.ListGames.Request)
     {
-        let response = OGSChooseGame.ListGames.Response()
+        let response = OGSChooseGame.ListGames.Response(username: "Jeff", userRank: 4, challenges: [])
         output.presentListGames(response: response)
         listGamesWorker.connect()
     }
