@@ -20,6 +20,17 @@ struct OGSChooseGame
         }
         struct Response
         {
+            struct Challenge
+            {
+                var challengerUsername: String
+                var challengerLevel: Int
+                var minLevel: Int
+                var maxLevel: Int
+            }
+
+            var username: String
+            var userLevel: Int
+            var challenges: [Challenge]
         }
 
         struct ViewModel
