@@ -60,6 +60,7 @@ fileprivate extension OGSChooseGamePresenter
             let cellType = getCellType(for: challenge, response: response)
 
             let viewModelChallenge = ListGames.ViewModel.Challenge(userInfo: userInfo, sizeString: sizeString, timeString: timeString, cellType: cellType)
+            viewModelChallenges.append(viewModelChallenge)
         }
 
         return viewModelChallenges
