@@ -27,7 +27,7 @@ struct OGSChooseGame
             enum ChallengeCellType
             {
                 case owner
-                case other
+                case other(canAccept:Bool)
             }
 
             struct Challenge

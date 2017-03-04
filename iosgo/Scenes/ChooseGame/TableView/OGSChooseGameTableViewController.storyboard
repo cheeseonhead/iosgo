@@ -35,7 +35,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wstudjeff2 [20k]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvE-qw-p8b">
-                                            <rect key="frame" x="28" y="30" width="122.5" height="24.5"/>
+                                            <rect key="frame" x="28" y="30.5" width="122.5" height="24.5"/>
                                             <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="18"/>
                                             <color key="textColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -47,7 +47,8 @@
                                                 <constraint firstAttribute="width" constant="109" id="Gld-AE-c4s"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="18"/>
-                                            <state key="normal" title="Play"/>
+                                            <state key="normal" title="Accept"/>
+                                            <state key="disabled" title="Can't Accept"/>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rFx-KE-tEF">
                                             <rect key="frame" x="434.5" y="8" width="132" height="68.5"/>
@@ -93,16 +94,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="S0b-9v-xc8">
-                                            <rect key="frame" x="477" y="8" width="46.5" height="56.5"/>
+                                            <rect key="frame" x="477" y="8" width="47" height="57"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="9x9" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEB-Fg-6qE">
-                                                    <rect key="frame" x="9.5" y="0.0" width="27.5" height="32"/>
+                                                    <rect key="frame" x="9" y="0.0" width="28" height="32"/>
                                                     <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="18"/>
                                                     <color key="textColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="10 yrs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NE-Kt-Jg0">
-                                                    <rect key="frame" x="0.0" y="32" width="46.5" height="24.5"/>
+                                                    <rect key="frame" x="0.0" y="32" width="47" height="25"/>
                                                     <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="18"/>
                                                     <color key="textColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -110,7 +111,7 @@
                                             </subviews>
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFu-cM-13W" userLabel="Remove Button" customClass="OGSButton" customModule="iosgo" customModuleProvider="target">
-                                            <rect key="frame" x="863" y="18.5" width="109" height="37"/>
+                                            <rect key="frame" x="863" y="18" width="109" height="37"/>
                                             <color key="backgroundColor" red="0.96078431369999995" green="0.54117647059999996" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="109" id="87t-Ni-nuc"/>
@@ -119,7 +120,7 @@
                                             <state key="normal" title="Remove"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wstudjeff2 [200d]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDZ-1j-q0W">
-                                            <rect key="frame" x="28" y="24.5" width="131.5" height="24.5"/>
+                                            <rect key="frame" x="28" y="24" width="132" height="25"/>
                                             <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="18"/>
                                             <color key="textColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>

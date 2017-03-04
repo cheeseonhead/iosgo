@@ -39,8 +39,8 @@ class OGSChooseGameTableViewController: UITableViewController
         {
             case .owner:
                 return createOwnerCell(from: challenge)
-            case .other:
-                return createOtherCell(from: challenge)
+            case .other(let canAccept):
+                return createOtherCell(from: challenge, canAccept: canAccept)
         }
     }
 }
@@ -58,12 +58,13 @@ fileprivate extension OGSChooseGameTableViewController
         return cell
     }
 
-    func createOtherCell(from challenge: Challenge) -> OGSChooseGameOtherTableViewCell
+    func createOtherCell(from challenge: Challenge, canAccept: Bool) -> OGSChooseGameOtherTableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OGSChooseGameOtherTableViewCell") as! OGSChooseGameOtherTableViewCell
         cell.challengerInfoLabel.text = challenge.userInfo
         cell.sizeLabel.text = challenge.sizeString
         cell.timeLabel.text = challenge.timeString
+        cell.playButton.isEnabled = canAccept
 
         return cell
     }
