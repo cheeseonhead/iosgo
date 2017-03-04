@@ -40,6 +40,18 @@ class OGSChooseGamePresenter: OGSChooseGamePresenterInput
         output.displayListGames(viewModel: viewModel)
     }
 }
+    typealias TimeControlParameterType = ListGames.Response.TimeControlParametersType
+
+    func challengeTimeString(from timeType: TimeControlParameterType) -> String
+    {
+        switch timeType {
+            case .fischer(let parameters):
+                return fischerTimeString(from: parameters)
+            case .simple(let parameters):
+                return simpleTimeString(from: parameters)
+        }
+    }
+
     func fischerTimeString(from parameters: TimeControlParameterType.Fischer) -> String
     {
         let initialTimeString = dateStringFrom(seconds: parameters.initialTime)
