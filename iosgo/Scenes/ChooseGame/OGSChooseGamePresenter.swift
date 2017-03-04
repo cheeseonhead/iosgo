@@ -40,6 +40,22 @@ class OGSChooseGamePresenter: OGSChooseGamePresenterInput
         output.displayListGames(viewModel: viewModel)
     }
 }
+    func fischerTimeString(from parameters: TimeControlParameterType.Fischer) -> String
+    {
+        let initialTimeString = dateStringFrom(seconds: parameters.initialTime)
+        let incrementString = dateStringFrom(seconds: parameters.timeIncrement)
+        let maxTimeString = dateStringFrom(seconds: parameters.maxTime)
+
+        return "\(initialTimeString)+ \(incrementString) up to \(maxTimeString)"
+    }
+
+    func simpleTimeString(from parameters: TimeControlParameterType.Simple) -> String
+    {
+        let perMoveTimeString = dateStringFrom(seconds: parameters.timePerMove)
+
+        return "\(perMoveTimeString)/move"
+    }
+
     func dateStringFrom(seconds: Int) -> String
     {
         var dateString = ""
