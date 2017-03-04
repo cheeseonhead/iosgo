@@ -49,7 +49,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Challenges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qka-wK-adR">
-                                    <rect key="frame" x="87" y="0.0" width="130" height="33"/>
+                                    <rect key="frame" x="87.5" y="0.0" width="129.5" height="33"/>
                                     <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="28"/>
                                     <color key="textColor" red="0.12363310903310776" green="0.22363260388374329" blue="0.24621641635894775" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -75,11 +75,11 @@
             </objects>
             <point key="canvasLocation" x="1671.09375" y="171.875"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Challenges-->
         <scene sceneID="IEl-uu-psI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FgE-uA-NVX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="5sI-fx-cLr"/>
+                    <tabBarItem key="tabBarItem" title="Challenges" image="challenge_tab" id="5sI-fx-cLr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ij0-aJ-5mS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -99,4 +99,7 @@
             <point key="canvasLocation" x="421.875" y="197.65625"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="challenge_tab" width="50" height="50"/>
+    </resources>
 </document>
