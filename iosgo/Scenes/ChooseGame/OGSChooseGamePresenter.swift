@@ -57,6 +57,9 @@ fileprivate extension OGSChooseGamePresenter
             let userInfo = challenge.challengerUsername + " [" + rankString(from: challenge.challengerRank) + "]"
             let sizeString = String(challenge.width) + "x" + String(challenge.height)
             let timeString = challengeTimeString(from: challenge.timeControlParameters)
+            let cellType = getCellType(for: challenge, response: response)
+
+            let viewModelChallenge = ListGames.ViewModel.Challenge(userInfo: userInfo, sizeString: sizeString, timeString: timeString, cellType: cellType)
         }
 
         return viewModelChallenges
@@ -70,6 +73,19 @@ fileprivate extension OGSChooseGamePresenter
         else {
             return "\(rank-30)d"
         }
+    }
+
+    func getCellType(for challenge: ListGames.Response.Challenge, response: ListGames.Response) -> ListGames.ViewModel.ChallengeCellType
+    {
+        if challenge.challengerUsername == response.username {
+            return .owner
+        }
+        else {
+            let canAccept = (challenge.maxRank >= response.userRank && challenge.minRank <= response.userRank)
+
+            return .other(canAccept: canAccept)
+        }
+
     }
 
     typealias TimeControlParameterType = ListGames.Response.TimeControlParametersType
