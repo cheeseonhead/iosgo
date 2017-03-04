@@ -40,6 +40,16 @@ class OGSChooseGamePresenter: OGSChooseGamePresenterInput
         output.displayListGames(viewModel: viewModel)
     }
 }
+    func rankString(from rank:Int) -> String
+    {
+        if rank < 30 {
+            return "\(30 - rank)k"
+        }
+        else {
+            return "\(rank-30)d"
+        }
+    }
+
     typealias TimeControlParameterType = ListGames.Response.TimeControlParametersType
 
     func challengeTimeString(from timeType: TimeControlParameterType) -> String
