@@ -11,6 +11,11 @@
 
 import UIKit
 
+fileprivate let secondsInWeek = 604800
+fileprivate let secondsInDay = 86400
+fileprivate let secondsInHour = 3600
+fileprivate let secondsInMinute = 60
+
 protocol OGSChooseGamePresenterInput
 {
     func presentListGames(response: OGSChooseGame.ListGames.Response)
@@ -23,23 +28,40 @@ protocol OGSChooseGamePresenterOutput: class
 
 class OGSChooseGamePresenter: OGSChooseGamePresenterInput
 {
-    typealias Challenge = OGSChooseGame.ListGames.ViewModel.Challenge
+    typealias ListGames = OGSChooseGame.ListGames
 
     weak var output: OGSChooseGamePresenterOutput!
 
-    func presentListGames(response: OGSChooseGame.ListGames.Response)
+    func presentListGames(response: ListGames.Response)
     {
-        typealias UseCase = OGSChooseGame.ListGames
+        let challengeList = createViewModelChallengeList(from: response)
 
-        let game1 = Challenge(userInfo: "studjeff2 [20k]", sizeString: "19x19", timeString: "3d + up to 1 wk", cellType: .owner)
-        let game2 = Challenge(userInfo: "timeToDie [100d]", sizeString: "13x13", timeString: "10 yrs", cellType: .other)
-        let gameList = [game1, game2,game1, game2,game1, game2,game1, game2,game1, game2,game1, game2,game1, game2,game1, game2,game1, game2,game1, game2]
-
-        let viewModel = UseCase.ViewModel(challengeList: gameList)
+        let viewModel = ListGames.ViewModel(challengeList: challengeList)
 
         output.displayListGames(viewModel: viewModel)
     }
 }
+
+
+// MARK - Create Challenges
+fileprivate extension OGSChooseGamePresenter
+{
+    func createViewModelChallengeList(from response: ListGames.Response) -> [ListGames.ViewModel.Challenge]
+    {
+        let username = response.username
+        let userLevel = response.userRank
+
+        var viewModelChallenges: [ListGames.ViewModel.Challenge] = []
+
+        for challenge in response.challenges {
+            let userInfo = challenge.challengerUsername + " [" + rankString(from: challenge.challengerRank) + "]"
+            let sizeString = String(challenge.width) + "x" + String(challenge.height)
+            let timeString = challengeTimeString(from: challenge.timeControlParameters)
+        }
+
+        return viewModelChallenges
+    }
+
     func rankString(from rank:Int) -> String
     {
         if rank < 30 {
@@ -115,3 +137,4 @@ class OGSChooseGamePresenter: OGSChooseGamePresenterInput
 
         return dateString
     }
+}
