@@ -28,8 +28,8 @@ struct OGSChooseGame
             {
                 var challengerUsername: String
                 var challengerRank: Int
-                var minLevel: Int
-                var maxLevel: Int
+                var minRank: Int
+                var maxRank: Int
                 var width: Int
                 var height: Int
                 var timeControlParameters: TimeControlParametersType
