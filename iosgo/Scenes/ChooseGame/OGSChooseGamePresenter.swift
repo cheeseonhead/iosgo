@@ -11,11 +11,6 @@
 
 import UIKit
 
-fileprivate let secondsInWeek = 604800
-fileprivate let secondsInDay = 86400
-fileprivate let secondsInHour = 3600
-fileprivate let secondsInMinute = 60
-
 protocol OGSChooseGamePresenterInput
 {
     func presentListGames(response: OGSChooseGame.ListGames.Response)
@@ -103,55 +98,17 @@ fileprivate extension OGSChooseGamePresenter
 
     func fischerTimeString(from parameters: TimeControlParameterType.Fischer) -> String
     {
-        let initialTimeString = dateStringFrom(seconds: parameters.initialTime)
-        let incrementString = dateStringFrom(seconds: parameters.timeIncrement)
-        let maxTimeString = dateStringFrom(seconds: parameters.maxTime)
+        let initialTimeString = String.dateStringFrom(seconds: parameters.initialTime)
+        let incrementString = String.dateStringFrom(seconds: parameters.timeIncrement)
+        let maxTimeString = String.dateStringFrom(seconds: parameters.maxTime)
 
         return "\(initialTimeString)+ \(incrementString) up to \(maxTimeString)"
     }
 
     func simpleTimeString(from parameters: TimeControlParameterType.Simple) -> String
     {
-        let perMoveTimeString = dateStringFrom(seconds: parameters.timePerMove)
+        let perMoveTimeString = String.dateStringFrom(seconds: parameters.timePerMove)
 
         return "\(perMoveTimeString)/move"
-    }
-
-    func dateStringFrom(seconds: Int) -> String
-    {
-        var dateString = ""
-        var secondsLeft = seconds
-
-        let numberOfWeeks = secondsLeft / secondsInWeek
-        if numberOfWeeks > 0 {
-            dateString.append("\(numberOfWeeks)wk ")
-        }
-        secondsLeft %= secondsInWeek
-
-        let numberOfDays = secondsLeft / secondsInDay
-        if numberOfDays > 0 {
-            dateString.append("\(numberOfDays)d ")
-        }
-        secondsLeft %= secondsInDay
-
-        let numberOfHours = secondsLeft / secondsInHour
-        if numberOfHours > 0 {
-            dateString.append("\(numberOfHours)hr ")
-        }
-        secondsLeft %= secondsInHour
-
-        let numberOfMinutes = secondsLeft / secondsInMinute
-        if numberOfMinutes > 0 {
-            dateString.append("\(numberOfMinutes)hr ")
-        }
-        secondsLeft %= secondsInMinute
-
-        if secondsLeft > 0 {
-            dateString.append("\(secondsLeft)s")
-        }
-
-        dateString = dateString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-
-        return dateString
     }
 }
