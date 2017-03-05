@@ -33,23 +33,23 @@ struct OGSChooseGame
                 var width: Int
                 var height: Int
                 var timeControlParameters: TimeControlParametersType
-            }
 
-            enum TimeControlParametersType
-            {
-                case fischer(parameters: Fischer)
-                case simple(parameters: Simple)
-
-                struct Fischer
+                enum TimeControlParametersType
                 {
-                    var initialTime: Int
-                    var maxTime: Int
-                    var timeIncrement: Int
-                }
+                    case fischer(parameters: Fischer)
+                    case simple(parameters: Simple)
 
-                struct Simple
-                {
-                    var timePerMove: Int
+                    struct Fischer
+                    {
+                        var initialTime: Int
+                        var maxTime: Int
+                        var timeIncrement: Int
+                    }
+
+                    struct Simple
+                    {
+                        var timePerMove: Int
+                    }
                 }
             }
         }
