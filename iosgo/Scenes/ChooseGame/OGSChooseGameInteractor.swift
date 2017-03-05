@@ -23,29 +23,16 @@ protocol OGSChooseGameInteractorOutput
 
 class OGSChooseGameInteractor: OGSChooseGameInteractorInput
 {
-    typealias ListGames = OGSChooseGame.ListGames
-
     var output: OGSChooseGameInteractorOutput!
     var listGamesWorker = OGSChooseGameListGamesWorker(store: OGSSeekGraphSocketStore())
 
-    // MARK: - Business logic
-
-    typealias TimeControlParamType = ListGames.Response.Challenge.TimeControlParametersType
+    required init()
+    {
+        self.listGamesWorker.delegate = self
+    }
 
     func listGames(request _: OGSChooseGame.ListGames.Request)
     {
-        let fischer = TimeControlParamType.Fischer(initialTime: 518400, maxTime: 604800, timeIncrement: 86400)
-        let param1: TimeControlParamType = .fischer(parameters: fischer)
-
-        let simple = TimeControlParamType.Simple(timePerMove: 1000000)
-        let param2: TimeControlParamType = .simple(parameters: simple)
-        let game1 = ListGames.Response.Challenge(challengerUsername: "Jeff", challengerRank: 4, minRank: 0, maxRank: 30, width: 19, height: 19, timeControlParameters: param1)
-        let game2 = ListGames.Response.Challenge(challengerUsername: "testss", challengerRank: 16, minRank: 10, maxRank: 30, width: 9, height: 9, timeControlParameters: param2)
-
-        let challengeList = [game1, game2, game1, game2, game1, game2, game1, game2, game1, game2]
-
-        let response = OGSChooseGame.ListGames.Response(username: "Jeff", userRank: 4, challenges: challengeList)
-        output.presentListGames(response: response)
         listGamesWorker.connect()
     }
 }
