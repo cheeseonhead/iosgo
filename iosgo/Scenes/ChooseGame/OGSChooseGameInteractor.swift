@@ -49,3 +49,11 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
         listGamesWorker.connect()
     }
 }
+
+extension OGSChooseGameInteractor: OGSChooseGameListGamesWorkerDelegate
+{
+    func sendListGamesResponse(_ response: OGSChooseGame.ListGames.Response)
+    {
+        output.presentListGames(response: response)
+    }
+}
