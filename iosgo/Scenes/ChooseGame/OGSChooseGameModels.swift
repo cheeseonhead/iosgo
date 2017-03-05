@@ -30,8 +30,7 @@ struct OGSChooseGame
                 var challengerRank: Int
                 var minRank: Int
                 var maxRank: Int
-                var width: Int
-                var height: Int
+                var size: CGSize
                 var timeControlParameters: TimeControlParametersType
 
                 enum TimeControlParametersType
