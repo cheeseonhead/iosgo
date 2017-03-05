@@ -49,8 +49,8 @@ fileprivate extension OGSChooseGamePresenter
         var viewModelChallenges: [ListGames.ViewModel.Challenge] = []
 
         for challenge in response.challenges {
-            let userInfo = challenge.challengerUsername + " [" + rankString(from: challenge.challengerRank) + "]"
-            let sizeString = String(challenge.width) + "x" + String(challenge.height)
+            let userInfo = "\(challenge.challengerUsername) [\(rankString(from: challenge.challengerRank))]"
+            let sizeString = "\(challenge.size.width)x\(challenge.size.height)"
             let timeString = challengeTimeString(from: challenge.timeControlParameters)
             let cellType = getCellType(for: challenge, response: response)
 
