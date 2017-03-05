@@ -6,6 +6,7 @@
 import Foundation
 import Unbox
 
+fileprivate typealias TimeControlParameterType = OGSChallenge.TimeControlParametersType
 
 class OGSSeekGraphSocketStore: OGSSeekGraphStoreProtocol
 {
@@ -17,10 +18,10 @@ class OGSSeekGraphSocketStore: OGSSeekGraphStoreProtocol
         delegate?.listChallenges([challenge])
     }
 
-    func createChallengeFrom(payload: [String: Any?]) -> OGSSeekGraphStore.Challenge
+    func createChallengeFrom(payload: [String: Any?]) -> OGSChallenge
     {
         do {
-            let challenge: OGSSeekGraphStore.Challenge = try unbox(dictionary: payload)
+            let challenge: OGSChallenge = try unbox(dictionary: payload)
             return challenge
         }
         catch _ {
@@ -63,7 +64,7 @@ class OGSSeekGraphSocketStore: OGSSeekGraphStoreProtocol
     }
 }
 
-extension OGSSeekGraphStore.Challenge: Unboxable
+extension OGSChallenge: Unboxable
 {
     init(unboxer: Unboxer) throws
     {
@@ -89,18 +90,18 @@ extension OGSSeekGraphStore.Challenge: Unboxable
 
         switch timeControl {
         case .fischer:
-            let parameters: OGSSeekGraphStore.Fischer = try unboxer.unbox(key: "time_control_parameters")
+            let parameters: TimeControlParametersType.Fischer = try unboxer.unbox(key: "time_control_parameters")
             self.timeControlParameters = .fischer(parameters: parameters)
             break
         case .simple:
-            let parameters: OGSSeekGraphStore.Simple = try unboxer.unbox(key: "time_control_parameters")
+            let parameters: TimeControlParametersType.Simple = try unboxer.unbox(key: "time_control_parameters")
             self.timeControlParameters = .simple(parameters: parameters)
             break
         }
     }
 }
 
-extension OGSSeekGraphStore.Fischer: Unboxable
+extension TimeControlParameterType.Fischer: Unboxable
 {
     init(unboxer: Unboxer) throws
     {
@@ -115,7 +116,7 @@ extension OGSSeekGraphStore.Fischer: Unboxable
     }
 }
 
-extension OGSSeekGraphStore.Simple: Unboxable
+extension TimeControlParameterType.Simple: Unboxable
 {
     init(unboxer: Unboxer) throws
     {

@@ -7,7 +7,7 @@ import Foundation
 
 protocol OGSSeekGraphStoreDelegate: class
 {
-    func listChallenges(_ challenges: [OGSSeekGraphStore.Challenge])
+    func listChallenges(_ challenges: [OGSChallenge])
 }
 
 protocol OGSSeekGraphStoreProtocol

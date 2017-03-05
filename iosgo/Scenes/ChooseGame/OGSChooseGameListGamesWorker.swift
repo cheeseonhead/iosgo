@@ -26,7 +26,7 @@ class OGSChooseGameListGamesWorker: OGSSeekGraphStoreDelegate
         seekGraphStore.connect()
     }
 
-    func listChallenges(_: [OGSSeekGraphStore.Challenge])
+    func listChallenges(_: [OGSChallenge])
     {
 
     }
