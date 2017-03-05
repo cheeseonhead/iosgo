@@ -2,20 +2,23 @@ PODS:
   - Nimble (5.1.1)
   - Quick (1.0.0)
   - SnapKit (3.1.2)
+  - Starscream (2.0.3)
   - Unbox (2.3.1)
 
 DEPENDENCIES:
   - Nimble
   - Quick
   - SnapKit
+  - Starscream
   - Unbox
 
 SPEC CHECKSUMS:
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
   SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
+  Starscream: 3fdd5c277e57cca6b5c406d274e3f34a7c88f2ce
   Unbox: 96e54c15284b97244a1daf8ea560f648dd08f0db
 
-PODFILE CHECKSUM: 2b28355ea73f2532aa55af413f83df702742b124
+PODFILE CHECKSUM: 5c93805b1a195efad19a80e5bbdb87b9b58d826c
 
 COCOAPODS: 1.2.0

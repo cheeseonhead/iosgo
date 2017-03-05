@@ -5,6 +5,7 @@ use_frameworks!
 
 target "iosgo" do
     pod 'SnapKit'
+    pod 'Starscream'
     pod 'Unbox'
 end
 
