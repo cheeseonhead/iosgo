@@ -6,7 +6,7 @@
 import Foundation
 import Unbox
 
-fileprivate typealias TimeControlParameterType = OGSChallenge.TimeControlParametersType
+fileprivate typealias TimeControlParametersType = OGSChallenge.TimeControlParametersType
 
 class OGSSeekGraphSocketStore: OGSSeekGraphStoreProtocol
 {
@@ -79,7 +79,7 @@ extension OGSChallenge: Unboxable
         self.pro = try unboxer.unbox(key: "pro")
         self.maxRank = try unboxer.unbox(key: "max_rank")
         self.disableAnalysis = try unboxer.unbox(key: "disable_analysis")
-        self.rank = try unboxer.unbox(key: "rank")
+        self.challengerRank = try unboxer.unbox(key: "rank")
         self.rules = try unboxer.unbox(key: "rules")
         self.timeControl = try unboxer.unbox(key: "time_control")
         self.ranked = try unboxer.unbox(key: "ranked")
@@ -101,7 +101,7 @@ extension OGSChallenge: Unboxable
     }
 }
 
-extension TimeControlParameterType.Fischer: Unboxable
+extension TimeControlParametersType.Fischer: Unboxable
 {
     init(unboxer: Unboxer) throws
     {
@@ -116,7 +116,7 @@ extension TimeControlParameterType.Fischer: Unboxable
     }
 }
 
-extension TimeControlParameterType.Simple: Unboxable
+extension TimeControlParametersType.Simple: Unboxable
 {
     init(unboxer: Unboxer) throws
     {
