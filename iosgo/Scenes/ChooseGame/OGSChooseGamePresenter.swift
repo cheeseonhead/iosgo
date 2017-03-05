@@ -84,7 +84,7 @@ fileprivate extension OGSChooseGamePresenter
 
     }
 
-    typealias TimeControlParameterType = ListGames.Response.TimeControlParametersType
+    typealias TimeControlParameterType = ListGames.Response.Challenge.TimeControlParametersType
 
     func challengeTimeString(from timeType: TimeControlParameterType) -> String
     {
