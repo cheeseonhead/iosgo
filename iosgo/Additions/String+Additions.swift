@@ -45,13 +45,13 @@ extension String
 
         let numberOfHours = secondsLeft / secondsInHour
         if numberOfHours > 0 {
-            dateString.append("\(numberOfHours)hr ")
+            dateString.append("\(numberOfHours)h ")
         }
         secondsLeft %= secondsInHour
 
         let numberOfMinutes = secondsLeft / secondsInMinute
         if numberOfMinutes > 0 {
-            dateString.append("\(numberOfMinutes)hr ")
+            dateString.append("\(numberOfMinutes)m ")
         }
         secondsLeft %= secondsInMinute
 
