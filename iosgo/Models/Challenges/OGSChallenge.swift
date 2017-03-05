@@ -8,6 +8,7 @@ import Unbox
 struct OGSChallenge
 {
     var username: String
+    var challengerRank: Int
     var timePerMove: Int
     var userId: Int
     var name: String
@@ -19,7 +20,6 @@ struct OGSChallenge
     var maxRank: Int
     var minRank: Int
     var disableAnalysis: Bool
-    var rank: Int
     var rules: RuleTypes
     var timeControl: TimeControlTypes
     var ranked: Bool
