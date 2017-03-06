@@ -3,9 +3,39 @@
 // Copyright (c) 2017 Cheeseonhead. All rights reserved.
 //
 
-import Foundation
+import Starscream
 
 class OGSSocketManager
 {
-    
+    var socketAddress: String!
+
+    fileprivate var socket: WebSocket
+
+    func connect()
+    {
+        socket = WebSocket(url: URL(string: socketAddress)!)
+
+    }
+}
+
+fileprivate extension OGSSocketManager: WebSocketDelegate
+{
+    func websocketDidConnect(socket: WebSocket)
+    {
+        print("just connected!")
+    }
+
+    func websocketDidDisconnect(socket: WebSocket, error: NSError?)
+    {
+    }
+
+    func websocketDidReceiveMessage(socket: WebSocket, text: String)
+    {
+        
+    }
+
+    func websocketDidReceiveData(socket: WebSocket, data: Data)
+    {
+    }
+
 }
