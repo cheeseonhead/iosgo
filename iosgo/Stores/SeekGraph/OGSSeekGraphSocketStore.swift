@@ -3,19 +3,43 @@
 // Copyright (c) 2017 Cheeseonhead. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Unbox
+import Starscream
 
 fileprivate typealias TimeControlParametersType = OGSChallenge.TimeControlParametersType
 
 class OGSSeekGraphSocketStore: OGSSeekGraphStoreProtocol
 {
     weak var delegate: OGSSeekGraphStoreDelegate?
+    var socket = WebSocket(url: URL(string: "wss://beta.online-go.com/socket.io/?EIO=3&transport=websocket")!)
 
     func connect()
     {
         let challenge = self.createChallengeFrom(payload: fakeData1())
         delegate?.listChallenges([challenge])
+        
+        socket.onConnect = {
+            self.socket.write(string: "42[\"seek_graph/connect\",{\"channel\":\"global\"}]")
+        }
+        
+        socket.onText = { (text: String) in
+            print("got some text: \(text)")
+
+            print("Turn into dictionary")
+
+            print("\("[{\"test\": 12345}]".convertToDictionary())")
+
+            let startIndex = text.index(text.startIndex, offsetBy: 2)
+            let newText = "{\"payload\": \(text.substring(from: startIndex))}"
+            print("\(newText.convertToDictionary())")
+        }
+        
+        socket.onData = { (data: Data) in
+            print("got some data: \(data.count)")
+        }
+        
+        socket.connect()
     }
 
     func createChallengeFrom(payload: [String: Any?]) -> OGSChallenge
