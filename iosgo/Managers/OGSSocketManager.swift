@@ -9,7 +9,7 @@ class OGSSocketManager
 {
     var socketAddress: String!
 
-    fileprivate var socket: WebSocket
+    fileprivate var socket: WebSocket!
 
     func connect()
     {
@@ -18,7 +18,7 @@ class OGSSocketManager
     }
 }
 
-fileprivate extension OGSSocketManager: WebSocketDelegate
+extension OGSSocketManager: WebSocketDelegate
 {
     func websocketDidConnect(socket: WebSocket)
     {

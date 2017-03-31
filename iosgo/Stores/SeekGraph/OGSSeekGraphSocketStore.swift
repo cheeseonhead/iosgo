@@ -9,7 +9,7 @@ import Starscream
 
 fileprivate typealias TimeControlParametersType = OGSChallenge.TimeControlParametersType
 
-class OGSSeekGraphSocketStore: OGSListGamesStoreProtocol
+class OGSSeekGraphSocketStore
 {
     weak var delegate: OGSListGamesStoreDelegate?
     var socket = WebSocket(url: URL(string: "wss://beta.online-go.com/socket.io/?EIO=3&transport=websocket")!)

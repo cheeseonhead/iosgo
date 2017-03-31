@@ -44,3 +44,6 @@ extension OGSChooseGameInteractor: OGSChooseGameListGamesWorkerDelegate
         output.presentListGames(response: response)
     }
 }
+
+// MARK: DIP Conformance
+extension OGSSeekGraphSocketStore: OGSListGamesStoreProtocol {}
