@@ -48,7 +48,6 @@
 		8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CDF76C6E046EFBE5BCA7 /* OGSLoginModels.swift */; };
 		8405C28A55343B18BDCDB408 /* OGSChooseGameListGamesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CDA75B5CF30293568E35 /* OGSChooseGameListGamesWorker.swift */; };
 		8405C33DABB22CF98928A07E /* OGSUserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C7E803F0E983A087BF29 /* OGSUserSettings.swift */; };
-		8405C389F628E7D8E9238052 /* OGSSeekGraphStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C19C0E7E578D1394D703 /* OGSSeekGraphStoreProtocol.swift */; };
 		8405C3C9E1790ACD829F597C /* OGSLoginWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C28DF70477E87F3C32BB /* OGSLoginWorker.swift */; };
 		8405C6E5D3897A1BBF7653B2 /* OGSLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C8F03743E98C9A565610 /* OGSLoginViewController.swift */; };
 		8405C70502F5C73B7923682A /* OGSApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CF99F5F6B69F12701D7C /* OGSApiManager.swift */; };
@@ -133,7 +132,6 @@
 		8405C11EE91D3441F632A247 /* OGSUserSettingsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSUserSettingsProtocol.swift; sourceTree = "<group>"; };
 		8405C16171C1170044A8637E /* OGSBetaConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSBetaConfiguration.swift; sourceTree = "<group>"; };
 		8405C1866AC6187A07DF36F9 /* OGSUserSettingsStoreProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSUserSettingsStoreProtocol.swift; sourceTree = "<group>"; };
-		8405C19C0E7E578D1394D703 /* OGSSeekGraphStoreProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSSeekGraphStoreProtocol.swift; sourceTree = "<group>"; };
 		8405C28DF70477E87F3C32BB /* OGSLoginWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginWorker.swift; sourceTree = "<group>"; };
 		8405C2D09201FEEC8BA27848 /* OGSNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSNotificationCenter.swift; sourceTree = "<group>"; };
 		8405C352FE0AD49BF149BB22 /* OGSLoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginInteractor.swift; sourceTree = "<group>"; };
@@ -399,7 +397,6 @@
 		8405CE215DCA64499799C222 /* SeekGraph */ = {
 			isa = PBXGroup;
 			children = (
-				8405C19C0E7E578D1394D703 /* OGSSeekGraphStoreProtocol.swift */,
 				8405CDF23994EB7077BA78B8 /* OGSSeekGraphSocketStore.swift */,
 			);
 			path = SeekGraph;
@@ -694,7 +691,6 @@
 				8405CAFECD503F292EE529F6 /* OGSUserSettingsStoreProtocol.swift in Sources */,
 				8405C7E3B16ED3B0EF86C0F7 /* OGSUserSettingsStore.swift in Sources */,
 				8405C28A55343B18BDCDB408 /* OGSChooseGameListGamesWorker.swift in Sources */,
-				8405C389F628E7D8E9238052 /* OGSSeekGraphStoreProtocol.swift in Sources */,
 				8405C1BD724D953FE34DDC35 /* OGSSeekGraphSocketStore.swift in Sources */,
 				8405CAFEE0C897EE31ED6865 /* OGSChallenge.swift in Sources */,
 				AD05A38E9ED6F87B95B69C14 /* OGSChooseGameOtherTableViewCell.swift in Sources */,
