@@ -2,10 +2,8 @@ import Foundation
 
 /// A Nimble matcher that succeeds when the actual value is the same instance
 /// as the expected instance.
-public func beIdenticalTo(_ expected: Any?) -> NonNilMatcherFunc<Any>
-{
-    return NonNilMatcherFunc
-    { actualExpression, failureMessage in
+public func beIdenticalTo(_ expected: Any?) -> NonNilMatcherFunc<Any> {
+    return NonNilMatcherFunc { actualExpression, failureMessage in
         #if os(Linux)
             let actual = try actualExpression.evaluate() as? AnyObject
         #else
@@ -21,12 +19,10 @@ public func beIdenticalTo(_ expected: Any?) -> NonNilMatcherFunc<Any>
     }
 }
 
-public func ===(lhs: Expectation<Any>, rhs: Any?)
-{
+public func === (lhs: Expectation<Any>, rhs: Any?) {
     lhs.to(beIdenticalTo(rhs))
 }
-public func !==(lhs: Expectation<Any>, rhs: Any?)
-{
+public func !== (lhs: Expectation<Any>, rhs: Any?) {
     lhs.toNot(beIdenticalTo(rhs))
 }
 
@@ -34,21 +30,17 @@ public func !==(lhs: Expectation<Any>, rhs: Any?)
 /// as the expected instance.
 ///
 /// Alias for "beIdenticalTo".
-public func be(_ expected: Any?) -> NonNilMatcherFunc<Any>
-{
+public func be(_ expected: Any?) -> NonNilMatcherFunc<Any> {
     return beIdenticalTo(expected)
 }
 
 #if _runtime(_ObjC)
-    extension NMBObjCMatcher
-    {
-        public class func beIdenticalToMatcher(_ expected: NSObject?) -> NMBObjCMatcher
-        {
-            return NMBObjCMatcher(canMatchNil: false)
-            { actualExpression, failureMessage in
-                let aExpr = actualExpression.cast { $0 as Any? }
-                return try! beIdenticalTo(expected).matches(aExpr, failureMessage: failureMessage)
-            }
+extension NMBObjCMatcher {
+    public class func beIdenticalToMatcher(_ expected: NSObject?) -> NMBObjCMatcher {
+        return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
+            let aExpr = actualExpression.cast { $0 as Any? }
+            return try! beIdenticalTo(expected).matches(aExpr, failureMessage: failureMessage)
         }
     }
+}
 #endif

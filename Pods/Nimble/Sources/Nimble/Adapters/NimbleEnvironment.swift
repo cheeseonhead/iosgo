@@ -3,33 +3,25 @@ import Foundation
 
 /// "Global" state of Nimble is stored here. Only DSL functions should access / be aware of this
 /// class' existance
-internal class NimbleEnvironment
-{
-    static var activeInstance: NimbleEnvironment
-    {
-        get
-        {
+internal class NimbleEnvironment {
+    static var activeInstance: NimbleEnvironment {
+        get {
             let env = Thread.current.threadDictionary["NimbleEnvironment"]
-            if let env = env as? NimbleEnvironment
-            {
+            if let env = env as? NimbleEnvironment {
                 return env
-            }
-            else
-            {
+            } else {
                 let newEnv = NimbleEnvironment()
                 self.activeInstance = newEnv
                 return newEnv
             }
         }
-        set
-        {
+        set {
             Thread.current.threadDictionary["NimbleEnvironment"] = newValue
         }
     }
 
     // TODO: eventually migrate the global to this environment value
-    var assertionHandler: AssertionHandler
-    {
+    var assertionHandler: AssertionHandler {
         get { return NimbleAssertionHandler }
         set { NimbleAssertionHandler = newValue }
     }
@@ -37,15 +29,11 @@ internal class NimbleEnvironment
     var suppressTVOSAssertionWarning: Bool = false
     var awaiter: Awaiter
 
-    init()
-    {
+    init() {
         let timeoutQueue: DispatchQueue
-        if #available(OSX 10.10, *)
-        {
+        if #available(OSX 10.10, *) {
             timeoutQueue = DispatchQueue.global(qos: .userInitiated)
-        }
-        else
-        {
+        } else {
             timeoutQueue = DispatchQueue.global(priority: .high)
         }
 

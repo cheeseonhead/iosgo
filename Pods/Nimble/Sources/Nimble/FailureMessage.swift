@@ -3,8 +3,7 @@ import Foundation
 /// Encapsulates the failure message that matchers can report to the end user.
 ///
 /// This is shared state between Nimble and matchers that mutate this value.
-public class FailureMessage: NSObject
-{
+public class FailureMessage: NSObject {
     public var expected: String = "expected"
     public var actualValue: String? = "" // empty string -> use default; nil -> exclude
     public var to: String = "to"
@@ -16,38 +15,29 @@ public class FailureMessage: NSObject
     public var extendedMessage: String?
     public var userDescription: String?
 
-    public var stringValue: String
-    {
-        get
-        {
-            if let value = _stringValueOverride
-            {
+    public var stringValue: String {
+        get {
+            if let value = _stringValueOverride {
                 return value
-            }
-            else
-            {
+            } else {
                 return computeStringValue()
             }
         }
-        set
-        {
+        set {
             _stringValueOverride = newValue
         }
     }
 
     internal var _stringValueOverride: String?
 
-    public override init()
-    {
+    public override init() {
     }
 
-    public init(stringValue: String)
-    {
+    public init(stringValue: String) {
         _stringValueOverride = stringValue
     }
 
-    internal func stripNewlines(_ str: String) -> String
-    {
+    internal func stripNewlines(_ str: String) -> String {
         let whitespaces = CharacterSet.whitespacesAndNewlines
         return str
             .components(separatedBy: "\n")
@@ -55,22 +45,18 @@ public class FailureMessage: NSObject
             .joined(separator: "")
     }
 
-    internal func computeStringValue() -> String
-    {
+    internal func computeStringValue() -> String {
         var value = "\(expected) \(to) \(postfixMessage)"
-        if let actualValue = actualValue
-        {
+        if let actualValue = actualValue {
             value = "\(expected) \(to) \(postfixMessage), got \(actualValue)\(postfixActual)"
         }
         value = stripNewlines(value)
 
-        if let extendedMessage = extendedMessage
-        {
+        if let extendedMessage = extendedMessage {
             value += "\n\(stripNewlines(extendedMessage))"
         }
 
-        if let userDescription = userDescription
-        {
+        if let userDescription = userDescription {
             return "\(userDescription)\n\(value)"
         }
 

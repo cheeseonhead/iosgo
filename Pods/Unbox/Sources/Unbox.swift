@@ -107,6 +107,25 @@ public func unbox<T: UnboxableWithContext>(data: Data, context: T.UnboxContext, 
     return try data.unbox(context: context, allowInvalidElements: allowInvalidElements)
 }
 
+/// Unbox binary data into a dictionary of type `[String: T]`. Throws `UnboxError`.
+public func unbox<T: Unboxable>(data: Data) throws -> [String: T] {
+    let dictionary : [String: [String: Any]] = try JSONSerialization.unbox(data: data)
+    return try unbox(dictionary: dictionary)
+}
+
+/// Unbox `UnboxableDictionary` into a dictionary of type `[String: T]` where `T` is `Unboxable`. Throws `UnboxError`.
+public func unbox<T: Unboxable>(dictionary: UnboxableDictionary) throws -> [String: T] {
+    var mappedDictionary = [String: T]()
+    try dictionary.forEach { key, value in
+        guard let innerDictionary = value as? UnboxableDictionary else {
+            throw UnboxError.invalidData
+        }
+        let data : T = try unbox(dictionary: innerDictionary)
+        mappedDictionary[key] = data
+    }
+    return mappedDictionary
+}
+
 // MARK: - Error type
 
 /// Error type that Unbox throws in case an unrecoverable error was encountered
@@ -420,6 +439,17 @@ extension Float: UnboxableRawType {
     }
 }
 
+/// Extension making Decimal an Unboxable raw type
+extension Decimal: UnboxableRawType {
+    public static func transform(unboxedNumber: NSNumber) -> Decimal? {
+        return Decimal(string: unboxedNumber.stringValue)
+    }
+    
+    public static func transform(unboxedString unboxedValue: String) -> Decimal? {
+        return Decimal(string: unboxedValue)
+    }
+}
+
 /// Extension making Array an unboxable collection
 extension Array: UnboxableCollection {
     public typealias UnboxValue = Element
@@ -432,6 +462,19 @@ extension Array: UnboxableCollection {
         return try array.enumerated().map(allowInvalidElements: allowInvalidElements) { index, element in
             try transformer.unbox(element: element, allowInvalidCollectionElements: allowInvalidElements).orThrow(UnboxPathError.invalidArrayElement(element, index))
         }
+    }
+}
+
+/// Extension making Set an unboxable collection
+extension Set: UnboxableCollection {
+    public typealias UnboxValue = Element
+  
+    public static func unbox<T: UnboxCollectionElementTransformer>(value: Any, allowInvalidElements: Bool, transformer: T) throws -> Set? where T.UnboxedElement == UnboxValue {
+        guard let array = try [UnboxValue].unbox(value: value, allowInvalidElements: allowInvalidElements, transformer: transformer) else {
+            return nil
+        }
+        
+        return Set(array)
     }
 }
 
@@ -500,15 +543,6 @@ extension URL: UnboxableByTransform {
     
     public static func transform(unboxedValue: String) -> URL? {
         return URL(string: unboxedValue)
-    }
-}
-
-/// Extension making Decimal Unboxable by transform
-extension Decimal: UnboxableByTransform {
-    public typealias UnboxRawValue = String
-
-    public static func transform(unboxedValue: String) -> Decimal? {
-        return self.init(string: unboxedValue)
     }
 }
 

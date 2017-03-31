@@ -2,28 +2,24 @@ import Foundation
 
 /// If you are running on a slower machine, it could be useful to increase the default timeout value
 /// or slow down poll interval. Default timeout interval is 1, and poll interval is 0.01.
-public struct AsyncDefaults
-{
+public struct AsyncDefaults {
     public static var Timeout: TimeInterval = 1
     public static var PollInterval: TimeInterval = 0.01
 }
 
 internal struct AsyncMatcherWrapper<T, U>: Matcher
-    where U: Matcher, U.ValueType == T
-{
+    where U: Matcher, U.ValueType == T {
     let fullMatcher: U
     let timeoutInterval: TimeInterval
     let pollInterval: TimeInterval
 
-    init(fullMatcher: U, timeoutInterval: TimeInterval = AsyncDefaults.Timeout, pollInterval: TimeInterval = AsyncDefaults.PollInterval)
-    {
-        self.fullMatcher = fullMatcher
-        self.timeoutInterval = timeoutInterval
-        self.pollInterval = pollInterval
+    init(fullMatcher: U, timeoutInterval: TimeInterval = AsyncDefaults.Timeout, pollInterval: TimeInterval = AsyncDefaults.PollInterval) {
+      self.fullMatcher = fullMatcher
+      self.timeoutInterval = timeoutInterval
+      self.pollInterval = pollInterval
     }
 
-    func matches(_ actualExpression: Expression<T>, failureMessage: FailureMessage) -> Bool
-    {
+    func matches(_ actualExpression: Expression<T>, failureMessage: FailureMessage) -> Bool {
         let uncachedExpression = actualExpression.withoutCaching()
         let fnName = "expect(...).toEventually(...)"
         let result = pollBlock(
@@ -31,9 +27,8 @@ internal struct AsyncMatcherWrapper<T, U>: Matcher
             timeoutInterval: timeoutInterval,
             file: actualExpression.location.file,
             line: actualExpression.location.line,
-            fnName: fnName)
-        {
-            try self.fullMatcher.matches(uncachedExpression, failureMessage: failureMessage)
+            fnName: fnName) {
+                try self.fullMatcher.matches(uncachedExpression, failureMessage: failureMessage)
         }
         switch result {
         case let .completed(isSuccessful): return isSuccessful
@@ -52,17 +47,15 @@ internal struct AsyncMatcherWrapper<T, U>: Matcher
         }
     }
 
-    func doesNotMatch(_ actualExpression: Expression<T>, failureMessage: FailureMessage) -> Bool
-    {
+    func doesNotMatch(_ actualExpression: Expression<T>, failureMessage: FailureMessage) -> Bool {
         let uncachedExpression = actualExpression.withoutCaching()
         let result = pollBlock(
             pollInterval: pollInterval,
             timeoutInterval: timeoutInterval,
             file: actualExpression.location.file,
             line: actualExpression.location.line,
-            fnName: "expect(...).toEventuallyNot(...)")
-        {
-            try self.fullMatcher.doesNotMatch(uncachedExpression, failureMessage: failureMessage)
+            fnName: "expect(...).toEventuallyNot(...)") {
+                try self.fullMatcher.doesNotMatch(uncachedExpression, failureMessage: failureMessage)
         }
         switch result {
         case let .completed(isSuccessful): return isSuccessful
@@ -84,8 +77,7 @@ internal struct AsyncMatcherWrapper<T, U>: Matcher
 
 private let toEventuallyRequiresClosureError = FailureMessage(stringValue: "expect(...).toEventually(...) requires an explicit closure (eg - expect { ... }.toEventually(...) )\nSwift 1.2 @autoclosure behavior has changed in an incompatible way for Nimble to function")
 
-extension Expectation
-{
+extension Expectation {
     /// Tests the actual value using a matcher to match by checking continuously
     /// at each pollInterval until the timeout is reached.
     ///
@@ -93,10 +85,8 @@ extension Expectation
     /// This function manages the main run loop (`NSRunLoop.mainRunLoop()`) while this function
     /// is executing. Any attempts to touch the run loop may cause non-deterministic behavior.
     public func toEventually<U>(_ matcher: U, timeout: TimeInterval = AsyncDefaults.Timeout, pollInterval: TimeInterval = AsyncDefaults.PollInterval, description: String? = nil)
-        where U: Matcher, U.ValueType == T
-    {
-        if expression.isClosure
-        {
+        where U: Matcher, U.ValueType == T {
+        if expression.isClosure {
             let (pass, msg) = expressionMatches(
                 expression,
                 matcher: AsyncMatcherWrapper(
@@ -107,9 +97,7 @@ extension Expectation
                 description: description
             )
             verify(pass, msg)
-        }
-        else
-        {
+        } else {
             verify(false, toEventuallyRequiresClosureError)
         }
     }
@@ -121,10 +109,8 @@ extension Expectation
     /// This function manages the main run loop (`NSRunLoop.mainRunLoop()`) while this function
     /// is executing. Any attempts to touch the run loop may cause non-deterministic behavior.
     public func toEventuallyNot<U>(_ matcher: U, timeout: TimeInterval = AsyncDefaults.Timeout, pollInterval: TimeInterval = AsyncDefaults.PollInterval, description: String? = nil)
-        where U: Matcher, U.ValueType == T
-    {
-        if expression.isClosure
-        {
+        where U: Matcher, U.ValueType == T {
+        if expression.isClosure {
             let (pass, msg) = expressionDoesNotMatch(
                 expression,
                 matcher: AsyncMatcherWrapper(
@@ -135,9 +121,7 @@ extension Expectation
                 description: description
             )
             verify(pass, msg)
-        }
-        else
-        {
+        } else {
             verify(false, toEventuallyRequiresClosureError)
         }
     }
@@ -151,8 +135,7 @@ extension Expectation
     /// This function manages the main run loop (`NSRunLoop.mainRunLoop()`) while this function
     /// is executing. Any attempts to touch the run loop may cause non-deterministic behavior.
     public func toNotEventually<U>(_ matcher: U, timeout: TimeInterval = AsyncDefaults.Timeout, pollInterval: TimeInterval = AsyncDefaults.PollInterval, description: String? = nil)
-        where U: Matcher, U.ValueType == T
-    {
+        where U: Matcher, U.ValueType == T {
         return toEventuallyNot(matcher, timeout: timeout, pollInterval: pollInterval, description: description)
     }
 }

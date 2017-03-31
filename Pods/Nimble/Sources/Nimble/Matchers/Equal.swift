@@ -4,17 +4,13 @@ import Foundation
 /// Values can support equal by supporting the Equatable protocol.
 ///
 /// @see beCloseTo if you want to match imprecise types (eg - floats, doubles).
-public func equal<T: Equatable>(_ expectedValue: T?) -> NonNilMatcherFunc<T>
-{
-    return NonNilMatcherFunc
-    { actualExpression, failureMessage in
+public func equal<T: Equatable>(_ expectedValue: T?) -> NonNilMatcherFunc<T> {
+    return NonNilMatcherFunc { actualExpression, failureMessage in
         failureMessage.postfixMessage = "equal <\(stringify(expectedValue))>"
         let actualValue = try actualExpression.evaluate()
         let matches = actualValue == expectedValue && expectedValue != nil
-        if expectedValue == nil || actualValue == nil
-        {
-            if expectedValue == nil
-            {
+        if expectedValue == nil || actualValue == nil {
+            if expectedValue == nil {
                 failureMessage.postfixActual = " (use beNil() to match nils)"
             }
             return false
@@ -27,16 +23,12 @@ public func equal<T: Equatable>(_ expectedValue: T?) -> NonNilMatcherFunc<T>
 /// Values can support equal by supporting the Equatable protocol.
 ///
 /// @see beCloseTo if you want to match imprecise types (eg - floats, doubles).
-public func equal<T: Equatable, C: Equatable>(_ expectedValue: [T: C]?) -> NonNilMatcherFunc<[T: C]>
-{
-    return NonNilMatcherFunc
-    { actualExpression, failureMessage in
+public func equal<T: Equatable, C: Equatable>(_ expectedValue: [T: C]?) -> NonNilMatcherFunc<[T: C]> {
+    return NonNilMatcherFunc { actualExpression, failureMessage in
         failureMessage.postfixMessage = "equal <\(stringify(expectedValue))>"
         let actualValue = try actualExpression.evaluate()
-        if expectedValue == nil || actualValue == nil
-        {
-            if expectedValue == nil
-            {
+        if expectedValue == nil || actualValue == nil {
+            if expectedValue == nil {
                 failureMessage.postfixActual = " (use beNil() to match nils)"
             }
             return false
@@ -47,16 +39,12 @@ public func equal<T: Equatable, C: Equatable>(_ expectedValue: [T: C]?) -> NonNi
 
 /// A Nimble matcher that succeeds when the actual collection is equal to the expected collection.
 /// Items must implement the Equatable protocol.
-public func equal<T: Equatable>(_ expectedValue: [T]?) -> NonNilMatcherFunc<[T]>
-{
-    return NonNilMatcherFunc
-    { actualExpression, failureMessage in
+public func equal<T: Equatable>(_ expectedValue: [T]?) -> NonNilMatcherFunc<[T]> {
+    return NonNilMatcherFunc { actualExpression, failureMessage in
         failureMessage.postfixMessage = "equal <\(stringify(expectedValue))>"
         let actualValue = try actualExpression.evaluate()
-        if expectedValue == nil || actualValue == nil
-        {
-            if expectedValue == nil
-            {
+        if expectedValue == nil || actualValue == nil {
+            if expectedValue == nil {
                 failureMessage.postfixActual = " (use beNil() to match nils)"
             }
             return false
@@ -66,42 +54,29 @@ public func equal<T: Equatable>(_ expectedValue: [T]?) -> NonNilMatcherFunc<[T]>
 }
 
 /// A Nimble matcher allowing comparison of collection with optional type
-public func equal<T: Equatable>(_ expectedValue: [T?]) -> NonNilMatcherFunc<[T?]>
-{
-    return NonNilMatcherFunc
-    { actualExpression, failureMessage in
+public func equal<T: Equatable>(_ expectedValue: [T?]) -> NonNilMatcherFunc<[T?]> {
+    return NonNilMatcherFunc { actualExpression, failureMessage in
         failureMessage.postfixMessage = "equal <\(stringify(expectedValue))>"
-        if let actualValue = try actualExpression.evaluate()
-        {
-            if expectedValue.count != actualValue.count
-            {
+        if let actualValue = try actualExpression.evaluate() {
+            if expectedValue.count != actualValue.count {
                 return false
             }
 
-            for (index, item) in actualValue.enumerated()
-            {
+            for (index, item) in actualValue.enumerated() {
                 let otherItem = expectedValue[index]
-                if item == nil && otherItem == nil
-                {
+                if item == nil && otherItem == nil {
                     continue
-                }
-                else if item == nil && otherItem != nil
-                {
+                } else if item == nil && otherItem != nil {
                     return false
-                }
-                else if item != nil && otherItem == nil
-                {
+                } else if item != nil && otherItem == nil {
                     return false
-                }
-                else if item! != otherItem! {
+                } else if item! != otherItem! {
                     return false
                 }
             }
 
             return true
-        }
-        else
-        {
+        } else {
             failureMessage.postfixActual = " (use beNil() to match nils)"
         }
 
@@ -110,40 +85,30 @@ public func equal<T: Equatable>(_ expectedValue: [T?]) -> NonNilMatcherFunc<[T?]
 }
 
 /// A Nimble matcher that succeeds when the actual set is equal to the expected set.
-public func equal<T>(_ expectedValue: Set<T>?) -> NonNilMatcherFunc<Set<T>>
-{
+public func equal<T>(_ expectedValue: Set<T>?) -> NonNilMatcherFunc<Set<T>> {
     return equal(expectedValue, stringify: { stringify($0) })
 }
 
 /// A Nimble matcher that succeeds when the actual set is equal to the expected set.
-public func equal<T: Comparable>(_ expectedValue: Set<T>?) -> NonNilMatcherFunc<Set<T>>
-{
+public func equal<T: Comparable>(_ expectedValue: Set<T>?) -> NonNilMatcherFunc<Set<T>> {
     return equal(expectedValue, stringify: {
-        if let set = $0
-        {
+        if let set = $0 {
             return stringify(Array(set).sorted { $0 < $1 })
-        }
-        else
-        {
+        } else {
             return "nil"
         }
     })
 }
 
-private func equal<T>(_ expectedValue: Set<T>?, stringify: @escaping (Set<T>?) -> String) -> NonNilMatcherFunc<Set<T>>
-{
-    return NonNilMatcherFunc
-    { actualExpression, failureMessage in
+private func equal<T>(_ expectedValue: Set<T>?, stringify: @escaping (Set<T>?) -> String) -> NonNilMatcherFunc<Set<T>> {
+    return NonNilMatcherFunc { actualExpression, failureMessage in
         failureMessage.postfixMessage = "equal <\(stringify(expectedValue))>"
 
-        if let expectedValue = expectedValue
-        {
-            if let actualValue = try actualExpression.evaluate()
-            {
+        if let expectedValue = expectedValue {
+            if let actualValue = try actualExpression.evaluate() {
                 failureMessage.actualValue = "<\(stringify(actualValue))>"
 
-                if expectedValue == actualValue
-                {
+                if expectedValue == actualValue {
                     return true
                 }
 
@@ -157,9 +122,7 @@ private func equal<T>(_ expectedValue: Set<T>?, stringify: @escaping (Set<T>?) -
                     failureMessage.postfixActual += ", extra <\(stringify(extra))>"
                 }
             }
-        }
-        else
-        {
+        } else {
             failureMessage.postfixActual = " (use beNil() to match nils)"
         }
 
@@ -167,65 +130,52 @@ private func equal<T>(_ expectedValue: Set<T>?, stringify: @escaping (Set<T>?) -
     }
 }
 
-public func ==<T: Equatable>(lhs: Expectation<T>, rhs: T?)
-{
+public func ==<T: Equatable>(lhs: Expectation<T>, rhs: T?) {
     lhs.to(equal(rhs))
 }
 
-public func !=<T: Equatable>(lhs: Expectation<T>, rhs: T?)
-{
+public func !=<T: Equatable>(lhs: Expectation<T>, rhs: T?) {
     lhs.toNot(equal(rhs))
 }
 
-public func ==<T: Equatable>(lhs: Expectation<[T]>, rhs: [T]?)
-{
+public func ==<T: Equatable>(lhs: Expectation<[T]>, rhs: [T]?) {
     lhs.to(equal(rhs))
 }
 
-public func !=<T: Equatable>(lhs: Expectation<[T]>, rhs: [T]?)
-{
+public func !=<T: Equatable>(lhs: Expectation<[T]>, rhs: [T]?) {
     lhs.toNot(equal(rhs))
 }
 
-public func ==<T>(lhs: Expectation<Set<T>>, rhs: Set<T>?)
-{
+public func == <T>(lhs: Expectation<Set<T>>, rhs: Set<T>?) {
     lhs.to(equal(rhs))
 }
 
-public func !=<T>(lhs: Expectation<Set<T>>, rhs: Set<T>?)
-{
+public func != <T>(lhs: Expectation<Set<T>>, rhs: Set<T>?) {
     lhs.toNot(equal(rhs))
 }
 
-public func ==<T: Comparable>(lhs: Expectation<Set<T>>, rhs: Set<T>?)
-{
+public func ==<T: Comparable>(lhs: Expectation<Set<T>>, rhs: Set<T>?) {
     lhs.to(equal(rhs))
 }
 
-public func !=<T: Comparable>(lhs: Expectation<Set<T>>, rhs: Set<T>?)
-{
+public func !=<T: Comparable>(lhs: Expectation<Set<T>>, rhs: Set<T>?) {
     lhs.toNot(equal(rhs))
 }
 
-public func ==<T: Equatable, C: Equatable>(lhs: Expectation<[T: C]>, rhs: [T: C]?)
-{
+public func ==<T: Equatable, C: Equatable>(lhs: Expectation<[T: C]>, rhs: [T: C]?) {
     lhs.to(equal(rhs))
 }
 
-public func !=<T: Equatable, C: Equatable>(lhs: Expectation<[T: C]>, rhs: [T: C]?)
-{
+public func !=<T: Equatable, C: Equatable>(lhs: Expectation<[T: C]>, rhs: [T: C]?) {
     lhs.toNot(equal(rhs))
 }
 
 #if _runtime(_ObjC)
-    extension NMBObjCMatcher
-    {
-        public class func equalMatcher(_ expected: NSObject) -> NMBMatcher
-        {
-            return NMBObjCMatcher(canMatchNil: false)
-            { actualExpression, failureMessage in
-                return try! equal(expected).matches(actualExpression, failureMessage: failureMessage)
-            }
+extension NMBObjCMatcher {
+    public class func equalMatcher(_ expected: NSObject) -> NMBMatcher {
+        return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
+            return try! equal(expected).matches(actualExpression, failureMessage: failureMessage)
         }
     }
+}
 #endif

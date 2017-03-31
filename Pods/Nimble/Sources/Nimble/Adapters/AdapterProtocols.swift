@@ -1,8 +1,7 @@
 import Foundation
 
 /// Protocol for the assertion handler that Nimble uses for all expectations.
-public protocol AssertionHandler
-{
+public protocol AssertionHandler {
     func assert(_ assertion: Bool, message: FailureMessage, location: SourceLocation)
 }
 
