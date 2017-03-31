@@ -65,6 +65,7 @@
 		AD05A21671A192B337421704 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A2B5931F24B08CD0F38B /* String+Additions.swift */; };
 		AD05A38E9ED6F87B95B69C14 /* OGSChooseGameOtherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A98FB44914FAC675922D /* OGSChooseGameOtherTableViewCell.swift */; };
 		AD05A3F9439D627981FA3891 /* OGSChooseGameOwnerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A86B965F221E3FDE151B /* OGSChooseGameOwnerTableViewCell.swift */; };
+		AD05A7E728E07F256A22C0DF /* OGSChooseGameCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05ABC463A960E74C9B2CA0 /* OGSChooseGameCollectionViewController.swift */; };
 		AD05A80C3174620434A3BF39 /* OGSLoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A6342D59CC3E80B17996 /* OGSLoginInfo.swift */; };
 		AD05A8548F5F603C37C45C57 /* OGSAppConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AF6C8740956A2DA7A847 /* OGSAppConfigurator.swift */; };
 		AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */; };
@@ -156,6 +157,7 @@
 		AD05A98FB44914FAC675922D /* OGSChooseGameOtherTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameOtherTableViewCell.swift; sourceTree = "<group>"; };
 		AD05A9ECDDD9E6ED45019693 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD05ABBB3826AA77B8B017A3 /* OGSDiskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSDiskManager.swift; sourceTree = "<group>"; };
+		AD05ABC463A960E74C9B2CA0 /* OGSChooseGameCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameCollectionViewController.swift; sourceTree = "<group>"; };
 		AD05AE9600B34B78B76D3181 /* OGSChooseGameListGamesWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameListGamesWorker.swift; sourceTree = "<group>"; };
 		AD05AF6C8740956A2DA7A847 /* OGSAppConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSAppConfigurator.swift; sourceTree = "<group>"; };
 		AF12002656677CCFB6D8EAF8 /* Pods_iosgo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -378,6 +380,7 @@
 				5645E9191E679EAA00602FF5 /* OGSChooseGameViewController.storyboard */,
 				AD05AB8363F29637E7E51A81 /* TableView */,
 				AD05A56298E411A91826AA48 /* Workers */,
+				AD05A033860BB552023EC1A1 /* CollectionView */,
 			);
 			path = ChooseGame;
 			sourceTree = "<group>";
@@ -397,6 +400,14 @@
 				8405CDF23994EB7077BA78B8 /* OGSSeekGraphSocketStore.swift */,
 			);
 			path = SeekGraph;
+			sourceTree = "<group>";
+		};
+		AD05A033860BB552023EC1A1 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				AD05ABC463A960E74C9B2CA0 /* OGSChooseGameCollectionViewController.swift */,
+			);
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 		AD05A56298E411A91826AA48 /* Workers */ = {
@@ -702,6 +713,7 @@
 				AD05AFC36181FFE0C0DB7889 /* OGSChooseGameListGamesWorker.swift in Sources */,
 				AD05AF2B9222BE964C87EC8D /* AppDelegate.swift in Sources */,
 				AD05A80C3174620434A3BF39 /* OGSLoginInfo.swift in Sources */,
+				AD05A7E728E07F256A22C0DF /* OGSChooseGameCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
