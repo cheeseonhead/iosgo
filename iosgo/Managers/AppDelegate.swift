@@ -53,3 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     }
 
 }
+
+// MARK: DIP Conform
+extension OGSUserSettingsStore: OGSUserSettingsStoreProtocol {}

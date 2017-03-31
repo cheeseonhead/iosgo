@@ -5,7 +5,7 @@
 
 import Foundation
 
-class OGSUserSettingsStore: OGSUserSettingsStoreProtocol
+class OGSUserSettingsStore
 {
     fileprivate lazy var userSettings: OGSUserSettings = self.retrieveUserSettings()
 

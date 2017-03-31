@@ -5,6 +5,13 @@
 
 import Foundation
 
+protocol OGSUserSettingsStoreProtocol
+{
+    func save(accessToken: String)
+    func save(refreshToken: String)
+    func getUserSettings() -> OGSUserSettingsProtocol
+}
+
 class OGSAppConfigurator: NSObject
 {
     fileprivate var userSettingsStore: OGSUserSettingsStoreProtocol!
