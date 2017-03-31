@@ -28,11 +28,11 @@ class OGSSeekGraphSocketStore
 
             print("Turn into dictionary")
 
-            print("\("[{\"test\": 12345}]".convertToDictionary())")
+            print("\(String(describing: "[{\"test\": 12345}]".convertToDictionary()))")
 
             let startIndex = text.index(text.startIndex, offsetBy: 2)
             let newText = "{\"payload\": \(text.substring(from: startIndex))}"
-            print("\(newText.convertToDictionary())")
+            print("\(String(describing: newText.convertToDictionary()))")
         }
         
         socket.onData = { (data: Data) in
@@ -42,7 +42,7 @@ class OGSSeekGraphSocketStore
         socket.connect()
     }
 
-    func createChallengeFrom(payload: [String: Any?]) -> OGSChallenge
+    func createChallengeFrom(payload: [String: Any]) -> OGSChallenge
     {
         do {
             let challenge: OGSChallenge = try unbox(dictionary: payload)
@@ -53,7 +53,7 @@ class OGSSeekGraphSocketStore
         }
     }
 
-    func fakeData1() -> [String: Any?]
+    func fakeData1() -> [String: Any]
     {
         return [
             "username": "sousys",
@@ -72,7 +72,7 @@ class OGSSeekGraphSocketStore
             "time_control": "fischer",
             "ranked": true,
             "min_rank": -3,
-            "komi": nil,
+//            "komi": nil,
             "game_id": 809,
             "challenger_color": "automatic",
             "time_control_parameters": [
