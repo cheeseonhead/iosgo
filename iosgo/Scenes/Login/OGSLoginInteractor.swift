@@ -57,4 +57,4 @@ fileprivate extension OGSLoginInteractor
     }
 }
 
-extension OGSOauthApiStore: OGSOauthStoreProtocol {}
+extension OGSOauthApiStore: OGSAuthenticationStoreProtocol {}

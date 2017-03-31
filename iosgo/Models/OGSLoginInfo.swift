@@ -1,12 +1,14 @@
 //
-// Created by Jeffrey Wu on 2017-02-17.
+// Created by Cheese Onhead on 3/30/17.
 // Copyright (c) 2017 Cheeseonhead. All rights reserved.
 //
 
 import Foundation
 
-struct OGSOauthStore
+struct OGSLoginInfo
 {
+    var result: GetTokenResult
+
     enum GetTokenResult
     {
         case success(info: TokenInfo)
@@ -28,9 +30,4 @@ struct OGSOauthStore
         case unknownError
         case clientError
     }
-}
-
-protocol OGSOauthStoreProtocol
-{
-    func getToken(with username: String, password: String, completion: @escaping (OGSOauthStore.GetTokenResult) -> Void)
 }

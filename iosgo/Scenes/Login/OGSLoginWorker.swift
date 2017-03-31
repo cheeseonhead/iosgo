@@ -5,6 +5,11 @@
 
 import Foundation
 
+protocol OGSAuthenticationStoreProtocol
+{
+    func getToken(with username: String, password: String, completion: @escaping (OGSLoginInfo) -> Void)
+}
+
 class OGSLoginWorker
 {
     enum LoginErrorType
@@ -19,9 +24,9 @@ class OGSLoginWorker
         var loginError: LoginErrorType
     }
 
-    var authStore: OGSOauthStoreProtocol
+    var authStore: OGSAuthenticationStoreProtocol
 
-    init(authStore: OGSOauthStoreProtocol)
+    init(authStore: OGSAuthenticationStoreProtocol)
     {
         self.authStore = authStore
     }
@@ -29,10 +34,10 @@ class OGSLoginWorker
     func loginWith(username: String, password: String, completion: @escaping (_: OGSLogin.Login.Response) -> Void)
     {
         authStore.getToken(with: username, password: password)
-        { tokenResult in
+        { loginInfo in
             var response: OGSLogin.Login.Response!
 
-            switch tokenResult {
+            switch loginInfo.result {
             case .success(let tokenInfo):
                 self.broadcastTokensUpdated(with: tokenInfo)
                 response = self.createLoginSuccessResponse()
@@ -49,7 +54,7 @@ class OGSLoginWorker
 
 fileprivate extension OGSLoginWorker
 {
-    func broadcastTokensUpdated(with tokenInfo: OGSOauthStore.TokenInfo)
+    func broadcastTokensUpdated(with tokenInfo: OGSLoginInfo.TokenInfo)
     {
         OGSNotificationCenter.sharedInstance.post(name: .accessTokenUpdated, object: tokenInfo.accessToken)
         OGSNotificationCenter.sharedInstance.post(name: .refreshTokenUpdated, object: tokenInfo.refreshToken)
@@ -62,7 +67,7 @@ fileprivate extension OGSLoginWorker
         return response
     }
 
-    func createLoginErrorResponse(errorType: OGSOauthStore.ErrorType) -> OGSLogin.Login.Response
+    func createLoginErrorResponse(errorType: OGSLoginInfo.ErrorType) -> OGSLogin.Login.Response
     {
         var responseError: OGSLogin.Login.Response.ErrorType!
 

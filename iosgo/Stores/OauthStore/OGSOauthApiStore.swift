@@ -7,7 +7,7 @@ import Foundation
 
 class OGSOauthApiStore
 {
-    func getToken(with username: String, password: String, completion: @escaping (OGSOauthStore.GetTokenResult) -> Void)
+    func getToken(with username: String, password: String, completion: @escaping (OGSLoginInfo) -> Void)
     {
         let url = "oauth2/token/"
 
@@ -22,29 +22,33 @@ class OGSOauthApiStore
         OGSApiManager.sharedInstance.request(toUrl: url, method: .POST, parameters: params)
         { statusCode, payload, _ in
 
-            switch statusCode
-            {
+            var loginInfo = OGSLoginInfo(result: .error(type: .unknownError))
+
+            switch statusCode {
             case .ok:
                 guard let correctPayload = payload,
                     let tokenInfo = self.createTokenInfo(from: correctPayload) else
                 {
-                    completion(.error(type: .unknownError))
+                    loginInfo.result = .error(type: .unknownError)
+                    completion(loginInfo)
                     return
                 }
-                completion(.success(info: tokenInfo))
+                loginInfo.result = .success(info: tokenInfo)
             case .unauthorized:
-                completion(.error(type: .invalidLoginInfo))
+                loginInfo.result = .error(type: .invalidLoginInfo)
                 break
             case .clientError:
-                completion(.error(type: .clientError))
+                loginInfo.result = .error(type: .clientError)
                 break
             default:
-                completion(.error(type: .unknownError))
+                loginInfo.result = .error(type: .unknownError)
             }
+
+            completion(loginInfo)
         }
     }
 
-    fileprivate func createTokenInfo(from payload: [String: Any]) -> OGSOauthStore.TokenInfo?
+    fileprivate func createTokenInfo(from payload: [String: Any]) -> OGSLoginInfo.TokenInfo?
     {
         guard let accessToken = payload["access_token"] as? String,
             let tokenType = payload["token_type"] as? String,
@@ -55,6 +59,6 @@ class OGSOauthApiStore
             return nil
         }
 
-        return OGSOauthStore.TokenInfo(accessToken: accessToken, tokenType: tokenType, expiresIn: expiresIn, refreshToken: refreshToken, scope: scope)
+        return OGSLoginInfo.TokenInfo(accessToken: accessToken, tokenType: tokenType, expiresIn: expiresIn, refreshToken: refreshToken, scope: scope)
     }
 }
