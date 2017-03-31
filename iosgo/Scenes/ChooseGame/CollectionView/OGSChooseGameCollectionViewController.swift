@@ -9,7 +9,7 @@ class OGSChooseGameCollectionViewController: UICollectionViewController
 {
     required init()
     {
-        var flowLayout = UICollectionViewFlowLayout()
+        let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = 8
 
