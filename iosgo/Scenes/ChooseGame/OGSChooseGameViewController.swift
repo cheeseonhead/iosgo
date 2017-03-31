@@ -10,6 +10,7 @@
 //
 
 import UIKit
+import SnapKit
 
 protocol OGSChooseGameViewControllerInput
 {
@@ -25,7 +26,7 @@ class OGSChooseGameViewController: UIViewController, OGSChooseGameViewController
 {
     var output: OGSChooseGameViewControllerOutput!
     var router: OGSChooseGameRouter!
-//    var tableViewController: OGSChooseGameTableViewController!
+    var collectionViewController: OGSChooseGameCollectionViewController!
 
     override func awakeFromNib()
     {
@@ -36,6 +37,7 @@ class OGSChooseGameViewController: UIViewController, OGSChooseGameViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        setupViews()
         listGamesOnLoad()
     }
 }
@@ -56,17 +58,24 @@ extension OGSChooseGameViewController
 {
     func displayListGames(viewModel: OGSChooseGame.ListGames.ViewModel)
     {
-//        tableViewController.challengeList = viewModel.challengeList
     }
 }
 
-// MARK: - SubViewControllers
-extension OGSChooseGameViewController
-{
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+// MARK: - View Setup
+extension OGSChooseGameViewController {
+    func setupViews() {
+        setupCollectionView()
+    }
+
+    func setupCollectionView()
     {
-        if segue.identifier == "EmbedTableViewController" {
-//            tableViewController = segue.destination as! OGSChooseGameTableViewController
+        collectionViewController = OGSChooseGameCollectionViewController()
+        collectionViewController.automaticallyAdjustsScrollViewInsets = true
+        addChildViewController(collectionViewController)
+        view.addSubview(collectionViewController.view)
+
+        collectionViewController.collectionView?.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 }
