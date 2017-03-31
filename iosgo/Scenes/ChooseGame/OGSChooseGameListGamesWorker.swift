@@ -10,6 +10,20 @@ protocol OGSChooseGameListGamesWorkerDelegate: class
     func sendListGamesResponse(_ response: OGSChooseGame.ListGames.Response)
 }
 
+protocol OGSSeekGraphStoreDelegate: class
+{
+    func listChallenges(_ challenges: [OGSChallenge])
+}
+
+protocol OGSSeekGraphStoreProtocol
+{
+    weak var delegate: OGSSeekGraphStoreDelegate? { set get }
+
+    func connect()
+}
+
+
+
 class OGSChooseGameListGamesWorker: OGSSeekGraphStoreDelegate
 {
     typealias ListGames = OGSChooseGame.ListGames
