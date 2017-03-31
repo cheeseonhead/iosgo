@@ -17,7 +17,6 @@
 		5612FD121E63C60B000B1973 /* OGSChooseGameRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612FD0C1E63C60B000B1973 /* OGSChooseGameRouter.swift */; };
 		5612FD131E63C60B000B1973 /* OGSChooseGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612FD0D1E63C60B000B1973 /* OGSChooseGameViewController.swift */; };
 		5645E91A1E679EAA00602FF5 /* OGSChooseGameViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5645E9191E679EAA00602FF5 /* OGSChooseGameViewController.storyboard */; };
-		565D246F1E54A5A500EF62CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565D246E1E54A5A500EF62CD /* AppDelegate.swift */; };
 		565D24711E54A5A500EF62CD /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 565D24701E54A5A500EF62CD /* GameScene.sks */; };
 		565D24731E54A5A500EF62CD /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 565D24721E54A5A500EF62CD /* Actions.sks */; };
 		565D24751E54A5A500EF62CD /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565D24741E54A5A500EF62CD /* GameScene.swift */; };
@@ -72,6 +71,7 @@
 		AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */; };
 		AD05ACADB6BCF1338124517F /* OGSSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A1802BD676770B6F34D7 /* OGSSocketManager.swift */; };
 		AD05AE74C92DA8328A33761F /* OGSDiskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05ABBB3826AA77B8B017A3 /* OGSDiskManager.swift */; };
+		AD05AF2B9222BE964C87EC8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A9ECDDD9E6ED45019693 /* AppDelegate.swift */; };
 		AD05AF37C68CBA22A3DC256C /* OGSDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A8CBB6DCEBEA0F2DBE28 /* OGSDispatcher.swift */; };
 		AD05AFC36181FFE0C0DB7889 /* OGSChooseGameListGamesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AE9600B34B78B76D3181 /* OGSChooseGameListGamesWorker.swift */; };
 /* End PBXBuildFile section */
@@ -100,7 +100,6 @@
 		5612FD0D1E63C60B000B1973 /* OGSChooseGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameViewController.swift; sourceTree = "<group>"; };
 		5645E9191E679EAA00602FF5 /* OGSChooseGameViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OGSChooseGameViewController.storyboard; sourceTree = "<group>"; };
 		565D246B1E54A5A500EF62CD /* iosgo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosgo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		565D246E1E54A5A500EF62CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		565D24701E54A5A500EF62CD /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		565D24721E54A5A500EF62CD /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		565D24741E54A5A500EF62CD /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -157,6 +156,7 @@
 		AD05A8CBB6DCEBEA0F2DBE28 /* OGSDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSDispatcher.swift; sourceTree = "<group>"; };
 		AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		AD05A98FB44914FAC675922D /* OGSChooseGameOtherTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameOtherTableViewCell.swift; sourceTree = "<group>"; };
+		AD05A9ECDDD9E6ED45019693 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD05ABBB3826AA77B8B017A3 /* OGSDiskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSDiskManager.swift; sourceTree = "<group>"; };
 		AD05AE9600B34B78B76D3181 /* OGSChooseGameListGamesWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameListGamesWorker.swift; sourceTree = "<group>"; };
 		AD05AF6C8740956A2DA7A847 /* OGSAppConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSAppConfigurator.swift; sourceTree = "<group>"; };
@@ -220,7 +220,6 @@
 			isa = PBXGroup;
 			children = (
 				56BD888D1E5522530098E50B /* Components */,
-				565D246E1E54A5A500EF62CD /* AppDelegate.swift */,
 				565D24701E54A5A500EF62CD /* GameScene.sks */,
 				565D24721E54A5A500EF62CD /* Actions.sks */,
 				565D24741E54A5A500EF62CD /* GameScene.swift */,
@@ -303,6 +302,7 @@
 				AD05ABBB3826AA77B8B017A3 /* OGSDiskManager.swift */,
 				AD05A1802BD676770B6F34D7 /* OGSSocketManager.swift */,
 				AD05AF6C8740956A2DA7A847 /* OGSAppConfigurator.swift */,
+				AD05A9ECDDD9E6ED45019693 /* AppDelegate.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -668,7 +668,6 @@
 				565D24751E54A5A500EF62CD /* GameScene.swift in Sources */,
 				56BD888F1E5522530098E50B /* OGSButton.swift in Sources */,
 				565D24771E54A5A500EF62CD /* GameViewController.swift in Sources */,
-				565D246F1E54A5A500EF62CD /* AppDelegate.swift in Sources */,
 				AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */,
 				8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */,
 				8405CDE4965C7493BA13D163 /* OGSLoginRouter.swift in Sources */,
@@ -706,6 +705,7 @@
 				AD05ACADB6BCF1338124517F /* OGSSocketManager.swift in Sources */,
 				AD05A8548F5F603C37C45C57 /* OGSAppConfigurator.swift in Sources */,
 				AD05AFC36181FFE0C0DB7889 /* OGSChooseGameListGamesWorker.swift in Sources */,
+				AD05AF2B9222BE964C87EC8D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
