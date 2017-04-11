@@ -25,7 +25,8 @@ class OGSChooseGameCollectionViewController: UICollectionViewController
 
     required init()
     {
-        super.init(collectionViewLayout: flowLayout)
+        var layout = self.createLayout()
+        super.init(collectionViewLayout: layout)
 
         collectionView?.backgroundColor = Style.backgroundColor
         collectionView?.register(UINib.init(nibName: "OGSChooseGameCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: Constant.cellIdentifier)
