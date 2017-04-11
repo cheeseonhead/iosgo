@@ -26,7 +26,7 @@ class OGSChooseGameViewController: UIViewController, OGSChooseGameViewController
 {
     var output: OGSChooseGameViewControllerOutput!
     var router: OGSChooseGameRouter!
-    var collectionViewController: OGSChooseGameCollectionViewController!
+    var listViewController: OGSChooseGameCollectionViewController!
 
     override func awakeFromNib()
     {
@@ -72,11 +72,11 @@ extension OGSChooseGameViewController
 
     func setupCollectionView()
     {
-        collectionViewController = OGSChooseGameCollectionViewController()
-        addChildViewController(collectionViewController)
-        view.addSubview(collectionViewController.collectionView!)
+        listViewController = OGSChooseGameCollectionViewController()
+        addChildViewController(listViewController)
+        view.addSubview(listViewController.collectionView!)
 
-        collectionViewController.collectionView?.snp.makeConstraints
+        listViewController.collectionView?.snp.makeConstraints
         { make in
             make.edges.equalToSuperview()
         }
