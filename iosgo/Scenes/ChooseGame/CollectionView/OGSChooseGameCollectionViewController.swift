@@ -5,11 +5,17 @@
 
 import UIKit
 
-class OGSChooseGameCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout
+class OGSChooseGameCollectionViewController: UICollectionViewController
 {
     fileprivate struct Style
     {
+        static var backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         static var cellHeight: CGFloat = 100
+
+        struct Layout
+        {
+            static var spacing = 8
+        }
     }
 
     fileprivate struct Constant
@@ -19,17 +25,21 @@ class OGSChooseGameCollectionViewController: UICollectionViewController, UIColle
 
     required init()
     {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical
-        flowLayout.minimumLineSpacing = 8
-        flowLayout.sectionInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
-
         super.init(collectionViewLayout: flowLayout)
 
-        collectionView?.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        collectionView?.backgroundColor = Style.backgroundColor
         collectionView?.register(UINib.init(nibName: "OGSChooseGameCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: Constant.cellIdentifier)
     }
 
+    required init?(coder aDecoder: NSCoder)
+    {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: Data Source
+extension OGSChooseGameCollectionViewController: UICollectionViewDelegateFlowLayout
+{
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return 10
@@ -46,9 +56,16 @@ class OGSChooseGameCollectionViewController: UICollectionViewController, UIColle
     {
         return CGSize(width: view.frame.size.width, height: Style.cellHeight)
     }
+}
 
-    required init?(coder aDecoder: NSCoder)
+// MARK: Properties
+extension OGSChooseGameCollectionViewController
+{
+    func createLayout() -> UICollectionViewFlowLayout
     {
-        fatalError("init(coder:) has not been implemented")
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumLineSpacing = Style.Layout.spacing
+        flowLayout.sectionInset = UIEdgeInsets(top: Style.Layout.spacing, left: 0, bottom: Style.Layout.spacing, right: 0)
     }
 }
