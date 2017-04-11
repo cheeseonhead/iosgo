@@ -9,16 +9,19 @@ import UIKit
 // MARK: - Custom Colors
 class OGSColor: UIColor
 {
-    static var primaryBackground : UIColor {
-        return OGSColor(hex: 0x79859E)
+    static var primaryBackground: UIColor
+    {
+        return #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     }
 
-    static var primaryBackgroundDisabled : UIColor {
-        return OGSColor(hex: 0xECEFF1)
+    static var primaryBackgroundDisabled: UIColor
+    {
+        return #colorLiteral(red: 0.6666666667, green: 0.7098039216, blue: 0.8274509804, alpha: 1)
     }
 
-    static var primaryTextDisabled : UIColor {
-        return OGSColor(hex: 0xD2D8DB)
+    static var primaryTextDisabled: UIColor
+    {
+        return #colorLiteral(red: 0.6666666667, green: 0.7098039216, blue: 0.8274509804, alpha: 1)
     }
 }
 
@@ -27,17 +30,19 @@ class OGSColor: UIColor
 extension OGSColor
 {
     // Usage: UIColor(hex: 0xFC0ACE)
-    convenience init(hex: Int) {
+    convenience init(hex: Int)
+    {
         self.init(hex: hex, alpha: 1)
     }
 
     // Usage: UIColor(hex: 0xFC0ACE, alpha: 0.25)
-    convenience init(hex: Int, alpha: Double) {
+    convenience init(hex: Int, alpha: Double)
+    {
         self.init(
-                red: CGFloat((hex >> 16) & 0xff) / 255,
-                green: CGFloat((hex >> 8) & 0xff) / 255,
-                blue: CGFloat(hex & 0xff) / 255,
-                alpha: CGFloat(alpha))
+            red: CGFloat((hex >> 16) & 0xFF) / 255,
+            green: CGFloat((hex >> 8) & 0xFF) / 255,
+            blue: CGFloat(hex & 0xFF) / 255,
+            alpha: CGFloat(alpha))
     }
 }
 
