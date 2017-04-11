@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9mv-gU-aYw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9mv-gU-aYw">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,17 +21,16 @@
         <scene sceneID="sFL-EA-EBu">
             <objects>
                 <tableViewController storyboardIdentifier="OGSChooseGameTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9mv-gU-aYw" customClass="OGSChooseGameTableViewController" customModule="iosgo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" sectionIndexMinimumDisplayRowCount="1" rowHeight="61" sectionHeaderHeight="28" sectionFooterHeight="28" id="uBu-NE-xs9">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" sectionIndexMinimumDisplayRowCount="1" rowHeight="61" sectionHeaderHeight="28" sectionFooterHeight="28" id="uBu-NE-xs9">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.86220639944076538" green="0.84232503175735474" blue="0.72034388780593872" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <inset key="separatorInset" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OGSChooseGameOtherTableViewCell" rowHeight="85" id="a7E-ps-Gqx" customClass="OGSChooseGameOtherTableViewCell" customModule="iosgo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="1000" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a7E-ps-Gqx" id="Syb-cY-ypz">
-                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="84"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="85"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wstudjeff2 [20k]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvE-qw-p8b">
@@ -90,20 +89,20 @@
                                 <rect key="frame" x="0.0" y="113" width="1000" height="73"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jK8-1a-jBM" id="RBH-aL-pS2">
-                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="72"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="73"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="S0b-9v-xc8">
-                                            <rect key="frame" x="477" y="8" width="47" height="57"/>
+                                            <rect key="frame" x="477.5" y="8" width="46.5" height="57"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="9x9" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEB-Fg-6qE">
-                                                    <rect key="frame" x="9" y="0.0" width="28" height="32"/>
+                                                    <rect key="frame" x="9.5" y="0.0" width="27.5" height="32.5"/>
                                                     <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="18"/>
                                                     <color key="textColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="10 yrs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NE-Kt-Jg0">
-                                                    <rect key="frame" x="0.0" y="32" width="47" height="25"/>
+                                                    <rect key="frame" x="0.0" y="32.5" width="46.5" height="24.5"/>
                                                     <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="18"/>
                                                     <color key="textColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -120,7 +119,7 @@
                                             <state key="normal" title="Remove"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wstudjeff2 [200d]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDZ-1j-q0W">
-                                            <rect key="frame" x="28" y="24" width="132" height="25"/>
+                                            <rect key="frame" x="28" y="25" width="131.5" height="24.5"/>
                                             <fontDescription key="fontDescription" name="Oswald-Bold" family="Oswald" pointSize="18"/>
                                             <color key="textColor" red="0.47450980390000003" green="0.52156862749999999" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
