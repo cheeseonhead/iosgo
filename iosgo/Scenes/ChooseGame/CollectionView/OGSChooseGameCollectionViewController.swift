@@ -49,13 +49,7 @@ extension OGSChooseGameCollectionViewController: UICollectionViewDelegateFlowLay
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.cellIdentifier, for: indexPath)
-
         return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-    {
-        return CGSize(width: view.frame.size.width, height: Style.cellHeight)
     }
 }
 
@@ -64,11 +58,26 @@ extension OGSChooseGameCollectionViewController
 {
     class func createLayout() -> UICollectionViewFlowLayout
     {
-        let flowLayout = UICollectionViewFlowLayout()
+        let flowLayout = TableViewLayout()
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = Style.Layout.spacing
+        flowLayout.estimatedItemSize = CGSize(width: 100, height: 100)
         flowLayout.sectionInset = UIEdgeInsets(top: Style.Layout.spacing, left: 0, bottom: Style.Layout.spacing, right: 0)
 
         return flowLayout
+    }
+}
+
+class TableViewLayout: UICollectionViewFlowLayout
+{
+    private var contentWidth: CGFloat
+    {
+        return collectionView!.frame.size.width
+    }
+
+    override func prepare()
+    {
+        super.prepare()
+        estimatedItemSize = CGSize(width: contentWidth, height: 100)
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -12,20 +12,20 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="OGSChooseGameCollectionViewCell" layoutMarginsFollowReadableWidth="YES" reuseIdentifier="OGSChooseGameCollectionViewCell" id="3iN-gm-edM" customClass="OGSChooseGameCollectionViewCell" customModule="iosgo" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="656" height="77"/>
+            <rect key="frame" x="0.0" y="0.0" width="452" height="78"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="656" height="77"/>
+                <rect key="frame" x="0.0" y="0.0" width="452" height="78"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="studjeff2 [22k]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXO-oH-ZtB" userLabel="Title">
-                        <rect key="frame" x="8" y="26.5" width="132.5" height="24"/>
+                        <rect key="frame" x="8" y="27" width="132.5" height="24"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                         <color key="textColor" red="0.44313725490196076" green="0.52549019607843139" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JgN-OB-AM2" userLabel="Middle">
-                        <rect key="frame" x="254.5" y="8" width="147.5" height="61"/>
+                        <rect key="frame" x="152.5" y="8" width="147.5" height="62"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="19 x 19" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXo-Tq-QTc" userLabel="Board Size">
                                 <rect key="frame" x="31.5" y="0.0" width="84.5" height="33.5"/>
@@ -34,7 +34,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 days + up to 1 wk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KrN-9G-nQ0" userLabel="Time">
-                                <rect key="frame" x="0.0" y="33.5" width="147.5" height="27.5"/>
+                                <rect key="frame" x="0.0" y="33.5" width="147.5" height="28.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" red="0.44313725490196076" green="0.52549019607843139" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -42,7 +42,7 @@
                         </subviews>
                     </stackView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuC-xW-QJS" customClass="OGSButton" customModule="iosgo" customModuleProvider="target">
-                        <rect key="frame" x="548" y="22.5" width="100" height="32"/>
+                        <rect key="frame" x="344" y="23" width="100" height="32"/>
                         <color key="backgroundColor" red="0.44313725490196076" green="0.52549019607843139" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="L4l-4j-D3A"/>
@@ -57,19 +57,21 @@
             <color key="backgroundColor" red="0.94509803921568625" green="0.95686274509803915" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="JgN-OB-AM2" firstAttribute="top" secondItem="3iN-gm-edM" secondAttribute="topMargin" id="0M6-r5-ozx"/>
+                <constraint firstItem="JgN-OB-AM2" firstAttribute="centerX" secondItem="3iN-gm-edM" secondAttribute="centerX" id="0yk-S2-ESb"/>
                 <constraint firstItem="zXO-oH-ZtB" firstAttribute="centerY" secondItem="3iN-gm-edM" secondAttribute="centerY" id="1Sz-kW-Q8A"/>
                 <constraint firstAttribute="bottomMargin" secondItem="JgN-OB-AM2" secondAttribute="bottom" id="3v6-9U-wfC"/>
                 <constraint firstItem="iuC-xW-QJS" firstAttribute="centerY" secondItem="3iN-gm-edM" secondAttribute="centerY" id="5XD-Bt-0dI"/>
                 <constraint firstItem="zXO-oH-ZtB" firstAttribute="leading" secondItem="3iN-gm-edM" secondAttribute="leadingMargin" id="5ml-se-Pgq"/>
+                <constraint firstItem="iuC-xW-QJS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JgN-OB-AM2" secondAttribute="trailing" constant="8" id="GAl-PC-yFv"/>
                 <constraint firstItem="JgN-OB-AM2" firstAttribute="centerY" secondItem="3iN-gm-edM" secondAttribute="centerY" id="Lvc-zj-fCH"/>
-                <constraint firstAttribute="trailingMargin" secondItem="iuC-xW-QJS" secondAttribute="trailing" id="Yri-ud-jlL"/>
-                <constraint firstItem="JgN-OB-AM2" firstAttribute="centerX" secondItem="3iN-gm-edM" secondAttribute="centerX" id="fid-eB-EAb"/>
+                <constraint firstItem="JgN-OB-AM2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zXO-oH-ZtB" secondAttribute="trailing" constant="8" id="OXg-yy-qcK"/>
+                <constraint firstItem="iuC-xW-QJS" firstAttribute="trailing" secondItem="3iN-gm-edM" secondAttribute="trailingMargin" id="Yri-ud-jlL"/>
             </constraints>
-            <size key="customSize" width="656" height="77"/>
+            <size key="customSize" width="452" height="78"/>
             <connections>
                 <outlet property="button" destination="iuC-xW-QJS" id="2m5-34-CRM"/>
             </connections>
-            <point key="canvasLocation" x="51" y="-198.5"/>
+            <point key="canvasLocation" x="-86" y="-101"/>
         </collectionViewCell>
     </objects>
 </document>

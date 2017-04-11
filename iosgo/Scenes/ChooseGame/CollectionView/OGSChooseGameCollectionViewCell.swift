@@ -19,6 +19,7 @@ class OGSChooseGameCollectionViewCell: UICollectionViewCell
 
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes
     {
+        layoutAttributes.bounds.size.height = systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
         return layoutAttributes
     }
 }
