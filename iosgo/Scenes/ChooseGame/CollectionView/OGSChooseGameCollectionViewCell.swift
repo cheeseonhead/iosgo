@@ -10,5 +10,15 @@ import UIKit
 
 class OGSChooseGameCollectionViewCell: UICollectionViewCell
 {
+    @IBOutlet weak var button: OGSButton! {
+        didSet
+        {
+            button.setupAsButtonType(.primary)
+        }
+    }
 
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes
+    {
+        return layoutAttributes
+    }
 }
