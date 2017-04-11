@@ -14,7 +14,7 @@ class OGSChooseGameCollectionViewController: UICollectionViewController
 
         struct Layout
         {
-            static var spacing = 8
+            static var spacing: CGFloat = 8
         }
     }
 
@@ -25,7 +25,7 @@ class OGSChooseGameCollectionViewController: UICollectionViewController
 
     required init()
     {
-        var layout = self.createLayout()
+        let layout = type(of: self).createLayout()
         super.init(collectionViewLayout: layout)
 
         collectionView?.backgroundColor = Style.backgroundColor
@@ -62,11 +62,13 @@ extension OGSChooseGameCollectionViewController: UICollectionViewDelegateFlowLay
 // MARK: Properties
 extension OGSChooseGameCollectionViewController
 {
-    func createLayout() -> UICollectionViewFlowLayout
+    class func createLayout() -> UICollectionViewFlowLayout
     {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = Style.Layout.spacing
         flowLayout.sectionInset = UIEdgeInsets(top: Style.Layout.spacing, left: 0, bottom: Style.Layout.spacing, right: 0)
+
+        return flowLayout
     }
 }
