@@ -41,6 +41,7 @@
 		56BD887A1E551C990098E50B /* Oswald-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886B1E551C990098E50B /* Oswald-RegularItalic.ttf */; };
 		56BD887B1E551C990098E50B /* Oswald-Stencil.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */; };
 		56BD888F1E5522530098E50B /* OGSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BD888E1E5522530098E50B /* OGSButton.swift */; };
+		56FC0C071E9C62E500119D0C /* OGSChooseGameCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56FC0C061E9C62E500119D0C /* OGSChooseGameCollectionViewCell.xib */; };
 		8405C06692E15B7D16D86610 /* OGSNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C2D09201FEEC8BA27848 /* OGSNotificationCenter.swift */; };
 		8405C17C969AC4488D2E1025 /* OGSLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8405CF546D963204AC2350EC /* OGSLoginViewController.storyboard */; };
 		8405C1BD724D953FE34DDC35 /* OGSSeekGraphSocketStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CDF23994EB7077BA78B8 /* OGSSeekGraphSocketStore.swift */; };
@@ -127,6 +128,7 @@
 		56BD886B1E551C990098E50B /* Oswald-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-RegularItalic.ttf"; sourceTree = "<group>"; };
 		56BD886C1E551C990098E50B /* Oswald-Stencil.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Stencil.ttf"; sourceTree = "<group>"; };
 		56BD888E1E5522530098E50B /* OGSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSButton.swift; sourceTree = "<group>"; };
+		56FC0C061E9C62E500119D0C /* OGSChooseGameCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OGSChooseGameCollectionViewCell.xib; sourceTree = "<group>"; };
 		716E1A03A77525183735DD47 /* Pods-iosgo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iosgo/Pods-iosgo.debug.xcconfig"; sourceTree = "<group>"; };
 		8405C11EE91D3441F632A247 /* OGSUserSettingsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSUserSettingsProtocol.swift; sourceTree = "<group>"; };
 		8405C16171C1170044A8637E /* OGSBetaConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSBetaConfiguration.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				AD05ABC463A960E74C9B2CA0 /* OGSChooseGameCollectionViewController.swift */,
+				56FC0C061E9C62E500119D0C /* OGSChooseGameCollectionViewCell.xib */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				56BD88721E551C990098E50B /* Oswald-ExtraLight.ttf in Resources */,
 				56BD886F1E551C990098E50B /* Oswald-Demi-BoldItalic.ttf in Resources */,
 				565D24731E54A5A500EF62CD /* Actions.sks in Resources */,
+				56FC0C071E9C62E500119D0C /* OGSChooseGameCollectionViewCell.xib in Resources */,
 				56BD886E1E551C990098E50B /* Oswald-BoldItalic.ttf in Resources */,
 				56BD88741E551C990098E50B /* Oswald-HeavyItalic.ttf in Resources */,
 				56BD88771E551C990098E50B /* Oswald-Medium.ttf in Resources */,

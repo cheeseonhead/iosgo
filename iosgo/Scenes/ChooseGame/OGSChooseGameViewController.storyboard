@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FgE-uA-NVX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FgE-uA-NVX">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -16,7 +16,7 @@
         <!--Choose Game View Controller-->
         <scene sceneID="we9-LM-jEB">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="W2z-4s-Ipx" customClass="OGSChooseGameViewController" customModule="iosgo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="W2z-4s-Ipx" customClass="OGSChooseGameViewController" customModule="iosgo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="G1S-2d-zbQ"/>
                         <viewControllerLayoutGuide type="bottom" id="Mx2-VB-JKS"/>
@@ -29,11 +29,11 @@
                     <navigationItem key="navigationItem" id="9Mn-EK-zpd">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="lvG-D9-kX3">
-                            <rect key="frame" x="360" y="6" width="304" height="33"/>
+                            <rect key="frame" x="360" y="5.5" width="304" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Challenges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qka-wK-adR">
-                                    <rect key="frame" x="83" y="0.0" width="139" height="33"/>
+                                    <rect key="frame" x="88" y="0.0" width="129.5" height="33"/>
                                     <fontDescription key="fontDescription" name="Oswald-Heavy" family="Oswald" pointSize="28"/>
                                     <color key="textColor" red="0.12363310903310776" green="0.22363260388374329" blue="0.24621641635894775" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -49,7 +49,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1o-j2-wds" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1146.09375" y="197.65625"/>
+            <point key="canvasLocation" x="546" y="197"/>
         </scene>
         <!--Challenges-->
         <scene sceneID="IEl-uu-psI">
@@ -57,7 +57,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FgE-uA-NVX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Challenges" image="challenge_tab" id="5sI-fx-cLr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ij0-aJ-5mS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ij0-aJ-5mS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -72,7 +72,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ld9-Oj-WJB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="421.875" y="197.65625"/>
+            <point key="canvasLocation" x="-133" y="197"/>
         </scene>
     </scenes>
     <resources>

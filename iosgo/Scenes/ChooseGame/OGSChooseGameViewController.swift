@@ -56,25 +56,28 @@ fileprivate extension OGSChooseGameViewController
 // MARK: - Display Logic
 extension OGSChooseGameViewController
 {
-    func displayListGames(viewModel: OGSChooseGame.ListGames.ViewModel)
+    func displayListGames(viewModel _: OGSChooseGame.ListGames.ViewModel)
     {
     }
 }
 
 // MARK: - View Setup
-extension OGSChooseGameViewController {
-    func setupViews() {
+extension OGSChooseGameViewController
+{
+    func setupViews()
+    {
+        //        automaticallyAdjustsScrollViewInsets = false
         setupCollectionView()
     }
 
     func setupCollectionView()
     {
         collectionViewController = OGSChooseGameCollectionViewController()
-        collectionViewController.automaticallyAdjustsScrollViewInsets = true
         addChildViewController(collectionViewController)
-        view.addSubview(collectionViewController.view)
+        view.addSubview(collectionViewController.collectionView!)
 
-        collectionViewController.collectionView?.snp.makeConstraints { make in
+        collectionViewController.collectionView?.snp.makeConstraints
+        { make in
             make.edges.equalToSuperview()
         }
     }
