@@ -10,7 +10,7 @@ class OGSChooseGameCollectionViewController: UICollectionViewController
     fileprivate struct Style
     {
         static var backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        static var cellHeight: CGFloat = 100
+        static var estimatedCellSize = CGSize(width: 100, height: 100)
 
         struct Layout
         {
@@ -53,7 +53,7 @@ extension OGSChooseGameCollectionViewController: UICollectionViewDelegateFlowLay
     }
 }
 
-// MARK: Properties
+// MARK: TableViewLayout
 extension OGSChooseGameCollectionViewController
 {
     class func createLayout() -> UICollectionViewFlowLayout
@@ -61,23 +61,24 @@ extension OGSChooseGameCollectionViewController
         let flowLayout = TableViewLayout()
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = Style.Layout.spacing
-        flowLayout.estimatedItemSize = CGSize(width: 100, height: 100)
+        flowLayout.estimatedItemSize = Style.estimatedCellSize
         flowLayout.sectionInset = UIEdgeInsets(top: Style.Layout.spacing, left: 0, bottom: Style.Layout.spacing, right: 0)
 
         return flowLayout
     }
+
+    fileprivate class TableViewLayout: UICollectionViewFlowLayout
+    {
+        private var contentWidth: CGFloat
+        {
+            return collectionView!.frame.size.width
+        }
+
+        override func prepare()
+        {
+            super.prepare()
+            estimatedItemSize = CGSize(width: contentWidth, height: Style.estimatedCellSize.height)
+        }
+    }
 }
 
-class TableViewLayout: UICollectionViewFlowLayout
-{
-    private var contentWidth: CGFloat
-    {
-        return collectionView!.frame.size.width
-    }
-
-    override func prepare()
-    {
-        super.prepare()
-        estimatedItemSize = CGSize(width: contentWidth, height: 100)
-    }
-}
