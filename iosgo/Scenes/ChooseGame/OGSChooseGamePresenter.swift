@@ -57,7 +57,7 @@ fileprivate extension OGSChooseGamePresenter {
     }
 
     func rankString(from rank: Int) -> String {
-        if rank < 30 {
+        if (rank < 30) {
             return "\(30 - rank)k"
         } else {
             return "\(rank - 30)d"
