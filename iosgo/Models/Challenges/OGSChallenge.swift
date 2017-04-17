@@ -59,10 +59,9 @@ struct OGSChallenge
             var system: TimeControlTypes
             var timeControl: TimeControlTypes
 
-            var perMove: Int
+            var timePerMove: Int
         }
     }
-
 
     enum TimeControlTypes: String, UnboxableEnum
     {
@@ -82,5 +81,10 @@ struct OGSChallenge
     }
 }
 
-
-
+extension OGSChallenge
+{
+    var size: CGSize
+    {
+        return CGSize(width: width, height: height)
+    }
+}

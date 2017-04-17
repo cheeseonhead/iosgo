@@ -18,11 +18,11 @@ class OGSSeekGraphSocketStore
     {
         let challenge = self.createChallengeFrom(payload: fakeData1())
         delegate?.listChallenges([challenge])
-        
+
         socket.onConnect = {
             self.socket.write(string: "42[\"seek_graph/connect\",{\"channel\":\"global\"}]")
         }
-        
+
         socket.onText = { (text: String) in
             print("got some text: \(text)")
 
@@ -34,21 +34,23 @@ class OGSSeekGraphSocketStore
             let newText = "{\"payload\": \(text.substring(from: startIndex))}"
             print("\(String(describing: newText.convertToDictionary()))")
         }
-        
+
         socket.onData = { (data: Data) in
             print("got some data: \(data.count)")
         }
-        
+
         socket.connect()
     }
 
     func createChallengeFrom(payload: [String: Any]) -> OGSChallenge
     {
-        do {
+        do
+        {
             let challenge: OGSChallenge = try unbox(dictionary: payload)
             return challenge
         }
-        catch _ {
+        catch _
+        {
             fatalError("Unable to parse Challenge")
         }
     }
@@ -72,7 +74,7 @@ class OGSSeekGraphSocketStore
             "time_control": "fischer",
             "ranked": true,
             "min_rank": -3,
-//            "komi": nil,
+            //            "komi": nil,
             "game_id": 809,
             "challenger_color": "automatic",
             "time_control_parameters": [
@@ -82,8 +84,8 @@ class OGSSeekGraphSocketStore
                 "initial_time": 259200,
                 "max_time": 604800,
                 "time_increment": 86400,
-                "speed": "correspondence"
-            ]
+                "speed": "correspondence",
+            ],
         ]
     }
 }
@@ -149,6 +151,6 @@ extension TimeControlParametersType.Simple: Unboxable
         system = try unboxer.unbox(key: "system")
         timeControl = try unboxer.unbox(key: "time_control")
 
-        perMove = try unboxer.unbox(key: "per_move")
+        timePerMove = try unboxer.unbox(key: "per_move")
     }
 }
