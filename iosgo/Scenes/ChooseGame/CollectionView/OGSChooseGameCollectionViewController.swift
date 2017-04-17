@@ -23,6 +23,16 @@ class OGSChooseGameCollectionViewController: UICollectionViewController
         static var cellIdentifier = "OGSChooseGameCollectionViewCell"
     }
 
+    typealias Challenge = OGSChooseGame.ListGames.ViewModel.Challenge
+
+    var challengeList: [Challenge] = []
+    {
+        didSet
+        {
+            self.collectionView!.reloadData()
+        }
+    }
+
     required init()
     {
         let layout = type(of: self).createLayout()
@@ -43,7 +53,7 @@ extension OGSChooseGameCollectionViewController: UICollectionViewDelegateFlowLay
 {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return 10
+        return challengeList.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
@@ -81,4 +91,3 @@ extension OGSChooseGameCollectionViewController
         }
     }
 }
-
