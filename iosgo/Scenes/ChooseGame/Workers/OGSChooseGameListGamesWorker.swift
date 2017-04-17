@@ -42,48 +42,7 @@ class OGSChooseGameListGamesWorker: OGSListGamesStoreDelegate
 
     func listChallenges(_ challenges: [OGSChallenge])
     {
-        let challengeList = createResponseChallengeList(from: challenges)
-
-        let response = OGSChooseGame.ListGames.Response(username: "Jeff", userRank: 4, challenges: challengeList)
+        let response = OGSChooseGame.ListGames.Response(username: "Jeff", userRank: 4, challenges: challenges)
         delegate?.sendListGamesResponse(response)
-    }
-}
-
-fileprivate extension OGSChooseGameListGamesWorker
-{
-    func createResponseChallengeList(from challengesList: [OGSChallenge]) -> [ListGames.Response.Challenge]
-    {
-        var responseChallengeList: [ListGames.Response.Challenge] = []
-
-        for apiChallenge in challengesList {
-            let username = apiChallenge.username
-            let challengerRank = apiChallenge.challengerRank
-            let minRank = apiChallenge.minRank
-            let maxRank = apiChallenge.maxRank
-            let size = CGSize(width: apiChallenge.width, height: apiChallenge.height)
-            let timeControlParameters = createResponseTimeParameterType(from: apiChallenge.timeControlParameters)
-
-            let challenge = ListGames.Response.Challenge(challengerUsername: username, challengerRank: challengerRank,
-                    minRank: minRank, maxRank: maxRank, size: size, timeControlParameters: timeControlParameters)
-            responseChallengeList.append(challenge)
-        }
-
-        return responseChallengeList
-    }
-
-    typealias ApiTimeControlType = OGSChallenge.TimeControlParametersType
-    typealias ResponseTimControlType = ListGames.Response.Challenge.TimeControlParametersType
-
-    func createResponseTimeParameterType(from parameterType: ApiTimeControlType) -> ResponseTimControlType
-    {
-        switch parameterType {
-            case .fischer(let parameters):
-                let fischer = ResponseTimControlType.Fischer(initialTime: parameters.initialTime,
-                        maxTime: parameters.maxTime, timeIncrement: parameters.timeIncrement)
-                return .fischer(parameters: fischer)
-            case .simple(let parameters):
-                let simple = ResponseTimControlType.Simple(timePerMove: parameters.perMove)
-                return .simple(parameters: simple)
-        }
     }
 }
