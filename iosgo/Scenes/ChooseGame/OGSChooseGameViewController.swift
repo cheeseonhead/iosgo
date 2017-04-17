@@ -56,8 +56,9 @@ fileprivate extension OGSChooseGameViewController
 // MARK: - Display Logic
 extension OGSChooseGameViewController
 {
-    func displayListGames(viewModel _: OGSChooseGame.ListGames.ViewModel)
+    func displayListGames(viewModel: OGSChooseGame.ListGames.ViewModel)
     {
+        listViewController.challengeList = viewModel.challengeList
     }
 }
 
