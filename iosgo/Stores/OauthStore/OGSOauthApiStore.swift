@@ -7,6 +7,13 @@ import Foundation
 
 class OGSOauthApiStore
 {
+    fileprivate var apiManager: OGSApiManager!
+
+    required init(apiManager: OGSApiManager)
+    {
+        self.apiManager = apiManager
+    }
+
     func getToken(with username: String, password: String, completion: @escaping (OGSLoginInfo) -> Void)
     {
         let url = "oauth2/token/"
@@ -19,7 +26,7 @@ class OGSOauthApiStore
             "password": password,
         ]
 
-        OGSApiManager.sharedInstance.request(toUrl: url, method: .POST, parameters: params)
+        apiManager.request(toUrl: url, method: .POST, parameters: params)
         { statusCode, payload, _ in
 
             var loginInfo = OGSLoginInfo(result: .error(type: .unknownError))
