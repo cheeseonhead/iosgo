@@ -86,7 +86,6 @@ fileprivate extension OGSChooseGamePresenter
             let canAccept = (challenge.maxRank >= response.userRank && challenge.minRank <= response.userRank)
 
             return .other(canAccept: canAccept)
-
         }
     }
 
