@@ -29,7 +29,7 @@ class OGSChooseGamePresenter: OGSChooseGamePresenterInput
 
     func presentListGames(response: ListGames.Response)
     {
-        let challengeList = viewModelChallengeList(from: response)
+        let challengeList = self.challengeList(from: response)
 
         let viewModel = ListGames.ViewModel(challengeList: challengeList)
 
@@ -43,7 +43,7 @@ class OGSChooseGamePresenter: OGSChooseGamePresenterInput
 // MARK: - Create Challenges
 fileprivate extension OGSChooseGamePresenter
 {
-    func viewModelChallengeList(from response: ListGames.Response) -> [ListGames.ViewModel.Challenge]
+    func challengeList(from response: ListGames.Response) -> [ListGames.ViewModel.Challenge]
     {
         let username = response.username
         let userLevel = response.userRank
