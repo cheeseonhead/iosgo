@@ -13,108 +13,108 @@ import UIKit
 
 protocol OGSChooseGamePresenterInput
 {
-  func presentListGames(response: OGSChooseGame.ListGames.Response)
+    func presentListGames(response: OGSChooseGame.ListGames.Response)
 }
 
 protocol OGSChooseGamePresenterOutput: class
 {
-  func displayListGames(viewModel: OGSChooseGame.ListGames.ViewModel)
+    func displayListGames(viewModel: OGSChooseGame.ListGames.ViewModel)
 }
 
 class OGSChooseGamePresenter: OGSChooseGamePresenterInput
 {
-  typealias ListGames = OGSChooseGame.ListGames
+    typealias ListGames = OGSChooseGame.ListGames
 
-  weak var output: OGSChooseGamePresenterOutput!
+    weak var output: OGSChooseGamePresenterOutput!
 
-  func presentListGames(response: ListGames.Response)
-  {
-    let challengeList = self.challengeList(from: response)
-
-    let viewModel = ListGames.ViewModel(challengeList: challengeList)
-
-    OGSDispatcher.asyncMain
+    func presentListGames(response: ListGames.Response)
     {
-      self.output.displayListGames(viewModel: viewModel)
+        let challengeList = self.challengeList(from: response)
+
+        let viewModel = ListGames.ViewModel(challengeList: challengeList)
+
+        OGSDispatcher.asyncMain
+        {
+            self.output.displayListGames(viewModel: viewModel)
+        }
     }
-  }
 }
 
 // MARK: - Create Challenges
 fileprivate extension OGSChooseGamePresenter
 {
-  func challengeList(from response: ListGames.Response) -> [ListGames.ViewModel.Challenge]
-  {
-    let username = response.username
-    let userLevel = response.userRank
-
-    var viewModelChallenges: [ListGames.ViewModel.Challenge] = []
-
-    for challenge in response.challenges
+    func challengeList(from response: ListGames.Response) -> [ListGames.ViewModel.Challenge]
     {
-      let userInfo = "\(challenge.username) [\(rankString(from: challenge.challengerRank))]"
-      let sizeString = "\(challenge.size.width)x\(challenge.size.height)"
-      let timeString = challengeTimeString(from: challenge.timeControlParameters)
-      let cellType = challengeCellType(for: challenge, response: response)
+        let username = response.username
+        let userLevel = response.userRank
 
-      let viewModelChallenge = ListGames.ViewModel.Challenge(userInfo: userInfo, sizeString: sizeString, timeString: timeString, cellType: cellType)
-      viewModelChallenges.append(viewModelChallenge)
+        var viewModelChallenges: [ListGames.ViewModel.Challenge] = []
+
+        for challenge in response.challenges
+        {
+            let userInfo = "\(challenge.username) [\(rankString(from: challenge.challengerRank))]"
+            let sizeString = "\(challenge.size.width)x\(challenge.size.height)"
+            let timeString = challengeTimeString(from: challenge.timeControlParameters)
+            let cellType = challengeCellType(for: challenge, response: response)
+
+            let viewModelChallenge = ListGames.ViewModel.Challenge(userInfo: userInfo, sizeString: sizeString, timeString: timeString, cellType: cellType)
+            viewModelChallenges.append(viewModelChallenge)
+        }
+
+        return viewModelChallenges
     }
 
-    return viewModelChallenges
-  }
-
-  func rankString(from rank: Int) -> String
-  {
-    if rank < 30 {
-      return "\(30 - rank)k"
-    }
-    else
+    func rankString(from rank: Int) -> String
     {
-      return "\(rank - 30)d"
+        if rank < 30 {
+            return "\(30 - rank)k"
+        }
+        else
+        {
+            return "\(rank - 30)d"
+        }
     }
-  }
 
-  func challengeCellType(for challenge: OGSChallenge, response: ListGames.Response) -> ListGames.ViewModel.ChallengeCellType
-  {
-    if challenge.username == response.username
+    func challengeCellType(for challenge: OGSChallenge, response: ListGames.Response) -> ListGames.ViewModel.ChallengeCellType
     {
-      return .owner
+        if challenge.username == response.username
+        {
+            return .owner
+        }
+        else
+        {
+            let canAccept = (challenge.maxRank >= response.userRank && challenge.minRank <= response.userRank)
+
+            return .other(canAccept: canAccept)
+
+        }
     }
-    else
+
+    typealias TimeControlParameterType = OGSChallenge.TimeControlParametersType
+
+    func challengeTimeString(from timeType: TimeControlParameterType) -> String
     {
-      let canAccept = (challenge.maxRank >= response.userRank && challenge.minRank <= response.userRank)
-
-      return .other(canAccept: canAccept)
-
+        switch timeType {
+        case let .fischer(parameters):
+            return fischerTimeString(from: parameters)
+        case let .simple(parameters):
+            return simpleTimeString(from: parameters)
+        }
     }
-  }
 
-  typealias TimeControlParameterType = OGSChallenge.TimeControlParametersType
+    func fischerTimeString(from parameters: TimeControlParameterType.Fischer) -> String
+    {
+        let initialTimeString = String.dateStringFrom(seconds: parameters.initialTime)
+        let incrementString = String.dateStringFrom(seconds: parameters.timeIncrement)
+        let maxTimeString = String.dateStringFrom(seconds: parameters.maxTime)
 
-  func challengeTimeString(from timeType: TimeControlParameterType) -> String
-  {
-    switch timeType {
-    case let .fischer(parameters):
-      return fischerTimeString(from: parameters)
-    case let .simple(parameters):
-      return simpleTimeString(from: parameters)
+        return "\(initialTimeString)+ \(incrementString) up to \(maxTimeString)"
     }
-  }
 
-  func fischerTimeString(from parameters: TimeControlParameterType.Fischer) -> String
-  {
-    let initialTimeString = String.dateStringFrom(seconds: parameters.initialTime)
-    let incrementString = String.dateStringFrom(seconds: parameters.timeIncrement)
-    let maxTimeString = String.dateStringFrom(seconds: parameters.maxTime)
+    func simpleTimeString(from parameters: TimeControlParameterType.Simple) -> String
+    {
+        let perMoveTimeString = String.dateStringFrom(seconds: parameters.timePerMove)
 
-    return "\(initialTimeString)+ \(incrementString) up to \(maxTimeString)"
-  }
-
-  func simpleTimeString(from parameters: TimeControlParameterType.Simple) -> String
-  {
-    let perMoveTimeString = String.dateStringFrom(seconds: parameters.timePerMove)
-
-    return "\(perMoveTimeString)/move"
-  }
+        return "\(perMoveTimeString)/move"
+    }
 }
