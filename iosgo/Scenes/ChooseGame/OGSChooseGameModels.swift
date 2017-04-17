@@ -22,35 +22,7 @@ struct OGSChooseGame
         {
             var username: String
             var userRank: Int
-            var challenges: [Challenge]
-
-            struct Challenge
-            {
-                var challengerUsername: String
-                var challengerRank: Int
-                var minRank: Int
-                var maxRank: Int
-                var size: CGSize
-                var timeControlParameters: TimeControlParametersType
-
-                enum TimeControlParametersType
-                {
-                    case fischer(parameters: Fischer)
-                    case simple(parameters: Simple)
-
-                    struct Fischer
-                    {
-                        var initialTime: Int
-                        var maxTime: Int
-                        var timeIncrement: Int
-                    }
-
-                    struct Simple
-                    {
-                        var timePerMove: Int
-                    }
-                }
-            }
+            var challenges: [OGSChallenge]
         }
 
         struct ViewModel
@@ -58,7 +30,7 @@ struct OGSChooseGame
             enum ChallengeCellType
             {
                 case owner
-                case other(canAccept:Bool)
+                case other(canAccept: Bool)
             }
 
             struct Challenge
