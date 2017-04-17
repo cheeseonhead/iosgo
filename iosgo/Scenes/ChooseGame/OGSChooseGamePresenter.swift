@@ -29,7 +29,7 @@ class OGSChooseGamePresenter: OGSChooseGamePresenterInput
 
     func presentListGames(response: ListGames.Response)
     {
-        let challengeList = createViewModelChallengeList(from: response)
+        let challengeList = viewModelChallengeList(from: response)
 
         let viewModel = ListGames.ViewModel(challengeList: challengeList)
 
@@ -37,22 +37,22 @@ class OGSChooseGamePresenter: OGSChooseGamePresenterInput
     }
 }
 
-
-// MARK - Create Challenges
+// MARK: - Create Challenges
 fileprivate extension OGSChooseGamePresenter
 {
-    func createViewModelChallengeList(from response: ListGames.Response) -> [ListGames.ViewModel.Challenge]
+    func viewModelChallengeList(from response: ListGames.Response) -> [ListGames.ViewModel.Challenge]
     {
         let username = response.username
         let userLevel = response.userRank
 
         var viewModelChallenges: [ListGames.ViewModel.Challenge] = []
 
-        for challenge in response.challenges {
+        for challenge in response.challenges
+        {
             let userInfo = "\(challenge.challengerUsername) [\(rankString(from: challenge.challengerRank))]"
             let sizeString = "\(challenge.size.width)x\(challenge.size.height)"
             let timeString = challengeTimeString(from: challenge.timeControlParameters)
-            let cellType = getCellType(for: challenge, response: response)
+            let cellType = cellType(for: challenge, response: response)
 
             let viewModelChallenge = ListGames.ViewModel.Challenge(userInfo: userInfo, sizeString: sizeString, timeString: timeString, cellType: cellType)
             viewModelChallenges.append(viewModelChallenge)
@@ -61,27 +61,29 @@ fileprivate extension OGSChooseGamePresenter
         return viewModelChallenges
     }
 
-    func rankString(from rank:Int) -> String
+    func rankString(from rank: Int) -> String
     {
         if rank < 30 {
             return "\(30 - rank)k"
         }
-        else {
-            return "\(rank-30)d"
+        else
+        {
+            return "\(rank - 30)d"
         }
     }
 
-    func getCellType(for challenge: ListGames.Response.Challenge, response: ListGames.Response) -> ListGames.ViewModel.ChallengeCellType
+    func cellType(for challenge: ListGames.Response.Challenge, response: ListGames.Response) -> ListGames.ViewModel.ChallengeCellType
     {
-        if challenge.challengerUsername == response.username {
+        if challenge.challengerUsername == response.username
+        {
             return .owner
         }
-        else {
+        else
+        {
             let canAccept = (challenge.maxRank >= response.userRank && challenge.minRank <= response.userRank)
 
             return .other(canAccept: canAccept)
         }
-
     }
 
     typealias TimeControlParameterType = ListGames.Response.Challenge.TimeControlParametersType
@@ -89,10 +91,10 @@ fileprivate extension OGSChooseGamePresenter
     func challengeTimeString(from timeType: TimeControlParameterType) -> String
     {
         switch timeType {
-            case .fischer(let parameters):
-                return fischerTimeString(from: parameters)
-            case .simple(let parameters):
-                return simpleTimeString(from: parameters)
+        case .fischer(let parameters):
+            return fischerTimeString(from: parameters)
+        case .simple(let parameters):
+            return simpleTimeString(from: parameters)
         }
     }
 
