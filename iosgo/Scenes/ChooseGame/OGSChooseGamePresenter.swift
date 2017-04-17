@@ -49,10 +49,10 @@ fileprivate extension OGSChooseGamePresenter
 
         for challenge in response.challenges
         {
-            let userInfo = "\(challenge.challengerUsername) [\(rankString(from: challenge.challengerRank))]"
+            let userInfo = "\(challenge.username) [\(rankString(from: challenge.challengerRank))]"
             let sizeString = "\(challenge.size.width)x\(challenge.size.height)"
             let timeString = challengeTimeString(from: challenge.timeControlParameters)
-            let cellType = cellType(for: challenge, response: response)
+            let cellType = challengeCellType(for: challenge, response: response)
 
             let viewModelChallenge = ListGames.ViewModel.Challenge(userInfo: userInfo, sizeString: sizeString, timeString: timeString, cellType: cellType)
             viewModelChallenges.append(viewModelChallenge)
@@ -72,9 +72,9 @@ fileprivate extension OGSChooseGamePresenter
         }
     }
 
-    func cellType(for challenge: ListGames.Response.Challenge, response: ListGames.Response) -> ListGames.ViewModel.ChallengeCellType
+    func challengeCellType(for challenge: OGSChallenge, response: ListGames.Response) -> ListGames.ViewModel.ChallengeCellType
     {
-        if challenge.challengerUsername == response.username
+        if challenge.username == response.username
         {
             return .owner
         }
@@ -86,7 +86,7 @@ fileprivate extension OGSChooseGamePresenter
         }
     }
 
-    typealias TimeControlParameterType = ListGames.Response.Challenge.TimeControlParametersType
+    typealias TimeControlParameterType = OGSChallenge.TimeControlParametersType
 
     func challengeTimeString(from timeType: TimeControlParameterType) -> String
     {
