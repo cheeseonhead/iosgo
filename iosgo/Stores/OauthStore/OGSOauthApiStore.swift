@@ -19,8 +19,8 @@ class OGSOauthApiStore
         let url = "oauth2/token/"
 
         let params = [
-            "client_id": OGSApiManager.sharedInstance.clientId!,
-            "client_secret": OGSApiManager.sharedInstance.clientSecret!,
+            "client_id": apiManager.clientId!,
+            "client_secret": apiManager.clientSecret!,
             "grant_type": "password",
             "username": username,
             "password": password,
