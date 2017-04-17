@@ -7,10 +7,11 @@ import Foundation
 
 class OGSDispatcher
 {
-    static func asyncMain(completion: @escaping ()->(Void))
+    static func asyncMain(_ closure: @escaping () -> Void)
     {
-        DispatchQueue.main.async {
-            completion()
+        DispatchQueue.main.async
+        {
+            closure()
         }
     }
 }

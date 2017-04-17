@@ -33,7 +33,10 @@ class OGSChooseGamePresenter: OGSChooseGamePresenterInput
 
         let viewModel = ListGames.ViewModel(challengeList: challengeList)
 
-        output.displayListGames(viewModel: viewModel)
+        OGSDispatcher.asyncMain
+        {
+            self.output.displayListGames(viewModel: viewModel)
+        }
     }
 }
 
