@@ -5,36 +5,43 @@
 
 import SocketIO
 
+enum SeekGraph: String
+{
+    case connect = "seek_graph/connect"
+}
+
 class OGSSocketManager
 {
     var socketAddress: String!
 
-    fileprivate var socket: WebSocket!
+    fileprivate var socket: SocketIOClient!
 
     func connect()
     {
         socket = SocketIOClient(socketURL: URL(string: socketAddress)!, config: [.forceWebsockets(true)])
+
+        socket.on(<#T##event: String##Swift.String#>, callback: <#T##@escaping NormalCallback##@escaping SocketIO.NormalCallback#>)
     }
 }
 
 // MARK: - Handlers
-extension OGSSocketManager: WebSocketDelegate
+extension OGSSocketManager
 {
-    func websocketDidConnect(socket: WebSocket)
+    func websocketDidConnect(socket: socket)
     {
         print("just connected!")
     }
 
-    func websocketDidDisconnect(socket: WebSocket, error: NSError?)
+    func websocketDidDisconnect(socket: socket, error: NSError?)
     {
     }
 
-    func websocketDidReceiveMessage(socket: WebSocket, text: String)
+    func websocketDidReceiveMessage(socket: socket, text: String)
     {
         
     }
 
-    func websocketDidReceiveData(socket: WebSocket, data: Data)
+    func websocketDidReceiveData(socket: socket, data: Data)
     {
     }
 
