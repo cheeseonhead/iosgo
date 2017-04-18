@@ -10,5 +10,5 @@ class OGSProdConfiguration: OGSConfigurationProtocol
     var domainName = "https://online-go.com/"
     var clientID = "IR7GqvOdPAWD4C70BXJrLKt0IG5cy7IacCL7wo9G"
     var clientSecret = "H0hmz28CiVRitYcsbCdnWa33WC3OstnmVSyJdTy2sf1TWoSQ16cOcWH6zvILKyiUFHqgcEazjUlnv9nFberfHHVSiH6HpBgxzmeBjDwNV1gkeVP8jtaLh7GNXASoLXG6"
-    var socketAddress = "wss://beta.online-go.com/socket.io/?EIO=3&transport=websocket"
+    var socketAddress = "wss://online-go.com/socket.io/?EIO=3&transport=websocket"
 }
