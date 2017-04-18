@@ -6,38 +6,32 @@
 import UIKit
 import Unbox
 import Starscream
+import SocketIO
 
 fileprivate typealias TimeControlParametersType = OGSChallenge.TimeControlParametersType
 
 class OGSSeekGraphSocketStore
 {
     weak var delegate: OGSListGamesStoreDelegate?
-    var socket = WebSocket(url: URL(string: "wss://beta.online-go.com/socket.io/?EIO=3&transport=websocket")!)
+        let socket = SocketIOClient(socketURL: URL(string: "https://online-go.com")!, config: [.log(true), .forceWebsockets(true)])
 
     func connect()
     {
         let challenge = self.createChallengeFrom(payload: fakeData1())
         delegate?.listChallenges([challenge])
 
-        socket.onConnect = {
-            self.socket.write(string: "42[\"seek_graph/connect\",{\"channel\":\"global\"}]")
+
+        socket.on("connect") { data, ack in
+            print("Connected \(data) \(ack)")
+            self.socket.emit("seek_graph/connect", ["channel":"global"])
+         }
+
+        socket.on("seekgraph/global") { data, ack in
+            print(data)
         }
 
-        socket.onText = { (text: String) in
-            print("got some text: \(text)")
 
-            print("Turn into dictionary")
-
-            print("\(String(describing: "[{\"test\": 12345}]".convertToDictionary()))")
-
-            let startIndex = text.index(text.startIndex, offsetBy: 2)
-            let newText = "{\"payload\": \(text.substring(from: startIndex))}"
-            print("\(String(describing: newText.convertToDictionary()))")
-        }
-
-        socket.onData = { (data: Data) in
-            print("got some data: \(data.count)")
-        }
+//        ["seek_graph/connect",{"channel":"global"}]
 
         socket.connect()
     }
