@@ -13,7 +13,7 @@ fileprivate typealias TimeControlParametersType = OGSChallenge.TimeControlParame
 class OGSSeekGraphSocketStore
 {
     weak var delegate: OGSListGamesStoreDelegate?
-        let socket = SocketIOClient(socketURL: URL(string: "https://online-go.com")!, config: [.log(true), .forceWebsockets(true)])
+        let socket = SocketIOClient(socketURL: URL(string: "https://online-go.com")!, config: [.forceWebsockets(true)])
 
     func connect()
     {
