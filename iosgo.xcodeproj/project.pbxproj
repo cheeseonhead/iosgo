@@ -59,7 +59,6 @@
 		8405CD093E23DC1A0921DAA5 /* OGSConfigurationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CE5732ACA22D3DD45431 /* OGSConfigurationProtocol.swift */; };
 		8405CDE4965C7493BA13D163 /* OGSLoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CCBEDED129DD31C31BA8 /* OGSLoginRouter.swift */; };
 		8405CEA1C88BF254C0A34A28 /* OGSOauthApiStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CB3B6D134DFC861A3E6A /* OGSOauthApiStore.swift */; };
-		8405CED9F1AB91E01C0B1895 /* OGSUserSettingsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C11EE91D3441F632A247 /* OGSUserSettingsProtocol.swift */; };
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
 		AD05A00EC3EF1F09DFBC5597 /* Dictionary+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */; };
 		AD05A21671A192B337421704 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A2B5931F24B08CD0F38B /* String+Additions.swift */; };
@@ -128,7 +127,6 @@
 		56FC0C061E9C62E500119D0C /* OGSChooseGameCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OGSChooseGameCollectionViewCell.xib; sourceTree = "<group>"; };
 		56FC0C081E9C85F100119D0C /* OGSChooseGameCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameCollectionViewCell.swift; sourceTree = "<group>"; };
 		716E1A03A77525183735DD47 /* Pods-iosgo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iosgo/Pods-iosgo.debug.xcconfig"; sourceTree = "<group>"; };
-		8405C11EE91D3441F632A247 /* OGSUserSettingsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSUserSettingsProtocol.swift; sourceTree = "<group>"; };
 		8405C16171C1170044A8637E /* OGSBetaConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSBetaConfiguration.swift; sourceTree = "<group>"; };
 		8405C28DF70477E87F3C32BB /* OGSLoginWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginWorker.swift; sourceTree = "<group>"; };
 		8405C2D09201FEEC8BA27848 /* OGSNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSNotificationCenter.swift; sourceTree = "<group>"; };
@@ -279,7 +277,6 @@
 		8405C26D800A88F561D724BE /* UserSettings */ = {
 			isa = PBXGroup;
 			children = (
-				8405C11EE91D3441F632A247 /* OGSUserSettingsProtocol.swift */,
 				8405C7E803F0E983A087BF29 /* OGSUserSettings.swift */,
 			);
 			path = UserSettings;
@@ -700,7 +697,6 @@
 				5612FD121E63C60B000B1973 /* OGSChooseGameRouter.swift in Sources */,
 				8405C95C6D25905BDEEB6F5C /* OGSBetaConfiguration.swift in Sources */,
 				8405CD093E23DC1A0921DAA5 /* OGSConfigurationProtocol.swift in Sources */,
-				8405CED9F1AB91E01C0B1895 /* OGSUserSettingsProtocol.swift in Sources */,
 				8405C33DABB22CF98928A07E /* OGSUserSettings.swift in Sources */,
 				8405C7E3B16ED3B0EF86C0F7 /* OGSUserSettingsStore.swift in Sources */,
 				8405C1BD724D953FE34DDC35 /* OGSSeekGraphSocketStore.swift in Sources */,

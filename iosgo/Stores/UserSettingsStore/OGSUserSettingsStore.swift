@@ -27,7 +27,7 @@ class OGSUserSettingsStore
         }
     }
 
-    func getUserSettings() -> OGSUserSettingsProtocol
+    func getUserSettings() -> OGSUserSettings
     {
         return userSettings
     }
