@@ -14,8 +14,9 @@ class OGSSocketManager
     func connect()
     {
         socket = WebSocket(url: URL(string: socketAddress)!)
-
     }
+
+
 }
 
 extension OGSSocketManager: WebSocketDelegate
