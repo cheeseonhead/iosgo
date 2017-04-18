@@ -3,7 +3,7 @@
 // Copyright (c) 2017 Cheeseonhead. All rights reserved.
 //
 
-import Starscream
+import SocketIO
 
 class OGSSocketManager
 {
@@ -13,12 +13,11 @@ class OGSSocketManager
 
     func connect()
     {
-        socket = WebSocket(url: URL(string: socketAddress)!)
+        socket = SocketIOClient(socketURL: URL(string: socketAddress)!, config: [.forceWebsockets(true)])
     }
-
-
 }
 
+// MARK: - Handlers
 extension OGSSocketManager: WebSocketDelegate
 {
     func websocketDidConnect(socket: WebSocket)
