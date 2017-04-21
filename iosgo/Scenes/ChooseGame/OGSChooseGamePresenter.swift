@@ -45,9 +45,6 @@ fileprivate extension OGSChooseGamePresenter
 {
     func challengeList(from response: ListGames.Response) -> [ListGames.ViewModel.Challenge]
     {
-        let username = response.username
-        let userLevel = response.userRank
-
         var viewModelChallenges: [ListGames.ViewModel.Challenge] = []
 
         for challenge in response.challenges
