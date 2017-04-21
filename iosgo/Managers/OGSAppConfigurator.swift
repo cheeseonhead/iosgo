@@ -35,6 +35,7 @@ extension OGSAppConfigurator
     {
         let userSettings = userSettingsStore.getUserSettings()
         configureApiManager(userSettings: userSettings)
+        configureSocketManager()
     }
 
     func configureApiManager(userSettings: OGSUserSettings)
@@ -45,6 +46,13 @@ extension OGSAppConfigurator
         OGSApiManager.sharedInstance.domainName = configuration.domainName
         OGSApiManager.sharedInstance.clientId = configuration.clientID
         OGSApiManager.sharedInstance.clientSecret = configuration.clientSecret
+    }
+
+    func configureSocketManager()
+    {
+        OGSSocketManager.sharedInstance.socketAddress = configuration.domainName
+
+        OGSSocketManager.sharedInstance.connect()
     }
 }
 

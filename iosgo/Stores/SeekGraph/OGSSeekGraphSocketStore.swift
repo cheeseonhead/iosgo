@@ -13,27 +13,27 @@ fileprivate typealias TimeControlParametersType = OGSChallenge.TimeControlParame
 class OGSSeekGraphSocketStore
 {
     weak var delegate: OGSListGamesStoreDelegate?
-        let socket = SocketIOClient(socketURL: URL(string: "https://online-go.com")!, config: [.forceWebsockets(true)])
+    let socket = SocketIOClient(socketURL: URL(string: "https://online-go.com")!, config: [.forceWebsockets(true)])
 
     func connect()
     {
-        let challenge = self.createChallengeFrom(payload: fakeData1())
+        let challenge = createChallengeFrom(payload: fakeData1())
         delegate?.listChallenges([challenge])
 
-
-        socket.on("connect") { data, ack in
+        socket.on("connect")
+        { data, ack in
             print("Connected \(data) \(ack)")
-            self.socket.emit("seek_graph/connect", ["channel":"global"])
-         }
+            self.socket.emit("seek_graph/connect", ["channel": "global"])
+        }
 
-        socket.on("seekgraph/global") { data, ack in
+        socket.on("seekgraph/global")
+        { data, _ in
             print(data)
         }
 
+        //        ["seek_graph/connect",{"channel":"global"}]
 
-//        ["seek_graph/connect",{"channel":"global"}]
-
-        socket.connect()
+        //        socket.connect()
     }
 
     func createChallengeFrom(payload: [String: Any]) -> OGSChallenge
@@ -75,8 +75,8 @@ class OGSSeekGraphSocketStore
                 "system": "fischer",
                 "pause_on_weekends": true,
                 "time_control": "fischer",
-                "initial_time": 259200,
-                "max_time": 604800,
+                "initial_time": 259_200,
+                "max_time": 604_800,
                 "time_increment": 86400,
                 "speed": "correspondence",
             ],
@@ -88,34 +88,34 @@ extension OGSChallenge: Unboxable
 {
     init(unboxer: Unboxer) throws
     {
-        self.username = try unboxer.unbox(key: "username")
-        self.name = try unboxer.unbox(key: "name")
-        self.timePerMove = try unboxer.unbox(key: "time_per_move")
-        self.userId = try unboxer.unbox(key: "user_id")
-        self.width = try unboxer.unbox(key: "width")
-        self.height = try unboxer.unbox(key: "height")
-        self.handicap = try unboxer.unbox(key: "handicap")
-        self.challengeId = try unboxer.unbox(key: "challenge_id")
-        self.pro = try unboxer.unbox(key: "pro")
-        self.maxRank = try unboxer.unbox(key: "max_rank")
-        self.disableAnalysis = try unboxer.unbox(key: "disable_analysis")
-        self.challengerRank = try unboxer.unbox(key: "rank")
-        self.rules = try unboxer.unbox(key: "rules")
-        self.timeControl = try unboxer.unbox(key: "time_control")
-        self.ranked = try unboxer.unbox(key: "ranked")
-        self.minRank = try unboxer.unbox(key: "min_rank")
-        self.komi = unboxer.unbox(key: "komi")
-        self.gameId = try unboxer.unbox(key: "game_id")
-        self.challengerColor = try unboxer.unbox(key: "challenger_color")
+        username = try unboxer.unbox(key: "username")
+        name = try unboxer.unbox(key: "name")
+        timePerMove = try unboxer.unbox(key: "time_per_move")
+        userId = try unboxer.unbox(key: "user_id")
+        width = try unboxer.unbox(key: "width")
+        height = try unboxer.unbox(key: "height")
+        handicap = try unboxer.unbox(key: "handicap")
+        challengeId = try unboxer.unbox(key: "challenge_id")
+        pro = try unboxer.unbox(key: "pro")
+        maxRank = try unboxer.unbox(key: "max_rank")
+        disableAnalysis = try unboxer.unbox(key: "disable_analysis")
+        challengerRank = try unboxer.unbox(key: "rank")
+        rules = try unboxer.unbox(key: "rules")
+        timeControl = try unboxer.unbox(key: "time_control")
+        ranked = try unboxer.unbox(key: "ranked")
+        minRank = try unboxer.unbox(key: "min_rank")
+        komi = unboxer.unbox(key: "komi")
+        gameId = try unboxer.unbox(key: "game_id")
+        challengerColor = try unboxer.unbox(key: "challenger_color")
 
         switch timeControl {
         case .fischer:
             let parameters: TimeControlParametersType.Fischer = try unboxer.unbox(key: "time_control_parameters")
-            self.timeControlParameters = .fischer(parameters: parameters)
+            timeControlParameters = .fischer(parameters: parameters)
             break
         case .simple:
             let parameters: TimeControlParametersType.Simple = try unboxer.unbox(key: "time_control_parameters")
-            self.timeControlParameters = .simple(parameters: parameters)
+            timeControlParameters = .simple(parameters: parameters)
             break
         }
     }
