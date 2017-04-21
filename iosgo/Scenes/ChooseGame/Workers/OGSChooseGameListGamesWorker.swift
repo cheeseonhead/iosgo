@@ -18,6 +18,7 @@ protocol OGSListGamesStoreDelegate: class
 protocol OGSListGamesStoreProtocol
 {
     weak var delegate: OGSListGamesStoreDelegate? { set get }
+    var socketManager: OGSSocketManager! { set get }
 
     func connect()
 }
@@ -33,6 +34,7 @@ class OGSChooseGameListGamesWorker: OGSListGamesStoreDelegate
     {
         seekGraphStore = store
         seekGraphStore.delegate = self
+        seekGraphStore.socketManager = OGSSocketManager.sharedInstance
     }
 
     func connect()
