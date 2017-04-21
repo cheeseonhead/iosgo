@@ -7,8 +7,6 @@ import UIKit
 import Unbox
 import Starscream
 
-fileprivate typealias TimeControlParametersType = OGSChallenge.TimeControlParametersType
-
 class OGSSeekGraphSocketStore
 {
     enum ModelType
