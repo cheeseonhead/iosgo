@@ -6,34 +6,32 @@
 import UIKit
 import Unbox
 import Starscream
-import SocketIO
 
 fileprivate typealias TimeControlParametersType = OGSChallenge.TimeControlParametersType
 
 class OGSSeekGraphSocketStore
 {
+    enum ModelType
+    {
+        case challenge
+        case gameStarted
+        case deleteChallenge
+    }
+
     weak var delegate: OGSListGamesStoreDelegate?
-    let socket = SocketIOClient(socketURL: URL(string: "https://online-go.com")!, config: [.forceWebsockets(true)])
+    var socketManager: OGSSocketManager!
 
     func connect()
     {
         let challenge = createChallengeFrom(payload: fakeData1())
         delegate?.listChallenges([challenge])
 
-        socket.on("connect")
-        { data, ack in
-            print("Connected \(data) \(ack)")
-            self.socket.emit("seek_graph/connect", ["channel": "global"])
+        socketManager.on(event: .seekGraphGlobal)
+        { _ in
+            print("Hello")
         }
 
-        socket.on("seekgraph/global")
-        { data, _ in
-            print(data)
-        }
-
-        //        ["seek_graph/connect",{"channel":"global"}]
-
-        //        socket.connect()
+        socketManager.emit(event: .seekGraphConnect, with: ["channel": "global"])
     }
 
     func createChallengeFrom(payload: [String: Any]) -> OGSChallenge
