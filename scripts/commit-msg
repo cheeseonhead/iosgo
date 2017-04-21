@@ -2,7 +2,7 @@
 require 'colorize'
 # borrowed from gitpro book http://git-scm.com/book/en/Customizing-Git-An-Example-Git-Enforced-Policy
 message_file = ARGV[0]
-message = File.read(message_file)
+message = File.open(message_file, "r:UTF-8", &:readline)
 $regex = /^(?!#)(.*?)(\d+)/
 
 if !$regex.match(message)
