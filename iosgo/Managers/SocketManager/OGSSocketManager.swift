@@ -5,35 +5,76 @@
 
 import SocketIO
 
+typealias SocketEvent = String
+
+enum SocketEvents: SocketEvent
+{
+    case connect
+    case disconnect
+    case seekGraphConnect = "seek_graph/connect"
+    case seekGraphGlobal = "seekgraph/global"
+}
+
 class OGSSocketManager
 {
-    enum Event
-    {
-        static let connect = "connect"
-
-        enum SeekGraph
-        {
-            static let connect = "seek_graph/connect"
-            static let global = "seekgraph/global"
-        }
-    }
-
     static var sharedInstance = OGSSocketManager()
 
     var socketAddress: String!
+    var isConnected = false
 
     fileprivate var socket: SocketIOClient!
+    fileprivate var notificationCenter = OGSNotificationCenter()
 
     func connect()
     {
-        socket = SocketIOClient(socketURL: URL(string: socketAddress)!, config: [.forceWebsockets(true)])
+        socket = SocketIOClient(socketURL: URL(string: socketAddress)!, config: [.log(false), .forceWebsockets(true)])
 
-        socket.on(Event.connect)
-        { _, _ in
+        on(event: .connect)
+        { _ in
             self.websocketDidConnect(socket: self.socket)
         }
 
+        on(event: .disconnect)
+        { _ in
+            self.websocketDidDisconnect(socket: self.socket)
+        }
+
         socket.connect()
+    }
+}
+
+extension OGSSocketManager
+{
+    func emit(event: SocketEvents, with data: SocketData)
+    {
+        if !isConnected
+        {
+            once(event: .connect)
+            { _ in
+                self.socket.emit(event.rawValue, data)
+            }
+        }
+        else
+        {
+            socket.emit(event.rawValue, data)
+        }
+    }
+
+    func on(event: SocketEvents, closure: @escaping NormalCallback)
+    {
+
+        socket.on(event.rawValue)
+        { data, _ in
+            closure(data)
+        }
+    }
+
+    func once(event: SocketEvents, closure: @escaping NormalCallback)
+    {
+        socket.once(event.rawValue)
+        { data, _ in
+            closure(data)
+        }
     }
 }
 
@@ -42,11 +83,12 @@ extension OGSSocketManager
 {
     func websocketDidConnect(socket _: SocketIOClient)
     {
-        print("just connected!")
+        isConnected = true
     }
 
-    func websocketDidDisconnect(socket _: SocketIOClient, error _: NSError?)
+    func websocketDidDisconnect(socket _: SocketIOClient)
     {
+        isConnected = false
     }
 
     func websocketDidReceiveMessage(socket _: SocketIOClient, text _: String)
