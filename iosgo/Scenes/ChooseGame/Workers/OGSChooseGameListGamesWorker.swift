@@ -25,8 +25,6 @@ protocol OGSListGamesStoreProtocol
 
 class OGSChooseGameListGamesWorker: OGSListGamesStoreDelegate
 {
-    typealias ListGames = OGSChooseGame.ListGames
-
     weak var delegate: OGSChooseGameListGamesWorkerDelegate?
     var seekGraphStore: OGSListGamesStoreProtocol!
 
