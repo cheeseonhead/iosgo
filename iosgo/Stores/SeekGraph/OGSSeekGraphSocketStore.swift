@@ -9,11 +9,14 @@ import Starscream
 
 class OGSSeekGraphSocketStore
 {
+    typealias Model = OGSSeekGraphSocketStoreModel
+
     enum ModelType
     {
-        case challengeList([OGSSeekGraphSocketStoreModel.Challenge])
-        case gameStarted(OGSSeekGraphSocketStoreModel.GameStart)
-        case deleteChallenge(OGSSeekGraphSocketStoreModel.ChallengeDelete)
+        case challengeList([Model.Challenge])
+        case gameStarted(Model.GameStart)
+        case deleteChallenge(Model.ChallengeDelete)
+        case unknown
     }
 
     weak var delegate: OGSListGamesStoreDelegate?
@@ -26,27 +29,58 @@ class OGSSeekGraphSocketStore
 
         socketManager.on(event: .seekGraphGlobal)
         { array in
-            self.modelType(data: array)
+            self.process(data: array[0])
         }
 
         socketManager.emit(event: .seekGraphConnect, with: ["channel": "global"])
     }
 
-    func modelType(data: [Any]) -> ModelType
+    func process(data: Any)
     {
+        let modelType = self.modelType(of: data)
+    }
+
+    func modelType(of data: Any) -> ModelType
+    {
+        // See if we can turn data into Array
+        if let challengeList = try? createChallengeList(data: data)
+        {
+            // See if the items in the array are challenges
+        }
+        // See if we can turn data into dictionary
+        // Check if delete
+        // Check if game start
+
         return .challengeList([])
     }
 
-    func createChallengeFrom(payload: [String: Any]) -> OGSChallenge
+    func createChallengeList(data: Any) throws -> [Model.Challenge]
     {
-        do
+        guard let array = data as? [Any] else
         {
-            let challenge: OGSChallenge = try unbox(dictionary: payload)
-            return challenge
+            fatalError("List could not be created")
         }
-        catch _
+
+        var challengeList: [Model.Challenge] = []
+
+        for item in array
         {
-            fatalError("Unable to parse Challenge")
+            guard let dictionary = item as? [String: Any],
+                let challenge: Model.Challenge = try createChallenge(from: dictionary) else
+            {
+                print("Hello?")
+                fatalError()
+            }
+
+            challengeList.append(challenge)
         }
+
+        return challengeList
+    }
+
+    func createChallenge(from payload: [String: Any]) throws -> Model.Challenge
+    {
+        let challenge: OGSChallenge = try unbox(dictionary: payload)
+        return challenge
     }
 }

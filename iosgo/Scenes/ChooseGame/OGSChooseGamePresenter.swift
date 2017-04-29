@@ -95,6 +95,8 @@ fileprivate extension OGSChooseGamePresenter
             return fischerTimeString(from: parameters)
         case let .simple(parameters):
             return simpleTimeString(from: parameters)
+        case let .byoyomi(parameters):
+            return byoyomi(from: parameters)
         }
     }
 
@@ -112,5 +114,13 @@ fileprivate extension OGSChooseGamePresenter
         let perMoveTimeString = String.dateStringFrom(seconds: parameters.timePerMove)
 
         return "\(perMoveTimeString)/move"
+    }
+
+    func byoyomi(from parameters: TimeControlParameterType.Byoyomi) -> String
+    {
+        let mainTimeString = String.dateStringFrom(seconds: parameters.mainTime)
+        let periodTimeString = String.dateStringFrom(seconds: parameters.periodTime)
+
+        return "\(mainTimeString)+\(parameters.periodCount)x\(periodTimeString)"
     }
 }

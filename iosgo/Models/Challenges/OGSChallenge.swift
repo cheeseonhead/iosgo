@@ -39,6 +39,7 @@ struct OGSChallenge
     {
         case fischer(parameters: Fischer)
         case simple(parameters: Simple)
+        case byoyomi(parameters: Byoyomi)
 
         struct Fischer
         {
@@ -61,12 +62,24 @@ struct OGSChallenge
 
             var timePerMove: Int
         }
+
+        struct Byoyomi
+        {
+            var mainTime: Int
+            var pauseOnWeekends: Bool
+            var periodTime: Int
+            var periodCount: Int
+            var speed: SpeedTypes
+            var system: TimeControlTypes
+            var timeControl: TimeControlTypes
+        }
     }
 
     enum TimeControlTypes: String, UnboxableEnum
     {
         case fischer
         case simple
+        case byoyomi
     }
 
     enum RuleTypes: String, UnboxableEnum
@@ -78,6 +91,7 @@ struct OGSChallenge
     enum SpeedTypes: String, UnboxableEnum
     {
         case correspondence
+        case live
     }
 }
 

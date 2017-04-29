@@ -38,6 +38,10 @@ struct OGSSeekGraphSocketStoreModel
                 let parameters: TimeControlParametersType.Simple = try unboxer.unbox(key: "time_control_parameters")
                 timeControlParameters = .simple(parameters: parameters)
                 break
+            case .byoyomi:
+                let parameters: TimeControlParametersType.Byoyomi = try unboxer.unbox(key: "time_control_parameters")
+                timeControlParameters = .byoyomi(parameters: parameters)
+                break
             }
         }
 
@@ -104,6 +108,10 @@ extension OGSChallenge: Unboxable
             let parameters: TimeControlParametersType.Simple = try unboxer.unbox(key: "time_control_parameters")
             timeControlParameters = .simple(parameters: parameters)
             break
+        case .byoyomi:
+            let parameters: TimeControlParametersType.Byoyomi = try unboxer.unbox(key: "time_control_parameters")
+            timeControlParameters = .byoyomi(parameters: parameters)
+            break
         }
     }
 }
@@ -133,5 +141,19 @@ extension TimeControlParametersType.Simple: Unboxable
         timeControl = try unboxer.unbox(key: "time_control")
 
         timePerMove = try unboxer.unbox(key: "per_move")
+    }
+}
+
+extension TimeControlParametersType.Byoyomi: Unboxable
+{
+    init(unboxer: Unboxer) throws
+    {
+        mainTime = try unboxer.unbox(key: "main_time")
+        pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
+        periodTime = try unboxer.unbox(key: "period_time")
+        periodCount = try unboxer.unbox(key: "periods")
+        speed = try unboxer.unbox(key: "speed")
+        system = try unboxer.unbox(key: "system")
+        timeControl = try unboxer.unbox(key: "time_control")
     }
 }
