@@ -148,12 +148,28 @@ extension TimeControlParametersType.Byoyomi: Unboxable
 {
     init(unboxer: Unboxer) throws
     {
-        mainTime = try unboxer.unbox(key: "main_time")
         pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
-        periodTime = try unboxer.unbox(key: "period_time")
-        periodCount = try unboxer.unbox(key: "periods")
         speed = try unboxer.unbox(key: "speed")
         system = try unboxer.unbox(key: "system")
         timeControl = try unboxer.unbox(key: "time_control")
+
+        mainTime = try unboxer.unbox(key: "main_time")
+        periodTime = try unboxer.unbox(key: "period_time")
+        periodCount = try unboxer.unbox(key: "periods")
+    }
+}
+
+extension TimeControlParametersType.Canadian: Unboxable
+{
+    init(unboxer: Unboxer) throws
+    {
+        pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
+        speed = try unboxer.unbox(key: "speed")
+        system = try unboxer.unbox(key: "system")
+        timeControl = try unboxer.unbox(key: "time_control")
+
+        mainTime = try unboxer.unbox(key: "main_time")
+        periodTime = try unboxer.unbox(key: "period_time")
+        stonePerPeriod = try unboxer.unbox(key: "stone_per_period")
     }
 }
