@@ -59,7 +59,13 @@ extension OGSChooseGameCollectionViewController: UICollectionViewDelegateFlowLay
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.cellIdentifier, for: indexPath)
+        let challenge = challengeList[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.cellIdentifier, for: indexPath) as! OGSChooseGameCollectionViewCell
+
+        cell.userInfoLabel.text = challenge.userInfo
+        cell.timeLabel.text = challenge.timeString
+        cell.sizeLabel.text = challenge.sizeString
+
         return cell
     }
 }

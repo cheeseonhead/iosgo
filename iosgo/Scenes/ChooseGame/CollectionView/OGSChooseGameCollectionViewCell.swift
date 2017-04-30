@@ -10,6 +10,9 @@ import UIKit
 
 class OGSChooseGameCollectionViewCell: UICollectionViewCell
 {
+    @IBOutlet weak var userInfoLabel: UILabel!
+    @IBOutlet weak var sizeLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var button: OGSButton! {
         didSet
         {
