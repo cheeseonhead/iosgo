@@ -12,7 +12,7 @@ protocol OGSChooseGameListGamesWorkerDelegate: class
 
 protocol OGSListGamesStoreDelegate: class
 {
-    func listChallenges(_ challenges: [OGSChallenge])
+    func add(_ newChallenges: [OGSChallenge])
 }
 
 protocol OGSListGamesStoreProtocol
@@ -28,6 +28,8 @@ class OGSChooseGameListGamesWorker: OGSListGamesStoreDelegate
     weak var delegate: OGSChooseGameListGamesWorkerDelegate?
     var seekGraphStore: OGSListGamesStoreProtocol!
 
+    fileprivate var challenges: [OGSChallenge] = []
+
     required init(store: OGSListGamesStoreProtocol)
     {
         seekGraphStore = store
@@ -40,8 +42,10 @@ class OGSChooseGameListGamesWorker: OGSListGamesStoreDelegate
         seekGraphStore.connect()
     }
 
-    func listChallenges(_ challenges: [OGSChallenge])
+    func add(_ newChallenges: [OGSChallenge])
     {
+        challenges.append(contentsOf: newChallenges)
+
         let response = OGSChooseGame.ListGames.Response(username: "Jeff", userRank: 4, challenges: challenges)
         delegate?.sendListGamesResponse(response)
     }

@@ -41,7 +41,7 @@ class OGSSeekGraphSocketStore
 
         switch modelType {
         case .challengeList(let challenges):
-            delegate?.listChallenges(challenges)
+            delegate?.add(challenges)
         default:
             break
         }
