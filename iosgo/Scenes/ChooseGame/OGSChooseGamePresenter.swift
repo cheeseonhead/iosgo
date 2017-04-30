@@ -97,6 +97,8 @@ fileprivate extension OGSChooseGamePresenter
             return simpleTimeString(from: parameters)
         case let .byoyomi(parameters):
             return byoyomi(from: parameters)
+        case let .canadian(parameters):
+            return canadian(from: parameters)
         }
     }
 
@@ -122,5 +124,13 @@ fileprivate extension OGSChooseGamePresenter
         let periodTimeString = String.dateStringFrom(seconds: parameters.periodTime)
 
         return "\(mainTimeString)+\(parameters.periodCount)x\(periodTimeString)"
+    }
+
+    func canadian(from parameters: TimeControlParameterType.Canadian) -> String
+    {
+        let mainTimeString = String.dateStringFrom(seconds: parameters.mainTime)
+        let periodTimeString = String.dateStringFrom(seconds: parameters.periodTime)
+
+        return "\(mainTimeString)+ \(periodTimeString)/\(parameters.stonePerPeriod)"
     }
 }

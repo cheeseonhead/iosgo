@@ -42,6 +42,9 @@ struct OGSSeekGraphSocketStoreModel
                 let parameters: TimeControlParametersType.Byoyomi = try unboxer.unbox(key: "time_control_parameters")
                 timeControlParameters = .byoyomi(parameters: parameters)
                 break
+            case .canadian:
+                let parameters: TimeControlParametersType.Canadian = try unboxer.unbox(key: "time_control_parameters")
+                timeControlParameters = .canadian(parameters: parameters)
             }
         }
 
@@ -111,6 +114,10 @@ extension OGSChallenge: Unboxable
         case .byoyomi:
             let parameters: TimeControlParametersType.Byoyomi = try unboxer.unbox(key: "time_control_parameters")
             timeControlParameters = .byoyomi(parameters: parameters)
+            break
+        case .canadian:
+            let parameters: TimeControlParametersType.Canadian = try unboxer.unbox(key: "time_control_parameters")
+            timeControlParameters = .canadian(parameters: parameters)
             break
         }
     }
