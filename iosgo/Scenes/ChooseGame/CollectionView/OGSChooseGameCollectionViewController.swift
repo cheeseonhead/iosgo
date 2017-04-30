@@ -30,15 +30,13 @@ class OGSChooseGameCollectionViewController: UICollectionViewController
         didSet
         {
             self.collectionView!.reloadData()
-            layout.invalidateLayout()
+            self.collectionView!.collectionViewLayout.invalidateLayout()
         }
     }
 
-    fileprivate var layout: UICollectionViewFlowLayout
-
     required init()
     {
-        layout = type(of: self).createLayout()
+        let layout = type(of: self).createLayout()
         super.init(collectionViewLayout: layout)
 
         collectionView?.backgroundColor = Style.backgroundColor

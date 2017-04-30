@@ -71,12 +71,8 @@ class OGSSeekGraphSocketStore
 
         for item in array
         {
-            guard let dictionary = item as? [String: Any],
-                let challenge: Model.Challenge = try createChallenge(from: dictionary) else
-            {
-                print("Hello?")
-                fatalError()
-            }
+            let dictionary = item as! [String: Any]
+            let challenge: Model.Challenge = try createChallenge(from: dictionary)
 
             challengeList.append(challenge)
         }
