@@ -42,6 +42,7 @@ struct OGSChallenge
         case byoyomi(parameters: Byoyomi)
         case canadian(parameters: Canadian)
         case absolute(parameters: Absolute)
+        case none(parameters: None)
 
         struct Fischer
         {
@@ -97,6 +98,14 @@ struct OGSChallenge
             var timeControl: TimeControlTypes
 
             var totalTime: Int
+        }
+
+        struct None
+        {
+            var pauseOnWeekends: Bool
+            var speed: SpeedTypes
+            var system: TimeControlTypes
+            var timeControl: TimeControlTypes
         }
     }
 

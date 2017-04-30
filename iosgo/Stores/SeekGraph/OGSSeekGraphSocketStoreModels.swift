@@ -192,3 +192,14 @@ extension TimeControlParametersType.Absolute: Unboxable
         totalTime = try unboxer.unbox(key: "total_time")
     }
 }
+
+extension TimeControlParametersType.None: Unboxable
+{
+    init(unboxer: Unboxer) throws
+    {
+        pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
+        speed = try unboxer.unbox(key: "speed")
+        system = try unboxer.unbox(key: "system")
+        timeControl = try unboxer.unbox(key: "time_control")
+    }
+}
