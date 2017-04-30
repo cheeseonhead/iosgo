@@ -52,9 +52,9 @@ fileprivate extension OGSChooseGamePresenter
             let userInfo = "\(challenge.username) [\(rankString(from: challenge.challengerRank))]"
             let sizeString = "\(challenge.size.width)x\(challenge.size.height)"
             let timeString = challengeTimeString(from: challenge.timeControlParameters)
-            let cellType = challengeCellType(for: challenge, response: response)
+            let buttonType = challengeCellType(for: challenge, response: response)
 
-            let viewModelChallenge = ListGames.ViewModel.Challenge(userInfo: userInfo, sizeString: sizeString, timeString: timeString, cellType: cellType)
+            let viewModelChallenge = ListGames.ViewModel.Challenge(userInfo: userInfo, sizeString: sizeString, timeString: timeString, buttonType: buttonType)
             viewModelChallenges.append(viewModelChallenge)
         }
 
@@ -72,17 +72,24 @@ fileprivate extension OGSChooseGamePresenter
         }
     }
 
-    func challengeCellType(for challenge: OGSChallenge, response: ListGames.Response) -> ListGames.ViewModel.ChallengeCellType
+    func challengeCellType(for challenge: OGSChallenge, response: ListGames.Response) -> ListGames.ViewModel.ButtonType
     {
         if challenge.username == response.username
         {
-            return .owner
+            return .remove
         }
         else
         {
             let canAccept = (challenge.maxRank >= response.userRank && challenge.minRank <= response.userRank)
 
-            return .other(canAccept: canAccept)
+            if canAccept
+            {
+                return .play
+            }
+            else
+            {
+                return .cantPlay
+            }
         }
     }
 

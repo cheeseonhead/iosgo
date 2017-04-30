@@ -27,10 +27,11 @@ struct OGSChooseGame
 
         struct ViewModel
         {
-            enum ChallengeCellType
+            enum ButtonType
             {
-                case owner
-                case other(canAccept: Bool)
+                case play
+                case cantPlay
+                case remove
             }
 
             struct Challenge
@@ -38,7 +39,7 @@ struct OGSChooseGame
                 var userInfo: String
                 var sizeString: String
                 var timeString: String
-                var cellType: ChallengeCellType
+                var buttonType: ButtonType
             }
 
             var challengeList: [Challenge]
