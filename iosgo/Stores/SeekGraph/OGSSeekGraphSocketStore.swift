@@ -38,6 +38,13 @@ class OGSSeekGraphSocketStore
     func process(data: Any)
     {
         let modelType = self.modelType(of: data)
+
+        switch modelType {
+        case .challengeList(let challenges):
+            delegate?.listChallenges(challenges)
+        default:
+            break
+        }
     }
 
     func modelType(of data: Any) -> ModelType
@@ -45,12 +52,11 @@ class OGSSeekGraphSocketStore
         // See if we can turn data into Array
         if let challengeList = try? createChallengeList(data: data)
         {
-            // See if the items in the array are challenges
+            return .challengeList(challengeList)
         }
         // See if we can turn data into dictionary
         // Check if delete
         // Check if game start
-
         return .challengeList([])
     }
 
