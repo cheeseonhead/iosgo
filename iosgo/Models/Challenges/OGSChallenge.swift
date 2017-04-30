@@ -113,6 +113,10 @@ struct OGSChallenge
     {
         case japanese
         case chinese
+        case aga
+        case ing
+        case korean
+        case newZealand = "nz"
     }
 
     enum SpeedTypes: String, UnboxableEnum
