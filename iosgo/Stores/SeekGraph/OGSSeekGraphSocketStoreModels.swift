@@ -33,18 +33,20 @@ struct OGSSeekGraphSocketStoreModel
             case .fischer:
                 let parameters: TimeControlParametersType.Fischer = try unboxer.unbox(key: "time_control_parameters")
                 timeControlParameters = .fischer(parameters: parameters)
-                break
             case .simple:
                 let parameters: TimeControlParametersType.Simple = try unboxer.unbox(key: "time_control_parameters")
                 timeControlParameters = .simple(parameters: parameters)
-                break
             case .byoyomi:
                 let parameters: TimeControlParametersType.Byoyomi = try unboxer.unbox(key: "time_control_parameters")
                 timeControlParameters = .byoyomi(parameters: parameters)
-                break
             case .canadian:
+                fallthrough
+            case .absolute:
                 let parameters: TimeControlParametersType.Canadian = try unboxer.unbox(key: "time_control_parameters")
                 timeControlParameters = .canadian(parameters: parameters)
+                //                let parameters: TimeControlParametersType.Absolute = try unboxer.unbox(key: "time_control_parameters")
+                //                timeControlParameters = .absolute(parameters: parameters)
+                //                break
             }
         }
 
@@ -106,19 +108,21 @@ extension OGSChallenge: Unboxable
         case .fischer:
             let parameters: TimeControlParametersType.Fischer = try unboxer.unbox(key: "time_control_parameters")
             timeControlParameters = .fischer(parameters: parameters)
-            break
         case .simple:
             let parameters: TimeControlParametersType.Simple = try unboxer.unbox(key: "time_control_parameters")
             timeControlParameters = .simple(parameters: parameters)
-            break
         case .byoyomi:
             let parameters: TimeControlParametersType.Byoyomi = try unboxer.unbox(key: "time_control_parameters")
             timeControlParameters = .byoyomi(parameters: parameters)
-            break
         case .canadian:
+            fallthrough
+        case .absolute:
             let parameters: TimeControlParametersType.Canadian = try unboxer.unbox(key: "time_control_parameters")
             timeControlParameters = .canadian(parameters: parameters)
             break
+            //            let parameters: TimeControlParametersType.Absolute = try unboxer.unbox(key: "time_control_parameters")
+            //            timeControlParameters = .absolute(parameters: parameters)
+            //            break
         }
     }
 }

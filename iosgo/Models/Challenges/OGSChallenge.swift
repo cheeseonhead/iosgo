@@ -41,6 +41,7 @@ struct OGSChallenge
         case simple(parameters: Simple)
         case byoyomi(parameters: Byoyomi)
         case canadian(parameters: Canadian)
+        case absolute(parameters: Absolute)
 
         struct Fischer
         {
@@ -87,6 +88,16 @@ struct OGSChallenge
             var periodTime: Int
             var stonePerPeriod: Int
         }
+
+        struct Absolute
+        {
+            var pauseOnWeekends: Bool
+            var speed: SpeedTypes
+            var system: TimeControlTypes
+            var timeControl: TimeControlTypes
+
+            var totalTime: Int
+        }
     }
 
     enum TimeControlTypes: String, UnboxableEnum
@@ -95,6 +106,7 @@ struct OGSChallenge
         case simple
         case byoyomi
         case canadian
+        case absolute
     }
 
     enum RuleTypes: String, UnboxableEnum

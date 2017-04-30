@@ -86,9 +86,9 @@ fileprivate extension OGSChooseGamePresenter
         }
     }
 
-    typealias TimeControlParameterType = OGSChallenge.TimeControlParametersType
+    typealias TimeControlParametersType = OGSChallenge.TimeControlParametersType
 
-    func challengeTimeString(from timeType: TimeControlParameterType) -> String
+    func challengeTimeString(from timeType: TimeControlParametersType) -> String
     {
         switch timeType {
         case let .fischer(parameters):
@@ -99,10 +99,12 @@ fileprivate extension OGSChooseGamePresenter
             return byoyomi(from: parameters)
         case let .canadian(parameters):
             return canadian(from: parameters)
+        case let .absolute(parameters):
+            return absolute(from: parameters)
         }
     }
 
-    func fischerTimeString(from parameters: TimeControlParameterType.Fischer) -> String
+    func fischerTimeString(from parameters: TimeControlParametersType.Fischer) -> String
     {
         let initialTimeString = String.dateStringFrom(seconds: parameters.initialTime)
         let incrementString = String.dateStringFrom(seconds: parameters.timeIncrement)
@@ -111,14 +113,14 @@ fileprivate extension OGSChooseGamePresenter
         return "\(initialTimeString)+ \(incrementString) up to \(maxTimeString)"
     }
 
-    func simpleTimeString(from parameters: TimeControlParameterType.Simple) -> String
+    func simpleTimeString(from parameters: TimeControlParametersType.Simple) -> String
     {
         let perMoveTimeString = String.dateStringFrom(seconds: parameters.timePerMove)
 
         return "\(perMoveTimeString)/move"
     }
 
-    func byoyomi(from parameters: TimeControlParameterType.Byoyomi) -> String
+    func byoyomi(from parameters: TimeControlParametersType.Byoyomi) -> String
     {
         let mainTimeString = String.dateStringFrom(seconds: parameters.mainTime)
         let periodTimeString = String.dateStringFrom(seconds: parameters.periodTime)
@@ -126,11 +128,16 @@ fileprivate extension OGSChooseGamePresenter
         return "\(mainTimeString)+\(parameters.periodCount)x\(periodTimeString)"
     }
 
-    func canadian(from parameters: TimeControlParameterType.Canadian) -> String
+    func canadian(from parameters: TimeControlParametersType.Canadian) -> String
     {
         let mainTimeString = String.dateStringFrom(seconds: parameters.mainTime)
         let periodTimeString = String.dateStringFrom(seconds: parameters.periodTime)
 
         return "\(mainTimeString)+ \(periodTimeString)/\(parameters.stonePerPeriod)"
+    }
+
+    func absolute(from parameters: TimeControlParametersType.Absolute) -> String
+    {
+        return "\(parameters.totalTime)"
     }
 }
