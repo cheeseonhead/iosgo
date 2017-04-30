@@ -101,6 +101,8 @@ fileprivate extension OGSChooseGamePresenter
             return canadian(from: parameters)
         case let .absolute(parameters):
             return absolute(from: parameters)
+        case let .none(parameters):
+            return NSLocalizedString("None", comment: "")
         }
     }
 

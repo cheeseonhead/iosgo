@@ -45,6 +45,9 @@ struct OGSSeekGraphSocketStoreModel
             case .absolute:
                 let parameters: TimeControlParametersType.Absolute = try unboxer.unbox(key: "time_control_parameters")
                 timeControlParameters = .absolute(parameters: parameters)
+            case .none:
+                let parameters: TimeControlParametersType.None = try unboxer.unbox(key: "time_control_parameters")
+                timeControlParameters = .none(parameters: parameters)
             }
         }
 
@@ -118,6 +121,9 @@ extension OGSChallenge: Unboxable
         case .absolute:
             let parameters: TimeControlParametersType.Absolute = try unboxer.unbox(key: "time_control_parameters")
             timeControlParameters = .absolute(parameters: parameters)
+        case .none:
+            let parameters: TimeControlParametersType.None = try unboxer.unbox(key: "time_control_parameters")
+            timeControlParameters = .none(parameters: parameters)
         }
     }
 }

@@ -116,6 +116,7 @@ struct OGSChallenge
         case byoyomi
         case canadian
         case absolute
+        case none
     }
 
     enum RuleTypes: String, UnboxableEnum
