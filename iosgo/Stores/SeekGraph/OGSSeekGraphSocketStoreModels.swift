@@ -40,13 +40,11 @@ struct OGSSeekGraphSocketStoreModel
                 let parameters: TimeControlParametersType.Byoyomi = try unboxer.unbox(key: "time_control_parameters")
                 timeControlParameters = .byoyomi(parameters: parameters)
             case .canadian:
-                fallthrough
-            case .absolute:
                 let parameters: TimeControlParametersType.Canadian = try unboxer.unbox(key: "time_control_parameters")
                 timeControlParameters = .canadian(parameters: parameters)
-                //                let parameters: TimeControlParametersType.Absolute = try unboxer.unbox(key: "time_control_parameters")
-                //                timeControlParameters = .absolute(parameters: parameters)
-                //                break
+            case .absolute:
+                let parameters: TimeControlParametersType.Absolute = try unboxer.unbox(key: "time_control_parameters")
+                timeControlParameters = .absolute(parameters: parameters)
             }
         }
 
@@ -115,14 +113,11 @@ extension OGSChallenge: Unboxable
             let parameters: TimeControlParametersType.Byoyomi = try unboxer.unbox(key: "time_control_parameters")
             timeControlParameters = .byoyomi(parameters: parameters)
         case .canadian:
-            fallthrough
-        case .absolute:
             let parameters: TimeControlParametersType.Canadian = try unboxer.unbox(key: "time_control_parameters")
             timeControlParameters = .canadian(parameters: parameters)
-            break
-            //            let parameters: TimeControlParametersType.Absolute = try unboxer.unbox(key: "time_control_parameters")
-            //            timeControlParameters = .absolute(parameters: parameters)
-            //            break
+        case .absolute:
+            let parameters: TimeControlParametersType.Absolute = try unboxer.unbox(key: "time_control_parameters")
+            timeControlParameters = .absolute(parameters: parameters)
         }
     }
 }
@@ -182,5 +177,18 @@ extension TimeControlParametersType.Canadian: Unboxable
         mainTime = try unboxer.unbox(key: "main_time")
         periodTime = try unboxer.unbox(key: "period_time")
         stonePerPeriod = try unboxer.unbox(key: "stone_per_period")
+    }
+}
+
+extension TimeControlParametersType.Absolute: Unboxable
+{
+    init(unboxer: Unboxer) throws
+    {
+        pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
+        speed = try unboxer.unbox(key: "speed")
+        system = try unboxer.unbox(key: "system")
+        timeControl = try unboxer.unbox(key: "time_control")
+
+        totalTime = try unboxer.unbox(key: "total_time")
     }
 }
