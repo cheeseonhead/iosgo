@@ -72,7 +72,7 @@ fileprivate extension OGSChooseGamePresenter
         }
     }
 
-    func challengeCellType(for challenge: OGSChallenge, response: ListGames.Response) -> ListGames.ViewModel.ButtonType
+    func challengeCellType(for challenge: OGSChallenge, response: ListGames.Response) -> ListGames.ViewModel.Challenge.ButtonType
     {
         if challenge.username == response.username
         {
