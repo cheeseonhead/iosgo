@@ -44,6 +44,7 @@ class OGSChooseGameListGamesWorker
         seekGraphStore.connect()
     }
 }
+
 // MARK: Store Delegate
 extension OGSChooseGameListGamesWorker: OGSListGamesStoreDelegate
 {
