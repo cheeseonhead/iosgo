@@ -50,7 +50,7 @@ class OGSSeekGraphSocketStore
     func modelType(of data: Any) -> ModelType
     {
         // See if we can turn data into Array
-        if let challengeList = try? createChallengeList(data: data)
+        if let challengeList = try? createChallengeList(from: data)
         {
             return .challengeList(challengeList)
         }
@@ -60,7 +60,7 @@ class OGSSeekGraphSocketStore
         return .unknown
     }
 
-    func createChallengeList(data: Any) throws -> [Model.Challenge]
+    func createChallengeList(from data: Any) throws -> [Model.Challenge]
     {
         guard let array = data as? [Any] else
         {
