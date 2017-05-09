@@ -42,6 +42,13 @@ class OGSSeekGraphSocketStore
         switch modelType {
         case let .challengeList(challenges):
             delegate?.add(challenges)
+            break
+        case let .deleteChallenge(delete):
+            delegate?.delete(challengeID: delete.challengeId)
+            break
+        case let .gameStarted(gameStart):
+            delegate?.delete(gameID: gameStart.gameId)
+            break
         default:
             break
         }
