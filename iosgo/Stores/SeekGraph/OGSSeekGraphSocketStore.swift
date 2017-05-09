@@ -40,7 +40,7 @@ class OGSSeekGraphSocketStore
         let modelType = self.modelType(of: data)
 
         switch modelType {
-        case .challengeList(let challenges):
+        case let .challengeList(challenges):
             delegate?.add(challenges)
         default:
             break
@@ -57,7 +57,7 @@ class OGSSeekGraphSocketStore
         // See if we can turn data into dictionary
         // Check if delete
         // Check if game start
-        return .challengeList([])
+        return .unknown
     }
 
     func createChallengeList(data: Any) throws -> [Model.Challenge]
