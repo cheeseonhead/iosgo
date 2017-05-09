@@ -147,6 +147,7 @@ fileprivate extension OGSChooseGamePresenter
 
     func absolute(from parameters: TimeControlParametersType.Absolute) -> String
     {
-        return "\(parameters.totalTime)"
+        let timeString = String.dateStringFrom(seconds: parameters.totalTime)
+        return "\(timeString)"
     }
 }
