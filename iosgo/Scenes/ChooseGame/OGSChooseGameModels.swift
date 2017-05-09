@@ -27,19 +27,19 @@ struct OGSChooseGame
 
         struct ViewModel
         {
-            enum ButtonType
-            {
-                case play
-                case cantPlay
-                case remove
-            }
-
             struct Challenge
             {
                 var userInfo: String
                 var sizeString: String
                 var timeString: String
                 var buttonType: ButtonType
+
+                enum ButtonType
+                {
+                    case play
+                    case cantPlay
+                    case remove
+                }
             }
 
             var challengeList: [Challenge]
