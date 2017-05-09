@@ -49,17 +49,26 @@ class OGSSeekGraphSocketStore
 
     func modelType(of data: Any) -> ModelType
     {
-        // See if we can turn data into Array
         if let challengeList = try? createChallengeList(from: data)
         {
             return .challengeList(challengeList)
         }
-        // See if we can turn data into dictionary
-        // Check if delete
-        // Check if game start
+        else if let gameStart = try? createGameStart(from: data)
+        {
+            return .gameStarted(gameStart)
+        }
+        else if let challengeDelete = try? createChallengeDelete(from: data)
+        {
+            return .deleteChallenge(challengeDelete)
+        }
+
         return .unknown
     }
+}
 
+// MARK: Create Model Methods
+extension OGSSeekGraphSocketStore
+{
     func createChallengeList(from data: Any) throws -> [Model.Challenge]
     {
         guard let array = data as? [Any] else
@@ -78,6 +87,30 @@ class OGSSeekGraphSocketStore
         }
 
         return challengeList
+    }
+
+    func createGameStart(from data: Any) throws -> Model.GameStart
+    {
+        guard let array = data as? [Any],
+            let dictionary = array[0] as? [String: Any] else
+        {
+            fatalError("Object could not be created")
+        }
+
+        let gameStart: Model.GameStart = try unbox(dictionary: dictionary)
+        return gameStart
+    }
+
+    func createChallengeDelete(from data: Any) throws -> Model.ChallengeDelete
+    {
+        guard let array = data as? [Any],
+            let dictionary = array[0] as? [String: Any] else
+        {
+            fatalError("Object could not be created")
+        }
+
+        let challengeDelete: Model.ChallengeDelete = try unbox(dictionary: dictionary)
+        return challengeDelete
     }
 
     func createChallenge(from payload: [String: Any]) throws -> Model.Challenge
