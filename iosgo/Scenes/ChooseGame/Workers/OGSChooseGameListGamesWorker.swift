@@ -7,7 +7,7 @@ import UIKit
 
 protocol OGSChooseGameListGamesWorkerDelegate: class
 {
-    func sendListGamesResponse(_ response: OGSChooseGame.ListGames.Response)
+    func sendGameList(_ gameList: [OGSChallenge])
 }
 
 protocol OGSListGamesStoreDelegate: class
@@ -68,7 +68,6 @@ extension OGSChooseGameListGamesWorker: OGSListGamesStoreDelegate
 
     func sendResponse()
     {
-        let response = OGSChooseGame.ListGames.Response(username: "Jeff", userRank: 4, challenges: challenges)
-        delegate?.sendListGamesResponse(response)
+        delegate?.sendGameList(challenges)
     }
 }
