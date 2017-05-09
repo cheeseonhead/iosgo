@@ -13,6 +13,8 @@ protocol OGSChooseGameListGamesWorkerDelegate: class
 protocol OGSListGamesStoreDelegate: class
 {
     func add(_ newChallenges: [OGSChallenge])
+    func delete(challengeID: Int)
+    func delete(gameID: Int)
 }
 
 protocol OGSListGamesStoreProtocol
@@ -23,7 +25,7 @@ protocol OGSListGamesStoreProtocol
     func connect()
 }
 
-class OGSChooseGameListGamesWorker: OGSListGamesStoreDelegate
+class OGSChooseGameListGamesWorker
 {
     weak var delegate: OGSChooseGameListGamesWorkerDelegate?
     var seekGraphStore: OGSListGamesStoreProtocol!
@@ -41,11 +43,30 @@ class OGSChooseGameListGamesWorker: OGSListGamesStoreDelegate
     {
         seekGraphStore.connect()
     }
-
+}
+// MARK: Store Delegate
+extension OGSChooseGameListGamesWorker: OGSListGamesStoreDelegate
+{
     func add(_ newChallenges: [OGSChallenge])
     {
         challenges.append(contentsOf: newChallenges)
+        sendResponse()
+    }
 
+    func delete(challengeID: Int)
+    {
+        try? challenges.remove { $0.challengeId == challengeID }
+        sendResponse()
+    }
+
+    func delete(gameID: Int)
+    {
+        try? challenges.remove { $0.gameId == gameID }
+        sendResponse()
+    }
+
+    func sendResponse()
+    {
         let response = OGSChooseGame.ListGames.Response(username: "Jeff", userRank: 4, challenges: challenges)
         delegate?.sendListGamesResponse(response)
     }
