@@ -133,6 +133,7 @@ struct OGSChallenge
     {
         case correspondence
         case live
+        case blitz
     }
 }
 
