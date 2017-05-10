@@ -15,11 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     var window: UIWindow?
     var configurator: OGSAppConfigurator?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
+    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         // Override point for customization after application launch.
 
-        configurator = OGSAppConfigurator(userSettingsStore: OGSUserSettingsStore(), configuration: OGSBetaConfiguration())
+        configurator = OGSAppConfigurator(userSettingsStore: OGSUserDefaults(), configuration: OGSBetaConfiguration())
         configurator!.configureApp()
 
         return true
