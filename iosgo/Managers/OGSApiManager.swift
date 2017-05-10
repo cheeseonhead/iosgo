@@ -7,6 +7,7 @@ import Foundation
 
 enum HTTPMethod: String
 {
+    case GET
     case POST
 }
 
@@ -64,6 +65,10 @@ class OGSApiManager
         var request = URLRequest(url: fullURL)
         request.httpMethod = method.rawValue
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        if let token = accessToken
+        {
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
         request.httpBody = parameters.stringFromHttpParameters().data(using: .utf8)
 
         return request
