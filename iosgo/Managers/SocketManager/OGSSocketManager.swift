@@ -3,40 +3,99 @@
 // Copyright (c) 2017 Cheeseonhead. All rights reserved.
 //
 
-import Starscream
+import SocketIO
+
+typealias SocketEvent = String
+
+enum SocketEvents: SocketEvent
+{
+    case connect
+    case disconnect
+    case seekGraphConnect = "seek_graph/connect"
+    case seekGraphGlobal = "seekgraph/global"
+}
 
 class OGSSocketManager
 {
-    var socketAddress: String!
+    static var sharedInstance = OGSSocketManager()
 
-    fileprivate var socket: WebSocket!
+    var socketAddress: String!
+    var isConnected = false
+
+    fileprivate var socket: SocketIOClient!
+    fileprivate var notificationCenter = OGSNotificationCenter()
 
     func connect()
     {
-        socket = WebSocket(url: URL(string: socketAddress)!)
+        socket = SocketIOClient(socketURL: URL(string: socketAddress)!, config: [.log(false), .forceWebsockets(true)])
+
+        on(event: .connect)
+        { _ in
+            self.websocketDidConnect(socket: self.socket)
+        }
+
+        on(event: .disconnect)
+        { _ in
+            self.websocketDidDisconnect(socket: self.socket)
+        }
+
+        socket.connect()
     }
-
-
 }
 
-extension OGSSocketManager: WebSocketDelegate
+extension OGSSocketManager
 {
-    func websocketDidConnect(socket: WebSocket)
+    func emit(event: SocketEvents, with data: SocketData)
     {
-        print("just connected!")
+        if !isConnected
+        {
+            once(event: .connect)
+            { _ in
+                self.socket.emit(event.rawValue, data)
+            }
+        }
+        else
+        {
+            socket.emit(event.rawValue, data)
+        }
     }
 
-    func websocketDidDisconnect(socket: WebSocket, error: NSError?)
+    func on(event: SocketEvents, closure: @escaping NormalCallback)
+    {
+
+        socket.on(event.rawValue)
+        { data, _ in
+            closure(data)
+        }
+    }
+
+    func once(event: SocketEvents, closure: @escaping NormalCallback)
+    {
+        socket.once(event.rawValue)
+        { data, _ in
+            closure(data)
+        }
+    }
+}
+
+// MARK: - Handlers
+extension OGSSocketManager
+{
+    func websocketDidConnect(socket _: SocketIOClient)
+    {
+        isConnected = true
+    }
+
+    func websocketDidDisconnect(socket _: SocketIOClient)
+    {
+        isConnected = false
+    }
+
+    func websocketDidReceiveMessage(socket _: SocketIOClient, text _: String)
     {
     }
 
-    func websocketDidReceiveMessage(socket: WebSocket, text: String)
-    {
-        
-    }
-
-    func websocketDidReceiveData(socket: WebSocket, data: Data)
+    func websocketDidReceiveData(socket _: SocketIOClient, data _: Data)
     {
     }
-
 }

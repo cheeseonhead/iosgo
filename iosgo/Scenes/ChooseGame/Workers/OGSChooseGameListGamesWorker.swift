@@ -7,42 +7,67 @@ import UIKit
 
 protocol OGSChooseGameListGamesWorkerDelegate: class
 {
-    func sendListGamesResponse(_ response: OGSChooseGame.ListGames.Response)
+    func sendGameList(_ gameList: [OGSChallenge])
 }
 
 protocol OGSListGamesStoreDelegate: class
 {
-    func listChallenges(_ challenges: [OGSChallenge])
+    func add(_ newChallenges: [OGSChallenge])
+    func delete(challengeID: Int)
+    func delete(gameID: Int)
 }
 
 protocol OGSListGamesStoreProtocol
 {
     weak var delegate: OGSListGamesStoreDelegate? { set get }
+    var socketManager: OGSSocketManager! { set get }
 
     func connect()
 }
 
-class OGSChooseGameListGamesWorker: OGSListGamesStoreDelegate
+class OGSChooseGameListGamesWorker
 {
-    typealias ListGames = OGSChooseGame.ListGames
-
     weak var delegate: OGSChooseGameListGamesWorkerDelegate?
     var seekGraphStore: OGSListGamesStoreProtocol!
+
+    fileprivate var challenges: [OGSChallenge] = []
 
     required init(store: OGSListGamesStoreProtocol)
     {
         seekGraphStore = store
         seekGraphStore.delegate = self
+        seekGraphStore.socketManager = OGSSocketManager.sharedInstance
     }
 
     func connect()
     {
         seekGraphStore.connect()
     }
+}
 
-    func listChallenges(_ challenges: [OGSChallenge])
+// MARK: Store Delegate
+extension OGSChooseGameListGamesWorker: OGSListGamesStoreDelegate
+{
+    func add(_ newChallenges: [OGSChallenge])
     {
-        let response = OGSChooseGame.ListGames.Response(username: "Jeff", userRank: 4, challenges: challenges)
-        delegate?.sendListGamesResponse(response)
+        challenges.append(contentsOf: newChallenges)
+        sendResponse()
+    }
+
+    func delete(challengeID: Int)
+    {
+        try? challenges.remove { $0.challengeId == challengeID }
+        sendResponse()
+    }
+
+    func delete(gameID: Int)
+    {
+        try? challenges.remove { $0.gameId == gameID }
+        sendResponse()
+    }
+
+    func sendResponse()
+    {
+        delegate?.sendGameList(challenges)
     }
 }

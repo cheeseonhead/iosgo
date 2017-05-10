@@ -45,9 +45,6 @@ fileprivate extension OGSChooseGamePresenter
 {
     func challengeList(from response: ListGames.Response) -> [ListGames.ViewModel.Challenge]
     {
-        let username = response.username
-        let userLevel = response.userRank
-
         var viewModelChallenges: [ListGames.ViewModel.Challenge] = []
 
         for challenge in response.challenges
@@ -55,9 +52,9 @@ fileprivate extension OGSChooseGamePresenter
             let userInfo = "\(challenge.username) [\(rankString(from: challenge.challengerRank))]"
             let sizeString = "\(challenge.size.width)x\(challenge.size.height)"
             let timeString = challengeTimeString(from: challenge.timeControlParameters)
-            let cellType = challengeCellType(for: challenge, response: response)
+            let buttonType = challengeCellType(for: challenge, response: response)
 
-            let viewModelChallenge = ListGames.ViewModel.Challenge(userInfo: userInfo, sizeString: sizeString, timeString: timeString, cellType: cellType)
+            let viewModelChallenge = ListGames.ViewModel.Challenge(userInfo: userInfo, sizeString: sizeString, timeString: timeString, buttonType: buttonType)
             viewModelChallenges.append(viewModelChallenge)
         }
 
@@ -75,33 +72,48 @@ fileprivate extension OGSChooseGamePresenter
         }
     }
 
-    func challengeCellType(for challenge: OGSChallenge, response: ListGames.Response) -> ListGames.ViewModel.ChallengeCellType
+    func challengeCellType(for challenge: OGSChallenge, response: ListGames.Response) -> ListGames.ViewModel.Challenge.ButtonType
     {
         if challenge.username == response.username
         {
-            return .owner
+            return .remove
         }
         else
         {
             let canAccept = (challenge.maxRank >= response.userRank && challenge.minRank <= response.userRank)
 
-            return .other(canAccept: canAccept)
+            if canAccept
+            {
+                return .play
+            }
+            else
+            {
+                return .cantPlay
+            }
         }
     }
 
-    typealias TimeControlParameterType = OGSChallenge.TimeControlParametersType
+    typealias TimeControlParametersType = OGSChallenge.TimeControlParametersType
 
-    func challengeTimeString(from timeType: TimeControlParameterType) -> String
+    func challengeTimeString(from timeType: TimeControlParametersType) -> String
     {
         switch timeType {
         case let .fischer(parameters):
             return fischerTimeString(from: parameters)
         case let .simple(parameters):
             return simpleTimeString(from: parameters)
+        case let .byoyomi(parameters):
+            return byoyomi(from: parameters)
+        case let .canadian(parameters):
+            return canadian(from: parameters)
+        case let .absolute(parameters):
+            return absolute(from: parameters)
+        case .none:
+            return NSLocalizedString("None", comment: "")
         }
     }
 
-    func fischerTimeString(from parameters: TimeControlParameterType.Fischer) -> String
+    func fischerTimeString(from parameters: TimeControlParametersType.Fischer) -> String
     {
         let initialTimeString = String.dateStringFrom(seconds: parameters.initialTime)
         let incrementString = String.dateStringFrom(seconds: parameters.timeIncrement)
@@ -110,10 +122,32 @@ fileprivate extension OGSChooseGamePresenter
         return "\(initialTimeString)+ \(incrementString) up to \(maxTimeString)"
     }
 
-    func simpleTimeString(from parameters: TimeControlParameterType.Simple) -> String
+    func simpleTimeString(from parameters: TimeControlParametersType.Simple) -> String
     {
         let perMoveTimeString = String.dateStringFrom(seconds: parameters.timePerMove)
 
         return "\(perMoveTimeString)/move"
+    }
+
+    func byoyomi(from parameters: TimeControlParametersType.Byoyomi) -> String
+    {
+        let mainTimeString = String.dateStringFrom(seconds: parameters.mainTime)
+        let periodTimeString = String.dateStringFrom(seconds: parameters.periodTime)
+
+        return "\(mainTimeString)+\(parameters.periodCount)x\(periodTimeString)"
+    }
+
+    func canadian(from parameters: TimeControlParametersType.Canadian) -> String
+    {
+        let mainTimeString = String.dateStringFrom(seconds: parameters.mainTime)
+        let periodTimeString = String.dateStringFrom(seconds: parameters.periodTime)
+
+        return "\(mainTimeString)+ \(periodTimeString)/\(parameters.stonesPerPeriod)"
+    }
+
+    func absolute(from parameters: TimeControlParametersType.Absolute) -> String
+    {
+        let timeString = String.dateStringFrom(seconds: parameters.totalTime)
+        return "\(timeString)"
     }
 }

@@ -5,4 +5,4 @@
 
 import Foundation
 
-struct
+typealias NormalCallback = ([Any]) -> Void

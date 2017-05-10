@@ -9,7 +9,7 @@ protocol OGSUserSettingsStoreProtocol
 {
     func save(accessToken: String)
     func save(refreshToken: String)
-    func getUserSettings() -> OGSUserSettingsProtocol
+    func getUserSettings() -> OGSUserSettings
 }
 
 class OGSAppConfigurator: NSObject
@@ -23,20 +23,36 @@ class OGSAppConfigurator: NSObject
         self.userSettingsStore = userSettingsStore
         self.configuration = configuration
 
-        OGSNotificationCenter.sharedInstance.addObserver(self, selector: #selector(self.handleAccessTokenUpdated), name: .accessTokenUpdated, object: nil)
-        OGSNotificationCenter.sharedInstance.addObserver(self, selector: #selector(self.handleRefreshTokenUpdated), name: .refreshTokenUpdated, object: nil)
+        OGSNotificationCenter.sharedInstance.addObserver(self, selector: #selector(handleAccessTokenUpdated), name: .accessTokenUpdated, object: nil)
+        OGSNotificationCenter.sharedInstance.addObserver(self, selector: #selector(handleRefreshTokenUpdated), name: .refreshTokenUpdated, object: nil)
     }
+}
 
+// MARK: - Configure app
+extension OGSAppConfigurator
+{
     func configureApp()
     {
         let userSettings = userSettingsStore.getUserSettings()
+        configureApiManager(userSettings: userSettings)
+        configureSocketManager()
+    }
 
+    func configureApiManager(userSettings: OGSUserSettings)
+    {
         OGSApiManager.sharedInstance.accessToken = userSettings.accessToken
         OGSApiManager.sharedInstance.refreshToken = userSettings.refreshToken
 
         OGSApiManager.sharedInstance.domainName = configuration.domainName
         OGSApiManager.sharedInstance.clientId = configuration.clientID
         OGSApiManager.sharedInstance.clientSecret = configuration.clientSecret
+    }
+
+    func configureSocketManager()
+    {
+        OGSSocketManager.sharedInstance.socketAddress = configuration.domainName
+
+        OGSSocketManager.sharedInstance.connect()
     }
 }
 

@@ -5,7 +5,7 @@
 
 import Foundation
 
-class OGSUserSettings: NSObject, OGSUserSettingsProtocol
+class OGSUserSettings: NSObject, OGSVersionedCoding
 {
     static var DataName: String = "UserSetting"
     static var DataVersion: Int = 2

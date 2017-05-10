@@ -15,7 +15,7 @@ class OGSNotificationCenter
 
     static var sharedInstance = OGSNotificationCenter()
 
-    private var notificationCenter = NotificationCenter.default
+    private var notificationCenter = NotificationCenter()
 
     func addObserver(_ observer: Any, selector: Selector, name: NotificationName, object: Any?)
     {

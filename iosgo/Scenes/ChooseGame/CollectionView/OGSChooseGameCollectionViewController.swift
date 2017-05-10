@@ -30,6 +30,7 @@ class OGSChooseGameCollectionViewController: UICollectionViewController
         didSet
         {
             self.collectionView!.reloadData()
+            self.collectionView!.collectionViewLayout.invalidateLayout()
         }
     }
 
@@ -42,7 +43,7 @@ class OGSChooseGameCollectionViewController: UICollectionViewController
         collectionView?.register(UINib.init(nibName: "OGSChooseGameCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: Constant.cellIdentifier)
     }
 
-    required init?(coder aDecoder: NSCoder)
+    required init?(coder _: NSCoder)
     {
         fatalError("init(coder:) has not been implemented")
     }
@@ -51,15 +52,38 @@ class OGSChooseGameCollectionViewController: UICollectionViewController
 // MARK: Data Source
 extension OGSChooseGameCollectionViewController: UICollectionViewDelegateFlowLayout
 {
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    override func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int
     {
         return challengeList.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.cellIdentifier, for: indexPath)
+        let challenge = challengeList[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.cellIdentifier, for: indexPath) as! OGSChooseGameCollectionViewCell
+
+        cell.userInfoLabel.text = challenge.userInfo
+        cell.timeLabel.text = challenge.timeString
+        cell.sizeLabel.text = challenge.sizeString
+        cell.buttonType = cellButtonType(from: challenge.buttonType)
+
         return cell
+    }
+}
+
+// MARK: Stateless Helpers
+extension OGSChooseGameCollectionViewController
+{
+    func cellButtonType(from challengeButtonType: Challenge.ButtonType) -> OGSChooseGameCollectionViewCell.ButtonType
+    {
+        switch challengeButtonType {
+        case .play:
+            return .play
+        case .remove:
+            return .remove
+        case .cantPlay:
+            return .cantPlay
+        }
     }
 }
 

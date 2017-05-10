@@ -7,150 +7,122 @@ import UIKit
 import Unbox
 import Starscream
 
-fileprivate typealias TimeControlParametersType = OGSChallenge.TimeControlParametersType
-
 class OGSSeekGraphSocketStore
 {
+    typealias Model = OGSSeekGraphSocketStoreModel
+
+    enum ModelType
+    {
+        case challengeList([Model.Challenge])
+        case gameStarted(Model.GameStart)
+        case deleteChallenge(Model.ChallengeDelete)
+        case unknown
+    }
+
     weak var delegate: OGSListGamesStoreDelegate?
-    var socket = WebSocket(url: URL(string: "wss://beta.online-go.com/socket.io/?EIO=3&transport=websocket")!)
+    var socketManager: OGSSocketManager!
 
     func connect()
     {
-        let challenge = self.createChallengeFrom(payload: fakeData1())
-        delegate?.listChallenges([challenge])
+        //        let challenge = createChallengeFrom(payload: fakeData1())
+        //        delegate?.listChallenges([challenge])
 
-        socket.onConnect = {
-            self.socket.write(string: "42[\"seek_graph/connect\",{\"channel\":\"global\"}]")
+        socketManager.on(event: .seekGraphGlobal)
+        { array in
+            self.process(data: array[0])
         }
 
-        socket.onText = { (text: String) in
-            print("got some text: \(text)")
-
-            print("Turn into dictionary")
-
-            print("\(String(describing: "[{\"test\": 12345}]".convertToDictionary()))")
-
-            let startIndex = text.index(text.startIndex, offsetBy: 2)
-            let newText = "{\"payload\": \(text.substring(from: startIndex))}"
-            print("\(String(describing: newText.convertToDictionary()))")
-        }
-
-        socket.onData = { (data: Data) in
-            print("got some data: \(data.count)")
-        }
-
-        socket.connect()
+        socketManager.emit(event: .seekGraphConnect, with: ["channel": "global"])
     }
 
-    func createChallengeFrom(payload: [String: Any]) -> OGSChallenge
+    func process(data: Any)
     {
-        do
-        {
-            let challenge: OGSChallenge = try unbox(dictionary: payload)
-            return challenge
-        }
-        catch _
-        {
-            fatalError("Unable to parse Challenge")
-        }
-    }
+        let modelType = self.modelType(of: data)
 
-    func fakeData1() -> [String: Any]
-    {
-        return [
-            "username": "sousys",
-            "time_per_move": 89280,
-            "user_id": 157,
-            "name": "Friendly Match",
-            "width": 19,
-            "handicap": -1,
-            "challenge_id": 767,
-            "pro": 0,
-            "max_rank": 3,
-            "disable_analysis": false,
-            "rank": 0,
-            "height": 19,
-            "rules": "japanese",
-            "time_control": "fischer",
-            "ranked": true,
-            "min_rank": -3,
-            //            "komi": nil,
-            "game_id": 809,
-            "challenger_color": "automatic",
-            "time_control_parameters": [
-                "system": "fischer",
-                "pause_on_weekends": true,
-                "time_control": "fischer",
-                "initial_time": 259200,
-                "max_time": 604800,
-                "time_increment": 86400,
-                "speed": "correspondence",
-            ],
-        ]
-    }
-}
-
-extension OGSChallenge: Unboxable
-{
-    init(unboxer: Unboxer) throws
-    {
-        self.username = try unboxer.unbox(key: "username")
-        self.name = try unboxer.unbox(key: "name")
-        self.timePerMove = try unboxer.unbox(key: "time_per_move")
-        self.userId = try unboxer.unbox(key: "user_id")
-        self.width = try unboxer.unbox(key: "width")
-        self.height = try unboxer.unbox(key: "height")
-        self.handicap = try unboxer.unbox(key: "handicap")
-        self.challengeId = try unboxer.unbox(key: "challenge_id")
-        self.pro = try unboxer.unbox(key: "pro")
-        self.maxRank = try unboxer.unbox(key: "max_rank")
-        self.disableAnalysis = try unboxer.unbox(key: "disable_analysis")
-        self.challengerRank = try unboxer.unbox(key: "rank")
-        self.rules = try unboxer.unbox(key: "rules")
-        self.timeControl = try unboxer.unbox(key: "time_control")
-        self.ranked = try unboxer.unbox(key: "ranked")
-        self.minRank = try unboxer.unbox(key: "min_rank")
-        self.komi = unboxer.unbox(key: "komi")
-        self.gameId = try unboxer.unbox(key: "game_id")
-        self.challengerColor = try unboxer.unbox(key: "challenger_color")
-
-        switch timeControl {
-        case .fischer:
-            let parameters: TimeControlParametersType.Fischer = try unboxer.unbox(key: "time_control_parameters")
-            self.timeControlParameters = .fischer(parameters: parameters)
+        switch modelType {
+        case let .challengeList(challenges):
+            delegate?.add(challenges)
             break
-        case .simple:
-            let parameters: TimeControlParametersType.Simple = try unboxer.unbox(key: "time_control_parameters")
-            self.timeControlParameters = .simple(parameters: parameters)
+        case let .deleteChallenge(delete):
+            delegate?.delete(challengeID: delete.challengeId)
+            break
+        case let .gameStarted(gameStart):
+            delegate?.delete(gameID: gameStart.gameId)
+            break
+        default:
             break
         }
     }
-}
 
-extension TimeControlParametersType.Fischer: Unboxable
-{
-    init(unboxer: Unboxer) throws
+    func modelType(of data: Any) -> ModelType
     {
-        pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
-        speed = try unboxer.unbox(key: "speed")
-        system = try unboxer.unbox(key: "system")
-        timeControl = try unboxer.unbox(key: "time_control")
+        if let challengeList = try? createChallengeList(from: data)
+        {
+            return .challengeList(challengeList)
+        }
+        else if let gameStart = try? createGameStart(from: data)
+        {
+            return .gameStarted(gameStart)
+        }
+        else if let challengeDelete = try? createChallengeDelete(from: data)
+        {
+            return .deleteChallenge(challengeDelete)
+        }
 
-        initialTime = try unboxer.unbox(key: "initial_time")
-        maxTime = try unboxer.unbox(key: "max_time")
-        timeIncrement = try unboxer.unbox(key: "time_increment")
+        return .unknown
     }
 }
 
-extension TimeControlParametersType.Simple: Unboxable
+// MARK: Create Model Methods
+extension OGSSeekGraphSocketStore
 {
-    init(unboxer: Unboxer) throws
+    func createChallengeList(from data: Any) throws -> [Model.Challenge]
     {
-        pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
-        speed = try unboxer.unbox(key: "speed")
-        system = try unboxer.unbox(key: "system")
-        timeControl = try unboxer.unbox(key: "time_control")
+        guard let array = data as? [Any] else
+        {
+            fatalError("List could not be created")
+        }
 
-        timePerMove = try unboxer.unbox(key: "per_move")
+        var challengeList: [Model.Challenge] = []
+
+        for item in array
+        {
+            let dictionary = item as! [String: Any]
+            let challenge: Model.Challenge = try createChallenge(from: dictionary)
+
+            challengeList.append(challenge)
+        }
+
+        return challengeList
+    }
+
+    func createGameStart(from data: Any) throws -> Model.GameStart
+    {
+        guard let array = data as? [Any],
+            let dictionary = array[0] as? [String: Any] else
+        {
+            fatalError("Object could not be created")
+        }
+
+        let gameStart: Model.GameStart = try unbox(dictionary: dictionary)
+        return gameStart
+    }
+
+    func createChallengeDelete(from data: Any) throws -> Model.ChallengeDelete
+    {
+        guard let array = data as? [Any],
+            let dictionary = array[0] as? [String: Any] else
+        {
+            fatalError("Object could not be created")
+        }
+
+        let challengeDelete: Model.ChallengeDelete = try unbox(dictionary: dictionary)
+        return challengeDelete
+    }
+
+    func createChallenge(from payload: [String: Any]) throws -> Model.Challenge
+    {
+        let challenge: OGSChallenge = try unbox(dictionary: payload)
+        return challenge
     }
 }

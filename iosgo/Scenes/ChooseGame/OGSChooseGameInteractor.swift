@@ -28,7 +28,7 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
 
     required init()
     {
-        self.listGamesWorker.delegate = self
+        listGamesWorker.delegate = self
     }
 
     func listGames(request _: OGSChooseGame.ListGames.Request)
@@ -39,8 +39,10 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
 
 extension OGSChooseGameInteractor: OGSChooseGameListGamesWorkerDelegate
 {
-    func sendListGamesResponse(_ response: OGSChooseGame.ListGames.Response)
+    func sendGameList(_ gameList: [OGSChallenge])
     {
+        let response = OGSChooseGame.ListGames.Response(username: "studjeff2", userRank: 4, challenges: gameList)
+
         output.presentListGames(response: response)
     }
 }
