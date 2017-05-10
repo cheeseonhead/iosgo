@@ -108,7 +108,7 @@ fileprivate extension OGSChooseGamePresenter
             return canadian(from: parameters)
         case let .absolute(parameters):
             return absolute(from: parameters)
-        case let .none(parameters):
+        case .none:
             return NSLocalizedString("None", comment: "")
         }
     }
@@ -142,7 +142,7 @@ fileprivate extension OGSChooseGamePresenter
         let mainTimeString = String.dateStringFrom(seconds: parameters.mainTime)
         let periodTimeString = String.dateStringFrom(seconds: parameters.periodTime)
 
-        return "\(mainTimeString)+ \(periodTimeString)/\(parameters.stonePerPeriod)"
+        return "\(mainTimeString)+ \(periodTimeString)/\(parameters.stonesPerPeriod)"
     }
 
     func absolute(from parameters: TimeControlParametersType.Absolute) -> String

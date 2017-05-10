@@ -31,6 +31,7 @@ struct OGSChallenge
     enum ChallengerColorType: String, UnboxableEnum
     {
         case automatic
+        case random
         case black
         case white
     }
@@ -87,7 +88,7 @@ struct OGSChallenge
 
             var mainTime: Int
             var periodTime: Int
-            var stonePerPeriod: Int
+            var stonesPerPeriod: Int
         }
 
         struct Absolute

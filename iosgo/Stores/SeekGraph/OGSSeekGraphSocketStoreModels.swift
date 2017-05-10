@@ -182,7 +182,7 @@ extension TimeControlParametersType.Canadian: Unboxable
 
         mainTime = try unboxer.unbox(key: "main_time")
         periodTime = try unboxer.unbox(key: "period_time")
-        stonePerPeriod = try unboxer.unbox(key: "stone_per_period")
+        stonesPerPeriod = try unboxer.unbox(key: "stones_per_period")
     }
 }
 
