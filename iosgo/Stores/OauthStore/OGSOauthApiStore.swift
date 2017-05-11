@@ -8,11 +8,11 @@ import Unbox
 
 class OGSOauthApiStore
 {
-    fileprivate var apiManager: OGSApiManager!
+    fileprivate var apiStore: OGSApiStore!
 
-    required init(apiManager: OGSApiManager)
+    required init(apiStore: OGSApiStore)
     {
-        self.apiManager = apiManager
+        self.apiStore = apiStore
     }
 
     func getToken(with username: String, password: String, completion: @escaping (OGSLoginInfo) -> Void)
@@ -20,14 +20,14 @@ class OGSOauthApiStore
         let url = "oauth2/token/"
 
         let params = [
-            "client_id": apiManager.clientId!,
-            "client_secret": apiManager.clientSecret!,
+            "client_id": apiStore.clientId!,
+            "client_secret": apiStore.clientSecret!,
             "grant_type": "password",
             "username": username,
             "password": password,
         ]
 
-        apiManager.request(toUrl: url, method: .POST, parameters: params)
+        apiStore.request(toUrl: url, method: .POST, parameters: params)
         { statusCode, payload, _ in
 
             var loginInfo = OGSLoginInfo(result: .error(type: .unknownError))
