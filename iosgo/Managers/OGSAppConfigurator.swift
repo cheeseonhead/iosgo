@@ -7,9 +7,8 @@ import Foundation
 
 protocol OGSUserSettingsStoreProtocol
 {
-    func save(accessToken: String)
-    func save(refreshToken: String)
-    func getUserSettings() -> OGSUserSettings
+    var accessToken: String? { get set }
+    var refreshToken: String? { get set }
 }
 
 class OGSAppConfigurator: NSObject
@@ -33,15 +32,14 @@ extension OGSAppConfigurator
 {
     func configureApp()
     {
-        let userSettings = userSettingsStore.getUserSettings()
-        configureApiManager(userSettings: userSettings)
+        configureApiManager()
         configureSocketManager()
     }
 
-    func configureApiManager(userSettings: OGSUserSettings)
+    func configureApiManager()
     {
-        OGSApiManager.sharedInstance.accessToken = userSettings.accessToken
-        OGSApiManager.sharedInstance.refreshToken = userSettings.refreshToken
+        OGSApiManager.sharedInstance.accessToken = userSettingsStore.accessToken
+        OGSApiManager.sharedInstance.refreshToken = userSettingsStore.refreshToken
 
         OGSApiManager.sharedInstance.domainName = configuration.domainName
         OGSApiManager.sharedInstance.clientId = configuration.clientID
@@ -81,11 +79,11 @@ fileprivate extension OGSAppConfigurator
 {
     func setAndSave(accessToken: String)
     {
-        userSettingsStore.save(accessToken: accessToken)
+        userSettingsStore.accessToken = accessToken
     }
 
     func setAndSave(refreshToken: String)
     {
-        userSettingsStore.save(refreshToken: refreshToken)
+        userSettingsStore.refreshToken = refreshToken
     }
 }

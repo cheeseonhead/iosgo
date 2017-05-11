@@ -5,7 +5,7 @@
 
 import Foundation
 
-class OGSUserDefaults: OGSUserSettingsStoreProtocol
+class OGSUserDefaults
 {
     enum Key
     {
@@ -13,24 +13,31 @@ class OGSUserDefaults: OGSUserSettingsStoreProtocol
         static let refreshToken = "refreshToken"
     }
 
-    var userDefault: UserDefaults = UserDefaults.standard
+    fileprivate var userDefault: UserDefaults = UserDefaults.standard
 
-    func save(accessToken: String)
+    var accessToken: String?
     {
-        userDefault.set(accessToken, forKey: Key.accessToken)
+        set
+        {
+            userDefault.set(accessToken, forKey: Key.accessToken)
+        }
+
+        get
+        {
+            return userDefault.string(forKey: Key.accessToken)
+        }
     }
 
-    func save(refreshToken: String)
+    var refreshToken: String?
     {
-        userDefault.set(refreshToken, forKey: Key.refreshToken)
-    }
+        set
+        {
+            userDefault.set(refreshToken, forKey: Key.refreshToken)
+        }
 
-    func getUserSettings() -> OGSUserSettings
-    {
-        let settings = OGSUserSettings()
-        settings.accessToken = userDefault.string(forKey: Key.accessToken)
-        settings.refreshToken = userDefault.string(forKey: Key.refreshToken)
-
-        return settings
+        get
+        {
+            return userDefault.string(forKey: Key.refreshToken)
+        }
     }
 }
