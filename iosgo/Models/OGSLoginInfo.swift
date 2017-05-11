@@ -17,11 +17,11 @@ struct OGSLoginInfo
 
     struct TokenInfo
     {
-        var accessToken: String?
-        var tokenType: String?
-        var expiresIn: Int?
-        var refreshToken: String?
-        var scope: String?
+        var accessToken: String
+        var tokenType: String
+        var expiresIn: Int
+        var refreshToken: String
+        var scope: String
     }
 
     enum ErrorType

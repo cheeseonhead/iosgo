@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import Unbox
 
 class OGSOauthApiStore
 {
@@ -33,14 +34,15 @@ class OGSOauthApiStore
 
             switch statusCode {
             case .ok:
-                guard let correctPayload = payload,
-                    let tokenInfo = self.createTokenInfo(from: correctPayload) else
+                if let tokenInfo = try? self.createTokenInfo(from: payload!)
+                {
+                    loginInfo.result = .success(info: tokenInfo)
+                }
+                else
                 {
                     loginInfo.result = .error(type: .unknownError)
-                    completion(loginInfo)
-                    return
                 }
-                loginInfo.result = .success(info: tokenInfo)
+                break
             case .unauthorized:
                 loginInfo.result = .error(type: .invalidLoginInfo)
                 break
@@ -55,17 +57,9 @@ class OGSOauthApiStore
         }
     }
 
-    fileprivate func createTokenInfo(from payload: [String: Any]) -> OGSLoginInfo.TokenInfo?
+    fileprivate func createTokenInfo(from payload: [String: Any]) throws -> OGSLoginInfo.TokenInfo
     {
-        guard let accessToken = payload["access_token"] as? String,
-            let tokenType = payload["token_type"] as? String,
-            let expiresIn = payload["expires_in"] as? Int,
-            let refreshToken = payload["refresh_token"] as? String,
-            let scope = payload["scope"] as? String else
-        {
-            return nil
-        }
-
-        return OGSLoginInfo.TokenInfo(accessToken: accessToken, tokenType: tokenType, expiresIn: expiresIn, refreshToken: refreshToken, scope: scope)
+        let tokenInfo: OGSLoginInfo.TokenInfo = try unbox(dictionary: payload)
+        return tokenInfo
     }
 }
