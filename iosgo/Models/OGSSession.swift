@@ -5,7 +5,7 @@
 
 import Foundation
 
-class OGSSession
+struct OGSSession
 {
     enum Key
     {
