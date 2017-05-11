@@ -5,7 +5,7 @@
 
 import Foundation
 
-class OGSUserDefaults
+class OGSSession
 {
     enum Key
     {

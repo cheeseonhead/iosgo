@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     {
         // Override point for customization after application launch.
 
-        configurator = OGSAppConfigurator(userSettingsStore: OGSUserDefaults(), configuration: OGSBetaConfiguration())
+        configurator = OGSAppConfigurator(userSettingsStore: OGSSession(), configuration: OGSBetaConfiguration())
         configurator!.configureApp()
 
         return true
@@ -27,4 +27,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 }
 
 // MARK: DIP Conform
-extension OGSUserDefaults: OGSUserSettingsStoreProtocol {}
+extension OGSSession: OGSUserSettingsStoreProtocol {}
