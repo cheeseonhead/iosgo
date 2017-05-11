@@ -20,11 +20,11 @@ enum HTTPStatusCode: Int
     case notFound = 404
 }
 
-typealias OGSApiResultBlock = (_ statusCode: HTTPStatusCode, _ payload: [String: Any]?, _ error: Error?) -> Void
-
 class OGSApiManager
 {
-    static var sharedInstance = OGSApiManager()
+    static var sharedInstance = OGSApiManager(apiStore: OGSApiStore())
+
+    var apiStore: OGSApiStore
 
     var domainName: String!
     var clientId: String!
@@ -32,32 +32,18 @@ class OGSApiManager
     var accessToken: String?
     var refreshToken: String?
 
+    required init(apiStore: OGSApiStore)
+    {
+        self.apiStore = apiStore
+    }
+
     func request(toUrl url: String, method: HTTPMethod, parameters: [String: String], completion: @escaping OGSApiResultBlock)
     {
         guard let fullURL = URL(string: domainName.appending(url)) else { return }
 
         let request = createRequest(fullURL: fullURL, method: method, parameters: parameters)
 
-        let task = URLSession.shared.dataTask(with: request)
-        { data, response, error in
-            guard let httpResponse = response as? HTTPURLResponse, let data = data else
-            {
-                completion(.clientError, nil, error)
-                return
-            }
-
-            do
-            {
-                let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
-                completion(HTTPStatusCode(rawValue: httpResponse.statusCode)!, json, error)
-            }
-            catch _
-            {
-                print("Error Occurred")
-            }
-        }
-
-        task.resume()
+        apiStore.send(request: request, completion: completion)
     }
 
     func createRequest(fullURL: URL, method: HTTPMethod, parameters: [String: String]) -> URLRequest
