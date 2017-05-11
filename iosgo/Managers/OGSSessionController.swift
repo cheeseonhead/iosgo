@@ -9,5 +9,5 @@ class OGSSessionController
 {
     static let sharedInstance = OGSSessionController()
 
-    var current = OGSSession()
+    var current: OGSSession?
 }

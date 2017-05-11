@@ -42,4 +42,9 @@ struct OGSSession
     }
 
     var configuration: OGSConfigurationProtocol
+
+    init(configuration: OGSConfigurationProtocol)
+    {
+        self.configuration = configuration
+    }
 }

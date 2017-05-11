@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     {
         // Override point for customization after application launch.
 
-        configurator = OGSAppConfigurator(userSettingsStore: OGSSession(), configuration: OGSBetaConfiguration())
+        configurator = OGSAppConfigurator(session: OGSSession(configuration: OGSBetaConfiguration()))
         configurator!.configureApp()
 
         return true

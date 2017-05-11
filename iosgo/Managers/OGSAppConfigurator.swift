@@ -13,17 +13,12 @@ protocol OGSUserSettingsStoreProtocol
 
 class OGSAppConfigurator: NSObject
 {
-    fileprivate var userSettingsStore: OGSUserSettingsStoreProtocol!
-    fileprivate var configuration: OGSConfigurationProtocol!
+    fileprivate var session: OGSSession
 
-    required init(userSettingsStore: OGSUserSettingsStoreProtocol, configuration: OGSConfigurationProtocol)
+    required init(session: OGSSession)
     {
+        self.session = session
         super.init()
-        self.userSettingsStore = userSettingsStore
-        self.configuration = configuration
-
-        OGSNotificationCenter.sharedInstance.addObserver(self, selector: #selector(handleAccessTokenUpdated), name: .accessTokenUpdated, object: nil)
-        OGSNotificationCenter.sharedInstance.addObserver(self, selector: #selector(handleRefreshTokenUpdated), name: .refreshTokenUpdated, object: nil)
     }
 }
 
@@ -32,58 +27,30 @@ extension OGSAppConfigurator
 {
     func configureApp()
     {
+        configureSessionController()
         configureApiManager()
         configureSocketManager()
     }
 
+    func configureSessionController()
+    {
+        OGSSessionController.sharedInstance.current = session
+    }
+
     func configureApiManager()
     {
-        OGSApiManager.sharedInstance.accessToken = userSettingsStore.accessToken
-        OGSApiManager.sharedInstance.refreshToken = userSettingsStore.refreshToken
+        OGSApiManager.sharedInstance.accessToken = session.accessToken
+        OGSApiManager.sharedInstance.refreshToken = session.refreshToken
 
-        OGSApiManager.sharedInstance.domainName = configuration.domainName
-        OGSApiManager.sharedInstance.clientId = configuration.clientID
-        OGSApiManager.sharedInstance.clientSecret = configuration.clientSecret
+        OGSApiManager.sharedInstance.domainName = session.configuration.domainName
+        OGSApiManager.sharedInstance.clientId = session.configuration.clientID
+        OGSApiManager.sharedInstance.clientSecret = session.configuration.clientSecret
     }
 
     func configureSocketManager()
     {
-        OGSSocketManager.sharedInstance.socketAddress = configuration.domainName
+        OGSSocketManager.sharedInstance.socketAddress = session.configuration.domainName
 
         OGSSocketManager.sharedInstance.connect()
-    }
-}
-
-// MARK: - Broadcast Handlers
-extension OGSAppConfigurator
-{
-    func handleAccessTokenUpdated(notification: NSNotification)
-    {
-        guard let accessToken = notification.object as? String else { return }
-        OGSApiManager.sharedInstance.accessToken = accessToken
-
-        setAndSave(accessToken: accessToken)
-    }
-
-    func handleRefreshTokenUpdated(notification: NSNotification)
-    {
-        guard let refreshToken = notification.object as? String else { return }
-        OGSApiManager.sharedInstance.refreshToken = refreshToken
-
-        setAndSave(refreshToken: refreshToken)
-    }
-}
-
-// MARK: - Set and Save
-fileprivate extension OGSAppConfigurator
-{
-    func setAndSave(accessToken: String)
-    {
-        userSettingsStore.accessToken = accessToken
-    }
-
-    func setAndSave(refreshToken: String)
-    {
-        userSettingsStore.refreshToken = refreshToken
     }
 }
