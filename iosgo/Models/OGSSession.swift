@@ -40,4 +40,6 @@ struct OGSSession
             return userDefault.string(forKey: Key.refreshToken)
         }
     }
+
+    var configuration: OGSConfigurationProtocol
 }
