@@ -24,26 +24,44 @@ typealias OGSApiResultBlock = (_ statusCode: HTTPStatusCode, _ payload: [String:
 
 class OGSApiStore
 {
-    var session: OGSSession
+    var sessionController: OGSSessionController
     var clientID: String
     {
-        session.configuration.clientID
+        return sessionController.current.configuration.clientID
     }
     var clientSecret: String! {
-        session.configuration.clientSecret
+        return sessionController.current.configuration.clientSecret
     }
     var domainName: String
     {
-        session.configuration.domainName
+        return sessionController.current.configuration.domainName
     }
-    var accessToken: String
+    var accessToken: String?
     {
-        session.accessToken
+        get
+        {
+            return sessionController.current.accessToken
+        }
+        set
+        {
+            sessionController.current.accessToken = newValue
+        }
+    }
+    var refreshToken: String?
+    {
+        get
+        {
+            return sessionController.current.refreshToken
+        }
+        set
+        {
+            sessionController.current.refreshToken = newValue
+        }
     }
 
-    required init(session: OGSSession)
+    required init(sessionController: OGSSessionController)
     {
-        self.session = session
+        self.sessionController = sessionController
     }
 
     func request(toUrl url: String, method: HTTPMethod, parameters: [String: String], completion: @escaping OGSApiResultBlock)
@@ -60,7 +78,10 @@ class OGSApiStore
         var request = URLRequest(url: fullURL)
         request.httpMethod = method.rawValue
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        if let token = accessToken
+        {
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
         request.httpBody = parameters.stringFromHttpParameters().data(using: .utf8)
 
         return request
