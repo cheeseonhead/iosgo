@@ -9,6 +9,7 @@ struct OGSSession
 {
     enum Key
     {
+        static let username = "username"
         static let accessToken = "accessToken"
         static let refreshToken = "refreshToken"
     }
@@ -38,6 +39,18 @@ struct OGSSession
         get
         {
             return userDefault.string(forKey: Key.refreshToken)
+        }
+    }
+
+    var username: String?
+    {
+        set
+        {
+            userDefault.set(username, forKey: Key.username)
+        }
+        get
+        {
+            return userDefault.string(forKey: Key.username)
         }
     }
 
