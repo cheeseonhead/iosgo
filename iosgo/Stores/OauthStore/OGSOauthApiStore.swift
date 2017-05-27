@@ -36,6 +36,7 @@ class OGSOauthApiStore
             case .ok:
                 if let tokenInfo = try? self.createTokenInfo(from: payload!)
                 {
+                    self.updateTokens(with: tokenInfo)
                     loginInfo.result = .success(info: tokenInfo)
                 }
                 else
@@ -61,5 +62,11 @@ class OGSOauthApiStore
     {
         let tokenInfo: OGSLoginInfo.TokenInfo = try unbox(dictionary: payload)
         return tokenInfo
+    }
+
+    fileprivate func updateTokens(with tokenInfo: OGSLoginInfo.TokenInfo)
+    {
+        apiStore.accessToken = tokenInfo.accessToken
+        apiStore.refreshToken = tokenInfo.refreshToken
     }
 }
