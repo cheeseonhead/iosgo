@@ -11,7 +11,7 @@ struct OGSLoginInfo
 
     enum GetTokenResult
     {
-        case success(info: TokenInfo)
+        case success
         case error(type: ErrorType)
     }
 

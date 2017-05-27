@@ -25,12 +25,10 @@ class OGSLoginWorker
     }
 
     var authStore: OGSAuthenticationStoreProtocol
-    var notificationCenter: OGSNotificationCenter
 
-    init(authStore: OGSAuthenticationStoreProtocol, notificationCenter: OGSNotificationCenter)
+    init(authStore: OGSAuthenticationStoreProtocol)
     {
         self.authStore = authStore
-        self.notificationCenter = notificationCenter
     }
 
     func loginWith(username: String, password: String, completion: @escaping (_: OGSLogin.Login.Response) -> Void)
@@ -40,8 +38,7 @@ class OGSLoginWorker
             var response: OGSLogin.Login.Response!
 
             switch loginInfo.result {
-            case let .success(tokenInfo):
-                self.broadcastTokensUpdated(with: tokenInfo)
+            case .success:
                 response = self.createLoginSuccessResponse()
                 break
             case let .error(errorType):
@@ -56,12 +53,6 @@ class OGSLoginWorker
 
 fileprivate extension OGSLoginWorker
 {
-    func broadcastTokensUpdated(with tokenInfo: OGSLoginInfo.TokenInfo)
-    {
-        notificationCenter.post(name: .accessTokenUpdated, object: tokenInfo.accessToken)
-        notificationCenter.post(name: .refreshTokenUpdated, object: tokenInfo.refreshToken)
-    }
-
     func createLoginSuccessResponse() -> OGSLogin.Login.Response
     {
         let response = OGSLogin.Login.Response(loadingStatus: .success)

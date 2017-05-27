@@ -37,7 +37,7 @@ class OGSOauthApiStore
                 if let tokenInfo = try? self.createTokenInfo(from: payload!)
                 {
                     self.updateTokens(with: tokenInfo)
-                    loginInfo.result = .success(info: tokenInfo)
+                    loginInfo.result = .success
                 }
                 else
                 {
