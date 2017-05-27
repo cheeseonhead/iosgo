@@ -7,7 +7,20 @@ import Foundation
 
 class OGSSessionController
 {
-    static let sharedInstance = OGSSessionController()
+    static let sharedInstance = OGSSessionController(session: OGSSession(configuration: OGSMockConfiguration()))
 
-    var current: OGSSession?
+    var current: OGSSession
+
+    required init(session: OGSSession)
+    {
+        self.current = session
+    }
+}
+
+fileprivate class OGSMockConfiguration: OGSConfigurationProtocol
+{
+    var domainName: String = ""
+    var clientID: String = ""
+    var clientSecret: String = ""
+    var socketAddress: String = ""
 }
