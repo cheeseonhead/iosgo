@@ -26,7 +26,7 @@ protocol OGSLoginInteractorOutput
 class OGSLoginInteractor: OGSLoginInteractorInput
 {
     var output: OGSLoginInteractorOutput!
-    var loginWorker = OGSLoginWorker(authStore: OGSOauthApiStore(apiStore: OGSApiStore(session: OGSSessionController.sharedInstance.current)),
+    var loginWorker = OGSLoginWorker(authStore: OGSOauthApiStore(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)),
                                      notificationCenter: OGSNotificationCenter.sharedInstance)
 
     // MARK: - Business logic
