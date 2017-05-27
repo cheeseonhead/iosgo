@@ -22,7 +22,7 @@ enum HTTPStatusCode: Int
 
 class OGSApiManager
 {
-    static var sharedInstance = OGSApiManager(apiStore: OGSApiStore())
+    static var sharedInstance = OGSApiManager(apiStore: OGSApiStore(session: OGSSessionController.sharedInstance.current))
 
     var apiStore: OGSApiStore
 
@@ -35,28 +35,5 @@ class OGSApiManager
     required init(apiStore: OGSApiStore)
     {
         self.apiStore = apiStore
-    }
-
-    func request(toUrl url: String, method: HTTPMethod, parameters: [String: String], completion: @escaping OGSApiResultBlock)
-    {
-        guard let fullURL = URL(string: domainName.appending(url)) else { return }
-
-        let request = createRequest(fullURL: fullURL, method: method, parameters: parameters)
-
-        apiStore.send(request: request, completion: completion)
-    }
-
-    func createRequest(fullURL: URL, method: HTTPMethod, parameters: [String: String]) -> URLRequest
-    {
-        var request = URLRequest(url: fullURL)
-        request.httpMethod = method.rawValue
-        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        if let token = accessToken
-        {
-            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        }
-        request.httpBody = parameters.stringFromHttpParameters().data(using: .utf8)
-
-        return request
     }
 }

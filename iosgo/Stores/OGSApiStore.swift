@@ -9,6 +9,48 @@ typealias OGSApiResultBlock = (_ statusCode: HTTPStatusCode, _ payload: [String:
 
 class OGSApiStore
 {
+    var session: OGSSession
+    var clientID: String
+    {
+        session.configuration.clientID
+    }
+    var clientSecret: String! {
+        session.configuration.clientSecret
+    }
+    var domainName: String
+    {
+        session.configuration.domainName
+    }
+    var accessToken: String
+    {
+        session.accessToken
+    }
+
+    required init(session: OGSSession)
+    {
+        self.session = session
+    }
+
+    func request(toUrl url: String, method: HTTPMethod, parameters: [String: String], completion: @escaping OGSApiResultBlock)
+    {
+        guard let fullURL = URL(string: domainName.appending(url)) else { return }
+
+        let request = createRequest(fullURL: fullURL, method: method, parameters: parameters)
+
+        send(request: request, completion: completion)
+    }
+
+    func createRequest(fullURL: URL, method: HTTPMethod, parameters: [String: String]) -> URLRequest
+    {
+        var request = URLRequest(url: fullURL)
+        request.httpMethod = method.rawValue
+        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        request.httpBody = parameters.stringFromHttpParameters().data(using: .utf8)
+
+        return request
+    }
+
     func send(request: URLRequest, completion: @escaping OGSApiResultBlock)
     {
         let task = URLSession.shared.dataTask(with: request)
