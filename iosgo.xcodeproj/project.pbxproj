@@ -63,6 +63,7 @@
 		8405CF0DBD2A4DAB0A3A30E7 /* OGSOauthApiStoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C723D11B0D56D6CFDD08 /* OGSOauthApiStoreModels.swift */; };
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
 		AD05A00EC3EF1F09DFBC5597 /* Dictionary+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */; };
+		AD05A01B448899472AAD4DBE /* OGSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A619B90715ADEDAFC230 /* OGSUser.swift */; };
 		AD05A21671A192B337421704 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A2B5931F24B08CD0F38B /* String+Additions.swift */; };
 		AD05A2678BD4ECA68F40FE18 /* OGSProdConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A6E404C73D452A4B9148 /* OGSProdConfiguration.swift */; };
 		AD05A664F189FAC228843217 /* OGSSeekGraphSocketStoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AFB1DFE099131696928E /* OGSSeekGraphSocketStoreModels.swift */; };
@@ -153,6 +154,7 @@
 		8405CF5B5FD5BE2E3B1BFCDC /* Temp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
 		AD05A2B5931F24B08CD0F38B /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Additions.swift"; sourceTree = "<group>"; };
+		AD05A619B90715ADEDAFC230 /* OGSUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSUser.swift; sourceTree = "<group>"; };
 		AD05A6342D59CC3E80B17996 /* OGSLoginInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginInfo.swift; sourceTree = "<group>"; };
 		AD05A6E404C73D452A4B9148 /* OGSProdConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSProdConfiguration.swift; sourceTree = "<group>"; };
 		AD05A7F90F265AA6604A16CB /* OGSSocketManagerTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSSocketManagerTypes.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				8405C66D470818B9A9828DEE /* Challenges */,
 				AD05A6342D59CC3E80B17996 /* OGSLoginInfo.swift */,
 				8405C78D22DC4B4FB78797CA /* OGSSession.swift */,
+				AD05A619B90715ADEDAFC230 /* OGSUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -726,6 +729,7 @@
 				8405C19D66ABA58804962F72 /* OGSSessionController.swift in Sources */,
 				8405CABBF4E7064889C38772 /* OGSApiStore.swift in Sources */,
 				AD05ADA1EA08A794B27AD4DB /* OGSSessionWorker.swift in Sources */,
+				AD05A01B448899472AAD4DBE /* OGSUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
