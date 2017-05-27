@@ -8,7 +8,7 @@ import Unbox
 
 class OGSOauthApiStore
 {
-    fileprivate var apiStore: OGSApiStore!
+    fileprivate var apiStore: OGSApiStore
 
     required init(apiStore: OGSApiStore)
     {
@@ -19,9 +19,9 @@ class OGSOauthApiStore
     {
         let url = "oauth2/token/"
 
-        let params = [
-            "client_id": apiStore.clientId!,
-            "client_secret": apiStore.clientSecret!,
+        let params: [String: String] = [
+            "client_id": apiStore.clientID,
+            "client_secret": apiStore.clientSecret,
             "grant_type": "password",
             "username": username,
             "password": password,
