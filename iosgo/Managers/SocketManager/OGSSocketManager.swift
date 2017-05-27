@@ -23,7 +23,6 @@ class OGSSocketManager
     var isConnected = false
 
     fileprivate var socket: SocketIOClient!
-    fileprivate var notificationCenter = OGSNotificationCenter()
 
     func connect()
     {
