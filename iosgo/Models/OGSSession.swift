@@ -43,6 +43,11 @@ struct OGSSession
 
     var configuration: OGSConfigurationProtocol
 
+    var authenticated: Bool
+    {
+        return accessToken != nil && refreshToken != nil
+    }
+
     init(configuration: OGSConfigurationProtocol)
     {
         self.configuration = configuration
