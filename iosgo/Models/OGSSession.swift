@@ -9,7 +9,7 @@ struct OGSSession
 {
     enum Key
     {
-        static let username = "username"
+        static let user = "user"
         static let accessToken = "accessToken"
         static let refreshToken = "refreshToken"
     }
@@ -42,15 +42,22 @@ struct OGSSession
         }
     }
 
-    var username: String?
+    var user: OGSUser?
     {
         set
         {
-            userDefault.set(username, forKey: Key.username)
+            userDefault.set(user, forKey: Key.user)
         }
         get
         {
-            return userDefault.string(forKey: Key.username)
+            if let storedUser = userDefault.object(forKey: Key.user) as? OGSUser
+            {
+                return storedUser
+            }
+            else
+            {
+                return nil
+            }
         }
     }
 
