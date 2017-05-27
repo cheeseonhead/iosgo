@@ -73,6 +73,7 @@
 		AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */; };
 		AD05ABE155BC1FDEA29394EF /* OGSSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05ADFB7AF57B9E129EBAFC /* OGSSocketManager.swift */; };
 		AD05ADA1EA08A794B27AD4DB /* OGSSessionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AD7F65C8CB89B123BE4D /* OGSSessionWorker.swift */; };
+		AD05ADCD7A6778EA6AAF16D7 /* OGSRootViewControllerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A6413FABA7AABBEEC6FA /* OGSRootViewControllerTransition.swift */; };
 		AD05AE7444BF09E5E49DE6ED /* OGSSocketManagerTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A7F90F265AA6604A16CB /* OGSSocketManagerTypes.swift */; };
 		AD05AE74C92DA8328A33761F /* OGSDiskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05ABBB3826AA77B8B017A3 /* OGSDiskManager.swift */; };
 		AD05AF2B9222BE964C87EC8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A9ECDDD9E6ED45019693 /* AppDelegate.swift */; };
@@ -156,6 +157,7 @@
 		AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Additions.swift"; sourceTree = "<group>"; };
 		AD05A619B90715ADEDAFC230 /* OGSUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSUser.swift; sourceTree = "<group>"; };
 		AD05A6342D59CC3E80B17996 /* OGSLoginInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginInfo.swift; sourceTree = "<group>"; };
+		AD05A6413FABA7AABBEEC6FA /* OGSRootViewControllerTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSRootViewControllerTransition.swift; sourceTree = "<group>"; };
 		AD05A6E404C73D452A4B9148 /* OGSProdConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSProdConfiguration.swift; sourceTree = "<group>"; };
 		AD05A7F90F265AA6604A16CB /* OGSSocketManagerTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSSocketManagerTypes.swift; sourceTree = "<group>"; };
 		AD05A8CBB6DCEBEA0F2DBE28 /* OGSDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSDispatcher.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				56BD888E1E5522530098E50B /* OGSButton.swift */,
+				AD05AF60751CE80FA6C9C0A1 /* Transitions */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -450,6 +453,14 @@
 				AD05AD7F65C8CB89B123BE4D /* OGSSessionWorker.swift */,
 			);
 			path = Workers;
+			sourceTree = "<group>";
+		};
+		AD05AF60751CE80FA6C9C0A1 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				AD05A6413FABA7AABBEEC6FA /* OGSRootViewControllerTransition.swift */,
+			);
+			path = Transitions;
 			sourceTree = "<group>";
 		};
 		E4DEFB86F4E965A3CC8D8761 /* Frameworks */ = {
@@ -730,6 +741,7 @@
 				8405CABBF4E7064889C38772 /* OGSApiStore.swift in Sources */,
 				AD05ADA1EA08A794B27AD4DB /* OGSSessionWorker.swift in Sources */,
 				AD05A01B448899472AAD4DBE /* OGSUser.swift in Sources */,
+				AD05ADCD7A6778EA6AAF16D7 /* OGSRootViewControllerTransition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
