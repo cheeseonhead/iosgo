@@ -5,6 +5,21 @@
 
 import Foundation
 
+enum HTTPMethod: String
+{
+    case GET
+    case POST
+}
+
+enum HTTPStatusCode: Int
+{
+    case clientError = -1
+    case ok = 200
+    case badRequest = 400
+    case unauthorized = 401
+    case notFound = 404
+}
+
 typealias OGSApiResultBlock = (_ statusCode: HTTPStatusCode, _ payload: [String: Any]?, _ error: Error?) -> Void
 
 class OGSApiStore

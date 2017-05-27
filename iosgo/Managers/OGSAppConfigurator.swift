@@ -28,23 +28,12 @@ extension OGSAppConfigurator
     func configureApp()
     {
         configureSessionController()
-        configureApiManager()
         configureSocketManager()
     }
 
     func configureSessionController()
     {
         OGSSessionController.sharedInstance.current = session
-    }
-
-    func configureApiManager()
-    {
-        OGSApiManager.sharedInstance.accessToken = session.accessToken
-        OGSApiManager.sharedInstance.refreshToken = session.refreshToken
-
-        OGSApiManager.sharedInstance.domainName = session.configuration.domainName
-        OGSApiManager.sharedInstance.clientId = session.configuration.clientID
-        OGSApiManager.sharedInstance.clientSecret = session.configuration.clientSecret
     }
 
     func configureSocketManager()
