@@ -25,37 +25,41 @@ typealias OGSApiResultBlock = (_ statusCode: HTTPStatusCode, _ payload: [String:
 class OGSApiStore
 {
     var sessionController: OGSSessionController
+    var session: OGSSession
+    {
+        return sessionController.current
+    }
     var clientID: String
     {
-        return sessionController.current.configuration.clientID
+        return session.configuration.clientID
     }
     var clientSecret: String! {
-        return sessionController.current.configuration.clientSecret
+        return session.configuration.clientSecret
     }
     var domainName: String
     {
-        return sessionController.current.configuration.domainName
+        return session.configuration.domainName
     }
     var accessToken: String?
     {
         get
         {
-            return sessionController.current.accessToken
+            return session.accessToken
         }
         set
         {
-            sessionController.current.accessToken = newValue
+            session.accessToken = newValue
         }
     }
     var refreshToken: String?
     {
         get
         {
-            return sessionController.current.refreshToken
+            return session.refreshToken
         }
         set
         {
-            sessionController.current.refreshToken = newValue
+            session.refreshToken = newValue
         }
     }
 
