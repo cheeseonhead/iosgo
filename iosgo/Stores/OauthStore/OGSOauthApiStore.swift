@@ -45,7 +45,7 @@ class OGSOauthApiStore
                 }
                 break
             case .unauthorized:
-                loginInfo.result = .error(type: .invalidLoginInfo)
+                loginInfo.result = .error(type: .unauthorized)
                 break
             case .clientError:
                 loginInfo.result = .error(type: .clientError)

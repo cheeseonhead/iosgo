@@ -15,14 +15,7 @@ class OGSMeStore
         enum Result
         {
             case success
-            case error(type: ErrorType)
-        }
-
-        enum ErrorType
-        {
-            case unauthorized
-            case clientError
-            case unknownError
+            case error(type: ApiErrorType)
         }
     }
 

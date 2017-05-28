@@ -20,6 +20,13 @@ enum HTTPStatusCode: Int
     case notFound = 404
 }
 
+enum ApiErrorType
+{
+    case unauthorized
+    case unknownError
+    case clientError
+}
+
 typealias OGSApiResultBlock = (_ statusCode: HTTPStatusCode, _ payload: [String: Any]?, _ error: Error?) -> Void
 
 class OGSApiStore
