@@ -8,6 +8,10 @@ import Foundation
 class OGSSessionWorker
 {
     var sessionController: OGSSessionController
+    var current: OGSSession
+    {
+        return sessionController.current
+    }
 
     required init(sessionController: OGSSessionController)
     {
