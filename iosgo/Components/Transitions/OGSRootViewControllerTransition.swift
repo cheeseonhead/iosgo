@@ -19,11 +19,12 @@ class OGSRootViewControllerTransition
     func execute(completion: ((Bool) -> Void)?)
     {
         guard let window = UIApplication.shared.keyWindow,
-            let _ = window.rootViewController else
+            let rootViewController = window.rootViewController else
         {
             return
         }
 
+        to.view.frame = rootViewController.view.frame
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
             window.rootViewController = self.to
         }, completion: completion)
