@@ -25,10 +25,12 @@ class OGSLoginWorker
     }
 
     var authStore: OGSAuthenticationStoreProtocol
+    var meStore: OGSMeStore
 
-    init(authStore: OGSAuthenticationStoreProtocol)
+    init(authStore: OGSAuthenticationStoreProtocol, meStore: OGSMeStore)
     {
         self.authStore = authStore
+        self.meStore = meStore
     }
 
     func loginWith(username: String, password: String, completion: @escaping (_: OGSLogin.Login.Response) -> Void)
@@ -39,14 +41,22 @@ class OGSLoginWorker
 
             switch loginInfo.result {
             case .success:
-                response = self.createLoginSuccessResponse()
+                self.meStore.getUser
+                { workerResponse in
+                    switch workerResponse.result {
+                    case .success:
+                        response = self.createLoginSuccessResponse()
+                    case let .error(errorType):
+                        response = self.createLoginErrorResponse(errorType: errorType)
+                    }
+                    completion(response)
+                }
                 break
             case let .error(errorType):
                 response = self.createLoginErrorResponse(errorType: errorType)
+                completion(response)
                 break
             }
-
-            completion(response)
         }
     }
 }
@@ -60,12 +70,12 @@ fileprivate extension OGSLoginWorker
         return response
     }
 
-    func createLoginErrorResponse(errorType: OGSLoginInfo.ErrorType) -> OGSLogin.Login.Response
+    func createLoginErrorResponse(errorType: ApiErrorType) -> OGSLogin.Login.Response
     {
         var responseError: OGSLogin.Login.Response.ErrorType!
 
         switch errorType {
-        case .invalidLoginInfo:
+        case .unauthorized:
             responseError = .invalidLoginInfo
             break
         case .clientError:
