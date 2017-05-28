@@ -17,7 +17,7 @@ class OGSMainTabBarConfigurator
 
     private init() {}
 
-    func configure(viewController: OGSMainTabBarViewController)
+    func configure(viewController: OGSMainTabBarController)
     {
         let presenter = OGSMainTabBarPresenter()
         presenter.output = viewController
@@ -32,7 +32,7 @@ class OGSMainTabBarConfigurator
     }
 }
 
-extension OGSMainTabBarViewController: OGSMainTabBarPresenterOutput
+extension OGSMainTabBarController: OGSMainTabBarPresenterOutput
 {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
@@ -40,8 +40,6 @@ extension OGSMainTabBarViewController: OGSMainTabBarPresenterOutput
     }
 }
 
-extension OGSMainTabBarInteractor: OGSMainTabBarViewControllerOutput, OGSMainTabBarRouterDataProvider, OGSMainTabBarRouterDataReceiver {}
+extension OGSMainTabBarInteractor: OGSMainTabBarControllerOutput, OGSMainTabBarRouterDataProvider, OGSMainTabBarRouterDataReceiver {}
 
 extension OGSMainTabBarPresenter: OGSMainTabBarInteractorOutput {}
-
-extension OGSMainTabBarRouter: OGSMainTabBarViewControllerRouter {}

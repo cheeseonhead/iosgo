@@ -11,22 +11,20 @@
 
 import UIKit
 
-protocol OGSMainTabBarViewControllerInput
+protocol OGSMainTabBarControllerInput
 {
-    func displayscene(viewModel: OGSMainTabBar.loadscene.ViewModel)
+    func displayScene(viewModel: OGSMainTabBar.loadscene.ViewModel)
 }
 
-protocol OGSMainTabBarViewControllerOutput
+protocol OGSMainTabBarControllerOutput
 {
-    func doSomething(request: OGSMainTabBar.loadscene.Request)
+    func loadScene(request: OGSMainTabBar.loadscene.Request)
 }
 
-protocol OGSMainTabBarViewControllerRouter: Router {}
-
-class OGSMainTabBarViewController: UIViewController, OGSMainTabBarViewControllerInput
+class OGSMainTabBarController: UITabBarController, OGSMainTabBarControllerInput
 {
-    var output: OGSMainTabBarViewControllerOutput!
-    var router: OGSMainTabBarViewControllerRouter!
+    var output: OGSMainTabBarControllerOutput!
+    var router: OGSMainTabBarRouter!
 
     // MARK: - Object lifecycle
 
@@ -36,30 +34,7 @@ class OGSMainTabBarViewController: UIViewController, OGSMainTabBarViewController
         OGSMainTabBarConfigurator.sharedInstance.configure(viewController: self)
     }
 
-    // MARK: - View lifecycle
-
-    override func viewDidLoad()
+    func displayScene(viewModel _: OGSMainTabBar.loadscene.ViewModel)
     {
-        super.viewDidLoad()
-        doSomethingOnLoad()
-    }
-
-    // MARK: - Event handling
-
-    func doSomethingOnLoad()
-    {
-        // NOTE: Ask the Interactor to do some work
-
-        let request = OGSMainTabBar.loadscene.Request()
-        output.doSomething(request: request)
-    }
-
-    // MARK: - Display logic
-
-    func displayscene(viewModel _: OGSMainTabBar.loadscene.ViewModel)
-    {
-        // NOTE: Display the result from the Presenter
-
-        // nameTextField.text = viewModel.name
     }
 }

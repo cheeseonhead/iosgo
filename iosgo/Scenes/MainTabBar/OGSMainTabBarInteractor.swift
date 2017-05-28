@@ -13,12 +13,12 @@ import UIKit
 
 protocol OGSMainTabBarInteractorInput
 {
-    func doSomething(request: OGSMainTabBar.loadscene.Request)
+    func loadScene(request: OGSMainTabBar.loadscene.Request)
 }
 
 protocol OGSMainTabBarInteractorOutput
 {
-    func presentscene(response: OGSMainTabBar.loadscene.Response)
+    func presentScene(response: OGSMainTabBar.loadscene.Response)
 }
 
 class OGSMainTabBarInteractor: OGSMainTabBarInteractorInput
@@ -27,13 +27,13 @@ class OGSMainTabBarInteractor: OGSMainTabBarInteractorInput
 
     // MARK: - Business logic
 
-    func doSomething(request _: OGSMainTabBar.loadscene.Request)
+    func loadScene(request _: OGSMainTabBar.loadscene.Request)
     {
         // NOTE: Create some Worker to do the work
 
         // NOTE: Pass the result to the Presenter
 
         let response = OGSMainTabBar.loadscene.Response()
-        output.presentscene(response: response)
+        output.presentScene(response: response)
     }
 }
