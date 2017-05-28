@@ -43,23 +43,6 @@ struct OGSSession
     }
 
     var user: OGSUser?
-    {
-        set
-        {
-            userDefault.set(newValue, forKey: Key.user)
-        }
-        get
-        {
-            if let storedUser = userDefault.object(forKey: Key.user) as? OGSUser
-            {
-                return storedUser
-            }
-            else
-            {
-                return nil
-            }
-        }
-    }
 
     var configuration: OGSConfigurationProtocol
 
