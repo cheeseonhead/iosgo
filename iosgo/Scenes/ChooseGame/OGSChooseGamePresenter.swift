@@ -74,22 +74,29 @@ fileprivate extension OGSChooseGamePresenter
 
     func challengeCellType(for challenge: OGSChallenge, response: ListGames.Response) -> ListGames.ViewModel.Challenge.ButtonType
     {
-        if challenge.username == response.username
+        if response.loggedIn
         {
-            return .remove
-        }
-        else
-        {
-            let canAccept = (challenge.maxRank >= response.userRank && challenge.minRank <= response.userRank)
-
-            if canAccept
+            if challenge.username == response.username
             {
-                return .play
+                return .remove
             }
             else
             {
-                return .cantPlay
+                let canAccept = (challenge.maxRank >= response.userRank && challenge.minRank <= response.userRank)
+
+                if canAccept
+                {
+                    return .play
+                }
+                else
+                {
+                    return .cantPlay
+                }
             }
+        }
+        else
+        {
+            return .cantPlay
         }
     }
 }
