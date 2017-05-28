@@ -17,10 +17,16 @@ class OGSAppDelegate: UIResponder, UIApplicationDelegate
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
-        // Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.main.bounds)
 
         configurator = OGSAppConfigurator(session: OGSSession(configuration: OGSBetaConfiguration()))
         configurator!.configureApp()
+
+        let rootVCWorker = OGSRootViewControllerWorker()
+        let rootVC = rootVCWorker.rootViewController(for: OGSSessionController.sharedInstance.current)
+
+        window?.rootViewController = rootVC
+        window?.makeKeyAndVisible()
 
         return true
     }

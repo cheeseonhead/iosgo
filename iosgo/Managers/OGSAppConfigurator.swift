@@ -11,14 +11,13 @@ protocol OGSUserSettingsStoreProtocol
     var refreshToken: String? { get set }
 }
 
-class OGSAppConfigurator: NSObject
+class OGSAppConfigurator
 {
     fileprivate var session: OGSSession
 
     required init(session: OGSSession)
     {
         self.session = session
-        super.init()
     }
 }
 

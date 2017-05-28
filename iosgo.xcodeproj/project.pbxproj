@@ -78,6 +78,7 @@
 		AD05AE59A5BF1697CECE11D9 /* OGSMeStoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AAF6F23605943C8B4799 /* OGSMeStoreModels.swift */; };
 		AD05AE7444BF09E5E49DE6ED /* OGSSocketManagerTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A7F90F265AA6604A16CB /* OGSSocketManagerTypes.swift */; };
 		AD05AE74C92DA8328A33761F /* OGSDiskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05ABBB3826AA77B8B017A3 /* OGSDiskManager.swift */; };
+		AD05AE8F87A1E735676D8715 /* OGSRootViewControllerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AC0F9046A97D43794663 /* OGSRootViewControllerWorker.swift */; };
 		AD05AF2B9222BE964C87EC8D /* OGSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A9ECDDD9E6ED45019693 /* OGSAppDelegate.swift */; };
 		AD05AF37C68CBA22A3DC256C /* OGSDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A8CBB6DCEBEA0F2DBE28 /* OGSDispatcher.swift */; };
 		AD05AF5EA1B4BDA66756B785 /* OGSMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AB05BA86E5B9B45513FF /* OGSMainTabBarController.swift */; };
@@ -171,6 +172,7 @@
 		AD05AB05BA86E5B9B45513FF /* OGSMainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSMainTabBarController.swift; sourceTree = "<group>"; };
 		AD05ABBB3826AA77B8B017A3 /* OGSDiskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSDiskManager.swift; sourceTree = "<group>"; };
 		AD05ABC463A960E74C9B2CA0 /* OGSChooseGameCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameCollectionViewController.swift; sourceTree = "<group>"; };
+		AD05AC0F9046A97D43794663 /* OGSRootViewControllerWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSRootViewControllerWorker.swift; sourceTree = "<group>"; };
 		AD05AD7F65C8CB89B123BE4D /* OGSSessionWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSSessionWorker.swift; sourceTree = "<group>"; };
 		AD05ADFB7AF57B9E129EBAFC /* OGSSocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSSocketManager.swift; sourceTree = "<group>"; };
 		AD05AE9600B34B78B76D3181 /* OGSChooseGameListGamesWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameListGamesWorker.swift; sourceTree = "<group>"; };
@@ -427,6 +429,14 @@
 			path = CollectionView;
 			sourceTree = "<group>";
 		};
+		AD05A34A88DE4696CFFB31C0 /* ViewWorkers */ = {
+			isa = PBXGroup;
+			children = (
+				AD05AC0F9046A97D43794663 /* OGSRootViewControllerWorker.swift */,
+			);
+			path = ViewWorkers;
+			sourceTree = "<group>";
+		};
 		AD05A56298E411A91826AA48 /* Workers */ = {
 			isa = PBXGroup;
 			children = (
@@ -476,6 +486,7 @@
 			isa = PBXGroup;
 			children = (
 				AD05AD7F65C8CB89B123BE4D /* OGSSessionWorker.swift */,
+				AD05A34A88DE4696CFFB31C0 /* ViewWorkers */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -770,6 +781,7 @@
 				AD05AB67C74B02B834E8CFA8 /* OGSMeStore.swift in Sources */,
 				AD05AE59A5BF1697CECE11D9 /* OGSMeStoreModels.swift in Sources */,
 				AD05AF5EA1B4BDA66756B785 /* OGSMainTabBarController.swift in Sources */,
+				AD05AE8F87A1E735676D8715 /* OGSRootViewControllerWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
