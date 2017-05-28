@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  OGSAppDelegate.swift
 //  iosgo
 //
 //  Created by Jeffrey Wu on 2017-02-15.
@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate
+class OGSAppDelegate: UIResponder, UIApplicationDelegate
 {
 
     var window: UIWindow?
