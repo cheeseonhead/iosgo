@@ -25,6 +25,7 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
 {
     var output: OGSChooseGameInteractorOutput!
     var listGamesWorker = OGSChooseGameListGamesWorker(store: OGSSeekGraphSocketStore())
+    var sessionWorker = OGSSessionWorker(sessionController: OGSSessionController.sharedInstance)
 
     required init()
     {
@@ -41,7 +42,9 @@ extension OGSChooseGameInteractor: OGSChooseGameListGamesWorkerDelegate
 {
     func sendGameList(_ gameList: [OGSChallenge])
     {
-        let response = OGSChooseGame.ListGames.Response(username: "studjeff2", userRank: 4, challenges: gameList)
+        let session = sessionWorker.current
+        let response = OGSChooseGame.ListGames.Response(loggedIn: session.authenticated, username: session.user?.username ?? "",
+                                                        userRank: session.user?.rank ?? 0, challenges: gameList)
 
         output.presentListGames(response: response)
     }

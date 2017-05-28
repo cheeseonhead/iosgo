@@ -11,19 +11,13 @@ protocol OGSUserSettingsStoreProtocol
     var refreshToken: String? { get set }
 }
 
-class OGSAppConfigurator: NSObject
+class OGSAppConfigurator
 {
-    fileprivate var userSettingsStore: OGSUserSettingsStoreProtocol!
-    fileprivate var configuration: OGSConfigurationProtocol!
+    fileprivate var session: OGSSession
 
-    required init(userSettingsStore: OGSUserSettingsStoreProtocol, configuration: OGSConfigurationProtocol)
+    required init(session: OGSSession)
     {
-        super.init()
-        self.userSettingsStore = userSettingsStore
-        self.configuration = configuration
-
-        OGSNotificationCenter.sharedInstance.addObserver(self, selector: #selector(handleAccessTokenUpdated), name: .accessTokenUpdated, object: nil)
-        OGSNotificationCenter.sharedInstance.addObserver(self, selector: #selector(handleRefreshTokenUpdated), name: .refreshTokenUpdated, object: nil)
+        self.session = session
     }
 }
 
@@ -32,58 +26,19 @@ extension OGSAppConfigurator
 {
     func configureApp()
     {
-        configureApiManager()
+        configureSessionController()
         configureSocketManager()
     }
 
-    func configureApiManager()
+    func configureSessionController()
     {
-        OGSApiManager.sharedInstance.accessToken = userSettingsStore.accessToken
-        OGSApiManager.sharedInstance.refreshToken = userSettingsStore.refreshToken
-
-        OGSApiManager.sharedInstance.domainName = configuration.domainName
-        OGSApiManager.sharedInstance.clientId = configuration.clientID
-        OGSApiManager.sharedInstance.clientSecret = configuration.clientSecret
+        OGSSessionController.sharedInstance.current = session
     }
 
     func configureSocketManager()
     {
-        OGSSocketManager.sharedInstance.socketAddress = configuration.domainName
+        OGSSocketManager.sharedInstance.socketAddress = session.configuration.domainName
 
         OGSSocketManager.sharedInstance.connect()
-    }
-}
-
-// MARK: - Broadcast Handlers
-extension OGSAppConfigurator
-{
-    func handleAccessTokenUpdated(notification: NSNotification)
-    {
-        guard let accessToken = notification.object as? String else { return }
-        OGSApiManager.sharedInstance.accessToken = accessToken
-
-        setAndSave(accessToken: accessToken)
-    }
-
-    func handleRefreshTokenUpdated(notification: NSNotification)
-    {
-        guard let refreshToken = notification.object as? String else { return }
-        OGSApiManager.sharedInstance.refreshToken = refreshToken
-
-        setAndSave(refreshToken: refreshToken)
-    }
-}
-
-// MARK: - Set and Save
-fileprivate extension OGSAppConfigurator
-{
-    func setAndSave(accessToken: String)
-    {
-        userSettingsStore.accessToken = accessToken
-    }
-
-    func setAndSave(refreshToken: String)
-    {
-        userSettingsStore.refreshToken = refreshToken
     }
 }

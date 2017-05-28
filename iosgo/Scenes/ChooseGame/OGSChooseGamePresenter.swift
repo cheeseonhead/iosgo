@@ -50,7 +50,7 @@ fileprivate extension OGSChooseGamePresenter
         for challenge in response.challenges
         {
             let userInfo = "\(challenge.username) [\(rankString(from: challenge.challengerRank))]"
-            let sizeString = "\(challenge.size.width)x\(challenge.size.height)"
+            let sizeString = "\(Int(challenge.size.width))x\(Int(challenge.size.height))"
             let timeString = challengeTimeString(from: challenge.timeControlParameters)
             let buttonType = challengeCellType(for: challenge, response: response)
 
@@ -74,25 +74,36 @@ fileprivate extension OGSChooseGamePresenter
 
     func challengeCellType(for challenge: OGSChallenge, response: ListGames.Response) -> ListGames.ViewModel.Challenge.ButtonType
     {
-        if challenge.username == response.username
+        if response.loggedIn
         {
-            return .remove
-        }
-        else
-        {
-            let canAccept = (challenge.maxRank >= response.userRank && challenge.minRank <= response.userRank)
-
-            if canAccept
+            if challenge.username == response.username
             {
-                return .play
+                return .remove
             }
             else
             {
-                return .cantPlay
+                let canAccept = (challenge.maxRank >= response.userRank && challenge.minRank <= response.userRank)
+
+                if canAccept
+                {
+                    return .play
+                }
+                else
+                {
+                    return .cantPlay
+                }
             }
         }
+        else
+        {
+            return .cantPlay
+        }
     }
+}
 
+// MARK: - TimeControl Functions
+fileprivate extension OGSChooseGamePresenter
+{
     typealias TimeControlParametersType = OGSChallenge.TimeControlParametersType
 
     func challengeTimeString(from timeType: TimeControlParametersType) -> String

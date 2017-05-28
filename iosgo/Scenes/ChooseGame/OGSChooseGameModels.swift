@@ -20,6 +20,7 @@ struct OGSChooseGame
         }
         struct Response
         {
+            var loggedIn: Bool
             var username: String
             var userRank: Int
             var challenges: [OGSChallenge]

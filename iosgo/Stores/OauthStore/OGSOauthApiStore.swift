@@ -8,26 +8,26 @@ import Unbox
 
 class OGSOauthApiStore
 {
-    fileprivate var apiManager: OGSApiManager!
+    fileprivate var apiStore: OGSApiStore
 
-    required init(apiManager: OGSApiManager)
+    required init(apiStore: OGSApiStore)
     {
-        self.apiManager = apiManager
+        self.apiStore = apiStore
     }
 
     func getToken(with username: String, password: String, completion: @escaping (OGSLoginInfo) -> Void)
     {
         let url = "oauth2/token/"
 
-        let params = [
-            "client_id": apiManager.clientId!,
-            "client_secret": apiManager.clientSecret!,
+        let params: [String: String] = [
+            "client_id": apiStore.clientID,
+            "client_secret": apiStore.clientSecret,
             "grant_type": "password",
             "username": username,
             "password": password,
         ]
 
-        apiManager.request(toUrl: url, method: .POST, parameters: params)
+        apiStore.request(toUrl: url, method: .POST, parameters: params)
         { statusCode, payload, _ in
 
             var loginInfo = OGSLoginInfo(result: .error(type: .unknownError))
@@ -36,7 +36,8 @@ class OGSOauthApiStore
             case .ok:
                 if let tokenInfo = try? self.createTokenInfo(from: payload!)
                 {
-                    loginInfo.result = .success(info: tokenInfo)
+                    self.updateTokens(with: tokenInfo)
+                    loginInfo.result = .success
                 }
                 else
                 {
@@ -44,7 +45,7 @@ class OGSOauthApiStore
                 }
                 break
             case .unauthorized:
-                loginInfo.result = .error(type: .invalidLoginInfo)
+                loginInfo.result = .error(type: .unauthorized)
                 break
             case .clientError:
                 loginInfo.result = .error(type: .clientError)
@@ -61,5 +62,11 @@ class OGSOauthApiStore
     {
         let tokenInfo: OGSLoginInfo.TokenInfo = try unbox(dictionary: payload)
         return tokenInfo
+    }
+
+    fileprivate func updateTokens(with tokenInfo: OGSLoginInfo.TokenInfo)
+    {
+        apiStore.accessToken = tokenInfo.accessToken
+        apiStore.refreshToken = tokenInfo.refreshToken
     }
 }

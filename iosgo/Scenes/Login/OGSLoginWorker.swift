@@ -25,12 +25,12 @@ class OGSLoginWorker
     }
 
     var authStore: OGSAuthenticationStoreProtocol
-    var notificationCenter: OGSNotificationCenter
+    var meStore: OGSMeStore
 
-    init(authStore: OGSAuthenticationStoreProtocol, notificationCenter: OGSNotificationCenter)
+    init(authStore: OGSAuthenticationStoreProtocol, meStore: OGSMeStore)
     {
         self.authStore = authStore
-        self.notificationCenter = notificationCenter
+        self.meStore = meStore
     }
 
     func loginWith(username: String, password: String, completion: @escaping (_: OGSLogin.Login.Response) -> Void)
@@ -40,28 +40,29 @@ class OGSLoginWorker
             var response: OGSLogin.Login.Response!
 
             switch loginInfo.result {
-            case let .success(tokenInfo):
-                self.broadcastTokensUpdated(with: tokenInfo)
-                response = self.createLoginSuccessResponse()
+            case .success:
+                self.meStore.getUser
+                { workerResponse in
+                    switch workerResponse.result {
+                    case .success:
+                        response = self.createLoginSuccessResponse()
+                    case let .error(errorType):
+                        response = self.createLoginErrorResponse(errorType: errorType)
+                    }
+                    completion(response)
+                }
                 break
             case let .error(errorType):
                 response = self.createLoginErrorResponse(errorType: errorType)
+                completion(response)
                 break
             }
-
-            completion(response)
         }
     }
 }
 
 fileprivate extension OGSLoginWorker
 {
-    func broadcastTokensUpdated(with tokenInfo: OGSLoginInfo.TokenInfo)
-    {
-        notificationCenter.post(name: .accessTokenUpdated, object: tokenInfo.accessToken)
-        notificationCenter.post(name: .refreshTokenUpdated, object: tokenInfo.refreshToken)
-    }
-
     func createLoginSuccessResponse() -> OGSLogin.Login.Response
     {
         let response = OGSLogin.Login.Response(loadingStatus: .success)
@@ -69,12 +70,12 @@ fileprivate extension OGSLoginWorker
         return response
     }
 
-    func createLoginErrorResponse(errorType: OGSLoginInfo.ErrorType) -> OGSLogin.Login.Response
+    func createLoginErrorResponse(errorType: ApiErrorType) -> OGSLogin.Login.Response
     {
         var responseError: OGSLogin.Login.Response.ErrorType!
 
         switch errorType {
-        case .invalidLoginInfo:
+        case .unauthorized:
             responseError = .invalidLoginInfo
             break
         case .clientError:

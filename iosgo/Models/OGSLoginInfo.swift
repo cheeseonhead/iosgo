@@ -11,8 +11,8 @@ struct OGSLoginInfo
 
     enum GetTokenResult
     {
-        case success(info: TokenInfo)
-        case error(type: ErrorType)
+        case success
+        case error(type: ApiErrorType)
     }
 
     struct TokenInfo
@@ -22,12 +22,5 @@ struct OGSLoginInfo
         var expiresIn: Int
         var refreshToken: String
         var scope: String
-    }
-
-    enum ErrorType
-    {
-        case invalidLoginInfo
-        case unknownError
-        case clientError
     }
 }

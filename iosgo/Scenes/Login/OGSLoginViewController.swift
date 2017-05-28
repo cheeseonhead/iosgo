@@ -23,8 +23,6 @@ protocol OGSLoginViewControllerOutput
     func fieldsChange(request: OGSLogin.FieldsChanged.Request)
 }
 
-protocol OGSLoginViewControllerRouter {}
-
 class OGSLoginViewController: UIViewController, OGSLoginViewControllerInput
 {
     // MARK: - Views
@@ -40,7 +38,7 @@ class OGSLoginViewController: UIViewController, OGSLoginViewControllerInput
     }
 
     var output: OGSLoginViewControllerOutput!
-    var router: OGSLoginViewControllerRouter!
+    var router: OGSLoginRouter!
 }
 
 // MARK: - Lifecycle
@@ -56,23 +54,23 @@ extension OGSLoginViewController
 // MARK: - IBActions
 extension OGSLoginViewController
 {
-    @IBAction func loginButtonTapped(_ sender: Any)
+    @IBAction func loginButtonTapped(_: Any)
     {
         guard let username = usernameTextField.text,
-              let password = passwordTextField.text
-                else {return}
+            let password = passwordTextField.text
+        else { return }
 
         let request = OGSLogin.Login.Request(username: username, password: password)
 
         output.login(request: request)
     }
-    
-    @IBAction func usernameFieldChanged(_ sender: Any)
+
+    @IBAction func usernameFieldChanged(_: Any)
     {
         sendFieldsChangedRequest()
     }
-    
-    @IBAction func passwordFieldChanged(_ sender: Any)
+
+    @IBAction func passwordFieldChanged(_: Any)
     {
         sendFieldsChangedRequest()
     }
@@ -84,8 +82,8 @@ fileprivate extension OGSLoginViewController
     func sendFieldsChangedRequest()
     {
         guard let username = usernameTextField.text,
-              let password = passwordTextField.text
-                else {return}
+            let password = passwordTextField.text
+        else { return }
 
         let strings = [username, password]
         let request = OGSLogin.FieldsChanged.Request(textFieldTexts: strings)
@@ -108,8 +106,9 @@ extension OGSLoginViewController
 {
     func displayLogin(viewModel: OGSLogin.Login.ViewModel)
     {
-        if viewModel.readyToNavigate {
-
+        if viewModel.readyToNavigate
+        {
+            router.navigateToMainScene()
         }
 
         setupInputsFor(state: viewModel.userInputState)
@@ -127,10 +126,10 @@ extension OGSLoginViewController
 
     func setupErrorLabel(for state: OGSLogin.Login.ViewModel.ErrorLabelState)
     {
-        switch(state) {
-            case .hidden:
-                errorLabel.isHidden = true
-                break
+        switch state {
+        case .hidden:
+            errorLabel.isHidden = true
+            break
         case .showing(let message):
             errorLabel.isHidden = false
             errorLabel.text = message

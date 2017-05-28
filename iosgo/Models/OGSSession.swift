@@ -5,10 +5,11 @@
 
 import Foundation
 
-class OGSUserDefaults
+struct OGSSession
 {
     enum Key
     {
+        static let user = "user"
         static let accessToken = "accessToken"
         static let refreshToken = "refreshToken"
     }
@@ -19,7 +20,7 @@ class OGSUserDefaults
     {
         set
         {
-            userDefault.set(accessToken, forKey: Key.accessToken)
+            userDefault.set(newValue, forKey: Key.accessToken)
         }
 
         get
@@ -32,12 +33,26 @@ class OGSUserDefaults
     {
         set
         {
-            userDefault.set(refreshToken, forKey: Key.refreshToken)
+            userDefault.set(newValue, forKey: Key.refreshToken)
         }
 
         get
         {
             return userDefault.string(forKey: Key.refreshToken)
         }
+    }
+
+    var user: OGSUser?
+
+    var configuration: OGSConfigurationProtocol
+
+    var authenticated: Bool
+    {
+        return accessToken != nil && refreshToken != nil
+    }
+
+    init(configuration: OGSConfigurationProtocol)
+    {
+        self.configuration = configuration
     }
 }

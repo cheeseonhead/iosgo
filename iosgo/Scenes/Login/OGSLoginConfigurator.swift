@@ -37,5 +37,3 @@ extension OGSLoginViewController: OGSLoginPresenterOutput {}
 extension OGSLoginInteractor: OGSLoginViewControllerOutput, OGSLoginRouterDataProvider, OGSLoginRouterDataReceiver {}
 
 extension OGSLoginPresenter: OGSLoginInteractorOutput {}
-
-extension OGSLoginRouter: OGSLoginViewControllerRouter {}
