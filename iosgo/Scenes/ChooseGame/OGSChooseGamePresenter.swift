@@ -92,7 +92,11 @@ fileprivate extension OGSChooseGamePresenter
             }
         }
     }
+}
 
+// MARK: - TimeControl Functions
+fileprivate extension OGSChooseGamePresenter
+{
     typealias TimeControlParametersType = OGSChallenge.TimeControlParametersType
 
     func challengeTimeString(from timeType: TimeControlParametersType) -> String
