@@ -20,7 +20,7 @@ struct OGSSession
     {
         set
         {
-            userDefault.set(accessToken, forKey: Key.accessToken)
+            userDefault.set(newValue, forKey: Key.accessToken)
         }
 
         get
@@ -33,7 +33,7 @@ struct OGSSession
     {
         set
         {
-            userDefault.set(refreshToken, forKey: Key.refreshToken)
+            userDefault.set(newValue, forKey: Key.refreshToken)
         }
 
         get
@@ -46,7 +46,7 @@ struct OGSSession
     {
         set
         {
-            userDefault.set(user, forKey: Key.user)
+            userDefault.set(newValue, forKey: Key.user)
         }
         get
         {
