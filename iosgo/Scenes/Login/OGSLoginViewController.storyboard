@@ -19,7 +19,7 @@
         <!--Login View Controller-->
         <scene sceneID="DGn-Yg-ADR">
             <objects>
-                <viewController modalPresentationStyle="formSheet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DXz-HO-taR" customClass="OGSLoginViewController" customModule="iosgo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OGSLoginViewController" modalPresentationStyle="formSheet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DXz-HO-taR" customClass="OGSLoginViewController" customModule="iosgo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fhS-mZ-KGT"/>
                         <viewControllerLayoutGuide type="bottom" id="Ifi-Xg-2p3"/>

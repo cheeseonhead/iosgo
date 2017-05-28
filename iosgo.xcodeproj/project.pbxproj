@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3487BB581EDA7563009E9AD5 /* OGSMainTabBarConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3487BB521EDA7563009E9AD5 /* OGSMainTabBarConfigurator.swift */; };
+		3487BB591EDA7563009E9AD5 /* OGSMainTabBarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3487BB531EDA7563009E9AD5 /* OGSMainTabBarInteractor.swift */; };
+		3487BB5A1EDA7563009E9AD5 /* OGSMainTabBarModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3487BB541EDA7563009E9AD5 /* OGSMainTabBarModels.swift */; };
+		3487BB5B1EDA7563009E9AD5 /* OGSMainTabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3487BB551EDA7563009E9AD5 /* OGSMainTabBarPresenter.swift */; };
+		3487BB5C1EDA7563009E9AD5 /* OGSMainTabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3487BB561EDA7563009E9AD5 /* OGSMainTabBarRouter.swift */; };
+		3487BB5D1EDA7563009E9AD5 /* OGSMainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3487BB571EDA7563009E9AD5 /* OGSMainTabBarViewController.swift */; };
 		490D5ED58103542F7917F833 /* Pods_iosgo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF12002656677CCFB6D8EAF8 /* Pods_iosgo.framework */; };
 		5612FD0E1E63C60B000B1973 /* OGSChooseGameConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612FD081E63C60B000B1973 /* OGSChooseGameConfigurator.swift */; };
 		5612FD0F1E63C60B000B1973 /* OGSChooseGameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612FD091E63C60B000B1973 /* OGSChooseGameInteractor.swift */; };
@@ -81,7 +87,6 @@
 		AD05AE8F87A1E735676D8715 /* OGSRootViewControllerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AC0F9046A97D43794663 /* OGSRootViewControllerWorker.swift */; };
 		AD05AF2B9222BE964C87EC8D /* OGSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A9ECDDD9E6ED45019693 /* OGSAppDelegate.swift */; };
 		AD05AF37C68CBA22A3DC256C /* OGSDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A8CBB6DCEBEA0F2DBE28 /* OGSDispatcher.swift */; };
-		AD05AF5EA1B4BDA66756B785 /* OGSMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AB05BA86E5B9B45513FF /* OGSMainTabBarController.swift */; };
 		AD05AFC36181FFE0C0DB7889 /* OGSChooseGameListGamesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AE9600B34B78B76D3181 /* OGSChooseGameListGamesWorker.swift */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +103,12 @@
 /* Begin PBXFileReference section */
 		01BA5FDBCD62AB45B53CC1A9 /* Pods-iosgo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgo.release.xcconfig"; path = "Pods/Target Support Files/Pods-iosgo/Pods-iosgo.release.xcconfig"; sourceTree = "<group>"; };
 		2F833FBBB73B7CCEE7D54A54 /* Pods-iosgoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iosgoTests/Pods-iosgoTests.release.xcconfig"; sourceTree = "<group>"; };
+		3487BB521EDA7563009E9AD5 /* OGSMainTabBarConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSMainTabBarConfigurator.swift; sourceTree = "<group>"; };
+		3487BB531EDA7563009E9AD5 /* OGSMainTabBarInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSMainTabBarInteractor.swift; sourceTree = "<group>"; };
+		3487BB541EDA7563009E9AD5 /* OGSMainTabBarModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSMainTabBarModels.swift; sourceTree = "<group>"; };
+		3487BB551EDA7563009E9AD5 /* OGSMainTabBarPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSMainTabBarPresenter.swift; sourceTree = "<group>"; };
+		3487BB561EDA7563009E9AD5 /* OGSMainTabBarRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSMainTabBarRouter.swift; sourceTree = "<group>"; };
+		3487BB571EDA7563009E9AD5 /* OGSMainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSMainTabBarViewController.swift; sourceTree = "<group>"; };
 		3A3A74F5D326BE5E0E2D52ED /* Pods-iosgoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iosgoTests/Pods-iosgoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5612FD081E63C60B000B1973 /* OGSChooseGameConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameConfigurator.swift; sourceTree = "<group>"; };
 		5612FD091E63C60B000B1973 /* OGSChooseGameInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameInteractor.swift; sourceTree = "<group>"; };
@@ -169,7 +180,6 @@
 		AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		AD05A9ECDDD9E6ED45019693 /* OGSAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSAppDelegate.swift; sourceTree = "<group>"; };
 		AD05AAF6F23605943C8B4799 /* OGSMeStoreModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSMeStoreModels.swift; sourceTree = "<group>"; };
-		AD05AB05BA86E5B9B45513FF /* OGSMainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSMainTabBarController.swift; sourceTree = "<group>"; };
 		AD05ABBB3826AA77B8B017A3 /* OGSDiskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSDiskManager.swift; sourceTree = "<group>"; };
 		AD05ABC463A960E74C9B2CA0 /* OGSChooseGameCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameCollectionViewController.swift; sourceTree = "<group>"; };
 		AD05AC0F9046A97D43794663 /* OGSRootViewControllerWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSRootViewControllerWorker.swift; sourceTree = "<group>"; };
@@ -477,7 +487,12 @@
 		AD05AAA06108BACE5DCA2164 /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
-				AD05AB05BA86E5B9B45513FF /* OGSMainTabBarController.swift */,
+				3487BB521EDA7563009E9AD5 /* OGSMainTabBarConfigurator.swift */,
+				3487BB531EDA7563009E9AD5 /* OGSMainTabBarInteractor.swift */,
+				3487BB541EDA7563009E9AD5 /* OGSMainTabBarModels.swift */,
+				3487BB551EDA7563009E9AD5 /* OGSMainTabBarPresenter.swift */,
+				3487BB561EDA7563009E9AD5 /* OGSMainTabBarRouter.swift */,
+				3487BB571EDA7563009E9AD5 /* OGSMainTabBarViewController.swift */,
 			);
 			path = MainTabBar;
 			sourceTree = "<group>";
@@ -735,12 +750,15 @@
 				565D24751E54A5A500EF62CD /* GameScene.swift in Sources */,
 				56BD888F1E5522530098E50B /* OGSButton.swift in Sources */,
 				565D24771E54A5A500EF62CD /* GameViewController.swift in Sources */,
+				3487BB5D1EDA7563009E9AD5 /* OGSMainTabBarViewController.swift in Sources */,
 				AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */,
 				8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */,
 				8405CDE4965C7493BA13D163 /* OGSLoginRouter.swift in Sources */,
 				8405C3C9E1790ACD829F597C /* OGSLoginWorker.swift in Sources */,
+				3487BB591EDA7563009E9AD5 /* OGSMainTabBarInteractor.swift in Sources */,
 				8405CA6A133748D9049413CA /* OGSLoginPresenter.swift in Sources */,
 				8405CA49BF8044F3F0B76F31 /* OGSLoginInteractor.swift in Sources */,
+				3487BB5B1EDA7563009E9AD5 /* OGSMainTabBarPresenter.swift in Sources */,
 				8405CC0C6DBB4D5102EE60CF /* OGSLoginConfigurator.swift in Sources */,
 				8405C6E5D3897A1BBF7653B2 /* OGSLoginViewController.swift in Sources */,
 				8405CB5F7BAD2E27B9786979 /* Temp.swift in Sources */,
@@ -749,6 +767,7 @@
 				56FC0C091E9C85F100119D0C /* OGSChooseGameCollectionViewCell.swift in Sources */,
 				5612FD0E1E63C60B000B1973 /* OGSChooseGameConfigurator.swift in Sources */,
 				8405CEA1C88BF254C0A34A28 /* OGSOauthApiStore.swift in Sources */,
+				3487BB581EDA7563009E9AD5 /* OGSMainTabBarConfigurator.swift in Sources */,
 				5612FD111E63C60B000B1973 /* OGSChooseGamePresenter.swift in Sources */,
 				5612FD101E63C60B000B1973 /* OGSChooseGameModels.swift in Sources */,
 				8405C06692E15B7D16D86610 /* OGSNotificationCenter.swift in Sources */,
@@ -762,12 +781,14 @@
 				8405C1BD724D953FE34DDC35 /* OGSSeekGraphSocketStore.swift in Sources */,
 				8405CAFEE0C897EE31ED6865 /* OGSChallenge.swift in Sources */,
 				AD05AE74C92DA8328A33761F /* OGSDiskManager.swift in Sources */,
+				3487BB5C1EDA7563009E9AD5 /* OGSMainTabBarRouter.swift in Sources */,
 				AD05A8548F5F603C37C45C57 /* OGSAppConfigurator.swift in Sources */,
 				AD05AFC36181FFE0C0DB7889 /* OGSChooseGameListGamesWorker.swift in Sources */,
 				AD05AF2B9222BE964C87EC8D /* OGSAppDelegate.swift in Sources */,
 				AD05A80C3174620434A3BF39 /* OGSLoginInfo.swift in Sources */,
 				AD05A7E728E07F256A22C0DF /* OGSChooseGameCollectionViewController.swift in Sources */,
 				AD05A2678BD4ECA68F40FE18 /* OGSProdConfiguration.swift in Sources */,
+				3487BB5A1EDA7563009E9AD5 /* OGSMainTabBarModels.swift in Sources */,
 				AD05ABE155BC1FDEA29394EF /* OGSSocketManager.swift in Sources */,
 				AD05AE7444BF09E5E49DE6ED /* OGSSocketManagerTypes.swift in Sources */,
 				AD05A664F189FAC228843217 /* OGSSeekGraphSocketStoreModels.swift in Sources */,
@@ -780,7 +801,6 @@
 				AD05ADCD7A6778EA6AAF16D7 /* OGSRootViewControllerTransition.swift in Sources */,
 				AD05AB67C74B02B834E8CFA8 /* OGSMeStore.swift in Sources */,
 				AD05AE59A5BF1697CECE11D9 /* OGSMeStoreModels.swift in Sources */,
-				AD05AF5EA1B4BDA66756B785 /* OGSMainTabBarController.swift in Sources */,
 				AD05AE8F87A1E735676D8715 /* OGSRootViewControllerWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
