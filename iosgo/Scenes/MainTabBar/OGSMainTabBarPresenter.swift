@@ -13,12 +13,12 @@ import UIKit
 
 protocol OGSMainTabBarPresenterInput
 {
-    func presentScene(response: OGSMainTabBar.loadscene.Response)
+    func presentScene(response: OGSMainTabBar.loadScene.Response)
 }
 
 protocol OGSMainTabBarPresenterOutput: class
 {
-    func displayScene(viewModel: OGSMainTabBar.loadscene.ViewModel)
+    func displayScene(viewModel: OGSMainTabBar.loadScene.ViewModel)
 }
 
 class OGSMainTabBarPresenter: OGSMainTabBarPresenterInput
@@ -27,11 +27,11 @@ class OGSMainTabBarPresenter: OGSMainTabBarPresenterInput
 
     // MARK: - Presentation logic
 
-    func presentScene(response _: OGSMainTabBar.loadscene.Response)
+    func presentScene(response _: OGSMainTabBar.loadScene.Response)
     {
         // NOTE: Format the response from the Interactor and pass the result back to the View Controller
 
-        let viewModel = OGSMainTabBar.loadscene.ViewModel()
+        let viewModel = OGSMainTabBar.loadScene.ViewModel()
         output.displayScene(viewModel: viewModel)
     }
 }

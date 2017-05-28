@@ -13,7 +13,7 @@ import UIKit
 
 struct OGSMainTabBar
 {
-    struct loadscene
+    struct loadScene
     {
         struct Request
         {

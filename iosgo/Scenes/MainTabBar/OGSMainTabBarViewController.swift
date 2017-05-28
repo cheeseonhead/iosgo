@@ -13,12 +13,12 @@ import UIKit
 
 protocol OGSMainTabBarControllerInput
 {
-    func displayScene(viewModel: OGSMainTabBar.loadscene.ViewModel)
+    func displayScene(viewModel: OGSMainTabBar.loadScene.ViewModel)
 }
 
 protocol OGSMainTabBarControllerOutput
 {
-    func loadScene(request: OGSMainTabBar.loadscene.Request)
+    func loadScene(request: OGSMainTabBar.loadScene.Request)
 }
 
 class OGSMainTabBarController: UITabBarController, OGSMainTabBarControllerInput
@@ -34,7 +34,7 @@ class OGSMainTabBarController: UITabBarController, OGSMainTabBarControllerInput
         OGSMainTabBarConfigurator.sharedInstance.configure(viewController: self)
     }
 
-    func displayScene(viewModel _: OGSMainTabBar.loadscene.ViewModel)
+    func displayScene(viewModel _: OGSMainTabBar.loadScene.ViewModel)
     {
     }
 }
