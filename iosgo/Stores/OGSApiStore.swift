@@ -48,7 +48,7 @@ class OGSApiStore
         }
         set
         {
-            session.accessToken = newValue
+            sessionController.current.accessToken = newValue
         }
     }
     var refreshToken: String?
@@ -59,7 +59,7 @@ class OGSApiStore
         }
         set
         {
-            session.refreshToken = newValue
+            sessionController.current.refreshToken = newValue
         }
     }
 
