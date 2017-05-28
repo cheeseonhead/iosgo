@@ -50,7 +50,7 @@ fileprivate extension OGSChooseGamePresenter
         for challenge in response.challenges
         {
             let userInfo = "\(challenge.username) [\(rankString(from: challenge.challengerRank))]"
-            let sizeString = "\(challenge.size.width)x\(challenge.size.height)"
+            let sizeString = "\(Int(challenge.size.width))x\(Int(challenge.size.height))"
             let timeString = challengeTimeString(from: challenge.timeControlParameters)
             let buttonType = challengeCellType(for: challenge, response: response)
 
