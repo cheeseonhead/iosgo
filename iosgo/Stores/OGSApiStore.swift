@@ -18,6 +18,7 @@ enum HTTPStatusCode: Int
     case badRequest = 400
     case unauthorized = 401
     case notFound = 404
+    case tooManyRequests = 429
 }
 
 enum ApiErrorType
