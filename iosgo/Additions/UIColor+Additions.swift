@@ -11,12 +11,12 @@ class OGSColor: UIColor
 {
     static var primaryBackground: UIColor
     {
-        return #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        return #colorLiteral(red: 0.6666666667, green: 0.7098039216, blue: 0.8274509804, alpha: 1)
     }
 
     static var primaryBackgroundDisabled: UIColor
     {
-        return #colorLiteral(red: 0.6666666667, green: 0.7098039216, blue: 0.8274509804, alpha: 1)
+        return #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     }
 
     static var primaryTextDisabled: UIColor
