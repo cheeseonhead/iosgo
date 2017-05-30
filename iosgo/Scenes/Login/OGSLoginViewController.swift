@@ -97,7 +97,7 @@ extension OGSLoginViewController
 {
     func displayFieldsChange(viewModel: OGSLogin.FieldsChanged.ViewModel)
     {
-        loginButton.isEnabled = viewModel.buttonEnabled
+        loginButton.customState = viewModel.buttonEnabled ? .normal : .disabled
     }
 }
 
@@ -121,7 +121,7 @@ extension OGSLoginViewController
 
         usernameTextField.isEnabled = isInputReady
         passwordTextField.isEnabled = isInputReady
-        loginButton.isPending = !isInputReady
+        loginButton.customState = isInputReady ? .normal : .pending
     }
 
     func setupErrorLabel(for state: OGSLogin.Login.ViewModel.ErrorLabelState)
