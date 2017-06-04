@@ -13,16 +13,4 @@ import UIKit
 
 struct ___FILEBASENAMEASIDENTIFIER___
 {
-    struct ___VARIABLE_usecase___
-    {
-        struct Request
-        {
-        }
-        struct Response
-        {
-        }
-        struct ViewModel
-        {
-        }
-    }
 }

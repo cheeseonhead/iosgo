@@ -13,11 +13,7 @@ import UIKit
 
 class ___FILEBASENAMEASIDENTIFIER___Configurator
 {
-    static let sharedInstance = ___FILEBASENAMEASIDENTIFIER___Configurator()
-
-    private init() {}
-
-    func configure(viewController: ___FILEBASENAMEASIDENTIFIER___ViewController)
+    static func configure(viewController: ___FILEBASENAMEASIDENTIFIER___ViewController)
     {
         let presenter = ___FILEBASENAMEASIDENTIFIER___Presenter()
         presenter.output = viewController
@@ -32,16 +28,8 @@ class ___FILEBASENAMEASIDENTIFIER___Configurator
     }
 }
 
-extension ___FILEBASENAMEASIDENTIFIER___ViewController: ___FILEBASENAMEASIDENTIFIER___PresenterOutput
-{
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        router.passDataToNextScene(for: segue)
-    }
-}
+extension ___FILEBASENAMEASIDENTIFIER___ViewController: ___FILEBASENAMEASIDENTIFIER___PresenterOutput {}
 
 extension ___FILEBASENAMEASIDENTIFIER___Interactor: ___FILEBASENAMEASIDENTIFIER___ViewControllerOutput, ___FILEBASENAMEASIDENTIFIER___RouterDataProvider, ___FILEBASENAMEASIDENTIFIER___RouterDataReceiver {}
 
 extension ___FILEBASENAMEASIDENTIFIER___Presenter: ___FILEBASENAMEASIDENTIFIER___InteractorOutput {}
-
-extension ___FILEBASENAMEASIDENTIFIER___Router: ___FILEBASENAMEASIDENTIFIER___ViewControllerRouter {}
