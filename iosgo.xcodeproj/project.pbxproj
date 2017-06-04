@@ -211,6 +211,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		345881771EE4A99700FE773B /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Splash;
+			sourceTree = "<group>";
+		};
 		565D24621E54A5A500EF62CD = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +382,7 @@
 		8405CC7312AC75881BD6ADB1 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				345881771EE4A99700FE773B /* Splash */,
 				8405CBDC2EBC9E1083363911 /* Login */,
 				8405CC9BB1059C10AF4C0027 /* ChooseGame */,
 			);

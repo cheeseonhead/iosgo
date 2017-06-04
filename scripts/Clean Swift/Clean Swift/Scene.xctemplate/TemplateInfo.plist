@@ -36,7 +36,7 @@
 		</dict>
 
 		<!-- Name of Usecase Action -->
-		<dict>
+		<!-- <dict>
 			<key>Description</key>
 			<string>The name of action of the first usecase of the scene</string>
 			<key>Identifier</key>
@@ -49,10 +49,10 @@
 			<true/>
 			<key>Type</key>
 			<string>text</string>
-		</dict>
+		</dict> -->
 
 		<!-- Name of Usecase Subject -->
-		<dict>
+		<!-- <dict>
 			<key>Description</key>
 			<string>The name of subject of the first usecase of the scene</string>
 			<key>Identifier</key>
@@ -65,7 +65,7 @@
 			<true/>
 			<key>Type</key>
 			<string>text</string>
-		</dict>
+		</dict> -->
 
 		<!-- Name of the Fist Usecase -->
 		<dict>

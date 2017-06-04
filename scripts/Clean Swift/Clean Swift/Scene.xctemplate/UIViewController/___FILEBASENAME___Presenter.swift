@@ -13,25 +13,13 @@ import UIKit
 
 protocol ___FILEBASENAMEASIDENTIFIER___PresenterInput
 {
-    func present___VARIABLE_subject___(response: ___FILEBASENAMEASIDENTIFIER___.___VARIABLE_usecase___.Response)
 }
 
 protocol ___FILEBASENAMEASIDENTIFIER___PresenterOutput: class
 {
-    func display___VARIABLE_subject___(viewModel: ___FILEBASENAMEASIDENTIFIER___.___VARIABLE_usecase___.ViewModel)
 }
 
 class ___FILEBASENAMEASIDENTIFIER___Presenter: ___FILEBASENAMEASIDENTIFIER___PresenterInput
 {
     weak var output: ___FILEBASENAMEASIDENTIFIER___PresenterOutput!
-
-    // MARK: - Presentation logic
-
-    func present___VARIABLE_subject___(response: ___FILEBASENAMEASIDENTIFIER___.___VARIABLE_usecase___.Response)
-    {
-        // NOTE: Format the response from the Interactor and pass the result back to the View Controller
-
-        let viewModel = ___FILEBASENAMEASIDENTIFIER___.___VARIABLE_usecase___.ViewModel()
-        output.display___VARIABLE_subject___(viewModel: viewModel)
-    }
 }
