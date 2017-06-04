@@ -13,4 +13,18 @@ import UIKit
 
 struct Splash
 {
+    struct LoadScene
+    {
+        struct Request
+        {
+        }
+
+        struct Response
+        {
+        }
+
+        struct ViewModel
+        {
+        }
+    }
 }
