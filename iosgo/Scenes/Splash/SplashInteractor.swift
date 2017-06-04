@@ -22,4 +22,17 @@ protocol SplashInteractorOutput
 class SplashInteractor: SplashInteractorInput
 {
     var output: SplashInteractorOutput!
+
+    func loadScene()
+    {
+        //
+        //        configurator = OGSAppConfigurator(session: OGSSession(configuration: OGSBetaConfiguration()))
+        //        configurator!.configureApp()
+        //
+        //        let rootVCWorker = OGSRootViewControllerWorker()
+        //        let rootVC = rootVCWorker.rootViewController(for: OGSSessionController.sharedInstance.current)
+        //
+        //        window?.rootViewController = rootVC
+        //        window?.makeKeyAndVisible()
+    }
 }
