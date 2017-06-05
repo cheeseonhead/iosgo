@@ -46,7 +46,7 @@ struct OGSSession
 
     var configuration: OGSConfigurationProtocol
 
-    var authenticated: Bool
+    var tokensExists: Bool
     {
         return accessToken != nil && refreshToken != nil
     }

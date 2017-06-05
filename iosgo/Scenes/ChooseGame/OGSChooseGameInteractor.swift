@@ -43,7 +43,7 @@ extension OGSChooseGameInteractor: OGSChooseGameListGamesWorkerDelegate
     func sendGameList(_ gameList: [OGSChallenge])
     {
         let session = sessionWorker.current
-        let response = OGSChooseGame.ListGames.Response(loggedIn: session.authenticated, username: session.user?.username ?? "",
+        let response = OGSChooseGame.ListGames.Response(loggedIn: session.tokensExists, username: session.user?.username ?? "",
                                                         userRank: session.user?.rank ?? 0, challenges: gameList)
 
         output.presentListGames(response: response)
