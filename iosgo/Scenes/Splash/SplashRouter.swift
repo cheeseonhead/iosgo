@@ -11,7 +11,11 @@
 
 import UIKit
 
-protocol SplashRouterInput {}
+protocol SplashRouterInput
+{
+    func navigateToLogin()
+    func navigateToLobby()
+}
 
 protocol SplashRouterDataProvider: class {}
 
