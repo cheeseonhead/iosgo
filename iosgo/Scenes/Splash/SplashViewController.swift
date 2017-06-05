@@ -46,6 +46,8 @@ extension SplashViewController
 {
     func loadScene()
     {
+        let request = Splash.LoadScene.Request()
+        output.loadScene(request: request)
     }
 }
 
