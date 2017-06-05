@@ -41,6 +41,12 @@ class OGSSessionController
 
     func initialize(completion: @escaping (Initialize.Result) -> Void)
     {
+        guard current.tokensExists else
+        {
+            completion(.error(type: .refreshTokenInvalid))
+            return
+        }
+
         getUser
         { result in
             switch result {
