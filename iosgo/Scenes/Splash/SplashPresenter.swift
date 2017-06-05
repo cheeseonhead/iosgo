@@ -13,13 +13,19 @@ import UIKit
 
 protocol SplashPresenterInput
 {
+    func presentLoadScene(response: Splash.LoadScene.Response)
 }
 
 protocol SplashPresenterOutput: class
 {
+    func displayLoadScene(viewModel: Splash.LoadScene.ViewModel)
 }
 
 class SplashPresenter: SplashPresenterInput
 {
     weak var output: SplashPresenterOutput!
+
+    func presentLoadScene(response _: Splash.LoadScene.Response)
+    {
+    }
 }

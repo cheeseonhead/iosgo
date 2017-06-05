@@ -21,7 +21,7 @@ protocol SplashViewControllerOutput
     func loadScene(request: Splash.LoadScene.Request)
 }
 
-class SplashViewController: UIViewController, SplashViewControllerInput
+class SplashViewController: UIViewController
 {
     var output: SplashViewControllerOutput!
     var router: SplashRouter!

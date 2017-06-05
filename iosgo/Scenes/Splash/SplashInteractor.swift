@@ -13,10 +13,12 @@ import UIKit
 
 protocol SplashInteractorInput
 {
+    func loadScene(request: Splash.LoadScene.Request)
 }
 
 protocol SplashInteractorOutput
 {
+    func presentLoadScene(response: Splash.LoadScene.Response)
 }
 
 class SplashInteractor: SplashInteractorInput
@@ -34,5 +36,9 @@ class SplashInteractor: SplashInteractorInput
         //
         //        window?.rootViewController = rootVC
         //        window?.makeKeyAndVisible()
+    }
+
+    func loadScene(request _: Splash.LoadScene.Request)
+    {
     }
 }
