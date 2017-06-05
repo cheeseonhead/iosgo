@@ -7,23 +7,31 @@ import Foundation
 
 class OGSSessionController
 {
-    static let sharedInstance = OGSSessionController(session: OGSSession(configuration: OGSMockConfiguration()))
-
-    var current: OGSSession
+    enum Initialize
     {
-        didSet
+        enum Result
         {
-            if current.user == nil
+            case success
+            case error(type: Error)
+
+            enum Error
             {
-                let meStore = OGSMeStore(apiStore: OGSApiStore(sessionController: self), sessionController: self)
-                meStore.getUser { _ in }
+                case refreshTokenInvalid
             }
         }
     }
 
+    static let sharedInstance = OGSSessionController(session: OGSSession(configuration: OGSMockConfiguration()))
+
+    var current: OGSSession
+
     required init(session: OGSSession)
     {
         self.current = session
+    }
+
+    func initialize(completion _: @escaping (Initialize.Result) -> Void)
+    {
     }
 }
 

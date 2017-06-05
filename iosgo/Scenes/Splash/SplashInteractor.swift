@@ -25,20 +25,20 @@ class SplashInteractor: SplashInteractorInput
 {
     var output: SplashInteractorOutput!
 
-    func loadScene()
-    {
-        //
-        //        configurator = OGSAppConfigurator(session: OGSSession(configuration: OGSBetaConfiguration()))
-        //        configurator!.configureApp()
-        //
-        //        let rootVCWorker = OGSRootViewControllerWorker()
-        //        let rootVC = rootVCWorker.rootViewController(for: OGSSessionController.sharedInstance.current)
-        //
-        //        window?.rootViewController = rootVC
-        //        window?.makeKeyAndVisible()
-    }
-
     func loadScene(request _: Splash.LoadScene.Request)
     {
+        let configurator = OGSAppConfigurator(session: OGSSession(configuration: OGSBetaConfiguration()))
+        configurator.configureApp()
+
+        OGSSessionController.sharedInstance.initialize
+        { result in
+            switch result
+            {
+            case .success:
+                break
+            case .error(let type):
+                break
+            }
+        }
     }
 }
