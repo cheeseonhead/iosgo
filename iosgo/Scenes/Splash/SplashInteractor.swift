@@ -32,12 +32,18 @@ class SplashInteractor: SplashInteractorInput
 
         OGSSessionController.sharedInstance.initialize
         { result in
+            var response = Splash.LoadScene.Response(loggedIn: false)
+
             switch result {
             case .success:
+                response.loggedIn = true
                 break
             case .error:
+                response.loggedIn = false
                 break
             }
+
+            self.output.presentLoadScene(response: response)
         }
     }
 }
