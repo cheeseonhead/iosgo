@@ -41,22 +41,12 @@ class OGSLoginWorker
 
             switch loginInfo.result {
             case .success:
-                self.meStore.getUser
-                { workerResponse in
-                    switch workerResponse.result {
-                    case .success:
-                        response = self.createLoginSuccessResponse()
-                    case let .error(errorType):
-                        response = self.createLoginErrorResponse(errorType: errorType)
-                    }
-                    completion(response)
-                }
-                break
+                response = self.createLoginSuccessResponse()
             case let .error(errorType):
                 response = self.createLoginErrorResponse(errorType: errorType)
-                completion(response)
-                break
             }
+
+            completion(response)
         }
     }
 }

@@ -35,8 +35,7 @@ class OGSLoginRouter: OGSLoginRouterInput
 
     func navigateToMainScene()
     {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "MainTabBar")
+        let vc = UIStoryboard(name: "Splash", bundle: nil).instantiateInitialViewController()!
 
         let transition = OGSRootViewControllerTransition(from: viewController, to: vc)
         transition.execute(completion: nil)

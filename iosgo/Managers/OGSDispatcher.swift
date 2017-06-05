@@ -3,7 +3,7 @@
 // Copyright (c) 2017 Cheeseonhead. All rights reserved.
 //
 
-import Foundation
+import Dispatch
 
 class OGSDispatcher
 {

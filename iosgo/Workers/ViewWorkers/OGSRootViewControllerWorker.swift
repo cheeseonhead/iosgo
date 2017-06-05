@@ -10,7 +10,7 @@ class OGSRootViewControllerWorker
     func rootViewController(for session: OGSSession) -> UIViewController
     {
         var vc: UIViewController
-        if session.authenticated
+        if session.tokensExists
         {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             vc = storyboard.instantiateViewController(withIdentifier: "MainTabBar")

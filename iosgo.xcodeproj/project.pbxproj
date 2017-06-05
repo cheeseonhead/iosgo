@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441471EE4BA06008718D7 /* SplashConfigurator.swift */; };
+		3464414E1EE4BA06008718D7 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441481EE4BA06008718D7 /* SplashInteractor.swift */; };
+		3464414F1EE4BA06008718D7 /* SplashModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441491EE4BA06008718D7 /* SplashModels.swift */; };
+		346441501EE4BA06008718D7 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464414A1EE4BA06008718D7 /* SplashPresenter.swift */; };
+		346441511EE4BA06008718D7 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464414B1EE4BA06008718D7 /* SplashRouter.swift */; };
+		346441521EE4BA06008718D7 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464414C1EE4BA06008718D7 /* SplashViewController.swift */; };
+		346441541EE4BDF6008718D7 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 346441531EE4BDF6008718D7 /* Splash.storyboard */; };
 		490D5ED58103542F7917F833 /* Pods_iosgo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF12002656677CCFB6D8EAF8 /* Pods_iosgo.framework */; };
 		5612FD0E1E63C60B000B1973 /* OGSChooseGameConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612FD081E63C60B000B1973 /* OGSChooseGameConfigurator.swift */; };
 		5612FD0F1E63C60B000B1973 /* OGSChooseGameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612FD091E63C60B000B1973 /* OGSChooseGameInteractor.swift */; };
@@ -15,10 +22,6 @@
 		5612FD121E63C60B000B1973 /* OGSChooseGameRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612FD0C1E63C60B000B1973 /* OGSChooseGameRouter.swift */; };
 		5612FD131E63C60B000B1973 /* OGSChooseGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612FD0D1E63C60B000B1973 /* OGSChooseGameViewController.swift */; };
 		5645E91A1E679EAA00602FF5 /* OGSChooseGameViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5645E9191E679EAA00602FF5 /* OGSChooseGameViewController.storyboard */; };
-		565D24711E54A5A500EF62CD /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 565D24701E54A5A500EF62CD /* GameScene.sks */; };
-		565D24731E54A5A500EF62CD /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 565D24721E54A5A500EF62CD /* Actions.sks */; };
-		565D24751E54A5A500EF62CD /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565D24741E54A5A500EF62CD /* GameScene.swift */; };
-		565D24771E54A5A500EF62CD /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565D24761E54A5A500EF62CD /* GameViewController.swift */; };
 		565D247A1E54A5A500EF62CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 565D24781E54A5A500EF62CD /* Main.storyboard */; };
 		565D247C1E54A5A500EF62CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 565D247B1E54A5A500EF62CD /* Assets.xcassets */; };
 		565D247F1E54A5A500EF62CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 565D247D1E54A5A500EF62CD /* LaunchScreen.storyboard */; };
@@ -97,6 +100,13 @@
 /* Begin PBXFileReference section */
 		01BA5FDBCD62AB45B53CC1A9 /* Pods-iosgo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgo.release.xcconfig"; path = "Pods/Target Support Files/Pods-iosgo/Pods-iosgo.release.xcconfig"; sourceTree = "<group>"; };
 		2F833FBBB73B7CCEE7D54A54 /* Pods-iosgoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iosgoTests/Pods-iosgoTests.release.xcconfig"; sourceTree = "<group>"; };
+		346441471EE4BA06008718D7 /* SplashConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashConfigurator.swift; sourceTree = "<group>"; };
+		346441481EE4BA06008718D7 /* SplashInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
+		346441491EE4BA06008718D7 /* SplashModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashModels.swift; sourceTree = "<group>"; };
+		3464414A1EE4BA06008718D7 /* SplashPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
+		3464414B1EE4BA06008718D7 /* SplashRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
+		3464414C1EE4BA06008718D7 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		346441531EE4BDF6008718D7 /* Splash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		3A3A74F5D326BE5E0E2D52ED /* Pods-iosgoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iosgoTests/Pods-iosgoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5612FD081E63C60B000B1973 /* OGSChooseGameConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameConfigurator.swift; sourceTree = "<group>"; };
 		5612FD091E63C60B000B1973 /* OGSChooseGameInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameInteractor.swift; sourceTree = "<group>"; };
@@ -106,10 +116,6 @@
 		5612FD0D1E63C60B000B1973 /* OGSChooseGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameViewController.swift; sourceTree = "<group>"; };
 		5645E9191E679EAA00602FF5 /* OGSChooseGameViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OGSChooseGameViewController.storyboard; sourceTree = "<group>"; };
 		565D246B1E54A5A500EF62CD /* iosgo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosgo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		565D24701E54A5A500EF62CD /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		565D24721E54A5A500EF62CD /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		565D24741E54A5A500EF62CD /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		565D24761E54A5A500EF62CD /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		565D24791E54A5A500EF62CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		565D247B1E54A5A500EF62CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		565D247E1E54A5A500EF62CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -214,8 +220,15 @@
 		345881771EE4A99700FE773B /* Splash */ = {
 			isa = PBXGroup;
 			children = (
+				346441471EE4BA06008718D7 /* SplashConfigurator.swift */,
+				346441481EE4BA06008718D7 /* SplashInteractor.swift */,
+				346441491EE4BA06008718D7 /* SplashModels.swift */,
+				3464414A1EE4BA06008718D7 /* SplashPresenter.swift */,
+				3464414B1EE4BA06008718D7 /* SplashRouter.swift */,
+				3464414C1EE4BA06008718D7 /* SplashViewController.swift */,
+				346441531EE4BDF6008718D7 /* Splash.storyboard */,
 			);
-			name = Splash;
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		565D24621E54A5A500EF62CD = {
@@ -243,10 +256,6 @@
 			isa = PBXGroup;
 			children = (
 				56BD888D1E5522530098E50B /* Components */,
-				565D24701E54A5A500EF62CD /* GameScene.sks */,
-				565D24721E54A5A500EF62CD /* Actions.sks */,
-				565D24741E54A5A500EF62CD /* GameScene.swift */,
-				565D24761E54A5A500EF62CD /* GameViewController.swift */,
 				565D24781E54A5A500EF62CD /* Main.storyboard */,
 				565D247B1E54A5A500EF62CD /* Assets.xcassets */,
 				565D247D1E54A5A500EF62CD /* LaunchScreen.storyboard */,
@@ -597,7 +606,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				565D247A1E54A5A500EF62CD /* Main.storyboard in Resources */,
-				565D24711E54A5A500EF62CD /* GameScene.sks in Resources */,
 				56BD88791E551C990098E50B /* Oswald-Regular.ttf in Resources */,
 				56BD887A1E551C990098E50B /* Oswald-RegularItalic.ttf in Resources */,
 				56BD887B1E551C990098E50B /* Oswald-Stencil.ttf in Resources */,
@@ -607,12 +615,12 @@
 				56BD88781E551C990098E50B /* Oswald-MediumItalic.ttf in Resources */,
 				565D247F1E54A5A500EF62CD /* LaunchScreen.storyboard in Resources */,
 				56BD88751E551C990098E50B /* Oswald-Light.ttf in Resources */,
+				346441541EE4BDF6008718D7 /* Splash.storyboard in Resources */,
 				56BD88761E551C990098E50B /* Oswald-LightItalic.ttf in Resources */,
 				56BD88711E551C990098E50B /* Oswald-Extra-LightItalic.ttf in Resources */,
 				56BD886D1E551C990098E50B /* Oswald-Bold.ttf in Resources */,
 				56BD88721E551C990098E50B /* Oswald-ExtraLight.ttf in Resources */,
 				56BD886F1E551C990098E50B /* Oswald-Demi-BoldItalic.ttf in Resources */,
-				565D24731E54A5A500EF62CD /* Actions.sks in Resources */,
 				56FC0C071E9C62E500119D0C /* OGSChooseGameCollectionViewCell.xib in Resources */,
 				56BD886E1E551C990098E50B /* Oswald-BoldItalic.ttf in Resources */,
 				56BD88741E551C990098E50B /* Oswald-HeavyItalic.ttf in Resources */,
@@ -729,9 +737,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				565D24751E54A5A500EF62CD /* GameScene.swift in Sources */,
 				56BD888F1E5522530098E50B /* OGSButton.swift in Sources */,
-				565D24771E54A5A500EF62CD /* GameViewController.swift in Sources */,
 				AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */,
 				8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */,
 				8405CDE4965C7493BA13D163 /* OGSLoginRouter.swift in Sources */,
@@ -742,6 +748,7 @@
 				8405C6E5D3897A1BBF7653B2 /* OGSLoginViewController.swift in Sources */,
 				8405CB5F7BAD2E27B9786979 /* Temp.swift in Sources */,
 				5612FD0F1E63C60B000B1973 /* OGSChooseGameInteractor.swift in Sources */,
+				3464414E1EE4BA06008718D7 /* SplashInteractor.swift in Sources */,
 				5612FD131E63C60B000B1973 /* OGSChooseGameViewController.swift in Sources */,
 				56FC0C091E9C85F100119D0C /* OGSChooseGameCollectionViewCell.swift in Sources */,
 				5612FD0E1E63C60B000B1973 /* OGSChooseGameConfigurator.swift in Sources */,
@@ -753,6 +760,7 @@
 				AD05A21671A192B337421704 /* String+Additions.swift in Sources */,
 				AD05A00EC3EF1F09DFBC5597 /* Dictionary+Additions.swift in Sources */,
 				5612FD121E63C60B000B1973 /* OGSChooseGameRouter.swift in Sources */,
+				346441511EE4BA06008718D7 /* SplashRouter.swift in Sources */,
 				8405C95C6D25905BDEEB6F5C /* OGSBetaConfiguration.swift in Sources */,
 				8405CD093E23DC1A0921DAA5 /* OGSConfigurationProtocol.swift in Sources */,
 				8405C33DABB22CF98928A07E /* OGSUserSettings.swift in Sources */,
@@ -760,6 +768,7 @@
 				8405CAFEE0C897EE31ED6865 /* OGSChallenge.swift in Sources */,
 				AD05AE74C92DA8328A33761F /* OGSDiskManager.swift in Sources */,
 				AD05A8548F5F603C37C45C57 /* OGSAppConfigurator.swift in Sources */,
+				346441501EE4BA06008718D7 /* SplashPresenter.swift in Sources */,
 				AD05AFC36181FFE0C0DB7889 /* OGSChooseGameListGamesWorker.swift in Sources */,
 				AD05AF2B9222BE964C87EC8D /* OGSAppDelegate.swift in Sources */,
 				AD05A80C3174620434A3BF39 /* OGSLoginInfo.swift in Sources */,
@@ -776,8 +785,11 @@
 				AD05A01B448899472AAD4DBE /* OGSUser.swift in Sources */,
 				AD05ADCD7A6778EA6AAF16D7 /* OGSRootViewControllerTransition.swift in Sources */,
 				AD05AB67C74B02B834E8CFA8 /* OGSMeStore.swift in Sources */,
+				3464414F1EE4BA06008718D7 /* SplashModels.swift in Sources */,
 				AD05AE59A5BF1697CECE11D9 /* OGSMeStoreModels.swift in Sources */,
 				AD05AE8F87A1E735676D8715 /* OGSRootViewControllerWorker.swift in Sources */,
+				3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */,
+				346441521EE4BA06008718D7 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

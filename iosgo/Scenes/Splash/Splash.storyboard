@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DYL-ZX-HN3">
+    <device id="ipad12_9" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="Acv-zq-eds">
+            <objects>
+                <viewController id="DYL-ZX-HN3" customClass="SplashViewController" customModule="iosgo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HFZ-4t-y1J"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gze-4Q-Pa2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6MJ-s7-DXg">
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="Psx-pQ-cQA">
+                                <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Psx-pQ-cQA" firstAttribute="top" secondItem="HFZ-4t-y1J" secondAttribute="bottom" constant="-20" id="4cF-BV-sLf"/>
+                            <constraint firstAttribute="trailing" secondItem="Psx-pQ-cQA" secondAttribute="trailing" id="5w7-WC-JQ1"/>
+                            <constraint firstItem="Gze-4Q-Pa2" firstAttribute="top" secondItem="Psx-pQ-cQA" secondAttribute="bottom" id="u5f-ZG-P8p"/>
+                            <constraint firstItem="Psx-pQ-cQA" firstAttribute="leading" secondItem="6MJ-s7-DXg" secondAttribute="leading" id="wz2-Pc-xul"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m2d-xh-23D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="18" y="116"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Splash" width="1366" height="1024"/>
+    </resources>
+</document>

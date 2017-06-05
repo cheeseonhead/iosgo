@@ -14,7 +14,7 @@ class OGSMeStore
 
         enum Result
         {
-            case success
+            case success(user: OGSUser)
             case error(type: ApiErrorType)
         }
     }
@@ -39,8 +39,7 @@ class OGSMeStore
             case .ok:
                 if let user = try? self.createUser(from: payload!)
                 {
-                    self.update(user: user)
-                    response.result = .success
+                    response.result = .success(user: user)
                 }
                 else
                 {
@@ -65,10 +64,5 @@ fileprivate extension OGSMeStore
     {
         let user: OGSUser = try unbox(dictionary: payload)
         return user
-    }
-
-    func update(user: OGSUser)
-    {
-        sessionController.current.user = user
     }
 }
