@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Splash View Controller-->
         <scene sceneID="Acv-zq-eds">
             <objects>
-                <viewController id="DYL-ZX-HN3" sceneMemberID="viewController">
+                <viewController id="DYL-ZX-HN3" customClass="SplashViewController" customModule="iosgo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HFZ-4t-y1J"/>
                         <viewControllerLayoutGuide type="bottom" id="Gze-4Q-Pa2"/>
