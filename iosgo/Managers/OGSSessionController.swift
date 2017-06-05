@@ -16,6 +16,7 @@ class OGSSessionController
 
             enum Error
             {
+                case networkError
                 case refreshTokenInvalid
             }
         }
@@ -30,7 +31,29 @@ class OGSSessionController
         self.current = session
     }
 
-    func initialize(completion _: @escaping (Initialize.Result) -> Void)
+    func initialize(completion: @escaping (Initialize.Result) -> Void)
+    {
+        let apiStore = OGSApiStore(sessionController: self)
+        let meStore = OGSMeStore(apiStore: apiStore, sessionController: self)
+
+        meStore.getUser
+        { response in
+            switch response.result {
+            case .success(let user):
+                self.current.user = user
+                completion(.success)
+            case .error(let type):
+                switch type {
+                case .unauthorized:
+                    self.refreshTokens(completion: completion)
+                default:
+                    completion(.error(type: .networkError))
+                }
+            }
+        }
+    }
+
+    func refreshTokens(completion _: @escaping (Initialize.Result) -> Void)
     {
     }
 }
