@@ -25,7 +25,18 @@ class SplashPresenter: SplashPresenterInput
 {
     weak var output: SplashPresenterOutput!
 
-    func presentLoadScene(response _: Splash.LoadScene.Response)
+    func presentLoadScene(response: Splash.LoadScene.Response)
     {
+        var viewModel = Splash.LoadScene.ViewModel(nextSceneType: .login)
+
+        if response.loggedIn
+        {
+            viewModel.nextSceneType = .lobby
+        }
+
+        OGSDispatcher.asyncMain
+        {
+            self.output.displayLoadScene(viewModel: viewModel)
+        }
     }
 }

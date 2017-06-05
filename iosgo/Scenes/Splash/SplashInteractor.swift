@@ -35,7 +35,7 @@ class SplashInteractor: SplashInteractorInput
             switch result {
             case .success:
                 break
-            case .error(let type):
+            case .error:
                 break
             }
         }
