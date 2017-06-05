@@ -8,6 +8,8 @@ import Unbox
 
 class OGSOauthApiStore
 {
+    let url = "oauth2/token/"
+
     fileprivate var apiStore: OGSApiStore
 
     required init(apiStore: OGSApiStore)
@@ -15,10 +17,8 @@ class OGSOauthApiStore
         self.apiStore = apiStore
     }
 
-    func getToken(with username: String, password: String, completion: @escaping (OGSLoginInfo) -> Void)
+    func getToken(with username: String, password: String, completion _: @escaping (OGSLoginInfo) -> Void)
     {
-        let url = "oauth2/token/"
-
         let params: [String: String] = [
             "client_id": apiStore.clientID,
             "client_secret": apiStore.clientSecret,
@@ -27,6 +27,23 @@ class OGSOauthApiStore
             "password": password,
         ]
 
+        sendRequest(toUrl: url, method: .POST, parameters: params)
+    }
+
+    func refreshTokens(completion _: @escaping (OGSLoginInfo) -> Void)
+    {
+        let params: [String: String] = [
+            "client_id": apiStore.clientID,
+            "client_secret": apiStore.clientSecret,
+            "grant_type": "refresh_token",
+            "refresh_token": apiStore.refreshToken,
+        ]
+
+        sendRequest(toUrl: url, method: .POST, parameters: params)
+    }
+
+    fileprivate func sendRequest(toUrl _: String, method _: HTTPMethod, parameters _: [String: String])
+    {
         apiStore.request(toUrl: url, method: .POST, parameters: params)
         { statusCode, payload, _ in
 
