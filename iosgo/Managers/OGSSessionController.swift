@@ -17,6 +17,7 @@ class OGSSessionController
             enum Error
             {
                 case networkError
+                case accessTokenInvalid
                 case refreshTokenInvalid
             }
         }
@@ -25,15 +26,67 @@ class OGSSessionController
     static let sharedInstance = OGSSessionController(session: OGSSession(configuration: OGSMockConfiguration()))
 
     var current: OGSSession
+    var apiStore: OGSApiStore!
 
     required init(session: OGSSession)
     {
         self.current = session
+        postInit()
+    }
+
+    fileprivate func postInit()
+    {
+        apiStore = OGSApiStore(sessionController: self)
     }
 
     func initialize(completion: @escaping (Initialize.Result) -> Void)
     {
-        let apiStore = OGSApiStore(sessionController: self)
+        getUser
+        { result in
+            switch result {
+            case .success:
+                completion(.success)
+            case .error(let type):
+                switch type {
+                case .accessTokenInvalid:
+                    self.refreshTokens(completion: completion)
+                default:
+                    completion(.error(type: type))
+                }
+            }
+        }
+    }
+
+    fileprivate func refreshTokens(completion: @escaping (Initialize.Result) -> Void)
+    {
+        let oauthStore = OGSOauthApiStore(apiStore: apiStore)
+
+        oauthStore.refreshTokens
+        { loginInfo in
+            switch loginInfo.result {
+            case .success:
+                self.getUser
+                { result in
+                    switch result {
+                    case .success:
+                        completion(.success)
+                    case .error:
+                        completion(.error(type: .networkError))
+                    }
+                }
+            case .error(let type):
+                switch type {
+                case .unauthorized:
+                    completion(.error(type: .refreshTokenInvalid))
+                default:
+                    completion(.error(type: .networkError))
+                }
+            }
+        }
+    }
+
+    fileprivate func getUser(completion: @escaping (Initialize.Result) -> Void)
+    {
         let meStore = OGSMeStore(apiStore: apiStore, sessionController: self)
 
         meStore.getUser
@@ -45,16 +98,12 @@ class OGSSessionController
             case .error(let type):
                 switch type {
                 case .unauthorized:
-                    self.refreshTokens(completion: completion)
+                    completion(.error(type: .accessTokenInvalid))
                 default:
                     completion(.error(type: .networkError))
                 }
             }
         }
-    }
-
-    func refreshTokens(completion _: @escaping (Initialize.Result) -> Void)
-    {
     }
 }
 
