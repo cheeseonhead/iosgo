@@ -8,7 +8,7 @@ import Unbox
 
 class OGSOauthApiStore
 {
-    let url = "oauth2/token/"
+    let URL = "oauth2/token/"
 
     fileprivate var apiStore: OGSApiStore
 
@@ -17,7 +17,7 @@ class OGSOauthApiStore
         self.apiStore = apiStore
     }
 
-    func getToken(with username: String, password: String, completion _: @escaping (OGSLoginInfo) -> Void)
+    func getToken(with username: String, password: String, completion: @escaping (OGSLoginInfo) -> Void)
     {
         let params: [String: String] = [
             "client_id": apiStore.clientID,
@@ -27,24 +27,31 @@ class OGSOauthApiStore
             "password": password,
         ]
 
-        sendRequest(toUrl: url, method: .POST, parameters: params)
+        sendRequest(toUrl: URL, method: .POST, parameters: params, completion: completion)
     }
 
-    func refreshTokens(completion _: @escaping (OGSLoginInfo) -> Void)
+    func refreshTokens(completion: @escaping (OGSLoginInfo) -> Void)
     {
+        guard let refreshToken = apiStore.refreshToken else
+        {
+            let loginInfo = OGSLoginInfo(result: .error(type: .unauthorized))
+            completion(loginInfo)
+            return
+        }
+
         let params: [String: String] = [
             "client_id": apiStore.clientID,
             "client_secret": apiStore.clientSecret,
             "grant_type": "refresh_token",
-            "refresh_token": apiStore.refreshToken,
+            "refresh_token": refreshToken,
         ]
 
-        sendRequest(toUrl: url, method: .POST, parameters: params)
+        sendRequest(toUrl: URL, method: .POST, parameters: params, completion: completion)
     }
 
-    fileprivate func sendRequest(toUrl _: String, method _: HTTPMethod, parameters _: [String: String])
+    fileprivate func sendRequest(toUrl url: String, method: HTTPMethod, parameters: [String: String], completion: @escaping (OGSLoginInfo) -> Void)
     {
-        apiStore.request(toUrl: url, method: .POST, parameters: params)
+        apiStore.request(toUrl: url, method: method, parameters: parameters)
         { statusCode, payload, _ in
 
             var loginInfo = OGSLoginInfo(result: .error(type: .unknownError))
