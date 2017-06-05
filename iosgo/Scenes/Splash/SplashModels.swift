@@ -21,10 +21,18 @@ struct Splash
 
         struct Response
         {
+            var loggedIn: Bool
         }
 
         struct ViewModel
         {
+            var nextSceneType: NextSceneType
+
+            enum NextSceneType
+            {
+                case login
+                case lobby
+            }
         }
     }
 }
