@@ -44,5 +44,9 @@ class SplashRouter: SplashRouterInput
 
     func navigateToLobby()
     {
+        let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()!
+        let transition = OGSRootViewControllerTransition(from: viewController, to: nextVC)
+
+        transition.execute(completion: nil)
     }
 }
