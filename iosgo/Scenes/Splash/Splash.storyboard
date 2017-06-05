@@ -21,12 +21,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="Psx-pQ-cQA">
-                                <rect key="frame" x="0.0" y="-4" width="1366" height="1028"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Psx-pQ-cQA" firstAttribute="top" secondItem="HFZ-4t-y1J" secondAttribute="bottom" constant="-24" id="4cF-BV-sLf"/>
+                            <constraint firstItem="Psx-pQ-cQA" firstAttribute="top" secondItem="HFZ-4t-y1J" secondAttribute="bottom" constant="-20" id="4cF-BV-sLf"/>
                             <constraint firstAttribute="trailing" secondItem="Psx-pQ-cQA" secondAttribute="trailing" id="5w7-WC-JQ1"/>
                             <constraint firstItem="Gze-4Q-Pa2" firstAttribute="top" secondItem="Psx-pQ-cQA" secondAttribute="bottom" id="u5f-ZG-P8p"/>
                             <constraint firstItem="Psx-pQ-cQA" firstAttribute="leading" secondItem="6MJ-s7-DXg" secondAttribute="leading" id="wz2-Pc-xul"/>
