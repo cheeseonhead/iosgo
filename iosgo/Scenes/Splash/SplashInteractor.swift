@@ -32,8 +32,7 @@ class SplashInteractor: SplashInteractorInput
 
         OGSSessionController.sharedInstance.initialize
         { result in
-            switch result
-            {
+            switch result {
             case .success:
                 break
             case .error(let type):
