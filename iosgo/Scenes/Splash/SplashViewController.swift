@@ -54,7 +54,13 @@ extension SplashViewController
 // MARK: - Display
 extension SplashViewController: SplashViewControllerInput
 {
-    func displayLoadScene(viewModel _: Splash.LoadScene.ViewModel)
+    func displayLoadScene(viewModel: Splash.LoadScene.ViewModel)
     {
+        switch viewModel.nextSceneType {
+        case .lobby:
+            router.navigateToLobby()
+        case .login:
+            router.navigateToLogin()
+        }
     }
 }

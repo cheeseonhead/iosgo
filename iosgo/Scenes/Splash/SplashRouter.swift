@@ -33,4 +33,12 @@ class SplashRouter: SplashRouterInput
         self.dataProvider = dataProvider
         self.dataReceiver = dataReceiver
     }
+
+    func navigateToLogin()
+    {
+    }
+
+    func navigateToLobby()
+    {
+    }
 }
