@@ -16,7 +16,10 @@ protocol OGSChooseGameRouterInput
     func navigateToChallenge()
 }
 
-protocol OGSChooseGameRouterDataProvider: class {}
+protocol OGSChooseGameRouterDataProvider: class
+{
+    var selectedGame: OGSChallenge? { get }
+}
 
 protocol OGSChooseGameRouterDataReceiver: class {}
 

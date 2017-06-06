@@ -29,6 +29,8 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
     var listGamesWorker = OGSChooseGameListGamesWorker(store: OGSSeekGraphSocketStore())
     var sessionWorker = OGSSessionWorker(sessionController: OGSSessionController.sharedInstance)
 
+    var selectedGame: OGSChallenge?
+
     required init()
     {
         listGamesWorker.delegate = self
@@ -43,6 +45,7 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
     {
         switch request.action {
         case .accept:
+            selectedGame = listGamesWorker.challenge(at: request.indexPath)
             let response = OGSChooseGame.TouchGame.Response(action: .accept)
             output.presentTouchGame(response: response)
         default:
