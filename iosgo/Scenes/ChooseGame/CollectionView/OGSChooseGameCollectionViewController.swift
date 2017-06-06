@@ -5,9 +5,15 @@
 
 import UIKit
 
+enum OGSChooseGameAction
+{
+    case accept
+    case remove
+}
+
 protocol OGSChooseGameCollectionViewControllerDelegate: class
 {
-    func accept(challenge: OGSChallenge)
+    func selected(challengeAt indexPath: IndexPath, action: OGSChooseGameAction)
 }
 
 class OGSChooseGameCollectionViewController: UICollectionViewController
@@ -38,6 +44,8 @@ class OGSChooseGameCollectionViewController: UICollectionViewController
             self.collectionView!.collectionViewLayout.invalidateLayout()
         }
     }
+
+    weak var delegate: OGSChooseGameCollectionViewControllerDelegate?
 
     required init()
     {
@@ -73,6 +81,27 @@ extension OGSChooseGameCollectionViewController: UICollectionViewDelegateFlowLay
         cell.buttonType = cellButtonType(from: challenge.buttonType)
 
         return cell
+    }
+}
+
+// MARK: Delegate
+extension OGSChooseGameCollectionViewController: OGSChooseGameCollectionViewCellDelegate
+{
+    func buttonTapped(cell: OGSChooseGameCollectionViewCell)
+    {
+        guard let indexPath = collectionView?.indexPath(for: cell) else
+        {
+            return
+        }
+
+        switch cell.buttonType {
+        case .play:
+            delegate?.selected(challengeAt: indexPath, action: .accept)
+        case .remove:
+            delegate?.selected(challengeAt: indexPath, action: .remove)
+        default:
+            break
+        }
     }
 }
 

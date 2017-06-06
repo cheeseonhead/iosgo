@@ -10,7 +10,7 @@ import UIKit
 
 protocol OGSChooseGameCollectionViewCellDelegate: class
 {
-    func buttonTapped(type: OGSChooseGameCollectionViewCell.ButtonType)
+    func buttonTapped(cell: OGSChooseGameCollectionViewCell)
 }
 
 class OGSChooseGameCollectionViewCell: UICollectionViewCell
@@ -50,7 +50,7 @@ class OGSChooseGameCollectionViewCell: UICollectionViewCell
 
     @IBAction func buttonTapped(button _: OGSButton)
     {
-        delegate?.buttonTapped(type: buttonType)
+        delegate?.buttonTapped(cell: self)
     }
 
     func updateButton(type: ButtonType)
