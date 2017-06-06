@@ -10,6 +10,13 @@ class ChallengeStore
         var success: Bool
     }
 
+    fileprivate var apiStore: OGSApiStore
+
+    init(apiStore: OGSApiStore)
+    {
+        self.apiStore = apiStore
+    }
+
     func acceptChallenge(id _: Int, completion _: (_: AcceptResponse) -> Void)
     {
     }
