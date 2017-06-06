@@ -21,7 +21,7 @@
 		5612FD111E63C60B000B1973 /* OGSChooseGamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612FD0B1E63C60B000B1973 /* OGSChooseGamePresenter.swift */; };
 		5612FD121E63C60B000B1973 /* OGSChooseGameRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612FD0C1E63C60B000B1973 /* OGSChooseGameRouter.swift */; };
 		5612FD131E63C60B000B1973 /* OGSChooseGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612FD0D1E63C60B000B1973 /* OGSChooseGameViewController.swift */; };
-		5645E91A1E679EAA00602FF5 /* OGSChooseGameViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5645E9191E679EAA00602FF5 /* OGSChooseGameViewController.storyboard */; };
+		5645E91A1E679EAA00602FF5 /* OGSChooseGame.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5645E9191E679EAA00602FF5 /* OGSChooseGame.storyboard */; };
 		565D247A1E54A5A500EF62CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 565D24781E54A5A500EF62CD /* Main.storyboard */; };
 		565D247C1E54A5A500EF62CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 565D247B1E54A5A500EF62CD /* Assets.xcassets */; };
 		565D247F1E54A5A500EF62CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 565D247D1E54A5A500EF62CD /* LaunchScreen.storyboard */; };
@@ -114,7 +114,7 @@
 		5612FD0B1E63C60B000B1973 /* OGSChooseGamePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGamePresenter.swift; sourceTree = "<group>"; };
 		5612FD0C1E63C60B000B1973 /* OGSChooseGameRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameRouter.swift; sourceTree = "<group>"; };
 		5612FD0D1E63C60B000B1973 /* OGSChooseGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameViewController.swift; sourceTree = "<group>"; };
-		5645E9191E679EAA00602FF5 /* OGSChooseGameViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OGSChooseGameViewController.storyboard; sourceTree = "<group>"; };
+		5645E9191E679EAA00602FF5 /* OGSChooseGame.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OGSChooseGame.storyboard; sourceTree = "<group>"; };
 		565D246B1E54A5A500EF62CD /* iosgo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosgo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		565D24791E54A5A500EF62CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		565D247B1E54A5A500EF62CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -407,7 +407,7 @@
 				5612FD0B1E63C60B000B1973 /* OGSChooseGamePresenter.swift */,
 				5612FD0C1E63C60B000B1973 /* OGSChooseGameRouter.swift */,
 				5612FD0D1E63C60B000B1973 /* OGSChooseGameViewController.swift */,
-				5645E9191E679EAA00602FF5 /* OGSChooseGameViewController.storyboard */,
+				5645E9191E679EAA00602FF5 /* OGSChooseGame.storyboard */,
 				AD05A56298E411A91826AA48 /* Workers */,
 				AD05A033860BB552023EC1A1 /* CollectionView */,
 			);
@@ -610,7 +610,7 @@
 				56BD887A1E551C990098E50B /* Oswald-RegularItalic.ttf in Resources */,
 				56BD887B1E551C990098E50B /* Oswald-Stencil.ttf in Resources */,
 				56BD88701E551C990098E50B /* Oswald-DemiBold.ttf in Resources */,
-				5645E91A1E679EAA00602FF5 /* OGSChooseGameViewController.storyboard in Resources */,
+				5645E91A1E679EAA00602FF5 /* OGSChooseGame.storyboard in Resources */,
 				565D247C1E54A5A500EF62CD /* Assets.xcassets in Resources */,
 				56BD88781E551C990098E50B /* Oswald-MediumItalic.ttf in Resources */,
 				565D247F1E54A5A500EF62CD /* LaunchScreen.storyboard in Resources */,
