@@ -43,8 +43,23 @@ class OGSChooseGamePresenter: OGSChooseGamePresenterInput
 
     func presentTouchGame(response: OGSChooseGame.TouchGame.Response)
     {
-        let readyToNavigate = (response.action == .accept)
-        let viewModel = OGSChooseGame.TouchGame.ViewModel(readyToNavigate: readyToNavigate)
+        var nextAction: OGSChooseGame.TouchGame.ViewModel.NextAction!
+
+        switch response.action {
+        case .accept:
+            nextAction = response.success ? .navigate : .alert(message: errorMessage(for: response.action))
+        case .remove:
+            if !response.success
+            {
+                nextAction = .alert(message: errorMessage(for: response.action))
+            }
+            else
+            {
+                return
+            }
+        }
+
+        let viewModel = OGSChooseGame.TouchGame.ViewModel(nextAction: nextAction)
 
         OGSDispatcher.asyncMain
         {
@@ -173,5 +188,19 @@ fileprivate extension OGSChooseGamePresenter
     {
         let timeString = String.dateStringFrom(seconds: parameters.totalTime)
         return "\(timeString)"
+    }
+}
+
+// MARK: Messages
+extension OGSChooseGamePresenter
+{
+    func errorMessage(for action: OGSChooseGame.TouchGame.ActionType) -> String
+    {
+        switch action {
+        case .accept:
+            return "Could not accept challenge."
+        case .remove:
+            return "Could not remove challenge."
+        }
     }
 }
