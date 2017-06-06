@@ -67,6 +67,7 @@
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
 		AD05A00EC3EF1F09DFBC5597 /* Dictionary+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */; };
 		AD05A01B448899472AAD4DBE /* OGSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A619B90715ADEDAFC230 /* OGSUser.swift */; };
+		AD05A0EE97BB7404C7897307 /* ChallengeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AF85A40E7F66F2217A8F /* ChallengeStore.swift */; };
 		AD05A21671A192B337421704 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A2B5931F24B08CD0F38B /* String+Additions.swift */; };
 		AD05A2678BD4ECA68F40FE18 /* OGSProdConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A6E404C73D452A4B9148 /* OGSProdConfiguration.swift */; };
 		AD05A664F189FAC228843217 /* OGSSeekGraphSocketStoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AFB1DFE099131696928E /* OGSSeekGraphSocketStoreModels.swift */; };
@@ -181,6 +182,7 @@
 		AD05ADFB7AF57B9E129EBAFC /* OGSSocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSSocketManager.swift; sourceTree = "<group>"; };
 		AD05AE9600B34B78B76D3181 /* OGSChooseGameListGamesWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameListGamesWorker.swift; sourceTree = "<group>"; };
 		AD05AF6C8740956A2DA7A847 /* OGSAppConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSAppConfigurator.swift; sourceTree = "<group>"; };
+		AD05AF85A40E7F66F2217A8F /* ChallengeStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeStore.swift; sourceTree = "<group>"; };
 		AD05AFB1DFE099131696928E /* OGSSeekGraphSocketStoreModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSSeekGraphSocketStoreModels.swift; sourceTree = "<group>"; };
 		AF12002656677CCFB6D8EAF8 /* Pods_iosgo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -455,6 +457,7 @@
 		AD05A4E8F02D2F46F9BBF790 /* ChallengeStore */ = {
 			isa = PBXGroup;
 			children = (
+				AD05AF85A40E7F66F2217A8F /* ChallengeStore.swift */,
 			);
 			path = ChallengeStore;
 			sourceTree = "<group>";
@@ -798,6 +801,7 @@
 				AD05AE8F87A1E735676D8715 /* OGSRootViewControllerWorker.swift in Sources */,
 				3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */,
 				346441521EE4BA06008718D7 /* SplashViewController.swift in Sources */,
+				AD05A0EE97BB7404C7897307 /* ChallengeStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
