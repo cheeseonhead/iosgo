@@ -347,6 +347,7 @@
 				8405CE215DCA64499799C222 /* SeekGraph */,
 				8405CCC46689EA8AB1CE3519 /* OGSApiStore.swift */,
 				AD05A7441CAC96E005862E75 /* MeStore */,
+				AD05A4E8F02D2F46F9BBF790 /* ChallengeStore */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -449,6 +450,13 @@
 				AD05AC0F9046A97D43794663 /* OGSRootViewControllerWorker.swift */,
 			);
 			path = ViewWorkers;
+			sourceTree = "<group>";
+		};
+		AD05A4E8F02D2F46F9BBF790 /* ChallengeStore */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ChallengeStore;
 			sourceTree = "<group>";
 		};
 		AD05A56298E411A91826AA48 /* Workers */ = {
