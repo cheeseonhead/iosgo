@@ -46,4 +46,19 @@ struct OGSChooseGame
             var challengeList: [Challenge]
         }
     }
+
+    struct AcceptGame
+    {
+        struct Request
+        {
+        }
+
+        struct Response
+        {
+        }
+
+        struct ViewModel
+        {
+        }
+    }
 }

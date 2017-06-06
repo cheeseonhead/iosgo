@@ -15,11 +15,13 @@ import SnapKit
 protocol OGSChooseGameViewControllerInput
 {
     func displayListGames(viewModel: OGSChooseGame.ListGames.ViewModel)
+    func displayAcceptGame(viewModel: OGSChooseGame.AcceptGame.ViewModel)
 }
 
 protocol OGSChooseGameViewControllerOutput
 {
     func listGames(request: OGSChooseGame.ListGames.Request)
+    func acceptGame(request: OGSChooseGame.AcceptGame.Request)
 }
 
 class OGSChooseGameViewController: UIViewController, OGSChooseGameViewControllerInput

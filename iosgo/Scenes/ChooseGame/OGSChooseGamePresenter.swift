@@ -14,11 +14,13 @@ import UIKit
 protocol OGSChooseGamePresenterInput
 {
     func presentListGames(response: OGSChooseGame.ListGames.Response)
+    func presentAcceptGame(response: OGSChooseGame.AcceptGame.Response)
 }
 
 protocol OGSChooseGamePresenterOutput: class
 {
     func displayListGames(viewModel: OGSChooseGame.ListGames.ViewModel)
+    func displayAcceptGame(viewModel: OGSChooseGame.AcceptGame.ViewModel)
 }
 
 class OGSChooseGamePresenter: OGSChooseGamePresenterInput
