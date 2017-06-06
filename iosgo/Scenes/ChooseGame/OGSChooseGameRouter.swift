@@ -38,6 +38,11 @@ class OGSChooseGameRouter: OGSChooseGameRouterInput
 
     func navigateToChallenge()
     {
+        guard dataProvider.selectedGame != nil else
+        {
+            return
+        }
+
         print("Playing game!")
     }
 }
