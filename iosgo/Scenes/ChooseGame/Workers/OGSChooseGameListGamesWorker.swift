@@ -43,6 +43,16 @@ class OGSChooseGameListGamesWorker
     {
         seekGraphStore.connect()
     }
+
+    func challenge(at indexPath: IndexPath) -> OGSChallenge?
+    {
+        guard indexPath.row < challenges.count else
+        {
+            return nil
+        }
+
+        return challenges[indexPath.row]
+    }
 }
 
 // MARK: Store Delegate
