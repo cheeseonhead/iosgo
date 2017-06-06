@@ -39,8 +39,15 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
         listGamesWorker.connect()
     }
 
-    func touchGame(request _: OGSChooseGame.TouchGame.Request)
+    func touchGame(request: OGSChooseGame.TouchGame.Request)
     {
+        switch request.action {
+        case .accept:
+            let response = OGSChooseGame.TouchGame.Response(action: .accept)
+            output.presentTouchGame(response: response)
+        default:
+            break
+        }
     }
 }
 

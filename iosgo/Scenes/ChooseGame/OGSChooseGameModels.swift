@@ -53,20 +53,22 @@ struct OGSChooseGame
         {
             var indexPath: IndexPath
             var action: ActionType
-
-            enum ActionType
-            {
-                case accept
-                case remove
-            }
         }
 
         struct Response
         {
+            var action: ActionType
         }
 
         struct ViewModel
         {
+            var readyToNavigate: Bool
+        }
+
+        enum ActionType
+        {
+            case accept
+            case remove
         }
     }
 }

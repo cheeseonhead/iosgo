@@ -41,8 +41,15 @@ class OGSChooseGamePresenter: OGSChooseGamePresenterInput
         }
     }
 
-    func presentTouchGame(response _: OGSChooseGame.TouchGame.Response)
+    func presentTouchGame(response: OGSChooseGame.TouchGame.Response)
     {
+        let readyToNavigate = (response.action == .accept)
+        let viewModel = OGSChooseGame.TouchGame.ViewModel(readyToNavigate: readyToNavigate)
+
+        OGSDispatcher.asyncMain
+        {
+            self.output.displayTouchGame(viewModel: viewModel)
+        }
     }
 }
 

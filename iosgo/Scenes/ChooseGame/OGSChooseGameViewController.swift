@@ -59,7 +59,7 @@ extension OGSChooseGameViewController: OGSChooseGameCollectionViewControllerDele
 {
     func selected(challengeAt indexPath: IndexPath, action: OGSChooseGameAction)
     {
-        var actionType: OGSChooseGame.TouchGame.Request.ActionType!
+        var actionType: OGSChooseGame.TouchGame.ActionType!
 
         switch action {
         case .accept:
