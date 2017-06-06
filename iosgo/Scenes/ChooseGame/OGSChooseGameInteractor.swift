@@ -45,16 +45,20 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
     {
         switch request.action {
         case .accept:
-            selectedGame = listGamesWorker.challenge(at: request.indexPath)
-            let response = OGSChooseGame.TouchGame.Response(action: .accept)
-            output.presentTouchGame(response: response)
+            acceptChallenge(at: request.indexPath)
         default:
             break
         }
     }
 }
 
-// MARK: - Collection View Delegate
+// MARK: - Touch Game
+extension OGSChooseGameInteractor
+{
+    func acceptChallenge(at _: IndexPath)
+    {
+    }
+}
 
 // MARK: - List Game Worker Delegate
 extension OGSChooseGameInteractor: OGSChooseGameListGamesWorkerDelegate
