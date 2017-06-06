@@ -27,9 +27,10 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
 {
     var output: OGSChooseGameInteractorOutput!
     var listGamesWorker = OGSChooseGameListGamesWorker(store: OGSSeekGraphSocketStore())
+    var challengeWorker = ChallengeWorker(challengeStore: ChallengeStore())
     var sessionWorker = OGSSessionWorker(sessionController: OGSSessionController.sharedInstance)
 
-    var selectedGame: OGSChallenge?
+    var selectedChallenge: OGSChallenge?
 
     required init()
     {
@@ -55,8 +56,28 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
 // MARK: - Touch Game
 extension OGSChooseGameInteractor
 {
-    func acceptChallenge(at _: IndexPath)
+    func acceptChallenge(at indexPath: IndexPath)
     {
+        guard let challenge = listGamesWorker.challenge(at: indexPath) else
+        {
+            let response = OGSChooseGame.TouchGame.Response(action: .accept, success: false)
+            output.presentTouchGame(response: response)
+            return
+        }
+
+        var response = OGSChooseGame.TouchGame.Response(action: .accept, success: false)
+
+        challengeWorker.acceptChallenge(id: challenge.id)
+        { storeResponse in
+            if storeResponse.success
+            {
+                selectedChallenge = challenge
+            }
+
+            response.success = storeResponse.success
+
+            output.presentTouchGame(response: response)
+        }
     }
 }
 
