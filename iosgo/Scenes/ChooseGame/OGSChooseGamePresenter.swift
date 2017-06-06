@@ -14,13 +14,13 @@ import UIKit
 protocol OGSChooseGamePresenterInput
 {
     func presentListGames(response: OGSChooseGame.ListGames.Response)
-    func presentAcceptGame(response: OGSChooseGame.AcceptGame.Response)
+    func presentTouchGame(response: OGSChooseGame.TouchGame.Response)
 }
 
 protocol OGSChooseGamePresenterOutput: class
 {
     func displayListGames(viewModel: OGSChooseGame.ListGames.ViewModel)
-    func displayAcceptGame(viewModel: OGSChooseGame.AcceptGame.ViewModel)
+    func displayTouchGame(viewModel: OGSChooseGame.TouchGame.ViewModel)
 }
 
 class OGSChooseGamePresenter: OGSChooseGamePresenterInput
@@ -41,7 +41,7 @@ class OGSChooseGamePresenter: OGSChooseGamePresenterInput
         }
     }
 
-    func presentAcceptGame(response _: OGSChooseGame.AcceptGame.Response)
+    func presentTouchGame(response _: OGSChooseGame.TouchGame.Response)
     {
     }
 }

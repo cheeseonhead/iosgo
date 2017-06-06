@@ -47,10 +47,18 @@ struct OGSChooseGame
         }
     }
 
-    struct AcceptGame
+    struct TouchGame
     {
         struct Request
         {
+            var indexPath: IndexPath
+            var action: ActionType
+
+            enum ActionType
+            {
+                case accept
+                case remove
+            }
         }
 
         struct Response

@@ -15,13 +15,13 @@ import SnapKit
 protocol OGSChooseGameViewControllerInput
 {
     func displayListGames(viewModel: OGSChooseGame.ListGames.ViewModel)
-    func displayAcceptGame(viewModel: OGSChooseGame.AcceptGame.ViewModel)
+    func displayTouchGame(viewModel: OGSChooseGame.TouchGame.ViewModel)
 }
 
 protocol OGSChooseGameViewControllerOutput
 {
     func listGames(request: OGSChooseGame.ListGames.Request)
-    func acceptGame(request: OGSChooseGame.AcceptGame.Request)
+    func touchGame(request: OGSChooseGame.TouchGame.Request)
 }
 
 class OGSChooseGameViewController: UIViewController
@@ -55,6 +55,24 @@ fileprivate extension OGSChooseGameViewController
     }
 }
 
+extension OGSChooseGameViewController: OGSChooseGameCollectionViewControllerDelegate
+{
+    func selected(challengeAt indexPath: IndexPath, action: OGSChooseGameAction)
+    {
+        var actionType: OGSChooseGame.TouchGame.Request.ActionType!
+
+        switch action {
+        case .accept:
+            actionType = .accept
+        case .remove:
+            actionType = .remove
+        }
+
+        let request = OGSChooseGame.TouchGame.Request(indexPath: indexPath, action: actionType)
+        output.touchGame(request: request)
+    }
+}
+
 // MARK: - Display Logic
 extension OGSChooseGameViewController: OGSChooseGameViewControllerInput
 {
@@ -63,7 +81,7 @@ extension OGSChooseGameViewController: OGSChooseGameViewControllerInput
         listViewController.challengeList = viewModel.challengeList
     }
 
-    func displayAcceptGame(viewModel _: OGSChooseGame.AcceptGame.ViewModel)
+    func displayTouchGame(viewModel _: OGSChooseGame.TouchGame.ViewModel)
     {
     }
 }
@@ -80,6 +98,7 @@ extension OGSChooseGameViewController
     func setupCollectionView()
     {
         listViewController = OGSChooseGameCollectionViewController()
+        listViewController.delegate = self
         addChildViewController(listViewController)
         view.addSubview(listViewController.collectionView!)
 

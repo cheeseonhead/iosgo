@@ -14,13 +14,13 @@ import UIKit
 protocol OGSChooseGameInteractorInput
 {
     func listGames(request: OGSChooseGame.ListGames.Request)
-    func acceptGame(request: OGSChooseGame.AcceptGame.Request)
+    func touchGame(request: OGSChooseGame.TouchGame.Request)
 }
 
 protocol OGSChooseGameInteractorOutput
 {
     func presentListGames(response: OGSChooseGame.ListGames.Response)
-    func presentAcceptGame(response: OGSChooseGame.AcceptGame.Response)
+    func presentTouchGame(response: OGSChooseGame.TouchGame.Response)
 }
 
 class OGSChooseGameInteractor: OGSChooseGameInteractorInput
@@ -39,11 +39,14 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
         listGamesWorker.connect()
     }
 
-    func acceptGame(request _: OGSChooseGame.AcceptGame.Request)
+    func touchGame(request _: OGSChooseGame.TouchGame.Request)
     {
     }
 }
 
+// MARK: - Collection View Delegate
+
+// MARK: - List Game Worker Delegate
 extension OGSChooseGameInteractor: OGSChooseGameListGamesWorkerDelegate
 {
     func sendGameList(_ gameList: [OGSChallenge])
