@@ -24,7 +24,7 @@ protocol OGSChooseGameViewControllerOutput
     func acceptGame(request: OGSChooseGame.AcceptGame.Request)
 }
 
-class OGSChooseGameViewController: UIViewController, OGSChooseGameViewControllerInput
+class OGSChooseGameViewController: UIViewController
 {
     var output: OGSChooseGameViewControllerOutput!
     var router: OGSChooseGameRouter!
@@ -56,11 +56,15 @@ fileprivate extension OGSChooseGameViewController
 }
 
 // MARK: - Display Logic
-extension OGSChooseGameViewController
+extension OGSChooseGameViewController: OGSChooseGameViewControllerInput
 {
     func displayListGames(viewModel: OGSChooseGame.ListGames.ViewModel)
     {
         listViewController.challengeList = viewModel.challengeList
+    }
+
+    func displayAcceptGame(viewModel _: OGSChooseGame.AcceptGame.ViewModel)
+    {
     }
 }
 

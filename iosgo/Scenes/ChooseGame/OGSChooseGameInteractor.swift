@@ -38,6 +38,10 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
     {
         listGamesWorker.connect()
     }
+
+    func acceptGame(request _: OGSChooseGame.AcceptGame.Request)
+    {
+    }
 }
 
 extension OGSChooseGameInteractor: OGSChooseGameListGamesWorkerDelegate

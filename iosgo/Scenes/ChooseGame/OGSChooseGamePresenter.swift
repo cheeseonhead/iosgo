@@ -40,6 +40,10 @@ class OGSChooseGamePresenter: OGSChooseGamePresenterInput
             self.output.displayListGames(viewModel: viewModel)
         }
     }
+
+    func presentAcceptGame(response _: OGSChooseGame.AcceptGame.Response)
+    {
+    }
 }
 
 // MARK: - Create Challenges
