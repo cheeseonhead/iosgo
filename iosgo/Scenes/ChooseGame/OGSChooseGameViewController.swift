@@ -81,8 +81,12 @@ extension OGSChooseGameViewController: OGSChooseGameViewControllerInput
         listViewController.challengeList = viewModel.challengeList
     }
 
-    func displayTouchGame(viewModel _: OGSChooseGame.TouchGame.ViewModel)
+    func displayTouchGame(viewModel: OGSChooseGame.TouchGame.ViewModel)
     {
+        if viewModel.readyToNavigate
+        {
+            router.navigateToChallenge()
+        }
     }
 }
 

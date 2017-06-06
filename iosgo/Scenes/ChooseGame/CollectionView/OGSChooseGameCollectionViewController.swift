@@ -75,6 +75,7 @@ extension OGSChooseGameCollectionViewController: UICollectionViewDelegateFlowLay
         let challenge = challengeList[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.cellIdentifier, for: indexPath) as! OGSChooseGameCollectionViewCell
 
+        cell.delegate = self
         cell.userInfoLabel.text = challenge.userInfo
         cell.timeLabel.text = challenge.timeString
         cell.sizeLabel.text = challenge.sizeString

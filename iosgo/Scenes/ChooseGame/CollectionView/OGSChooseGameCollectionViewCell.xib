@@ -52,7 +52,7 @@
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                         <connections>
-                            <action selector="buttonTapped:" destination="3iN-gm-edM" eventType="touchUpInside" id="IYG-rX-hNh"/>
+                            <action selector="buttonTappedWithButton:" destination="3iN-gm-edM" eventType="touchUpInside" id="6QK-BA-eRg"/>
                         </connections>
                     </button>
                 </subviews>

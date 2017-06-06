@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--OGSChooseGameViewController-->
+        <!--OGSChooseGame-->
         <scene sceneID="ZtT-Ho-tTo">
             <objects>
-                <viewControllerPlaceholder storyboardName="OGSChooseGameViewController" id="rgK-TT-LCN" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="OGSChooseGame" id="rgK-TT-LCN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="bookmarks" id="e6m-PJ-Uft"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c4D-IX-igY" userLabel="First Responder" sceneMemberID="firstResponder"/>
