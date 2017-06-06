@@ -58,11 +58,18 @@ struct OGSChooseGame
         struct Response
         {
             var action: ActionType
+            var success: Bool
         }
 
         struct ViewModel
         {
-            var readyToNavigate: Bool
+            var nextAction: NextAction
+
+            enum NextAction
+            {
+                case navigate
+                case alert(message: String)
+            }
         }
 
         enum ActionType
