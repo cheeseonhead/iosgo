@@ -15,7 +15,7 @@ struct OGSChallenge
     var width: Int
     var height: Int
     var handicap: Int
-    var challengeId: Int
+    var id: Int
     var pro: Int
     var maxRank: Int
     var minRank: Int
