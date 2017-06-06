@@ -10,6 +10,7 @@ import UIKit
 
 protocol OGSChooseGameCollectionViewCellDelegate: class
 {
+    func buttonTapped(type: OGSChooseGameCollectionViewCell.ButtonType)
 }
 
 class OGSChooseGameCollectionViewCell: UICollectionViewCell
@@ -39,15 +40,19 @@ class OGSChooseGameCollectionViewCell: UICollectionViewCell
         }
     }
 
+    weak var delegate: OGSChooseGameCollectionViewCellDelegate?
+
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes
     {
         layoutAttributes.bounds.size.height = systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
         return layoutAttributes
     }
 
-    @IBAction func buttonTapped(_: OGSButton)
+    @IBAction func buttonTapped(button _: OGSButton)
     {
+        delegate?.buttonTapped(type: buttonType)
     }
+
     func updateButton(type: ButtonType)
     {
         switch type {
