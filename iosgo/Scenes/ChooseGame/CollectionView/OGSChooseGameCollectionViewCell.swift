@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol OGSChooseGameCollectionViewCellDelegate: class
+{
+}
+
 class OGSChooseGameCollectionViewCell: UICollectionViewCell
 {
     enum ButtonType
@@ -41,6 +45,9 @@ class OGSChooseGameCollectionViewCell: UICollectionViewCell
         return layoutAttributes
     }
 
+    @IBAction func buttonTapped(_: OGSButton)
+    {
+    }
     func updateButton(type: ButtonType)
     {
         switch type {

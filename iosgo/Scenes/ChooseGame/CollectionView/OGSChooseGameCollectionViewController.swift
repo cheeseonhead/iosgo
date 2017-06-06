@@ -5,6 +5,11 @@
 
 import UIKit
 
+protocol OGSChooseGameCollectionViewControllerDelegate: class
+{
+    func accept(challenge: OGSChallenge)
+}
+
 class OGSChooseGameCollectionViewController: UICollectionViewController
 {
     fileprivate struct Style
