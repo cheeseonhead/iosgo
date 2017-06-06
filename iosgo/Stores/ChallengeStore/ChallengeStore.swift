@@ -5,4 +5,12 @@
 
 class ChallengeStore
 {
+    struct AcceptResponse
+    {
+        var success: Bool
+    }
+
+    func acceptChallenge(id _: Int, completion _: (_: AcceptResponse) -> Void)
+    {
+    }
 }
