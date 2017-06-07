@@ -78,12 +78,12 @@ extension OGSButton
         }
     }
 
-    func changeToNormalState()
+    @objc func changeToNormalState()
     {
         change(to: .normal)
     }
 
-    func changeToHighlightedState()
+    @objc func changeToHighlightedState()
     {
         change(to: .highlighted)
     }
