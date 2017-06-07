@@ -20,9 +20,9 @@ class ChallengeWorker {
         self.challengeStore = challengeStore
     }
 
-    func acceptChallenge(id: Int, completion: (AcceptResponse) -> Void) {
+    func acceptChallenge(id: Int, completion: @escaping (AcceptResponse) -> Void) {
         challengeStore.acceptChallenge(id: id) { storeResponse in
-            let response = acceptResponse(from: storeResponse)
+            let response = self.acceptResponse(from: storeResponse)
             completion(response)
         }
     }
