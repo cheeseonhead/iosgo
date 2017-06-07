@@ -5,29 +5,23 @@
 
 import Foundation
 
-protocol ChallengeStoreProtocol
-{
+protocol ChallengeStoreProtocol {
     func acceptChallenge(id: Int, completion: () -> Void)
 }
 
-class ChallengeWorker
-{
-    struct AcceptResponse
-    {
+class ChallengeWorker {
+    struct AcceptResponse {
         var success: Bool
     }
 
     fileprivate var challengeStore: ChallengeStore
 
-    init(challengeStore: ChallengeStore)
-    {
+    init(challengeStore: ChallengeStore) {
         self.challengeStore = challengeStore
     }
 
-    func acceptChallenge(id: Int, completion: (AcceptResponse) -> Void)
-    {
-        challengeStore.acceptChallenge(id: id)
-        { storeResponse in
+    func acceptChallenge(id: Int, completion: (AcceptResponse) -> Void) {
+        challengeStore.acceptChallenge(id: id) { storeResponse in
             let response = acceptResponse(from: storeResponse)
             completion(response)
         }
@@ -35,10 +29,8 @@ class ChallengeWorker
 }
 
 // MARK: - Model Translation
-extension ChallengeWorker
-{
-    func acceptResponse(from storeResponse: ChallengeStore.AcceptResponse) -> AcceptResponse
-    {
+extension ChallengeWorker {
+    func acceptResponse(from storeResponse: ChallengeStore.AcceptResponse) -> AcceptResponse {
         let response = AcceptResponse(success: storeResponse.success)
 
         return response
