@@ -6,6 +6,6 @@ swiftformat
 
 # format code
 git status --porcelain | grep "^[AM]  .*\.swift$" | cut -c4- | while read line; do
-  swiftformat --indent 4 --allman true --wraparguments disabled --wrapelements disabled --header ignore --insertlines disabled --empty void --ranges spaced --trimwhitespace always --linebreaks lf --commas always --comments indent --ifdef indent --hexliterals uppercase --semicolons inline ${line};
+  swiftformat --indent 4 --allman false --wraparguments disabled --wrapelements disabled --header ignore --insertlines disabled --empty void --ranges spaced --trimwhitespace always --linebreaks lf --commas always --comments indent --ifdef indent --hexliterals uppercase --semicolons inline ${line};
   git add $line;
 done

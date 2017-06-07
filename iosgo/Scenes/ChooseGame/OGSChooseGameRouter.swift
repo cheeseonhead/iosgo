@@ -18,7 +18,7 @@ protocol OGSChooseGameRouterInput
 
 protocol OGSChooseGameRouterDataProvider: class
 {
-    var selectedGame: OGSChallenge? { get }
+    var selectedChallenge: OGSChallenge? { get }
 }
 
 protocol OGSChooseGameRouterDataReceiver: class {}
@@ -38,7 +38,7 @@ class OGSChooseGameRouter: OGSChooseGameRouterInput
 
     func navigateToChallenge()
     {
-        guard dataProvider.selectedGame != nil else
+        guard dataProvider.selectedChallenge != nil else
         {
             return
         }

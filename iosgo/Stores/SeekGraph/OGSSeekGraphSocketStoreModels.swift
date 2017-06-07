@@ -92,7 +92,7 @@ extension OGSChallenge: Unboxable
         width = try unboxer.unbox(key: "width")
         height = try unboxer.unbox(key: "height")
         handicap = try unboxer.unbox(key: "handicap")
-        challengeId = try unboxer.unbox(key: "challenge_id")
+        id = try unboxer.unbox(key: "challenge_id")
         pro = try unboxer.unbox(key: "pro")
         maxRank = try unboxer.unbox(key: "max_rank")
         disableAnalysis = try unboxer.unbox(key: "disable_analysis")

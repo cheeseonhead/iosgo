@@ -83,9 +83,11 @@ extension OGSChooseGameViewController: OGSChooseGameViewControllerInput
 
     func displayTouchGame(viewModel: OGSChooseGame.TouchGame.ViewModel)
     {
-        if viewModel.readyToNavigate
-        {
+        switch viewModel.nextAction {
+        case .navigate:
             router.navigateToChallenge()
+        case .alert(let message):
+            print(message)
         }
     }
 }

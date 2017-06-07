@@ -67,6 +67,7 @@
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
 		AD05A00EC3EF1F09DFBC5597 /* Dictionary+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */; };
 		AD05A01B448899472AAD4DBE /* OGSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A619B90715ADEDAFC230 /* OGSUser.swift */; };
+		AD05A0EE97BB7404C7897307 /* ChallengeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AF85A40E7F66F2217A8F /* ChallengeStore.swift */; };
 		AD05A21671A192B337421704 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A2B5931F24B08CD0F38B /* String+Additions.swift */; };
 		AD05A2678BD4ECA68F40FE18 /* OGSProdConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A6E404C73D452A4B9148 /* OGSProdConfiguration.swift */; };
 		AD05A664F189FAC228843217 /* OGSSeekGraphSocketStoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AFB1DFE099131696928E /* OGSSeekGraphSocketStoreModels.swift */; };
@@ -74,6 +75,7 @@
 		AD05A80C3174620434A3BF39 /* OGSLoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A6342D59CC3E80B17996 /* OGSLoginInfo.swift */; };
 		AD05A8548F5F603C37C45C57 /* OGSAppConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AF6C8740956A2DA7A847 /* OGSAppConfigurator.swift */; };
 		AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */; };
+		AD05A9F1111278A031FEA546 /* ChallengeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AD1DB62CA191F038171D /* ChallengeWorker.swift */; };
 		AD05AB67C74B02B834E8CFA8 /* OGSMeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A640228B6DCB613DE7BA /* OGSMeStore.swift */; };
 		AD05ABE155BC1FDEA29394EF /* OGSSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05ADFB7AF57B9E129EBAFC /* OGSSocketManager.swift */; };
 		AD05ADA1EA08A794B27AD4DB /* OGSSessionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AD7F65C8CB89B123BE4D /* OGSSessionWorker.swift */; };
@@ -177,10 +179,12 @@
 		AD05ABBB3826AA77B8B017A3 /* OGSDiskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSDiskManager.swift; sourceTree = "<group>"; };
 		AD05ABC463A960E74C9B2CA0 /* OGSChooseGameCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameCollectionViewController.swift; sourceTree = "<group>"; };
 		AD05AC0F9046A97D43794663 /* OGSRootViewControllerWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSRootViewControllerWorker.swift; sourceTree = "<group>"; };
+		AD05AD1DB62CA191F038171D /* ChallengeWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeWorker.swift; sourceTree = "<group>"; };
 		AD05AD7F65C8CB89B123BE4D /* OGSSessionWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSSessionWorker.swift; sourceTree = "<group>"; };
 		AD05ADFB7AF57B9E129EBAFC /* OGSSocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSSocketManager.swift; sourceTree = "<group>"; };
 		AD05AE9600B34B78B76D3181 /* OGSChooseGameListGamesWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameListGamesWorker.swift; sourceTree = "<group>"; };
 		AD05AF6C8740956A2DA7A847 /* OGSAppConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSAppConfigurator.swift; sourceTree = "<group>"; };
+		AD05AF85A40E7F66F2217A8F /* ChallengeStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeStore.swift; sourceTree = "<group>"; };
 		AD05AFB1DFE099131696928E /* OGSSeekGraphSocketStoreModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSSeekGraphSocketStoreModels.swift; sourceTree = "<group>"; };
 		AF12002656677CCFB6D8EAF8 /* Pods_iosgo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosgoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -234,12 +238,12 @@
 		565D24621E54A5A500EF62CD = {
 			isa = PBXGroup;
 			children = (
-				565D246D1E54A5A500EF62CD /* iosgo */,
-				56BD885D1E551C4C0098E50B /* Resource */,
-				565D24881E54A5A500EF62CD /* iosgoTests */,
-				565D246C1E54A5A500EF62CD /* Products */,
-				3176CD49A89C56C411571F86 /* Pods */,
 				E4DEFB86F4E965A3CC8D8761 /* Frameworks */,
+				565D246D1E54A5A500EF62CD /* iosgo */,
+				565D24881E54A5A500EF62CD /* iosgoTests */,
+				3176CD49A89C56C411571F86 /* Pods */,
+				565D246C1E54A5A500EF62CD /* Products */,
+				56BD885D1E551C4C0098E50B /* Resource */,
 			);
 			sourceTree = "<group>";
 		};
@@ -329,13 +333,13 @@
 		8405C8F1A41EC1425EF79C9C /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				8405C2D09201FEEC8BA27848 /* OGSNotificationCenter.swift */,
-				AD05A8CBB6DCEBEA0F2DBE28 /* OGSDispatcher.swift */,
-				AD05ABBB3826AA77B8B017A3 /* OGSDiskManager.swift */,
 				AD05AF6C8740956A2DA7A847 /* OGSAppConfigurator.swift */,
 				AD05A9ECDDD9E6ED45019693 /* OGSAppDelegate.swift */,
-				AD05A7FF751DB6DBC7E65E2B /* SocketManager */,
+				AD05ABBB3826AA77B8B017A3 /* OGSDiskManager.swift */,
+				AD05A8CBB6DCEBEA0F2DBE28 /* OGSDispatcher.swift */,
+				8405C2D09201FEEC8BA27848 /* OGSNotificationCenter.swift */,
 				8405CB4F2A3854F6078D1532 /* OGSSessionController.swift */,
+				AD05A7FF751DB6DBC7E65E2B /* SocketManager */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -343,11 +347,11 @@
 		8405CA6ED574B6A9F2DF0E71 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				8405CCC46689EA8AB1CE3519 /* OGSApiStore.swift */,
+				AD05A4E8F02D2F46F9BBF790 /* ChallengeStore */,
+				AD05A7441CAC96E005862E75 /* MeStore */,
 				8405CB7FAC98CB122CF80A23 /* OauthStore */,
 				8405CE215DCA64499799C222 /* SeekGraph */,
-				8405CCC46689EA8AB1CE3519 /* OGSApiStore.swift */,
-				AD05A7441CAC96E005862E75 /* MeStore */,
-				AD05A4E8F02D2F46F9BBF790 /* ChallengeStore */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -355,12 +359,12 @@
 		8405CB755432B62AFE49B7F6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8405CDAFCC8C4C8565D8A86D /* Configuration */,
-				8405C26D800A88F561D724BE /* UserSettings */,
 				8405C66D470818B9A9828DEE /* Challenges */,
+				8405CDAFCC8C4C8565D8A86D /* Configuration */,
 				AD05A6342D59CC3E80B17996 /* OGSLoginInfo.swift */,
 				8405C78D22DC4B4FB78797CA /* OGSSession.swift */,
 				AD05A619B90715ADEDAFC230 /* OGSUser.swift */,
+				8405C26D800A88F561D724BE /* UserSettings */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -392,9 +396,9 @@
 		8405CC7312AC75881BD6ADB1 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				345881771EE4A99700FE773B /* Splash */,
-				8405CBDC2EBC9E1083363911 /* Login */,
 				8405CC9BB1059C10AF4C0027 /* ChooseGame */,
+				8405CBDC2EBC9E1083363911 /* Login */,
+				345881771EE4A99700FE773B /* Splash */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -402,15 +406,15 @@
 		8405CC9BB1059C10AF4C0027 /* ChooseGame */ = {
 			isa = PBXGroup;
 			children = (
+				5645E9191E679EAA00602FF5 /* OGSChooseGame.storyboard */,
 				5612FD081E63C60B000B1973 /* OGSChooseGameConfigurator.swift */,
 				5612FD091E63C60B000B1973 /* OGSChooseGameInteractor.swift */,
 				5612FD0A1E63C60B000B1973 /* OGSChooseGameModels.swift */,
 				5612FD0B1E63C60B000B1973 /* OGSChooseGamePresenter.swift */,
 				5612FD0C1E63C60B000B1973 /* OGSChooseGameRouter.swift */,
 				5612FD0D1E63C60B000B1973 /* OGSChooseGameViewController.swift */,
-				5645E9191E679EAA00602FF5 /* OGSChooseGame.storyboard */,
-				AD05A56298E411A91826AA48 /* Workers */,
 				AD05A033860BB552023EC1A1 /* CollectionView */,
+				AD05A56298E411A91826AA48 /* Workers */,
 			);
 			path = ChooseGame;
 			sourceTree = "<group>";
@@ -437,9 +441,9 @@
 		AD05A033860BB552023EC1A1 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				56FC0C081E9C85F100119D0C /* OGSChooseGameCollectionViewCell.swift */,
 				AD05ABC463A960E74C9B2CA0 /* OGSChooseGameCollectionViewController.swift */,
 				56FC0C061E9C62E500119D0C /* OGSChooseGameCollectionViewCell.xib */,
-				56FC0C081E9C85F100119D0C /* OGSChooseGameCollectionViewCell.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -455,6 +459,7 @@
 		AD05A4E8F02D2F46F9BBF790 /* ChallengeStore */ = {
 			isa = PBXGroup;
 			children = (
+				AD05AF85A40E7F66F2217A8F /* ChallengeStore.swift */,
 			);
 			path = ChallengeStore;
 			sourceTree = "<group>";
@@ -499,6 +504,7 @@
 		AD05AD1C933B7360B3025EF2 /* Workers */ = {
 			isa = PBXGroup;
 			children = (
+				AD05AD1DB62CA191F038171D /* ChallengeWorker.swift */,
 				AD05AD7F65C8CB89B123BE4D /* OGSSessionWorker.swift */,
 				AD05A34A88DE4696CFFB31C0 /* ViewWorkers */,
 			);
@@ -799,6 +805,8 @@
 				AD05AE8F87A1E735676D8715 /* OGSRootViewControllerWorker.swift in Sources */,
 				3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */,
 				346441521EE4BA06008718D7 /* SplashViewController.swift in Sources */,
+				AD05A0EE97BB7404C7897307 /* ChallengeStore.swift in Sources */,
+				AD05A9F1111278A031FEA546 /* ChallengeWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

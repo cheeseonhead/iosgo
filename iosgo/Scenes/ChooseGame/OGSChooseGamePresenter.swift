@@ -11,57 +11,70 @@
 
 import UIKit
 
-protocol OGSChooseGamePresenterInput
-{
+protocol OGSChooseGamePresenterInput {
     func presentListGames(response: OGSChooseGame.ListGames.Response)
     func presentTouchGame(response: OGSChooseGame.TouchGame.Response)
 }
 
-protocol OGSChooseGamePresenterOutput: class
-{
+protocol OGSChooseGamePresenterOutput: class {
     func displayListGames(viewModel: OGSChooseGame.ListGames.ViewModel)
     func displayTouchGame(viewModel: OGSChooseGame.TouchGame.ViewModel)
 }
 
-class OGSChooseGamePresenter: OGSChooseGamePresenterInput
-{
+class OGSChooseGamePresenter: OGSChooseGamePresenterInput {
     typealias ListGames = OGSChooseGame.ListGames
 
     weak var output: OGSChooseGamePresenterOutput!
 
-    func presentListGames(response: ListGames.Response)
-    {
+    func presentListGames(response: ListGames.Response) {
         let challengeList = self.challengeList(from: response)
 
         let viewModel = ListGames.ViewModel(challengeList: challengeList)
 
-        OGSDispatcher.asyncMain
-        {
+        OGSDispatcher.asyncMain {
             self.output.displayListGames(viewModel: viewModel)
         }
     }
 
-    func presentTouchGame(response: OGSChooseGame.TouchGame.Response)
-    {
-        let readyToNavigate = (response.action == .accept)
-        let viewModel = OGSChooseGame.TouchGame.ViewModel(readyToNavigate: readyToNavigate)
+    func presentTouchGame(response: OGSChooseGame.TouchGame.Response) {
+        var nextAction: OGSChooseGame.TouchGame.ViewModel.NextAction!
 
-        OGSDispatcher.asyncMain
-        {
+        switch response.action {
+        case .accept:
+            switch response.status {
+            case .success:
+                nextAction = .navigate
+            case .error(let type):
+                switch type {
+                case .challengeMissing:
+                    nextAction = .alert(message: "The challenge you are trying to accept does not exist.")
+                case .other(let message):
+                    nextAction = .alert(message: message)
+                }
+            }
+        case .remove:
+            switch response.status {
+            case .error:
+                nextAction = .alert(message: errorMessage(for: response.action))
+            default:
+                break
+            }
+        }
+
+        let viewModel = OGSChooseGame.TouchGame.ViewModel(nextAction: nextAction)
+
+        OGSDispatcher.asyncMain {
             self.output.displayTouchGame(viewModel: viewModel)
         }
     }
 }
 
 // MARK: - Create Challenges
-fileprivate extension OGSChooseGamePresenter
-{
-    func challengeList(from response: ListGames.Response) -> [ListGames.ViewModel.Challenge]
-    {
+fileprivate extension OGSChooseGamePresenter {
+    func challengeList(from response: ListGames.Response) -> [ListGames.ViewModel.Challenge] {
         var viewModelChallenges: [ListGames.ViewModel.Challenge] = []
 
-        for challenge in response.challenges
-        {
+        for challenge in response.challenges {
             let userInfo = "\(challenge.username) [\(rankString(from: challenge.challengerRank))]"
             let sizeString = "\(Int(challenge.size.width))x\(Int(challenge.size.height))"
             let timeString = challengeTimeString(from: challenge.timeControlParameters)
@@ -74,53 +87,38 @@ fileprivate extension OGSChooseGamePresenter
         return viewModelChallenges
     }
 
-    func rankString(from rank: Int) -> String
-    {
+    func rankString(from rank: Int) -> String {
         if rank < 30 {
             return "\(30 - rank)k"
-        }
-        else
-        {
+        } else {
             return "\(rank - 30)d"
         }
     }
 
-    func challengeCellType(for challenge: OGSChallenge, response: ListGames.Response) -> ListGames.ViewModel.Challenge.ButtonType
-    {
-        if response.loggedIn
-        {
-            if challenge.username == response.username
-            {
+    func challengeCellType(for challenge: OGSChallenge, response: ListGames.Response) -> ListGames.ViewModel.Challenge.ButtonType {
+        if response.loggedIn {
+            if challenge.username == response.username {
                 return .remove
-            }
-            else
-            {
+            } else {
                 let canAccept = (challenge.maxRank >= response.userRank && challenge.minRank <= response.userRank)
 
-                if canAccept
-                {
+                if canAccept {
                     return .play
-                }
-                else
-                {
+                } else {
                     return .cantPlay
                 }
             }
-        }
-        else
-        {
+        } else {
             return .cantPlay
         }
     }
 }
 
 // MARK: - TimeControl Functions
-fileprivate extension OGSChooseGamePresenter
-{
+fileprivate extension OGSChooseGamePresenter {
     typealias TimeControlParametersType = OGSChallenge.TimeControlParametersType
 
-    func challengeTimeString(from timeType: TimeControlParametersType) -> String
-    {
+    func challengeTimeString(from timeType: TimeControlParametersType) -> String {
         switch timeType {
         case let .fischer(parameters):
             return fischerTimeString(from: parameters)
@@ -137,8 +135,7 @@ fileprivate extension OGSChooseGamePresenter
         }
     }
 
-    func fischerTimeString(from parameters: TimeControlParametersType.Fischer) -> String
-    {
+    func fischerTimeString(from parameters: TimeControlParametersType.Fischer) -> String {
         let initialTimeString = String.dateStringFrom(seconds: parameters.initialTime)
         let incrementString = String.dateStringFrom(seconds: parameters.timeIncrement)
         let maxTimeString = String.dateStringFrom(seconds: parameters.maxTime)
@@ -146,32 +143,40 @@ fileprivate extension OGSChooseGamePresenter
         return "\(initialTimeString)+ \(incrementString) up to \(maxTimeString)"
     }
 
-    func simpleTimeString(from parameters: TimeControlParametersType.Simple) -> String
-    {
+    func simpleTimeString(from parameters: TimeControlParametersType.Simple) -> String {
         let perMoveTimeString = String.dateStringFrom(seconds: parameters.timePerMove)
 
         return "\(perMoveTimeString)/move"
     }
 
-    func byoyomi(from parameters: TimeControlParametersType.Byoyomi) -> String
-    {
+    func byoyomi(from parameters: TimeControlParametersType.Byoyomi) -> String {
         let mainTimeString = String.dateStringFrom(seconds: parameters.mainTime)
         let periodTimeString = String.dateStringFrom(seconds: parameters.periodTime)
 
         return "\(mainTimeString)+\(parameters.periodCount)x\(periodTimeString)"
     }
 
-    func canadian(from parameters: TimeControlParametersType.Canadian) -> String
-    {
+    func canadian(from parameters: TimeControlParametersType.Canadian) -> String {
         let mainTimeString = String.dateStringFrom(seconds: parameters.mainTime)
         let periodTimeString = String.dateStringFrom(seconds: parameters.periodTime)
 
         return "\(mainTimeString)+ \(periodTimeString)/\(parameters.stonesPerPeriod)"
     }
 
-    func absolute(from parameters: TimeControlParametersType.Absolute) -> String
-    {
+    func absolute(from parameters: TimeControlParametersType.Absolute) -> String {
         let timeString = String.dateStringFrom(seconds: parameters.totalTime)
         return "\(timeString)"
+    }
+}
+
+// MARK: Messages
+extension OGSChooseGamePresenter {
+    func errorMessage(for action: OGSChooseGame.TouchGame.ActionType) -> String {
+        switch action {
+        case .accept:
+            return "Could not accept challenge."
+        case .remove:
+            return "Could not remove challenge."
+        }
     }
 }

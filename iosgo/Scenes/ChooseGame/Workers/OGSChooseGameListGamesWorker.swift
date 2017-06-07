@@ -66,7 +66,7 @@ extension OGSChooseGameListGamesWorker: OGSListGamesStoreDelegate
 
     func delete(challengeID: Int)
     {
-        try? challenges.remove { $0.challengeId == challengeID }
+        try? challenges.remove { $0.id == challengeID }
         sendResponse()
     }
 

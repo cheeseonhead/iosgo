@@ -24,9 +24,10 @@ protocol OGSChooseGameInteractorOutput {
 class OGSChooseGameInteractor: OGSChooseGameInteractorInput {
     var output: OGSChooseGameInteractorOutput!
     var listGamesWorker = OGSChooseGameListGamesWorker(store: OGSSeekGraphSocketStore())
+    var challengeWorker = ChallengeWorker(challengeStore: ChallengeStore(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
     var sessionWorker = OGSSessionWorker(sessionController: OGSSessionController.sharedInstance)
 
-    var selectedGame: OGSChallenge?
+    var selectedChallenge: OGSChallenge?
 
     required init() {
         listGamesWorker.delegate = self
@@ -39,11 +40,34 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput {
     func touchGame(request: OGSChooseGame.TouchGame.Request) {
         switch request.action {
         case .accept:
-            selectedGame = listGamesWorker.challenge(at: request.indexPath)
-            let response = OGSChooseGame.TouchGame.Response(action: .accept)
-            output.presentTouchGame(response: response)
+            acceptChallenge(at: request.indexPath)
         default:
             break
+        }
+    }
+}
+
+// MARK: - Touch Game
+extension OGSChooseGameInteractor {
+    func acceptChallenge(at indexPath: IndexPath) {
+        guard let challenge = listGamesWorker.challenge(at: indexPath) else {
+            let response = OGSChooseGame.TouchGame.Response(action: .accept, status: .error(type: .challengeMissing))
+            output.presentTouchGame(response: response)
+            return
+        }
+
+        var response = OGSChooseGame.TouchGame.Response(action: .accept, status: .success)
+
+        challengeWorker.acceptChallenge(id: challenge.id) { storeResponse in
+            if storeResponse.success {
+                self.selectedChallenge = challenge
+                response.status = .success
+            } else {
+                let errorMessage = storeResponse.errorMessage ?? "An Unknown Error Occured"
+                response.status = .error(type: .other(message: errorMessage))
+            }
+
+            self.output.presentTouchGame(response: response)
         }
     }
 }
