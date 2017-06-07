@@ -11,39 +11,61 @@
 
 import UIKit
 
-protocol SplashInteractorInput
-{
+protocol SplashInteractorInput {
     func loadScene(request: Splash.LoadScene.Request)
 }
 
-protocol SplashInteractorOutput
-{
+protocol SplashInteractorOutput {
     func presentLoadScene(response: Splash.LoadScene.Response)
 }
 
-class SplashInteractor: SplashInteractorInput
-{
+class SplashInteractor: SplashInteractorInput {
     var output: SplashInteractorOutput!
 
-    func loadScene(request _: Splash.LoadScene.Request)
-    {
+    private var readyList = [false, false]
+    private var response = Splash.LoadScene.Response(loggedIn: false)
+
+    func loadScene(request _: Splash.LoadScene.Request) {
         let configurator = OGSAppConfigurator(session: OGSSession(configuration: OGSBetaConfiguration()))
-        configurator.configureApp()
+        configurator.configureApp { success in
+            if success {
+                self.readyList[0] = true
+                self.finishScene()
+            }
+        }
 
-        OGSSessionController.sharedInstance.initialize
-        { result in
-            var response = Splash.LoadScene.Response(loggedIn: false)
-
+        OGSSessionController.sharedInstance.initialize { result in
             switch result {
             case .success:
-                response.loggedIn = true
+                self.response.loggedIn = true
                 break
             case .error:
-                response.loggedIn = false
+                self.response.loggedIn = false
                 break
             }
 
-            self.output.presentLoadScene(response: response)
+            self.readyList[1] = true
+            self.finishScene()
         }
+    }
+}
+
+// MARK: - Output
+private extension SplashInteractor {
+    func finishScene() {
+        guard allReady() else {
+            return
+        }
+
+        output.presentLoadScene(response: response)
+    }
+
+    func allReady() -> Bool {
+        for ready in readyList {
+            guard ready else {
+                return false
+            }
+        }
+        return true
     }
 }

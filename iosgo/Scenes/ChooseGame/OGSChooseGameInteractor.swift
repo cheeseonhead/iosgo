@@ -11,20 +11,17 @@
 
 import UIKit
 
-protocol OGSChooseGameInteractorInput
-{
+protocol OGSChooseGameInteractorInput {
     func listGames(request: OGSChooseGame.ListGames.Request)
     func touchGame(request: OGSChooseGame.TouchGame.Request)
 }
 
-protocol OGSChooseGameInteractorOutput
-{
+protocol OGSChooseGameInteractorOutput {
     func presentListGames(response: OGSChooseGame.ListGames.Response)
     func presentTouchGame(response: OGSChooseGame.TouchGame.Response)
 }
 
-class OGSChooseGameInteractor: OGSChooseGameInteractorInput
-{
+class OGSChooseGameInteractor: OGSChooseGameInteractorInput {
     var output: OGSChooseGameInteractorOutput!
     var listGamesWorker = OGSChooseGameListGamesWorker(store: OGSSeekGraphSocketStore())
     var challengeWorker = ChallengeWorker(challengeStore: ChallengeStore(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
@@ -32,18 +29,15 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
 
     var selectedChallenge: OGSChallenge?
 
-    required init()
-    {
+    required init() {
         listGamesWorker.delegate = self
     }
 
-    func listGames(request _: OGSChooseGame.ListGames.Request)
-    {
+    func listGames(request _: OGSChooseGame.ListGames.Request) {
         listGamesWorker.connect()
     }
 
-    func touchGame(request: OGSChooseGame.TouchGame.Request)
-    {
+    func touchGame(request: OGSChooseGame.TouchGame.Request) {
         switch request.action {
         case .accept:
             acceptChallenge(at: request.indexPath)
@@ -54,12 +48,9 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
 }
 
 // MARK: - Touch Game
-extension OGSChooseGameInteractor
-{
-    func acceptChallenge(at indexPath: IndexPath)
-    {
-        guard let challenge = listGamesWorker.challenge(at: indexPath) else
-        {
+extension OGSChooseGameInteractor {
+    func acceptChallenge(at indexPath: IndexPath) {
+        guard let challenge = listGamesWorker.challenge(at: indexPath) else {
             let response = OGSChooseGame.TouchGame.Response(action: .accept, success: false)
             output.presentTouchGame(response: response)
             return
@@ -67,25 +58,21 @@ extension OGSChooseGameInteractor
 
         var response = OGSChooseGame.TouchGame.Response(action: .accept, success: false)
 
-        challengeWorker.acceptChallenge(id: challenge.id)
-        { storeResponse in
-            if storeResponse.success
-            {
-                selectedChallenge = challenge
+        challengeWorker.acceptChallenge(id: challenge.id) { storeResponse in
+            if storeResponse.success {
+                self.selectedChallenge = challenge
             }
 
             response.success = storeResponse.success
 
-            output.presentTouchGame(response: response)
+            self.output.presentTouchGame(response: response)
         }
     }
 }
 
 // MARK: - List Game Worker Delegate
-extension OGSChooseGameInteractor: OGSChooseGameListGamesWorkerDelegate
-{
-    func sendGameList(_ gameList: [OGSChallenge])
-    {
+extension OGSChooseGameInteractor: OGSChooseGameListGamesWorkerDelegate {
+    func sendGameList(_ gameList: [OGSChallenge]) {
         let session = sessionWorker.current
         let response = OGSChooseGame.ListGames.Response(loggedIn: session.tokensExists, username: session.user?.username ?? "",
                                                         userRank: session.user?.rank ?? 0, challenges: gameList)
