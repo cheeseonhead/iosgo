@@ -238,12 +238,12 @@
 		565D24621E54A5A500EF62CD = {
 			isa = PBXGroup;
 			children = (
-				565D246D1E54A5A500EF62CD /* iosgo */,
-				56BD885D1E551C4C0098E50B /* Resource */,
-				565D24881E54A5A500EF62CD /* iosgoTests */,
-				565D246C1E54A5A500EF62CD /* Products */,
-				3176CD49A89C56C411571F86 /* Pods */,
 				E4DEFB86F4E965A3CC8D8761 /* Frameworks */,
+				565D246D1E54A5A500EF62CD /* iosgo */,
+				565D24881E54A5A500EF62CD /* iosgoTests */,
+				3176CD49A89C56C411571F86 /* Pods */,
+				565D246C1E54A5A500EF62CD /* Products */,
+				56BD885D1E551C4C0098E50B /* Resource */,
 			);
 			sourceTree = "<group>";
 		};
@@ -333,13 +333,13 @@
 		8405C8F1A41EC1425EF79C9C /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				8405C2D09201FEEC8BA27848 /* OGSNotificationCenter.swift */,
-				AD05A8CBB6DCEBEA0F2DBE28 /* OGSDispatcher.swift */,
-				AD05ABBB3826AA77B8B017A3 /* OGSDiskManager.swift */,
 				AD05AF6C8740956A2DA7A847 /* OGSAppConfigurator.swift */,
 				AD05A9ECDDD9E6ED45019693 /* OGSAppDelegate.swift */,
-				AD05A7FF751DB6DBC7E65E2B /* SocketManager */,
+				AD05ABBB3826AA77B8B017A3 /* OGSDiskManager.swift */,
+				AD05A8CBB6DCEBEA0F2DBE28 /* OGSDispatcher.swift */,
+				8405C2D09201FEEC8BA27848 /* OGSNotificationCenter.swift */,
 				8405CB4F2A3854F6078D1532 /* OGSSessionController.swift */,
+				AD05A7FF751DB6DBC7E65E2B /* SocketManager */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -347,11 +347,11 @@
 		8405CA6ED574B6A9F2DF0E71 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				8405CCC46689EA8AB1CE3519 /* OGSApiStore.swift */,
+				AD05A4E8F02D2F46F9BBF790 /* ChallengeStore */,
+				AD05A7441CAC96E005862E75 /* MeStore */,
 				8405CB7FAC98CB122CF80A23 /* OauthStore */,
 				8405CE215DCA64499799C222 /* SeekGraph */,
-				8405CCC46689EA8AB1CE3519 /* OGSApiStore.swift */,
-				AD05A7441CAC96E005862E75 /* MeStore */,
-				AD05A4E8F02D2F46F9BBF790 /* ChallengeStore */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -359,12 +359,12 @@
 		8405CB755432B62AFE49B7F6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8405CDAFCC8C4C8565D8A86D /* Configuration */,
-				8405C26D800A88F561D724BE /* UserSettings */,
 				8405C66D470818B9A9828DEE /* Challenges */,
+				8405CDAFCC8C4C8565D8A86D /* Configuration */,
 				AD05A6342D59CC3E80B17996 /* OGSLoginInfo.swift */,
 				8405C78D22DC4B4FB78797CA /* OGSSession.swift */,
 				AD05A619B90715ADEDAFC230 /* OGSUser.swift */,
+				8405C26D800A88F561D724BE /* UserSettings */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -396,9 +396,9 @@
 		8405CC7312AC75881BD6ADB1 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				345881771EE4A99700FE773B /* Splash */,
-				8405CBDC2EBC9E1083363911 /* Login */,
 				8405CC9BB1059C10AF4C0027 /* ChooseGame */,
+				8405CBDC2EBC9E1083363911 /* Login */,
+				345881771EE4A99700FE773B /* Splash */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -406,15 +406,15 @@
 		8405CC9BB1059C10AF4C0027 /* ChooseGame */ = {
 			isa = PBXGroup;
 			children = (
+				5645E9191E679EAA00602FF5 /* OGSChooseGame.storyboard */,
 				5612FD081E63C60B000B1973 /* OGSChooseGameConfigurator.swift */,
 				5612FD091E63C60B000B1973 /* OGSChooseGameInteractor.swift */,
 				5612FD0A1E63C60B000B1973 /* OGSChooseGameModels.swift */,
 				5612FD0B1E63C60B000B1973 /* OGSChooseGamePresenter.swift */,
 				5612FD0C1E63C60B000B1973 /* OGSChooseGameRouter.swift */,
 				5612FD0D1E63C60B000B1973 /* OGSChooseGameViewController.swift */,
-				5645E9191E679EAA00602FF5 /* OGSChooseGame.storyboard */,
-				AD05A56298E411A91826AA48 /* Workers */,
 				AD05A033860BB552023EC1A1 /* CollectionView */,
+				AD05A56298E411A91826AA48 /* Workers */,
 			);
 			path = ChooseGame;
 			sourceTree = "<group>";
@@ -441,9 +441,9 @@
 		AD05A033860BB552023EC1A1 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				56FC0C081E9C85F100119D0C /* OGSChooseGameCollectionViewCell.swift */,
 				AD05ABC463A960E74C9B2CA0 /* OGSChooseGameCollectionViewController.swift */,
 				56FC0C061E9C62E500119D0C /* OGSChooseGameCollectionViewCell.xib */,
-				56FC0C081E9C85F100119D0C /* OGSChooseGameCollectionViewCell.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -504,9 +504,9 @@
 		AD05AD1C933B7360B3025EF2 /* Workers */ = {
 			isa = PBXGroup;
 			children = (
+				AD05AD1DB62CA191F038171D /* ChallengeWorker.swift */,
 				AD05AD7F65C8CB89B123BE4D /* OGSSessionWorker.swift */,
 				AD05A34A88DE4696CFFB31C0 /* ViewWorkers */,
-				AD05AD1DB62CA191F038171D /* ChallengeWorker.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
