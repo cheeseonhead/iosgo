@@ -579,6 +579,7 @@
 					565D246A1E54A5A500EF62CD = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 9QWSV3PV48;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					565D24841E54A5A500EF62CD = {
@@ -950,7 +951,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cheeseonhead.iosgogame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -966,7 +968,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cheeseonhead.iosgogame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
