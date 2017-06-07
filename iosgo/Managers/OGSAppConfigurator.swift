@@ -5,40 +5,33 @@
 
 import Foundation
 
-protocol OGSUserSettingsStoreProtocol
-{
+protocol OGSUserSettingsStoreProtocol {
     var accessToken: String? { get set }
     var refreshToken: String? { get set }
 }
 
-class OGSAppConfigurator
-{
+class OGSAppConfigurator {
     fileprivate var session: OGSSession
 
-    required init(session: OGSSession)
-    {
+    required init(session: OGSSession) {
         self.session = session
     }
 }
 
 // MARK: - Configure app
-extension OGSAppConfigurator
-{
-    func configureApp()
-    {
+extension OGSAppConfigurator {
+    func configureApp(completion: @escaping (Bool) -> Void) {
         configureSessionController()
-        configureSocketManager()
+        configureSocketManager(completion: completion)
     }
 
-    func configureSessionController()
-    {
+    func configureSessionController() {
         OGSSessionController.sharedInstance.current = session
     }
 
-    func configureSocketManager()
-    {
+    func configureSocketManager(completion: @escaping (Bool) -> Void) {
         OGSSocketManager.sharedInstance.socketAddress = session.configuration.domainName
 
-        OGSSocketManager.sharedInstance.connect()
+        OGSSocketManager.sharedInstance.connect(completion: completion)
     }
 }
