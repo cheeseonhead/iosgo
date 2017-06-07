@@ -7,16 +7,14 @@ import SocketIO
 
 typealias SocketEvent = String
 
-enum SocketEvents: SocketEvent
-{
+enum SocketEvents: SocketEvent {
     case connect
     case disconnect
     case seekGraphConnect = "seek_graph/connect"
     case seekGraphGlobal = "seekgraph/global"
 }
 
-class OGSSocketManager
-{
+class OGSSocketManager {
     static var sharedInstance = OGSSocketManager()
 
     var socketAddress: String!
@@ -24,17 +22,18 @@ class OGSSocketManager
 
     fileprivate var socket: SocketIOClient!
 
-    func connect()
-    {
+    func connect(completion: @escaping (Bool) -> Void) {
         socket = SocketIOClient(socketURL: URL(string: socketAddress)!, config: [.log(false), .forceWebsockets(true)])
 
-        on(event: .connect)
-        { _ in
+        once(event: .connect) { _ in
+            completion(true)
+        }
+
+        on(event: .connect) { _ in
             self.websocketDidConnect(socket: self.socket)
         }
 
-        on(event: .disconnect)
-        { _ in
+        on(event: .disconnect) { _ in
             self.websocketDidDisconnect(socket: self.socket)
         }
 
@@ -42,59 +41,44 @@ class OGSSocketManager
     }
 }
 
-extension OGSSocketManager
-{
-    func emit(event: SocketEvents, with data: SocketData)
-    {
-        if !isConnected
-        {
-            once(event: .connect)
-            { _ in
+extension OGSSocketManager {
+    func emit(event: SocketEvents, with data: SocketData) {
+        if !isConnected {
+            once(event: .connect) { _ in
                 self.socket.emit(event.rawValue, data)
             }
-        }
-        else
-        {
+        } else {
             socket.emit(event.rawValue, data)
         }
     }
 
-    func on(event: SocketEvents, closure: @escaping NormalCallback)
-    {
+    func on(event: SocketEvents, closure: @escaping NormalCallback) {
 
-        socket.on(event.rawValue)
-        { data, _ in
+        socket.on(event.rawValue) { data, _ in
             closure(data)
         }
     }
 
-    func once(event: SocketEvents, closure: @escaping NormalCallback)
-    {
-        socket.once(event.rawValue)
-        { data, _ in
+    func once(event: SocketEvents, closure: @escaping NormalCallback) {
+        socket.once(event.rawValue) { data, _ in
             closure(data)
         }
     }
 }
 
 // MARK: - Handlers
-extension OGSSocketManager
-{
-    func websocketDidConnect(socket _: SocketIOClient)
-    {
+extension OGSSocketManager {
+    func websocketDidConnect(socket _: SocketIOClient) {
         isConnected = true
     }
 
-    func websocketDidDisconnect(socket _: SocketIOClient)
-    {
+    func websocketDidDisconnect(socket _: SocketIOClient) {
         isConnected = false
     }
 
-    func websocketDidReceiveMessage(socket _: SocketIOClient, text _: String)
-    {
+    func websocketDidReceiveMessage(socket _: SocketIOClient, text _: String) {
     }
 
-    func websocketDidReceiveData(socket _: SocketIOClient, data _: Data)
-    {
+    func websocketDidReceiveData(socket _: SocketIOClient, data _: Data) {
     }
 }

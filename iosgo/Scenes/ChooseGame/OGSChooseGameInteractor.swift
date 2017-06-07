@@ -11,38 +11,32 @@
 
 import UIKit
 
-protocol OGSChooseGameInteractorInput
-{
+protocol OGSChooseGameInteractorInput {
     func listGames(request: OGSChooseGame.ListGames.Request)
     func touchGame(request: OGSChooseGame.TouchGame.Request)
 }
 
-protocol OGSChooseGameInteractorOutput
-{
+protocol OGSChooseGameInteractorOutput {
     func presentListGames(response: OGSChooseGame.ListGames.Response)
     func presentTouchGame(response: OGSChooseGame.TouchGame.Response)
 }
 
-class OGSChooseGameInteractor: OGSChooseGameInteractorInput
-{
+class OGSChooseGameInteractor: OGSChooseGameInteractorInput {
     var output: OGSChooseGameInteractorOutput!
     var listGamesWorker = OGSChooseGameListGamesWorker(store: OGSSeekGraphSocketStore())
     var sessionWorker = OGSSessionWorker(sessionController: OGSSessionController.sharedInstance)
 
     var selectedGame: OGSChallenge?
 
-    required init()
-    {
+    required init() {
         listGamesWorker.delegate = self
     }
 
-    func listGames(request _: OGSChooseGame.ListGames.Request)
-    {
+    func listGames(request _: OGSChooseGame.ListGames.Request) {
         listGamesWorker.connect()
     }
 
-    func touchGame(request: OGSChooseGame.TouchGame.Request)
-    {
+    func touchGame(request: OGSChooseGame.TouchGame.Request) {
         switch request.action {
         case .accept:
             selectedGame = listGamesWorker.challenge(at: request.indexPath)
@@ -54,13 +48,9 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput
     }
 }
 
-// MARK: - Collection View Delegate
-
 // MARK: - List Game Worker Delegate
-extension OGSChooseGameInteractor: OGSChooseGameListGamesWorkerDelegate
-{
-    func sendGameList(_ gameList: [OGSChallenge])
-    {
+extension OGSChooseGameInteractor: OGSChooseGameListGamesWorkerDelegate {
+    func sendGameList(_ gameList: [OGSChallenge]) {
         let session = sessionWorker.current
         let response = OGSChooseGame.ListGames.Response(loggedIn: session.tokensExists, username: session.user?.username ?? "",
                                                         userRank: session.user?.rank ?? 0, challenges: gameList)
