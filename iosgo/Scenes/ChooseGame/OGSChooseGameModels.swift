@@ -11,32 +11,25 @@
 
 import UIKit
 
-struct OGSChooseGame
-{
-    struct ListGames
-    {
-        struct Request
-        {
+struct OGSChooseGame {
+    struct ListGames {
+        struct Request {
         }
-        struct Response
-        {
+        struct Response {
             var loggedIn: Bool
             var username: String
             var userRank: Int
             var challenges: [OGSChallenge]
         }
 
-        struct ViewModel
-        {
-            struct Challenge
-            {
+        struct ViewModel {
+            struct Challenge {
                 var userInfo: String
                 var sizeString: String
                 var timeString: String
                 var buttonType: ButtonType
 
-                enum ButtonType
-                {
+                enum ButtonType {
                     case play
                     case cantPlay
                     case remove
@@ -47,33 +40,37 @@ struct OGSChooseGame
         }
     }
 
-    struct TouchGame
-    {
-        struct Request
-        {
+    struct TouchGame {
+        struct Request {
             var indexPath: IndexPath
             var action: ActionType
         }
 
-        struct Response
-        {
+        struct Response {
             var action: ActionType
-            var success: Bool
+            var status: Status
+
+            enum Status {
+                case success
+                case error(type: Error)
+            }
+
+            enum Error {
+                case challengeMissing
+                case other(message: String)
+            }
         }
 
-        struct ViewModel
-        {
+        struct ViewModel {
             var nextAction: NextAction
 
-            enum NextAction
-            {
+            enum NextAction {
                 case navigate
                 case alert(message: String)
             }
         }
 
-        enum ActionType
-        {
+        enum ActionType {
             case accept
             case remove
         }

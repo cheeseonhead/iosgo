@@ -51,19 +51,21 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput {
 extension OGSChooseGameInteractor {
     func acceptChallenge(at indexPath: IndexPath) {
         guard let challenge = listGamesWorker.challenge(at: indexPath) else {
-            let response = OGSChooseGame.TouchGame.Response(action: .accept, success: false)
+            let response = OGSChooseGame.TouchGame.Response(action: .accept, status: .error(type: .challengeMissing))
             output.presentTouchGame(response: response)
             return
         }
 
-        var response = OGSChooseGame.TouchGame.Response(action: .accept, success: false)
+        var response = OGSChooseGame.TouchGame.Response(action: .accept, status: .success)
 
         challengeWorker.acceptChallenge(id: challenge.id) { storeResponse in
             if storeResponse.success {
                 self.selectedChallenge = challenge
+                response.status = .success
+            } else {
+                let errorMessage = storeResponse.errorMessage ?? "An Unknown Error Occured"
+                response.status = .error(type: .other(message: errorMessage))
             }
-
-            response.success = storeResponse.success
 
             self.output.presentTouchGame(response: response)
         }

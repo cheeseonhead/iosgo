@@ -12,6 +12,7 @@ protocol ChallengeStoreProtocol {
 class ChallengeWorker {
     struct AcceptResponse {
         var success: Bool
+        var errorMessage: String?
     }
 
     fileprivate var challengeStore: ChallengeStore
@@ -31,7 +32,7 @@ class ChallengeWorker {
 // MARK: - Model Translation
 extension ChallengeWorker {
     func acceptResponse(from storeResponse: ChallengeStore.AcceptResponse) -> AcceptResponse {
-        let response = AcceptResponse(success: storeResponse.success)
+        let response = AcceptResponse(success: storeResponse.success, errorMessage: storeResponse.errorMessage)
 
         return response
     }
