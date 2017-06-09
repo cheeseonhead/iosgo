@@ -24,13 +24,21 @@
 
 import Foundation
 
-public final class SocketAnyEvent : NSObject {
+/// Represents some event that was received.
+public final class SocketAnyEvent: NSObject {
+    // MARK: Properties
+
+    /// The event name.
     public let event: String
+
+    /// The data items for this event.
     public let items: [Any]?
-    override public var description: String {
+
+    /// The description of this event.
+    public override var description: String {
         return "SocketAnyEvent: Event: \(event) items: \(String(describing: items))"
     }
-    
+
     init(event: String, items: [Any]?) {
         self.event = event
         self.items = items

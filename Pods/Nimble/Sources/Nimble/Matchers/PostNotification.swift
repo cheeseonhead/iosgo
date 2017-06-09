@@ -4,9 +4,9 @@ internal class NotificationCollector {
     private(set) var observedNotifications: [Notification]
     private let notificationCenter: NotificationCenter
     #if _runtime(_ObjC)
-    private var token: AnyObject?
+        private var token: AnyObject?
     #else
-    private var token: NSObjectProtocol?
+        private var token: NSObjectProtocol?
     #endif
 
     required init(notificationCenter: NotificationCenter) {
@@ -41,17 +41,16 @@ let notificationCenterDefault = NotificationCenter.default
 public func postNotifications<T>(
     _ notificationsMatcher: T,
     fromNotificationCenter center: NotificationCenter = notificationCenterDefault)
-    -> MatcherFunc<Any>
-    where T: Matcher, T.ValueType == [Notification]
-{
-    let _ = mainThread // Force lazy-loading of this value
+    -> Predicate<Any>
+    where T: Matcher, T.ValueType == [Notification] {
+    _ = mainThread // Force lazy-loading of this value
     let collector = NotificationCollector(notificationCenter: center)
     collector.startObserving()
     var once: Bool = false
-    return MatcherFunc { actualExpression, failureMessage in
+    return Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
         let collectorNotificationsExpression = Expression(memoizedExpression: { _ in
             return collector.observedNotifications
-            }, location: actualExpression.location, withoutCaching: true)
+        }, location: actualExpression.location, withoutCaching: true)
 
         assert(pthread_equal(mainThread, pthread_self()) != 0, "Only expecting closure to be evaluated on main thread.")
         if !once {
