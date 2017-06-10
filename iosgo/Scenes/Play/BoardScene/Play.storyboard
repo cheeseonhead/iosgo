@@ -12,7 +12,7 @@
         <!--Play View Controller-->
         <scene sceneID="OQA-j3-wzC">
             <objects>
-                <viewController id="goI-bh-4QP" customClass="PlayViewController" customModule="iosgo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlayViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="goI-bh-4QP" customClass="PlayViewController" customModule="iosgo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Lax-IA-BKj"/>
                         <viewControllerLayoutGuide type="bottom" id="Ekd-dw-25b"/>
