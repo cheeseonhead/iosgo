@@ -14,7 +14,7 @@
 		346441511EE4BA06008718D7 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464414B1EE4BA06008718D7 /* SplashRouter.swift */; };
 		346441521EE4BA06008718D7 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464414C1EE4BA06008718D7 /* SplashViewController.swift */; };
 		346441541EE4BDF6008718D7 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 346441531EE4BDF6008718D7 /* Splash.storyboard */; };
-		34A2B55E1EEA4AD90074525B /* Board.sks in Resources */ = {isa = PBXBuildFile; fileRef = 34A2B55D1EEA4AD90074525B /* Board.sks */; };
+		34A2B55E1EEA4AD90074525B /* BoardScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 34A2B55D1EEA4AD90074525B /* BoardScene.sks */; };
 		490D5ED58103542F7917F833 /* Pods_iosgo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF12002656677CCFB6D8EAF8 /* Pods_iosgo.framework */; };
 		5612FD0E1E63C60B000B1973 /* OGSChooseGameConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612FD081E63C60B000B1973 /* OGSChooseGameConfigurator.swift */; };
 		5612FD0F1E63C60B000B1973 /* OGSChooseGameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612FD091E63C60B000B1973 /* OGSChooseGameInteractor.swift */; };
@@ -110,7 +110,7 @@
 		3464414B1EE4BA06008718D7 /* SplashRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
 		3464414C1EE4BA06008718D7 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		346441531EE4BDF6008718D7 /* Splash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
-		34A2B55D1EEA4AD90074525B /* Board.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Board.sks; sourceTree = "<group>"; };
+		34A2B55D1EEA4AD90074525B /* BoardScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BoardScene.sks; sourceTree = "<group>"; };
 		3A3A74F5D326BE5E0E2D52ED /* Pods-iosgoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iosgoTests/Pods-iosgoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5612FD081E63C60B000B1973 /* OGSChooseGameConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameConfigurator.swift; sourceTree = "<group>"; };
 		5612FD091E63C60B000B1973 /* OGSChooseGameInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameInteractor.swift; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 		34A2B55C1EEA4AB70074525B /* BoardScene */ = {
 			isa = PBXGroup;
 			children = (
-				34A2B55D1EEA4AD90074525B /* Board.sks */,
+				34A2B55D1EEA4AD90074525B /* BoardScene.sks */,
 			);
 			path = BoardScene;
 			sourceTree = "<group>";
@@ -648,7 +648,7 @@
 				565D247C1E54A5A500EF62CD /* Assets.xcassets in Resources */,
 				56BD88781E551C990098E50B /* Oswald-MediumItalic.ttf in Resources */,
 				565D247F1E54A5A500EF62CD /* LaunchScreen.storyboard in Resources */,
-				34A2B55E1EEA4AD90074525B /* Board.sks in Resources */,
+				34A2B55E1EEA4AD90074525B /* BoardScene.sks in Resources */,
 				56BD88751E551C990098E50B /* Oswald-Light.ttf in Resources */,
 				346441541EE4BDF6008718D7 /* Splash.storyboard in Resources */,
 				56BD88761E551C990098E50B /* Oswald-LightItalic.ttf in Resources */,
