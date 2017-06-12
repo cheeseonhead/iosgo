@@ -9,23 +9,18 @@
 import SpriteKit
 
 class GridNode: SKSpriteNode {
-    var rows: Int!
-    var cols: Int!
-    var gridSize: CGSize!
-
-    var verticalSpacing: CGFloat {
-        return gridSize.height / CGFloat(rows - 1)
-    }
-    var horizontalSpacing: CGFloat {
-        return gridSize.width / CGFloat(cols - 1)
-    }
+    var rows: Int?
+    var cols: Int?
+    var gridSize: CGSize?
+    var spacing: CGFloat?
 
     convenience init?(fittingSize: CGSize, rows: Int, cols: Int) {
         guard let texture = GridNode.gridTexture(fittingSize: fittingSize, rows: rows, cols: cols) else {
             return nil
         }
         self.init(texture: texture, color: SKColor.clear, size: texture.size())
-        self.gridSize = texture.size()
+        gridSize = texture.size()
+        spacing = GridNode.minSpacing(for: fittingSize, rows: rows, cols: cols)
         self.rows = rows
         self.cols = cols
     }
