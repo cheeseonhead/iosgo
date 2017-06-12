@@ -42,19 +42,19 @@ extension GridNode {
 
         // Draw horizontal lines
         for i in 0 ... rows {
-            let y = spacing * CGFloat(i)
+            let y = spacing * CGFloat(i) + 1
             bezierPath.move(to: CGPoint(x: 0, y: y))
             bezierPath.addLine(to: CGPoint(x: gridSize.width, y: y))
         }
 
         // Draw vertical lines
         for i in 0 ... cols {
-            let x = spacing * CGFloat(i)
+            let x = spacing * CGFloat(i) + 1
             bezierPath.move(to: CGPoint(x: x, y: 0))
             bezierPath.addLine(to: CGPoint(x: x, y: gridSize.height))
         }
 
-        SKColor.white.setStroke()
+        SKColor.black.setStroke()
         bezierPath.lineWidth = 1.0
         bezierPath.stroke()
         context.addPath(bezierPath.cgPath)
@@ -76,6 +76,6 @@ extension GridNode {
         let horizontalLength = spacing * CGFloat(cols - 1)
         let verticalLength = spacing * CGFloat(rows - 1)
 
-        return CGSize(width: horizontalLength, height: verticalLength)
+        return CGSize(width: horizontalLength + 2, height: verticalLength + 2)
     }
 }
