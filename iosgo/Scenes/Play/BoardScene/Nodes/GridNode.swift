@@ -11,7 +11,7 @@ import SpriteKit
 class GridNode: SKSpriteNode {
     private struct Style {
         static var lineWidth: CGFloat = 1.0
-        static var stoneSizeRatio: CGFloat = 0.9
+        static var stoneSizeRatio: CGFloat = 0.8
 
         static var offSet: CGFloat {
             return Style.lineWidth

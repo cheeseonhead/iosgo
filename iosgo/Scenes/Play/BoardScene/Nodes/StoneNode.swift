@@ -17,7 +17,7 @@ class StoneNode: SKSpriteNode {
     convenience init?(type: StoneType, size: CGSize) {
         switch type {
         case .black:
-            self.init(texture: SKTexture(image: #imageLiteral(resourceName: "Spaceship")), color: UIColor.clear, size: size)
+            self.init(texture: SKTexture(image: #imageLiteral(resourceName: "BlackStone")), color: UIColor.clear, size: size)
         case .white:
             self.init(texture: SKTexture(image: #imageLiteral(resourceName: "challenge_tab")), color: UIColor.clear, size: size)
         }
