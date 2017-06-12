@@ -10,7 +10,7 @@ import SpriteKit
 
 class BoardScene: SKScene {
     var woodBoard: SKSpriteNode!
-    var grid: SKSpriteNode!
+    var grid: GridNode!
 
     override func didMove(to _: SKView) {
         woodBoard = self.childNode(withName: "WoodBoard") as! SKSpriteNode
@@ -18,6 +18,11 @@ class BoardScene: SKScene {
         addGrid()
 
         woodBoard.size = CGSize(width: grid.size.width + size.width * 0.1, height: grid.size.height + size.height * 0.1)
+
+        let pos = grid.stonePosition(row: 2, col: 3)
+        let stone: StoneNode! = StoneNode.init(type: .black, size: grid.stoneSize)
+        stone.position = pos
+        grid.addChild(stone)
     }
 }
 
