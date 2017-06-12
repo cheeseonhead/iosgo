@@ -11,12 +11,23 @@ import SpriteKit
 class GridNode: SKSpriteNode {
     private struct Style {
         static var lineWidth: CGFloat = 1.0
+        static var stoneSizeRatio: CGFloat = 0.9
+
+        static var offSet: CGFloat {
+            return Style.lineWidth
+        }
     }
 
     var rows: Int?
     var cols: Int?
     var gridSize: CGSize?
     var spacing: CGFloat?
+    var stoneSize: CGSize {
+        guard let spacing = spacing else {
+            return CGSize.zero
+        }
+        return CGSize(width: spacing * Style.stoneSizeRatio, height: spacing * Style.stoneSizeRatio)
+    }
 
     convenience init?(fittingSize: CGSize, rows: Int, cols: Int) {
         guard let texture = GridNode.gridTexture(fittingSize: fittingSize, rows: rows, cols: cols) else {
@@ -27,6 +38,16 @@ class GridNode: SKSpriteNode {
         spacing = GridNode.minSpacing(for: fittingSize, rows: rows, cols: cols)
         self.rows = rows
         self.cols = cols
+    }
+
+    func stonePosition(row: Int, col: Int) -> CGPoint {
+        guard let spacing = spacing else {
+            return CGPoint.zero
+        }
+        let xPos = Style.offSet + CGFloat(col - 1) * spacing
+        let yPos = Style.offSet + CGFloat(row - 1) * spacing
+
+        return CGPoint(x: xPos - (size.width / 2), y: yPos - (size.height / 2))
     }
 }
 
@@ -46,14 +67,14 @@ extension GridNode {
 
         // Draw horizontal lines
         for i in 0 ... rows {
-            let y = spacing * CGFloat(i) + Style.lineWidth
+            let y = spacing * CGFloat(i) + Style.offSet
             bezierPath.move(to: CGPoint(x: 0, y: y))
             bezierPath.addLine(to: CGPoint(x: gridSize.width, y: y))
         }
 
         // Draw vertical lines
         for i in 0 ... cols {
-            let x = spacing * CGFloat(i) + Style.lineWidth
+            let x = spacing * CGFloat(i) + Style.offSet
             bezierPath.move(to: CGPoint(x: x, y: 0))
             bezierPath.addLine(to: CGPoint(x: x, y: gridSize.height))
         }
