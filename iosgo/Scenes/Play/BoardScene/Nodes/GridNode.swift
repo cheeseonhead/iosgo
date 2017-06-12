@@ -20,19 +20,22 @@ class GridNode: SKSpriteNode {
         return gridSize.width / CGFloat(cols - 1)
     }
 
-    convenience init?(gridSize: CGSize, rows: Int, cols: Int) {
-        guard let texture = GridNode.gridTexture(gridSize: gridSize, rows: rows, cols: cols) else {
+    convenience init?(fittingSize: CGSize, rows: Int, cols: Int) {
+        guard let texture = GridNode.gridTexture(fittingSize: fittingSize, rows: rows, cols: cols) else {
             return nil
         }
         self.init(texture: texture, color: SKColor.clear, size: texture.size())
-        self.gridSize = gridSize
+        self.gridSize = texture.size()
         self.rows = rows
         self.cols = cols
     }
 }
 
 extension GridNode {
-    class func gridTexture(gridSize: CGSize, rows: Int, cols: Int) -> SKTexture? {
+    class func gridTexture(fittingSize: CGSize, rows: Int, cols: Int) -> SKTexture? {
+        let spacing = minSpacing(for: fittingSize, rows: rows, cols: cols)
+        let gridSize = size(for: spacing, rows: rows, cols: cols)
+
         // Add 1 to the height and width to ensure the borders are within the sprite
         UIGraphicsBeginImageContext(gridSize)
 
@@ -43,17 +46,15 @@ extension GridNode {
         let bezierPath = UIBezierPath()
 
         // Draw horizontal lines
-        let verticalSpacing = gridSize.height / CGFloat(rows - 1)
         for i in 0 ... rows {
-            let y = verticalSpacing * CGFloat(i)
+            let y = spacing * CGFloat(i)
             bezierPath.move(to: CGPoint(x: 0, y: y))
             bezierPath.addLine(to: CGPoint(x: gridSize.width, y: y))
         }
 
         // Draw vertical lines
-        let horizontalSpacing = gridSize.width / CGFloat(cols - 1)
         for i in 0 ... cols {
-            let x = horizontalSpacing * CGFloat(i)
+            let x = spacing * CGFloat(i)
             bezierPath.move(to: CGPoint(x: x, y: 0))
             bezierPath.addLine(to: CGPoint(x: x, y: gridSize.height))
         }
@@ -66,5 +67,20 @@ extension GridNode {
         UIGraphicsEndImageContext()
 
         return SKTexture(image: image!)
+    }
+
+    class func minSpacing(for fittingSize: CGSize, rows: Int, cols: Int) -> CGFloat {
+        // Calculate the spacing
+        let horizontalSpacing = fittingSize.width / CGFloat(cols - 1)
+        let verticalSpacing = fittingSize.height / CGFloat(rows - 1)
+
+        return min(horizontalSpacing, verticalSpacing)
+    }
+
+    class func size(for spacing: CGFloat, rows: Int, cols: Int) -> CGSize {
+        let horizontalLength = spacing * CGFloat(cols - 1)
+        let verticalLength = spacing * CGFloat(rows - 1)
+
+        return CGSize(width: horizontalLength, height: verticalLength)
     }
 }
