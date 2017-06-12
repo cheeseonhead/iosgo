@@ -29,7 +29,9 @@ class GridNode: SKSpriteNode {
         self.rows = rows
         self.cols = cols
     }
+}
 
+extension GridNode {
     class func gridTexture(gridSize: CGSize, rows: Int, cols: Int) -> SKTexture? {
         // Add 1 to the height and width to ensure the borders are within the sprite
         UIGraphicsBeginImageContext(gridSize)
