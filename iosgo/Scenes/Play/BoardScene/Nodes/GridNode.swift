@@ -9,6 +9,10 @@
 import SpriteKit
 
 class GridNode: SKSpriteNode {
+    private struct Style {
+        static var lineWidth: CGFloat = 1.0
+    }
+
     var rows: Int?
     var cols: Int?
     var gridSize: CGSize?
@@ -42,20 +46,20 @@ extension GridNode {
 
         // Draw horizontal lines
         for i in 0 ... rows {
-            let y = spacing * CGFloat(i) + 1
+            let y = spacing * CGFloat(i) + Style.lineWidth
             bezierPath.move(to: CGPoint(x: 0, y: y))
             bezierPath.addLine(to: CGPoint(x: gridSize.width, y: y))
         }
 
         // Draw vertical lines
         for i in 0 ... cols {
-            let x = spacing * CGFloat(i) + 1
+            let x = spacing * CGFloat(i) + Style.lineWidth
             bezierPath.move(to: CGPoint(x: x, y: 0))
             bezierPath.addLine(to: CGPoint(x: x, y: gridSize.height))
         }
 
         SKColor.black.setStroke()
-        bezierPath.lineWidth = 1.0
+        bezierPath.lineWidth = Style.lineWidth
         bezierPath.stroke()
         context.addPath(bezierPath.cgPath)
         let image = UIGraphicsGetImageFromCurrentImageContext()
@@ -76,6 +80,6 @@ extension GridNode {
         let horizontalLength = spacing * CGFloat(cols - 1)
         let verticalLength = spacing * CGFloat(rows - 1)
 
-        return CGSize(width: horizontalLength + 2, height: verticalLength + 2)
+        return CGSize(width: horizontalLength + 2 * Style.lineWidth, height: verticalLength + 2 * Style.lineWidth)
     }
 }
