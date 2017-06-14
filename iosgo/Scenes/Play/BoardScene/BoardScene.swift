@@ -26,7 +26,12 @@ class BoardScene: SKScene {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
-        print(touches)
+        guard let touch = touches.first else {
+            return
+        }
+
+        let coordinates = grid.point(for: touch.location(in: grid))
+        print(coordinates ?? "Not a grid point")
     }
 }
 

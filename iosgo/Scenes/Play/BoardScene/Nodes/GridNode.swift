@@ -55,7 +55,7 @@ class GridNode: SKSpriteNode {
         return CGPoint(x: xPos - (size.width / 2), y: yPos - (size.height / 2))
     }
 
-    func coordinates(for point: CGPoint) -> GridPoint? {
+    func point(for point: CGPoint) -> GridPoint? {
         return GridPoint(row: 5, col: 5)
     }
 }
