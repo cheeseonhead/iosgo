@@ -11,6 +11,8 @@ import SpriteKit
 struct GridPoint {
     var row: Int
     var col: Int
+
+    static let zero = GridPoint(row: -1, col: -1)
 }
 
 class GridNode: SKSpriteNode {
@@ -56,10 +58,17 @@ class GridNode: SKSpriteNode {
     }
 
     func point(for point: CGPoint) -> GridPoint? {
-        return GridPoint(row: 5, col: 5)
+        guard let spacing = spacing else {
+            return GridPoint.zero
+        }
+        let row = standardizeAndRound(point.x, offset: size.width / 2, dividedBy: spacing) + 1
+        let col = standardizeAndRound(point.y, offset: size.height / 2, dividedBy: spacing) + 1
+
+        return GridPoint(row: row, col: col)
     }
 }
 
+// MARK: - Init Helpers
 extension GridNode {
     class func gridTexture(fittingSize: CGSize, rows: Int, cols: Int) -> SKTexture? {
         let spacing = minSpacing(for: fittingSize, rows: rows, cols: cols)
@@ -111,5 +120,17 @@ extension GridNode {
         let verticalLength = spacing * CGFloat(rows - 1)
 
         return CGSize(width: horizontalLength + 2 * Style.lineWidth, height: verticalLength + 2 * Style.lineWidth)
+    }
+}
+
+// MARK: - Math Helpers
+private extension GridNode {
+    func standardizeAndRound(_ float: CGFloat, offset: CGFloat, dividedBy deviation: CGFloat) -> Int {
+        let standard = standarize(float, offset: offset, dividedBy: deviation)
+        return Int(standard + CGFloat(0.5))
+    }
+
+    func standarize(_ float: CGFloat, offset: CGFloat, dividedBy deviation: CGFloat) -> CGFloat {
+        return (float + offset) / deviation
     }
 }
