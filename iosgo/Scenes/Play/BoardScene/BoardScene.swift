@@ -19,10 +19,14 @@ class BoardScene: SKScene {
 
         woodBoard.size = CGSize(width: grid.size.width + size.width * 0.1, height: grid.size.height + size.height * 0.1)
 
-        let pos = grid.stonePosition(row: 1, col: 1)
+        let pos = grid.stonePosition(row: 13, col: 4)
         let stone: StoneNode! = StoneNode.init(type: .black, size: grid.stoneSize)
         stone.position = pos
         grid.addChild(stone)
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
+        print(touches)
     }
 }
 
@@ -30,9 +34,9 @@ class BoardScene: SKScene {
 extension BoardScene {
     func addGrid() {
         let availableSize = CGSize(width: self.size.width * 0.9, height: self.size.height * 0.9)
-        grid = GridNode(fittingSize: availableSize, rows: 5, cols: 9)
+        grid = GridNode(fittingSize: availableSize, rows: 19, cols: 19)!
         grid.position = CGPoint(x: 0, y: 0)
-
+        grid.zPosition = woodBoard.zPosition + 1
         addChild(grid)
     }
 }
