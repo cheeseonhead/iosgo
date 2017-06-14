@@ -8,6 +8,11 @@
 
 import SpriteKit
 
+struct GridPoint {
+    var row: Int
+    var col: Int
+}
+
 class GridNode: SKSpriteNode {
     private struct Style {
         static var lineWidth: CGFloat = 1.0
@@ -49,6 +54,10 @@ class GridNode: SKSpriteNode {
 
         return CGPoint(x: xPos - (size.width / 2), y: yPos - (size.height / 2))
     }
+
+    func coordinates(for point: CGPoint) -> GridPoint? {
+        return GridPoint(row: 5, col: 5)
+    }
 }
 
 extension GridNode {
@@ -89,7 +98,7 @@ extension GridNode {
         return SKTexture(image: image!)
     }
 
-    class func minSpacing(for fittingSize: CGSize, rows: Int, cols: Int) -> CGFloat {
+    private class func minSpacing(for fittingSize: CGSize, rows: Int, cols: Int) -> CGFloat {
         // Calculate the spacing
         let horizontalSpacing = fittingSize.width / CGFloat(cols - 1)
         let verticalSpacing = fittingSize.height / CGFloat(rows - 1)
@@ -97,7 +106,7 @@ extension GridNode {
         return min(horizontalSpacing, verticalSpacing)
     }
 
-    class func size(for spacing: CGFloat, rows: Int, cols: Int) -> CGSize {
+    private class func size(for spacing: CGFloat, rows: Int, cols: Int) -> CGSize {
         let horizontalLength = spacing * CGFloat(cols - 1)
         let verticalLength = spacing * CGFloat(rows - 1)
 
