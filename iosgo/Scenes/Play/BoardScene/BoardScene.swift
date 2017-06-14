@@ -12,26 +12,25 @@ class BoardScene: SKScene {
     var woodBoard: SKSpriteNode!
     var grid: GridNode!
 
+    var currentType: StoneNode.StoneType = .black
+
     override func didMove(to _: SKView) {
         woodBoard = self.childNode(withName: "WoodBoard") as! SKSpriteNode
 
         addGrid()
 
         woodBoard.size = CGSize(width: grid.size.width + size.width * 0.1, height: grid.size.height + size.height * 0.1)
-
-        let pos = grid.stonePosition(row: 13, col: 4)
-        let stone: StoneNode! = StoneNode.init(type: .black, size: grid.stoneSize)
-        stone.position = pos
-        grid.addChild(stone)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
-        guard let touch = touches.first else {
+        guard let touch = touches.first,
+            let point = grid.point(for: touch.location(in: grid)) else {
             return
         }
 
-        let coordinates = grid.point(for: touch.location(in: grid))
-        print(coordinates ?? "Not a grid point")
+        grid.placeStone(type: currentType, at: point)
+        currentType = (currentType == .black) ? .white : .black
+        print(point)
     }
 }
 
