@@ -19,7 +19,7 @@ class StoneNode: SKSpriteNode {
         case .black:
             self.init(texture: SKTexture(image: #imageLiteral(resourceName: "BlackStone")), color: UIColor.clear, size: size)
         case .white:
-            self.init(texture: SKTexture(image: #imageLiteral(resourceName: "challenge_tab")), color: UIColor.clear, size: size)
+            self.init(texture: SKTexture(image: #imageLiteral(resourceName: "WhiteStone")), color: UIColor.clear, size: size)
         }
     }
 }
