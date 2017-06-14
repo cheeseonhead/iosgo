@@ -35,6 +35,7 @@ class GridNode: SKSpriteNode {
         }
         return CGSize(width: spacing * Style.stoneSizeRatio, height: spacing * Style.stoneSizeRatio)
     }
+    var stoneNodes = [GridPoint: StoneNode]()
 
     convenience init?(fittingSize: CGSize, rows: Int, cols: Int) {
         guard let texture = GridNode.gridTexture(fittingSize: fittingSize, rows: rows, cols: cols) else {
@@ -47,24 +48,28 @@ class GridNode: SKSpriteNode {
         self.cols = cols
     }
 
-    func stonePosition(row: Int, col: Int) -> CGPoint {
-        guard let spacing = spacing else {
-            return CGPoint.zero
-        }
-        let xPos = Style.offSet + CGFloat(col - 1) * spacing
-        let yPos = Style.offSet + CGFloat(row - 1) * spacing
-
-        return CGPoint(x: xPos - (size.width / 2), y: yPos - (size.height / 2))
-    }
-
     func point(for point: CGPoint) -> GridPoint? {
-        guard let spacing = spacing else {
-            return GridPoint.zero
+        guard let spacing = spacing, let rows = rows, let cols = cols else {
+            return nil
         }
-        let row = standardizeAndRound(point.x, offset: size.width / 2, dividedBy: spacing) + 1
-        let col = standardizeAndRound(point.y, offset: size.height / 2, dividedBy: spacing) + 1
+
+        let row = standardizeAndRound(point.y, offset: size.height / 2, dividedBy: spacing) + 1
+        let col = standardizeAndRound(point.x, offset: size.width / 2, dividedBy: spacing) + 1
+
+        guard case 1 ... rows = row, case 1 ... cols = col else {
+            return nil
+        }
 
         return GridPoint(row: row, col: col)
+    }
+
+    func placeStone(type: StoneNode.StoneType, at point: GridPoint) {
+        let pos = stonePosition(for: point)
+        let stone: StoneNode! = StoneNode.init(type: type, size: stoneSize)
+        stone.position = pos
+        stone.zPosition = zPosition + 1
+        stoneNodes[point] = stone
+        addChild(stone)
     }
 }
 
@@ -132,5 +137,26 @@ private extension GridNode {
 
     func standarize(_ float: CGFloat, offset: CGFloat, dividedBy deviation: CGFloat) -> CGFloat {
         return (float + offset) / deviation
+    }
+
+    func stonePosition(for point: GridPoint) -> CGPoint {
+        guard let spacing = spacing else {
+            return CGPoint.zero
+        }
+        let xPos = Style.offSet + CGFloat(point.col - 1) * spacing
+        let yPos = Style.offSet + CGFloat(point.row - 1) * spacing
+
+        return CGPoint(x: xPos - (size.width / 2), y: yPos - (size.height / 2))
+    }
+}
+
+// MARK: - GridPoint Extension
+extension GridPoint: Hashable {
+    var hashValue: Int {
+        return "\(row), \(col)".hashValue
+    }
+
+    static func ==(lhs: GridPoint, rhs: GridPoint) -> Bool {
+        return lhs.hashValue == rhs.hashValue
     }
 }
