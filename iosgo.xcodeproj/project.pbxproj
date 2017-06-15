@@ -662,7 +662,7 @@
 				TargetAttributes = {
 					565D246A1E54A5A500EF62CD = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 9QWSV3PV48;
+						DevelopmentTeam = PL469KE6KQ;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -1052,7 +1052,7 @@
 			baseConfigurationReference = 716E1A03A77525183735DD47 /* Pods-iosgo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9QWSV3PV48;
+				DEVELOPMENT_TEAM = PL469KE6KQ;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = iosgo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1069,7 +1069,7 @@
 			baseConfigurationReference = 01BA5FDBCD62AB45B53CC1A9 /* Pods-iosgo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9QWSV3PV48;
+				DEVELOPMENT_TEAM = PL469KE6KQ;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = iosgo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
