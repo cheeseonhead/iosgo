@@ -41,9 +41,6 @@ class GridNode: SKSpriteNode {
     }
     var stoneNodes = [GridPoint: StoneNode]()
 
-    // MARK: - Dependencies
-    var stoneNodeFactory: StoneNodeFactory?
-
     // MARK: - Object Lifecycle
     convenience init?(fittingSize: CGSize, rows: Int, cols: Int) {
         guard let texture = GridNode.gridTexture(fittingSize: fittingSize, rows: rows, cols: cols) else {
