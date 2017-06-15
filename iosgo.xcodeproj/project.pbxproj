@@ -18,6 +18,7 @@
 		346441511EE4BA06008718D7 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464414B1EE4BA06008718D7 /* SplashRouter.swift */; };
 		346441521EE4BA06008718D7 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464414C1EE4BA06008718D7 /* SplashViewController.swift */; };
 		346441541EE4BDF6008718D7 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 346441531EE4BDF6008718D7 /* Splash.storyboard */; };
+		34934B761EF240320096D3C4 /* CGSize+Scalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34934B751EF240320096D3C4 /* CGSize+Scalable.swift */; };
 		34A2B55E1EEA4AD90074525B /* BoardScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 34A2B55D1EEA4AD90074525B /* BoardScene.sks */; };
 		34A2B5A51EEBD46C0074525B /* GridNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2B5A41EEBD46C0074525B /* GridNode.swift */; };
 		34A2B5A91EEBDD500074525B /* Play.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34A2B5A81EEBDD500074525B /* Play.storyboard */; };
@@ -122,6 +123,7 @@
 		3464414B1EE4BA06008718D7 /* SplashRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
 		3464414C1EE4BA06008718D7 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		346441531EE4BDF6008718D7 /* Splash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
+		34934B751EF240320096D3C4 /* CGSize+Scalable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Scalable.swift"; sourceTree = "<group>"; };
 		34A2B55D1EEA4AD90074525B /* BoardScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BoardScene.sks; sourceTree = "<group>"; };
 		34A2B5A41EEBD46C0074525B /* GridNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridNode.swift; sourceTree = "<group>"; };
 		34A2B5A81EEBDD500074525B /* Play.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Play.storyboard; sourceTree = "<group>"; };
@@ -268,6 +270,14 @@
 				346441531EE4BDF6008718D7 /* Splash.storyboard */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		34934B741EF23FE80096D3C4 /* CGSize */ = {
+			isa = PBXGroup;
+			children = (
+				34934B751EF240320096D3C4 /* CGSize+Scalable.swift */,
+			);
+			path = CGSize;
 			sourceTree = "<group>";
 		};
 		34A2B55B1EEA4AA30074525B /* Play */ = {
@@ -559,6 +569,7 @@
 		AD05A9249FEBFC41418217D5 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				34934B741EF23FE80096D3C4 /* CGSize */,
 				3414A6FE1EF22AF800E28D6D /* CGFloat */,
 				AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */,
 				8405CF5B5FD5BE2E3B1BFCDC /* Temp.swift */,
@@ -875,6 +886,7 @@
 				34A2B5AB1EEBDD730074525B /* PlayViewController.swift in Sources */,
 				AD05A01B448899472AAD4DBE /* OGSUser.swift in Sources */,
 				AD05ADCD7A6778EA6AAF16D7 /* OGSRootViewControllerTransition.swift in Sources */,
+				34934B761EF240320096D3C4 /* CGSize+Scalable.swift in Sources */,
 				AD05AB67C74B02B834E8CFA8 /* OGSMeStore.swift in Sources */,
 				3464414F1EE4BA06008718D7 /* SplashModels.swift in Sources */,
 				AD05AE59A5BF1697CECE11D9 /* OGSMeStoreModels.swift in Sources */,
