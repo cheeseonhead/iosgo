@@ -142,7 +142,7 @@ extension GridNode {
 private extension GridNode {
     func standardizeAndRound(_ float: CGFloat, offset: CGFloat, dividedBy deviation: CGFloat) -> Int {
         let standard = standarize(float, offset: offset, dividedBy: deviation)
-        return Int(standard + CGFloat(0.5))
+        return Int(floor(standard + CGFloat(0.5)))
     }
 
     func standarize(_ float: CGFloat, offset: CGFloat, dividedBy deviation: CGFloat) -> CGFloat {
