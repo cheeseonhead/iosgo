@@ -19,7 +19,18 @@ class StoneWorker {
         gridNode = grid
         self.stoneFactory = stoneFactory
     }
+}
 
+// MARK: - Checking
+extension StoneWorker {
+
+    func isOccupied(point: GridPoint) -> Bool {
+        return stoneNodes[point] != nil
+    }
+}
+
+// MARK: - Manipulation
+extension StoneWorker {
     func placeStone(type: StoneNode.StoneType, at point: GridPoint) -> Bool {
         guard stoneNodes[point] == nil else {
             return false
