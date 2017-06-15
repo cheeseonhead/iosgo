@@ -70,7 +70,8 @@ class GridNode: SKSpriteNode {
     }
 
     func placeStone(type: StoneNode.StoneType, at point: GridPoint) {
-        guard let stoneNodeFactory = stoneNodeFactory else {
+        guard let stoneNodeFactory = stoneNodeFactory,
+            stoneNodes[point] == nil else {
             return
         }
 
