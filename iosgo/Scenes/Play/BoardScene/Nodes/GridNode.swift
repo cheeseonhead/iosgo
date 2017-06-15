@@ -36,6 +36,9 @@ class GridNode: SKSpriteNode {
         }
         return CGSize(width: spacing * Style.stoneSizeRatio, height: spacing * Style.stoneSizeRatio)
     }
+    var ghostStoneSize: CGSize {
+        return stoneSize.scaled(by: 1.5)
+    }
     var stoneNodes = [GridPoint: StoneNode]()
 
     // MARK: - Dependencies
