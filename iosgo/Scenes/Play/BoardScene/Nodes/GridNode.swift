@@ -25,6 +25,7 @@ class GridNode: SKSpriteNode {
         }
     }
 
+    // MARK: - Properties
     var rows: Int?
     var cols: Int?
     var gridSize: CGSize?
@@ -37,6 +38,10 @@ class GridNode: SKSpriteNode {
     }
     var stoneNodes = [GridPoint: StoneNode]()
 
+    // MARK: - Dependencies
+    var stoneNodeFactory: StoneNodeFactory?
+
+    // MARK: - Object Lifecycle
     convenience init?(fittingSize: CGSize, rows: Int, cols: Int) {
         guard let texture = GridNode.gridTexture(fittingSize: fittingSize, rows: rows, cols: cols) else {
             return nil
@@ -48,6 +53,7 @@ class GridNode: SKSpriteNode {
         self.cols = cols
     }
 
+    // MARK: - Usage
     func point(for point: CGPoint) -> GridPoint? {
         guard let spacing = spacing, let rows = rows, let cols = cols else {
             return nil
@@ -64,8 +70,12 @@ class GridNode: SKSpriteNode {
     }
 
     func placeStone(type: StoneNode.StoneType, at point: GridPoint) {
+        guard let stoneNodeFactory = stoneNodeFactory else {
+            return
+        }
+
         let pos = stonePosition(for: point)
-        let stone: StoneNode! = StoneNode.init(type: type, size: stoneSize)
+        let stone: StoneNode! = stoneNodeFactory.createStone(type: type, size: stoneSize)
         stone.position = pos
         stone.zPosition = zPosition + 1
         stoneNodes[point] = stone
