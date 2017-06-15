@@ -146,14 +146,3 @@ private extension GridNode {
         return (float + offset) / deviation
     }
 }
-
-// MARK: - GridPoint Extension
-extension GridPoint: Hashable {
-    var hashValue: Int {
-        return "\(row), \(col)".hashValue
-    }
-
-    static func ==(lhs: GridPoint, rhs: GridPoint) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
-}

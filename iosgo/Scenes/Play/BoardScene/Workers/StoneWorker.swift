@@ -46,3 +46,14 @@ class StoneWorker {
         return true
     }
 }
+
+// MARK: - GridPoint Extension
+extension GridPoint: Hashable {
+    var hashValue: Int {
+        return "\(row), \(col)".hashValue
+    }
+
+    static func ==(lhs: GridPoint, rhs: GridPoint) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
+}
