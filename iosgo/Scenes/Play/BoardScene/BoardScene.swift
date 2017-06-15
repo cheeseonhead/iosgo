@@ -23,7 +23,7 @@ class BoardScene: SKScene {
         woodBoard = self.childNode(withName: "WoodBoard") as! SKSpriteNode
 
         addGrid()
-        woodBoard.size = CGSize(width: grid.size.width + size.width * 0.1, height: grid.size.height + size.height * 0.1)
+        woodBoard.size = CGSize(width: grid.size.width + grid.spacing!, height: grid.size.height + grid.spacing!)
 
         stoneWorker = StoneWorker(grid: grid, stoneFactory: StoneNodeFactory())
     }
@@ -65,9 +65,13 @@ class BoardScene: SKScene {
 // MARK: Setup
 extension BoardScene {
     func addGrid() {
-        let availableSize = CGSize(width: self.size.width * 0.9, height: self.size.height * 0.9)
-        grid = GridNode(fittingSize: availableSize, rows: 5, cols: 5)!
-        grid.stoneNodeFactory = StoneNodeFactory()
+        let rows: CGFloat = 19
+        let cols: CGFloat = 19
+
+        let availableWidth = size.width * (cols - 1) / cols
+        let availableHeight = size.height * (rows - 1) / rows
+        let availableSize = CGSize(width: availableWidth, height: availableHeight)
+        grid = GridNode(fittingSize: availableSize, rows: Int(rows), cols: Int(cols))!
         grid.position = CGPoint(x: 0, y: 0)
         grid.zPosition = woodBoard.zPosition + 1
         addChild(grid)
