@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3414A6FA1EF21B5800E28D6D /* StoneNodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3414A6F91EF21B5800E28D6D /* StoneNodeFactory.swift */; };
+		3414A6FD1EF223BF00E28D6D /* StoneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3414A6FC1EF223BF00E28D6D /* StoneWorker.swift */; };
 		34177CC31EEE4CF100DDDD2F /* StoneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34177CC21EEE4CF100DDDD2F /* StoneNode.swift */; };
 		3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441471EE4BA06008718D7 /* SplashConfigurator.swift */; };
 		3464414E1EE4BA06008718D7 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441481EE4BA06008718D7 /* SplashInteractor.swift */; };
@@ -110,6 +111,7 @@
 		01BA5FDBCD62AB45B53CC1A9 /* Pods-iosgo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgo.release.xcconfig"; path = "Pods/Target Support Files/Pods-iosgo/Pods-iosgo.release.xcconfig"; sourceTree = "<group>"; };
 		2F833FBBB73B7CCEE7D54A54 /* Pods-iosgoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iosgoTests/Pods-iosgoTests.release.xcconfig"; sourceTree = "<group>"; };
 		3414A6F91EF21B5800E28D6D /* StoneNodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneNodeFactory.swift; sourceTree = "<group>"; };
+		3414A6FC1EF223BF00E28D6D /* StoneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneWorker.swift; sourceTree = "<group>"; };
 		34177CC21EEE4CF100DDDD2F /* StoneNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneNode.swift; sourceTree = "<group>"; };
 		346441471EE4BA06008718D7 /* SplashConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashConfigurator.swift; sourceTree = "<group>"; };
 		346441481EE4BA06008718D7 /* SplashInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
@@ -235,6 +237,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		3414A6FB1EF2239E00E28D6D /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				3414A6FC1EF223BF00E28D6D /* StoneWorker.swift */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
 		345881771EE4A99700FE773B /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +270,7 @@
 		34A2B55C1EEA4AB70074525B /* BoardScene */ = {
 			isa = PBXGroup;
 			children = (
+				3414A6FB1EF2239E00E28D6D /* Workers */,
 				34A2B5A31EEBD4580074525B /* Nodes */,
 				34ACC8AA1EEBDF7900F2B376 /* BoardScene.swift */,
 				34A2B55D1EEA4AD90074525B /* BoardScene.sks */,
@@ -802,6 +813,7 @@
 				56BD888F1E5522530098E50B /* OGSButton.swift in Sources */,
 				AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */,
 				8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */,
+				3414A6FD1EF223BF00E28D6D /* StoneWorker.swift in Sources */,
 				8405CDE4965C7493BA13D163 /* OGSLoginRouter.swift in Sources */,
 				8405C3C9E1790ACD829F597C /* OGSLoginWorker.swift in Sources */,
 				8405CA6A133748D9049413CA /* OGSLoginPresenter.swift in Sources */,
