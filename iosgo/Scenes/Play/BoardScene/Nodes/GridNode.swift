@@ -59,8 +59,8 @@ class GridNode: SKSpriteNode {
             return nil
         }
 
-        let row = standardizeAndRound(point.y, offset: size.height / 2, dividedBy: spacing) + 1
-        let col = standardizeAndRound(point.x, offset: size.width / 2, dividedBy: spacing) + 1
+        let row = point.y.standardizeAndRound(offset: size.height / 2, dividedBy: spacing) + 1
+        let col = point.x.standardizeAndRound(offset: size.width / 2, dividedBy: spacing) + 1
 
         guard case 1 ... rows = row, case 1 ... cols = col else {
             return nil
@@ -132,17 +132,5 @@ extension GridNode {
         let verticalLength = spacing * CGFloat(rows - 1)
 
         return CGSize(width: horizontalLength + 2 * Style.lineWidth, height: verticalLength + 2 * Style.lineWidth)
-    }
-}
-
-// MARK: - Math Helpers
-private extension GridNode {
-    func standardizeAndRound(_ float: CGFloat, offset: CGFloat, dividedBy deviation: CGFloat) -> Int {
-        let standard = standarize(float, offset: offset, dividedBy: deviation)
-        return Int(floor(standard + CGFloat(0.5)))
-    }
-
-    func standarize(_ float: CGFloat, offset: CGFloat, dividedBy deviation: CGFloat) -> CGFloat {
-        return (float + offset) / deviation
     }
 }
