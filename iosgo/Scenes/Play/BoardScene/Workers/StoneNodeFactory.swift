@@ -25,4 +25,11 @@ class StoneNodeFactory {
 
         return stoneNode
     }
+
+    func createGhostStone(type: StoneNode.StoneType, size: CGSize) -> StoneNode {
+        let stoneNode = createStone(type: type, size: size)
+        stoneNode.alpha = 0.5
+
+        return stoneNode
+    }
 }
