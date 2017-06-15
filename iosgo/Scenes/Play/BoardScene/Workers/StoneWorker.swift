@@ -34,7 +34,7 @@ extension StoneWorker {
 // MARK: - Regular Stones
 extension StoneWorker {
     func placeStone(type: StoneNode.StoneType, at point: GridPoint) -> Bool {
-        guard stoneNodes[point] == nil else {
+        guard !isOccupied(point: point) else {
             return false
         }
 
@@ -60,7 +60,7 @@ extension StoneWorker {
 
 // MARK: - Ghost Stone
 extension StoneWorker {
-    func placeGhostStone(type: StoneNode.StoneType, at point: GridPoint) -> Bool {
+    func createGhostStone(type: StoneNode.StoneType) -> Bool {
         guard ghostStone == nil else {
             return false
         }
@@ -68,17 +68,22 @@ extension StoneWorker {
         let stone = stoneFactory.createGhostStone(type: type, size: gridNode.stoneSize)
         ghostStone = stone
 
-        addStoneNode(ghostStone!, at: point)
-
         return true
     }
 
-    func moveGhostStone(type: StoneNode.StoneType, to point: GridPoint) -> Bool {
+    func moveGhostStone(to point: GridPoint) -> Bool {
         guard ghostStone != nil else {
             return false
         }
 
-        ghostStone?.position = gridNode.stonePosition(for: point)
+        if isOccupied(point: point) {
+            ghostStone?.removeFromParent()
+        } else {
+            if ghostStone?.parent == nil {
+                addStoneNode(ghostStone!, at: point)
+            }
+            ghostStone?.position = gridNode.stonePosition(for: point)
+        }
 
         return true
     }
@@ -88,7 +93,7 @@ extension StoneWorker {
             return false
         }
 
-        gridNode.removeChildren(in: [ghostStone!])
+        ghostStone?.removeFromParent()
         ghostStone = nil
 
         return true
