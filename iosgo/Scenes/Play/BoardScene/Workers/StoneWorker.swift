@@ -13,6 +13,8 @@ class StoneWorker {
     var gridNode: GridNode
     var stoneFactory: StoneNodeFactory
 
+    var ghostStone: StoneNode?
+
     private var stoneNodes = [GridPoint: StoneNode]()
 
     init(grid: GridNode, stoneFactory: StoneNodeFactory) {
@@ -29,19 +31,17 @@ extension StoneWorker {
     }
 }
 
-// MARK: - Manipulation
+// MARK: - Regular Stones
 extension StoneWorker {
     func placeStone(type: StoneNode.StoneType, at point: GridPoint) -> Bool {
         guard stoneNodes[point] == nil else {
             return false
         }
 
-        let pos = gridNode.stonePosition(for: point)
         let stone = stoneFactory.createStone(type: type, size: gridNode.stoneSize)
-        stone.position = pos
-        stone.zPosition = gridNode.zPosition + 1
         stoneNodes[point] = stone
-        gridNode.addChild(stone)
+
+        addStoneNode(stone, at: point)
 
         return true
     }
@@ -55,6 +55,54 @@ extension StoneWorker {
         stoneNodes.removeValue(forKey: point)
 
         return true
+    }
+}
+
+// MARK: - Ghost Stone
+extension StoneWorker {
+    func placeGhostStone(type: StoneNode.StoneType, at point: GridPoint) -> Bool {
+        guard ghostStone == nil else {
+            return false
+        }
+
+        let stone = stoneFactory.createGhostStone(type: type, size: gridNode.stoneSize)
+        ghostStone = stone
+
+        addStoneNode(ghostStone!, at: point)
+
+        return true
+    }
+
+    func moveGhostStone(type: StoneNode.StoneType, to point: GridPoint) -> Bool {
+        guard ghostStone != nil else {
+            return false
+        }
+
+        ghostStone?.position = gridNode.stonePosition(for: point)
+
+        return true
+    }
+
+    func removeGhostStone() -> Bool {
+        guard ghostStone != nil else {
+            return false
+        }
+
+        gridNode.removeChildren(in: [ghostStone!])
+        ghostStone = nil
+
+        return true
+    }
+}
+
+// MARK: - Helpers
+private extension StoneWorker {
+    func addStoneNode(_ stoneNode: StoneNode, at point: GridPoint) {
+        let position = gridNode.stonePosition(for: point)
+
+        stoneNode.position = position
+        stoneNode.zPosition = gridNode.zPosition + 1
+        gridNode.addChild(stoneNode)
     }
 }
 
