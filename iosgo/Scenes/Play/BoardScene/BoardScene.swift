@@ -9,8 +9,13 @@
 import SpriteKit
 
 class BoardScene: SKScene {
+
+    // MARK: Nodes
     var woodBoard: SKSpriteNode!
     var grid: GridNode!
+
+    // MARK: Workers
+    var stoneWorker: StoneWorker!
 
     var currentType: StoneNode.StoneType = .black
 
@@ -18,8 +23,9 @@ class BoardScene: SKScene {
         woodBoard = self.childNode(withName: "WoodBoard") as! SKSpriteNode
 
         addGrid()
-
         woodBoard.size = CGSize(width: grid.size.width + size.width * 0.1, height: grid.size.height + size.height * 0.1)
+
+        stoneWorker = StoneWorker(grid: grid, stoneFactory: StoneNodeFactory())
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
@@ -28,7 +34,7 @@ class BoardScene: SKScene {
             return
         }
 
-        grid.placeStone(type: currentType, at: point)
+        _ = stoneWorker.placeStone(type: currentType, at: point)
         currentType = (currentType == .black) ? .white : .black
         print(point)
     }
