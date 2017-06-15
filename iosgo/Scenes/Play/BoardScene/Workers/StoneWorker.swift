@@ -65,7 +65,7 @@ extension StoneWorker {
             return false
         }
 
-        let stone = stoneFactory.createGhostStone(type: type, size: gridNode.stoneSize)
+        let stone = stoneFactory.createGhostStone(type: type, size: gridNode.ghostStoneSize)
         ghostStone = stone
 
         return true
