@@ -68,11 +68,14 @@ class GridNode: SKSpriteNode {
 
         return GridPoint(row: row, col: col)
     }
+}
 
-    func placeStone(type: StoneNode.StoneType, at point: GridPoint) {
+// MARK: - Stone Management
+extension GridNode {
+    func placeStone(type: StoneNode.StoneType, at point: GridPoint) -> Bool {
         guard let stoneNodeFactory = stoneNodeFactory,
             stoneNodes[point] == nil else {
-            return
+            return false
         }
 
         let pos = stonePosition(for: point)
@@ -81,6 +84,19 @@ class GridNode: SKSpriteNode {
         stone.zPosition = zPosition + 1
         stoneNodes[point] = stone
         addChild(stone)
+
+        return true
+    }
+
+    func removeStone(at point: GridPoint) -> Bool {
+        guard let stoneNode = stoneNodes[point] else {
+            return false
+        }
+
+        removeChildren(in: [stoneNode])
+        stoneNodes.removeValue(forKey: point)
+
+        return true
     }
 }
 
