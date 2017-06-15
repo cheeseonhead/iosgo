@@ -68,35 +68,15 @@ class GridNode: SKSpriteNode {
 
         return GridPoint(row: row, col: col)
     }
-}
 
-// MARK: - Stone Management
-extension GridNode {
-    func placeStone(type: StoneNode.StoneType, at point: GridPoint) -> Bool {
-        guard let stoneNodeFactory = stoneNodeFactory,
-            stoneNodes[point] == nil else {
-            return false
+    func stonePosition(for point: GridPoint) -> CGPoint {
+        guard let spacing = spacing else {
+            return CGPoint.zero
         }
+        let xPos = Style.offSet + CGFloat(point.col - 1) * spacing
+        let yPos = Style.offSet + CGFloat(point.row - 1) * spacing
 
-        let pos = stonePosition(for: point)
-        let stone: StoneNode! = stoneNodeFactory.createStone(type: type, size: stoneSize)
-        stone.position = pos
-        stone.zPosition = zPosition + 1
-        stoneNodes[point] = stone
-        addChild(stone)
-
-        return true
-    }
-
-    func removeStone(at point: GridPoint) -> Bool {
-        guard let stoneNode = stoneNodes[point] else {
-            return false
-        }
-
-        removeChildren(in: [stoneNode])
-        stoneNodes.removeValue(forKey: point)
-
-        return true
+        return CGPoint(x: xPos - (size.width / 2), y: yPos - (size.height / 2))
     }
 }
 
@@ -164,16 +144,6 @@ private extension GridNode {
 
     func standarize(_ float: CGFloat, offset: CGFloat, dividedBy deviation: CGFloat) -> CGFloat {
         return (float + offset) / deviation
-    }
-
-    func stonePosition(for point: GridPoint) -> CGPoint {
-        guard let spacing = spacing else {
-            return CGPoint.zero
-        }
-        let xPos = Style.offSet + CGFloat(point.col - 1) * spacing
-        let yPos = Style.offSet + CGFloat(point.row - 1) * spacing
-
-        return CGPoint(x: xPos - (size.width / 2), y: yPos - (size.height / 2))
     }
 }
 
