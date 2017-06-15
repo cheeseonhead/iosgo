@@ -34,7 +34,12 @@ class BoardScene: SKScene {
             return
         }
 
-        _ = stoneWorker.placeStone(type: currentType, at: point)
+        if stoneWorker.isOccupied(point: point) {
+            _ = stoneWorker.removeStone(at: point)
+        } else {
+            _ = stoneWorker.placeStone(type: currentType, at: point)
+        }
+
         currentType = (currentType == .black) ? .white : .black
         print(point)
     }
