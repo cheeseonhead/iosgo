@@ -39,6 +39,7 @@ extension BoardScene {
     func addGrid() {
         let availableSize = CGSize(width: self.size.width * 0.9, height: self.size.height * 0.9)
         grid = GridNode(fittingSize: availableSize, rows: 19, cols: 19)!
+        grid.stoneNodeFactory = StoneNodeFactory()
         grid.position = CGPoint(x: 0, y: 0)
         grid.zPosition = woodBoard.zPosition + 1
         addChild(grid)
