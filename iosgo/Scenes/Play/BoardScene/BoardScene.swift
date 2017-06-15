@@ -34,14 +34,31 @@ class BoardScene: SKScene {
             return
         }
 
-        if stoneWorker.isOccupied(point: point) {
-            _ = stoneWorker.removeStone(at: point)
-        } else {
-            _ = stoneWorker.placeStone(type: currentType, at: point)
+        _ = stoneWorker.createGhostStone(type: currentType)
+        _ = stoneWorker.moveGhostStone(to: point)
+    }
+
+    override func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
+        guard let touch = touches.first,
+            let point = grid.point(for: touch.location(in: grid)) else {
+            return
         }
 
-        currentType = (currentType == .black) ? .white : .black
-        print(point)
+        _ = stoneWorker.moveGhostStone(to: point)
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with _: UIEvent?) {
+        guard let touch = touches.first,
+            let point = grid.point(for: touch.location(in: grid)) else {
+            return
+        }
+
+        _ = stoneWorker.removeGhostStone()
+
+        if !stoneWorker.isOccupied(point: point) {
+            _ = stoneWorker.placeStone(type: currentType, at: point)
+            currentType = (currentType == .black) ? .white : .black
+        }
     }
 }
 
@@ -49,7 +66,7 @@ class BoardScene: SKScene {
 extension BoardScene {
     func addGrid() {
         let availableSize = CGSize(width: self.size.width * 0.9, height: self.size.height * 0.9)
-        grid = GridNode(fittingSize: availableSize, rows: 19, cols: 19)!
+        grid = GridNode(fittingSize: availableSize, rows: 5, cols: 5)!
         grid.stoneNodeFactory = StoneNodeFactory()
         grid.position = CGPoint(x: 0, y: 0)
         grid.zPosition = woodBoard.zPosition + 1
