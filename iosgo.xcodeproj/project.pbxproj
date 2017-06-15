@@ -241,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				3414A6FC1EF223BF00E28D6D /* StoneWorker.swift */,
+				3414A6F91EF21B5800E28D6D /* StoneNodeFactory.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -285,7 +286,6 @@
 			children = (
 				34A2B5A41EEBD46C0074525B /* GridNode.swift */,
 				34177CC21EEE4CF100DDDD2F /* StoneNode.swift */,
-				3414A6F91EF21B5800E28D6D /* StoneNodeFactory.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
