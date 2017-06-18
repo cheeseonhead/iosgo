@@ -302,8 +302,8 @@
 				346FA1B31EF746A8001378A6 /* PlayPresenter.swift */,
 				346FA1B41EF746A8001378A6 /* PlayRouter.swift */,
 				346FA1B51EF746A8001378A6 /* PlayViewController.swift */,
-				34A2B55C1EEA4AB70074525B /* BoardScene */,
 				346945321EF749DD004E3164 /* PlayWorker.swift */,
+				34A2B55C1EEA4AB70074525B /* BoardScene */,
 			);
 			path = Play;
 			sourceTree = "<group>";
