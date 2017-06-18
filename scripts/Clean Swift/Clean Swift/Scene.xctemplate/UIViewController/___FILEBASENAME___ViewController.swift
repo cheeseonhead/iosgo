@@ -11,24 +11,20 @@
 
 import UIKit
 
-protocol ___FILEBASENAMEASIDENTIFIER___ViewControllerInput
-{
-}
+protocol ___VARIABLE_sceneName___ViewControllerInput {}
 
-protocol ___FILEBASENAMEASIDENTIFIER___ViewControllerOutput
-{
-}
+protocol ___VARIABLE_sceneName___ViewControllerOutput {}
 
-class ___FILEBASENAMEASIDENTIFIER___ViewController: ___VARIABLE_viewControllerSubclass___, ___FILEBASENAMEASIDENTIFIER___ViewControllerInput
+class ___VARIABLE_sceneName___ViewController: ___VARIABLE_viewControllerSubclass___, ___VARIABLE_sceneName___ViewControllerInput
 {
-    var output: ___FILEBASENAMEASIDENTIFIER___ViewControllerOutput!
-    var router: ___FILEBASENAMEASIDENTIFIER___Router!
+    var output: ___VARIABLE_sceneName___ViewControllerOutput!
+    var router: ___VARIABLE_sceneName___Router!
 
     // MARK: - Object lifecycle
 
     override func awakeFromNib()
     {
         super.awakeFromNib()
-        ___FILEBASENAMEASIDENTIFIER___Configurator.configure(viewController: self)
+        ___VARIABLE_sceneName___Configurator.configure(viewController: self)
     }
 }

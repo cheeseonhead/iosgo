@@ -11,19 +11,19 @@
 
 import UIKit
 
-protocol ___FILEBASENAMEASIDENTIFIER___RouterInput {}
+protocol ___VARIABLE_sceneName___RouterInput {}
 
-protocol ___FILEBASENAMEASIDENTIFIER___RouterDataProvider: class {}
+protocol ___VARIABLE_sceneName___RouterDataProvider: class {}
 
-protocol ___FILEBASENAMEASIDENTIFIER___RouterDataReceiver: class {}
+protocol ___VARIABLE_sceneName___RouterDataReceiver: class {}
 
-class ___FILEBASENAMEASIDENTIFIER___Router: ___FILEBASENAMEASIDENTIFIER___RouterInput
+class ___VARIABLE_sceneName___Router: ___VARIABLE_sceneName___RouterInput
 {
     weak var viewController: UIViewController!
-    private weak var dataProvider: ___FILEBASENAMEASIDENTIFIER___RouterDataProvider!
-    weak var dataReceiver: ___FILEBASENAMEASIDENTIFIER___RouterDataReceiver!
+    private weak var dataProvider: ___VARIABLE_sceneName___RouterDataProvider!
+    weak var dataReceiver: ___VARIABLE_sceneName___RouterDataReceiver!
 
-    init(viewController: UIViewController, dataProvider: ___FILEBASENAMEASIDENTIFIER___RouterDataProvider, dataReceiver: ___FILEBASENAMEASIDENTIFIER___RouterDataReceiver)
+    init(viewController: UIViewController, dataProvider: ___VARIABLE_sceneName___RouterDataProvider, dataReceiver: ___VARIABLE_sceneName___RouterDataReceiver)
     {
         self.viewController = viewController
         self.dataProvider = dataProvider
