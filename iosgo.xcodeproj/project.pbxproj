@@ -11,6 +11,12 @@
 		3414A6FD1EF223BF00E28D6D /* StoneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3414A6FC1EF223BF00E28D6D /* StoneWorker.swift */; };
 		3414A7001EF22B6A00E28D6D /* CGFloat+Standardization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3414A6FF1EF22B6A00E28D6D /* CGFloat+Standardization.swift */; };
 		34177CC31EEE4CF100DDDD2F /* StoneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34177CC21EEE4CF100DDDD2F /* StoneNode.swift */; };
+		342C18DF1EF7434000E2758D /* PlayConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C18D91EF7434000E2758D /* PlayConfigurator.swift */; };
+		342C18E01EF7434000E2758D /* PlayInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C18DA1EF7434000E2758D /* PlayInteractor.swift */; };
+		342C18E11EF7434000E2758D /* PlayModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C18DB1EF7434000E2758D /* PlayModels.swift */; };
+		342C18E21EF7434000E2758D /* PlayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C18DC1EF7434000E2758D /* PlayPresenter.swift */; };
+		342C18E31EF7434000E2758D /* PlayRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C18DD1EF7434000E2758D /* PlayRouter.swift */; };
+		342C18E41EF7434000E2758D /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342C18DE1EF7434000E2758D /* PlayViewController.swift */; };
 		3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441471EE4BA06008718D7 /* SplashConfigurator.swift */; };
 		3464414E1EE4BA06008718D7 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441481EE4BA06008718D7 /* SplashInteractor.swift */; };
 		3464414F1EE4BA06008718D7 /* SplashModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441491EE4BA06008718D7 /* SplashModels.swift */; };
@@ -22,7 +28,6 @@
 		34A2B55E1EEA4AD90074525B /* BoardScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 34A2B55D1EEA4AD90074525B /* BoardScene.sks */; };
 		34A2B5A51EEBD46C0074525B /* GridNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2B5A41EEBD46C0074525B /* GridNode.swift */; };
 		34A2B5A91EEBDD500074525B /* Play.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34A2B5A81EEBDD500074525B /* Play.storyboard */; };
-		34A2B5AB1EEBDD730074525B /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2B5AA1EEBDD730074525B /* PlayViewController.swift */; };
 		34ACC8AB1EEBDF7900F2B376 /* BoardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC8AA1EEBDF7900F2B376 /* BoardScene.swift */; };
 		490D5ED58103542F7917F833 /* Pods_iosgo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF12002656677CCFB6D8EAF8 /* Pods_iosgo.framework */; };
 		5612FD0E1E63C60B000B1973 /* OGSChooseGameConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5612FD081E63C60B000B1973 /* OGSChooseGameConfigurator.swift */; };
@@ -116,6 +121,12 @@
 		3414A6FC1EF223BF00E28D6D /* StoneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneWorker.swift; sourceTree = "<group>"; };
 		3414A6FF1EF22B6A00E28D6D /* CGFloat+Standardization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Standardization.swift"; sourceTree = "<group>"; };
 		34177CC21EEE4CF100DDDD2F /* StoneNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneNode.swift; sourceTree = "<group>"; };
+		342C18D91EF7434000E2758D /* PlayConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayConfigurator.swift; sourceTree = "<group>"; };
+		342C18DA1EF7434000E2758D /* PlayInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayInteractor.swift; sourceTree = "<group>"; };
+		342C18DB1EF7434000E2758D /* PlayModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayModels.swift; sourceTree = "<group>"; };
+		342C18DC1EF7434000E2758D /* PlayPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayPresenter.swift; sourceTree = "<group>"; };
+		342C18DD1EF7434000E2758D /* PlayRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRouter.swift; sourceTree = "<group>"; };
+		342C18DE1EF7434000E2758D /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		346441471EE4BA06008718D7 /* SplashConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashConfigurator.swift; sourceTree = "<group>"; };
 		346441481EE4BA06008718D7 /* SplashInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		346441491EE4BA06008718D7 /* SplashModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashModels.swift; sourceTree = "<group>"; };
@@ -127,7 +138,6 @@
 		34A2B55D1EEA4AD90074525B /* BoardScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BoardScene.sks; sourceTree = "<group>"; };
 		34A2B5A41EEBD46C0074525B /* GridNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridNode.swift; sourceTree = "<group>"; };
 		34A2B5A81EEBDD500074525B /* Play.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Play.storyboard; sourceTree = "<group>"; };
-		34A2B5AA1EEBDD730074525B /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayViewController.swift; path = iosgo/Scenes/Play/BoardScene/PlayViewController.swift; sourceTree = SOURCE_ROOT; };
 		34ACC8AA1EEBDF7900F2B376 /* BoardScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardScene.swift; sourceTree = "<group>"; };
 		3A3A74F5D326BE5E0E2D52ED /* Pods-iosgoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosgoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iosgoTests/Pods-iosgoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5612FD081E63C60B000B1973 /* OGSChooseGameConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameConfigurator.swift; sourceTree = "<group>"; };
@@ -284,6 +294,13 @@
 			isa = PBXGroup;
 			children = (
 				34A2B55C1EEA4AB70074525B /* BoardScene */,
+				342C18D91EF7434000E2758D /* PlayConfigurator.swift */,
+				342C18DA1EF7434000E2758D /* PlayInteractor.swift */,
+				342C18DB1EF7434000E2758D /* PlayModels.swift */,
+				342C18DC1EF7434000E2758D /* PlayPresenter.swift */,
+				342C18DD1EF7434000E2758D /* PlayRouter.swift */,
+				342C18DE1EF7434000E2758D /* PlayViewController.swift */,
+				34A2B5A81EEBDD500074525B /* Play.storyboard */,
 			);
 			path = Play;
 			sourceTree = "<group>";
@@ -295,8 +312,6 @@
 				34A2B5A31EEBD4580074525B /* Nodes */,
 				34ACC8AA1EEBDF7900F2B376 /* BoardScene.swift */,
 				34A2B55D1EEA4AD90074525B /* BoardScene.sks */,
-				34A2B5A81EEBDD500074525B /* Play.storyboard */,
-				34A2B5AA1EEBDD730074525B /* PlayViewController.swift */,
 			);
 			path = BoardScene;
 			sourceTree = "<group>";
@@ -848,12 +863,14 @@
 				5612FD131E63C60B000B1973 /* OGSChooseGameViewController.swift in Sources */,
 				56FC0C091E9C85F100119D0C /* OGSChooseGameCollectionViewCell.swift in Sources */,
 				5612FD0E1E63C60B000B1973 /* OGSChooseGameConfigurator.swift in Sources */,
+				342C18E41EF7434000E2758D /* PlayViewController.swift in Sources */,
 				8405CEA1C88BF254C0A34A28 /* OGSOauthApiStore.swift in Sources */,
 				5612FD111E63C60B000B1973 /* OGSChooseGamePresenter.swift in Sources */,
 				5612FD101E63C60B000B1973 /* OGSChooseGameModels.swift in Sources */,
 				8405C06692E15B7D16D86610 /* OGSNotificationCenter.swift in Sources */,
 				AD05AF37C68CBA22A3DC256C /* OGSDispatcher.swift in Sources */,
 				AD05A21671A192B337421704 /* String+Additions.swift in Sources */,
+				342C18E21EF7434000E2758D /* PlayPresenter.swift in Sources */,
 				34A2B5A51EEBD46C0074525B /* GridNode.swift in Sources */,
 				AD05A00EC3EF1F09DFBC5597 /* Dictionary+Additions.swift in Sources */,
 				5612FD121E63C60B000B1973 /* OGSChooseGameRouter.swift in Sources */,
@@ -861,9 +878,11 @@
 				8405C95C6D25905BDEEB6F5C /* OGSBetaConfiguration.swift in Sources */,
 				8405CD093E23DC1A0921DAA5 /* OGSConfigurationProtocol.swift in Sources */,
 				8405C33DABB22CF98928A07E /* OGSUserSettings.swift in Sources */,
+				342C18E11EF7434000E2758D /* PlayModels.swift in Sources */,
 				8405C1BD724D953FE34DDC35 /* OGSSeekGraphSocketStore.swift in Sources */,
 				8405CAFEE0C897EE31ED6865 /* OGSChallenge.swift in Sources */,
 				AD05AE74C92DA8328A33761F /* OGSDiskManager.swift in Sources */,
+				342C18E31EF7434000E2758D /* PlayRouter.swift in Sources */,
 				34ACC8AB1EEBDF7900F2B376 /* BoardScene.swift in Sources */,
 				AD05A8548F5F603C37C45C57 /* OGSAppConfigurator.swift in Sources */,
 				346441501EE4BA06008718D7 /* SplashPresenter.swift in Sources */,
@@ -871,6 +890,7 @@
 				AD05AF2B9222BE964C87EC8D /* OGSAppDelegate.swift in Sources */,
 				AD05A80C3174620434A3BF39 /* OGSLoginInfo.swift in Sources */,
 				AD05A7E728E07F256A22C0DF /* OGSChooseGameCollectionViewController.swift in Sources */,
+				342C18E01EF7434000E2758D /* PlayInteractor.swift in Sources */,
 				AD05A2678BD4ECA68F40FE18 /* OGSProdConfiguration.swift in Sources */,
 				AD05ABE155BC1FDEA29394EF /* OGSSocketManager.swift in Sources */,
 				AD05AE7444BF09E5E49DE6ED /* OGSSocketManagerTypes.swift in Sources */,
@@ -883,13 +903,13 @@
 				34177CC31EEE4CF100DDDD2F /* StoneNode.swift in Sources */,
 				AD05ADA1EA08A794B27AD4DB /* OGSSessionWorker.swift in Sources */,
 				3414A6FA1EF21B5800E28D6D /* StoneNodeFactory.swift in Sources */,
-				34A2B5AB1EEBDD730074525B /* PlayViewController.swift in Sources */,
 				AD05A01B448899472AAD4DBE /* OGSUser.swift in Sources */,
 				AD05ADCD7A6778EA6AAF16D7 /* OGSRootViewControllerTransition.swift in Sources */,
 				34934B761EF240320096D3C4 /* CGSize+Scalable.swift in Sources */,
 				AD05AB67C74B02B834E8CFA8 /* OGSMeStore.swift in Sources */,
 				3464414F1EE4BA06008718D7 /* SplashModels.swift in Sources */,
 				AD05AE59A5BF1697CECE11D9 /* OGSMeStoreModels.swift in Sources */,
+				342C18DF1EF7434000E2758D /* PlayConfigurator.swift in Sources */,
 				AD05AE8F87A1E735676D8715 /* OGSRootViewControllerWorker.swift in Sources */,
 				3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */,
 				346441521EE4BA06008718D7 /* SplashViewController.swift in Sources */,
