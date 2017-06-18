@@ -18,6 +18,7 @@
 		346441511EE4BA06008718D7 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464414B1EE4BA06008718D7 /* SplashRouter.swift */; };
 		346441521EE4BA06008718D7 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464414C1EE4BA06008718D7 /* SplashViewController.swift */; };
 		346441541EE4BDF6008718D7 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 346441531EE4BDF6008718D7 /* Splash.storyboard */; };
+		346945331EF749DD004E3164 /* PlayWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346945321EF749DD004E3164 /* PlayWorker.swift */; };
 		346FA1B61EF746A8001378A6 /* PlayConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FA1B01EF746A8001378A6 /* PlayConfigurator.swift */; };
 		346FA1B71EF746A8001378A6 /* PlayInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FA1B11EF746A8001378A6 /* PlayInteractor.swift */; };
 		346FA1B81EF746A8001378A6 /* PlayModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346FA1B21EF746A8001378A6 /* PlayModels.swift */; };
@@ -128,6 +129,7 @@
 		3464414B1EE4BA06008718D7 /* SplashRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
 		3464414C1EE4BA06008718D7 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		346441531EE4BDF6008718D7 /* Splash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
+		346945321EF749DD004E3164 /* PlayWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayWorker.swift; sourceTree = "<group>"; };
 		346FA1B01EF746A8001378A6 /* PlayConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayConfigurator.swift; sourceTree = "<group>"; };
 		346FA1B11EF746A8001378A6 /* PlayInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayInteractor.swift; sourceTree = "<group>"; };
 		346FA1B21EF746A8001378A6 /* PlayModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayModels.swift; sourceTree = "<group>"; };
@@ -293,7 +295,6 @@
 		34A2B55B1EEA4AA30074525B /* Play */ = {
 			isa = PBXGroup;
 			children = (
-				34A2B55C1EEA4AB70074525B /* BoardScene */,
 				34A2B5A81EEBDD500074525B /* Play.storyboard */,
 				346FA1B01EF746A8001378A6 /* PlayConfigurator.swift */,
 				346FA1B11EF746A8001378A6 /* PlayInteractor.swift */,
@@ -301,6 +302,8 @@
 				346FA1B31EF746A8001378A6 /* PlayPresenter.swift */,
 				346FA1B41EF746A8001378A6 /* PlayRouter.swift */,
 				346FA1B51EF746A8001378A6 /* PlayViewController.swift */,
+				34A2B55C1EEA4AB70074525B /* BoardScene */,
+				346945321EF749DD004E3164 /* PlayWorker.swift */,
 			);
 			path = Play;
 			sourceTree = "<group>";
@@ -915,6 +918,7 @@
 				346441521EE4BA06008718D7 /* SplashViewController.swift in Sources */,
 				AD05A0EE97BB7404C7897307 /* ChallengeStore.swift in Sources */,
 				AD05A9F1111278A031FEA546 /* ChallengeWorker.swift in Sources */,
+				346945331EF749DD004E3164 /* PlayWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
