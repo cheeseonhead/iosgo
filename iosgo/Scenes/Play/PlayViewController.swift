@@ -10,6 +10,7 @@
 //
 
 import UIKit
+import SpriteKit
 
 protocol PlayViewControllerInput {}
 
@@ -19,10 +20,28 @@ class PlayViewController: UIViewController, PlayViewControllerInput {
     var output: PlayViewControllerOutput!
     var router: PlayRouter!
 
+    @IBOutlet weak var boardView: SKView!
+
     // MARK: - Object lifecycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
         PlayConfigurator.configure(viewController: self)
+    }
+
+    override func viewDidLoad() {
+        // Load the SKScene from 'GameScene.sks'
+        if let scene = SKScene(fileNamed: "BoardScene") {
+            // Set the scale mode to scale to fit the window
+            scene.scaleMode = .aspectFit
+
+            // Present the scene
+            boardView.presentScene(scene)
+        }
+
+        boardView.ignoresSiblingOrder = true
+
+        boardView.showsFPS = true
+        boardView.showsNodeCount = true
     }
 }

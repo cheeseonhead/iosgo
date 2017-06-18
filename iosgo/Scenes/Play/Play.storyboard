@@ -36,6 +36,9 @@
                             <constraint firstItem="Ekd-dw-25b" firstAttribute="top" secondItem="lpR-bj-bI4" secondAttribute="bottom" id="zMc-nG-h64"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="boardView" destination="lpR-bj-bI4" id="M8t-0M-9mj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d5X-wn-CbA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
