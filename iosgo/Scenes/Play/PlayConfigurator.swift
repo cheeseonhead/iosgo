@@ -11,23 +11,23 @@
 
 import UIKit
 
-class PlayConfiguratorConfigurator {
-    static func configure(viewController: PlayConfiguratorViewController) {
-        let presenter = PlayConfiguratorPresenter()
+class PlayConfigurator {
+    static func configure(viewController: PlayViewController) {
+        let presenter = PlayPresenter()
         presenter.output = viewController
 
-        let interactor = PlayConfiguratorInteractor()
+        let interactor = PlayInteractor()
         interactor.output = presenter
 
-        let router = PlayConfiguratorRouter(viewController: viewController, dataProvider: interactor, dataReceiver: interactor)
+        let router = PlayRouter(viewController: viewController, dataProvider: interactor, dataReceiver: interactor)
 
         viewController.output = interactor
         viewController.router = router
     }
 }
 
-extension PlayConfiguratorViewController: PlayConfiguratorPresenterOutput {}
+extension PlayViewController: PlayPresenterOutput {}
 
-extension PlayConfiguratorInteractor: PlayConfiguratorViewControllerOutput, PlayConfiguratorRouterDataProvider, PlayConfiguratorRouterDataReceiver {}
+extension PlayInteractor: PlayViewControllerOutput, PlayRouterDataProvider, PlayRouterDataReceiver {}
 
-extension PlayConfiguratorPresenter: PlayConfiguratorInteractorOutput {}
+extension PlayPresenter: PlayInteractorOutput {}

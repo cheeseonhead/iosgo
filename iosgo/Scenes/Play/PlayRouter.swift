@@ -11,18 +11,18 @@
 
 import UIKit
 
-protocol PlayRouterRouterInput {}
+protocol PlayRouterInput {}
 
-protocol PlayRouterRouterDataProvider: class {}
+protocol PlayRouterDataProvider: class {}
 
-protocol PlayRouterRouterDataReceiver: class {}
+protocol PlayRouterDataReceiver: class {}
 
-class PlayRouterRouter: PlayRouterRouterInput {
+class PlayRouter: PlayRouterInput {
     weak var viewController: UIViewController!
-    private weak var dataProvider: PlayRouterRouterDataProvider!
-    weak var dataReceiver: PlayRouterRouterDataReceiver!
+    private weak var dataProvider: PlayRouterDataProvider!
+    weak var dataReceiver: PlayRouterDataReceiver!
 
-    init(viewController: UIViewController, dataProvider: PlayRouterRouterDataProvider, dataReceiver: PlayRouterRouterDataReceiver) {
+    init(viewController: UIViewController, dataProvider: PlayRouterDataProvider, dataReceiver: PlayRouterDataReceiver) {
         self.viewController = viewController
         self.dataProvider = dataProvider
         self.dataReceiver = dataReceiver

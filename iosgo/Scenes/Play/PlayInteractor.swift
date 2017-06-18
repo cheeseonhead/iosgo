@@ -11,12 +11,12 @@
 
 import UIKit
 
-protocol PlayInteractorInteractorInput {
+protocol PlayInteractorInput {
 }
 
-protocol PlayInteractorInteractorOutput {
+protocol PlayInteractorOutput {
 }
 
-class PlayInteractorInteractor: PlayInteractorInteractorInput {
-    var output: PlayInteractorInteractorOutput!
+class PlayInteractor: PlayInteractorInput {
+    var output: PlayInteractorOutput!
 }

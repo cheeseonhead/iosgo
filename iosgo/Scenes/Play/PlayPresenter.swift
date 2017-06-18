@@ -11,12 +11,12 @@
 
 import UIKit
 
-protocol PlayPresenterPresenterInput {
+protocol PlayPresenterInput {
 }
 
-protocol PlayPresenterPresenterOutput: class {
+protocol PlayPresenterOutput: class {
 }
 
-class PlayPresenterPresenter: PlayPresenterPresenterInput {
-    weak var output: PlayPresenterPresenterOutput!
+class PlayPresenter: PlayPresenterInput {
+    weak var output: PlayPresenterOutput!
 }
