@@ -11,6 +11,7 @@
 		3414A6FD1EF223BF00E28D6D /* StoneWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3414A6FC1EF223BF00E28D6D /* StoneWorker.swift */; };
 		3414A7001EF22B6A00E28D6D /* CGFloat+Standardization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3414A6FF1EF22B6A00E28D6D /* CGFloat+Standardization.swift */; };
 		34177CC31EEE4CF100DDDD2F /* StoneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34177CC21EEE4CF100DDDD2F /* StoneNode.swift */; };
+		342EC8181EF8B70700C3A7E7 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EC8171EF8B70700C3A7E7 /* Game.swift */; };
 		3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441471EE4BA06008718D7 /* SplashConfigurator.swift */; };
 		3464414E1EE4BA06008718D7 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441481EE4BA06008718D7 /* SplashInteractor.swift */; };
 		3464414F1EE4BA06008718D7 /* SplashModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441491EE4BA06008718D7 /* SplashModels.swift */; };
@@ -122,6 +123,7 @@
 		3414A6FC1EF223BF00E28D6D /* StoneWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneWorker.swift; sourceTree = "<group>"; };
 		3414A6FF1EF22B6A00E28D6D /* CGFloat+Standardization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Standardization.swift"; sourceTree = "<group>"; };
 		34177CC21EEE4CF100DDDD2F /* StoneNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneNode.swift; sourceTree = "<group>"; };
+		342EC8171EF8B70700C3A7E7 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		346441471EE4BA06008718D7 /* SplashConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashConfigurator.swift; sourceTree = "<group>"; };
 		346441481EE4BA06008718D7 /* SplashInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		346441491EE4BA06008718D7 /* SplashModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashModels.swift; sourceTree = "<group>"; };
@@ -268,6 +270,14 @@
 				3414A6FF1EF22B6A00E28D6D /* CGFloat+Standardization.swift */,
 			);
 			path = CGFloat;
+			sourceTree = "<group>";
+		};
+		342EC8161EF8B6D900C3A7E7 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				342EC8171EF8B70700C3A7E7 /* Game.swift */,
+			);
+			path = Game;
 			sourceTree = "<group>";
 		};
 		345881771EE4A99700FE773B /* Splash */ = {
@@ -452,6 +462,7 @@
 		8405CB755432B62AFE49B7F6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				342EC8161EF8B6D900C3A7E7 /* Game */,
 				8405C66D470818B9A9828DEE /* Challenges */,
 				8405CDAFCC8C4C8565D8A86D /* Configuration */,
 				AD05A6342D59CC3E80B17996 /* OGSLoginInfo.swift */,
@@ -901,6 +912,7 @@
 				3414A7001EF22B6A00E28D6D /* CGFloat+Standardization.swift in Sources */,
 				8405CDC2CCCFD39520FBEC6C /* OGSSession.swift in Sources */,
 				8405C19D66ABA58804962F72 /* OGSSessionController.swift in Sources */,
+				342EC8181EF8B70700C3A7E7 /* Game.swift in Sources */,
 				346FA1B91EF746A8001378A6 /* PlayPresenter.swift in Sources */,
 				8405CABBF4E7064889C38772 /* OGSApiStore.swift in Sources */,
 				34177CC31EEE4CF100DDDD2F /* StoneNode.swift in Sources */,
