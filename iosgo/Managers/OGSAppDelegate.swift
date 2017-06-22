@@ -9,13 +9,11 @@
 import UIKit
 
 @UIApplicationMain
-class OGSAppDelegate: UIResponder, UIApplicationDelegate
-{
+class OGSAppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var configurator: OGSAppConfigurator?
 
-    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
-    {
+    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         return true
     }
 }

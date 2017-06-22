@@ -6,23 +6,18 @@
 import Foundation
 import Unbox
 
-fileprivate typealias TimeControlParametersType = OGSChallenge.TimeControlParametersType
-
-struct OGSSeekGraphSocketStoreModel
-{
+struct OGSSeekGraphSocketStoreModel {
     typealias Challenge = OGSChallenge
 
-    struct GameStart: Unboxable
-    {
+    struct GameStart: Unboxable {
         var blackPlayer: Player
         var whitePlayer: Player
         var gameId: Int
         var gameStarted: Bool
-        var timeControl: OGSChallenge.TimeControlTypes
-        var timeControlParameters: OGSChallenge.TimeControlParametersType
+        var timeControl: TimeControlTypes
+        var timeControlParameters: TimeControlParametersType
 
-        init(unboxer: Unboxer) throws
-        {
+        init(unboxer: Unboxer) throws {
             blackPlayer = try unboxer.unbox(key: "black")
             whitePlayer = try unboxer.unbox(key: "white")
             gameId = try unboxer.unbox(key: "game_id")
@@ -51,15 +46,13 @@ struct OGSSeekGraphSocketStoreModel
             }
         }
 
-        struct Player: Unboxable
-        {
+        struct Player: Unboxable {
             var country: String
             var id: Int
             var ranking: Int
             var username: String
 
-            init(unboxer: Unboxer) throws
-            {
+            init(unboxer: Unboxer) throws {
                 username = try unboxer.unbox(key: "username")
                 id = try unboxer.unbox(key: "id")
                 ranking = try unboxer.unbox(key: "ranking")
@@ -68,23 +61,19 @@ struct OGSSeekGraphSocketStoreModel
         }
     }
 
-    struct ChallengeDelete: Unboxable
-    {
+    struct ChallengeDelete: Unboxable {
         var challengeId: Int
         var delete: Bool
 
-        init(unboxer: Unboxer) throws
-        {
+        init(unboxer: Unboxer) throws {
             challengeId = try unboxer.unbox(key: "challenge_id")
             delete = try unboxer.unbox(key: "delete")
         }
     }
 }
 
-extension OGSChallenge: Unboxable
-{
-    init(unboxer: Unboxer) throws
-    {
+extension OGSChallenge: Unboxable {
+    init(unboxer: Unboxer) throws {
         username = try unboxer.unbox(key: "username")
         name = try unboxer.unbox(key: "name")
         timePerMove = try unboxer.unbox(key: "time_per_move")
@@ -128,10 +117,8 @@ extension OGSChallenge: Unboxable
     }
 }
 
-extension TimeControlParametersType.Fischer: Unboxable
-{
-    init(unboxer: Unboxer) throws
-    {
+extension TimeControlParametersType.Fischer: Unboxable {
+    init(unboxer: Unboxer) throws {
         pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
         speed = try unboxer.unbox(key: "speed")
         system = try unboxer.unbox(key: "system")
@@ -143,10 +130,8 @@ extension TimeControlParametersType.Fischer: Unboxable
     }
 }
 
-extension TimeControlParametersType.Simple: Unboxable
-{
-    init(unboxer: Unboxer) throws
-    {
+extension TimeControlParametersType.Simple: Unboxable {
+    init(unboxer: Unboxer) throws {
         pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
         speed = try unboxer.unbox(key: "speed")
         system = try unboxer.unbox(key: "system")
@@ -156,10 +141,8 @@ extension TimeControlParametersType.Simple: Unboxable
     }
 }
 
-extension TimeControlParametersType.Byoyomi: Unboxable
-{
-    init(unboxer: Unboxer) throws
-    {
+extension TimeControlParametersType.Byoyomi: Unboxable {
+    init(unboxer: Unboxer) throws {
         pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
         speed = try unboxer.unbox(key: "speed")
         system = try unboxer.unbox(key: "system")
@@ -171,10 +154,8 @@ extension TimeControlParametersType.Byoyomi: Unboxable
     }
 }
 
-extension TimeControlParametersType.Canadian: Unboxable
-{
-    init(unboxer: Unboxer) throws
-    {
+extension TimeControlParametersType.Canadian: Unboxable {
+    init(unboxer: Unboxer) throws {
         pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
         speed = try unboxer.unbox(key: "speed")
         system = try unboxer.unbox(key: "system")
@@ -186,10 +167,8 @@ extension TimeControlParametersType.Canadian: Unboxable
     }
 }
 
-extension TimeControlParametersType.Absolute: Unboxable
-{
-    init(unboxer: Unboxer) throws
-    {
+extension TimeControlParametersType.Absolute: Unboxable {
+    init(unboxer: Unboxer) throws {
         pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
         speed = try unboxer.unbox(key: "speed")
         system = try unboxer.unbox(key: "system")
@@ -199,10 +178,8 @@ extension TimeControlParametersType.Absolute: Unboxable
     }
 }
 
-extension TimeControlParametersType.None: Unboxable
-{
-    init(unboxer: Unboxer) throws
-    {
+extension TimeControlParametersType.None: Unboxable {
+    init(unboxer: Unboxer) throws {
         pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
         speed = try unboxer.unbox(key: "speed")
         system = try unboxer.unbox(key: "system")

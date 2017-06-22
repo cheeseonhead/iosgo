@@ -5,8 +5,7 @@
 
 import Unbox
 
-struct OGSChallenge
-{
+struct OGSChallenge {
     var username: String
     var challengerRank: Int
     var timePerMove: Int
@@ -28,120 +27,16 @@ struct OGSChallenge
     var challengerColor: ChallengerColorType
     var timeControlParameters: TimeControlParametersType
 
-    enum ChallengerColorType: String, UnboxableEnum
-    {
+    enum ChallengerColorType: String, UnboxableEnum {
         case automatic
         case random
         case black
         case white
     }
-
-    enum TimeControlParametersType
-    {
-        case fischer(parameters: Fischer)
-        case simple(parameters: Simple)
-        case byoyomi(parameters: Byoyomi)
-        case canadian(parameters: Canadian)
-        case absolute(parameters: Absolute)
-        case none(parameters: None)
-
-        struct Fischer
-        {
-            var pauseOnWeekends: Bool
-            var speed: SpeedTypes
-            var system: TimeControlTypes
-            var timeControl: TimeControlTypes
-
-            var initialTime: Int
-            var maxTime: Int
-            var timeIncrement: Int
-        }
-
-        struct Simple
-        {
-            var pauseOnWeekends: Bool
-            var speed: SpeedTypes
-            var system: TimeControlTypes
-            var timeControl: TimeControlTypes
-
-            var timePerMove: Int
-        }
-
-        struct Byoyomi
-        {
-            var pauseOnWeekends: Bool
-            var speed: SpeedTypes
-            var system: TimeControlTypes
-            var timeControl: TimeControlTypes
-
-            var mainTime: Int
-            var periodTime: Int
-            var periodCount: Int
-        }
-
-        struct Canadian
-        {
-            var pauseOnWeekends: Bool
-            var speed: SpeedTypes
-            var system: TimeControlTypes
-            var timeControl: TimeControlTypes
-
-            var mainTime: Int
-            var periodTime: Int
-            var stonesPerPeriod: Int
-        }
-
-        struct Absolute
-        {
-            var pauseOnWeekends: Bool
-            var speed: SpeedTypes
-            var system: TimeControlTypes
-            var timeControl: TimeControlTypes
-
-            var totalTime: Int
-        }
-
-        struct None
-        {
-            var pauseOnWeekends: Bool
-            var speed: SpeedTypes
-            var system: TimeControlTypes
-            var timeControl: TimeControlTypes
-        }
-    }
-
-    enum TimeControlTypes: String, UnboxableEnum
-    {
-        case fischer
-        case simple
-        case byoyomi
-        case canadian
-        case absolute
-        case none
-    }
-
-    enum RuleTypes: String, UnboxableEnum
-    {
-        case japanese
-        case chinese
-        case aga
-        case ing
-        case korean
-        case newZealand = "nz"
-    }
-
-    enum SpeedTypes: String, UnboxableEnum
-    {
-        case correspondence
-        case live
-        case blitz
-    }
 }
 
-extension OGSChallenge
-{
-    var size: CGSize
-    {
+extension OGSChallenge {
+    var size: CGSize {
         return CGSize(width: width, height: height)
     }
 }
