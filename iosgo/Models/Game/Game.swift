@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Unbox
 
 struct Player {}
 
@@ -36,7 +37,7 @@ struct Game {
 
     var started: Date
     var ended: Date?
-    var gameData: GameData
+    //    var gameData: GameData
 
     // MARK: - Gameplay
     var disableAnalysis: Bool
@@ -44,45 +45,45 @@ struct Game {
     // MARK: - Time
     var timeControl: TimeControlTypes // time_control
     var timeControlParameters: TimeControlParametersType
-    var timePerMove: Int
-    var pauseOnWeekends: Bool
-
-    // MARK: - Player
-    var blackPlayerRank: Int
-    var blackPlayerRating: Double
-    var whitePlayerRank: Int
-    var whitePlayerRating: Double
-    var players: [PlayerType: Player] // Needs its own model
-
-    enum PlayerType: String, Codable {
-        case black, white
-    }
-
-    // MARK: - Tournament
-    var tournament: Tournament?
-    var tournamentRound: Int
-
-    // MARK: - Ladder
-    var ladder: Ladder?
-
-    // MARK: - Result
-    var annulled: Bool
-    var outcome: String
-    var blackLost: Bool
-    var whiteLost: Bool
-
-    // MARK: - Server
-    var authToken: String // auth
-    var gameChatToken: String
-    var mode: Mode
-    var source: Source
-    var releated: [String: String]
-
-    enum Mode: String, Codable {
-        case game
-    }
-
-    enum Source: String, Codable {
-        case play
-    }
+    //    var timePerMove: Int
+    //    var pauseOnWeekends: Bool
+    //
+    //    // MARK: - Player
+    //    var blackPlayerRank: Int
+    //    var blackPlayerRating: Double
+    //    var whitePlayerRank: Int
+    //    var whitePlayerRating: Double
+    //    var players: [PlayerType: Player] // Needs its own model
+    //
+    //    enum PlayerType: String, Codable {
+    //        case black, white
+    //    }
+    //
+    //    // MARK: - Tournament
+    //    var tournament: Tournament?
+    //    var tournamentRound: Int
+    //
+    //    // MARK: - Ladder
+    //    var ladder: Ladder?
+    //
+    //    // MARK: - Result
+    //    var annulled: Bool
+    //    var outcome: String
+    //    var blackLost: Bool
+    //    var whiteLost: Bool
+    //
+    //    // MARK: - Server
+    //    var authToken: String // auth
+    //    var gameChatToken: String
+    //    var mode: Mode
+    //    var source: Source
+    //    var releated: [String: String]
+    //
+    //    enum Mode: String, UnboxableEnum {
+    //        case game
+    //    }
+    //
+    //    enum Source: String, UnboxableEnum {
+    //        case play
+    //    }
 }

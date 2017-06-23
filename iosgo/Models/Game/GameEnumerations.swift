@@ -10,13 +10,6 @@ import Foundation
 import Unbox
 
 enum TimeControlParametersType {
-    //    init(from decoder: Decoder) throws {
-    //
-    //    }
-    //
-    //    func encode(to encoder: Encoder) throws {
-    //        <#code#>
-    //    }
 
     case fischer(parameters: Fischer)
     case simple(parameters: Simple)
@@ -81,6 +74,33 @@ enum TimeControlParametersType {
         var speed: SpeedTypes
         var system: TimeControlTypes
         var timeControl: TimeControlTypes
+    }
+
+    static func from(timeControl: TimeControlTypes, unboxable: UnboxableDictionary) throws -> TimeControlParametersType {
+
+        let wrapperDict: UnboxableDictionary = ["time_control_parameters": unboxable]
+        let unboxer = Unboxer(dictionary: wrapperDict)
+
+        switch timeControl {
+        case .fischer:
+            let parameters: TimeControlParametersType.Fischer = try unboxer.unbox(key: "time_control_parameters")
+            return .fischer(parameters: parameters)
+        case .simple:
+            let parameters: TimeControlParametersType.Simple = try unboxer.unbox(key: "time_control_parameters")
+            return .simple(parameters: parameters)
+        case .byoyomi:
+            let parameters: TimeControlParametersType.Byoyomi = try unboxer.unbox(key: "time_control_parameters")
+            return .byoyomi(parameters: parameters)
+        case .canadian:
+            let parameters: TimeControlParametersType.Canadian = try unboxer.unbox(key: "time_control_parameters")
+            return .canadian(parameters: parameters)
+        case .absolute:
+            let parameters: TimeControlParametersType.Absolute = try unboxer.unbox(key: "time_control_parameters")
+            return .absolute(parameters: parameters)
+        case .none:
+            let parameters: TimeControlParametersType.None = try unboxer.unbox(key: "time_control_parameters")
+            return .none(parameters: parameters)
+        }
     }
 }
 

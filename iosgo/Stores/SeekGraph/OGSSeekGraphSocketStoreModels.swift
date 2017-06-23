@@ -94,26 +94,7 @@ extension OGSChallenge: Unboxable {
         gameId = try unboxer.unbox(key: "game_id")
         challengerColor = try unboxer.unbox(key: "challenger_color")
 
-        switch timeControl {
-        case .fischer:
-            let parameters: TimeControlParametersType.Fischer = try unboxer.unbox(key: "time_control_parameters")
-            timeControlParameters = .fischer(parameters: parameters)
-        case .simple:
-            let parameters: TimeControlParametersType.Simple = try unboxer.unbox(key: "time_control_parameters")
-            timeControlParameters = .simple(parameters: parameters)
-        case .byoyomi:
-            let parameters: TimeControlParametersType.Byoyomi = try unboxer.unbox(key: "time_control_parameters")
-            timeControlParameters = .byoyomi(parameters: parameters)
-        case .canadian:
-            let parameters: TimeControlParametersType.Canadian = try unboxer.unbox(key: "time_control_parameters")
-            timeControlParameters = .canadian(parameters: parameters)
-        case .absolute:
-            let parameters: TimeControlParametersType.Absolute = try unboxer.unbox(key: "time_control_parameters")
-            timeControlParameters = .absolute(parameters: parameters)
-        case .none:
-            let parameters: TimeControlParametersType.None = try unboxer.unbox(key: "time_control_parameters")
-            timeControlParameters = .none(parameters: parameters)
-        }
+        timeControlParameters = try TimeControlParametersType.from(timeControl: timeControl, unboxable: unboxer.dictionary["time_control_parameters"] as! UnboxableDictionary)
     }
 }
 
