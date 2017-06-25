@@ -508,12 +508,12 @@
 		8405CB755432B62AFE49B7F6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				342EC8161EF8B6D900C3A7E7 /* Game */,
-				8405C66D470818B9A9828DEE /* Challenges */,
-				8405CDAFCC8C4C8565D8A86D /* Configuration */,
 				AD05A6342D59CC3E80B17996 /* OGSLoginInfo.swift */,
 				8405C78D22DC4B4FB78797CA /* OGSSession.swift */,
 				AD05A619B90715ADEDAFC230 /* OGSUser.swift */,
+				8405C66D470818B9A9828DEE /* Challenges */,
+				8405CDAFCC8C4C8565D8A86D /* Configuration */,
+				342EC8161EF8B6D900C3A7E7 /* Game */,
 				8405C26D800A88F561D724BE /* UserSettings */,
 			);
 			path = Models;
