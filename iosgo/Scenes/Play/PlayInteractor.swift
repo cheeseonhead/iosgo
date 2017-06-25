@@ -12,10 +12,15 @@
 
 import UIKit
 
-protocol PlayBusinessLogic {}
+protocol PlayBusinessLogic {
+    func loadScene(request: Play.LoadScene.Request)
+}
 
 class PlayInteractor: PlayBusinessLogic, PlayDataStore {
 
     var presenter: PlayPresentationLogic?
     var worker: PlayWorker?
+
+    func loadScene(request _: Play.LoadScene.Request) {
+    }
 }

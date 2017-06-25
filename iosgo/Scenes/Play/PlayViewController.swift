@@ -13,9 +13,11 @@
 import UIKit
 import SpriteKit
 
-protocol PlayDisplayLogic: class {}
+protocol PlayDisplayLogic: class {
+    func displayLoadScene(viewModel: Play.LoadScene.ViewModel)
+}
 
-class PlayViewController: UIViewController, PlayDisplayLogic {
+class PlayViewController: UIViewController {
 
     var interactor: PlayBusinessLogic?
     var router: (NSObjectProtocol & PlayRoutingLogic & PlayDataPassing)?
@@ -48,6 +50,12 @@ class PlayViewController: UIViewController, PlayDisplayLogic {
 
         boardView.showsFPS = true
         boardView.showsNodeCount = true
+    }
+}
+
+// MARK: - Display
+extension PlayViewController: PlayDisplayLogic {
+    func displayLoadScene(viewModel _: Play.LoadScene.ViewModel) {
     }
 }
 

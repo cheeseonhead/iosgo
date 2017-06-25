@@ -13,4 +13,14 @@
 import UIKit
 
 enum Play {
+    enum LoadScene {
+        struct Request {
+        }
+
+        struct Response {
+        }
+
+        struct ViewModel {
+        }
+    }
 }

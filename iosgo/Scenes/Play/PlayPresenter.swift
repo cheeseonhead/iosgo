@@ -12,9 +12,14 @@
 
 import UIKit
 
-protocol PlayPresentationLogic {}
+protocol PlayPresentationLogic {
+    func presentLoadScene(response: Play.LoadScene.Response)
+}
 
 class PlayPresenter: PlayPresentationLogic {
 
     weak var viewController: PlayDisplayLogic?
+
+    func presentLoadScene(response _: Play.LoadScene.Response) {
+    }
 }
