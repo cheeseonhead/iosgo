@@ -15,6 +15,7 @@
 		341856A71EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341856A61EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift */; };
 		342EC8181EF8B70700C3A7E7 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EC8171EF8B70700C3A7E7 /* Game.swift */; };
 		342EC81A1EF8BC9B00C3A7E7 /* GameEnumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EC8191EF8BC9B00C3A7E7 /* GameEnumerations.swift */; };
+		34455DC71EFF75AE002199D0 /* UnboxFormatter+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34455DC61EFF75AE002199D0 /* UnboxFormatter+Dictionary.swift */; };
 		3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441471EE4BA06008718D7 /* SplashConfigurator.swift */; };
 		3464414E1EE4BA06008718D7 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441481EE4BA06008718D7 /* SplashInteractor.swift */; };
 		3464414F1EE4BA06008718D7 /* SplashModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441491EE4BA06008718D7 /* SplashModels.swift */; };
@@ -134,6 +135,7 @@
 		341856A61EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OGSChallenge+Unboxable.swift"; sourceTree = "<group>"; };
 		342EC8171EF8B70700C3A7E7 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		342EC8191EF8BC9B00C3A7E7 /* GameEnumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnumerations.swift; sourceTree = "<group>"; };
+		34455DC61EFF75AE002199D0 /* UnboxFormatter+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnboxFormatter+Dictionary.swift"; sourceTree = "<group>"; };
 		346441471EE4BA06008718D7 /* SplashConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashConfigurator.swift; sourceTree = "<group>"; };
 		346441481EE4BA06008718D7 /* SplashInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		346441491EE4BA06008718D7 /* SplashModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashModels.swift; sourceTree = "<group>"; };
@@ -307,6 +309,14 @@
 				34C3DDB11EFF2B41001C8AF4 /* TimeControlParametersType.swift */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		34455DC51EFF7591002199D0 /* Unbox */ = {
+			isa = PBXGroup;
+			children = (
+				34455DC61EFF75AE002199D0 /* UnboxFormatter+Dictionary.swift */,
+			);
+			path = Unbox;
 			sourceTree = "<group>";
 		};
 		345881771EE4A99700FE773B /* Splash */ = {
@@ -635,6 +645,7 @@
 		AD05A9249FEBFC41418217D5 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				34455DC51EFF7591002199D0 /* Unbox */,
 				34934B741EF23FE80096D3C4 /* CGSize */,
 				3414A6FE1EF22AF800E28D6D /* CGFloat */,
 				AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */,
@@ -909,6 +920,7 @@
 				8405CA49BF8044F3F0B76F31 /* OGSLoginInteractor.swift in Sources */,
 				8405CC0C6DBB4D5102EE60CF /* OGSLoginConfigurator.swift in Sources */,
 				346FA1B61EF746A8001378A6 /* PlayConfigurator.swift in Sources */,
+				34455DC71EFF75AE002199D0 /* UnboxFormatter+Dictionary.swift in Sources */,
 				8405C6E5D3897A1BBF7653B2 /* OGSLoginViewController.swift in Sources */,
 				8405CB5F7BAD2E27B9786979 /* Temp.swift in Sources */,
 				5612FD0F1E63C60B000B1973 /* OGSChooseGameInteractor.swift in Sources */,
