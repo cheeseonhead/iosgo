@@ -26,8 +26,8 @@ class GameStore {
         self.apiStore = apiStore
     }
 
-    func getGame(completion: @escaping (_ response: Response) -> Void) {
-        let url = "/api/v1/games/2801"
+    func game(id: Int, completion: @escaping (_ response: Response) -> Void) {
+        let url = "/api/v1/games/\(String(id))"
 
         apiStore.request(toUrl: url, method: .GET, parameters: [:]) { code, payload, _ in
 
