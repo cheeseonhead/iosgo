@@ -22,5 +22,6 @@ class PlayInteractor: PlayBusinessLogic, PlayDataStore {
     var worker: PlayWorker?
 
     func loadScene(request _: Play.LoadScene.Request) {
+        presenter?.presentLoadScene(response: Play.LoadScene.Response())
     }
 }

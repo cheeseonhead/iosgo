@@ -56,6 +56,7 @@ class PlayViewController: UIViewController {
 // MARK: - Display
 extension PlayViewController: PlayDisplayLogic {
     func displayLoadScene(viewModel _: Play.LoadScene.ViewModel) {
+        interactor?.loadScene(request: Play.LoadScene.Request())
     }
 }
 
