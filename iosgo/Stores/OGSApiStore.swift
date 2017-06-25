@@ -23,8 +23,16 @@ enum HTTPStatusCode: Int {
 
 enum ApiErrorType {
     case unauthorized
-    case unknownError
-    case clientError
+    case genericError(message: String)
+
+    init(statusCode: HTTPStatusCode) {
+        switch statusCode {
+        case .clientError:
+            self = .genericError(message: NSLocalizedString("Please check your internet connection and try again.", comment: ""))
+        default:
+            self = .genericError(message: NSLocalizedString("An unknown error has Occured.", comment: ""))
+        }
+    }
 }
 
 typealias OGSApiResultBlock = (_ statusCode: HTTPStatusCode, _ payload: [String: Any]?, _ error: Error?) -> Void
