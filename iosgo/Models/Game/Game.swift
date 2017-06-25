@@ -15,8 +15,6 @@ struct Tournament {}
 
 struct Ladder {}
 
-struct GameData {}
-
 struct Game {
 
     // MARK: - Basic
@@ -37,7 +35,7 @@ struct Game {
 
     var started: Date
     var ended: Date?
-    //    var gameData: GameData
+    var gameData: GameData
 
     // MARK: - Gameplay
     var disableAnalysis: Bool
@@ -74,7 +72,7 @@ struct Game {
     //
     // MARK: - Server
     var authToken: String? // auth
-    var gameChatToken: String
+    var gameChatToken: String?
     //    var mode: Mode
     //    var source: Source
     var related: [String: String]
