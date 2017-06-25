@@ -19,12 +19,33 @@ class TimeControlParametersFormatter: UnboxFormatter {
         }
 
         do {
-            let json = try JSONSerialization.jsonObject(with: data)
+            let json = try JSONSerialization.jsonObject(with: data) as! UnboxableDictionary
+            let unboxer = Unboxer(dictionary: json)
+            let type: TimeControlTypes = try unboxer.unbox(key: "time_control")
 
-            print(json)
+            switch type {
+            case .absolute:
+                let absolute: TimeControlParametersType.Absolute = try unbox(dictionary: json)
+                return .absolute(parameters: absolute)
+            case .byoyomi:
+                let byoyomi: TimeControlParametersType.Byoyomi = try unbox(dictionary: json)
+                return .byoyomi(parameters: byoyomi)
+            case .canadian:
+                let canadian: TimeControlParametersType.Canadian = try unbox(dictionary: json)
+                return .canadian(parameters: canadian)
+            case .fischer:
+                let fisher: TimeControlParametersType.Fischer = try unbox(dictionary: json)
+                return .fischer(parameters: fisher)
+            case .none:
+                let none: TimeControlParametersType.None = try unbox(dictionary: json)
+                return .none(parameters: none)
+            case .simple:
+                let simple: TimeControlParametersType.Simple = try unbox(dictionary: json)
+                return .simple(parameters: simple)
+            }
         } catch {
             print(error)
+            return nil
         }
-        return nil
     }
 }
