@@ -35,8 +35,12 @@ class GameStore {
 
             switch code {
             case .ok:
-                if let game = try? self.createGame(payload: payload!) {
+                do {
+                    let game = try self.createGame(payload: payload!)
+
                     response.result = .success(game: game)
+                } catch {
+                    print(error)
                 }
             default:
                 break
