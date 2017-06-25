@@ -11,15 +11,15 @@
 
 import UIKit
 
-protocol ___FILEBASENAMEASIDENTIFIER___PresenterInput
+protocol ___VARIABLE_sceneName___PresenterInput
 {
 }
 
-protocol ___FILEBASENAMEASIDENTIFIER___PresenterOutput: class
+protocol ___VARIABLE_sceneName___PresenterOutput: class
 {
 }
 
-class ___FILEBASENAMEASIDENTIFIER___Presenter: ___FILEBASENAMEASIDENTIFIER___PresenterInput
+class ___VARIABLE_sceneName___Presenter: ___VARIABLE_sceneName___PresenterInput
 {
-    weak var output: ___FILEBASENAMEASIDENTIFIER___PresenterOutput!
+    weak var output: ___VARIABLE_sceneName___PresenterOutput!
 }

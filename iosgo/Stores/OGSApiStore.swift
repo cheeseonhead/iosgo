@@ -23,8 +23,26 @@ enum HTTPStatusCode: Int {
 
 enum ApiErrorType {
     case unauthorized
-    case unknownError
-    case clientError
+    case genericError(message: String)
+
+    init(statusCode: HTTPStatusCode) {
+        switch statusCode {
+        case .clientError:
+            self = .genericError(message: NSLocalizedString("Please check your internet connection and try again.", comment: ""))
+        case .badRequest:
+            self = .genericError(message: NSLocalizedString("The request could not be processed, please report as a bug to the developers", comment: ""))
+        case .unauthorized:
+            self = .genericError(message: NSLocalizedString("You are not authorized to do the request.", comment: ""))
+        case .forbidden:
+            self = .genericError(message: NSLocalizedString("You are forbidden to do this action", comment: ""))
+        case .notFound:
+            self = .genericError(message: NSLocalizedString("The action you are trying to do doesn't exist.", comment: ""))
+        case .tooManyRequests:
+            self = .genericError(message: NSLocalizedString("You are making too many requests.", comment: ""))
+        default:
+            self = .genericError(message: NSLocalizedString("An unknown error has Occured.", comment: ""))
+        }
+    }
 }
 
 typealias OGSApiResultBlock = (_ statusCode: HTTPStatusCode, _ payload: [String: Any]?, _ error: Error?) -> Void

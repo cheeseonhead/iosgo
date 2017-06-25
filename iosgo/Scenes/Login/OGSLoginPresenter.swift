@@ -11,24 +11,20 @@
 
 import UIKit
 
-protocol OGSLoginPresenterInput
-{
+protocol OGSLoginPresenterInput {
     func presentLogin(response: OGSLogin.Login.Response)
     func presentFieldsChange(response: OGSLogin.FieldsChanged.Response)
 }
 
-protocol OGSLoginPresenterOutput: class
-{
+protocol OGSLoginPresenterOutput: class {
     func displayLogin(viewModel: OGSLogin.Login.ViewModel)
     func displayFieldsChange(viewModel: OGSLogin.FieldsChanged.ViewModel)
 }
 
-class OGSLoginPresenter: OGSLoginPresenterInput
-{
+class OGSLoginPresenter: OGSLoginPresenterInput {
     weak var output: OGSLoginPresenterOutput!
 
-    func presentLogin(response: OGSLogin.Login.Response)
-    {
+    func presentLogin(response: OGSLogin.Login.Response) {
         let readyToNavigate = readyToNavigateFrom(response: response)
         let userInputState = userInputStateFrom(response: response)
         let errorLabelState = errorLabelStateFrom(response: response)
@@ -39,14 +35,11 @@ class OGSLoginPresenter: OGSLoginPresenterInput
         }
     }
 
-    func presentFieldsChange(response: OGSLogin.FieldsChanged.Response)
-    {
+    func presentFieldsChange(response: OGSLogin.FieldsChanged.Response) {
         var viewModel = OGSLogin.FieldsChanged.ViewModel(buttonEnabled: true)
 
-        for text in response.textFieldTexts
-        {
-            if text.characters.count == 0
-            {
+        for text in response.textFieldTexts {
+            if text.characters.count == 0 {
                 viewModel.buttonEnabled = false
             }
         }
@@ -57,36 +50,36 @@ class OGSLoginPresenter: OGSLoginPresenterInput
     }
 }
 
-fileprivate extension OGSLoginPresenter
-{
-    func readyToNavigateFrom(response: OGSLogin.Login.Response) -> Bool
-    {
+fileprivate extension OGSLoginPresenter {
+    func readyToNavigateFrom(response: OGSLogin.Login.Response) -> Bool {
         switch response.loadingStatus {
-            case .success:
-                return true
-            case .error, .loading:
-                return false
+        case .success:
+            return true
+        case .error, .loading:
+            return false
         }
     }
 
-    func userInputStateFrom(response: OGSLogin.Login.Response) -> OGSLogin.Login.ViewModel.UserInputState
-    {
+    func userInputStateFrom(response: OGSLogin.Login.Response) -> OGSLogin.Login.ViewModel.UserInputState {
         switch response.loadingStatus {
-            case .loading:
-                return .pending
-            case .error, .success:
-                return .ready
+        case .loading:
+            return .pending
+        case .error, .success:
+            return .ready
         }
     }
 
-    func errorLabelStateFrom(response: OGSLogin.Login.Response) -> OGSLogin.Login.ViewModel.ErrorLabelState
-    {
+    func errorLabelStateFrom(response: OGSLogin.Login.Response) -> OGSLogin.Login.ViewModel.ErrorLabelState {
         switch response.loadingStatus {
-            case .success, .loading:
-                return .hidden
-            case .error(let type):
-                let errorText = type.rawValue
-                return .showing(message: errorText)
+        case .success, .loading:
+            return .hidden
+        case .error(let type):
+            switch type {
+            case .invalidLoginInfo:
+                return .showing(message: "Invalid username or password")
+            case .generic(let message):
+                return .showing(message: message)
+            }
         }
     }
 }

@@ -5,21 +5,17 @@
 
 import Foundation
 
-protocol OGSAuthenticationStoreProtocol
-{
+protocol OGSAuthenticationStoreProtocol {
     func getToken(with username: String, password: String, completion: @escaping (OGSLoginInfo) -> Void)
 }
 
-class OGSLoginWorker
-{
-    enum LoginErrorType
-    {
+class OGSLoginWorker {
+    enum LoginErrorType {
         case usernameNotFound
         case passwordIncorrect
     }
 
-    struct LoginResult
-    {
+    struct LoginResult {
         var success: Bool
         var loginError: LoginErrorType
     }
@@ -27,16 +23,13 @@ class OGSLoginWorker
     var authStore: OGSAuthenticationStoreProtocol
     var meStore: OGSMeStore
 
-    init(authStore: OGSAuthenticationStoreProtocol, meStore: OGSMeStore)
-    {
+    init(authStore: OGSAuthenticationStoreProtocol, meStore: OGSMeStore) {
         self.authStore = authStore
         self.meStore = meStore
     }
 
-    func loginWith(username: String, password: String, completion: @escaping (_: OGSLogin.Login.Response) -> Void)
-    {
-        authStore.getToken(with: username, password: password)
-        { loginInfo in
+    func loginWith(username: String, password: String, completion: @escaping (_: OGSLogin.Login.Response) -> Void) {
+        authStore.getToken(with: username, password: password) { loginInfo in
             var response: OGSLogin.Login.Response!
 
             switch loginInfo.result {
@@ -51,29 +44,21 @@ class OGSLoginWorker
     }
 }
 
-fileprivate extension OGSLoginWorker
-{
-    func createLoginSuccessResponse() -> OGSLogin.Login.Response
-    {
+fileprivate extension OGSLoginWorker {
+    func createLoginSuccessResponse() -> OGSLogin.Login.Response {
         let response = OGSLogin.Login.Response(loadingStatus: .success)
 
         return response
     }
 
-    func createLoginErrorResponse(errorType: ApiErrorType) -> OGSLogin.Login.Response
-    {
+    func createLoginErrorResponse(errorType: ApiErrorType) -> OGSLogin.Login.Response {
         var responseError: OGSLogin.Login.Response.ErrorType!
 
         switch errorType {
         case .unauthorized:
             responseError = .invalidLoginInfo
-            break
-        case .clientError:
-            responseError = .networkError
-            break
-        case .unknownError:
-            responseError = .unknownError
-            break
+        case .genericError(let message):
+            responseError = .generic(message: message)
         }
 
         let response = OGSLogin.Login.Response(loadingStatus: .error(responseError))

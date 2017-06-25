@@ -11,15 +11,15 @@
 
 import UIKit
 
-protocol ___FILEBASENAMEASIDENTIFIER___InteractorInput
+protocol ___VARIABLE_sceneName___InteractorInput
 {
 }
 
-protocol ___FILEBASENAMEASIDENTIFIER___InteractorOutput
+protocol ___VARIABLE_sceneName___InteractorOutput
 {
 }
 
-class ___FILEBASENAMEASIDENTIFIER___Interactor: ___FILEBASENAMEASIDENTIFIER___InteractorInput
+class ___VARIABLE_sceneName___Interactor: ___VARIABLE_sceneName___InteractorInput
 {
-    var output: ___FILEBASENAMEASIDENTIFIER___InteractorOutput!
+    var output: ___VARIABLE_sceneName___InteractorOutput!
 }

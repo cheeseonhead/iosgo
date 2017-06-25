@@ -57,6 +57,11 @@ private extension SplashInteractor {
             return
         }
 
+        let gameStore = GameStore(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance))
+        gameStore.getGame { response in
+            print(response)
+        }
+
         output.presentLoadScene(response: response)
     }
 

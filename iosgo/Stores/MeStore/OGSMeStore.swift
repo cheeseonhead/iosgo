@@ -6,14 +6,11 @@
 import Foundation
 import Unbox
 
-class OGSMeStore
-{
-    struct Response
-    {
+class OGSMeStore {
+    struct Response {
         var result: Result
 
-        enum Result
-        {
+        enum Result {
             case success(user: OGSUser)
             case error(type: ApiErrorType)
         }
@@ -23,32 +20,20 @@ class OGSMeStore
     var apiStore: OGSApiStore
     var sessionController: OGSSessionController
 
-    required init(apiStore: OGSApiStore, sessionController: OGSSessionController)
-    {
+    required init(apiStore: OGSApiStore, sessionController: OGSSessionController) {
         self.apiStore = apiStore
         self.sessionController = sessionController
     }
 
-    func getUser(completion: @escaping (Response) -> Void)
-    {
-        apiStore.request(toUrl: url, method: .GET, parameters: [:])
-        { statusCode, payload, _ in
-            var response = Response(result: .error(type: .unknownError))
+    func getUser(completion: @escaping (Response) -> Void) {
+        apiStore.request(toUrl: url, method: .GET, parameters: [:]) { statusCode, payload, _ in
+            var response = Response(result: .error(type: ApiErrorType.init(statusCode: statusCode)))
 
             switch statusCode {
             case .ok:
-                if let user = try? self.createUser(from: payload!)
-                {
+                if let user = try? self.createUser(from: payload!) {
                     response.result = .success(user: user)
                 }
-                else
-                {
-                    response.result = .error(type: .unknownError)
-                }
-            case .unauthorized:
-                response.result = .error(type: .unauthorized)
-            case .clientError:
-                response.result = .error(type: .clientError)
             default:
                 break
             }
@@ -58,10 +43,8 @@ class OGSMeStore
     }
 }
 
-fileprivate extension OGSMeStore
-{
-    func createUser(from payload: [String: Any]) throws -> OGSUser
-    {
+fileprivate extension OGSMeStore {
+    func createUser(from payload: [String: Any]) throws -> OGSUser {
         let user: OGSUser = try unbox(dictionary: payload)
         return user
     }

@@ -11,6 +11,6 @@
 
 import UIKit
 
-struct ___FILEBASENAMEASIDENTIFIER___
+struct ___VARIABLE_sceneName___
 {
 }

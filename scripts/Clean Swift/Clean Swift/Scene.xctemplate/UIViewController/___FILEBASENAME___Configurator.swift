@@ -11,25 +11,25 @@
 
 import UIKit
 
-class ___FILEBASENAMEASIDENTIFIER___Configurator
+class ___VARIABLE_sceneName___Configurator
 {
-    static func configure(viewController: ___FILEBASENAMEASIDENTIFIER___ViewController)
+    static func configure(viewController: ___VARIABLE_sceneName___ViewController)
     {
-        let presenter = ___FILEBASENAMEASIDENTIFIER___Presenter()
+        let presenter = ___VARIABLE_sceneName___Presenter()
         presenter.output = viewController
 
-        let interactor = ___FILEBASENAMEASIDENTIFIER___Interactor()
+        let interactor = ___VARIABLE_sceneName___Interactor()
         interactor.output = presenter
 
-        let router = ___FILEBASENAMEASIDENTIFIER___Router(viewController: viewController, dataProvider: interactor, dataReceiver: interactor)
+        let router = ___VARIABLE_sceneName___Router(viewController: viewController, dataProvider: interactor, dataReceiver: interactor)
 
         viewController.output = interactor
         viewController.router = router
     }
 }
 
-extension ___FILEBASENAMEASIDENTIFIER___ViewController: ___FILEBASENAMEASIDENTIFIER___PresenterOutput {}
+extension ___VARIABLE_sceneName___ViewController: ___VARIABLE_sceneName___PresenterOutput {}
 
-extension ___FILEBASENAMEASIDENTIFIER___Interactor: ___FILEBASENAMEASIDENTIFIER___ViewControllerOutput, ___FILEBASENAMEASIDENTIFIER___RouterDataProvider, ___FILEBASENAMEASIDENTIFIER___RouterDataReceiver {}
+extension ___VARIABLE_sceneName___Interactor: ___VARIABLE_sceneName___ViewControllerOutput, ___VARIABLE_sceneName___RouterDataProvider, ___VARIABLE_sceneName___RouterDataReceiver {}
 
-extension ___FILEBASENAMEASIDENTIFIER___Presenter: ___FILEBASENAMEASIDENTIFIER___InteractorOutput {}
+extension ___VARIABLE_sceneName___Presenter: ___VARIABLE_sceneName___InteractorOutput {}

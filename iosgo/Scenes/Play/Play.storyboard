@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="goI-bh-4QP">
+    <device id="ipad9_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Play View Controller-->
+        <scene sceneID="OQA-j3-wzC">
+            <objects>
+                <viewController storyboardIdentifier="PlayViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="goI-bh-4QP" customClass="PlayViewController" customModule="iosgo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lax-IA-BKj"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ekd-dw-25b"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ixe-Ay-EgB">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lpR-bj-bI4" customClass="SKView">
+                                <rect key="frame" x="138" y="20" width="748" height="748"/>
+                                <color key="backgroundColor" red="0.2544162425" green="0.95294117649999999" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="lpR-bj-bI4" secondAttribute="height" multiplier="1:1" id="bE5-gM-wBj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="lpR-bj-bI4" firstAttribute="centerX" secondItem="Ixe-Ay-EgB" secondAttribute="centerX" id="0oT-QK-A3D"/>
+                            <constraint firstItem="lpR-bj-bI4" firstAttribute="top" secondItem="Lax-IA-BKj" secondAttribute="bottom" id="f0L-gB-WN7"/>
+                            <constraint firstItem="Ekd-dw-25b" firstAttribute="top" secondItem="lpR-bj-bI4" secondAttribute="bottom" id="zMc-nG-h64"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="boardView" destination="lpR-bj-bI4" id="M8t-0M-9mj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d5X-wn-CbA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-70" y="144"/>
+        </scene>
+    </scenes>
+</document>
