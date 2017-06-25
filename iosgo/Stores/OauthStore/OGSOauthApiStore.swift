@@ -6,19 +6,16 @@
 import Foundation
 import Unbox
 
-class OGSOauthApiStore
-{
+class OGSOauthApiStore {
     let URL = "oauth2/token/"
 
     fileprivate var apiStore: OGSApiStore
 
-    required init(apiStore: OGSApiStore)
-    {
+    required init(apiStore: OGSApiStore) {
         self.apiStore = apiStore
     }
 
-    func getToken(with username: String, password: String, completion: @escaping (OGSLoginInfo) -> Void)
-    {
+    func getToken(with username: String, password: String, completion: @escaping (OGSLoginInfo) -> Void) {
         let params: [String: String] = [
             "client_id": apiStore.clientID,
             "client_secret": apiStore.clientSecret,
@@ -30,10 +27,8 @@ class OGSOauthApiStore
         sendRequest(toUrl: URL, method: .POST, parameters: params, completion: completion)
     }
 
-    func refreshTokens(completion: @escaping (OGSLoginInfo) -> Void)
-    {
-        guard let refreshToken = apiStore.refreshToken else
-        {
+    func refreshTokens(completion: @escaping (OGSLoginInfo) -> Void) {
+        guard let refreshToken = apiStore.refreshToken else {
             let loginInfo = OGSLoginInfo(result: .error(type: .unauthorized))
             completion(loginInfo)
             return
@@ -49,47 +44,32 @@ class OGSOauthApiStore
         sendRequest(toUrl: URL, method: .POST, parameters: params, completion: completion)
     }
 
-    fileprivate func sendRequest(toUrl url: String, method: HTTPMethod, parameters: [String: String], completion: @escaping (OGSLoginInfo) -> Void)
-    {
-        apiStore.request(toUrl: url, method: method, parameters: parameters)
-        { statusCode, payload, _ in
+    fileprivate func sendRequest(toUrl url: String, method: HTTPMethod, parameters: [String: String], completion: @escaping (OGSLoginInfo) -> Void) {
+        apiStore.request(toUrl: url, method: method, parameters: parameters) { statusCode, payload, _ in
 
-            var loginInfo = OGSLoginInfo(result: .error(type: .unknownError))
+            var loginInfo = OGSLoginInfo(result: .error(type: ApiErrorType.init(statusCode: statusCode)))
 
             switch statusCode {
             case .ok:
-                if let tokenInfo = try? self.createTokenInfo(from: payload!)
-                {
+                if let tokenInfo = try? self.createTokenInfo(from: payload!) {
                     self.updateTokens(with: tokenInfo)
                     loginInfo.result = .success
                 }
-                else
-                {
-                    loginInfo.result = .error(type: .unknownError)
-                }
-                break
             case .unauthorized:
                 loginInfo.result = .error(type: .unauthorized)
-                break
-            case .clientError:
-                loginInfo.result = .error(type: .clientError)
-                break
-            default:
-                loginInfo.result = .error(type: .unknownError)
+            default: break
             }
 
             completion(loginInfo)
         }
     }
 
-    fileprivate func createTokenInfo(from payload: [String: Any]) throws -> OGSLoginInfo.TokenInfo
-    {
+    fileprivate func createTokenInfo(from payload: [String: Any]) throws -> OGSLoginInfo.TokenInfo {
         let tokenInfo: OGSLoginInfo.TokenInfo = try unbox(dictionary: payload)
         return tokenInfo
     }
 
-    fileprivate func updateTokens(with tokenInfo: OGSLoginInfo.TokenInfo)
-    {
+    fileprivate func updateTokens(with tokenInfo: OGSLoginInfo.TokenInfo) {
         apiStore.accessToken = tokenInfo.accessToken
         apiStore.refreshToken = tokenInfo.refreshToken
     }
