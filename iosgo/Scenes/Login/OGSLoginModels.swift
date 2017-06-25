@@ -11,44 +11,34 @@
 
 import UIKit
 
-struct OGSLogin
-{
-    struct Login
-    {
-        struct Request
-        {
+struct OGSLogin {
+    struct Login {
+        struct Request {
             var username: String
             var password: String
         }
 
-        struct Response
-        {
-            enum LoadingStatus
-            {
+        struct Response {
+            enum LoadingStatus {
                 case loading, success
                 case error(ErrorType)
             }
 
-            enum ErrorType: String
-            {
-                case networkError = "An error has occurred because of the network"
-                case invalidLoginInfo = "Invalid username or password"
-                case unknownError = "An unknown error has occurred"
+            enum ErrorType {
+                case invalidLoginInfo
+                case generic(message: String)
             }
 
             var loadingStatus: LoadingStatus
         }
 
-        struct ViewModel
-        {
-            enum UserInputState
-            {
+        struct ViewModel {
+            enum UserInputState {
                 case ready
                 case pending
             }
 
-            enum ErrorLabelState
-            {
+            enum ErrorLabelState {
                 case hidden
                 case showing(message: String)
             }
@@ -60,20 +50,16 @@ struct OGSLogin
         }
     }
 
-    struct FieldsChanged
-    {
-        struct Request
-        {
+    struct FieldsChanged {
+        struct Request {
             var textFieldTexts: [String]
         }
 
-        struct Response
-        {
+        struct Response {
             var textFieldTexts: [String]
         }
 
-        struct ViewModel
-        {
+        struct ViewModel {
             var buttonEnabled: Bool
         }
     }
