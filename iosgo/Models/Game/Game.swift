@@ -45,14 +45,14 @@ struct Game {
     // MARK: - Time
     var timeControl: TimeControlTypes // time_control
     var timeControlParameters: TimeControlParametersType
-    //    var timePerMove: Int
-    //    var pauseOnWeekends: Bool
-    //
-    //    // MARK: - Player
-    //    var blackPlayerRank: Int
-    //    var blackPlayerRating: Double
-    //    var whitePlayerRank: Int
-    //    var whitePlayerRating: Double
+    var timePerMove: Int
+    var pauseOnWeekends: Bool
+
+    // MARK: - Player
+    var blackPlayerRank: Int
+    var blackPlayerRating: Double
+    var whitePlayerRank: Int
+    var whitePlayerRating: Double
     //    var players: [PlayerType: Player] // Needs its own model
     //
     //    enum PlayerType: String, Codable {
@@ -66,18 +66,18 @@ struct Game {
     //    // MARK: - Ladder
     //    var ladder: Ladder?
     //
-    //    // MARK: - Result
-    //    var annulled: Bool
-    //    var outcome: String
-    //    var blackLost: Bool
-    //    var whiteLost: Bool
+    // MARK: - Result
+    var annulled: Bool
+    var outcome: String
+    var blackLost: Bool
+    var whiteLost: Bool
     //
-    //    // MARK: - Server
-    //    var authToken: String // auth
-    //    var gameChatToken: String
+    // MARK: - Server
+    var authToken: String? // auth
+    var gameChatToken: String
     //    var mode: Mode
     //    var source: Source
-    //    var releated: [String: String]
+    var related: [String: String]
     //
     //    enum Mode: String, UnboxableEnum {
     //        case game

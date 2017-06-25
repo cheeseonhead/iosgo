@@ -12,12 +12,15 @@ import Unbox
 extension Game: Unboxable {
 
     init(unboxer: Unboxer) throws {
+
+        // MARK: - Basic
         id = try unboxer.unbox(key: "id")
         name = try unboxer.unbox(key: "name")
         creatorId = try unboxer.unbox(key: "creator")
         blackId = try unboxer.unbox(key: "black")
         whiteId = try unboxer.unbox(key: "white")
 
+        // MARK: - Info
         height = try unboxer.unbox(key: "height")
         width = try unboxer.unbox(key: "width")
 
@@ -32,21 +35,21 @@ extension Game: Unboxable {
         ended = unboxer.unbox(key: "ended", formatter: dateFormatter)
         //        gameData = try unboxer.unbox(key: "gameData")
 
+        // MARK: - Gameplay
         disableAnalysis = try unboxer.unbox(key: "disable_analysis")
 
+        // MARK: - Time
         timeControl = try unboxer.unbox(key: "time_control")
         let parametersFormatter = TimeControlParametersFormatter()
         timeControlParameters = try unboxer.unbox(key: "time_control_parameters", formatter: parametersFormatter)
+        timePerMove = try unboxer.unbox(key: "time_per_move")
+        pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
 
-        //        // MARK: - Time
-        //        var timePerMove: Int
-        //        var pauseOnWeekends: Bool
-        //
-        //        // MARK: - Player
-        //        var blackPlayerRank: Int
-        //        var blackPlayerRating: Double
-        //        var whitePlayerRank: Int
-        //        var whitePlayerRating: Double
+        // MARK: - Player
+        blackPlayerRank = try unboxer.unbox(key: "black_player_rank")
+        blackPlayerRating = try unboxer.unbox(key: "black_player_rating")
+        whitePlayerRank = try unboxer.unbox(key: "white_player_rank")
+        whitePlayerRating = try unboxer.unbox(key: "white_player_rating")
         //        var players: [PlayerType: Player] // Needs its own model
         //
         //        enum PlayerType: String, Codable {
@@ -60,17 +63,17 @@ extension Game: Unboxable {
         //        // MARK: - Ladder
         //        var ladder: Ladder?
         //
-        //        // MARK: - Result
-        //        var annulled: Bool
-        //        var outcome: String
-        //        var blackLost: Bool
-        //        var whiteLost: Bool
-        //
-        //        // MARK: - Server
-        //        var authToken: String // auth
-        //        var gameChatToken: String
-        //        var mode: Mode
-        //        var source: Source
-        //        var releated: [String: String]
+        // MARK: - Result
+        annulled = try unboxer.unbox(key: "annulled")
+        outcome = try unboxer.unbox(key: "outcome")
+        blackLost = try unboxer.unbox(key: "black_lost")
+        whiteLost = try unboxer.unbox(key: "white_lost")
+
+        // MARK: - Server
+        authToken = unboxer.unbox(key: "auth") // auth
+        gameChatToken = try unboxer.unbox(key: "game_chat_auth")
+        //                 mode: Mode
+        //                 source: Source
+        related = try unboxer.unbox(key: "related")
     }
 }
