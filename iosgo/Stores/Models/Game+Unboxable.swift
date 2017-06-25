@@ -33,7 +33,7 @@ extension Game: Unboxable {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'"
         started = try unboxer.unbox(key: "started", formatter: dateFormatter)
         ended = unboxer.unbox(key: "ended", formatter: dateFormatter)
-        //        gameData = try unboxer.unbox(key: "gameData")
+        gameData = try unboxer.unbox(key: "gamedata")
 
         // MARK: - Gameplay
         disableAnalysis = try unboxer.unbox(key: "disable_analysis")
@@ -71,7 +71,7 @@ extension Game: Unboxable {
 
         // MARK: - Server
         authToken = unboxer.unbox(key: "auth") // auth
-        gameChatToken = try unboxer.unbox(key: "game_chat_auth")
+        gameChatToken = unboxer.unbox(key: "game_chat_auth")
         //                 mode: Mode
         //                 source: Source
         related = try unboxer.unbox(key: "related")
