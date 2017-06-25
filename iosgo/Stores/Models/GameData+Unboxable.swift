@@ -17,13 +17,17 @@ extension GameData: Unboxable {
         `private` = try unboxer.unbox(key: "private")
         ranked = try unboxer.unbox(key: "ranked")
         gameId = try unboxer.unbox(key: "game_id")
+        players = try unboxer.unbox(key: "players")
 
         // MARK: - Info
+        gameName = try unboxer.unbox(key: "game_name")
         height = try unboxer.unbox(key: "height")
         width = try unboxer.unbox(key: "width")
         komi = unboxer.unbox(key: "komi")
         handicap = try unboxer.unbox(key: "handicap")
         rules = try unboxer.unbox(key: "rules")
+        phase = try unboxer.unbox(key: "phase")
+        initialPlayer = try unboxer.unbox(key: "initial_player")
 
         // MARK: - Time
         let parameters = unboxer.dictionary["time_control"] as! UnboxableDictionary
@@ -46,6 +50,7 @@ extension GameData: Unboxable {
         // moves
         conditionalMoves = try unboxer.unbox(key: "conditional_moves")
         initialState = try unboxer.unbox(key: "initial_state")
+        history = try unboxer.unbox(key: "history")
 
         // MARK: - Pause
         pauseControl = try unboxer.unbox(key: "pause_control")
@@ -59,6 +64,7 @@ extension GameData: Unboxable {
         scorePrisoners = try unboxer.unbox(key: "score_prisoners")
         superkoAlgorithm = try unboxer.unbox(key: "superko_algorithm")
         whiteMustPassLast = try unboxer.unbox(key: "white_must_pass_last")
+        scoreTerritory = try unboxer.unbox(key: "score_territory")
 
         // MARK: - Review
         reviews = try unboxer.unbox(key: "reviews")

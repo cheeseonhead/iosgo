@@ -21,13 +21,21 @@ struct GameData {
     var `private`: Bool
     var ranked: Bool
     var gameId: Int
+    var players: [Player: [String: Any]]
 
     // MARK: - Info
+    var gameName: String
     var height: Int
     var width: Int
     var komi: Double?
     var handicap: Int
     var rules: RuleTypes
+    var phase: Phase
+    var initialPlayer: Player
+
+    enum Phase: String, UnboxableEnum {
+        case play, finished
+    }
 
     // MARK: - Time
     var timeControl: TimeControlParametersType
@@ -49,8 +57,9 @@ struct GameData {
     //    var moves: [Move]
     var conditionalMoves: [Int: [String: Any?]]
     var initialState: [Player: String]
+    var history: [Any]
 
-    enum Player: String, UnboxableKey {
+    enum Player: String, UnboxableKey, UnboxableEnum {
         case black, white
 
         static func transform(unboxedKey: String) -> Player? {
@@ -70,6 +79,7 @@ struct GameData {
     var scorePrisoners: Bool
     var superkoAlgorithm: String
     var whiteMustPassLast: Bool
+    var scoreTerritory: Bool
 
     // MARK: - Review
     var reviews: [String: Any]
