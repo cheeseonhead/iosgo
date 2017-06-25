@@ -35,9 +35,10 @@ extension Game: Unboxable {
         disableAnalysis = try unboxer.unbox(key: "disable_analysis")
 
         timeControl = try unboxer.unbox(key: "time_control")
+        let parametersFormatter = TimeControlParametersFormatter()
+        timeControlParameters = try unboxer.unbox(key: "time_control_parameters", formatter: parametersFormatter)
 
         //        // MARK: - Time
-        //        var timeControlParameters: TimeControlParametersType
         //        var timePerMove: Int
         //        var pauseOnWeekends: Bool
         //
