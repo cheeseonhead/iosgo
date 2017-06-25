@@ -87,7 +87,7 @@
 		8405CDC2CCCFD39520FBEC6C /* OGSSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C78D22DC4B4FB78797CA /* OGSSession.swift */; };
 		8405CDE4965C7493BA13D163 /* OGSLoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CCBEDED129DD31C31BA8 /* OGSLoginRouter.swift */; };
 		8405CEA1C88BF254C0A34A28 /* OGSOauthApiStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CB3B6D134DFC861A3E6A /* OGSOauthApiStore.swift */; };
-		8405CF0DBD2A4DAB0A3A30E7 /* OGSOauthApiStoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C723D11B0D56D6CFDD08 /* OGSOauthApiStoreModels.swift */; };
+		8405CF0DBD2A4DAB0A3A30E7 /* OGSLoginInfo+Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C723D11B0D56D6CFDD08 /* OGSLoginInfo+Unboxable.swift */; };
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
 		AD05A00EC3EF1F09DFBC5597 /* Dictionary+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */; };
 		AD05A01B448899472AAD4DBE /* OGSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A619B90715ADEDAFC230 /* OGSUser.swift */; };
@@ -197,7 +197,7 @@
 		8405C2D09201FEEC8BA27848 /* OGSNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSNotificationCenter.swift; sourceTree = "<group>"; };
 		8405C352FE0AD49BF149BB22 /* OGSLoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginInteractor.swift; sourceTree = "<group>"; };
 		8405C4C2A11D12F3BF6DA2D7 /* OGSChallenge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChallenge.swift; sourceTree = "<group>"; };
-		8405C723D11B0D56D6CFDD08 /* OGSOauthApiStoreModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSOauthApiStoreModels.swift; sourceTree = "<group>"; };
+		8405C723D11B0D56D6CFDD08 /* OGSLoginInfo+Unboxable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OGSLoginInfo+Unboxable.swift"; sourceTree = "<group>"; };
 		8405C78D22DC4B4FB78797CA /* OGSSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSSession.swift; sourceTree = "<group>"; };
 		8405C7E803F0E983A087BF29 /* OGSUserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSUserSettings.swift; sourceTree = "<group>"; };
 		8405C835964EBE64454849A1 /* OGSLoginConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginConfigurator.swift; sourceTree = "<group>"; };
@@ -289,6 +289,7 @@
 		341856A31EFF628E00DAF3CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8405C723D11B0D56D6CFDD08 /* OGSLoginInfo+Unboxable.swift */,
 				341856A41EFF62D300DAF3CF /* TimeControlParameters+Unboxable.swift */,
 				341856A61EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift */,
 			);
@@ -514,7 +515,6 @@
 			isa = PBXGroup;
 			children = (
 				8405CB3B6D134DFC861A3E6A /* OGSOauthApiStore.swift */,
-				8405C723D11B0D56D6CFDD08 /* OGSOauthApiStoreModels.swift */,
 			);
 			path = OauthStore;
 			sourceTree = "<group>";
@@ -951,7 +951,7 @@
 				AD05ABE155BC1FDEA29394EF /* OGSSocketManager.swift in Sources */,
 				AD05AE7444BF09E5E49DE6ED /* OGSSocketManagerTypes.swift in Sources */,
 				AD05A664F189FAC228843217 /* OGSSeekGraphSocketStoreModels.swift in Sources */,
-				8405CF0DBD2A4DAB0A3A30E7 /* OGSOauthApiStoreModels.swift in Sources */,
+				8405CF0DBD2A4DAB0A3A30E7 /* OGSLoginInfo+Unboxable.swift in Sources */,
 				3414A7001EF22B6A00E28D6D /* CGFloat+Standardization.swift in Sources */,
 				8405CDC2CCCFD39520FBEC6C /* OGSSession.swift in Sources */,
 				8405C19D66ABA58804962F72 /* OGSSessionController.swift in Sources */,
