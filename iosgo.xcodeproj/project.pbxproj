@@ -289,6 +289,7 @@
 		341856A31EFF628E00DAF3CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				34C3DDB31EFF2B79001C8AF4 /* TimeControlParametersFormatter.swift */,
 				34DF468A1EFB5608009EC397 /* Game+Unboxable.swift */,
 				341856A61EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift */,
 				8405C723D11B0D56D6CFDD08 /* OGSLoginInfo+Unboxable.swift */,
@@ -369,7 +370,6 @@
 			isa = PBXGroup;
 			children = (
 				34C3DDB51EFF2ED5001C8AF4 /* GameStore.swift */,
-				34C3DDB31EFF2B79001C8AF4 /* TimeControlParametersFormatter.swift */,
 			);
 			path = GameStore;
 			sourceTree = "<group>";
