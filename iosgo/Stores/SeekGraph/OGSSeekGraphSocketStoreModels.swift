@@ -14,7 +14,7 @@ struct OGSSeekGraphSocketStoreModel {
         var whitePlayer: Player
         var gameId: Int
         var gameStarted: Bool
-        var timeControl: TimeControlTypes
+        var timeControl: TimeControlType
         var timeControlParameters: TimeControlParametersType
 
         init(unboxer: Unboxer) throws {
@@ -24,8 +24,8 @@ struct OGSSeekGraphSocketStoreModel {
             gameStarted = try unboxer.unbox(key: "game_started")
             timeControl = try unboxer.unbox(key: "time_control")
 
-            let formatter = TimeControlParametersFormatter()
-            timeControlParameters = try unboxer.unbox(key: "time_control_parameters", formatter: formatter)
+            let parameters = unboxer.dictionary["time_control_parameters"] as! UnboxableDictionary
+            timeControlParameters = try TimeControlParametersFormatter().conditionalUnbox(dictionary: parameters)
         }
 
         struct Player: Unboxable {

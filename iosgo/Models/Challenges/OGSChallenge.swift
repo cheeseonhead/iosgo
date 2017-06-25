@@ -19,8 +19,8 @@ struct OGSChallenge {
     var maxRank: Int
     var minRank: Int
     var disableAnalysis: Bool
-    var rules: RuleTypes
-    var timeControl: TimeControlTypes
+    var rules: RuleType
+    var timeControl: TimeControlType
     var ranked: Bool
     var komi: Float?
     var gameId: Int

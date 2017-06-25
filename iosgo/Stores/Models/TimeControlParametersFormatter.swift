@@ -21,7 +21,7 @@ class TimeControlParametersFormatter: UnboxFormatter {
         do {
             let json = try JSONSerialization.jsonObject(with: data) as! UnboxableDictionary
             let unboxer = Unboxer(dictionary: json)
-            let type: TimeControlTypes = try unboxer.unbox(key: "time_control")
+            let type: TimeControlType = try unboxer.unbox(key: "time_control")
 
             switch type {
             case .absolute:
