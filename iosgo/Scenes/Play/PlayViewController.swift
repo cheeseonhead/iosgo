@@ -50,13 +50,14 @@ class PlayViewController: UIViewController {
 
         boardView.showsFPS = true
         boardView.showsNodeCount = true
+
+        interactor?.loadScene(request: Play.LoadScene.Request())
     }
 }
 
 // MARK: - Display
 extension PlayViewController: PlayDisplayLogic {
     func displayLoadScene(viewModel _: Play.LoadScene.ViewModel) {
-        interactor?.loadScene(request: Play.LoadScene.Request())
     }
 }
 
