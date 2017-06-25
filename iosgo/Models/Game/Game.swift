@@ -28,7 +28,7 @@ struct Game {
     var height: Int
     var width: Int
 
-    var rules: RuleTypes
+    var rules: RuleType
     var ranked: Bool
     var handicap: Int
     var komi: Double?
@@ -41,7 +41,7 @@ struct Game {
     var disableAnalysis: Bool
 
     // MARK: - Time
-    var timeControl: TimeControlTypes // time_control
+    var timeControl: TimeControlType // time_control
     var timeControlParameters: TimeControlParametersType
     var timePerMove: Int
     var pauseOnWeekends: Bool

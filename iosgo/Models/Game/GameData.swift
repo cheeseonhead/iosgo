@@ -21,7 +21,7 @@ struct GameData {
     var `private`: Bool
     var ranked: Bool
     var gameId: Int
-    var players: [Player: [String: Any]]
+    var players: [PlayerType: [String: Any]]
 
     // MARK: - Info
     var gameName: String
@@ -29,9 +29,9 @@ struct GameData {
     var width: Int
     var komi: Double?
     var handicap: Int
-    var rules: RuleTypes
+    var rules: RuleType
     var phase: Phase
-    var initialPlayer: Player
+    var initialPlayer: PlayerType
 
     enum Phase: String, UnboxableEnum {
         case play, finished
@@ -57,16 +57,8 @@ struct GameData {
     // MARK: - Game
     //    var moves: [Move]
     var conditionalMoves: [Int: [String: Any?]]
-    var initialState: [Player: String]
+    var initialState: [PlayerType: String]
     var history: [Any]
-
-    enum Player: String, UnboxableKey, UnboxableEnum {
-        case black, white
-
-        static func transform(unboxedKey: String) -> Player? {
-            return Player.init(rawValue: unboxedKey)
-        }
-    }
 
     // MARK: - Pause
     var pauseControl: [String: Bool]

@@ -14,7 +14,7 @@ struct OGSSeekGraphSocketStoreModel {
         var whitePlayer: Player
         var gameId: Int
         var gameStarted: Bool
-        var timeControl: TimeControlTypes
+        var timeControl: TimeControlType
         var timeControlParameters: TimeControlParametersType
 
         init(unboxer: Unboxer) throws {

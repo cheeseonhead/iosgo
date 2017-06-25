@@ -20,9 +20,9 @@ enum TimeControlParametersType {
 
     struct Fischer: Codable {
         var pauseOnWeekends: Bool
-        var speed: SpeedTypes
-        var system: TimeControlTypes
-        var timeControl: TimeControlTypes
+        var speed: SpeedType
+        var system: TimeControlType
+        var timeControl: TimeControlType
 
         var initialTime: Int
         var maxTime: Int
@@ -31,18 +31,18 @@ enum TimeControlParametersType {
 
     struct Simple: Codable {
         var pauseOnWeekends: Bool
-        var speed: SpeedTypes
-        var system: TimeControlTypes
-        var timeControl: TimeControlTypes
+        var speed: SpeedType
+        var system: TimeControlType
+        var timeControl: TimeControlType
 
         var timePerMove: Int
     }
 
     struct Byoyomi: Codable {
         var pauseOnWeekends: Bool
-        var speed: SpeedTypes
-        var system: TimeControlTypes
-        var timeControl: TimeControlTypes
+        var speed: SpeedType
+        var system: TimeControlType
+        var timeControl: TimeControlType
 
         var mainTime: Int
         var periodTime: Int
@@ -51,9 +51,9 @@ enum TimeControlParametersType {
 
     struct Canadian: Codable {
         var pauseOnWeekends: Bool
-        var speed: SpeedTypes
-        var system: TimeControlTypes
-        var timeControl: TimeControlTypes
+        var speed: SpeedType
+        var system: TimeControlType
+        var timeControl: TimeControlType
 
         var mainTime: Int
         var periodTime: Int
@@ -62,17 +62,17 @@ enum TimeControlParametersType {
 
     struct Absolute: Codable {
         var pauseOnWeekends: Bool
-        var speed: SpeedTypes
-        var system: TimeControlTypes
-        var timeControl: TimeControlTypes
+        var speed: SpeedType
+        var system: TimeControlType
+        var timeControl: TimeControlType
 
         var totalTime: Int
     }
 
     struct None: Codable {
         var pauseOnWeekends: Bool
-        var speed: SpeedTypes
-        var system: TimeControlTypes
-        var timeControl: TimeControlTypes
+        var speed: SpeedType
+        var system: TimeControlType
+        var timeControl: TimeControlType
     }
 }
