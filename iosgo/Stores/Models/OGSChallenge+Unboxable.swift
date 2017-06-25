@@ -31,7 +31,7 @@ extension OGSChallenge: Unboxable {
         gameId = try unboxer.unbox(key: "game_id")
         challengerColor = try unboxer.unbox(key: "challenger_color")
 
-        let formatter = TimeControlParametersFormatter()
-        timeControlParameters = try unboxer.unbox(key: "time_control_parameters", formatter: formatter)
+        let parametersJson = unboxer.dictionary["time_control_parameters"]! as! UnboxableDictionary
+        timeControlParameters = try TimeControlParametersFormatter.conditionalUnbox(dictionary: parametersJson)
     }
 }

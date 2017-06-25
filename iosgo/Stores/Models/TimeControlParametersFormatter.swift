@@ -48,4 +48,14 @@ class TimeControlParametersFormatter: UnboxFormatter {
             return nil
         }
     }
+
+    static func conditionalUnbox(dictionary: UnboxableDictionary) throws -> TimeControlParametersType {
+        let data = try! JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
+        let str = String(data: data, encoding: .ascii)!
+        let newDict = ["anything": str] as UnboxableDictionary
+        let unboxer2 = Unboxer(dictionary: newDict)
+        let timeControlParameters: TimeControlParametersType = try unboxer2.unbox(key: "anything", formatter: TimeControlParametersFormatter())
+
+        return timeControlParameters
+    }
 }
