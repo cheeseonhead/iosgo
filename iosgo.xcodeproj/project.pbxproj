@@ -104,7 +104,7 @@
 		AD05ABE155BC1FDEA29394EF /* OGSSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05ADFB7AF57B9E129EBAFC /* OGSSocketManager.swift */; };
 		AD05ADA1EA08A794B27AD4DB /* OGSSessionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AD7F65C8CB89B123BE4D /* OGSSessionWorker.swift */; };
 		AD05ADCD7A6778EA6AAF16D7 /* OGSRootViewControllerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A6413FABA7AABBEEC6FA /* OGSRootViewControllerTransition.swift */; };
-		AD05AE59A5BF1697CECE11D9 /* OGSMeStoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AAF6F23605943C8B4799 /* OGSMeStoreModels.swift */; };
+		AD05AE59A5BF1697CECE11D9 /* OGSUser+Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AAF6F23605943C8B4799 /* OGSUser+Unboxable.swift */; };
 		AD05AE7444BF09E5E49DE6ED /* OGSSocketManagerTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A7F90F265AA6604A16CB /* OGSSocketManagerTypes.swift */; };
 		AD05AE74C92DA8328A33761F /* OGSDiskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05ABBB3826AA77B8B017A3 /* OGSDiskManager.swift */; };
 		AD05AE8F87A1E735676D8715 /* OGSRootViewControllerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AC0F9046A97D43794663 /* OGSRootViewControllerWorker.swift */; };
@@ -223,7 +223,7 @@
 		AD05A8CBB6DCEBEA0F2DBE28 /* OGSDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSDispatcher.swift; sourceTree = "<group>"; };
 		AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		AD05A9ECDDD9E6ED45019693 /* OGSAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSAppDelegate.swift; sourceTree = "<group>"; };
-		AD05AAF6F23605943C8B4799 /* OGSMeStoreModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSMeStoreModels.swift; sourceTree = "<group>"; };
+		AD05AAF6F23605943C8B4799 /* OGSUser+Unboxable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OGSUser+Unboxable.swift"; sourceTree = "<group>"; };
 		AD05ABBB3826AA77B8B017A3 /* OGSDiskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSDiskManager.swift; sourceTree = "<group>"; };
 		AD05ABC463A960E74C9B2CA0 /* OGSChooseGameCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSChooseGameCollectionViewController.swift; sourceTree = "<group>"; };
 		AD05AC0F9046A97D43794663 /* OGSRootViewControllerWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSRootViewControllerWorker.swift; sourceTree = "<group>"; };
@@ -289,11 +289,12 @@
 		341856A31EFF628E00DAF3CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				34C3DDB31EFF2B79001C8AF4 /* TimeControlParametersFormatter.swift */,
+				AD05AAF6F23605943C8B4799 /* OGSUser+Unboxable.swift */,
 				34DF468A1EFB5608009EC397 /* Game+Unboxable.swift */,
 				341856A61EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift */,
 				8405C723D11B0D56D6CFDD08 /* OGSLoginInfo+Unboxable.swift */,
 				341856A41EFF62D300DAF3CF /* TimeControlParameters+Unboxable.swift */,
+				34C3DDB31EFF2B79001C8AF4 /* TimeControlParametersFormatter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -618,7 +619,6 @@
 			isa = PBXGroup;
 			children = (
 				AD05A640228B6DCB613DE7BA /* OGSMeStore.swift */,
-				AD05AAF6F23605943C8B4799 /* OGSMeStoreModels.swift */,
 			);
 			path = MeStore;
 			sourceTree = "<group>";
@@ -968,7 +968,7 @@
 				AD05AB67C74B02B834E8CFA8 /* OGSMeStore.swift in Sources */,
 				346FA1BB1EF746A8001378A6 /* PlayViewController.swift in Sources */,
 				3464414F1EE4BA06008718D7 /* SplashModels.swift in Sources */,
-				AD05AE59A5BF1697CECE11D9 /* OGSMeStoreModels.swift in Sources */,
+				AD05AE59A5BF1697CECE11D9 /* OGSUser+Unboxable.swift in Sources */,
 				AD05AE8F87A1E735676D8715 /* OGSRootViewControllerWorker.swift in Sources */,
 				3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */,
 				346441521EE4BA06008718D7 /* SplashViewController.swift in Sources */,
