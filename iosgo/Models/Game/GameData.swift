@@ -35,6 +35,7 @@ struct GameData {
 
     enum Phase: String, UnboxableEnum {
         case play, finished
+        case stoneRemoval = "stone removal"
     }
 
     // MARK: - Time
@@ -82,7 +83,7 @@ struct GameData {
     var scoreTerritory: Bool
 
     // MARK: - Review
-    var reviews: [String: Any]
+    var reviews: [String: Any]?
 
     // MARK: - Others
     var metaGroups: [Any]

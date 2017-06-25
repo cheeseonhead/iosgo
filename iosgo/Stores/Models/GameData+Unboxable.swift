@@ -67,7 +67,7 @@ extension GameData: Unboxable {
         scoreTerritory = try unboxer.unbox(key: "score_territory")
 
         // MARK: - Review
-        reviews = try unboxer.unbox(key: "reviews")
+        reviews = unboxer.unbox(key: "reviews")
 
         // MARK: - Others
         metaGroups = try unboxer.unbox(key: "meta_groups")
