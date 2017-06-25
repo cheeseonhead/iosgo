@@ -7,3 +7,10 @@
 //
 
 import Foundation
+import Unbox
+
+extension Int: UnboxableKey {
+    public static func transform(unboxedKey: String) -> Int? {
+        return Int(unboxedKey)
+    }
+}
