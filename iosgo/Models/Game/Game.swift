@@ -44,7 +44,7 @@ struct Game {
 
     // MARK: - Time
     var timeControl: TimeControlTypes // time_control
-    //    var timeControlParameters: TimeControlParametersType
+    var timeControlParameters: TimeControlParametersType
     //    var timePerMove: Int
     //    var pauseOnWeekends: Bool
     //
