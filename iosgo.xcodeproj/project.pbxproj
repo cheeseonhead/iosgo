@@ -28,6 +28,7 @@
 		34934B761EF240320096D3C4 /* CGSize+Scalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34934B751EF240320096D3C4 /* CGSize+Scalable.swift */; };
 		34970F041EFFFBD800623ED0 /* SpeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68CD71EFF983E0010EFA5 /* SpeedType.swift */; };
 		34970F061F00A52A00623ED0 /* StoneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F051F00A52A00623ED0 /* StoneType.swift */; };
+		34970F091F00A67A00623ED0 /* Stone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F081F00A67A00623ED0 /* Stone.swift */; };
 		34A2B55E1EEA4AD90074525B /* BoardScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 34A2B55D1EEA4AD90074525B /* BoardScene.sks */; };
 		34A2B5A51EEBD46C0074525B /* GridNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2B5A41EEBD46C0074525B /* GridNode.swift */; };
 		34A2B5A91EEBDD500074525B /* Play.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34A2B5A81EEBDD500074525B /* Play.storyboard */; };
@@ -153,6 +154,7 @@
 		346945321EF749DD004E3164 /* PlayWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayWorker.swift; sourceTree = "<group>"; };
 		34934B751EF240320096D3C4 /* CGSize+Scalable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Scalable.swift"; sourceTree = "<group>"; };
 		34970F051F00A52A00623ED0 /* StoneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneType.swift; sourceTree = "<group>"; };
+		34970F081F00A67A00623ED0 /* Stone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stone.swift; sourceTree = "<group>"; };
 		34A2B55D1EEA4AD90074525B /* BoardScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BoardScene.sks; sourceTree = "<group>"; };
 		34A2B5A41EEBD46C0074525B /* GridNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridNode.swift; sourceTree = "<group>"; };
 		34A2B5A81EEBDD500074525B /* Play.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Play.storyboard; sourceTree = "<group>"; };
@@ -353,6 +355,14 @@
 			path = CGSize;
 			sourceTree = "<group>";
 		};
+		34970F071F00A63A00623ED0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				34970F081F00A67A00623ED0 /* Stone.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		34A2B55B1EEA4AA30074525B /* Play */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,6 +381,7 @@
 		34A2B55C1EEA4AB70074525B /* BoardScene */ = {
 			isa = PBXGroup;
 			children = (
+				34970F071F00A63A00623ED0 /* Models */,
 				3414A6FB1EF2239E00E28D6D /* Workers */,
 				34A2B5A31EEBD4580074525B /* Nodes */,
 				34ACC8AA1EEBDF7900F2B376 /* BoardScene.swift */,
@@ -968,6 +979,7 @@
 				8405CEA1C88BF254C0A34A28 /* OGSOauthApiStore.swift in Sources */,
 				5612FD111E63C60B000B1973 /* OGSChooseGamePresenter.swift in Sources */,
 				5612FD101E63C60B000B1973 /* OGSChooseGameModels.swift in Sources */,
+				34970F091F00A67A00623ED0 /* Stone.swift in Sources */,
 				8405C06692E15B7D16D86610 /* OGSNotificationCenter.swift in Sources */,
 				34FEDDA71EFFF02F00EC1B5F /* PlayInteractor.swift in Sources */,
 				AD05AF37C68CBA22A3DC256C /* OGSDispatcher.swift in Sources */,

@@ -22,11 +22,6 @@ enum Play {
 
         struct ViewModel {
             var stones: [Stone]
-
-            struct Stone {
-                var type: StoneType
-                var position: GridPoint
-            }
         }
     }
 }
