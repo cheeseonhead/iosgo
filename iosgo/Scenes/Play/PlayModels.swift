@@ -18,6 +18,7 @@ enum Play {
         }
 
         struct Response {
+            var stones: [Stone]
         }
 
         struct ViewModel {

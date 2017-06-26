@@ -22,6 +22,7 @@ class PlayInteractor: PlayBusinessLogic, PlayDataStore {
     var worker: PlayWorker?
 
     func loadScene(request _: Play.LoadScene.Request) {
-        presenter?.presentLoadScene(response: Play.LoadScene.Response())
+        presenter?.presentLoadScene(response: Play.LoadScene.Response(stones: [Stone(type: .black, point: GridPoint(row: 1, col: 1)),
+                                                                               Stone(type: .white, point: GridPoint(row: 2, col: 2))]))
     }
 }
