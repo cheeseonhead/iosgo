@@ -21,6 +21,7 @@ class PlayPresenter: PlayPresentationLogic {
     weak var viewController: PlayDisplayLogic?
 
     func presentLoadScene(response _: Play.LoadScene.Response) {
-        viewController?.displayLoadScene(viewModel: Play.LoadScene.ViewModel())
+        let model = Play.LoadScene.ViewModel(stones: [])
+        viewController?.displayLoadScene(viewModel: model)
     }
 }

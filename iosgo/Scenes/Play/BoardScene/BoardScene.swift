@@ -17,7 +17,7 @@ class BoardScene: SKScene {
     // MARK: Workers
     var stoneWorker: StoneWorker!
 
-    var currentType: StoneNode.StoneType = .black
+    var currentType: StoneType = .black
 
     override func didMove(to _: SKView) {
         woodBoard = self.childNode(withName: "WoodBoard") as! SKSpriteNode
