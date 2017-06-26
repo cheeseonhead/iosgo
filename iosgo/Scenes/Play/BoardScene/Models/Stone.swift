@@ -10,5 +10,5 @@ import Foundation
 
 struct Stone {
     var type: StoneType
-    var position: GridPoint
+    var point: GridPoint
 }

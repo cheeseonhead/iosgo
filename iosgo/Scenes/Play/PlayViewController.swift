@@ -23,6 +23,7 @@ class PlayViewController: UIViewController {
     var router: (NSObjectProtocol & PlayRoutingLogic & PlayDataPassing)?
 
     @IBOutlet weak var boardView: SKView!
+    var boardScene: BoardScene!
 
     // MARK: Object lifecycle
 
@@ -38,12 +39,14 @@ class PlayViewController: UIViewController {
 
     override func viewDidLoad() {
         // Load the SKScene from 'GameScene.sks'
-        if let scene = SKScene(fileNamed: "BoardScene") {
+        if let scene = SKScene(fileNamed: "BoardScene") as? BoardScene {
+            boardScene = scene
+
             // Set the scale mode to scale to fit the window
-            scene.scaleMode = .aspectFit
+            boardScene.scaleMode = .aspectFit
 
             // Present the scene
-            boardView.presentScene(scene)
+            boardView.presentScene(boardScene)
         }
 
         boardView.ignoresSiblingOrder = true
@@ -57,7 +60,8 @@ class PlayViewController: UIViewController {
 
 // MARK: - Display
 extension PlayViewController: PlayDisplayLogic {
-    func displayLoadScene(viewModel _: Play.LoadScene.ViewModel) {
+    func displayLoadScene(viewModel: Play.LoadScene.ViewModel) {
+        boardScene.placeStones(viewModel.stones)
     }
 }
 

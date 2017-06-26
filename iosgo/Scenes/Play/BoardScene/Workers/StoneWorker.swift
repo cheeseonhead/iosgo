@@ -33,6 +33,13 @@ extension StoneWorker {
 
 // MARK: - Regular Stones
 extension StoneWorker {
+
+    func placeStones(_ stones: [Stone]) {
+        for stone in stones {
+            _ = placeStone(type: stone.type, at: stone.point)
+        }
+    }
+
     func placeStone(type: StoneType, at point: GridPoint) -> Bool {
         guard !isOccupied(point: point) else {
             return false
