@@ -27,6 +27,7 @@
 		346945331EF749DD004E3164 /* PlayWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346945321EF749DD004E3164 /* PlayWorker.swift */; };
 		34934B761EF240320096D3C4 /* CGSize+Scalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34934B751EF240320096D3C4 /* CGSize+Scalable.swift */; };
 		34970F041EFFFBD800623ED0 /* SpeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68CD71EFF983E0010EFA5 /* SpeedType.swift */; };
+		34970F061F00A52A00623ED0 /* StoneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F051F00A52A00623ED0 /* StoneType.swift */; };
 		34A2B55E1EEA4AD90074525B /* BoardScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 34A2B55D1EEA4AD90074525B /* BoardScene.sks */; };
 		34A2B5A51EEBD46C0074525B /* GridNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2B5A41EEBD46C0074525B /* GridNode.swift */; };
 		34A2B5A91EEBDD500074525B /* Play.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34A2B5A81EEBDD500074525B /* Play.storyboard */; };
@@ -151,6 +152,7 @@
 		346441531EE4BDF6008718D7 /* Splash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		346945321EF749DD004E3164 /* PlayWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayWorker.swift; sourceTree = "<group>"; };
 		34934B751EF240320096D3C4 /* CGSize+Scalable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Scalable.swift"; sourceTree = "<group>"; };
+		34970F051F00A52A00623ED0 /* StoneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneType.swift; sourceTree = "<group>"; };
 		34A2B55D1EEA4AD90074525B /* BoardScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BoardScene.sks; sourceTree = "<group>"; };
 		34A2B5A41EEBD46C0074525B /* GridNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridNode.swift; sourceTree = "<group>"; };
 		34A2B5A81EEBDD500074525B /* Play.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Play.storyboard; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 				342EC8191EF8BC9B00C3A7E7 /* TimeControlType.swift */,
 				34C3DDB11EFF2B41001C8AF4 /* TimeControlParametersType.swift */,
 				34A68CDB1EFF98BE0010EFA5 /* PlayerType.swift */,
+				34970F051F00A52A00623ED0 /* StoneType.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -941,6 +944,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56BD888F1E5522530098E50B /* OGSButton.swift in Sources */,
+				34970F061F00A52A00623ED0 /* StoneType.swift in Sources */,
 				AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */,
 				8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */,
 				3414A6FD1EF223BF00E28D6D /* StoneWorker.swift in Sources */,
