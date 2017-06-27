@@ -34,7 +34,7 @@ extension StoneWorker {
 // MARK: - Regular Stones
 extension StoneWorker {
 
-    func placeStones(_ stones: [Stone]) {
+    func placeStones(_ stones: [GridStone]) {
         for stone in stones {
             _ = placeStone(type: stone.type, at: stone.point)
         }

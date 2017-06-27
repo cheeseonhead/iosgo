@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Stone {
+struct GridStone {
     var type: StoneType
     var point: GridPoint
 }

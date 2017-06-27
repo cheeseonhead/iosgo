@@ -11,7 +11,7 @@ import Foundation
 class PlayWorker {
 
     enum LoadResult {
-        case success(stones: [Stone])
+        case success(stones: [GridStone])
         case error(message: String)
     }
 
@@ -48,13 +48,13 @@ class PlayWorker {
 
 extension PlayWorker {
 
-    func getStones(from game: Game) -> [Stone] {
+    func getStones(from game: Game) -> [GridStone] {
 
-        var stones = [Stone]()
+        var stones = [GridStone]()
         var currentType: StoneType = (game.gameData.initialPlayer == .black) ? .black : .white
 
         for move in game.moves {
-            let stone = Stone(type: currentType, point: gridPoint(from: move, game: game))
+            let stone = GridStone(type: currentType, point: gridPoint(from: move, game: game))
             stones.append(stone)
 
             currentType = (currentType == .black) ? .white : .black

@@ -18,11 +18,11 @@ enum Play {
         }
 
         struct Response {
-            var stones: [Stone]
+            var stones: [GridStone]
         }
 
         struct ViewModel {
-            var stones: [Stone]
+            var stones: [GridStone]
         }
     }
 }
