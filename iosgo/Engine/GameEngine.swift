@@ -12,12 +12,14 @@ private typealias Group = [BoardPoint]
 
 class GameEngine {
 
-    var currentMarker = 0
-
     var game: Game
+
+    var currentMarker = 0
     var playingPlayer: PlayerType
     var board: Board
     var markGrid = [BoardPoint: Int]()
+    var blackPlayerPrisoners = 0
+    var whitePlayerPrisoners = 1
 
     required init(game: Game) {
         self.game = game
@@ -76,11 +78,36 @@ class GameEngine {
 private extension GameEngine {
 
     func countLiberties(group: Group) -> Int {
-        return 0
+        var count = 0
+
+        for point in group {
+            forEachNeighbor(of: point, reducer: { neighbor in
+                if board.stone(at: neighbor) == nil {
+                    count += 1
+                }
+            })
+        }
+
+        return count
     }
 
     func captureGroup(_ group: Group) -> Int {
-        return 0
+        for point in group {
+            guard let stone = board.stone(at: point) else {
+                continue
+            }
+
+            switch stone.type {
+            case .black:
+                blackPlayerPrisoners += 1
+            case .white:
+                whitePlayerPrisoners += 1
+            }
+
+            board.removeStone(at: point)
+        }
+
+        return group.count
     }
 }
 
