@@ -11,8 +11,7 @@
 
 import UIKit
 
-protocol SplashRouterInput
-{
+protocol SplashRouterInput {
     func navigateToLogin()
     func navigateToLobby()
 }
@@ -21,32 +20,31 @@ protocol SplashRouterDataProvider: class {}
 
 protocol SplashRouterDataReceiver: class {}
 
-class SplashRouter: SplashRouterInput
-{
+class SplashRouter: SplashRouterInput {
     weak var viewController: UIViewController!
     private weak var dataProvider: SplashRouterDataProvider!
     weak var dataReceiver: SplashRouterDataReceiver!
 
-    init(viewController: UIViewController, dataProvider: SplashRouterDataProvider, dataReceiver: SplashRouterDataReceiver)
-    {
+    init(viewController: UIViewController, dataProvider: SplashRouterDataProvider, dataReceiver: SplashRouterDataReceiver) {
         self.viewController = viewController
         self.dataProvider = dataProvider
         self.dataReceiver = dataReceiver
     }
 
-    func navigateToLogin()
-    {
+    func navigateToLogin() {
         let nextVC = UIStoryboard(name: "OGSLoginViewController", bundle: nil).instantiateInitialViewController()!
         let transition = OGSRootViewControllerTransition(from: viewController, to: nextVC)
 
         transition.execute(completion: nil)
     }
 
-    func navigateToLobby()
-    {
-        let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()!
-        let transition = OGSRootViewControllerTransition(from: viewController, to: nextVC)
+    func navigateToLobby() {
+        //        let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()!
+        //        let transition = OGSRootViewControllerTransition(from: viewController, to: nextVC)
+        //
+        //        transition.execute(completion: nil)
 
-        transition.execute(completion: nil)
+        let nextVC = UIStoryboard(name: "Play", bundle: nil).instantiateInitialViewController()!
+        viewController.present(nextVC, animated: true, completion: nil)
     }
 }

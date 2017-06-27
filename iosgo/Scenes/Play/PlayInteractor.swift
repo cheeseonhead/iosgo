@@ -23,7 +23,7 @@ class PlayInteractor: PlayBusinessLogic, PlayDataStore {
 
     func loadScene(request _: Play.LoadScene.Request) {
 
-        playWorker.loadGame(id: 2751) { result in
+        playWorker.loadGame(id: 2860) { result in
             switch result {
             case .success(let stones):
                 let response = Play.LoadScene.Response(stones: stones)

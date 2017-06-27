@@ -33,6 +33,9 @@ class PlayWorker {
                 self.game = game
                 let stones = self.getStones(from: game)
                 loadResult = .success(stones: stones)
+
+                let gameEngine = GameEngine(game: game)
+                print(gameEngine)
             case .error(let type):
                 switch type {
                 case .genericError(let message):
