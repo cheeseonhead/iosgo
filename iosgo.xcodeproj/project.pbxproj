@@ -21,6 +21,7 @@
 		3452AAF21F01EBBE008F838E /* BoardPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452AAF11F01EBBE008F838E /* BoardPoint.swift */; };
 		3452AAF41F01F004008F838E /* GameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452AAF31F01F004008F838E /* GameError.swift */; };
 		3452AAF61F01F098008F838E /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452AAF51F01F098008F838E /* Board.swift */; };
+		3452AAF81F01F264008F838E /* BoardSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452AAF71F01F264008F838E /* BoardSize.swift */; };
 		3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441471EE4BA06008718D7 /* SplashConfigurator.swift */; };
 		3464414E1EE4BA06008718D7 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441481EE4BA06008718D7 /* SplashInteractor.swift */; };
 		3464414F1EE4BA06008718D7 /* SplashModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441491EE4BA06008718D7 /* SplashModels.swift */; };
@@ -153,6 +154,7 @@
 		3452AAF11F01EBBE008F838E /* BoardPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPoint.swift; sourceTree = "<group>"; };
 		3452AAF31F01F004008F838E /* GameError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameError.swift; sourceTree = "<group>"; };
 		3452AAF51F01F098008F838E /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		3452AAF71F01F264008F838E /* BoardSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSize.swift; sourceTree = "<group>"; };
 		346441471EE4BA06008718D7 /* SplashConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashConfigurator.swift; sourceTree = "<group>"; };
 		346441481EE4BA06008718D7 /* SplashInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		346441491EE4BA06008718D7 /* SplashModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashModels.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				3452AAF11F01EBBE008F838E /* BoardPoint.swift */,
 				3452AAF31F01F004008F838E /* GameError.swift */,
 				3452AAF51F01F098008F838E /* Board.swift */,
+				3452AAF71F01F264008F838E /* BoardSize.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -1038,6 +1041,7 @@
 				AD05ABE155BC1FDEA29394EF /* OGSSocketManager.swift in Sources */,
 				AD05AE7444BF09E5E49DE6ED /* OGSSocketManagerTypes.swift in Sources */,
 				AD05A664F189FAC228843217 /* OGSSeekGraphSocketStoreModels.swift in Sources */,
+				3452AAF81F01F264008F838E /* BoardSize.swift in Sources */,
 				8405CF0DBD2A4DAB0A3A30E7 /* OGSLoginInfo+Unboxable.swift in Sources */,
 				3452AAF61F01F098008F838E /* Board.swift in Sources */,
 				34A68CDC1EFF98BE0010EFA5 /* PlayerType.swift in Sources */,
