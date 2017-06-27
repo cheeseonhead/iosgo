@@ -19,10 +19,18 @@ protocol PlayBusinessLogic {
 class PlayInteractor: PlayBusinessLogic, PlayDataStore {
 
     var presenter: PlayPresentationLogic?
-    var worker: PlayWorker?
+    var playWorker = PlayWorker(gameStore: GameStore(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
 
     func loadScene(request _: Play.LoadScene.Request) {
-        presenter?.presentLoadScene(response: Play.LoadScene.Response(stones: [Stone(type: .black, point: GridPoint(row: 1, col: 1)),
-                                                                               Stone(type: .white, point: GridPoint(row: 2, col: 2))]))
+
+        playWorker.loadGame(id: 2751) { result in
+            switch result {
+            case .success(let stones):
+                let response = Play.LoadScene.Response(stones: stones)
+                self.presenter?.presentLoadScene(response: response)
+            case .error(let message):
+                print(message)
+            }
+        }
     }
 }
