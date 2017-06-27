@@ -9,7 +9,15 @@
 import Foundation
 
 // Starts with (0, 0) at the top left of the board
-struct BoardPoint {
+struct BoardPoint: Hashable {
     var row: Int
     var column: Int
+
+    var hashValue: Int {
+        return "\(row), \(column)".hashValue
+    }
+
+    static func ==(lhs: BoardPoint, rhs: BoardPoint) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
 }
