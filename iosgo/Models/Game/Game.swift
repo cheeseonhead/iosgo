@@ -84,4 +84,9 @@ struct Game {
     //    enum Source: String, UnboxableEnum {
     //        case play
     //    }
+
+    // MARK: - Derived
+    var moves: [Move] {
+        return gameData.moves
+    }
 }
