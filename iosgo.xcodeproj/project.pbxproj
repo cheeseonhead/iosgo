@@ -17,6 +17,8 @@
 		342EC81A1EF8BC9B00C3A7E7 /* TimeControlType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EC8191EF8BC9B00C3A7E7 /* TimeControlType.swift */; };
 		342FACD71EFF805800960585 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342FACD61EFF805800960585 /* GameData.swift */; };
 		34455DC71EFF75AE002199D0 /* UnboxFormatter+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34455DC61EFF75AE002199D0 /* UnboxFormatter+Dictionary.swift */; };
+		3452AAF01F01E5BF008F838E /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452AAEF1F01E5BF008F838E /* GameEngine.swift */; };
+		3452AAF21F01EBBE008F838E /* BoardPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452AAF11F01EBBE008F838E /* BoardPoint.swift */; };
 		3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441471EE4BA06008718D7 /* SplashConfigurator.swift */; };
 		3464414E1EE4BA06008718D7 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441481EE4BA06008718D7 /* SplashInteractor.swift */; };
 		3464414F1EE4BA06008718D7 /* SplashModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441491EE4BA06008718D7 /* SplashModels.swift */; };
@@ -143,6 +145,8 @@
 		342EC8191EF8BC9B00C3A7E7 /* TimeControlType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControlType.swift; sourceTree = "<group>"; };
 		342FACD61EFF805800960585 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		34455DC61EFF75AE002199D0 /* UnboxFormatter+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UnboxFormatter+Dictionary.swift"; sourceTree = "<group>"; };
+		3452AAEF1F01E5BF008F838E /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
+		3452AAF11F01EBBE008F838E /* BoardPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPoint.swift; sourceTree = "<group>"; };
 		346441471EE4BA06008718D7 /* SplashConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashConfigurator.swift; sourceTree = "<group>"; };
 		346441481EE4BA06008718D7 /* SplashInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		346441491EE4BA06008718D7 /* SplashModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashModels.swift; sourceTree = "<group>"; };
@@ -331,6 +335,15 @@
 			path = Unbox;
 			sourceTree = "<group>";
 		};
+		3452AAEE1F01E562008F838E /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				3452AAEF1F01E5BF008F838E /* GameEngine.swift */,
+				3452AAF11F01EBBE008F838E /* BoardPoint.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
 		345881771EE4A99700FE773B /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +446,7 @@
 		565D246D1E54A5A500EF62CD /* iosgo */ = {
 			isa = PBXGroup;
 			children = (
+				3452AAEE1F01E562008F838E /* Engine */,
 				565D24801E54A5A500EF62CD /* Info.plist */,
 				565D247B1E54A5A500EF62CD /* Assets.xcassets */,
 				AD05A9249FEBFC41418217D5 /* Additions */,
@@ -960,6 +974,7 @@
 				8405CB5F7BAD2E27B9786979 /* Temp.swift in Sources */,
 				5612FD0F1E63C60B000B1973 /* OGSChooseGameInteractor.swift in Sources */,
 				3464414E1EE4BA06008718D7 /* SplashInteractor.swift in Sources */,
+				3452AAF21F01EBBE008F838E /* BoardPoint.swift in Sources */,
 				5612FD131E63C60B000B1973 /* OGSChooseGameViewController.swift in Sources */,
 				56FC0C091E9C85F100119D0C /* OGSChooseGameCollectionViewCell.swift in Sources */,
 				5612FD0E1E63C60B000B1973 /* OGSChooseGameConfigurator.swift in Sources */,
@@ -978,6 +993,7 @@
 				346441511EE4BA06008718D7 /* SplashRouter.swift in Sources */,
 				34C3DDB41EFF2B79001C8AF4 /* TimeControlParametersFormatter.swift in Sources */,
 				8405C95C6D25905BDEEB6F5C /* OGSBetaConfiguration.swift in Sources */,
+				3452AAF01F01E5BF008F838E /* GameEngine.swift in Sources */,
 				8405CD093E23DC1A0921DAA5 /* OGSConfigurationProtocol.swift in Sources */,
 				8405C33DABB22CF98928A07E /* OGSUserSettings.swift in Sources */,
 				8405C1BD724D953FE34DDC35 /* OGSSeekGraphSocketStore.swift in Sources */,
