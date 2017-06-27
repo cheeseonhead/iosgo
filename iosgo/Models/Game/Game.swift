@@ -86,7 +86,7 @@ struct Game {
     //    }
 
     // MARK: - Derived
-    var moves: [Move] {
+    var moves: [BoardPoint] {
         return gameData.moves
     }
 }

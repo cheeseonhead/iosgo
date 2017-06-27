@@ -63,9 +63,9 @@ extension PlayWorker {
         return stones
     }
 
-    private func gridPoint(from move: Move, game: Game) -> GridPoint {
-        let row = game.height - move.y
-        let col = move.x + 1
+    private func gridPoint(from move: BoardPoint, game: Game) -> GridPoint {
+        let row = game.height - move.row
+        let col = move.column + 1
         return GridPoint(row: row, col: col)
     }
 }

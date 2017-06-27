@@ -79,18 +79,18 @@ struct GameData {
     var metaGroups: [Any]
 
     // MARK: - Derived
-    var moves: [Move]
+    var moves: [BoardPoint]
 }
 
 extension GameData {
 
-    static func createMoves(from genericMoves: [[Int]]) -> [Move] {
-        var moves = [Move]()
+    static func createMoves(from genericMoves: [[Int]]) -> [BoardPoint] {
+        var moves = [BoardPoint]()
 
         for genericMove in genericMoves {
             let col = genericMove[0]
             let row = genericMove[1]
-            let move = Move(x: col, y: row)
+            let move = BoardPoint(row: row, column: col)
             moves.append(move)
         }
 
