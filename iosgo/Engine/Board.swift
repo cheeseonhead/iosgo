@@ -34,4 +34,8 @@ extension Board {
         let stone = BoardStone(type: type)
         board[point] = stone
     }
+
+    mutating func removeStone(at point: BoardPoint) {
+        board.removeValue(forKey: point)
+    }
 }

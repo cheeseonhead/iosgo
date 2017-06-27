@@ -9,4 +9,5 @@
 import Foundation
 
 enum GameError: Error {
+    case generic(message: String)
 }
