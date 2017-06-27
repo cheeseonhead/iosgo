@@ -33,7 +33,14 @@ extension StoneWorker {
 
 // MARK: - Regular Stones
 extension StoneWorker {
-    func placeStone(type: StoneNode.StoneType, at point: GridPoint) -> Bool {
+
+    func placeStones(_ stones: [Stone]) {
+        for stone in stones {
+            _ = placeStone(type: stone.type, at: stone.point)
+        }
+    }
+
+    func placeStone(type: StoneType, at point: GridPoint) -> Bool {
         guard !isOccupied(point: point) else {
             return false
         }
@@ -60,7 +67,7 @@ extension StoneWorker {
 
 // MARK: - Ghost Stone
 extension StoneWorker {
-    func createGhostStone(type: StoneNode.StoneType) -> Bool {
+    func createGhostStone(type: StoneType) -> Bool {
         guard ghostStone == nil else {
             return false
         }

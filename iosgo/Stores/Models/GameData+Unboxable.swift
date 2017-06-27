@@ -34,7 +34,7 @@ extension GameData: Unboxable {
         timeControl = try TimeControlParametersFormatter().conditionalUnbox(dictionary: parameters)
         //    clock = try unboxer.unbox(")Clock
         startTime = try unboxer.unbox(key: "start_time")
-        pausedSince = try unboxer.unbox(key: "paused_since")
+        pausedSince = unboxer.unbox(key: "paused_since")
 
         // MARK: - Gameplay
         allowKo = try unboxer.unbox(key: "allow_ko")
@@ -47,13 +47,14 @@ extension GameData: Unboxable {
         opponentPlaysFirstAfterResume = try unboxer.unbox(key: "opponent_plays_first_after_resume")
 
         // MARK: - Game
-        // moves
+        genericMoves = try unboxer.unbox(key: "moves")
+        moves = GameData.createMoves(from: genericMoves)
         conditionalMoves = try unboxer.unbox(key: "conditional_moves")
         initialState = try unboxer.unbox(key: "initial_state")
         history = try unboxer.unbox(key: "history")
 
         // MARK: - Pause
-        pauseControl = try unboxer.unbox(key: "pause_control")
+        pauseControl = unboxer.unbox(key: "pause_control")
 
         // MARK: - Scoring
         scoreStones = try unboxer.unbox(key: "score_stones") // score_stones

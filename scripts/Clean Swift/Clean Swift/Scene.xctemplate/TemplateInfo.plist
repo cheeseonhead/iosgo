@@ -10,16 +10,6 @@
   <string>Xcode.IDEKit.TextSubstitutionFileTemplateKind</string>
   <key>Options</key>
   <array>
-    <dict>
-			<key>Default</key>
-			<string>___VARIABLE_sceneName:identifier___</string>
-			<key>Identifier</key>
-			<string>productName</string>
-			<key>Type</key>
-			<string>static</string>
-    </dict>
-
-		<!-- Name of the Scene -->
 		<dict>
 			<key>Description</key>
 			<string>The name of the scene to create</string>
@@ -34,78 +24,129 @@
 			<key>Type</key>
 			<string>text</string>
 		</dict>
-
-		<!-- Name of Usecase Action -->
-		<!-- <dict>
-			<key>Description</key>
-			<string>The name of action of the first usecase of the scene</string>
-			<key>Identifier</key>
-			<string>action</string>
-			<key>Name</key>
-			<string>Usecase Action:</string>
-			<key>NotPersisted</key>
-			<true/>
-			<key>Required</key>
-			<true/>
-			<key>Type</key>
-			<string>text</string>
-		</dict> -->
-
-		<!-- Name of Usecase Subject -->
-		<!-- <dict>
-			<key>Description</key>
-			<string>The name of subject of the first usecase of the scene</string>
-			<key>Identifier</key>
-			<string>subject</string>
-			<key>Name</key>
-			<string>Usecase Subject:</string>
-			<key>NotPersisted</key>
-			<true/>
-			<key>Required</key>
-			<true/>
-			<key>Type</key>
-			<string>text</string>
-		</dict> -->
-
-		<!-- Name of the Fist Usecase -->
-		<dict>
-			<key>Identifier</key>
-			<string>usecase</string>
+    <dict>
 			<key>Default</key>
-			<string>___VARIABLE_action______VARIABLE_subject___</string>
+			<string>___VARIABLE_sceneName:identifier___</string>
+			<key>Identifier</key>
+			<string>productName</string>
 			<key>Type</key>
 			<string>static</string>
-		</dict>
-
-		<!-- Superclass Selection -->
-		<dict>
+    </dict>
+    <dict>
+			<key>Default</key>
+			<string>___VARIABLE_sceneName:identifier___ViewController</string>
+			<key>Description</key>
+			<string>The view controller name</string>
 			<key>Identifier</key>
-			<string>viewControllerSubclass</string>
-
+			<string>viewControllerName</string>
+			<key>Name</key>
+			<string>View Controller Name:</string>
+			<key>Required</key>
+			<true/>
 			<key>Type</key>
-			<string>class</string>
-
+			<string>static</string>
+    </dict>
+    <dict>
+			<key>Default</key>
+			<string>___VARIABLE_sceneName:identifier___Interactor</string>
+			<key>Description</key>
+			<string>The interactor name</string>
+			<key>Identifier</key>
+			<string>interactorName</string>
+			<key>Name</key>
+			<string>Interactor Name:</string>
+			<key>Required</key>
+			<true/>
+			<key>Type</key>
+			<string>static</string>
+    </dict>
+    <dict>
+			<key>Default</key>
+			<string>___VARIABLE_sceneName:identifier___Presenter</string>
+			<key>Description</key>
+			<string>The presenter name</string>
+			<key>Identifier</key>
+			<string>presenterName</string>
+			<key>Name</key>
+			<string>Presenter Name:</string>
+			<key>Required</key>
+			<true/>
+			<key>Type</key>
+			<string>static</string>
+    </dict>
+    <dict>
+			<key>Default</key>
+			<string>___VARIABLE_sceneName:identifier___Router</string>
+			<key>Description</key>
+			<string>The router name</string>
+			<key>Identifier</key>
+			<string>routerName</string>
+			<key>Name</key>
+			<string>Router Name:</string>
+			<key>Required</key>
+			<true/>
+			<key>Type</key>
+			<string>static</string>
+    </dict>
+    <dict>
+			<key>Default</key>
+			<string>___VARIABLE_sceneName:identifier___Configurator</string>
+			<key>Description</key>
+			<string>The configurator name</string>
+			<key>Identifier</key>
+			<string>configuratorName</string>
+			<key>Name</key>
+			<string>Configurator Name:</string>
+			<key>Required</key>
+			<true/>
+			<key>Type</key>
+			<string>static</string>
+    </dict>
+    <dict>
+			<key>Default</key>
+			<string>___VARIABLE_sceneName:identifier___Worker</string>
+			<key>Description</key>
+			<string>The worker name</string>
+			<key>Identifier</key>
+			<string>workerName</string>
+			<key>Name</key>
+			<string>Worker Name:</string>
+			<key>Required</key>
+			<true/>
+			<key>Type</key>
+			<string>static</string>
+    </dict>
+    <dict>
+			<key>Default</key>
+			<string>___VARIABLE_sceneName:identifier___Models</string>
+			<key>Description</key>
+			<string>The model file name</string>
+			<key>Identifier</key>
+			<string>modelFileName</string>
+			<key>Name</key>
+			<string>Model File Name:</string>
+			<key>Required</key>
+			<true/>
+			<key>Type</key>
+			<string>static</string>
+    </dict>
+		<dict>
 			<key>Default</key>
 			<string>UIViewController</string>
-
 			<key>Description</key>
 			<string>What view controller class to subclass for the new scene</string>
-
 			<key>FallbackHeader</key>
 			<string>#import &lt;UIKit/UIKit.h&gt;</string>
-
+			<key>Identifier</key>
+			<string>viewControllerSubclass</string>
 			<key>Name</key>
 			<string>Subclass of:</string>
-
 			<key>NotPersisted</key>
 			<true/>
-
 			<key>Required</key>
 			<string>YES</string>
-
 			<key>Type</key>
 			<string>class</string>
-
 			<key>Values</key>
 			<array>
 				<string>UIViewController</string>
@@ -119,7 +160,7 @@
 		<string>com.apple.platform.iphoneos</string>
   </array>
 	<key>SortOrder</key>
-	<string>9</string>
+	<string>0</string>
   <key>Summary</key>
   <string>This generates a new scene using Uncle Bob's clean architecture.</string>
 </dict>
