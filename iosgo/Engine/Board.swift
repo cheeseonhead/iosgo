@@ -12,13 +12,26 @@ struct Board {
 
     var size: BoardSize
 
-    private var board = [BoardPoint: Stone]()
+    private var board = [BoardPoint: BoardStone]()
 
     init(size: BoardSize) {
         self.size = size
     }
+}
 
-    mutating func place(stone: Stone, at point: BoardPoint) {
+// MARK: - Getters
+extension Board {
+
+    func stone(at point: BoardPoint) -> BoardStone? {
+        return board[point]
+    }
+}
+
+// MARK: - Manipulation
+extension Board {
+
+    mutating func placeStone(type: StoneType, at point: BoardPoint) {
+        let stone = BoardStone(type: type)
         board[point] = stone
     }
 }
