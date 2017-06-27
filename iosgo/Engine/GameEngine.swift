@@ -14,11 +14,13 @@ class GameEngine {
 
     var currentMarker = 0
 
+    var game: Game
     var playingPlayer: PlayerType
     var board: Board
     var markGrid = [BoardPoint: Int]()
 
     required init(game: Game) {
+        self.game = game
         playingPlayer = (game.gameData.initialPlayer == .black) ? .black : .white
         self.board = Board(size: BoardSize(rows: game.height, columns: game.width))
 
@@ -31,7 +33,7 @@ class GameEngine {
         }
     }
 
-    func place(at point: BoardPoint, checkForKo _: Bool = false, errorOnSuperKo _: Bool = false, dontCheckForSuperKo _: Bool = false, dontCheckForSuicide _: Bool = false, isTrunkMove _: Bool = false) throws {
+    func place(at point: BoardPoint, checkForKo _: Bool = false, errorOnSuperKo _: Bool = false, dontCheckForSuperKo _: Bool = false, dontCheckForSuicide: Bool = false, isTrunkMove _: Bool = false) throws {
         guard board.size.contains(point: point) else {
             return
         }
@@ -42,7 +44,7 @@ class GameEngine {
 
         insertStone(for: playingPlayer, at: point)
 
-        let suicideMove = false
+        var suicideMove = false
         let playerGroup = getGroup(at: point, clearMarks: true)
         let opponentGroups = getConnectedGroups(to: playerGroup)
 
@@ -50,7 +52,35 @@ class GameEngine {
         print("PlayerGroup: \(playerGroup)")
         print("OpponentGroup: \(opponentGroups)")
 
+        var piecesRemoved = 0
+        for opponentGroup in opponentGroups {
+            if countLiberties(group: opponentGroup) == 0 {
+                piecesRemoved += captureGroup(opponentGroup)
+            }
+        }
+        if piecesRemoved == 0, countLiberties(group: playerGroup) == 0 {
+            if game.gameData.allowSelfCapture || dontCheckForSuicide {
+                piecesRemoved += captureGroup(playerGroup)
+                suicideMove = true
+            } else {
+                board.removeStone(at: point)
+                throw GameError.generic(message: "Move is suicidal")
+            }
+        }
+
         playingPlayer = (playingPlayer == .black) ? .white : .black
+    }
+}
+
+// MARK: - Liberties
+private extension GameEngine {
+
+    func countLiberties(group: Group) -> Int {
+        return 0
+    }
+
+    func captureGroup(_ group: Group) -> Int {
+        return 0
     }
 }
 
