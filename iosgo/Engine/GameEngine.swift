@@ -10,5 +10,12 @@ import Foundation
 
 class GameEngine {
 
-    func place(at)
+    var size: BoardPoint
+
+    required init(game: Game) {
+        size = BoardPoint(row: game.height, column: game.width)
+    }
+
+    func place(at _: BoardPoint, checkForKo _: Bool = false, errorOnSuperKo _: Bool = false, dontCheckForSuperKo _: Bool = false, dontCheckForSuicide _: Bool = false, isTrunkMove _: Bool = false) {
+    }
 }
