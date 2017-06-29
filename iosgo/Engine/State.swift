@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+struct State {
+    var player: PlayerType
+    var boardIsRepeating: Bool
+    var whitePrisoners: Int
+    var blackPrisoners: Int
+    //    var uDataState:
+    var board: Board
+}
