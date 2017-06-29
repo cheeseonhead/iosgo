@@ -223,6 +223,37 @@ private extension GameEngine {
         
         return state
     }
+    
+    func isBoardRepeating() -> Bool {
+        let MAX_SUPERKO_SEARCH = 30
+        let currentState = getState()
+        
+        var t = currentMove.index(-2)
+        let startingIndex = min(MAX_SUPERKO_SEARCH, currentMove.moveNumber - 2)
+        
+        for _ in startingIndex...1 {
+            if t.state == currentState {
+                return true
+            }
+            guard let prev = t.previous() else {
+                break
+            }
+            t = prev
+        }
+        
+        return false
+    }
+    
+    func handicapMovesLeft() -> Int {
+        if game.gameData.freeHandicapPlacement {
+            return max(0, game.gameData.handicap - currentMove.moveNumber)
+        }
+        return 0
+    }
+    
+    func opponent() -> PlayerType {
+        return playingPlayer == .black ? .white : .black
+    }
 }
 
 // MARK: - Helpers
