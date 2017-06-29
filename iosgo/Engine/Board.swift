@@ -25,6 +25,16 @@ extension Board {
     func stone(at point: BoardPoint) -> BoardStone? {
         return board[point]
     }
+
+    func allStones() -> [(BoardPoint, BoardStone)] {
+        var stones = [(BoardPoint, BoardStone)]()
+
+        for (point, stone) in board {
+            stones.append((point, stone))
+        }
+
+        return stones
+    }
 }
 
 // MARK: - Manipulation
