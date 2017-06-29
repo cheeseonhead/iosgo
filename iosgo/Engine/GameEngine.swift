@@ -187,6 +187,16 @@ private extension GameEngine {
     }
 }
 
+// MARK: - State
+private extension GameEngine {
+    
+    func getState() -> State {
+        let state = State(player: playingPlayer, boardIsRepeating: boardIsRepeating, whitePrisoners: whitePlayerPrisoners, blackPrisoners: blackPlayerPrisoners, board: board)
+        
+        return state
+    }
+}
+
 // MARK: - Helpers
 private extension GameEngine {
 
