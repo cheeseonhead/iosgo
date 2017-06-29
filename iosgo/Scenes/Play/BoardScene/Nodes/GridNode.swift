@@ -18,7 +18,7 @@ struct GridPoint {
 class GridNode: SKSpriteNode {
     private struct Style {
         static var lineWidth: CGFloat = 1.0
-        static var stoneSizeRatio: CGFloat = 0.8
+        static var stoneSizeRatio: CGFloat = 0.95
 
         static var offSet: CGFloat {
             return Style.lineWidth
@@ -37,7 +37,7 @@ class GridNode: SKSpriteNode {
         return CGSize(width: spacing * Style.stoneSizeRatio, height: spacing * Style.stoneSizeRatio)
     }
     var ghostStoneSize: CGSize {
-        return stoneSize.scaled(by: 1.5)
+        return stoneSize.scaled(by: 1.0)
     }
     var stoneNodes = [GridPoint: StoneNode]()
 
