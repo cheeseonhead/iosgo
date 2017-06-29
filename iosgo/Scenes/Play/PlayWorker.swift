@@ -17,6 +17,7 @@ class PlayWorker {
 
     private var gameStore: GameStore
     private var game: Game!
+    private var gameEngine: GameEngine!
 
     init(gameStore: GameStore) {
         self.gameStore = gameStore
@@ -31,11 +32,9 @@ class PlayWorker {
             switch storeResponse.result {
             case .success(let game):
                 self.game = game
-                let stones = self.getStones(from: game)
-                loadResult = .success(stones: stones)
 
-                let gameEngine = GameEngine(game: game)
-                print(gameEngine)
+                self.gameEngine = GameEngine(game: game)
+                loadResult = .success(stones: self.getStones())
             case .error(let type):
                 switch type {
                 case .genericError(let message):
@@ -51,19 +50,17 @@ class PlayWorker {
 
 extension PlayWorker {
 
-    func getStones(from game: Game) -> [GridStone] {
+    func getStones() -> [GridStone] {
 
-        var stones = [GridStone]()
-        var currentType: StoneType = (game.gameData.initialPlayer == .black) ? .black : .white
+        var gridStones = [GridStone]()
+        let boardStones = gameEngine.board.allStones()
 
-        for move in game.moves {
-            let stone = GridStone(type: currentType, point: gridPoint(from: move, game: game))
-            stones.append(stone)
-
-            currentType = (currentType == .black) ? .white : .black
+        for (boardPoint, boardStone) in boardStones {
+            let gridStone = GridStone(type: boardStone.type, point: gridPoint(from: boardPoint, game: game))
+            gridStones.append(gridStone)
         }
 
-        return stones
+        return gridStones
     }
 
     private func gridPoint(from move: BoardPoint, game: Game) -> GridPoint {
