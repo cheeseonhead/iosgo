@@ -55,6 +55,8 @@ class GameEngine {
         _ = currentMove
         _ = lastOfficialMove
     }
+    
+    func place(at point: BoardPoint, checkForKo: Bool = false, errorOnSuperKo _: Bool = false, dontCheckForSuperKo _: Bool = false, dontCheckForSuicide: Bool = false, isTrunkMove _: Bool = false) throws {
         guard board.size.contains(point: point) else {
             return
         }
@@ -88,7 +90,14 @@ class GameEngine {
                 throw GameError.generic(message: "Move is suicidal")
             }
         }
-
+        
+        if checkForKo, !game.gameData.allowKo, currentMove.moveNumber > 2 {
+            let currentState = getState()
+            if !currentMove.edited, currentState == currentMove.index(-1).state {
+                throw GameError.generic(message: "Illegal Ko Move")
+            }
+        }
+        
         playingPlayer = (playingPlayer == .black) ? .white : .black
     }
     
