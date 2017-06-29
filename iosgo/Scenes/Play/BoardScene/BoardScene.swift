@@ -17,7 +17,7 @@ class BoardScene: SKScene {
     // MARK: Workers
     var stoneWorker: StoneWorker!
 
-    var currentType: StoneNode.StoneType = .black
+    var currentType: StoneType = .black
 
     override func didMove(to _: SKView) {
         woodBoard = self.childNode(withName: "WoodBoard") as! SKSpriteNode
@@ -27,6 +27,10 @@ class BoardScene: SKScene {
 
         stoneWorker = StoneWorker(grid: grid, stoneFactory: StoneNodeFactory())
     }
+}
+
+// MARK: - Events
+extension BoardScene {
 
     override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
         guard let touch = touches.first,
@@ -59,6 +63,14 @@ class BoardScene: SKScene {
             _ = stoneWorker.placeStone(type: currentType, at: point)
             currentType = (currentType == .black) ? .white : .black
         }
+    }
+}
+
+// MARK: - Display
+extension BoardScene {
+
+    func placeStones(_ stones: [GridStone]) {
+        stoneWorker.placeStones(stones)
     }
 }
 

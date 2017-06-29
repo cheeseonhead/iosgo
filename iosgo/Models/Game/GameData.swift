@@ -9,8 +9,6 @@
 import Foundation
 import Unbox
 
-struct Move {}
-
 struct Clock {}
 
 struct GameData {
@@ -42,7 +40,7 @@ struct GameData {
     var timeControl: TimeControlParametersType
     //    var clock: Clock
     var startTime: Int
-    var pausedSince: Int
+    var pausedSince: Int?
 
     // MARK: - Gameplay
     var allowKo: Bool
@@ -55,13 +53,13 @@ struct GameData {
     var opponentPlaysFirstAfterResume: Bool
 
     // MARK: - Game
-    //    var moves: [Move]
+    var genericMoves: [[Int]]
     var conditionalMoves: [Int: [String: Any?]]
     var initialState: [PlayerType: String]
     var history: [Any]
 
     // MARK: - Pause
-    var pauseControl: [String: Bool]
+    var pauseControl: [String: Bool]?
 
     // MARK: - Scoring
     var scoreStones: Bool // score_stones
@@ -79,4 +77,23 @@ struct GameData {
 
     // MARK: - Others
     var metaGroups: [Any]
+
+    // MARK: - Derived
+    var moves: [BoardPoint]
+}
+
+extension GameData {
+
+    static func createMoves(from genericMoves: [[Int]]) -> [BoardPoint] {
+        var moves = [BoardPoint]()
+
+        for genericMove in genericMoves {
+            let col = genericMove[0]
+            let row = genericMove[1]
+            let move = BoardPoint(row: row, column: col)
+            moves.append(move)
+        }
+
+        return moves
+    }
 }

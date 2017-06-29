@@ -9,8 +9,4 @@
 import SpriteKit
 
 class StoneNode: SKSpriteNode {
-    enum StoneType {
-        case black
-        case white
-    }
 }
