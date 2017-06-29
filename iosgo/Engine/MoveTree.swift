@@ -19,6 +19,7 @@ class MoveTree {
     var edited: Bool
     var player: PlayerType?
     weak var parent: MoveTree?
+    var hintNext: MoveTree?
     var moveNumber: Int
     var state: State
 
@@ -49,4 +50,17 @@ class MoveTree {
         self.moveNumber = moveNumber
         self.state = state
     }
+}
+
+// MARK: Traversing
+extension MoveTree {
+    
+    func previous() -> MoveTree? {
+        if let parent = parent {
+            parent.hintNext = self
+        }
+        
+        return parent
+    }
+    
 }
