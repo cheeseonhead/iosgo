@@ -24,7 +24,7 @@ class GameEngine {
     required init(game: Game) {
         self.game = game
         playingPlayer = (game.gameData.initialPlayer == .black) ? .black : .white
-        self.board = Board(size: BoardSize(rows: game.height, columns: game.width))
+        self.board = Board(size: BoardSize(height: game.height, width: game.width))
 
         for move in game.gameData.moves {
             do {
