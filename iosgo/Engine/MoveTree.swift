@@ -27,7 +27,7 @@ class MoveTree {
     var labelMetrics: Any?
     var layoutX = 0
     var layoutY = 0
-    var trunkNext: Any?
+    var trunkNext: MoveTree?
     var branches = [MoveTree]()
     var activePathNumber = 0
     var activeNodeNumber = 0
@@ -54,13 +54,42 @@ class MoveTree {
 
 // MARK: Traversing
 extension MoveTree {
-    
+
     func previous() -> MoveTree? {
         if let parent = parent {
             parent.hintNext = self
         }
-        
+
         return parent
     }
-    
+
+    func next(dontFollowHints: Bool = false) -> MoveTree? {
+        if let hintNext = hintNext, !dontFollowHints {
+            /* Remember what branch we were on and follow that by default.. but
+             * because we sometimes delete things, we're gonna check to make sure it's
+             * still in our list of branches before blindly following it */
+            if let trunkNext = trunkNext, hintNext.id == trunkNext.id {
+                return hintNext
+            }
+
+            for branch in branches {
+                if branch.id == hintNext.id {
+                    return hintNext
+                }
+            }
+        }
+
+        if let trunkNext = trunkNext {
+            return trunkNext
+        }
+        if branches.count > 0 {
+            return branches[0]
+        }
+
+        return nil
+    }
+
+    //    func index(_ index: Int) -> MoveTree {
+    //
+    //    }
 }
