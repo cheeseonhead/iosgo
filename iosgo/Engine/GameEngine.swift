@@ -56,10 +56,8 @@ class GameEngine {
         _ = lastOfficialMove
     }
     
-    func place(at point: BoardPoint, checkForKo: Bool = false, errorOnSuperKo _: Bool = false, dontCheckForSuperKo _: Bool = false, dontCheckForSuicide: Bool = false, isTrunkMove _: Bool = false) throws {
-        guard board.size.contains(point: point) else {
-            return
-        }
+    func place(at point: BoardPoint, checkForKo: Bool = false, errorOnSuperKo: Bool = false, dontCheckForSuperKo: Bool = false, dontCheckForSuicide: Bool = false, isTrunkMove: Bool = false) throws {
+        if board.size.contains(point: point) {
 
         guard board.stone(at: point) == nil else {
             return
@@ -98,7 +96,20 @@ class GameEngine {
             }
         }
         
-        playingPlayer = (playingPlayer == .black) ? .white : .black
+        boardIsRepeating = false
+        if !dontCheckForSuperKo {
+            boardIsRepeating = isBoardRepeating()
+            if boardIsRepeating {
+                if errorOnSuperKo, !game.gameData.allowSuperko {
+                    throw GameError.generic(message: "Illegal board repetition")
+                }
+            }
+        }
+        }
+        
+        if point.column < 0, handicapMovesLeft() > 0 {
+            return
+        }
     }
     
     func prettyPoint(_ point: BoardPoint) -> String {
