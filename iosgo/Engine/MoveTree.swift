@@ -14,7 +14,7 @@ class MoveTree {
 
     var id: Int
     var point: BoardPoint
-    var engine: GameEngine
+    weak var engine: GameEngine?
     var trunk: Bool
     var edited: Bool
     var player: PlayerType?
