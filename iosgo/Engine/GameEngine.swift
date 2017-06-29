@@ -20,7 +20,20 @@ class GameEngine {
     var markGrid = [BoardPoint: Int]()
     var blackPlayerPrisoners = 0
     var whitePlayerPrisoners = 1
-
+    
+    var boardIsRepeating = false
+    
+    lazy var moveTree: MoveTree = {
+        return MoveTree(engine: self, trunk: true, point: BoardPoint(row: -1, column: -1), edited: false, moveNumber: 0, parent: nil, state: self.getState())
+    }()
+    lazy var currentMove: MoveTree = {
+        return self.moveTree
+    }()
+    lazy var lastOfficialMove: MoveTree = {
+        return self.currentMove
+    }()
+    var moveBeforeJump: MoveTree?
+    
     required init(game: Game) {
         self.game = game
         playingPlayer = (game.gameData.initialPlayer == .black) ? .black : .white
@@ -33,9 +46,15 @@ class GameEngine {
                 print("Error occurred while placing: \(error)")
             }
         }
+        
+        triggerLazyInit()
     }
-
-    func place(at point: BoardPoint, checkForKo _: Bool = false, errorOnSuperKo _: Bool = false, dontCheckForSuperKo _: Bool = false, dontCheckForSuicide: Bool = false, isTrunkMove _: Bool = false) throws {
+    
+    func triggerLazyInit() {
+        _ = moveTree
+        _ = currentMove
+        _ = lastOfficialMove
+    }
         guard board.size.contains(point: point) else {
             return
         }
