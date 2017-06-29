@@ -39,3 +39,18 @@ extension Board {
         board.removeValue(forKey: point)
     }
 }
+
+// MARK: - Equatable
+extension Board: Equatable {
+    static func ==(lhs: Board, rhs: Board) -> Bool {
+        let points = lhs.board.keys
+
+        for point in points {
+            if lhs.stone(at: point) != rhs.stone(at: point) {
+                return false
+            }
+        }
+
+        return true
+    }
+}

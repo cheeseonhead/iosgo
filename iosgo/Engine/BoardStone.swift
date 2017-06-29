@@ -11,3 +11,9 @@ import Foundation
 struct BoardStone {
     var type: StoneType
 }
+
+extension BoardStone: Equatable {
+    static func ==(lhs: BoardStone, rhs: BoardStone) -> Bool {
+        return lhs.type == rhs.type
+    }
+}
