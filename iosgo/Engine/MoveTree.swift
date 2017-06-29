@@ -89,7 +89,17 @@ extension MoveTree {
         return nil
     }
 
-    //    func index(_ index: Int) -> MoveTree {
-    //
-    //    }
+    func index(_ idx: Int) -> MoveTree {
+        var cur = self
+        var index = idx
+        while let previous = cur.previous(), index < 0 {
+            cur = previous
+            index += 1
+        }
+        while let next = cur.next(), index > 0 {
+            cur = next
+            index -= 1
+        }
+        return cur
+    }
 }
