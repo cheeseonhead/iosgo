@@ -65,27 +65,18 @@ class GameEngine {
 
             insertStone(for: playingPlayer, at: point)
 
-            var suicideMove = false
             let playerGroup = getGroup(at: point, clearMarks: true)
             let opponentGroups = getConnectedGroups(to: playerGroup)
 
-            print("=================================================\n===========================================")
-            print(suicideMove)
-            print("PlayerGroup: \(playerGroup)")
-            print("OpponentGroup: \(opponentGroups)")
-
             var piecesRemoved = 0
             for opponentGroup in opponentGroups {
-                print("Opp liberties: \(countLiberties(group: opponentGroup))")
                 if countLiberties(group: opponentGroup) == 0 {
                     piecesRemoved += captureGroup(opponentGroup)
                 }
             }
-            print("Player liberties: \(countLiberties(group: playerGroup))")
             if piecesRemoved == 0, countLiberties(group: playerGroup) == 0 {
                 if game.gameData.allowSelfCapture || dontCheckForSuicide {
                     piecesRemoved += captureGroup(playerGroup)
-                    suicideMove = true
                 } else {
                     board.removeStone(at: point)
                     throw GameError.generic(message: "Move is suicidal")
