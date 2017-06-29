@@ -16,3 +16,10 @@ struct State {
     //    var uDataState:
     var board: Board
 }
+
+extension State: Equatable {
+
+    static func ==(lhs: State, rhs: State) -> Bool {
+        return lhs.board == rhs.board
+    }
+}
