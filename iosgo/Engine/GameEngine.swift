@@ -72,6 +72,16 @@ class GameEngine {
 
         playingPlayer = (playingPlayer == .black) ? .white : .black
     }
+    
+    func prettyPoint(_ point: BoardPoint) -> String {
+        guard board.size.contains(point: point) else {
+            return ""
+        }
+        
+        let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        let index = alphabet.index(alphabet.startIndex, offsetBy: point.column)
+        return "\(alphabet[index])" + "\(board.size.height - point.row)"
+    }
 }
 
 // MARK: - Liberties
