@@ -20,9 +20,9 @@ class GameEngine {
     var markGrid = [BoardPoint: Int]()
     var blackPlayerPrisoners = 0
     var whitePlayerPrisoners = 1
-    
+
     var boardIsRepeating = false
-    
+
     lazy var moveTree: MoveTree = {
         return MoveTree(engine: self, trunk: true, point: BoardPoint(row: -1, column: -1), edited: false, moveNumber: 0, parent: nil, state: self.getState())
     }()
@@ -33,7 +33,7 @@ class GameEngine {
         return self.currentMove
     }()
     var moveBeforeJump: MoveTree?
-    
+
     required init(game: Game) {
         self.game = game
         playingPlayer = (game.gameData.initialPlayer == .black) ? .black : .white
@@ -46,77 +46,88 @@ class GameEngine {
                 print("Error occurred while placing: \(error)")
             }
         }
-        
+
         triggerLazyInit()
     }
-    
+
     func triggerLazyInit() {
         _ = moveTree
         _ = currentMove
         _ = lastOfficialMove
     }
-    
+
     func place(at point: BoardPoint, checkForKo: Bool = false, errorOnSuperKo: Bool = false, dontCheckForSuperKo: Bool = false, dontCheckForSuicide: Bool = false, isTrunkMove: Bool = false) throws {
         if board.size.contains(point: point) {
 
-        guard board.stone(at: point) == nil else {
-            return
-        }
-
-        insertStone(for: playingPlayer, at: point)
-
-        var suicideMove = false
-        let playerGroup = getGroup(at: point, clearMarks: true)
-        let opponentGroups = getConnectedGroups(to: playerGroup)
-
-        print(suicideMove)
-        print("PlayerGroup: \(playerGroup)")
-        print("OpponentGroup: \(opponentGroups)")
-
-        var piecesRemoved = 0
-        for opponentGroup in opponentGroups {
-            if countLiberties(group: opponentGroup) == 0 {
-                piecesRemoved += captureGroup(opponentGroup)
+            guard board.stone(at: point) == nil else {
+                return
             }
-        }
-        if piecesRemoved == 0, countLiberties(group: playerGroup) == 0 {
-            if game.gameData.allowSelfCapture || dontCheckForSuicide {
-                piecesRemoved += captureGroup(playerGroup)
-                suicideMove = true
-            } else {
-                board.removeStone(at: point)
-                throw GameError.generic(message: "Move is suicidal")
+
+            insertStone(for: playingPlayer, at: point)
+
+            var suicideMove = false
+            let playerGroup = getGroup(at: point, clearMarks: true)
+            let opponentGroups = getConnectedGroups(to: playerGroup)
+
+            print("=================================================\n===========================================")
+            print(suicideMove)
+            print("PlayerGroup: \(playerGroup)")
+            print("OpponentGroup: \(opponentGroups)")
+
+            var piecesRemoved = 0
+            for opponentGroup in opponentGroups {
+                print("Opp liberties: \(countLiberties(group: opponentGroup))")
+                if countLiberties(group: opponentGroup) == 0 {
+                    piecesRemoved += captureGroup(opponentGroup)
+                }
             }
-        }
-        
-        if checkForKo, !game.gameData.allowKo, currentMove.moveNumber > 2 {
-            let currentState = getState()
-            if !currentMove.edited, currentState == currentMove.index(-1).state {
-                throw GameError.generic(message: "Illegal Ko Move")
+            print("Player liberties: \(countLiberties(group: playerGroup))")
+            if piecesRemoved == 0, countLiberties(group: playerGroup) == 0 {
+                if game.gameData.allowSelfCapture || dontCheckForSuicide {
+                    piecesRemoved += captureGroup(playerGroup)
+                    suicideMove = true
+                } else {
+                    board.removeStone(at: point)
+                    throw GameError.generic(message: "Move is suicidal")
+                }
             }
-        }
-        
-        boardIsRepeating = false
-        if !dontCheckForSuperKo {
-            boardIsRepeating = isBoardRepeating()
-            if boardIsRepeating {
-                if errorOnSuperKo, !game.gameData.allowSuperko {
-                    throw GameError.generic(message: "Illegal board repetition")
+
+            if checkForKo, !game.gameData.allowKo, currentMove.moveNumber > 2 {
+                let currentState = getState()
+                if !currentMove.edited, currentState == currentMove.index(-1).state {
+                    throw GameError.generic(message: "Illegal Ko Move")
+                }
+            }
+
+            boardIsRepeating = false
+            if !dontCheckForSuperKo {
+                boardIsRepeating = isBoardRepeating()
+                if boardIsRepeating {
+                    if errorOnSuperKo, !game.gameData.allowSuperko {
+                        throw GameError.generic(message: "Illegal board repetition")
+                    }
                 }
             }
         }
-        }
-        
+
         if point.column < 0, handicapMovesLeft() > 0 {
             return
         }
+
+        let playerType = playingPlayer
+        if handicapMovesLeft() < 2 {
+            playingPlayer = opponent()
+        }
+
+        let nextMoveNumber = currentMove.moveNumber + 1
+        currentMove = try currentMove.createMove(point: point, trunk: isTrunkMove, edited: false, player: playerType, moveNumber: nextMoveNumber, state: getState())
     }
-    
+
     func prettyPoint(_ point: BoardPoint) -> String {
         guard board.size.contains(point: point) else {
             return ""
         }
-        
+
         let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         let index = alphabet.index(alphabet.startIndex, offsetBy: point.column)
         return "\(alphabet[index])" + "\(board.size.height - point.row)"
@@ -228,21 +239,21 @@ private extension GameEngine {
 
 // MARK: - State
 private extension GameEngine {
-    
+
     func getState() -> State {
         let state = State(player: playingPlayer, boardIsRepeating: boardIsRepeating, whitePrisoners: whitePlayerPrisoners, blackPrisoners: blackPlayerPrisoners, board: board)
-        
+
         return state
     }
-    
+
     func isBoardRepeating() -> Bool {
         let MAX_SUPERKO_SEARCH = 30
         let currentState = getState()
-        
+
         var t = currentMove.index(-2)
         let startingIndex = min(MAX_SUPERKO_SEARCH, currentMove.moveNumber - 2)
-        
-        for _ in startingIndex...1 {
+
+        for _ in startingIndex ... 1 {
             if t.state == currentState {
                 return true
             }
@@ -251,17 +262,17 @@ private extension GameEngine {
             }
             t = prev
         }
-        
+
         return false
     }
-    
+
     func handicapMovesLeft() -> Int {
         if game.gameData.freeHandicapPlacement {
             return max(0, game.gameData.handicap - currentMove.moveNumber)
         }
         return 0
     }
-    
+
     func opponent() -> PlayerType {
         return playingPlayer == .black ? .white : .black
     }
