@@ -18,7 +18,6 @@ class PlayWorker {
     private var gameStore: GameStore
     private var game: Game!
     private var gameEngine: GameEngine!
-    private var gameRenderer: GameRenderer!
 
     init(gameStore: GameStore) {
         self.gameStore = gameStore
@@ -35,7 +34,6 @@ class PlayWorker {
                 self.game = game
 
                 self.gameEngine = GameEngine(game: game)
-                self.gameRenderer = GameRenderer(gameEngine: self.gameEngine)
                 loadResult = .success(stones: self.gameEngine.getState())
             case .error(let type):
                 switch type {

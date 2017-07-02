@@ -10,27 +10,36 @@ import Foundation
 
 class GameRenderer {
 
-    var gameEngine: GameEngine
+    func getState(from goState: GoState) -> GridState {
 
-    required init(gameEngine: GameEngine) {
-        self.gameEngine = gameEngine
+        let gridStones = getStones(from: goState)
+        let blackPrisoners = goState.blackPrisoners
+        let whitePrisoners = goState.whitePrisoners
+
+        let state = GridState(blackPrisoners: blackPrisoners, whitePrisoners: whitePrisoners, stones: gridStones)
+
+        return state
     }
+}
 
-    func getStones() -> [GridStone] {
+// MARK: - Helpers
+private extension GameRenderer {
+
+    func getStones(from goState: GoState) -> [GridStone] {
 
         var gridStones = [GridStone]()
-        let boardStones = gameEngine.board.allStones()
+        let boardStones = goState.board.allStones()
 
         for (boardPoint, boardStone) in boardStones {
-            let gridStone = GridStone(type: boardStone.type, point: gridPoint(from: boardPoint, game: self.gameEngine.game))
+            let gridStone = GridStone(type: boardStone.type, point: gridPoint(from: boardPoint, size: goState.board.size))
             gridStones.append(gridStone)
         }
 
         return gridStones
     }
 
-    private func gridPoint(from move: BoardPoint, game: Game) -> GridPoint {
-        let row = game.height - move.row
+    func gridPoint(from move: BoardPoint, size: BoardSize) -> GridPoint {
+        let row = size.height - move.row
         let col = move.column + 1
         return GridPoint(row: row, col: col)
     }

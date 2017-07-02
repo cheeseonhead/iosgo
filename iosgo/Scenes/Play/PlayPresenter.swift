@@ -20,8 +20,13 @@ class PlayPresenter: PlayPresentationLogic {
 
     weak var viewController: PlayDisplayLogic?
 
+    private var renderer = GameRenderer()
+
     func presentLoadScene(response: Play.LoadScene.Response) {
-        let model = Play.LoadScene.ViewModel(stones: response.stones)
+
+        let state = renderer.getState(from: response.state)
+
+        let model = Play.LoadScene.ViewModel(state: state)
         viewController?.displayLoadScene(viewModel: model)
     }
 }
