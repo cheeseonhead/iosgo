@@ -14,7 +14,7 @@ import UIKit
 import SpriteKit
 
 protocol PlayDisplayLogic: class {
-    func displayLoadScene(viewModel: Play.LoadScene.ViewModel)
+    func displayLoadScene(viewModel: Play.LoadGame.ViewModel)
 }
 
 class PlayViewController: UIViewController {
@@ -54,13 +54,13 @@ class PlayViewController: UIViewController {
         boardView.showsFPS = true
         boardView.showsNodeCount = true
 
-        interactor?.loadScene(request: Play.LoadScene.Request())
+        interactor?.loadScene(request: Play.LoadGame.Request())
     }
 }
 
 // MARK: - Display
 extension PlayViewController: PlayDisplayLogic {
-    func displayLoadScene(viewModel: Play.LoadScene.ViewModel) {
+    func displayLoadScene(viewModel: Play.LoadGame.ViewModel) {
         boardScene.initialize(viewModel.state)
     }
 }

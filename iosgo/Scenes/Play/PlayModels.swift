@@ -13,7 +13,7 @@
 import UIKit
 
 enum Play {
-    enum LoadScene {
+    enum LoadGame {
         struct Request {
         }
 
