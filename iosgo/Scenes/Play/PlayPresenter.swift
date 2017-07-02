@@ -31,6 +31,11 @@ class PlayPresenter: PlayPresentationLogic {
         viewController?.displayLoadScene(viewModel: model)
     }
 
-    func presentUpdateGame(response _: Play.UpdateGame.Response) {
+    func presentUpdateGame(response: Play.UpdateGame.Response) {
+
+        let state = renderer.getState(from: response.state)
+
+        let model = Play.UpdateGame.ViewModel(state: state)
+        viewController?.displayUpdateGame(viewModel: model)
     }
 }

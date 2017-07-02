@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol PlayWorkerDelegate: class {
+    func gameUpdated(state: GoState)
+}
+
 class PlayWorker {
 
     enum LoadResult {
@@ -18,6 +22,7 @@ class PlayWorker {
     private var gameStore: GameStore
     private var gameEngine: GameEngine!
     private var gameSocket: GameSocket!
+    weak var delegate: PlayWorkerDelegate?
 
     init(gameStore: GameStore) {
         self.gameStore = gameStore
@@ -67,5 +72,6 @@ extension PlayWorker: GameSocketDelegate {
 
     func move(_ move: BoardPoint) {
         try? gameEngine.place(at: move)
+        delegate?.gameUpdated(state: gameEngine.getState())
     }
 }

@@ -66,7 +66,8 @@ extension PlayViewController: PlayDisplayLogic {
         boardScene.initialize(viewModel.state)
     }
 
-    func displayUpdateGame(viewModel _: Play.UpdateGame.ViewModel) {
+    func displayUpdateGame(viewModel: Play.UpdateGame.ViewModel) {
+        boardScene.render(viewModel.state)
     }
 }
 
