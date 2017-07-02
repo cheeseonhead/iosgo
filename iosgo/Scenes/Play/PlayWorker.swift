@@ -57,6 +57,15 @@ private extension PlayWorker {
         }
 
         gameSocket = GameSocket(socketManager: SocketManager.sharedInstance, gameId: gameEngine.game.id, playerId: playerId)
+        gameSocket.delegate = self
         gameSocket.connect()
+    }
+}
+
+// MARK: - GameSocket Delegate
+extension PlayWorker: GameSocketDelegate {
+
+    func move(_ move: BoardPoint) {
+        try? gameEngine.place(at: move)
     }
 }
