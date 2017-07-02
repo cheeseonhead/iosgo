@@ -244,7 +244,7 @@ private extension GameEngine {
         var t = currentMove.index(-2)
         let startingIndex = min(MAX_SUPERKO_SEARCH, currentMove.moveNumber - 2)
 
-        for _ in startingIndex ... 1 {
+        for _ in (1 ... startingIndex).reversed() {
             if t.state == currentState {
                 return true
             }
