@@ -26,7 +26,7 @@ class SplashInteractor: SplashInteractorInput {
     private var response = Splash.LoadScene.Response(loggedIn: false)
 
     func loadScene(request _: Splash.LoadScene.Request) {
-        let configurator = OGSAppConfigurator(session: OGSSession(configuration: OGSBetaConfiguration()))
+        let configurator = OGSAppConfigurator(session: OGSSession(configuration: OGSProdConfiguration()))
         configurator.configureApp { success in
             if success {
                 self.readyList[0] = true
