@@ -18,9 +18,9 @@ class StoneNodeFactory {
 
         switch type {
         case .black:
-            stoneNode = StoneNode(texture: blackTexture, color: UIColor.clear, size: size)
+            stoneNode = StoneNode(texture: blackTexture, color: UIColor.clear, size: size, type: type)
         case .white:
-            stoneNode = StoneNode(texture: whiteTexture, color: UIColor.clear, size: size)
+            stoneNode = StoneNode(texture: whiteTexture, color: UIColor.clear, size: size, type: type)
         }
 
         return stoneNode
