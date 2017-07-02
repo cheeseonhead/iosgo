@@ -38,6 +38,7 @@
 		348F60D31F08DB0800FA12F0 /* SocketEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348F60D21F08DB0800FA12F0 /* SocketEvents.swift */; };
 		34934B761EF240320096D3C4 /* CGSize+Scalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34934B751EF240320096D3C4 /* CGSize+Scalable.swift */; };
 		3493D9061F08DE7000BE526E /* GameSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3493D9051F08DE7000BE526E /* GameSocket.swift */; };
+		3493D9081F08E2C300BE526E /* SocketEventCreating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3493D9071F08E2C300BE526E /* SocketEventCreating.swift */; };
 		34970F041EFFFBD800623ED0 /* SpeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68CD71EFF983E0010EFA5 /* SpeedType.swift */; };
 		34970F061F00A52A00623ED0 /* StoneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F051F00A52A00623ED0 /* StoneType.swift */; };
 		34970F091F00A67A00623ED0 /* GridStone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F081F00A67A00623ED0 /* GridStone.swift */; };
@@ -178,6 +179,7 @@
 		348F60D21F08DB0800FA12F0 /* SocketEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketEvents.swift; sourceTree = "<group>"; };
 		34934B751EF240320096D3C4 /* CGSize+Scalable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Scalable.swift"; sourceTree = "<group>"; };
 		3493D9051F08DE7000BE526E /* GameSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSocket.swift; sourceTree = "<group>"; };
+		3493D9071F08E2C300BE526E /* SocketEventCreating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketEventCreating.swift; sourceTree = "<group>"; };
 		34970F051F00A52A00623ED0 /* StoneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneType.swift; sourceTree = "<group>"; };
 		34970F081F00A67A00623ED0 /* GridStone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStone.swift; sourceTree = "<group>"; };
 		34970F111F00C17800623ED0 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
@@ -737,6 +739,7 @@
 				AD05ADFB7AF57B9E129EBAFC /* SocketManager.swift */,
 				AD05A7F90F265AA6604A16CB /* SocketManagerTypes.swift */,
 				348F60D21F08DB0800FA12F0 /* SocketEvents.swift */,
+				3493D9071F08E2C300BE526E /* SocketEventCreating.swift */,
 			);
 			path = SocketManager;
 			sourceTree = "<group>";
@@ -1107,6 +1110,7 @@
 				AD05AB67C74B02B834E8CFA8 /* OGSMeStore.swift in Sources */,
 				3464414F1EE4BA06008718D7 /* SplashModels.swift in Sources */,
 				AD05AE59A5BF1697CECE11D9 /* OGSUser+Unboxable.swift in Sources */,
+				3493D9081F08E2C300BE526E /* SocketEventCreating.swift in Sources */,
 				AD05AE8F87A1E735676D8715 /* OGSRootViewControllerWorker.swift in Sources */,
 				348F60D31F08DB0800FA12F0 /* SocketEvents.swift in Sources */,
 				3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */,
