@@ -25,8 +25,8 @@ class PlayInteractor: PlayBusinessLogic, PlayDataStore {
 
         playWorker.loadGame(id: 2860) { result in
             switch result {
-            case .success(let stones):
-                let response = Play.LoadScene.Response(stones: stones)
+            case .success(let state):
+                let response = Play.LoadScene.Response(state: state)
                 self.presenter?.presentLoadScene(response: response)
             case .error(let message):
                 print(message)

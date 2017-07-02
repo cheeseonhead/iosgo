@@ -11,7 +11,7 @@ import Foundation
 class PlayWorker {
 
     enum LoadResult {
-        case success(stones: [GridStone])
+        case success(stones: GoState)
         case error(message: String)
     }
 
@@ -36,7 +36,7 @@ class PlayWorker {
 
                 self.gameEngine = GameEngine(game: game)
                 self.gameRenderer = GameRenderer(gameEngine: self.gameEngine)
-                loadResult = .success(stones: self.gameRenderer.getStones())
+                loadResult = .success(stones: self.gameEngine.getState())
             case .error(let type):
                 switch type {
                 case .genericError(let message):
