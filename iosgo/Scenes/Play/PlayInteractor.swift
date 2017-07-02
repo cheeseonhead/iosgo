@@ -21,9 +21,13 @@ class PlayInteractor: PlayBusinessLogic, PlayDataStore {
     var presenter: PlayPresentationLogic?
     var playWorker = PlayWorker(gameStore: GameStore(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
 
+    required init() {
+        playWorker.delegate = self
+    }
+
     func loadScene(request _: Play.LoadGame.Request) {
 
-        playWorker.loadGame(id: 2861) { result in
+        playWorker.loadGame(id: 9270099) { result in
             switch result {
             case .success(let state):
                 let response = Play.LoadGame.Response(state: state)
@@ -32,5 +36,14 @@ class PlayInteractor: PlayBusinessLogic, PlayDataStore {
                 print(message)
             }
         }
+    }
+}
+
+// MARK: - PlayWorker Delegate
+extension PlayInteractor: PlayWorkerDelegate {
+
+    func gameUpdated(state: GoState) {
+        let response = Play.UpdateGame.Response(state: state)
+        presenter?.presentUpdateGame(response: response)
     }
 }
