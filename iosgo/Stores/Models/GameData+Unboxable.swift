@@ -49,7 +49,7 @@ extension GameData: Unboxable {
         // MARK: - Game
         genericMoves = try unboxer.unbox(key: "moves")
         moves = GameData.createMoves(from: genericMoves)
-        conditionalMoves = try unboxer.unbox(key: "conditional_moves")
+        conditionalMoves = unboxer.unbox(key: "conditional_moves")
         initialState = try unboxer.unbox(key: "initial_state")
         history = try unboxer.unbox(key: "history")
 

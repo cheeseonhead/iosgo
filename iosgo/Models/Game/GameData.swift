@@ -54,7 +54,7 @@ struct GameData {
 
     // MARK: - Game
     var genericMoves: [[Int]]
-    var conditionalMoves: [Int: [String: Any?]]
+    var conditionalMoves: [Int: [String: Any?]]?
     var initialState: [PlayerType: String]
     var history: [Any]
 
