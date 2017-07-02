@@ -74,7 +74,12 @@ extension BoardScene {
 extension BoardScene {
 
     func render(_ state: GridState) {
-        stoneWorker.placeStones(state.stones)
+        let diffWorker = StoneDiffWorker(stoneWorker: stoneWorker, newState: state)
+        let addStones = diffWorker.stonesToPlace()
+        let removeStones = diffWorker.stonesToRemove()
+
+        stoneWorker.placeStones(addStones)
+        stoneWorker.removeStones(at: removeStones)
     }
 }
 

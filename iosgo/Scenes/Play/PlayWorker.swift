@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol PlayWorkerDelegate: class {
+    func gameUpdated(state: GoState)
+}
+
 class PlayWorker {
 
     enum LoadResult {
@@ -16,8 +20,9 @@ class PlayWorker {
     }
 
     private var gameStore: GameStore
-    private var game: Game!
     private var gameEngine: GameEngine!
+    private var gameSocket: GameSocket!
+    weak var delegate: PlayWorkerDelegate?
 
     init(gameStore: GameStore) {
         self.gameStore = gameStore
@@ -31,10 +36,9 @@ class PlayWorker {
 
             switch storeResponse.result {
             case .success(let game):
-                self.game = game
-
                 self.gameEngine = GameEngine(game: game)
                 loadResult = .success(stones: self.gameEngine.getState())
+                self.connectSocket()
             case .error(let type):
                 switch type {
                 case .genericError(let message):
@@ -45,5 +49,29 @@ class PlayWorker {
 
             completion(loadResult)
         }
+    }
+}
+
+// MARK: - Load Game Helpers
+private extension PlayWorker {
+
+    func connectSocket() {
+
+        guard let playerId = OGSSessionController.sharedInstance.current.user?.id else {
+            return
+        }
+
+        gameSocket = GameSocket(socketManager: SocketManager.sharedInstance, gameId: gameEngine.game.id, playerId: playerId)
+        gameSocket.delegate = self
+        gameSocket.connect()
+    }
+}
+
+// MARK: - GameSocket Delegate
+extension PlayWorker: GameSocketDelegate {
+
+    func move(_ move: BoardPoint) {
+        try? gameEngine.place(at: move)
+        delegate?.gameUpdated(state: gameEngine.getState())
     }
 }

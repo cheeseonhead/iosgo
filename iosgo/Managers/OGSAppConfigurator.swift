@@ -30,8 +30,8 @@ extension OGSAppConfigurator {
     }
 
     func configureSocketManager(completion: @escaping (Bool) -> Void) {
-        OGSSocketManager.sharedInstance.socketAddress = session.configuration.domainName
+        SocketManager.sharedInstance.socketAddress = session.configuration.domainName
 
-        OGSSocketManager.sharedInstance.connect(completion: completion)
+        SocketManager.sharedInstance.connect(completion: completion)
     }
 }

@@ -13,9 +13,20 @@
 import UIKit
 
 enum Play {
-    enum LoadScene {
+    enum LoadGame {
         struct Request {
         }
+
+        struct Response {
+            var state: GoState
+        }
+
+        struct ViewModel {
+            var state: GridState
+        }
+    }
+
+    enum UpdateGame {
 
         struct Response {
             var state: GoState

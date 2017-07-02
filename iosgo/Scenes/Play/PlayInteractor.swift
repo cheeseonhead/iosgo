@@ -13,7 +13,7 @@
 import UIKit
 
 protocol PlayBusinessLogic {
-    func loadScene(request: Play.LoadScene.Request)
+    func loadScene(request: Play.LoadGame.Request)
 }
 
 class PlayInteractor: PlayBusinessLogic, PlayDataStore {
@@ -21,16 +21,29 @@ class PlayInteractor: PlayBusinessLogic, PlayDataStore {
     var presenter: PlayPresentationLogic?
     var playWorker = PlayWorker(gameStore: GameStore(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
 
-    func loadScene(request _: Play.LoadScene.Request) {
+    required init() {
+        playWorker.delegate = self
+    }
 
-        playWorker.loadGame(id: 2861) { result in
+    func loadScene(request _: Play.LoadGame.Request) {
+
+        playWorker.loadGame(id: 9275743) { result in
             switch result {
             case .success(let state):
-                let response = Play.LoadScene.Response(state: state)
+                let response = Play.LoadGame.Response(state: state)
                 self.presenter?.presentLoadScene(response: response)
             case .error(let message):
                 print(message)
             }
         }
+    }
+}
+
+// MARK: - PlayWorker Delegate
+extension PlayInteractor: PlayWorkerDelegate {
+
+    func gameUpdated(state: GoState) {
+        let response = Play.UpdateGame.Response(state: state)
+        presenter?.presentUpdateGame(response: response)
     }
 }

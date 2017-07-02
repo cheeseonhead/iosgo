@@ -29,6 +29,14 @@ extension StoneWorker {
     func isOccupied(point: GridPoint) -> Bool {
         return stoneNodes[point] != nil
     }
+
+    func stone(at point: GridPoint) -> GridStone? {
+        guard let node: StoneNode = stoneNodes[point] else {
+            return nil
+        }
+        let gridStone = GridStone(type: node.type, point: point)
+        return gridStone
+    }
 }
 
 // MARK: - Regular Stones
@@ -41,8 +49,8 @@ extension StoneWorker {
     }
 
     func placeStone(type: StoneType, at point: GridPoint) -> Bool {
-        guard !isOccupied(point: point) else {
-            return false
+        if isOccupied(point: point) {
+            _ = removeStone(at: point)
         }
 
         let stone = stoneFactory.createStone(type: type, size: gridNode.stoneSize)
@@ -51,6 +59,13 @@ extension StoneWorker {
         addStoneNode(stone, at: point)
 
         return true
+    }
+
+    func removeStones(at points: [GridPoint]) {
+
+        for point in points {
+            _ = removeStone(at: point)
+        }
     }
 
     func removeStone(at point: GridPoint) -> Bool {

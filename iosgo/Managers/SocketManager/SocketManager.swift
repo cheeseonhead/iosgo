@@ -5,17 +5,8 @@
 
 import SocketIO
 
-typealias SocketEvent = String
-
-enum SocketEvents: SocketEvent {
-    case connect
-    case disconnect
-    case seekGraphConnect = "seek_graph/connect"
-    case seekGraphGlobal = "seekgraph/global"
-}
-
-class OGSSocketManager {
-    static var sharedInstance = OGSSocketManager()
+class SocketManager {
+    static var sharedInstance = SocketManager()
 
     var socketAddress: String!
     var isConnected = false
@@ -41,20 +32,25 @@ class OGSSocketManager {
     }
 }
 
-extension OGSSocketManager {
+extension SocketManager {
     func emit(event: SocketEvents, with data: SocketData) {
-        if !isConnected {
-            once(event: .connect) { _ in
-                self.socket.emit(event.rawValue, data)
-            }
-        } else {
-            socket.emit(event.rawValue, data)
-        }
+        emit(rawEvent: event.rawValue, with: data)
+    }
+
+    func emit(_ socketEventCreator: SocketEventCreating, with data: SocketData) {
+        emit(rawEvent: socketEventCreator.eventName, with: data)
     }
 
     func on(event: SocketEvents, closure: @escaping NormalCallback) {
 
         socket.on(event.rawValue) { data, _ in
+            closure(data)
+        }
+    }
+
+    func on(_ socketEventCreator: SocketEventCreating, closure: @escaping NormalCallback) {
+
+        socket.on(socketEventCreator.eventName) { data, _ in
             closure(data)
         }
     }
@@ -66,8 +62,22 @@ extension OGSSocketManager {
     }
 }
 
+// MARK: - Private
+private extension SocketManager {
+
+    func emit(rawEvent: SocketEvent, with data: SocketData) {
+        if !isConnected {
+            once(event: .connect) { _ in
+                self.socket.emit(rawEvent, data)
+            }
+        } else {
+            socket.emit(rawEvent, data)
+        }
+    }
+}
+
 // MARK: - Handlers
-extension OGSSocketManager {
+extension SocketManager {
     func websocketDidConnect(socket _: SocketIOClient) {
         isConnected = true
     }

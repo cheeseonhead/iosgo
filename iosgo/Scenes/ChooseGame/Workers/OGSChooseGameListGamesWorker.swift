@@ -5,49 +5,41 @@
 
 import UIKit
 
-protocol OGSChooseGameListGamesWorkerDelegate: class
-{
+protocol OGSChooseGameListGamesWorkerDelegate: class {
     func sendGameList(_ gameList: [OGSChallenge])
 }
 
-protocol OGSListGamesStoreDelegate: class
-{
+protocol OGSListGamesStoreDelegate: class {
     func add(_ newChallenges: [OGSChallenge])
     func delete(challengeID: Int)
     func delete(gameID: Int)
 }
 
-protocol OGSListGamesStoreProtocol
-{
+protocol OGSListGamesStoreProtocol {
     weak var delegate: OGSListGamesStoreDelegate? { set get }
-    var socketManager: OGSSocketManager! { set get }
+    var socketManager: SocketManager! { set get }
 
     func connect()
 }
 
-class OGSChooseGameListGamesWorker
-{
+class OGSChooseGameListGamesWorker {
     weak var delegate: OGSChooseGameListGamesWorkerDelegate?
     var seekGraphStore: OGSListGamesStoreProtocol!
 
     fileprivate var challenges: [OGSChallenge] = []
 
-    required init(store: OGSListGamesStoreProtocol)
-    {
+    required init(store: OGSListGamesStoreProtocol) {
         seekGraphStore = store
         seekGraphStore.delegate = self
-        seekGraphStore.socketManager = OGSSocketManager.sharedInstance
+        seekGraphStore.socketManager = SocketManager.sharedInstance
     }
 
-    func connect()
-    {
+    func connect() {
         seekGraphStore.connect()
     }
 
-    func challenge(at indexPath: IndexPath) -> OGSChallenge?
-    {
-        guard indexPath.row < challenges.count else
-        {
+    func challenge(at indexPath: IndexPath) -> OGSChallenge? {
+        guard indexPath.row < challenges.count else {
             return nil
         }
 
@@ -56,28 +48,23 @@ class OGSChooseGameListGamesWorker
 }
 
 // MARK: Store Delegate
-extension OGSChooseGameListGamesWorker: OGSListGamesStoreDelegate
-{
-    func add(_ newChallenges: [OGSChallenge])
-    {
+extension OGSChooseGameListGamesWorker: OGSListGamesStoreDelegate {
+    func add(_ newChallenges: [OGSChallenge]) {
         challenges.append(contentsOf: newChallenges)
         sendResponse()
     }
 
-    func delete(challengeID: Int)
-    {
+    func delete(challengeID: Int) {
         try? challenges.remove { $0.id == challengeID }
         sendResponse()
     }
 
-    func delete(gameID: Int)
-    {
+    func delete(gameID: Int) {
         try? challenges.remove { $0.gameId == gameID }
         sendResponse()
     }
 
-    func sendResponse()
-    {
+    func sendResponse() {
         delegate?.sendGameList(challenges)
     }
 }

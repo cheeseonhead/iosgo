@@ -26,14 +26,15 @@ class GameRenderer {
 // MARK: - Helpers
 private extension GameRenderer {
 
-    func getStones(from goState: GoState) -> [GridStone] {
+    func getStones(from goState: GoState) -> [GridPoint: GridStone] {
 
-        var gridStones = [GridStone]()
+        var gridStones = [GridPoint: GridStone]()
         let boardStones = goState.board.allStones()
 
         for (boardPoint, boardStone) in boardStones {
-            let gridStone = GridStone(type: boardStone.type, point: gridPoint(from: boardPoint, size: goState.board.size))
-            gridStones.append(gridStone)
+            let point = gridPoint(from: boardPoint, size: goState.board.size)
+            let gridStone = GridStone(type: boardStone.type, point: point)
+            gridStones[point] = gridStone
         }
 
         return gridStones

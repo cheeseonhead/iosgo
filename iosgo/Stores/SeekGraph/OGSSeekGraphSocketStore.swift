@@ -7,12 +7,10 @@ import UIKit
 import Unbox
 import Starscream
 
-class OGSSeekGraphSocketStore
-{
+class OGSSeekGraphSocketStore {
     typealias Model = OGSSeekGraphSocketStoreModel
 
-    enum ModelType
-    {
+    enum ModelType {
         case challengeList([Model.Challenge])
         case gameStarted(Model.GameStart)
         case deleteChallenge(Model.ChallengeDelete)
@@ -20,23 +18,17 @@ class OGSSeekGraphSocketStore
     }
 
     weak var delegate: OGSListGamesStoreDelegate?
-    var socketManager: OGSSocketManager!
+    var socketManager: SocketManager!
 
-    func connect()
-    {
-        //        let challenge = createChallengeFrom(payload: fakeData1())
-        //        delegate?.listChallenges([challenge])
-
-        socketManager.on(event: .seekGraphGlobal)
-        { array in
+    func connect() {
+        socketManager.on(event: .seekGraphGlobal) { array in
             self.process(data: array[0])
         }
 
         socketManager.emit(event: .seekGraphConnect, with: ["channel": "global"])
     }
 
-    func process(data: Any)
-    {
+    func process(data: Any) {
         let modelType = self.modelType(of: data)
 
         switch modelType {
@@ -54,18 +46,12 @@ class OGSSeekGraphSocketStore
         }
     }
 
-    func modelType(of data: Any) -> ModelType
-    {
-        if let challengeList = try? createChallengeList(from: data)
-        {
+    func modelType(of data: Any) -> ModelType {
+        if let challengeList = try? createChallengeList(from: data) {
             return .challengeList(challengeList)
-        }
-        else if let gameStart = try? createGameStart(from: data)
-        {
+        } else if let gameStart = try? createGameStart(from: data) {
             return .gameStarted(gameStart)
-        }
-        else if let challengeDelete = try? createChallengeDelete(from: data)
-        {
+        } else if let challengeDelete = try? createChallengeDelete(from: data) {
             return .deleteChallenge(challengeDelete)
         }
 
@@ -74,19 +60,15 @@ class OGSSeekGraphSocketStore
 }
 
 // MARK: Create Model Methods
-extension OGSSeekGraphSocketStore
-{
-    func createChallengeList(from data: Any) throws -> [Model.Challenge]
-    {
-        guard let array = data as? [Any] else
-        {
+extension OGSSeekGraphSocketStore {
+    func createChallengeList(from data: Any) throws -> [Model.Challenge] {
+        guard let array = data as? [Any] else {
             fatalError("List could not be created")
         }
 
         var challengeList: [Model.Challenge] = []
 
-        for item in array
-        {
+        for item in array {
             let dictionary = item as! [String: Any]
             let challenge: Model.Challenge = try createChallenge(from: dictionary)
 
@@ -96,11 +78,9 @@ extension OGSSeekGraphSocketStore
         return challengeList
     }
 
-    func createGameStart(from data: Any) throws -> Model.GameStart
-    {
+    func createGameStart(from data: Any) throws -> Model.GameStart {
         guard let array = data as? [Any],
-            let dictionary = array[0] as? [String: Any] else
-        {
+            let dictionary = array[0] as? [String: Any] else {
             fatalError("Object could not be created")
         }
 
@@ -108,11 +88,9 @@ extension OGSSeekGraphSocketStore
         return gameStart
     }
 
-    func createChallengeDelete(from data: Any) throws -> Model.ChallengeDelete
-    {
+    func createChallengeDelete(from data: Any) throws -> Model.ChallengeDelete {
         guard let array = data as? [Any],
-            let dictionary = array[0] as? [String: Any] else
-        {
+            let dictionary = array[0] as? [String: Any] else {
             fatalError("Object could not be created")
         }
 
@@ -120,8 +98,7 @@ extension OGSSeekGraphSocketStore
         return challengeDelete
     }
 
-    func createChallenge(from payload: [String: Any]) throws -> Model.Challenge
-    {
+    func createChallenge(from payload: [String: Any]) throws -> Model.Challenge {
         let challenge: OGSChallenge = try unbox(dictionary: payload)
         return challenge
     }
