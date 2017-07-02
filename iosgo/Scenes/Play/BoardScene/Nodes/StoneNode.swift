@@ -13,9 +13,8 @@ class StoneNode: SKSpriteNode {
     var type: StoneType
 
     required init(texture: SKTexture?, color: UIColor, size: CGSize, type: StoneType) {
-        super.init(texture: texture, color: color, size: size)
-
         self.type = type
+        super.init(texture: texture, color: color, size: size)
     }
 
     required init?(coder aDecoder: NSCoder) {
