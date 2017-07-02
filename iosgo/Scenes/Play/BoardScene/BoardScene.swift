@@ -69,8 +69,9 @@ extension BoardScene {
 // MARK: - Display
 extension BoardScene {
 
-    func placeStones(_ stones: [GridStone]) {
-        stoneWorker.placeStones(stones)
+    func render(_ state: GridState) {
+
+        stoneWorker.placeStones(state.stones)
     }
 }
 
