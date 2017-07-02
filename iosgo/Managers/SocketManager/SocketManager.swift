@@ -50,6 +50,13 @@ extension SocketManager {
         }
     }
 
+    func on(socketEventCreator: SocketEventCreating, closure: @escaping NormalCallback) {
+
+        socket.on(socketEventCreator.eventName) { data, _ in
+            closure(data)
+        }
+    }
+
     func once(event: SocketEvents, closure: @escaping NormalCallback) {
         socket.once(event.rawValue) { data, _ in
             closure(data)
