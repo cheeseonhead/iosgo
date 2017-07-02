@@ -492,11 +492,11 @@
 		565D246D1E54A5A500EF62CD /* iosgo */ = {
 			isa = PBXGroup;
 			children = (
-				3452AAEE1F01E562008F838E /* Engine */,
 				565D24801E54A5A500EF62CD /* Info.plist */,
 				565D247B1E54A5A500EF62CD /* Assets.xcassets */,
 				AD05A9249FEBFC41418217D5 /* Additions */,
 				56BD888D1E5522530098E50B /* Components */,
+				3452AAEE1F01E562008F838E /* Engine */,
 				565D247D1E54A5A500EF62CD /* LaunchScreen.storyboard */,
 				565D24781E54A5A500EF62CD /* Main.storyboard */,
 				8405C8F1A41EC1425EF79C9C /* Managers */,
