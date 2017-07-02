@@ -40,6 +40,7 @@
 		3493D9061F08DE7000BE526E /* GameSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3493D9051F08DE7000BE526E /* GameSocket.swift */; };
 		3493D9081F08E2C300BE526E /* SocketEventCreating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3493D9071F08E2C300BE526E /* SocketEventCreating.swift */; };
 		3493D90A1F08E3E300BE526E /* GameSocketEventCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3493D9091F08E3E300BE526E /* GameSocketEventCreator.swift */; };
+		3493D90C1F08EA8500BE526E /* GameSocketModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3493D90B1F08EA8500BE526E /* GameSocketModels.swift */; };
 		34970F041EFFFBD800623ED0 /* SpeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68CD71EFF983E0010EFA5 /* SpeedType.swift */; };
 		34970F061F00A52A00623ED0 /* StoneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F051F00A52A00623ED0 /* StoneType.swift */; };
 		34970F091F00A67A00623ED0 /* GridStone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F081F00A67A00623ED0 /* GridStone.swift */; };
@@ -182,6 +183,7 @@
 		3493D9051F08DE7000BE526E /* GameSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSocket.swift; sourceTree = "<group>"; };
 		3493D9071F08E2C300BE526E /* SocketEventCreating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketEventCreating.swift; sourceTree = "<group>"; };
 		3493D9091F08E3E300BE526E /* GameSocketEventCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSocketEventCreator.swift; sourceTree = "<group>"; };
+		3493D90B1F08EA8500BE526E /* GameSocketModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSocketModels.swift; sourceTree = "<group>"; };
 		34970F051F00A52A00623ED0 /* StoneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneType.swift; sourceTree = "<group>"; };
 		34970F081F00A67A00623ED0 /* GridStone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStone.swift; sourceTree = "<group>"; };
 		34970F111F00C17800623ED0 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 			children = (
 				3493D9051F08DE7000BE526E /* GameSocket.swift */,
 				3493D9091F08E3E300BE526E /* GameSocketEventCreator.swift */,
+				3493D90B1F08EA8500BE526E /* GameSocketModels.swift */,
 			);
 			path = GameSocket;
 			sourceTree = "<group>";
@@ -1081,6 +1084,7 @@
 				346441501EE4BA06008718D7 /* SplashPresenter.swift in Sources */,
 				AD05AFC36181FFE0C0DB7889 /* OGSChooseGameListGamesWorker.swift in Sources */,
 				AD05AF2B9222BE964C87EC8D /* OGSAppDelegate.swift in Sources */,
+				3493D90C1F08EA8500BE526E /* GameSocketModels.swift in Sources */,
 				AD05A80C3174620434A3BF39 /* OGSLoginInfo.swift in Sources */,
 				AD05A7E728E07F256A22C0DF /* OGSChooseGameCollectionViewController.swift in Sources */,
 				34DF468B1EFB5608009EC397 /* Game+Unboxable.swift in Sources */,
