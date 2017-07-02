@@ -7,6 +7,7 @@
 //
 
 import SocketIO
+import Unbox
 
 enum GameSocketModels {
 
@@ -18,6 +19,19 @@ enum GameSocketModels {
 
         func socketRepresentation() -> SocketData {
             return ["chat": chat, "game_id": gameId, "player_id": playerId]
+        }
+    }
+
+    struct Move: Unboxable {
+        var gameId: Int
+        var move: BoardPoint
+        var moveNumber: Int
+
+        init(unboxer: Unboxer) throws {
+            gameId = try unboxer.unbox(key: "game_id")
+            let genericMove: [Int] = try unboxer.unbox(key: "move")
+            move = BoardPoint(row: genericMove[1], column: genericMove[0])
+            moveNumber = try unboxer.unbox(key: "move_number")
         }
     }
 }
