@@ -12,3 +12,10 @@ struct GridStone {
     var type: StoneType
     var point: GridPoint
 }
+
+extension GridStone: Equatable {
+
+    static func ==(lhs: GridStone, rhs: GridStone) -> Bool {
+        return lhs.type == rhs.type && lhs.point == rhs.point
+    }
+}
