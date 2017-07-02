@@ -5,8 +5,8 @@
 
 import Foundation
 
-struct OGSUser
-{
+struct OGSUser {
+    var id: Int
     var username: String
     var rank: Int
 }
