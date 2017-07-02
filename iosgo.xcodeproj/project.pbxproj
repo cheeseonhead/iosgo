@@ -35,6 +35,7 @@
 		34812E6E1F047EDA008AB95E /* GoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34812E6D1F047EDA008AB95E /* GoState.swift */; };
 		348F60CF1F08BCCE00FA12F0 /* GameRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348F60CE1F08BCCE00FA12F0 /* GameRenderer.swift */; };
 		348F60D11F08C11000FA12F0 /* GridState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348F60D01F08C11000FA12F0 /* GridState.swift */; };
+		348F60D31F08DB0800FA12F0 /* OGSSocketEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348F60D21F08DB0800FA12F0 /* OGSSocketEvents.swift */; };
 		34934B761EF240320096D3C4 /* CGSize+Scalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34934B751EF240320096D3C4 /* CGSize+Scalable.swift */; };
 		34970F041EFFFBD800623ED0 /* SpeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68CD71EFF983E0010EFA5 /* SpeedType.swift */; };
 		34970F061F00A52A00623ED0 /* StoneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F051F00A52A00623ED0 /* StoneType.swift */; };
@@ -173,6 +174,7 @@
 		34812E6D1F047EDA008AB95E /* GoState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoState.swift; sourceTree = "<group>"; };
 		348F60CE1F08BCCE00FA12F0 /* GameRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRenderer.swift; sourceTree = "<group>"; };
 		348F60D01F08C11000FA12F0 /* GridState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridState.swift; sourceTree = "<group>"; };
+		348F60D21F08DB0800FA12F0 /* OGSSocketEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OGSSocketEvents.swift; sourceTree = "<group>"; };
 		34934B751EF240320096D3C4 /* CGSize+Scalable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Scalable.swift"; sourceTree = "<group>"; };
 		34970F051F00A52A00623ED0 /* StoneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneType.swift; sourceTree = "<group>"; };
 		34970F081F00A67A00623ED0 /* GridStone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStone.swift; sourceTree = "<group>"; };
@@ -723,6 +725,7 @@
 			children = (
 				AD05ADFB7AF57B9E129EBAFC /* OGSSocketManager.swift */,
 				AD05A7F90F265AA6604A16CB /* OGSSocketManagerTypes.swift */,
+				348F60D21F08DB0800FA12F0 /* OGSSocketEvents.swift */,
 			);
 			path = SocketManager;
 			sourceTree = "<group>";
@@ -1093,6 +1096,7 @@
 				3464414F1EE4BA06008718D7 /* SplashModels.swift in Sources */,
 				AD05AE59A5BF1697CECE11D9 /* OGSUser+Unboxable.swift in Sources */,
 				AD05AE8F87A1E735676D8715 /* OGSRootViewControllerWorker.swift in Sources */,
+				348F60D31F08DB0800FA12F0 /* OGSSocketEvents.swift in Sources */,
 				3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */,
 				346441521EE4BA06008718D7 /* SplashViewController.swift in Sources */,
 				AD05A0EE97BB7404C7897307 /* ChallengeStore.swift in Sources */,

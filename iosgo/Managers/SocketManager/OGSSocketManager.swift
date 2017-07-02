@@ -5,15 +5,6 @@
 
 import SocketIO
 
-typealias SocketEvent = String
-
-enum SocketEvents: SocketEvent {
-    case connect
-    case disconnect
-    case seekGraphConnect = "seek_graph/connect"
-    case seekGraphGlobal = "seekgraph/global"
-}
-
 class OGSSocketManager {
     static var sharedInstance = OGSSocketManager()
 
