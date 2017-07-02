@@ -6,4 +6,18 @@
 //  Copyright © 2017 Cheeseonhead. All rights reserved.
 //
 
-import Foundation
+import SocketIO
+
+enum GameSocketModels {
+
+    struct Connect: SocketData {
+
+        var chat: Bool
+        var gameId: Int
+        var playerId: Int
+
+        func socketRepresentation() -> SocketData {
+            return ["chat": chat, "game_id": gameId, "player_id": playerId]
+        }
+    }
+}
