@@ -15,6 +15,7 @@ import SpriteKit
 
 protocol PlayDisplayLogic: class {
     func displayLoadScene(viewModel: Play.LoadGame.ViewModel)
+    func displayUpdateGame(viewModel: Play.UpdateGame.ViewModel)
 }
 
 class PlayViewController: UIViewController {
@@ -60,8 +61,12 @@ class PlayViewController: UIViewController {
 
 // MARK: - Display
 extension PlayViewController: PlayDisplayLogic {
+
     func displayLoadScene(viewModel: Play.LoadGame.ViewModel) {
         boardScene.initialize(viewModel.state)
+    }
+
+    func displayUpdateGame(viewModel _: Play.UpdateGame.ViewModel) {
     }
 }
 

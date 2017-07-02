@@ -14,6 +14,7 @@ import UIKit
 
 protocol PlayPresentationLogic {
     func presentLoadScene(response: Play.LoadGame.Response)
+    func presentUpdateGame(response: Play.UpdateGame.Response)
 }
 
 class PlayPresenter: PlayPresentationLogic {
@@ -28,5 +29,8 @@ class PlayPresenter: PlayPresentationLogic {
 
         let model = Play.LoadGame.ViewModel(state: state)
         viewController?.displayLoadScene(viewModel: model)
+    }
+
+    func presentUpdateGame(response _: Play.UpdateGame.Response) {
     }
 }

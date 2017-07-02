@@ -25,4 +25,15 @@ enum Play {
             var state: GridState
         }
     }
+
+    enum UpdateGame {
+
+        struct Response {
+            var state: GoState
+        }
+
+        struct ViewModel {
+            var state: GridState
+        }
+    }
 }
