@@ -21,9 +21,6 @@ class OGSSeekGraphSocketStore {
     var socketManager: SocketManager!
 
     func connect() {
-        //        let challenge = createChallengeFrom(payload: fakeData1())
-        //        delegate?.listChallenges([challenge])
-
         socketManager.on(event: .seekGraphGlobal) { array in
             self.process(data: array[0])
         }

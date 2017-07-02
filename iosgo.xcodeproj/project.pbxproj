@@ -37,6 +37,7 @@
 		348F60D11F08C11000FA12F0 /* GridState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348F60D01F08C11000FA12F0 /* GridState.swift */; };
 		348F60D31F08DB0800FA12F0 /* SocketEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348F60D21F08DB0800FA12F0 /* SocketEvents.swift */; };
 		34934B761EF240320096D3C4 /* CGSize+Scalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34934B751EF240320096D3C4 /* CGSize+Scalable.swift */; };
+		3493D9061F08DE7000BE526E /* GameSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3493D9051F08DE7000BE526E /* GameSocket.swift */; };
 		34970F041EFFFBD800623ED0 /* SpeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68CD71EFF983E0010EFA5 /* SpeedType.swift */; };
 		34970F061F00A52A00623ED0 /* StoneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F051F00A52A00623ED0 /* StoneType.swift */; };
 		34970F091F00A67A00623ED0 /* GridStone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F081F00A67A00623ED0 /* GridStone.swift */; };
@@ -176,6 +177,7 @@
 		348F60D01F08C11000FA12F0 /* GridState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridState.swift; sourceTree = "<group>"; };
 		348F60D21F08DB0800FA12F0 /* SocketEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketEvents.swift; sourceTree = "<group>"; };
 		34934B751EF240320096D3C4 /* CGSize+Scalable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Scalable.swift"; sourceTree = "<group>"; };
+		3493D9051F08DE7000BE526E /* GameSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSocket.swift; sourceTree = "<group>"; };
 		34970F051F00A52A00623ED0 /* StoneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneType.swift; sourceTree = "<group>"; };
 		34970F081F00A67A00623ED0 /* GridStone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStone.swift; sourceTree = "<group>"; };
 		34970F111F00C17800623ED0 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
@@ -404,6 +406,14 @@
 			path = CGSize;
 			sourceTree = "<group>";
 		};
+		3493D9041F08DE5300BE526E /* GameSocket */ = {
+			isa = PBXGroup;
+			children = (
+				3493D9051F08DE7000BE526E /* GameSocket.swift */,
+			);
+			path = GameSocket;
+			sourceTree = "<group>";
+		};
 		34970F071F00A63A00623ED0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -585,6 +595,7 @@
 			children = (
 				8405CCC46689EA8AB1CE3519 /* OGSApiStore.swift */,
 				AD05A4E8F02D2F46F9BBF790 /* ChallengeStore */,
+				3493D9041F08DE5300BE526E /* GameSocket */,
 				34DF46891EFB55F4009EC397 /* GameStore */,
 				AD05A7441CAC96E005862E75 /* MeStore */,
 				341856A31EFF628E00DAF3CF /* Models */,
@@ -1028,6 +1039,7 @@
 				3464414E1EE4BA06008718D7 /* SplashInteractor.swift in Sources */,
 				3452AAF21F01EBBE008F838E /* BoardPoint.swift in Sources */,
 				5612FD131E63C60B000B1973 /* OGSChooseGameViewController.swift in Sources */,
+				3493D9061F08DE7000BE526E /* GameSocket.swift in Sources */,
 				34FEDDA91EFFF02F00EC1B5F /* PlayPresenter.swift in Sources */,
 				56FC0C091E9C85F100119D0C /* OGSChooseGameCollectionViewCell.swift in Sources */,
 				5612FD0E1E63C60B000B1973 /* OGSChooseGameConfigurator.swift in Sources */,
