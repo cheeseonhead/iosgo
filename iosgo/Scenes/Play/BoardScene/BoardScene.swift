@@ -18,14 +18,18 @@ class BoardScene: SKScene {
     var stoneWorker: StoneWorker!
 
     var currentType: StoneType = .black
+    var boardSize = BoardSize.zero
 
-    override func didMove(to _: SKView) {
+    func initialize(_ state: GridState) {
+
         woodBoard = self.childNode(withName: "WoodBoard") as! SKSpriteNode
 
-        addGrid()
+        addGrid(rows: state.size.height, cols: state.size.width)
         woodBoard.size = CGSize(width: grid.size.width + grid.spacing!, height: grid.size.height + grid.spacing!)
 
         stoneWorker = StoneWorker(grid: grid, stoneFactory: StoneNodeFactory())
+
+        render(state)
     }
 }
 
@@ -70,16 +74,15 @@ extension BoardScene {
 extension BoardScene {
 
     func render(_ state: GridState) {
-
         stoneWorker.placeStones(state.stones)
     }
 }
 
 // MARK: Setup
 extension BoardScene {
-    func addGrid() {
-        let rows: CGFloat = 19
-        let cols: CGFloat = 19
+    func addGrid(rows: Int, cols: Int) {
+        let rows = CGFloat(rows)
+        let cols = CGFloat(cols)
 
         let availableWidth = size.width * (cols - 1) / cols
         let availableHeight = size.height * (rows - 1) / rows
