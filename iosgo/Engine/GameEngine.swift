@@ -231,8 +231,8 @@ private extension GameEngine {
 // MARK: - State
 private extension GameEngine {
 
-    func getState() -> State {
-        let state = State(player: playingPlayer, boardIsRepeating: boardIsRepeating, whitePrisoners: whitePlayerPrisoners, blackPrisoners: blackPlayerPrisoners, board: board)
+    func getState() -> GoState {
+        let state = GoState(player: playingPlayer, boardIsRepeating: boardIsRepeating, whitePrisoners: whitePlayerPrisoners, blackPrisoners: blackPlayerPrisoners, board: board)
 
         return state
     }

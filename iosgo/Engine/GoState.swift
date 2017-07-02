@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct State {
+struct GoState {
     var player: PlayerType
     var boardIsRepeating: Bool
     var whitePrisoners: Int
@@ -17,9 +17,9 @@ struct State {
     var board: Board
 }
 
-extension State: Equatable {
+extension GoState: Equatable {
 
-    static func ==(lhs: State, rhs: State) -> Bool {
+    static func ==(lhs: GoState, rhs: GoState) -> Bool {
         return lhs.board == rhs.board
     }
 }

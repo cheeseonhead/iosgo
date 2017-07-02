@@ -22,7 +22,7 @@ class MoveTree {
     weak var parent: MoveTree?
     var hintNext: MoveTree?
     var moveNumber: Int
-    var state: State
+    var state: GoState
 
     var label: Any?
     var labelMetrics: Any?
@@ -38,7 +38,7 @@ class MoveTree {
     var correctAnswer: Any?
     var wrongAnswer: Any?
 
-    init(engine: GameEngine, trunk: Bool = true, point: BoardPoint = BoardPoint(row: -1, column: -1), edited: Bool = false, player: PlayerType? = nil, moveNumber: Int = 0, parent: MoveTree? = nil, state: State) {
+    init(engine: GameEngine, trunk: Bool = true, point: BoardPoint = BoardPoint(row: -1, column: -1), edited: Bool = false, player: PlayerType? = nil, moveNumber: Int = 0, parent: MoveTree? = nil, state: GoState) {
 
         MoveTree.moveTreeId += 1
         self.id = MoveTree.moveTreeId
@@ -56,7 +56,7 @@ class MoveTree {
 // MARK: Creating
 extension MoveTree {
 
-    func createMove(point: BoardPoint, trunk: Bool, edited: Bool, player: PlayerType?, moveNumber: Int, state: State) throws -> MoveTree {
+    func createMove(point: BoardPoint, trunk: Bool, edited: Bool, player: PlayerType?, moveNumber: Int, state: GoState) throws -> MoveTree {
 
         let m = lookupMove(point: point, player: player, edited: edited)
         var nextMove: MoveTree!
