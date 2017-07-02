@@ -11,9 +11,9 @@ import Unbox
 
 extension TimeControlParametersType.Fischer: Unboxable {
     init(unboxer: Unboxer) throws {
-        pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
-        speed = try unboxer.unbox(key: "speed")
-        system = try unboxer.unbox(key: "system")
+        pauseOnWeekends = unboxer.unbox(key: "pause_on_weekends")
+        speed = unboxer.unbox(key: "speed")
+        system = unboxer.unbox(key: "system")
         timeControl = try unboxer.unbox(key: "time_control")
 
         initialTime = try unboxer.unbox(key: "initial_time")
@@ -24,9 +24,9 @@ extension TimeControlParametersType.Fischer: Unboxable {
 
 extension TimeControlParametersType.Simple: Unboxable {
     init(unboxer: Unboxer) throws {
-        pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
-        speed = try unboxer.unbox(key: "speed")
-        system = try unboxer.unbox(key: "system")
+        pauseOnWeekends = unboxer.unbox(key: "pause_on_weekends")
+        speed = unboxer.unbox(key: "speed")
+        system = unboxer.unbox(key: "system")
         timeControl = try unboxer.unbox(key: "time_control")
 
         timePerMove = try unboxer.unbox(key: "per_move")
@@ -35,9 +35,9 @@ extension TimeControlParametersType.Simple: Unboxable {
 
 extension TimeControlParametersType.Byoyomi: Unboxable {
     init(unboxer: Unboxer) throws {
-        pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
-        speed = try unboxer.unbox(key: "speed")
-        system = try unboxer.unbox(key: "system")
+        pauseOnWeekends = unboxer.unbox(key: "pause_on_weekends")
+        speed = unboxer.unbox(key: "speed")
+        system = unboxer.unbox(key: "system")
         timeControl = try unboxer.unbox(key: "time_control")
 
         mainTime = try unboxer.unbox(key: "main_time")
@@ -48,9 +48,9 @@ extension TimeControlParametersType.Byoyomi: Unboxable {
 
 extension TimeControlParametersType.Canadian: Unboxable {
     init(unboxer: Unboxer) throws {
-        pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
-        speed = try unboxer.unbox(key: "speed")
-        system = try unboxer.unbox(key: "system")
+        pauseOnWeekends = unboxer.unbox(key: "pause_on_weekends")
+        speed = unboxer.unbox(key: "speed")
+        system = unboxer.unbox(key: "system")
         timeControl = try unboxer.unbox(key: "time_control")
 
         mainTime = try unboxer.unbox(key: "main_time")
@@ -61,9 +61,9 @@ extension TimeControlParametersType.Canadian: Unboxable {
 
 extension TimeControlParametersType.Absolute: Unboxable {
     init(unboxer: Unboxer) throws {
-        pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
-        speed = try unboxer.unbox(key: "speed")
-        system = try unboxer.unbox(key: "system")
+        pauseOnWeekends = unboxer.unbox(key: "pause_on_weekends")
+        speed = unboxer.unbox(key: "speed")
+        system = unboxer.unbox(key: "system")
         timeControl = try unboxer.unbox(key: "time_control")
 
         totalTime = try unboxer.unbox(key: "total_time")
@@ -72,9 +72,9 @@ extension TimeControlParametersType.Absolute: Unboxable {
 
 extension TimeControlParametersType.None: Unboxable {
     init(unboxer: Unboxer) throws {
-        pauseOnWeekends = try unboxer.unbox(key: "pause_on_weekends")
-        speed = try unboxer.unbox(key: "speed")
-        system = try unboxer.unbox(key: "system")
+        pauseOnWeekends = unboxer.unbox(key: "pause_on_weekends")
+        speed = unboxer.unbox(key: "speed")
+        system = unboxer.unbox(key: "system")
         timeControl = try unboxer.unbox(key: "time_control")
     }
 }
