@@ -29,6 +29,14 @@ extension StoneWorker {
     func isOccupied(point: GridPoint) -> Bool {
         return stoneNodes[point] != nil
     }
+
+    func stone(at point: GridPoint) -> GridStone? {
+        guard let node: StoneNode = stoneNodes[point] else {
+            return nil
+        }
+        let gridStone = GridStone(type: node.type!, point: point)
+        return gridStone
+    }
 }
 
 // MARK: - Regular Stones
