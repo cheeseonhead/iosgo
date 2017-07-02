@@ -11,7 +11,7 @@ import Foundation
 class PlayWorker {
 
     enum LoadResult {
-        case success(stones: [GridStone])
+        case success(stones: GoState)
         case error(message: String)
     }
 
@@ -34,7 +34,7 @@ class PlayWorker {
                 self.game = game
 
                 self.gameEngine = GameEngine(game: game)
-                loadResult = .success(stones: self.getStones())
+                loadResult = .success(stones: self.gameEngine.getState())
             case .error(let type):
                 switch type {
                 case .genericError(let message):
@@ -45,27 +45,5 @@ class PlayWorker {
 
             completion(loadResult)
         }
-    }
-}
-
-extension PlayWorker {
-
-    func getStones() -> [GridStone] {
-
-        var gridStones = [GridStone]()
-        let boardStones = gameEngine.board.allStones()
-
-        for (boardPoint, boardStone) in boardStones {
-            let gridStone = GridStone(type: boardStone.type, point: gridPoint(from: boardPoint, game: game))
-            gridStones.append(gridStone)
-        }
-
-        return gridStones
-    }
-
-    private func gridPoint(from move: BoardPoint, game: Game) -> GridPoint {
-        let row = game.height - move.row
-        let col = move.column + 1
-        return GridPoint(row: row, col: col)
     }
 }

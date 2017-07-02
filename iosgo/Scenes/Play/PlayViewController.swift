@@ -61,7 +61,7 @@ class PlayViewController: UIViewController {
 // MARK: - Display
 extension PlayViewController: PlayDisplayLogic {
     func displayLoadScene(viewModel: Play.LoadScene.ViewModel) {
-        boardScene.placeStones(viewModel.stones)
+        boardScene.initialize(viewModel.state)
     }
 }
 

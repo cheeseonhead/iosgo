@@ -123,6 +123,12 @@ class GameEngine {
         let index = alphabet.index(alphabet.startIndex, offsetBy: point.column)
         return "\(alphabet[index])" + "\(board.size.height - point.row)"
     }
+
+    func getState() -> GoState {
+        let state = GoState(player: playingPlayer, boardIsRepeating: boardIsRepeating, whitePrisoners: whitePlayerPrisoners, blackPrisoners: blackPlayerPrisoners, board: board)
+
+        return state
+    }
 }
 
 // MARK: - Liberties
@@ -230,12 +236,6 @@ private extension GameEngine {
 
 // MARK: - State
 private extension GameEngine {
-
-    func getState() -> State {
-        let state = State(player: playingPlayer, boardIsRepeating: boardIsRepeating, whitePrisoners: whitePlayerPrisoners, blackPrisoners: blackPlayerPrisoners, board: board)
-
-        return state
-    }
 
     func isBoardRepeating() -> Bool {
         let MAX_SUPERKO_SEARCH = 30
