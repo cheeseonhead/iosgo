@@ -5,8 +5,8 @@
 
 import SocketIO
 
-class OGSSocketManager {
-    static var sharedInstance = OGSSocketManager()
+class SocketManager {
+    static var sharedInstance = SocketManager()
 
     var socketAddress: String!
     var isConnected = false
@@ -32,7 +32,7 @@ class OGSSocketManager {
     }
 }
 
-extension OGSSocketManager {
+extension SocketManager {
     func emit(event: SocketEvents, with data: SocketData) {
         if !isConnected {
             once(event: .connect) { _ in
@@ -58,7 +58,7 @@ extension OGSSocketManager {
 }
 
 // MARK: - Handlers
-extension OGSSocketManager {
+extension SocketManager {
     func websocketDidConnect(socket _: SocketIOClient) {
         isConnected = true
     }
