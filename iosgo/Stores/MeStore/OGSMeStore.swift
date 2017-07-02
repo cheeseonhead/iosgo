@@ -34,6 +34,8 @@ class OGSMeStore {
                 if let user = try? self.createUser(from: payload!) {
                     response.result = .success(user: user)
                 }
+            case .unauthorized:
+                response.result = .error(type: .unauthorized)
             default:
                 break
             }
