@@ -9,6 +9,9 @@
 import Foundation
 
 struct BoardSize {
+
+    static let zero = BoardSize(height: 0, width: 0)
+
     var height: Int
     var width: Int
 
