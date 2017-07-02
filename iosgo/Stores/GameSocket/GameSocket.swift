@@ -9,7 +9,7 @@
 import Foundation
 import Unbox
 
-protocol GameSocketDelegate {
+protocol GameSocketDelegate: class {
     func move(_ move: BoardPoint)
 }
 
@@ -20,6 +20,7 @@ class GameSocket {
     var socket: SocketManager
     var gameId: Int
     var playerId: Int
+    weak var delegate: GameSocketDelegate?
 
     required init(socketManager: SocketManager, gameId: Int, playerId: Int) {
         self.socket = socketManager
@@ -45,6 +46,6 @@ class GameSocket {
 private extension GameSocket {
 
     private func handleMove(model: Models.Move) {
-        print(model)
+        delegate?.move(model.move)
     }
 }
