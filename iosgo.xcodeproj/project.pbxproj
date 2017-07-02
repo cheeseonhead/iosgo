@@ -41,6 +41,7 @@
 		3493D9081F08E2C300BE526E /* SocketEventCreating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3493D9071F08E2C300BE526E /* SocketEventCreating.swift */; };
 		3493D90A1F08E3E300BE526E /* GameSocketEventCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3493D9091F08E3E300BE526E /* GameSocketEventCreator.swift */; };
 		3493D90C1F08EA8500BE526E /* GameSocketModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3493D90B1F08EA8500BE526E /* GameSocketModels.swift */; };
+		3493D90E1F098E9B00BE526E /* StoneDiffWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3493D90D1F098E9B00BE526E /* StoneDiffWorker.swift */; };
 		34970F041EFFFBD800623ED0 /* SpeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68CD71EFF983E0010EFA5 /* SpeedType.swift */; };
 		34970F061F00A52A00623ED0 /* StoneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F051F00A52A00623ED0 /* StoneType.swift */; };
 		34970F091F00A67A00623ED0 /* GridStone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F081F00A67A00623ED0 /* GridStone.swift */; };
@@ -184,6 +185,7 @@
 		3493D9071F08E2C300BE526E /* SocketEventCreating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketEventCreating.swift; sourceTree = "<group>"; };
 		3493D9091F08E3E300BE526E /* GameSocketEventCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSocketEventCreator.swift; sourceTree = "<group>"; };
 		3493D90B1F08EA8500BE526E /* GameSocketModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSocketModels.swift; sourceTree = "<group>"; };
+		3493D90D1F098E9B00BE526E /* StoneDiffWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneDiffWorker.swift; sourceTree = "<group>"; };
 		34970F051F00A52A00623ED0 /* StoneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneType.swift; sourceTree = "<group>"; };
 		34970F081F00A67A00623ED0 /* GridStone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStone.swift; sourceTree = "<group>"; };
 		34970F111F00C17800623ED0 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 			children = (
 				3414A6FC1EF223BF00E28D6D /* StoneWorker.swift */,
 				3414A6F91EF21B5800E28D6D /* StoneNodeFactory.swift */,
+				3493D90D1F098E9B00BE526E /* StoneDiffWorker.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -1124,6 +1127,7 @@
 				3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */,
 				346441521EE4BA06008718D7 /* SplashViewController.swift in Sources */,
 				AD05A0EE97BB7404C7897307 /* ChallengeStore.swift in Sources */,
+				3493D90E1F098E9B00BE526E /* StoneDiffWorker.swift in Sources */,
 				AD05A9F1111278A031FEA546 /* ChallengeWorker.swift in Sources */,
 				346945331EF749DD004E3164 /* PlayWorker.swift in Sources */,
 				34970F041EFFFBD800623ED0 /* SpeedType.swift in Sources */,
