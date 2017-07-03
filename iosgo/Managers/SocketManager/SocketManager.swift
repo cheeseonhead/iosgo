@@ -28,6 +28,7 @@ class SocketManager {
             self.websocketDidDisconnect(socket: self.socket)
         }
 
+        socket.reconnectWait = 5
         socket.connect()
     }
 }
