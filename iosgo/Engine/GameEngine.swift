@@ -53,7 +53,7 @@ class GameEngine {
     func update(with gameData: GameData) {
 
         if gameData.moves.count != game.gameData.moves.count {
-            let newMoves = Array(gameData.moves[game.gameData.moves.count ... ])
+            let newMoves = Array<BoardPoint>(gameData.moves[game.gameData.moves.count ... ])
             playMoves(newMoves)
         }
     }
