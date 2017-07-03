@@ -74,4 +74,9 @@ extension PlayWorker: GameSocketDelegate {
         try? gameEngine.place(at: move)
         delegate?.gameUpdated(state: gameEngine.getState())
     }
+
+    func updateGameData(_ gameData: GameData) {
+        gameEngine.update(with: gameData)
+        delegate?.gameUpdated(state: gameEngine.getState())
+    }
 }
