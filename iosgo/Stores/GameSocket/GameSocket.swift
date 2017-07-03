@@ -11,6 +11,7 @@ import Unbox
 
 protocol GameSocketDelegate: class {
     func move(_ move: BoardPoint)
+    func updateGameData(_ gameData: GameData)
 }
 
 class GameSocket {
@@ -37,8 +38,22 @@ class GameSocket {
             self.handleMove(model: moveModel)
         }
 
-        let connectData = Models.Connect(chat: true, gameId: gameId, playerId: playerId)
-        socket.emit(GameSocketEventCreator(gameId: gameId, eventType: .connect), with: connectData)
+        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .gamedata)) { [weak self] data in
+            guard let strongSelf = self,
+                let dictionary = data[0] as? UnboxableDictionary,
+                let gameData: GameData = try? unbox(dictionary: dictionary) else {
+                return
+            }
+
+            strongSelf.handleGameData(gameData: gameData)
+        }
+
+        socket.onConnect { [weak self] in
+            guard let strongSelf = self else { return }
+
+            let connectData = Models.Connect(chat: true, gameId: strongSelf.gameId, playerId: strongSelf.playerId)
+            strongSelf.socket.emit(GameSocketEventCreator(gameId: strongSelf.gameId, eventType: .connect), with: connectData)
+        }
     }
 }
 
@@ -47,5 +62,9 @@ private extension GameSocket {
 
     private func handleMove(model: Models.Move) {
         delegate?.move(model.move)
+    }
+
+    private func handleGameData(gameData: GameData) {
+        delegate?.updateGameData(gameData)
     }
 }

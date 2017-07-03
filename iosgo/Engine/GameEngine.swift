@@ -24,28 +24,22 @@ class GameEngine {
     var boardIsRepeating = false
 
     lazy var moveTree: MoveTree = {
-        return MoveTree(engine: self, trunk: true, point: BoardPoint(row: -1, column: -1), edited: false, moveNumber: 0, parent: nil, state: self.getState())
+        MoveTree(engine: self, trunk: true, point: BoardPoint(row: -1, column: -1), edited: false, moveNumber: 0, parent: nil, state: self.getState())
     }()
     lazy var currentMove: MoveTree = {
-        return self.moveTree
+        self.moveTree
     }()
     lazy var lastOfficialMove: MoveTree = {
-        return self.currentMove
+        self.currentMove
     }()
     var moveBeforeJump: MoveTree?
 
     required init(game: Game) {
         self.game = game
         playingPlayer = (game.gameData.initialPlayer == .black) ? .black : .white
-        self.board = Board(size: BoardSize(height: game.height, width: game.width))
+        board = Board(size: BoardSize(height: game.height, width: game.width))
 
-        for move in game.gameData.moves {
-            do {
-                try place(at: move, checkForKo: false, errorOnSuperKo: false, dontCheckForSuperKo: true, dontCheckForSuicide: true, isTrunkMove: true)
-            } catch {
-                print("Error occurred while placing: \(error)")
-            }
-        }
+        playMoves(game.gameData.moves)
 
         triggerLazyInit()
     }
@@ -54,6 +48,15 @@ class GameEngine {
         _ = moveTree
         _ = currentMove
         _ = lastOfficialMove
+    }
+
+    func update(with gameData: GameData) {
+
+        let currentMoves = game.gameData.moves
+        if gameData.moves.count != currentMoves.count {
+            let newMoves = Array(gameData.moves[currentMoves.count ..< gameData.moves.count])
+            playMoves(newMoves)
+        }
     }
 
     func place(at point: BoardPoint, checkForKo: Bool = false, errorOnSuperKo: Bool = false, dontCheckForSuperKo: Bool = false, dontCheckForSuicide: Bool = false, isTrunkMove: Bool = false) throws {
@@ -242,7 +245,7 @@ private extension GameEngine {
         let currentState = getState()
 
         var t = currentMove.index(-2)
-        let startingIndex = min(MAX_SUPERKO_SEARCH, currentMove.moveNumber - 2)
+        let startingIndex = max(min(MAX_SUPERKO_SEARCH, currentMove.moveNumber - 2), 1)
 
         for _ in (1 ... startingIndex).reversed() {
             if t.state == currentState {
@@ -271,6 +274,17 @@ private extension GameEngine {
 
 // MARK: - Helpers
 private extension GameEngine {
+
+    func playMoves(_ moves: [BoardPoint]) {
+
+        for move in moves {
+            do {
+                try place(at: move, checkForKo: false, errorOnSuperKo: false, dontCheckForSuperKo: true, dontCheckForSuicide: true, isTrunkMove: true)
+            } catch {
+                print("Error occurred while placing: \(error)")
+            }
+        }
+    }
 
     func insertStone(for player: PlayerType, at point: BoardPoint) {
         switch player {
