@@ -14,7 +14,7 @@ class SocketManager {
     fileprivate var socket: SocketIOClient!
 
     func connect(completion: @escaping (Bool) -> Void) {
-        socket = SocketIOClient(socketURL: URL(string: socketAddress)!, config: [.log(false), .forceWebsockets(true)])
+        socket = SocketIOClient(socketURL: URL(string: socketAddress)!, config: [.log(false), .forceWebsockets(true), .reconnects(true), .reconnectWait(5)])
 
         once(event: .connect) { _ in
             completion(true)
@@ -39,6 +39,17 @@ extension SocketManager {
 
     func emit(_ socketEventCreator: SocketEventCreating, with data: SocketData) {
         emit(rawEvent: socketEventCreator.eventName, with: data)
+    }
+
+    func onConnect(closure: @escaping () -> Void) {
+
+        if socket.status == .connected {
+            closure()
+        }
+
+        on(event: .connect) { _ in
+            closure()
+        }
     }
 
     func on(event: SocketEvents, closure: @escaping NormalCallback) {
