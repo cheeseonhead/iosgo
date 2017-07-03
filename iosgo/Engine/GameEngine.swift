@@ -242,7 +242,7 @@ private extension GameEngine {
         let currentState = getState()
 
         var t = currentMove.index(-2)
-        let startingIndex = min(MAX_SUPERKO_SEARCH, currentMove.moveNumber - 2)
+        let startingIndex = max(min(MAX_SUPERKO_SEARCH, currentMove.moveNumber - 2), 1)
 
         for _ in (1 ... startingIndex).reversed() {
             if t.state == currentState {
