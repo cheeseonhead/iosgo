@@ -17,11 +17,13 @@ struct GameSocketEventCreator: SocketEventCreating {
             return "game/\(gameId)/move"
         case .connect:
             return "game/connect"
+        case .gamedata:
+            return "game/\(gameId)/gamedata"
         }
     }
 
     enum EventType {
-        case move, clock, connect
+        case move, clock, connect, gamedata
     }
 
     var gameId: Int
