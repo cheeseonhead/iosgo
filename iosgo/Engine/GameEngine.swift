@@ -24,20 +24,20 @@ class GameEngine {
     var boardIsRepeating = false
 
     lazy var moveTree: MoveTree = {
-        return MoveTree(engine: self, trunk: true, point: BoardPoint(row: -1, column: -1), edited: false, moveNumber: 0, parent: nil, state: self.getState())
+        MoveTree(engine: self, trunk: true, point: BoardPoint(row: -1, column: -1), edited: false, moveNumber: 0, parent: nil, state: self.getState())
     }()
     lazy var currentMove: MoveTree = {
-        return self.moveTree
+        self.moveTree
     }()
     lazy var lastOfficialMove: MoveTree = {
-        return self.currentMove
+        self.currentMove
     }()
     var moveBeforeJump: MoveTree?
 
     required init(game: Game) {
         self.game = game
         playingPlayer = (game.gameData.initialPlayer == .black) ? .black : .white
-        self.board = Board(size: BoardSize(height: game.height, width: game.width))
+        board = Board(size: BoardSize(height: game.height, width: game.width))
 
         playMoves(game.gameData.moves)
 
