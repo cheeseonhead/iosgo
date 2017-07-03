@@ -39,13 +39,7 @@ class GameEngine {
         playingPlayer = (game.gameData.initialPlayer == .black) ? .black : .white
         self.board = Board(size: BoardSize(height: game.height, width: game.width))
 
-        for move in game.gameData.moves {
-            do {
-                try place(at: move, checkForKo: false, errorOnSuperKo: false, dontCheckForSuperKo: true, dontCheckForSuicide: true, isTrunkMove: true)
-            } catch {
-                print("Error occurred while placing: \(error)")
-            }
-        }
+        playMoves(game.gameData.moves)
 
         triggerLazyInit()
     }
@@ -54,6 +48,14 @@ class GameEngine {
         _ = moveTree
         _ = currentMove
         _ = lastOfficialMove
+    }
+
+    func update(with gameData: GameData) {
+
+        if gameData.moves.count != game.gameData.moves.count {
+            let newMoves = Array(gameData.moves[game.gameData.moves.count ... ])
+            playMoves(newMoves)
+        }
     }
 
     func place(at point: BoardPoint, checkForKo: Bool = false, errorOnSuperKo: Bool = false, dontCheckForSuperKo: Bool = false, dontCheckForSuicide: Bool = false, isTrunkMove: Bool = false) throws {
@@ -271,6 +273,17 @@ private extension GameEngine {
 
 // MARK: - Helpers
 private extension GameEngine {
+
+    func playMoves(_ moves: [BoardPoint]) {
+
+        for move in moves {
+            do {
+                try place(at: move, checkForKo: false, errorOnSuperKo: false, dontCheckForSuperKo: true, dontCheckForSuicide: true, isTrunkMove: true)
+            } catch {
+                print("Error occurred while placing: \(error)")
+            }
+        }
+    }
 
     func insertStone(for player: PlayerType, at point: BoardPoint) {
         switch player {
