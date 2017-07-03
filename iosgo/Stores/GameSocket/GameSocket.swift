@@ -37,8 +37,12 @@ class GameSocket {
             self.handleMove(model: moveModel)
         }
 
-        let connectData = Models.Connect(chat: true, gameId: gameId, playerId: playerId)
-        socket.emit(GameSocketEventCreator(gameId: gameId, eventType: .connect), with: connectData)
+        socket.onConnect { [weak self] in
+            guard let strongSelf = self else { return }
+
+            let connectData = Models.Connect(chat: true, gameId: strongSelf.gameId, playerId: strongSelf.playerId)
+            strongSelf.socket.emit(GameSocketEventCreator(gameId: strongSelf.gameId, eventType: .connect), with: connectData)
+        }
     }
 }
 
