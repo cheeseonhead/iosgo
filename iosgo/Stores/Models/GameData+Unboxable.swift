@@ -69,8 +69,5 @@ extension GameData: Unboxable {
 
         // MARK: - Review
         reviews = unboxer.unbox(key: "reviews")
-
-        // MARK: - Others
-        metaGroups = try unboxer.unbox(key: "meta_groups")
     }
 }

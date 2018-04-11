@@ -75,9 +75,6 @@ struct GameData {
     // MARK: - Review
     var reviews: [String: Any]?
 
-    // MARK: - Others
-    var metaGroups: [Any]
-
     // MARK: - Derived
     var moves: [BoardPoint]
 }
