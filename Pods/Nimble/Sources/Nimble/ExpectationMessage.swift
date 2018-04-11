@@ -3,19 +3,19 @@ import Foundation
 public indirect enum ExpectationMessage {
     // --- Primary Expectations ---
     /// includes actual value in output ("expected to <message>, got <actual>")
-    case expectedActualValueTo( /* message: */ String)
+    case expectedActualValueTo(/* message: */ String)
     /// uses a custom actual value string in output ("expected to <message>, got <actual>")
-    case expectedCustomValueTo( /* message: */ String, /* actual: */ String)
+    case expectedCustomValueTo(/* message: */ String, /* actual: */ String)
     /// excludes actual value in output ("expected to <message>")
-    case expectedTo( /* message: */ String)
+    case expectedTo(/* message: */ String)
     /// allows any free-form message ("<message>")
-    case fail( /* message: */ String)
+    case fail(/* message: */ String)
 
     // --- Composite Expectations ---
     // Generally, you'll want the methods, appended(message:) and appended(details:) instead.
 
     /// Not Fully Implemented Yet.
-    case prepends( /* Prepended Message */ String, ExpectationMessage)
+    case prepends(/* Prepended Message */ String, ExpectationMessage)
 
     /// appends after an existing message ("<expectation> (use beNil() to match nils)")
     case appends(ExpectationMessage, /* Appended Message */ String)
@@ -27,6 +27,7 @@ public indirect enum ExpectationMessage {
         let asStr = toString(actual: "<ACTUAL>", expected: "expected", to: "to")
         let asFailureMessage = FailureMessage()
         update(failureMessage: asFailureMessage)
+        // swiftlint:disable:next line_length
         return "(toString(actual:expected:to:) -> \(asStr) || update(failureMessage:) -> \(asFailureMessage.stringValue))"
     }
 
@@ -205,57 +206,57 @@ extension FailureMessage {
     }
 }
 
-#if _runtime(_ObjC)
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 
-    public class NMBExpectationMessage: NSObject {
-        private let msg: ExpectationMessage
+public class NMBExpectationMessage: NSObject {
+    private let msg: ExpectationMessage
 
-        internal init(swift msg: ExpectationMessage) {
-            self.msg = msg
-        }
-
-        public init(expectedTo message: String) {
-            self.msg = .expectedTo(message)
-        }
-        public init(expectedActualValueTo message: String) {
-            self.msg = .expectedActualValueTo(message)
-        }
-
-        public init(expectedActualValueTo message: String, customActualValue actual: String) {
-            self.msg = .expectedCustomValueTo(message, actual)
-        }
-
-        public init(fail message: String) {
-            self.msg = .fail(message)
-        }
-
-        public init(prepend message: String, child: NMBExpectationMessage) {
-            self.msg = .prepends(message, child.msg)
-        }
-
-        public init(appendedMessage message: String, child: NMBExpectationMessage) {
-            self.msg = .appends(child.msg, message)
-        }
-
-        public init(prependedMessage message: String, child: NMBExpectationMessage) {
-            self.msg = .prepends(message, child.msg)
-        }
-
-        public init(details message: String, child: NMBExpectationMessage) {
-            self.msg = .details(child.msg, message)
-        }
-
-        public func appendedBeNilHint() -> NMBExpectationMessage {
-            return NMBExpectationMessage(swift: msg.appendedBeNilHint())
-        }
-
-        public func toSwift() -> ExpectationMessage { return self.msg }
+    internal init(swift msg: ExpectationMessage) {
+        self.msg = msg
     }
 
-    extension ExpectationMessage {
-        func toObjectiveC() -> NMBExpectationMessage {
-            return NMBExpectationMessage(swift: self)
-        }
+    public init(expectedTo message: String) {
+        self.msg = .expectedTo(message)
     }
+    public init(expectedActualValueTo message: String) {
+        self.msg = .expectedActualValueTo(message)
+    }
+
+    public init(expectedActualValueTo message: String, customActualValue actual: String) {
+        self.msg = .expectedCustomValueTo(message, actual)
+    }
+
+    public init(fail message: String) {
+        self.msg = .fail(message)
+    }
+
+    public init(prepend message: String, child: NMBExpectationMessage) {
+        self.msg = .prepends(message, child.msg)
+    }
+
+    public init(appendedMessage message: String, child: NMBExpectationMessage) {
+        self.msg = .appends(child.msg, message)
+    }
+
+    public init(prependedMessage message: String, child: NMBExpectationMessage) {
+        self.msg = .prepends(message, child.msg)
+    }
+
+    public init(details message: String, child: NMBExpectationMessage) {
+        self.msg = .details(child.msg, message)
+    }
+
+    public func appendedBeNilHint() -> NMBExpectationMessage {
+        return NMBExpectationMessage(swift: msg.appendedBeNilHint())
+    }
+
+    public func toSwift() -> ExpectationMessage { return self.msg }
+}
+
+extension ExpectationMessage {
+    func toObjectiveC() -> NMBExpectationMessage {
+        return NMBExpectationMessage(swift: self)
+    }
+}
 
 #endif

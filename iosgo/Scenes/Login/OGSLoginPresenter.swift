@@ -39,7 +39,7 @@ class OGSLoginPresenter: OGSLoginPresenterInput {
         var viewModel = OGSLogin.FieldsChanged.ViewModel(buttonEnabled: true)
 
         for text in response.textFieldTexts {
-            if text.characters.count == 0 {
+            if text.count == 0 {
                 viewModel.buttonEnabled = false
             }
         }

@@ -29,13 +29,13 @@ public func < (lhs: Expectation<NMBComparable>, rhs: NMBComparable?) {
     lhs.to(beLessThan(rhs))
 }
 
-#if _runtime(_ObjC)
-    extension NMBObjCMatcher {
-        public class func beLessThanMatcher(_ expected: NMBComparable?) -> NMBObjCMatcher {
-            return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
-                let expr = actualExpression.cast { $0 as? NMBComparable }
-                return try! beLessThan(expected).matches(expr, failureMessage: failureMessage)
-            }
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+extension NMBObjCMatcher {
+    @objc public class func beLessThanMatcher(_ expected: NMBComparable?) -> NMBObjCMatcher {
+        return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
+            let expr = actualExpression.cast { $0 as? NMBComparable }
+            return try! beLessThan(expected).matches(expr, failureMessage: failureMessage)
         }
     }
+}
 #endif

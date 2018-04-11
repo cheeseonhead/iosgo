@@ -9,10 +9,10 @@ public func beVoid() -> Predicate<()> {
     }
 }
 
-public func == (lhs: Expectation<()>, rhs _: ()) {
+public func == (lhs: Expectation<()>, rhs: ()) {
     lhs.to(beVoid())
 }
 
-public func != (lhs: Expectation<()>, rhs _: ()) {
+public func != (lhs: Expectation<()>, rhs: ()) {
     lhs.toNot(beVoid())
 }

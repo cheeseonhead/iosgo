@@ -1,9 +1,10 @@
 PODS:
-  - Nimble (7.0.1)
-  - Quick (1.1.0)
-  - SnapKit (3.2.0)
-  - Socket.IO-Client-Swift (10.0.0)
-  - Starscream (2.0.4)
+  - Nimble (7.1.0)
+  - Quick (1.2.0)
+  - SnapKit (4.0.0)
+  - Socket.IO-Client-Swift (13.1.3):
+    - Starscream (~> 3.0.2)
+  - Starscream (3.0.5)
   - Unbox (2.5.0)
 
 DEPENDENCIES:
@@ -14,14 +15,23 @@ DEPENDENCIES:
   - Starscream
   - Unbox
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Nimble
+    - Quick
+    - SnapKit
+    - Socket.IO-Client-Swift
+    - Starscream
+    - Unbox
+
 SPEC CHECKSUMS:
-  Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
-  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
-  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
-  Socket.IO-Client-Swift: 9c5b4e5e76e30e1b9a1804c40e11dad0a002b1a4
-  Starscream: df5974ee928b157c8eda8af8de7c620276b7dfcc
+  Nimble: 9c6651c3021af6de54c3ed90a4a0a87d548f7359
+  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  Socket.IO-Client-Swift: d30d6fd08a38ad2a182b090936a043bf512ab2de
+  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
   Unbox: 30e437e6151a6de16139375fd4e8dd9a664cfbf7
 
 PODFILE CHECKSUM: b1ce91052a1238ec9323fee61861f9b5b7dbe3f7
 
-COCOAPODS: 1.3.0.beta.1
+COCOAPODS: 1.5.0

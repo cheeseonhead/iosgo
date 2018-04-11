@@ -11,10 +11,13 @@ class SocketManager {
     var socketAddress: String!
     var isConnected = false
 
+    private var manager: SocketIO.SocketManager!
     fileprivate var socket: SocketIOClient!
 
     func connect(completion: @escaping (Bool) -> Void) {
-        socket = SocketIOClient(socketURL: URL(string: socketAddress)!, config: [.log(false), .forceWebsockets(true), .reconnects(true), .reconnectWait(5)])
+        
+        manager = SocketIO.SocketManager(socketURL: URL(string: socketAddress)!, config: [.log(false), .forceWebsockets(true), .reconnects(true), .reconnectWait(5)])
+        socket = manager.defaultSocket
 
         once(event: .connect) { _ in
             completion(true)
@@ -28,7 +31,6 @@ class SocketManager {
             self.websocketDidDisconnect(socket: self.socket)
         }
 
-        socket.reconnectWait = 5
         socket.connect()
     }
 }

@@ -42,19 +42,19 @@ public func beginWith(_ startingSubstring: String) -> Predicate<String> {
     }
 }
 
-#if _runtime(_ObjC)
-    extension NMBObjCMatcher {
-        public class func beginWithMatcher(_ expected: Any) -> NMBObjCMatcher {
-            return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
-                let actual = try! actualExpression.evaluate()
-                if (actual as? String) != nil {
-                    let expr = actualExpression.cast { $0 as? String }
-                    return try! beginWith(expected as! String).matches(expr, failureMessage: failureMessage)
-                } else {
-                    let expr = actualExpression.cast { $0 as? NMBOrderedCollection }
-                    return try! beginWith(expected).matches(expr, failureMessage: failureMessage)
-                }
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+extension NMBObjCMatcher {
+    @objc public class func beginWithMatcher(_ expected: Any) -> NMBObjCMatcher {
+        return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
+            let actual = try! actualExpression.evaluate()
+            if (actual as? String) != nil {
+                let expr = actualExpression.cast { $0 as? String }
+                return try! beginWith(expected as! String).matches(expr, failureMessage: failureMessage)
+            } else {
+                let expr = actualExpression.cast { $0 as? NMBOrderedCollection }
+                return try! beginWith(expected).matches(expr, failureMessage: failureMessage)
             }
         }
     }
+}
 #endif
