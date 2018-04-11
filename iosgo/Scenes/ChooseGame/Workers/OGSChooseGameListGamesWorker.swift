@@ -16,7 +16,7 @@ protocol OGSListGamesStoreDelegate: class {
 }
 
 protocol OGSListGamesStoreProtocol {
-    weak var delegate: OGSListGamesStoreDelegate? { set get }
+    var delegate: OGSListGamesStoreDelegate? { set get }
     var socketManager: SocketManager! { set get }
 
     func connect()
