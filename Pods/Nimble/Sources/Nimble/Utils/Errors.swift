@@ -34,7 +34,7 @@ internal func errorMatchesExpectedError<T: Error>(
     _ actualError: Error,
     expectedError: T) -> Bool {
     return actualError._domain == expectedError._domain
-        && actualError._code == expectedError._code
+        && actualError._code   == expectedError._code
 }
 
 // Non-generic

@@ -25,7 +25,7 @@ public func equal<T: Equatable>(_ expectedValue: T?) -> Predicate<T> {
 /// Values can support equal by supporting the Equatable protocol.
 ///
 /// @see beCloseTo if you want to match imprecise types (eg - floats, doubles).
-public func equal<T: Equatable, C: Equatable>(_ expectedValue: [T: C]?) -> Predicate<[T: C]> {
+public func equal<T, C: Equatable>(_ expectedValue: [T: C]?) -> Predicate<[T: C]> {
     return Predicate.define("equal <\(stringify(expectedValue))>") { actualExpression, msg in
         let actualValue = try actualExpression.evaluate()
         if expectedValue == nil || actualValue == nil {
@@ -151,7 +151,7 @@ private func equal<T>(_ expectedValue: Set<T>?, stringify: @escaping (Set<T>?) -
                 if extra.count > 0 {
                     errorMessage = errorMessage.appended(message: ", extra <\(stringify(extra))>")
                 }
-                return PredicateResult(
+                return  PredicateResult(
                     status: .doesNotMatch,
                     message: errorMessage
                 )
@@ -201,20 +201,20 @@ public func !=<T: Comparable>(lhs: Expectation<Set<T>>, rhs: Set<T>?) {
     lhs.toNot(equal(rhs))
 }
 
-public func ==<T: Equatable, C: Equatable>(lhs: Expectation<[T: C]>, rhs: [T: C]?) {
+public func ==<T, C: Equatable>(lhs: Expectation<[T: C]>, rhs: [T: C]?) {
     lhs.to(equal(rhs))
 }
 
-public func !=<T: Equatable, C: Equatable>(lhs: Expectation<[T: C]>, rhs: [T: C]?) {
+public func !=<T, C: Equatable>(lhs: Expectation<[T: C]>, rhs: [T: C]?) {
     lhs.toNot(equal(rhs))
 }
 
-#if _runtime(_ObjC)
-    extension NMBObjCMatcher {
-        public class func equalMatcher(_ expected: NSObject) -> NMBMatcher {
-            return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
-                return try! equal(expected).matches(actualExpression, failureMessage: failureMessage)
-            }
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+extension NMBObjCMatcher {
+    @objc public class func equalMatcher(_ expected: NSObject) -> NMBMatcher {
+        return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
+            return try! equal(expected).matches(actualExpression, failureMessage: failureMessage)
         }
     }
+}
 #endif

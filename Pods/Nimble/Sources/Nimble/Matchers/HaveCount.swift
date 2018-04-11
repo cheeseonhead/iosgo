@@ -10,6 +10,7 @@ import Foundation
 public func haveCount<T: Collection>(_ expectedValue: T.IndexDistance) -> Predicate<T> {
     return Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
         if let actualValue = try actualExpression.evaluate() {
+            // swiftlint:disable:next line_length
             failureMessage.postfixMessage = "have \(prettyCollectionType(actualValue)) with count \(stringify(expectedValue))"
             let result = expectedValue == actualValue.count
             failureMessage.actualValue = "\(actualValue.count)"
@@ -26,6 +27,7 @@ public func haveCount<T: Collection>(_ expectedValue: T.IndexDistance) -> Predic
 public func haveCount(_ expectedValue: Int) -> Predicate<NMBCollection> {
     return Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
         if let actualValue = try actualExpression.evaluate() {
+            // swiftlint:disable:next line_length
             failureMessage.postfixMessage = "have \(prettyCollectionType(actualValue)) with count \(stringify(expectedValue))"
             let result = expectedValue == actualValue.count
             failureMessage.actualValue = "\(actualValue.count)"
@@ -37,21 +39,21 @@ public func haveCount(_ expectedValue: Int) -> Predicate<NMBCollection> {
     }
 }
 
-#if _runtime(_ObjC)
-    extension NMBObjCMatcher {
-        public class func haveCountMatcher(_ expected: NSNumber) -> NMBObjCMatcher {
-            return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
-                let location = actualExpression.location
-                let actualValue = try! actualExpression.evaluate()
-                if let value = actualValue as? NMBCollection {
-                    let expr = Expression(expression: ({ value as NMBCollection }), location: location)
-                    return try! haveCount(expected.intValue).matches(expr, failureMessage: failureMessage)
-                } else if let actualValue = actualValue {
-                    failureMessage.postfixMessage = "get type of NSArray, NSSet, NSDictionary, or NSHashTable"
-                    failureMessage.actualValue = "\(String(describing: type(of: actualValue)))"
-                }
-                return false
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+extension NMBObjCMatcher {
+    @objc public class func haveCountMatcher(_ expected: NSNumber) -> NMBObjCMatcher {
+        return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
+            let location = actualExpression.location
+            let actualValue = try! actualExpression.evaluate()
+            if let value = actualValue as? NMBCollection {
+                let expr = Expression(expression: ({ value as NMBCollection}), location: location)
+                return try! haveCount(expected.intValue).matches(expr, failureMessage: failureMessage)
+            } else if let actualValue = actualValue {
+                failureMessage.postfixMessage = "get type of NSArray, NSSet, NSDictionary, or NSHashTable"
+                failureMessage.actualValue = "\(String(describing: type(of: actualValue)))"
             }
+            return false
         }
     }
+}
 #endif

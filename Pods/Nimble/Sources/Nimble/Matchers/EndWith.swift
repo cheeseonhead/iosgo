@@ -14,7 +14,7 @@ public func endWith<S: Sequence, T: Equatable>(_ endingElement: T) -> Predicate<
             repeat {
                 lastItem = item
                 item = actualGenerator.next()
-            } while (item != nil)
+            } while(item != nil)
 
             return lastItem == endingElement
         }
@@ -54,19 +54,19 @@ public func endWith(_ endingSubstring: String) -> Predicate<String> {
     }.requireNonNil
 }
 
-#if _runtime(_ObjC)
-    extension NMBObjCMatcher {
-        public class func endWithMatcher(_ expected: Any) -> NMBObjCMatcher {
-            return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
-                let actual = try! actualExpression.evaluate()
-                if (actual as? String) != nil {
-                    let expr = actualExpression.cast { $0 as? String }
-                    return try! endWith(expected as! String).matches(expr, failureMessage: failureMessage)
-                } else {
-                    let expr = actualExpression.cast { $0 as? NMBOrderedCollection }
-                    return try! endWith(expected).matches(expr, failureMessage: failureMessage)
-                }
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+extension NMBObjCMatcher {
+    @objc public class func endWithMatcher(_ expected: Any) -> NMBObjCMatcher {
+        return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
+            let actual = try! actualExpression.evaluate()
+            if (actual as? String) != nil {
+                let expr = actualExpression.cast { $0 as? String }
+                return try! endWith(expected as! String).matches(expr, failureMessage: failureMessage)
+            } else {
+                let expr = actualExpression.cast { $0 as? NMBOrderedCollection }
+                return try! endWith(expected).matches(expr, failureMessage: failureMessage)
             }
         }
     }
+}
 #endif

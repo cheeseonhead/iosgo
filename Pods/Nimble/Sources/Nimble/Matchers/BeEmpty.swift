@@ -18,7 +18,7 @@ public func beEmpty<S: Sequence>() -> Predicate<S> {
 public func beEmpty() -> Predicate<String> {
     return Predicate.simple("be empty") { actualExpression in
         let actualString = try actualExpression.evaluate()
-        return PredicateStatus(bool: actualString == nil || NSString(string: actualString!).length == 0)
+        return PredicateStatus(bool: actualString == nil || NSString(string: actualString!).length  == 0)
     }
 }
 
@@ -37,19 +37,19 @@ public func beEmpty() -> Predicate<NSString> {
 /// A Nimble matcher that succeeds when a value is "empty". For collections, this
 /// means the are no items in that collection. For strings, it is an empty string.
 public func beEmpty() -> Predicate<NSDictionary> {
-    return Predicate.simple("be empty") { actualExpression in
-        let actualDictionary = try actualExpression.evaluate()
+	return Predicate.simple("be empty") { actualExpression in
+		let actualDictionary = try actualExpression.evaluate()
         return PredicateStatus(bool: actualDictionary == nil || actualDictionary!.count == 0)
-    }
+	}
 }
 
 /// A Nimble matcher that succeeds when a value is "empty". For collections, this
 /// means the are no items in that collection. For strings, it is an empty string.
 public func beEmpty() -> Predicate<NSArray> {
-    return Predicate.simple("be empty") { actualExpression in
-        let actualArray = try actualExpression.evaluate()
+	return Predicate.simple("be empty") { actualExpression in
+		let actualArray = try actualExpression.evaluate()
         return PredicateStatus(bool: actualArray == nil || actualArray!.count == 0)
-    }
+	}
 }
 
 /// A Nimble matcher that succeeds when a value is "empty". For collections, this
@@ -61,32 +61,35 @@ public func beEmpty() -> Predicate<NMBCollection> {
     }
 }
 
-#if _runtime(_ObjC)
-    extension NMBObjCMatcher {
-        public class func beEmptyMatcher() -> NMBPredicate {
-            return NMBPredicate { actualExpression in
-                let location = actualExpression.location
-                let actualValue = try! actualExpression.evaluate()
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+extension NMBObjCMatcher {
+    @objc public class func beEmptyMatcher() -> NMBPredicate {
+        return NMBPredicate { actualExpression in
+            let location = actualExpression.location
+            let actualValue = try! actualExpression.evaluate()
 
-                if let value = actualValue as? NMBCollection {
-                    let expr = Expression(expression: ({ value as NMBCollection }), location: location)
-                    return try! beEmpty().satisfies(expr).toObjectiveC()
-                } else if let value = actualValue as? NSString {
-                    let expr = Expression(expression: ({ value as String }), location: location)
-                    return try! beEmpty().satisfies(expr).toObjectiveC()
-                } else if let actualValue = actualValue {
-                    let badTypeErrorMsg = "be empty (only works for NSArrays, NSSets, NSIndexSets, NSDictionaries, NSHashTables, and NSStrings)"
-                    return NMBPredicateResult(
-                        status: NMBPredicateStatus.fail,
-                        message: NMBExpectationMessage(expectedActualValueTo: badTypeErrorMsg,
-                                                       customActualValue: "\(String(describing: type(of: actualValue))) type")
-                    )
-                }
+            if let value = actualValue as? NMBCollection {
+                let expr = Expression(expression: ({ value as NMBCollection }), location: location)
+                return try! beEmpty().satisfies(expr).toObjectiveC()
+            } else if let value = actualValue as? NSString {
+                let expr = Expression(expression: ({ value as String }), location: location)
+                return try! beEmpty().satisfies(expr).toObjectiveC()
+            } else if let actualValue = actualValue {
+                // swiftlint:disable:next line_length
+                let badTypeErrorMsg = "be empty (only works for NSArrays, NSSets, NSIndexSets, NSDictionaries, NSHashTables, and NSStrings)"
                 return NMBPredicateResult(
                     status: NMBPredicateStatus.fail,
-                    message: NMBExpectationMessage(expectedActualValueTo: "be empty").appendedBeNilHint()
+                    message: NMBExpectationMessage(
+                        expectedActualValueTo: badTypeErrorMsg,
+                        customActualValue: "\(String(describing: type(of: actualValue))) type"
+                    )
                 )
             }
+            return NMBPredicateResult(
+                status: NMBPredicateStatus.fail,
+                message: NMBExpectationMessage(expectedActualValueTo: "be empty").appendedBeNilHint()
+            )
         }
     }
+}
 #endif

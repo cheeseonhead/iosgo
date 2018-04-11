@@ -14,7 +14,7 @@ public enum ToSucceedResult {
  Return `.succeeded` when the validation succeeds.
  Return `.failed` with a failure reason when the validation fails.
  */
-public func succeed() -> Predicate < () -> ToSucceedResult> {
+public func succeed() -> Predicate<() -> ToSucceedResult> {
     return Predicate.define { actualExpression in
         let optActual = try actualExpression.evaluate()
         guard let actual = optActual else {
