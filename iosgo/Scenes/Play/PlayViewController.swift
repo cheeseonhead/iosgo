@@ -44,6 +44,7 @@ class PlayViewController: UIViewController {
 
             // Set the scale mode to scale to fit the window
             boardScene.scaleMode = .aspectFit
+            boardScene.actionDelegate = self
 
             // Present the scene
             boardView.presentScene(boardScene)
