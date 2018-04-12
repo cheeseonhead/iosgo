@@ -64,7 +64,7 @@ extension PlayViewController: BoardSceneActionDelegate {
     func submitMove(_ point: BoardPoint) {
         let request = Play.SubmitMove.Request(move: point)
 
-        interactor?.loadScene(request: request)
+        interactor?.submitMove(request: request)
     }
 }
 
