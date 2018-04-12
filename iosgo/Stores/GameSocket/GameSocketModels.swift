@@ -7,7 +7,6 @@
 //
 
 import SocketIO
-import Unbox
 
 enum GameSocketModels {
     struct Connect: SocketData {
@@ -38,13 +37,6 @@ enum GameSocketModels {
             let genericMove: [Int] = try values.decode([Int].self, forKey: .move)
             move = BoardPoint(row: genericMove[1], column: genericMove[0])
             moveNumber = try values.decode(Int.self, forKey: .moveNumber)
-        }
-
-        init(unboxer: Unboxer) throws {
-            gameId = try unboxer.unbox(key: "game_id")
-            let genericMove: [Int] = try unboxer.unbox(key: "move")
-            move = BoardPoint(row: genericMove[1], column: genericMove[0])
-            moveNumber = try unboxer.unbox(key: "move_number")
         }
     }
 }
