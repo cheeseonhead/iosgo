@@ -29,8 +29,11 @@ class ConfigAPI {
 
             switch code {
             case .ok:
-                if let payload = payload, let config = try? JSONDecoder().decode(Config.self, from: payload) {
+                do {
+                    let config = try JSONDecoder().decode(Config.self, from: payload!)
                     result = .success(config)
+                } catch let e {
+                    result = .error(.genericError(message: e.localizedDescription))
                 }
             case .unauthorized:
                 result = .error(.unauthorized)
