@@ -5,17 +5,13 @@
 
 import Foundation
 
-class OGSSessionController
-{
-    enum Initialize
-    {
-        enum Result
-        {
+class OGSSessionController {
+    enum Initialize {
+        enum Result {
             case success
             case error(type: Error)
 
-            enum Error
-            {
+            enum Error {
                 case networkError
                 case accessTokenInvalid
                 case refreshTokenInvalid
@@ -28,31 +24,26 @@ class OGSSessionController
     var current: OGSSession
     var apiStore: OGSApiStore!
 
-    required init(session: OGSSession)
-    {
-        self.current = session
+    required init(session: OGSSession) {
+        current = session
         postInit()
     }
 
-    fileprivate func postInit()
-    {
+    fileprivate func postInit() {
         apiStore = OGSApiStore(sessionController: self)
     }
 
-    func initialize(completion: @escaping (Initialize.Result) -> Void)
-    {
-        guard current.tokensExists else
-        {
+    func initialize(completion: @escaping (Initialize.Result) -> Void) {
+        guard current.tokensExists else {
             completion(.error(type: .refreshTokenInvalid))
             return
         }
 
-        getUser
-        { result in
+        getConfig { result in
             switch result {
             case .success:
                 completion(.success)
-            case .error(let type):
+            case let .error(type):
                 switch type {
                 case .accessTokenInvalid:
                     self.refreshTokens(completion: completion)
@@ -63,16 +54,13 @@ class OGSSessionController
         }
     }
 
-    fileprivate func refreshTokens(completion: @escaping (Initialize.Result) -> Void)
-    {
+    fileprivate func refreshTokens(completion: @escaping (Initialize.Result) -> Void) {
         let oauthStore = OGSOauthApiStore(apiStore: apiStore)
 
-        oauthStore.refreshTokens
-        { loginInfo in
+        oauthStore.refreshTokens { loginInfo in
             switch loginInfo.result {
             case .success:
-                self.getUser
-                { result in
+                self.getConfig { result in
                     switch result {
                     case .success:
                         completion(.success)
@@ -80,7 +68,7 @@ class OGSSessionController
                         completion(.error(type: .networkError))
                     }
                 }
-            case .error(let type):
+            case let .error(type):
                 switch type {
                 case .unauthorized:
                     completion(.error(type: .refreshTokenInvalid))
@@ -91,17 +79,15 @@ class OGSSessionController
         }
     }
 
-    fileprivate func getUser(completion: @escaping (Initialize.Result) -> Void)
-    {
-        let meStore = OGSMeStore(apiStore: apiStore, sessionController: self)
+    fileprivate func getConfig(completion: @escaping (Initialize.Result) -> Void) {
+        let configApi = ConfigAPI(apiStore: apiStore)
 
-        meStore.getUser
-        { response in
-            switch response.result {
-            case .success(let user):
-                self.current.user = user
+        configApi.config { result in
+            switch result {
+            case let .success(config):
+                self.current.userConfiguration = config
                 completion(.success)
-            case .error(let type):
+            case let .error(type):
                 switch type {
                 case .unauthorized:
                     completion(.error(type: .accessTokenInvalid))
@@ -113,8 +99,7 @@ class OGSSessionController
     }
 }
 
-fileprivate class OGSMockConfiguration: OGSConfigurationProtocol
-{
+fileprivate class OGSMockConfiguration: OGSConfigurationProtocol {
     var domainName: String = ""
     var clientID: String = ""
     var clientSecret: String = ""
