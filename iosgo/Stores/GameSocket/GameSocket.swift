@@ -30,8 +30,8 @@ class GameSocket {
 
     func connect() {
         socket.on(GameSocketEventCreator(gameId: gameId, eventType: .receiveMove)) { data in
-            guard let dictionary = data[0] as? UnboxableDictionary,
-                let moveModel: Models.ReceivedMove = try? unbox(dictionary: dictionary) else {
+            guard let dict: JSON = data[0] as? JSON,
+                let moveModel = try? JSONDecoder().decode(Models.ReceivedMove.self, from: dict) else {
                 return
             }
             self.handleMove(model: moveModel)
