@@ -15,7 +15,6 @@ class SocketManager {
     fileprivate var socket: SocketIOClient!
 
     func connect(completion: @escaping (Bool) -> Void) {
-        
         manager = SocketIO.SocketManager(socketURL: URL(string: socketAddress)!, config: [.log(false), .forceWebsockets(true), .reconnects(true), .reconnectWait(5)])
         socket = manager.defaultSocket
 
@@ -45,7 +44,6 @@ extension SocketManager {
     }
 
     func onConnect(closure: @escaping () -> Void) {
-
         if socket.status == .connected {
             closure()
         }
@@ -55,21 +53,19 @@ extension SocketManager {
         }
     }
 
-    func on(event: SocketEvents, closure: @escaping NormalCallback) {
-
+    func on(event: SocketEvents, closure: @escaping NormalSocketCallback) {
         socket.on(event.rawValue) { data, _ in
             closure(data)
         }
     }
 
-    func on(_ socketEventCreator: SocketEventCreating, closure: @escaping NormalCallback) {
-
+    func on(_ socketEventCreator: SocketEventCreating, closure: @escaping NormalSocketCallback) {
         socket.on(socketEventCreator.eventName) { data, _ in
             closure(data)
         }
     }
 
-    func once(event: SocketEvents, closure: @escaping NormalCallback) {
+    func once(event: SocketEvents, closure: @escaping NormalSocketCallback) {
         socket.once(event.rawValue) { data, _ in
             closure(data)
         }
@@ -77,8 +73,8 @@ extension SocketManager {
 }
 
 // MARK: - Private
-private extension SocketManager {
 
+private extension SocketManager {
     func emit(rawEvent: SocketEvent, with data: SocketData) {
         if !isConnected {
             once(event: .connect) { _ in
@@ -91,6 +87,7 @@ private extension SocketManager {
 }
 
 // MARK: - Handlers
+
 extension SocketManager {
     func websocketDidConnect(socket _: SocketIOClient) {
         isConnected = true

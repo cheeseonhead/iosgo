@@ -5,4 +5,4 @@
 
 import Foundation
 
-typealias NormalCallback = ([Any]) -> Void
+typealias NormalSocketCallback = ([Any]) -> Void
