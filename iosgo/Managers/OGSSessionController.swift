@@ -12,7 +12,7 @@ class OGSSessionController {
             case error(type: Error)
 
             enum Error {
-                case networkError
+                case networkError(ApiErrorType)
                 case accessTokenInvalid
                 case refreshTokenInvalid
             }
@@ -65,7 +65,7 @@ class OGSSessionController {
                     case .success:
                         completion(.success)
                     case .error:
-                        completion(.error(type: .networkError))
+                        completion(result)
                     }
                 }
             case let .error(type):
@@ -73,7 +73,7 @@ class OGSSessionController {
                 case .unauthorized:
                     completion(.error(type: .refreshTokenInvalid))
                 default:
-                    completion(.error(type: .networkError))
+                    completion(.error(type: .networkError(type)))
                 }
             }
         }
@@ -92,7 +92,7 @@ class OGSSessionController {
                 case .unauthorized:
                     completion(.error(type: .accessTokenInvalid))
                 default:
-                    completion(.error(type: .networkError))
+                    completion(.error(type: .networkError(type)))
                 }
             }
         }
