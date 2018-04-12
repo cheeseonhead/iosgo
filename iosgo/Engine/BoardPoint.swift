@@ -9,7 +9,7 @@
 import Foundation
 
 // Starts with (0, 0) at the top left of the board
-struct BoardPoint {
+struct BoardPoint: Codable {
     var row: Int
     var column: Int
 
@@ -36,7 +36,7 @@ extension BoardPoint: Hashable {
         return "\(row), \(column)".hashValue
     }
 
-    static func ==(lhs: BoardPoint, rhs: BoardPoint) -> Bool {
+    static func == (lhs: BoardPoint, rhs: BoardPoint) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
 }
