@@ -20,10 +20,25 @@ enum GameSocketModels {
         }
     }
 
-    struct ReceivedMove: Unboxable {
+    struct ReceivedMove: Decodable {
         var gameId: Int
         var move: BoardPoint
         var moveNumber: Int
+
+        enum CodingKeys: String, CodingKey {
+            case gameId = "game_id"
+            case move
+            case moveNumber = "move_number"
+        }
+
+        public init(from decoder: Decoder) throws {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            gameId = try values.decode(Int.self, forKey: .gameId)
+
+            let genericMove: [Int] = try values.decode([Int].self, forKey: .move)
+            move = BoardPoint(row: genericMove[1], column: genericMove[0])
+            moveNumber = try values.decode(Int.self, forKey: .moveNumber)
+        }
 
         init(unboxer: Unboxer) throws {
             gameId = try unboxer.unbox(key: "game_id")
