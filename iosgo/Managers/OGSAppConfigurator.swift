@@ -35,16 +35,22 @@ extension OGSAppConfigurator {
         OGSSessionController.sharedInstance.initialize { result in
             switch result {
             case .success:
-                completion(.loggedIn)
+                self.configureSocketManager(completion: completion)
             case .error:
                 completion(.loggedOut)
             }
         }
     }
 
-//    func configureSocketManager(completion: @escaping (Bool) -> Void) {
-//        SocketManager.sharedInstance.socketAddress = session.configuration.domainName
-//
-//        SocketManager.sharedInstance.connect(completion: completion)
-//    }
+    func configureSocketManager(completion: @escaping (ConfigureResult) -> Void) {
+        SocketManager.sharedInstance.socketAddress = session.configuration.domainName
+
+        SocketManager.sharedInstance.connect { success in
+            if success {
+                completion(.loggedIn)
+            } else {
+                completion(.loggedOut)
+            }
+        }
+    }
 }
