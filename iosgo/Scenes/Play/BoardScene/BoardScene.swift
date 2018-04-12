@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-protocol BoardSceneActionDelegate {
+protocol BoardSceneActionDelegate: class {
     func submitMove(_ point: BoardPoint)
 }
 
