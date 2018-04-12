@@ -46,6 +46,7 @@
 		34970F061F00A52A00623ED0 /* StoneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F051F00A52A00623ED0 /* StoneType.swift */; };
 		34970F091F00A67A00623ED0 /* GridStone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F081F00A67A00623ED0 /* GridStone.swift */; };
 		34970F121F00C17800623ED0 /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F111F00C17800623ED0 /* Move.swift */; };
+		34A0BCD6207F1844007EB42D /* JSONDecoder+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A0BCD5207F1844007EB42D /* JSONDecoder+Dictionary.swift */; };
 		34A2B55E1EEA4AD90074525B /* BoardScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 34A2B55D1EEA4AD90074525B /* BoardScene.sks */; };
 		34A2B5A51EEBD46C0074525B /* GridNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2B5A41EEBD46C0074525B /* GridNode.swift */; };
 		34A2B5A91EEBDD500074525B /* Play.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34A2B5A81EEBDD500074525B /* Play.storyboard */; };
@@ -189,6 +190,7 @@
 		34970F051F00A52A00623ED0 /* StoneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneType.swift; sourceTree = "<group>"; };
 		34970F081F00A67A00623ED0 /* GridStone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStone.swift; sourceTree = "<group>"; };
 		34970F111F00C17800623ED0 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
+		34A0BCD5207F1844007EB42D /* JSONDecoder+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Dictionary.swift"; sourceTree = "<group>"; };
 		34A2B55D1EEA4AD90074525B /* BoardScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BoardScene.sks; sourceTree = "<group>"; };
 		34A2B5A41EEBD46C0074525B /* GridNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridNode.swift; sourceTree = "<group>"; };
 		34A2B5A81EEBDD500074525B /* Play.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Play.storyboard; sourceTree = "<group>"; };
@@ -432,6 +434,14 @@
 				348F60D01F08C11000FA12F0 /* GridState.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		34A0BCD4207F1828007EB42D /* JSONDecoder */ = {
+			isa = PBXGroup;
+			children = (
+				34A0BCD5207F1844007EB42D /* JSONDecoder+Dictionary.swift */,
+			);
+			path = JSONDecoder;
 			sourceTree = "<group>";
 		};
 		34A2B55B1EEA4AA30074525B /* Play */ = {
@@ -764,6 +774,7 @@
 		AD05A9249FEBFC41418217D5 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				34A0BCD4207F1828007EB42D /* JSONDecoder */,
 				34455DC51EFF7591002199D0 /* Unbox */,
 				34934B741EF23FE80096D3C4 /* CGSize */,
 				3414A6FE1EF22AF800E28D6D /* CGFloat */,
@@ -1020,6 +1031,7 @@
 			files = (
 				56BD888F1E5522530098E50B /* OGSButton.swift in Sources */,
 				34970F061F00A52A00623ED0 /* StoneType.swift in Sources */,
+				34A0BCD6207F1844007EB42D /* JSONDecoder+Dictionary.swift in Sources */,
 				AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */,
 				8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */,
 				3414A6FD1EF223BF00E28D6D /* StoneWorker.swift in Sources */,
