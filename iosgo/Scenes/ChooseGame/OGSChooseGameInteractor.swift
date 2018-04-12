@@ -24,7 +24,7 @@ protocol OGSChooseGameInteractorOutput {
 class OGSChooseGameInteractor: OGSChooseGameInteractorInput {
     var output: OGSChooseGameInteractorOutput!
     var listGamesWorker = OGSChooseGameListGamesWorker(store: OGSSeekGraphSocketStore())
-    var challengeWorker = ChallengeWorker(challengeStore: ChallengeStore(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
+    var challengeWorker = ChallengeWorker(challengeStore: ChallengeAPI(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
     var sessionWorker = OGSSessionWorker(sessionController: OGSSessionController.sharedInstance)
 
     var selectedChallenge: OGSChallenge?

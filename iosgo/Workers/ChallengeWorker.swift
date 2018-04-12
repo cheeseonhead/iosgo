@@ -15,9 +15,9 @@ class ChallengeWorker {
         var errorMessage: String?
     }
 
-    fileprivate var challengeStore: ChallengeStore
+    fileprivate var challengeStore: ChallengeAPI
 
-    init(challengeStore: ChallengeStore) {
+    init(challengeStore: ChallengeAPI) {
         self.challengeStore = challengeStore
     }
 
@@ -31,7 +31,7 @@ class ChallengeWorker {
 
 // MARK: - Model Translation
 extension ChallengeWorker {
-    func acceptResponse(from storeResponse: ChallengeStore.AcceptResponse) -> AcceptResponse {
+    func acceptResponse(from storeResponse: ChallengeAPI.AcceptResponse) -> AcceptResponse {
         let response = AcceptResponse(success: storeResponse.success, errorMessage: storeResponse.errorMessage)
 
         return response
