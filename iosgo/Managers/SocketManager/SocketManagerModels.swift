@@ -11,6 +11,7 @@ import SocketIO
 
 enum SocketManagerModels {
     struct Authenticate: SocketData {
+        /// This value is grabbed from `Config().chat_auth`
         var auth: String
         var playerId: Int
         var username: String
