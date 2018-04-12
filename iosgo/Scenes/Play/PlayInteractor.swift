@@ -19,7 +19,7 @@ protocol PlayBusinessLogic {
 class PlayInteractor: PlayBusinessLogic, PlayDataStore {
 
     var presenter: PlayPresentationLogic?
-    var playWorker = PlayWorker(gameStore: GameStore(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
+    var playWorker = PlayWorker(gameStore: GameAPI(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
 
     required init() {
         playWorker.delegate = self

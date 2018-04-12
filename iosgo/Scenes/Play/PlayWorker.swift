@@ -19,12 +19,12 @@ class PlayWorker {
         case error(message: String)
     }
 
-    private var gameStore: GameStore
+    private var gameStore: GameAPI
     private var gameEngine: GameEngine!
     private var gameSocket: GameSocket!
     weak var delegate: PlayWorkerDelegate?
 
-    init(gameStore: GameStore) {
+    init(gameStore: GameAPI) {
         self.gameStore = gameStore
     }
 

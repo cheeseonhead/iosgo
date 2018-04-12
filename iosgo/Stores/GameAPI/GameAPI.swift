@@ -9,7 +9,7 @@
 import Foundation
 import Unbox
 
-class GameStore {
+class GameAPI {
 
     struct Response {
         var result: Result
@@ -51,7 +51,7 @@ class GameStore {
     }
 }
 
-private extension GameStore {
+private extension GameAPI {
     func createGame(payload: [String: Any]) throws -> Game {
         let game: Game = try unbox(dictionary: payload)
         return game

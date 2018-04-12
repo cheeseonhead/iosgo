@@ -56,7 +56,7 @@
 		34ACC8AB1EEBDF7900F2B376 /* BoardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC8AA1EEBDF7900F2B376 /* BoardScene.swift */; };
 		34C3DDB21EFF2B41001C8AF4 /* TimeControlParametersType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C3DDB11EFF2B41001C8AF4 /* TimeControlParametersType.swift */; };
 		34C3DDB41EFF2B79001C8AF4 /* TimeControlParametersFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C3DDB31EFF2B79001C8AF4 /* TimeControlParametersFormatter.swift */; };
-		34C3DDB61EFF2ED5001C8AF4 /* GameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C3DDB51EFF2ED5001C8AF4 /* GameStore.swift */; };
+		34C3DDB61EFF2ED5001C8AF4 /* GameAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C3DDB51EFF2ED5001C8AF4 /* GameAPI.swift */; };
 		34DF468B1EFB5608009EC397 /* Game+Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DF468A1EFB5608009EC397 /* Game+Unboxable.swift */; };
 		34FEDDA71EFFF02F00EC1B5F /* PlayInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FEDDA21EFFF02F00EC1B5F /* PlayInteractor.swift */; };
 		34FEDDA81EFFF02F00EC1B5F /* PlayModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FEDDA31EFFF02F00EC1B5F /* PlayModels.swift */; };
@@ -200,7 +200,7 @@
 		34ACC8AA1EEBDF7900F2B376 /* BoardScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardScene.swift; sourceTree = "<group>"; };
 		34C3DDB11EFF2B41001C8AF4 /* TimeControlParametersType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControlParametersType.swift; sourceTree = "<group>"; };
 		34C3DDB31EFF2B79001C8AF4 /* TimeControlParametersFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControlParametersFormatter.swift; sourceTree = "<group>"; };
-		34C3DDB51EFF2ED5001C8AF4 /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
+		34C3DDB51EFF2ED5001C8AF4 /* GameAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAPI.swift; sourceTree = "<group>"; };
 		34DF468A1EFB5608009EC397 /* Game+Unboxable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+Unboxable.swift"; sourceTree = "<group>"; };
 		34FEDDA21EFFF02F00EC1B5F /* PlayInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayInteractor.swift; sourceTree = "<group>"; };
 		34FEDDA31EFFF02F00EC1B5F /* PlayModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayModels.swift; sourceTree = "<group>"; };
@@ -483,12 +483,12 @@
 			path = Types;
 			sourceTree = "<group>";
 		};
-		34DF46891EFB55F4009EC397 /* GameStore */ = {
+		34DF46891EFB55F4009EC397 /* GameAPI */ = {
 			isa = PBXGroup;
 			children = (
-				34C3DDB51EFF2ED5001C8AF4 /* GameStore.swift */,
+				34C3DDB51EFF2ED5001C8AF4 /* GameAPI.swift */,
 			);
-			path = GameStore;
+			path = GameAPI;
 			sourceTree = "<group>";
 		};
 		565D24621E54A5A500EF62CD = {
@@ -607,7 +607,7 @@
 				8405CCC46689EA8AB1CE3519 /* OGSApiStore.swift */,
 				AD05A4E8F02D2F46F9BBF790 /* ChallengeStore */,
 				3493D9041F08DE5300BE526E /* GameSocket */,
-				34DF46891EFB55F4009EC397 /* GameStore */,
+				34DF46891EFB55F4009EC397 /* GameAPI */,
 				AD05A7441CAC96E005862E75 /* MeStore */,
 				341856A31EFF628E00DAF3CF /* Models */,
 				8405CB7FAC98CB122CF80A23 /* OauthStore */,
@@ -1095,7 +1095,7 @@
 				3452AAFA1F01F6F9008F838E /* BoardStone.swift in Sources */,
 				342EC8181EF8B70700C3A7E7 /* Game.swift in Sources */,
 				8405CABBF4E7064889C38772 /* OGSApiStore.swift in Sources */,
-				34C3DDB61EFF2ED5001C8AF4 /* GameStore.swift in Sources */,
+				34C3DDB61EFF2ED5001C8AF4 /* GameAPI.swift in Sources */,
 				34177CC31EEE4CF100DDDD2F /* StoneNode.swift in Sources */,
 				AD05ADA1EA08A794B27AD4DB /* OGSSessionWorker.swift in Sources */,
 				3414A6FA1EF21B5800E28D6D /* StoneNodeFactory.swift in Sources */,
