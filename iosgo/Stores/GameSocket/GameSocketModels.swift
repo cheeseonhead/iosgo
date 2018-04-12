@@ -39,4 +39,18 @@ enum GameSocketModels {
             moveNumber = try values.decode(Int.self, forKey: .moveNumber)
         }
     }
+
+    struct SubmitMove: Encodable & SocketData {
+        let gameId: Int
+        let move: BoardPoint
+        let playerId: Int
+
+        func socketRepresentation() -> SocketData {
+            return [
+                "game_id": gameId,
+                "move": move.toLetters(),
+                "player_id": playerId,
+            ]
+        }
+    }
 }
