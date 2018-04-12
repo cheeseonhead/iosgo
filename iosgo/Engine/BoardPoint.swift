@@ -8,7 +8,7 @@
 
 import Foundation
 
-// Starts with (0, 0) at the top left of the board
+/// Starts with (0, 0) at the top left of the board
 struct BoardPoint: Codable {
     var row: Int
     var column: Int
@@ -28,6 +28,13 @@ struct BoardPoint: Codable {
         case .right:
             return BoardPoint(row: row, column: column + 1)
         }
+    }
+
+    func toLetters() -> String {
+        let rowC = Character.fromInt(row)
+        let colC = Character.fromInt(column)
+
+        return String([rowC, colC])
     }
 }
 
