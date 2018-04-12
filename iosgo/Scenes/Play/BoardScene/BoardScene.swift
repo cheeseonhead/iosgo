@@ -81,7 +81,7 @@ extension BoardScene {
         let addStones = diffWorker.stonesToPlace()
         let removeStones = diffWorker.stonesToRemove()
 
-        currentType = (state.playingPlayer == .black) ? .black : .white
+        currentType = state.stoneType
         stoneWorker.placeStones(addStones)
         stoneWorker.removeStones(at: removeStones)
     }

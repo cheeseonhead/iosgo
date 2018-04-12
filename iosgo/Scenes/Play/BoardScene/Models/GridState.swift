@@ -11,7 +11,7 @@ import Foundation
 struct GridState {
     var blackPrisoners: Int
     var whitePrisoners: Int
-    var playingPlayer: PlayerType
+    var stoneType: StoneType
     var size: BoardSize
     var stones: [BoardPoint: GridStone]
 }

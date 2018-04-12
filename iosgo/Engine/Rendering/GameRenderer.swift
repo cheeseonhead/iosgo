@@ -14,8 +14,9 @@ class GameRenderer {
         let blackPrisoners = goState.blackPrisoners
         let whitePrisoners = goState.whitePrisoners
         let size = goState.board.size
+        let stoneType: StoneType = (goState.player == .black) ? .black : .white
 
-        let state = GridState(blackPrisoners: blackPrisoners, whitePrisoners: whitePrisoners, size: size, stones: gridStones)
+        let state = GridState(blackPrisoners: blackPrisoners, whitePrisoners: whitePrisoners, stoneType: stoneType, size: size, stones: gridStones)
 
         return state
     }
