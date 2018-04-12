@@ -8,13 +8,6 @@
 
 import SpriteKit
 
-struct GridPoint {
-    var row: Int
-    var col: Int
-
-    static let zero = GridPoint(row: -1, col: -1)
-}
-
 class GridNode: SKSpriteNode {
     private struct Style {
         static var lineWidth: CGFloat = 1.0
@@ -26,6 +19,7 @@ class GridNode: SKSpriteNode {
     }
 
     // MARK: - Properties
+
     var rows: Int?
     var cols: Int?
     var gridSize: CGSize?
@@ -36,12 +30,15 @@ class GridNode: SKSpriteNode {
         }
         return CGSize(width: spacing * Style.stoneSizeRatio, height: spacing * Style.stoneSizeRatio)
     }
+
     var ghostStoneSize: CGSize {
         return stoneSize.scaled(by: 1.0)
     }
-    var stoneNodes = [GridPoint: StoneNode]()
+
+    var stoneNodes = [BoardPoint: StoneNode]()
 
     // MARK: - Object Lifecycle
+
     convenience init?(fittingSize: CGSize, rows: Int, cols: Int) {
         guard let texture = GridNode.gridTexture(fittingSize: fittingSize, rows: rows, cols: cols) else {
             return nil
@@ -54,7 +51,8 @@ class GridNode: SKSpriteNode {
     }
 
     // MARK: - Usage
-    func point(for point: CGPoint) -> GridPoint? {
+
+    func point(for point: CGPoint) -> BoardPoint? {
         guard let spacing = spacing, let rows = rows, let cols = cols else {
             return nil
         }
@@ -66,14 +64,14 @@ class GridNode: SKSpriteNode {
             return nil
         }
 
-        return GridPoint(row: row, col: col)
+        return BoardPoint(row: row, column: col)
     }
 
-    func stonePosition(for point: GridPoint) -> CGPoint {
+    func stonePosition(for point: BoardPoint) -> CGPoint {
         guard let spacing = spacing else {
             return CGPoint.zero
         }
-        let xPos = Style.offSet + CGFloat(point.col - 1) * spacing
+        let xPos = Style.offSet + CGFloat(point.column - 1) * spacing
         let yPos = Style.offSet + CGFloat(point.row - 1) * spacing
 
         return CGPoint(x: xPos - (size.width / 2), y: yPos - (size.height / 2))
@@ -81,6 +79,7 @@ class GridNode: SKSpriteNode {
 }
 
 // MARK: - Init Helpers
+
 extension GridNode {
     class func gridTexture(fittingSize: CGSize, rows: Int, cols: Int) -> SKTexture? {
         let spacing = minSpacing(for: fittingSize, rows: rows, cols: cols)

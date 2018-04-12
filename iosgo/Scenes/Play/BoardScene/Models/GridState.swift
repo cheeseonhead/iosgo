@@ -12,5 +12,5 @@ struct GridState {
     var blackPrisoners: Int
     var whitePrisoners: Int
     var size: BoardSize
-    var stones: [GridPoint: GridStone]
+    var stones: [BoardPoint: GridStone]
 }

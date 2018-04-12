@@ -9,7 +9,6 @@
 import Foundation
 
 class StoneDiffWorker {
-
     private var stoneWorker: StoneWorker
     private var newState: GridState
 
@@ -19,13 +18,11 @@ class StoneDiffWorker {
     }
 
     func stonesToPlace() -> [GridStone] {
-
         var stones = [GridStone]()
 
         for row in 1 ... newState.size.height {
             for col in 1 ... newState.size.width {
-
-                let curPoint = GridPoint(row: row, col: col)
+                let curPoint = BoardPoint(row: row, column: col)
                 if newState.stones[curPoint] != stoneWorker.stone(at: curPoint),
                     let stateStone = newState.stones[curPoint] {
                     stones.append(stateStone)
@@ -36,14 +33,12 @@ class StoneDiffWorker {
         return stones
     }
 
-    func stonesToRemove() -> [GridPoint] {
-
-        var points = [GridPoint]()
+    func stonesToRemove() -> [BoardPoint] {
+        var points = [BoardPoint]()
 
         for row in 1 ... newState.size.height {
             for col in 1 ... newState.size.width {
-
-                let curPoint = GridPoint(row: row, col: col)
+                let curPoint = BoardPoint(row: row, column: col)
                 if newState.stones[curPoint] == nil, stoneWorker.isOccupied(point: curPoint) {
                     points.append(curPoint)
                 }

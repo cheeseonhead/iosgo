@@ -9,9 +9,7 @@
 import Foundation
 
 class GameRenderer {
-
     func getState(from goState: GoState) -> GridState {
-
         let gridStones = getStones(from: goState)
         let blackPrisoners = goState.blackPrisoners
         let whitePrisoners = goState.whitePrisoners
@@ -24,11 +22,10 @@ class GameRenderer {
 }
 
 // MARK: - Helpers
+
 private extension GameRenderer {
-
-    func getStones(from goState: GoState) -> [GridPoint: GridStone] {
-
-        var gridStones = [GridPoint: GridStone]()
+    func getStones(from goState: GoState) -> [BoardPoint: GridStone] {
+        var gridStones = [BoardPoint: GridStone]()
         let boardStones = goState.board.allStones()
 
         for (boardPoint, boardStone) in boardStones {
@@ -40,9 +37,9 @@ private extension GameRenderer {
         return gridStones
     }
 
-    func gridPoint(from move: BoardPoint, size: BoardSize) -> GridPoint {
+    func gridPoint(from move: BoardPoint, size: BoardSize) -> BoardPoint {
         let row = size.height - move.row
         let col = move.column + 1
-        return GridPoint(row: row, col: col)
+        return BoardPoint(row: row, column: col)
     }
 }

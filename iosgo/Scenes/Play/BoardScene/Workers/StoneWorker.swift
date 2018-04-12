@@ -9,13 +9,12 @@
 import SpriteKit
 
 class StoneWorker {
-
     var gridNode: GridNode
     var stoneFactory: StoneNodeFactory
 
     var ghostStone: StoneNode?
 
-    private var stoneNodes = [GridPoint: StoneNode]()
+    private var stoneNodes = [BoardPoint: StoneNode]()
 
     init(grid: GridNode, stoneFactory: StoneNodeFactory) {
         gridNode = grid
@@ -24,13 +23,13 @@ class StoneWorker {
 }
 
 // MARK: - Checking
-extension StoneWorker {
 
-    func isOccupied(point: GridPoint) -> Bool {
+extension StoneWorker {
+    func isOccupied(point: BoardPoint) -> Bool {
         return stoneNodes[point] != nil
     }
 
-    func stone(at point: GridPoint) -> GridStone? {
+    func stone(at point: BoardPoint) -> GridStone? {
         guard let node: StoneNode = stoneNodes[point] else {
             return nil
         }
@@ -40,15 +39,15 @@ extension StoneWorker {
 }
 
 // MARK: - Regular Stones
-extension StoneWorker {
 
+extension StoneWorker {
     func placeStones(_ stones: [GridStone]) {
         for stone in stones {
             _ = placeStone(type: stone.type, at: stone.point)
         }
     }
 
-    func placeStone(type: StoneType, at point: GridPoint) -> Bool {
+    func placeStone(type: StoneType, at point: BoardPoint) -> Bool {
         if isOccupied(point: point) {
             _ = removeStone(at: point)
         }
@@ -61,14 +60,13 @@ extension StoneWorker {
         return true
     }
 
-    func removeStones(at points: [GridPoint]) {
-
+    func removeStones(at points: [BoardPoint]) {
         for point in points {
             _ = removeStone(at: point)
         }
     }
 
-    func removeStone(at point: GridPoint) -> Bool {
+    func removeStone(at point: BoardPoint) -> Bool {
         guard let stoneNode = stoneNodes[point] else {
             return false
         }
@@ -81,6 +79,7 @@ extension StoneWorker {
 }
 
 // MARK: - Ghost Stone
+
 extension StoneWorker {
     func createGhostStone(type: StoneType) -> Bool {
         guard ghostStone == nil else {
@@ -93,7 +92,7 @@ extension StoneWorker {
         return true
     }
 
-    func moveGhostStone(to point: GridPoint) -> Bool {
+    func moveGhostStone(to point: BoardPoint) -> Bool {
         guard ghostStone != nil else {
             return false
         }
@@ -123,23 +122,13 @@ extension StoneWorker {
 }
 
 // MARK: - Helpers
+
 private extension StoneWorker {
-    func addStoneNode(_ stoneNode: StoneNode, at point: GridPoint) {
+    func addStoneNode(_ stoneNode: StoneNode, at point: BoardPoint) {
         let position = gridNode.stonePosition(for: point)
 
         stoneNode.position = position
         stoneNode.zPosition = gridNode.zPosition + 1
         gridNode.addChild(stoneNode)
-    }
-}
-
-// MARK: - GridPoint Extension
-extension GridPoint: Hashable {
-    var hashValue: Int {
-        return "\(row), \(col)".hashValue
-    }
-
-    static func ==(lhs: GridPoint, rhs: GridPoint) -> Bool {
-        return lhs.hashValue == rhs.hashValue
     }
 }

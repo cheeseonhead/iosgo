@@ -10,12 +10,11 @@ import Foundation
 
 struct GridStone {
     var type: StoneType
-    var point: GridPoint
+    var point: BoardPoint
 }
 
 extension GridStone: Equatable {
-
-    static func ==(lhs: GridStone, rhs: GridStone) -> Bool {
+    static func == (lhs: GridStone, rhs: GridStone) -> Bool {
         return lhs.type == rhs.type && lhs.point == rhs.point
     }
 }
