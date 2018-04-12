@@ -486,7 +486,6 @@
 				34FEDDA51EFFF02F00EC1B5F /* PlayRouter.swift */,
 				34FEDDA61EFFF02F00EC1B5F /* PlayViewController.swift */,
 				346945321EF749DD004E3164 /* PlayWorker.swift */,
-				34A2B55C1EEA4AB70074525B /* BoardScene */,
 			);
 			path = Play;
 			sourceTree = "<group>";
@@ -525,6 +524,14 @@
 			path = Types;
 			sourceTree = "<group>";
 		};
+		34A7538A208021C700361352 /* SKScenes */ = {
+			isa = PBXGroup;
+			children = (
+				34A2B55C1EEA4AB70074525B /* BoardScene */,
+			);
+			path = SKScenes;
+			sourceTree = "<group>";
+		};
 		34DF46891EFB55F4009EC397 /* GameAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -560,13 +567,14 @@
 				565D24801E54A5A500EF62CD /* Info.plist */,
 				565D247B1E54A5A500EF62CD /* Assets.xcassets */,
 				AD05A9249FEBFC41418217D5 /* Additions */,
+				8405CC7312AC75881BD6ADB1 /* AppScenes */,
 				56BD888D1E5522530098E50B /* Components */,
 				3452AAEE1F01E562008F838E /* Engine */,
 				565D247D1E54A5A500EF62CD /* LaunchScreen.storyboard */,
 				565D24781E54A5A500EF62CD /* Main.storyboard */,
 				8405C8F1A41EC1425EF79C9C /* Managers */,
 				8405CB755432B62AFE49B7F6 /* Models */,
-				8405CC7312AC75881BD6ADB1 /* AppScenes */,
+				34A7538A208021C700361352 /* SKScenes */,
 				8405CA6ED574B6A9F2DF0E71 /* Stores */,
 				AD05AD1C933B7360B3025EF2 /* Workers */,
 			);
