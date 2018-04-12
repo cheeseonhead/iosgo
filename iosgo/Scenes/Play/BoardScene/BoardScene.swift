@@ -84,6 +84,7 @@ extension BoardScene {
         currentType = state.stoneType
         stoneWorker.placeStones(addStones)
         stoneWorker.removeStones(at: removeStones)
+        _ = stoneWorker.removeGhostStone()
     }
 }
 
