@@ -21,16 +21,14 @@ class PlayInteractor: PlayBusinessLogic, PlayDataStore {
     var presenter: PlayPresentationLogic?
     var playWorker = PlayWorker(gameStore: GameAPI(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
 
-    required init() {
-        playWorker.delegate = self
-    }
-
     func loadScene(request _: Play.LoadGame.Request) {
-        playWorker.loadGame(id: 3569) { result in
+        playWorker.loadGame(id: 3574) { result in
             switch result {
             case let .success(state):
                 let response = Play.LoadGame.Response(state: state)
                 self.presenter?.presentLoadScene(response: response)
+
+                self.playWorker.delegate = self
             case let .error(message):
                 print(message)
             }
