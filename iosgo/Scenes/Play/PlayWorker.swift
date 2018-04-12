@@ -13,7 +13,6 @@ protocol PlayWorkerDelegate: class {
 }
 
 class PlayWorker {
-
     enum LoadResult {
         case success(stones: GoState)
         case error(message: String)
@@ -29,19 +28,18 @@ class PlayWorker {
     }
 
     func loadGame(id: Int, completion: @escaping (LoadResult) -> Void) {
-
         gameStore.game(id: id) { storeResponse in
 
             var loadResult: LoadResult!
 
             switch storeResponse.result {
-            case .success(let game):
+            case let .success(game):
                 self.gameEngine = GameEngine(game: game)
                 loadResult = .success(stones: self.gameEngine.getState())
                 self.connectSocket()
-            case .error(let type):
+            case let .error(type):
                 switch type {
-                case .genericError(let message):
+                case let .genericError(message):
                     loadResult = .error(message: message)
                 default: break
                 }
@@ -50,13 +48,16 @@ class PlayWorker {
             completion(loadResult)
         }
     }
+
+    func submitMove(_ move: BoardPoint) {
+        gameSocket.submitMove(move)
+    }
 }
 
 // MARK: - Load Game Helpers
+
 private extension PlayWorker {
-
     func connectSocket() {
-
         guard let playerId = OGSSessionController.sharedInstance.current.user?.id else {
             return
         }
@@ -68,8 +69,8 @@ private extension PlayWorker {
 }
 
 // MARK: - GameSocket Delegate
-extension PlayWorker: GameSocketDelegate {
 
+extension PlayWorker: GameSocketDelegate {
     func handleMove(_ move: BoardPoint) {
         try? gameEngine.place(at: move)
         delegate?.gameUpdated(state: gameEngine.getState())
