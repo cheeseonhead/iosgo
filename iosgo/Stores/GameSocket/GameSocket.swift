@@ -15,7 +15,6 @@ protocol GameSocketDelegate: class {
 }
 
 class GameSocket {
-
     private typealias Models = GameSocketModels
 
     var socket: SocketManager
@@ -24,7 +23,7 @@ class GameSocket {
     weak var delegate: GameSocketDelegate?
 
     required init(socketManager: SocketManager, gameId: Int, playerId: Int) {
-        self.socket = socketManager
+        socket = socketManager
         self.gameId = gameId
         self.playerId = playerId
     }
@@ -32,7 +31,7 @@ class GameSocket {
     func connect() {
         socket.on(GameSocketEventCreator(gameId: gameId, eventType: .receiveMove)) { data in
             guard let dictionary = data[0] as? UnboxableDictionary,
-                let moveModel: Models.Move = try? unbox(dictionary: dictionary) else {
+                let moveModel: Models.ReceivedMove = try? unbox(dictionary: dictionary) else {
                 return
             }
             self.handleMove(model: moveModel)
@@ -55,16 +54,15 @@ class GameSocket {
             strongSelf.socket.emit(GameSocketEventCreator(gameId: strongSelf.gameId, eventType: .connect), with: connectData)
         }
     }
-    
+
     func submitMove() {
-        
     }
 }
 
 // MARK: - Handlers
-private extension GameSocket {
 
-    private func handleMove(model: Models.Move) {
+private extension GameSocket {
+    private func handleMove(model: Models.ReceivedMove) {
         delegate?.handleMove(model.move)
     }
 

@@ -10,9 +10,7 @@ import SocketIO
 import Unbox
 
 enum GameSocketModels {
-
     struct Connect: SocketData {
-
         var chat: Bool
         var gameId: Int
         var playerId: Int
@@ -22,7 +20,7 @@ enum GameSocketModels {
         }
     }
 
-    struct Move: Unboxable {
+    struct ReceivedMove: Unboxable {
         var gameId: Int
         var move: BoardPoint
         var moveNumber: Int
