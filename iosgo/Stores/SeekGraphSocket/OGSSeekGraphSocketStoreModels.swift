@@ -6,7 +6,7 @@
 import Foundation
 import Unbox
 
-struct OGSSeekGraphSocketStoreModel {
+struct OGSSeekGraphSocketModels {
     typealias Challenge = OGSChallenge
 
     struct GameStart: Unboxable {

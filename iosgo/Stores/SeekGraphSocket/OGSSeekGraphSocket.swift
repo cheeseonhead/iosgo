@@ -7,8 +7,8 @@ import UIKit
 import Unbox
 import Starscream
 
-class OGSSeekGraphSocketStore {
-    typealias Model = OGSSeekGraphSocketStoreModel
+class OGSSeekGraphSocket {
+    typealias Model = OGSSeekGraphSocketModels
 
     enum ModelType {
         case challengeList([Model.Challenge])
@@ -60,7 +60,7 @@ class OGSSeekGraphSocketStore {
 }
 
 // MARK: Create Model Methods
-extension OGSSeekGraphSocketStore {
+extension OGSSeekGraphSocket {
     func createChallengeList(from data: Any) throws -> [Model.Challenge] {
         guard let array = data as? [Any] else {
             fatalError("List could not be created")
