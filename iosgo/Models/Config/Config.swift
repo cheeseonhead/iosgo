@@ -12,7 +12,7 @@ struct Config: Codable {
     var chatAuth: String
     var user: OGSUser
 
-    enum Keys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case chatAuth = "chat_auth"
         case user
     }
