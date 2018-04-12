@@ -27,45 +27,10 @@ class SplashInteractor: SplashInteractorInput {
 
     func loadScene(request _: Splash.LoadScene.Request) {
         let configurator = OGSAppConfigurator(session: OGSSession(configuration: OGSBetaConfiguration()))
-        configurator.configureApp { success in
-            if success {
-                self.readyList[0] = true
-                self.finishScene()
-            }
+        configurator.configureApp { result in
+            let response = Splash.LoadScene.Response(loggedIn: result == .loggedIn)
+
+            self.output.presentLoadScene(response: response)
         }
-
-        OGSSessionController.sharedInstance.initialize { result in
-            switch result {
-            case .success:
-                self.response.loggedIn = true
-                break
-            case .error:
-                self.response.loggedIn = false
-                break
-            }
-
-            self.readyList[1] = true
-            self.finishScene()
-        }
-    }
-}
-
-// MARK: - Output
-private extension SplashInteractor {
-    func finishScene() {
-        guard allReady() else {
-            return
-        }
-
-        output.presentLoadScene(response: response)
-    }
-
-    func allReady() -> Bool {
-        for ready in readyList {
-            guard ready else {
-                return false
-            }
-        }
-        return true
     }
 }
