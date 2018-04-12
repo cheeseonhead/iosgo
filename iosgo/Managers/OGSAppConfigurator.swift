@@ -43,7 +43,7 @@ extension OGSAppConfigurator {
     }
 
     func configureSocketManager(completion: @escaping (ConfigureResult) -> Void) {
-        SocketManager.sharedInstance.socketAddress = session.configuration.domainName
+        SocketManager.sharedInstance.sessionController = OGSSessionController.sharedInstance
 
         SocketManager.sharedInstance.connect { success in
             if success {

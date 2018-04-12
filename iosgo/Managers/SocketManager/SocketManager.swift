@@ -8,14 +8,16 @@ import SocketIO
 class SocketManager {
     static var sharedInstance = SocketManager()
 
-    var socketAddress: String!
+    var sessionController: OGSSessionController?
     var isConnected = false
 
     private var manager: SocketIO.SocketManager!
     fileprivate var socket: SocketIOClient!
 
     func connect(completion: @escaping (Bool) -> Void) {
-        manager = SocketIO.SocketManager(socketURL: URL(string: socketAddress)!, config: [.log(false), .forceWebsockets(true), .reconnects(true), .reconnectWait(5)])
+        guard let session = sessionController?.current else { return }
+
+        manager = SocketIO.SocketManager(socketURL: URL(string: session.configuration.domainName)!, config: [.log(false), .forceWebsockets(true), .reconnects(true), .reconnectWait(5)])
         socket = manager.defaultSocket
 
         once(event: .connect) { _ in
