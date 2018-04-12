@@ -34,7 +34,7 @@ struct BoardPoint: Codable {
         let rowC = Character.fromInt(row)
         let colC = Character.fromInt(column)
 
-        return String([rowC, colC]).lowercased()
+        return String([colC, rowC]).lowercased()
     }
 }
 
