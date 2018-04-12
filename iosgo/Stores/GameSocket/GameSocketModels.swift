@@ -40,7 +40,7 @@ enum GameSocketModels {
         }
     }
 
-    struct SubmitMove: Encodable & SocketData {
+    struct SubmitMove: SocketData {
         let gameId: Int
         let move: BoardPoint
         let playerId: Int
