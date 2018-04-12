@@ -30,7 +30,7 @@ class GameSocket {
     }
 
     func connect() {
-        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .move)) { data in
+        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .receiveMove)) { data in
             guard let dictionary = data[0] as? UnboxableDictionary,
                 let moveModel: Models.Move = try? unbox(dictionary: dictionary) else {
                 return
@@ -54,6 +54,10 @@ class GameSocket {
             let connectData = Models.Connect(chat: true, gameId: strongSelf.gameId, playerId: strongSelf.playerId)
             strongSelf.socket.emit(GameSocketEventCreator(gameId: strongSelf.gameId, eventType: .connect), with: connectData)
         }
+    }
+    
+    func submitMove() {
+        
     }
 }
 
