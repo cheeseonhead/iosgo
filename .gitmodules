@@ -1,0 +1,4 @@
+[submodule "ios-script"]
+	path = ios-script
+	url = https://github.com/cheeseonhead/ios-scripts
+	branch = master
