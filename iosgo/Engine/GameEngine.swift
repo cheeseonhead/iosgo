@@ -11,7 +11,6 @@ import Foundation
 private typealias Group = [BoardPoint]
 
 class GameEngine {
-
     var game: Game
 
     var currentMarker = 0
@@ -26,12 +25,15 @@ class GameEngine {
     lazy var moveTree: MoveTree = {
         MoveTree(engine: self, trunk: true, point: BoardPoint(row: -1, column: -1), edited: false, moveNumber: 0, parent: nil, state: self.getState())
     }()
+
     lazy var currentMove: MoveTree = {
         self.moveTree
     }()
+
     lazy var lastOfficialMove: MoveTree = {
         self.currentMove
     }()
+
     var moveBeforeJump: MoveTree?
 
     required init(game: Game) {
@@ -51,7 +53,6 @@ class GameEngine {
     }
 
     func update(with gameData: GameData) {
-
         let currentMoves = game.gameData.moves
         if gameData.moves.count != currentMoves.count {
             let newMoves = Array(gameData.moves[currentMoves.count ..< gameData.moves.count])
@@ -61,7 +62,6 @@ class GameEngine {
 
     func place(at point: BoardPoint, checkForKo: Bool = false, errorOnSuperKo: Bool = false, dontCheckForSuperKo: Bool = false, dontCheckForSuicide: Bool = false, isTrunkMove: Bool = false) throws {
         if board.size.contains(point: point) {
-
             guard board.stone(at: point) == nil else {
                 return
             }
@@ -127,6 +127,13 @@ class GameEngine {
         return "\(alphabet[index])" + "\(board.size.height - point.row)"
     }
 
+    func boardPoint(forGridPoint gridPoint: GridPoint) -> BoardPoint {
+        let col = gridPoint.col - 1
+        let row = board.size.height - gridPoint.row
+
+        return BoardPoint(row: row, column: col)
+    }
+
     func getState() -> GoState {
         let state = GoState(player: playingPlayer, boardIsRepeating: boardIsRepeating, whitePrisoners: whitePlayerPrisoners, blackPrisoners: blackPlayerPrisoners, board: board)
 
@@ -135,8 +142,8 @@ class GameEngine {
 }
 
 // MARK: - Liberties
-private extension GameEngine {
 
+private extension GameEngine {
     func countLiberties(group: Group) -> Int {
         var count = 0
 
@@ -172,8 +179,8 @@ private extension GameEngine {
 }
 
 // MARK: - Groups
-private extension GameEngine {
 
+private extension GameEngine {
     func getGroup(at point: BoardPoint, clearMarks: Bool) -> Group {
         let targetStoneType = board.stone(at: point)?.type
 
@@ -238,8 +245,8 @@ private extension GameEngine {
 }
 
 // MARK: - State
-private extension GameEngine {
 
+private extension GameEngine {
     func isBoardRepeating() -> Bool {
         let MAX_SUPERKO_SEARCH = 30
         let currentState = getState()
@@ -273,10 +280,9 @@ private extension GameEngine {
 }
 
 // MARK: - Helpers
+
 private extension GameEngine {
-
     func playMoves(_ moves: [BoardPoint]) {
-
         for move in moves {
             do {
                 try place(at: move, checkForKo: false, errorOnSuperKo: false, dontCheckForSuperKo: true, dontCheckForSuicide: true, isTrunkMove: true)
