@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+/// Starts at (1, 1) on the bottom left of the board, different from `BoardPoint`
 struct GridPoint {
     var row: Int
     var col: Int
