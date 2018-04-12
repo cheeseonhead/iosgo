@@ -70,7 +70,7 @@ private extension PlayWorker {
 // MARK: - GameSocket Delegate
 extension PlayWorker: GameSocketDelegate {
 
-    func move(_ move: BoardPoint) {
+    func handleMove(_ move: BoardPoint) {
         try? gameEngine.place(at: move)
         delegate?.gameUpdated(state: gameEngine.getState())
     }

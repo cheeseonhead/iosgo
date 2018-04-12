@@ -10,7 +10,7 @@ import Foundation
 import Unbox
 
 protocol GameSocketDelegate: class {
-    func move(_ move: BoardPoint)
+    func handleMove(_ move: BoardPoint)
     func updateGameData(_ gameData: GameData)
 }
 
@@ -61,7 +61,7 @@ class GameSocket {
 private extension GameSocket {
 
     private func handleMove(model: Models.Move) {
-        delegate?.move(model.move)
+        delegate?.handleMove(model.move)
     }
 
     private func handleGameData(gameData: GameData) {
