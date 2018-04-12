@@ -21,6 +21,7 @@ class SocketManager {
         socket = manager.defaultSocket
 
         once(event: .connect) { _ in
+            self.authenticate()
             completion(true)
         }
 
@@ -33,6 +34,14 @@ class SocketManager {
         }
 
         socket.connect()
+    }
+
+    func authenticate() {
+        guard let session = sessionController?.current, let auth = session.accessToken,
+            let playerId = session.user?.id, let username = session.user?.username else { return }
+
+        let data = SocketManagerModels.Authenticate(auth: auth, playerId: playerId, username: username)
+        emit(event: .authenticate, with: data)
     }
 }
 

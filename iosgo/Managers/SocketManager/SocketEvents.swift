@@ -11,11 +11,8 @@ typealias SocketEvent = String
 enum SocketEvents: SocketEvent {
     case connect
     case disconnect
+
+    case authenticate
     case seekGraphConnect = "seek_graph/connect"
     case seekGraphGlobal = "seekgraph/global"
-    case game
-
-    enum Game: String {
-        case clock, move
-    }
 }
