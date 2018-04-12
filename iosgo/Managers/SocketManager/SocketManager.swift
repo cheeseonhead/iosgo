@@ -21,12 +21,13 @@ class SocketManager {
         socket = manager.defaultSocket
 
         once(event: .connect) { _ in
-            self.authenticate()
             completion(true)
         }
 
         on(event: .connect) { _ in
             self.websocketDidConnect(socket: self.socket)
+
+            self.authenticate()
         }
 
         on(event: .disconnect) { _ in
@@ -37,7 +38,7 @@ class SocketManager {
     }
 
     func authenticate() {
-        guard let session = sessionController?.current, let auth = session.accessToken,
+        guard let session = sessionController?.current, let auth = session.userConfiguration?.chatAuth,
             let playerId = session.user?.id, let username = session.user?.username else { return }
 
         let data = SocketManagerModels.Authenticate(auth: auth, playerId: playerId, username: username)
