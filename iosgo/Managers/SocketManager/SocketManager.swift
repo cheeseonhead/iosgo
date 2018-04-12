@@ -8,15 +8,16 @@ import SocketIO
 class SocketManager {
     static var sharedInstance = SocketManager()
 
-    var socketAddress: String!
+    var sessionController: OGSSessionController?
     var isConnected = false
 
     private var manager: SocketIO.SocketManager!
     fileprivate var socket: SocketIOClient!
 
     func connect(completion: @escaping (Bool) -> Void) {
-        
-        manager = SocketIO.SocketManager(socketURL: URL(string: socketAddress)!, config: [.log(false), .forceWebsockets(true), .reconnects(true), .reconnectWait(5)])
+        guard let session = sessionController?.current else { return }
+
+        manager = SocketIO.SocketManager(socketURL: URL(string: session.configuration.domainName)!, config: [.log(false), .forceWebsockets(true), .reconnects(true), .reconnectWait(5)])
         socket = manager.defaultSocket
 
         once(event: .connect) { _ in
@@ -25,6 +26,8 @@ class SocketManager {
 
         on(event: .connect) { _ in
             self.websocketDidConnect(socket: self.socket)
+
+            self.authenticate()
         }
 
         on(event: .disconnect) { _ in
@@ -32,6 +35,14 @@ class SocketManager {
         }
 
         socket.connect()
+    }
+
+    func authenticate() {
+        guard let session = sessionController?.current, let auth = session.userConfiguration?.chatAuth,
+            let playerId = session.user?.id, let username = session.user?.username else { return }
+
+        let data = SocketManagerModels.Authenticate(auth: auth, playerId: playerId, username: username)
+        emit(event: .authenticate, with: data)
     }
 }
 
@@ -45,7 +56,6 @@ extension SocketManager {
     }
 
     func onConnect(closure: @escaping () -> Void) {
-
         if socket.status == .connected {
             closure()
         }
@@ -55,21 +65,19 @@ extension SocketManager {
         }
     }
 
-    func on(event: SocketEvents, closure: @escaping NormalCallback) {
-
+    func on(event: SocketEvents, closure: @escaping NormalSocketCallback) {
         socket.on(event.rawValue) { data, _ in
             closure(data)
         }
     }
 
-    func on(_ socketEventCreator: SocketEventCreating, closure: @escaping NormalCallback) {
-
+    func on(_ socketEventCreator: SocketEventCreating, closure: @escaping NormalSocketCallback) {
         socket.on(socketEventCreator.eventName) { data, _ in
             closure(data)
         }
     }
 
-    func once(event: SocketEvents, closure: @escaping NormalCallback) {
+    func once(event: SocketEvents, closure: @escaping NormalSocketCallback) {
         socket.once(event.rawValue) { data, _ in
             closure(data)
         }
@@ -77,8 +85,8 @@ extension SocketManager {
 }
 
 // MARK: - Private
-private extension SocketManager {
 
+private extension SocketManager {
     func emit(rawEvent: SocketEvent, with data: SocketData) {
         if !isConnected {
             once(event: .connect) { _ in
@@ -91,6 +99,7 @@ private extension SocketManager {
 }
 
 // MARK: - Handlers
+
 extension SocketManager {
     func websocketDidConnect(socket _: SocketIOClient) {
         isConnected = true

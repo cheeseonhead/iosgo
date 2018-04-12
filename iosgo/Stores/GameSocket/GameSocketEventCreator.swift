@@ -13,8 +13,10 @@ struct GameSocketEventCreator: SocketEventCreating {
         switch eventType {
         case .clock:
             return "game/\(gameId)/clock"
-        case .move:
+        case .receiveMove:
             return "game/\(gameId)/move"
+        case .submitMove:
+            return "game/move"
         case .connect:
             return "game/connect"
         case .gamedata:
@@ -23,7 +25,7 @@ struct GameSocketEventCreator: SocketEventCreating {
     }
 
     enum EventType {
-        case move, clock, connect, gamedata
+        case receiveMove, submitMove, clock, connect, gamedata
     }
 
     var gameId: Int

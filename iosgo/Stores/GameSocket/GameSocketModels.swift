@@ -7,12 +7,9 @@
 //
 
 import SocketIO
-import Unbox
 
 enum GameSocketModels {
-
     struct Connect: SocketData {
-
         var chat: Bool
         var gameId: Int
         var playerId: Int
@@ -22,16 +19,38 @@ enum GameSocketModels {
         }
     }
 
-    struct Move: Unboxable {
+    struct ReceivedMove: Decodable {
         var gameId: Int
         var move: BoardPoint
         var moveNumber: Int
 
-        init(unboxer: Unboxer) throws {
-            gameId = try unboxer.unbox(key: "game_id")
-            let genericMove: [Int] = try unboxer.unbox(key: "move")
+        enum CodingKeys: String, CodingKey {
+            case gameId = "game_id"
+            case move
+            case moveNumber = "move_number"
+        }
+
+        public init(from decoder: Decoder) throws {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            gameId = try values.decode(Int.self, forKey: .gameId)
+
+            let genericMove: [Int] = try values.decode([Int].self, forKey: .move)
             move = BoardPoint(row: genericMove[1], column: genericMove[0])
-            moveNumber = try unboxer.unbox(key: "move_number")
+            moveNumber = try values.decode(Int.self, forKey: .moveNumber)
+        }
+    }
+
+    struct SubmitMove: SocketData {
+        let gameId: Int
+        let move: String
+        let playerId: Int
+
+        func socketRepresentation() -> SocketData {
+            return [
+                "game_id": gameId,
+                "move": move,
+                "player_id": playerId,
+            ]
         }
     }
 }

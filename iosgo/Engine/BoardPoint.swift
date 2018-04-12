@@ -8,8 +8,8 @@
 
 import Foundation
 
-// Starts with (0, 0) at the top left of the board
-struct BoardPoint {
+/// Starts with (0, 0) at the top left of the board
+struct BoardPoint: Codable {
     var row: Int
     var column: Int
 
@@ -29,6 +29,13 @@ struct BoardPoint {
             return BoardPoint(row: row, column: column + 1)
         }
     }
+
+    func toLetters() -> String {
+        let rowC = Character.fromInt(row)
+        let colC = Character.fromInt(column)
+
+        return String([colC, rowC]).lowercased()
+    }
 }
 
 extension BoardPoint: Hashable {
@@ -36,7 +43,7 @@ extension BoardPoint: Hashable {
         return "\(row), \(column)".hashValue
     }
 
-    static func ==(lhs: BoardPoint, rhs: BoardPoint) -> Bool {
+    static func == (lhs: BoardPoint, rhs: BoardPoint) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
 }

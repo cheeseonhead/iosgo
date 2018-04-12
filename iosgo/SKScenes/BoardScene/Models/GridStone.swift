@@ -14,8 +14,7 @@ struct GridStone {
 }
 
 extension GridStone: Equatable {
-
-    static func ==(lhs: GridStone, rhs: GridStone) -> Bool {
+    static func == (lhs: GridStone, rhs: GridStone) -> Bool {
         return lhs.type == rhs.type && lhs.point == rhs.point
     }
 }

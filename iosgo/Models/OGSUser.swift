@@ -5,8 +5,14 @@
 
 import Foundation
 
-struct OGSUser {
+struct OGSUser: Codable {
     var id: Int
     var username: String
     var rank: Int
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case username
+        case rank = "ranking"
+    }
 }

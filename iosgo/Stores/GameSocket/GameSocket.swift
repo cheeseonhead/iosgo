@@ -10,12 +10,11 @@ import Foundation
 import Unbox
 
 protocol GameSocketDelegate: class {
-    func move(_ move: BoardPoint)
+    func handleMove(_ move: BoardPoint)
     func updateGameData(_ gameData: GameData)
 }
 
 class GameSocket {
-
     private typealias Models = GameSocketModels
 
     var socket: SocketManager
@@ -24,15 +23,15 @@ class GameSocket {
     weak var delegate: GameSocketDelegate?
 
     required init(socketManager: SocketManager, gameId: Int, playerId: Int) {
-        self.socket = socketManager
+        socket = socketManager
         self.gameId = gameId
         self.playerId = playerId
     }
 
     func connect() {
-        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .move)) { data in
-            guard let dictionary = data[0] as? UnboxableDictionary,
-                let moveModel: Models.Move = try? unbox(dictionary: dictionary) else {
+        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .receiveMove)) { data in
+            guard let dict: JSON = data[0] as? JSON,
+                let moveModel = try? JSONDecoder().decode(Models.ReceivedMove.self, from: dict) else {
                 return
             }
             self.handleMove(model: moveModel)
@@ -55,13 +54,19 @@ class GameSocket {
             strongSelf.socket.emit(GameSocketEventCreator(gameId: strongSelf.gameId, eventType: .connect), with: connectData)
         }
     }
+
+    func submitMove(_ move: String) {
+        let submitMoveData = Models.SubmitMove(gameId: gameId, move: move, playerId: playerId)
+
+        socket.emit(GameSocketEventCreator(gameId: gameId, eventType: .submitMove), with: submitMoveData)
+    }
 }
 
 // MARK: - Handlers
-private extension GameSocket {
 
-    private func handleMove(model: Models.Move) {
-        delegate?.move(model.move)
+private extension GameSocket {
+    private func handleMove(model: Models.ReceivedMove) {
+        delegate?.handleMove(model.move)
     }
 
     private func handleGameData(gameData: GameData) {

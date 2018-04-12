@@ -27,13 +27,18 @@ enum Play {
     }
 
     enum UpdateGame {
-
         struct Response {
             var state: GoState
         }
 
         struct ViewModel {
             var state: GridState
+        }
+    }
+
+    enum SubmitMove {
+        struct Request {
+            var move: GridPoint
         }
     }
 }

@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+/// Starts at (1, 1) on the bottom left of the board, different from `BoardPoint`
 struct GridPoint {
     var row: Int
     var col: Int
@@ -26,6 +27,7 @@ class GridNode: SKSpriteNode {
     }
 
     // MARK: - Properties
+
     var rows: Int?
     var cols: Int?
     var gridSize: CGSize?
@@ -36,12 +38,15 @@ class GridNode: SKSpriteNode {
         }
         return CGSize(width: spacing * Style.stoneSizeRatio, height: spacing * Style.stoneSizeRatio)
     }
+
     var ghostStoneSize: CGSize {
         return stoneSize.scaled(by: 1.0)
     }
+
     var stoneNodes = [GridPoint: StoneNode]()
 
     // MARK: - Object Lifecycle
+
     convenience init?(fittingSize: CGSize, rows: Int, cols: Int) {
         guard let texture = GridNode.gridTexture(fittingSize: fittingSize, rows: rows, cols: cols) else {
             return nil
@@ -54,6 +59,7 @@ class GridNode: SKSpriteNode {
     }
 
     // MARK: - Usage
+
     func point(for point: CGPoint) -> GridPoint? {
         guard let spacing = spacing, let rows = rows, let cols = cols else {
             return nil
@@ -81,6 +87,7 @@ class GridNode: SKSpriteNode {
 }
 
 // MARK: - Init Helpers
+
 extension GridNode {
     class func gridTexture(fittingSize: CGSize, rows: Int, cols: Int) -> SKTexture? {
         let spacing = minSpacing(for: fittingSize, rows: rows, cols: cols)

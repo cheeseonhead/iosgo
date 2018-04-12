@@ -9,7 +9,6 @@
 import SpriteKit
 
 class StoneWorker {
-
     var gridNode: GridNode
     var stoneFactory: StoneNodeFactory
 
@@ -24,8 +23,8 @@ class StoneWorker {
 }
 
 // MARK: - Checking
-extension StoneWorker {
 
+extension StoneWorker {
     func isOccupied(point: GridPoint) -> Bool {
         return stoneNodes[point] != nil
     }
@@ -40,8 +39,8 @@ extension StoneWorker {
 }
 
 // MARK: - Regular Stones
-extension StoneWorker {
 
+extension StoneWorker {
     func placeStones(_ stones: [GridStone]) {
         for stone in stones {
             _ = placeStone(type: stone.type, at: stone.point)
@@ -62,7 +61,6 @@ extension StoneWorker {
     }
 
     func removeStones(at points: [GridPoint]) {
-
         for point in points {
             _ = removeStone(at: point)
         }
@@ -81,6 +79,7 @@ extension StoneWorker {
 }
 
 // MARK: - Ghost Stone
+
 extension StoneWorker {
     func createGhostStone(type: StoneType) -> Bool {
         guard ghostStone == nil else {
@@ -123,6 +122,7 @@ extension StoneWorker {
 }
 
 // MARK: - Helpers
+
 private extension StoneWorker {
     func addStoneNode(_ stoneNode: StoneNode, at point: GridPoint) {
         let position = gridNode.stonePosition(for: point)
@@ -134,12 +134,13 @@ private extension StoneWorker {
 }
 
 // MARK: - GridPoint Extension
+
 extension GridPoint: Hashable {
     var hashValue: Int {
         return "\(row), \(col)".hashValue
     }
 
-    static func ==(lhs: GridPoint, rhs: GridPoint) -> Bool {
+    static func == (lhs: GridPoint, rhs: GridPoint) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
 }

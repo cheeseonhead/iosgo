@@ -14,34 +14,35 @@ import UIKit
 
 protocol PlayBusinessLogic {
     func loadScene(request: Play.LoadGame.Request)
+    func submitMove(request: Play.SubmitMove.Request)
 }
 
 class PlayInteractor: PlayBusinessLogic, PlayDataStore {
-
     var presenter: PlayPresentationLogic?
-    var playWorker = PlayWorker(gameStore: GameStore(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
-
-    required init() {
-        playWorker.delegate = self
-    }
+    var playWorker = PlayWorker(gameStore: GameAPI(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
 
     func loadScene(request _: Play.LoadGame.Request) {
-
-        playWorker.loadGame(id: 3569) { result in
+        playWorker.loadGame(id: 3574) { result in
             switch result {
-            case .success(let state):
+            case let .success(state):
                 let response = Play.LoadGame.Response(state: state)
                 self.presenter?.presentLoadScene(response: response)
-            case .error(let message):
+
+                self.playWorker.delegate = self
+            case let .error(message):
                 print(message)
             }
         }
     }
+
+    func submitMove(request: Play.SubmitMove.Request) {
+        playWorker.submitMove(request.move)
+    }
 }
 
 // MARK: - PlayWorker Delegate
-extension PlayInteractor: PlayWorkerDelegate {
 
+extension PlayInteractor: PlayWorkerDelegate {
     func gameUpdated(state: GoState) {
         let response = Play.UpdateGame.Response(state: state)
         presenter?.presentUpdateGame(response: response)

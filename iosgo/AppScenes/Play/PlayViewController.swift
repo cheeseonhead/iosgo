@@ -10,8 +10,8 @@
 //  see http://clean-swift.com
 //
 
-import UIKit
 import SpriteKit
+import UIKit
 
 protocol PlayDisplayLogic: class {
     func displayLoadScene(viewModel: Play.LoadGame.ViewModel)
@@ -19,11 +19,10 @@ protocol PlayDisplayLogic: class {
 }
 
 class PlayViewController: UIViewController {
-
     var interactor: PlayBusinessLogic?
     var router: (NSObjectProtocol & PlayRoutingLogic & PlayDataPassing)?
 
-    @IBOutlet weak var boardView: SKView!
+    @IBOutlet var boardView: SKView!
     var boardScene: BoardScene!
 
     // MARK: Object lifecycle
@@ -45,6 +44,7 @@ class PlayViewController: UIViewController {
 
             // Set the scale mode to scale to fit the window
             boardScene.scaleMode = .aspectFit
+            boardScene.actionDelegate = self
 
             // Present the scene
             boardView.presentScene(boardScene)
@@ -59,9 +59,19 @@ class PlayViewController: UIViewController {
     }
 }
 
-// MARK: - Display
-extension PlayViewController: PlayDisplayLogic {
+// MARK: - BoardScene Action Delegate
 
+extension PlayViewController: BoardSceneActionDelegate {
+    func submitMove(_ point: GridPoint) {
+        let request = Play.SubmitMove.Request(move: point)
+
+        interactor?.submitMove(request: request)
+    }
+}
+
+// MARK: - Display
+
+extension PlayViewController: PlayDisplayLogic {
     func displayLoadScene(viewModel: Play.LoadGame.ViewModel) {
         boardScene.initialize(viewModel.state)
     }
@@ -72,8 +82,8 @@ extension PlayViewController: PlayDisplayLogic {
 }
 
 // MARK: Setup
-private extension PlayViewController {
 
+private extension PlayViewController {
     func setup() {
         let viewController = self
         let interactor = PlayInteractor()

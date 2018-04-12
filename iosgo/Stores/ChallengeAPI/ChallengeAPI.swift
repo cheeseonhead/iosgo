@@ -3,7 +3,7 @@
 // Copyright (c) 2017 Cheeseonhead. All rights reserved.
 //
 
-class ChallengeStore {
+class ChallengeAPI {
     struct AcceptResponse {
         var success: Bool
         var errorMessage: String?

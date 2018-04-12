@@ -23,8 +23,8 @@ protocol OGSChooseGameInteractorOutput {
 
 class OGSChooseGameInteractor: OGSChooseGameInteractorInput {
     var output: OGSChooseGameInteractorOutput!
-    var listGamesWorker = OGSChooseGameListGamesWorker(store: OGSSeekGraphSocketStore())
-    var challengeWorker = ChallengeWorker(challengeStore: ChallengeStore(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
+    var listGamesWorker = OGSChooseGameListGamesWorker(store: OGSSeekGraphSocket())
+    var challengeWorker = ChallengeWorker(challengeStore: ChallengeAPI(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
     var sessionWorker = OGSSessionWorker(sessionController: OGSSessionController.sharedInstance)
 
     var selectedChallenge: OGSChallenge?
@@ -48,6 +48,7 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput {
 }
 
 // MARK: - Touch Game
+
 extension OGSChooseGameInteractor {
     func acceptChallenge(at indexPath: IndexPath) {
         guard let challenge = listGamesWorker.challenge(at: indexPath) else {
@@ -73,6 +74,7 @@ extension OGSChooseGameInteractor {
 }
 
 // MARK: - List Game Worker Delegate
+
 extension OGSChooseGameInteractor: OGSChooseGameListGamesWorkerDelegate {
     func sendGameList(_ gameList: [OGSChallenge]) {
         let session = sessionWorker.current
@@ -84,4 +86,5 @@ extension OGSChooseGameInteractor: OGSChooseGameListGamesWorkerDelegate {
 }
 
 // MARK: DIP Conformance
-extension OGSSeekGraphSocketStore: OGSListGamesStoreProtocol {}
+
+extension OGSSeekGraphSocket: OGSListGamesStoreProtocol {}

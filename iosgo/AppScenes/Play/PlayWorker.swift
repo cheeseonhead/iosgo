@@ -13,35 +13,33 @@ protocol PlayWorkerDelegate: class {
 }
 
 class PlayWorker {
-
     enum LoadResult {
         case success(stones: GoState)
         case error(message: String)
     }
 
-    private var gameStore: GameStore
+    private var gameStore: GameAPI
     private var gameEngine: GameEngine!
     private var gameSocket: GameSocket!
     weak var delegate: PlayWorkerDelegate?
 
-    init(gameStore: GameStore) {
+    init(gameStore: GameAPI) {
         self.gameStore = gameStore
     }
 
     func loadGame(id: Int, completion: @escaping (LoadResult) -> Void) {
-
         gameStore.game(id: id) { storeResponse in
 
             var loadResult: LoadResult!
 
             switch storeResponse.result {
-            case .success(let game):
+            case let .success(game):
                 self.gameEngine = GameEngine(game: game)
                 loadResult = .success(stones: self.gameEngine.getState())
                 self.connectSocket()
-            case .error(let type):
+            case let .error(type):
                 switch type {
-                case .genericError(let message):
+                case let .genericError(message):
                     loadResult = .error(message: message)
                 default: break
                 }
@@ -50,13 +48,17 @@ class PlayWorker {
             completion(loadResult)
         }
     }
+
+    func submitMove(_ move: GridPoint) {
+        let prettyPoint = gameEngine.boardPoint(forGridPoint: move).toLetters()
+        gameSocket.submitMove(prettyPoint)
+    }
 }
 
 // MARK: - Load Game Helpers
+
 private extension PlayWorker {
-
     func connectSocket() {
-
         guard let playerId = OGSSessionController.sharedInstance.current.user?.id else {
             return
         }
@@ -68,9 +70,9 @@ private extension PlayWorker {
 }
 
 // MARK: - GameSocket Delegate
-extension PlayWorker: GameSocketDelegate {
 
-    func move(_ move: BoardPoint) {
+extension PlayWorker: GameSocketDelegate {
+    func handleMove(_ move: BoardPoint) {
         try? gameEngine.place(at: move)
         delegate?.gameUpdated(state: gameEngine.getState())
     }

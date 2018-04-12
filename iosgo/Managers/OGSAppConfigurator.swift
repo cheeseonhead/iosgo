@@ -10,6 +10,10 @@ protocol OGSUserSettingsStoreProtocol {
     var refreshToken: String? { get set }
 }
 
+enum ConfigureResult {
+    case loggedIn, loggedOut
+}
+
 class OGSAppConfigurator {
     fileprivate var session: OGSSession
 
@@ -19,19 +23,33 @@ class OGSAppConfigurator {
 }
 
 // MARK: - Configure app
+
 extension OGSAppConfigurator {
-    func configureApp(completion: @escaping (Bool) -> Void) {
-        configureSessionController()
-        configureSocketManager(completion: completion)
+    func configureApp(completion: @escaping (ConfigureResult) -> Void) {
+        configureSessionController(completion: completion)
     }
 
-    func configureSessionController() {
+    func configureSessionController(completion: @escaping (ConfigureResult) -> Void) {
         OGSSessionController.sharedInstance.current = session
+        OGSSessionController.sharedInstance.initialize { result in
+            switch result {
+            case .success:
+                self.configureSocketManager(completion: completion)
+            case .error:
+                completion(.loggedOut)
+            }
+        }
     }
 
-    func configureSocketManager(completion: @escaping (Bool) -> Void) {
-        SocketManager.sharedInstance.socketAddress = session.configuration.domainName
+    func configureSocketManager(completion: @escaping (ConfigureResult) -> Void) {
+        SocketManager.sharedInstance.sessionController = OGSSessionController.sharedInstance
 
-        SocketManager.sharedInstance.connect(completion: completion)
+        SocketManager.sharedInstance.connect { success in
+            if success {
+                completion(.loggedIn)
+            } else {
+                completion(.loggedOut)
+            }
+        }
     }
 }

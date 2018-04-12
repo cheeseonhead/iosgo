@@ -8,21 +8,27 @@
 
 import SpriteKit
 
+protocol BoardSceneActionDelegate: class {
+    func submitMove(_ point: GridPoint)
+}
+
 class BoardScene: SKScene {
 
     // MARK: Nodes
+
     var woodBoard: SKSpriteNode!
     var grid: GridNode!
 
     // MARK: Workers
+
     var stoneWorker: StoneWorker!
 
     var currentType: StoneType = .black
     var boardSize = BoardSize.zero
+    weak var actionDelegate: BoardSceneActionDelegate?
 
     func initialize(_ state: GridState) {
-
-        woodBoard = self.childNode(withName: "WoodBoard") as! SKSpriteNode
+        woodBoard = childNode(withName: "WoodBoard") as! SKSpriteNode
 
         addGrid(rows: state.size.height, cols: state.size.width)
         woodBoard.size = CGSize(width: grid.size.width + grid.spacing!, height: grid.size.height + grid.spacing!)
@@ -34,8 +40,8 @@ class BoardScene: SKScene {
 }
 
 // MARK: - Events
-extension BoardScene {
 
+extension BoardScene {
     override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
         guard let touch = touches.first,
             let point = grid.point(for: touch.location(in: grid)) else {
@@ -61,29 +67,29 @@ extension BoardScene {
             return
         }
 
-        _ = stoneWorker.removeGhostStone()
-
         if !stoneWorker.isOccupied(point: point) {
-            _ = stoneWorker.placeStone(type: currentType, at: point)
-            currentType = (currentType == .black) ? .white : .black
+            actionDelegate?.submitMove(point)
         }
     }
 }
 
 // MARK: - Display
-extension BoardScene {
 
+extension BoardScene {
     func render(_ state: GridState) {
         let diffWorker = StoneDiffWorker(stoneWorker: stoneWorker, newState: state)
         let addStones = diffWorker.stonesToPlace()
         let removeStones = diffWorker.stonesToRemove()
 
+        currentType = state.stoneType
         stoneWorker.placeStones(addStones)
         stoneWorker.removeStones(at: removeStones)
+        _ = stoneWorker.removeGhostStone()
     }
 }
 
 // MARK: Setup
+
 extension BoardScene {
     func addGrid(rows: Int, cols: Int) {
         let rows = CGFloat(rows)
