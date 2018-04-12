@@ -38,7 +38,7 @@ enum Play {
 
     enum SubmitMove {
         struct Request {
-            var move: BoardPoint
+            var move: GridPoint
         }
     }
 }

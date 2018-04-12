@@ -49,8 +49,9 @@ class PlayWorker {
         }
     }
 
-    func submitMove(_ move: BoardPoint) {
-        gameSocket.submitMove(move)
+    func submitMove(_ move: GridPoint) {
+        let prettyPoint = gameEngine.boardPoint(forGridPoint: move).toLetters()
+        gameSocket.submitMove(prettyPoint)
     }
 }
 

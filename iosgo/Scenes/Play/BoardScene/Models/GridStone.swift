@@ -10,7 +10,7 @@ import Foundation
 
 struct GridStone {
     var type: StoneType
-    var point: BoardPoint
+    var point: GridPoint
 }
 
 extension GridStone: Equatable {

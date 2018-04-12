@@ -42,13 +42,13 @@ enum GameSocketModels {
 
     struct SubmitMove: SocketData {
         let gameId: Int
-        let move: BoardPoint
+        let move: String
         let playerId: Int
 
         func socketRepresentation() -> SocketData {
             return [
                 "game_id": gameId,
-                "move": move.toLetters(),
+                "move": move,
                 "player_id": playerId,
             ]
         }

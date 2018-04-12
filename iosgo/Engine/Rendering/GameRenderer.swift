@@ -25,8 +25,8 @@ class GameRenderer {
 // MARK: - Helpers
 
 private extension GameRenderer {
-    func getStones(from goState: GoState) -> [BoardPoint: GridStone] {
-        var gridStones = [BoardPoint: GridStone]()
+    func getStones(from goState: GoState) -> [GridPoint: GridStone] {
+        var gridStones = [GridPoint: GridStone]()
         let boardStones = goState.board.allStones()
 
         for (boardPoint, boardStone) in boardStones {
@@ -38,9 +38,9 @@ private extension GameRenderer {
         return gridStones
     }
 
-    func gridPoint(from move: BoardPoint, size: BoardSize) -> BoardPoint {
+    func gridPoint(from move: BoardPoint, size: BoardSize) -> GridPoint {
         let row = size.height - move.row
         let col = move.column + 1
-        return BoardPoint(row: row, column: col)
+        return GridPoint(row: row, col: col)
     }
 }

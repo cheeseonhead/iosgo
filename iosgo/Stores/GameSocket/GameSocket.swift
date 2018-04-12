@@ -55,7 +55,7 @@ class GameSocket {
         }
     }
 
-    func submitMove(_ move: BoardPoint) {
+    func submitMove(_ move: String) {
         let submitMoveData = Models.SubmitMove(gameId: gameId, move: move, playerId: playerId)
 
         socket.emit(GameSocketEventCreator(gameId: gameId, eventType: .submitMove), with: submitMoveData)

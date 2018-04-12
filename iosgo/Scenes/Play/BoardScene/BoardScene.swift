@@ -9,7 +9,7 @@
 import SpriteKit
 
 protocol BoardSceneActionDelegate: class {
-    func submitMove(_ point: BoardPoint)
+    func submitMove(_ point: GridPoint)
 }
 
 class BoardScene: SKScene {

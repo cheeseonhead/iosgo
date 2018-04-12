@@ -22,7 +22,7 @@ class StoneDiffWorker {
 
         for row in 1 ... newState.size.height {
             for col in 1 ... newState.size.width {
-                let curPoint = BoardPoint(row: row, column: col)
+                let curPoint = GridPoint(row: row, col: col)
                 if newState.stones[curPoint] != stoneWorker.stone(at: curPoint),
                     let stateStone = newState.stones[curPoint] {
                     stones.append(stateStone)
@@ -33,12 +33,12 @@ class StoneDiffWorker {
         return stones
     }
 
-    func stonesToRemove() -> [BoardPoint] {
-        var points = [BoardPoint]()
+    func stonesToRemove() -> [GridPoint] {
+        var points = [GridPoint]()
 
         for row in 1 ... newState.size.height {
             for col in 1 ... newState.size.width {
-                let curPoint = BoardPoint(row: row, column: col)
+                let curPoint = GridPoint(row: row, col: col)
                 if newState.stones[curPoint] == nil, stoneWorker.isOccupied(point: curPoint) {
                     points.append(curPoint)
                 }

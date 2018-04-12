@@ -62,7 +62,7 @@ class PlayViewController: UIViewController {
 // MARK: - BoardScene Action Delegate
 
 extension PlayViewController: BoardSceneActionDelegate {
-    func submitMove(_ point: BoardPoint) {
+    func submitMove(_ point: GridPoint) {
         let request = Play.SubmitMove.Request(move: point)
 
         interactor?.submitMove(request: request)

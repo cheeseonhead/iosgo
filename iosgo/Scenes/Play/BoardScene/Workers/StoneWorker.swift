@@ -14,7 +14,7 @@ class StoneWorker {
 
     var ghostStone: StoneNode?
 
-    private var stoneNodes = [BoardPoint: StoneNode]()
+    private var stoneNodes = [GridPoint: StoneNode]()
 
     init(grid: GridNode, stoneFactory: StoneNodeFactory) {
         gridNode = grid
@@ -25,11 +25,11 @@ class StoneWorker {
 // MARK: - Checking
 
 extension StoneWorker {
-    func isOccupied(point: BoardPoint) -> Bool {
+    func isOccupied(point: GridPoint) -> Bool {
         return stoneNodes[point] != nil
     }
 
-    func stone(at point: BoardPoint) -> GridStone? {
+    func stone(at point: GridPoint) -> GridStone? {
         guard let node: StoneNode = stoneNodes[point] else {
             return nil
         }
@@ -47,7 +47,7 @@ extension StoneWorker {
         }
     }
 
-    func placeStone(type: StoneType, at point: BoardPoint) -> Bool {
+    func placeStone(type: StoneType, at point: GridPoint) -> Bool {
         if isOccupied(point: point) {
             _ = removeStone(at: point)
         }
@@ -60,13 +60,13 @@ extension StoneWorker {
         return true
     }
 
-    func removeStones(at points: [BoardPoint]) {
+    func removeStones(at points: [GridPoint]) {
         for point in points {
             _ = removeStone(at: point)
         }
     }
 
-    func removeStone(at point: BoardPoint) -> Bool {
+    func removeStone(at point: GridPoint) -> Bool {
         guard let stoneNode = stoneNodes[point] else {
             return false
         }
@@ -92,7 +92,7 @@ extension StoneWorker {
         return true
     }
 
-    func moveGhostStone(to point: BoardPoint) -> Bool {
+    func moveGhostStone(to point: GridPoint) -> Bool {
         guard ghostStone != nil else {
             return false
         }
@@ -124,11 +124,23 @@ extension StoneWorker {
 // MARK: - Helpers
 
 private extension StoneWorker {
-    func addStoneNode(_ stoneNode: StoneNode, at point: BoardPoint) {
+    func addStoneNode(_ stoneNode: StoneNode, at point: GridPoint) {
         let position = gridNode.stonePosition(for: point)
 
         stoneNode.position = position
         stoneNode.zPosition = gridNode.zPosition + 1
         gridNode.addChild(stoneNode)
+    }
+}
+
+// MARK: - GridPoint Extension
+
+extension GridPoint: Hashable {
+    var hashValue: Int {
+        return "\(row), \(col)".hashValue
+    }
+
+    static func == (lhs: GridPoint, rhs: GridPoint) -> Bool {
+        return lhs.hashValue == rhs.hashValue
     }
 }

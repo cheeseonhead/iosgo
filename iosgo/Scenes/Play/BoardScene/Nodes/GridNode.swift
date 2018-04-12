@@ -8,6 +8,13 @@
 
 import SpriteKit
 
+struct GridPoint {
+    var row: Int
+    var col: Int
+
+    static let zero = GridPoint(row: -1, col: -1)
+}
+
 class GridNode: SKSpriteNode {
     private struct Style {
         static var lineWidth: CGFloat = 1.0
@@ -35,7 +42,7 @@ class GridNode: SKSpriteNode {
         return stoneSize.scaled(by: 1.0)
     }
 
-    var stoneNodes = [BoardPoint: StoneNode]()
+    var stoneNodes = [GridPoint: StoneNode]()
 
     // MARK: - Object Lifecycle
 
@@ -52,7 +59,7 @@ class GridNode: SKSpriteNode {
 
     // MARK: - Usage
 
-    func point(for point: CGPoint) -> BoardPoint? {
+    func point(for point: CGPoint) -> GridPoint? {
         guard let spacing = spacing, let rows = rows, let cols = cols else {
             return nil
         }
@@ -64,14 +71,14 @@ class GridNode: SKSpriteNode {
             return nil
         }
 
-        return BoardPoint(row: row, column: col)
+        return GridPoint(row: row, col: col)
     }
 
-    func stonePosition(for point: BoardPoint) -> CGPoint {
+    func stonePosition(for point: GridPoint) -> CGPoint {
         guard let spacing = spacing else {
             return CGPoint.zero
         }
-        let xPos = Style.offSet + CGFloat(point.column - 1) * spacing
+        let xPos = Style.offSet + CGFloat(point.col - 1) * spacing
         let yPos = Style.offSet + CGFloat(point.row - 1) * spacing
 
         return CGPoint(x: xPos - (size.width / 2), y: yPos - (size.height / 2))
