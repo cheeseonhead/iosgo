@@ -910,7 +910,7 @@
 					};
 					565D24841E54A5A500EF62CD = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = R73WSN5T33;
+						DevelopmentTeam = PL469KE6KQ;
 						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 565D246A1E54A5A500EF62CD;
@@ -1367,7 +1367,7 @@
 			baseConfigurationReference = 3A3A74F5D326BE5E0E2D52ED /* Pods-iosgoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = R73WSN5T33;
+				DEVELOPMENT_TEAM = PL469KE6KQ;
 				INFOPLIST_FILE = iosgoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cheeseonhead.iosgoTests;
@@ -1383,7 +1383,7 @@
 			baseConfigurationReference = 2F833FBBB73B7CCEE7D54A54 /* Pods-iosgoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = R73WSN5T33;
+				DEVELOPMENT_TEAM = PL469KE6KQ;
 				INFOPLIST_FILE = iosgoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cheeseonhead.iosgoTests;
