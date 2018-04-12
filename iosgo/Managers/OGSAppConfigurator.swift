@@ -27,7 +27,6 @@ class OGSAppConfigurator {
 extension OGSAppConfigurator {
     func configureApp(completion: @escaping (ConfigureResult) -> Void) {
         configureSessionController(completion: completion)
-//        configureSocketManager(completion: completion)
     }
 
     func configureSessionController(completion: @escaping (ConfigureResult) -> Void) {
