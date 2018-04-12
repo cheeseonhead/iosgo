@@ -49,6 +49,8 @@
 		34A0BCD6207F1844007EB42D /* JSONDecoder+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A0BCD5207F1844007EB42D /* JSONDecoder+Dictionary.swift */; };
 		34A0BCD9207F1F0A007EB42D /* Character+FromInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A0BCD8207F1F0A007EB42D /* Character+FromInt.swift */; };
 		34A0BCDD207F477E007EB42D /* SocketManagerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A0BCDC207F477E007EB42D /* SocketManagerModels.swift */; };
+		34A0BCE0207F53E8007EB42D /* ConfigAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A0BCDF207F53E8007EB42D /* ConfigAPI.swift */; };
+		34A0BCE2207F5500007EB42D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A0BCE1207F5500007EB42D /* Config.swift */; };
 		34A2B55E1EEA4AD90074525B /* BoardScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 34A2B55D1EEA4AD90074525B /* BoardScene.sks */; };
 		34A2B5A51EEBD46C0074525B /* GridNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2B5A41EEBD46C0074525B /* GridNode.swift */; };
 		34A2B5A91EEBDD500074525B /* Play.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34A2B5A81EEBDD500074525B /* Play.storyboard */; };
@@ -195,6 +197,8 @@
 		34A0BCD5207F1844007EB42D /* JSONDecoder+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Dictionary.swift"; sourceTree = "<group>"; };
 		34A0BCD8207F1F0A007EB42D /* Character+FromInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+FromInt.swift"; sourceTree = "<group>"; };
 		34A0BCDC207F477E007EB42D /* SocketManagerModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManagerModels.swift; sourceTree = "<group>"; };
+		34A0BCDF207F53E8007EB42D /* ConfigAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigAPI.swift; sourceTree = "<group>"; };
+		34A0BCE1207F5500007EB42D /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		34A2B55D1EEA4AD90074525B /* BoardScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BoardScene.sks; sourceTree = "<group>"; };
 		34A2B5A41EEBD46C0074525B /* GridNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridNode.swift; sourceTree = "<group>"; };
 		34A2B5A81EEBDD500074525B /* Play.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Play.storyboard; sourceTree = "<group>"; };
@@ -456,6 +460,22 @@
 			path = Character;
 			sourceTree = "<group>";
 		};
+		34A0BCDE207F53AD007EB42D /* ConfigAPI */ = {
+			isa = PBXGroup;
+			children = (
+				34A0BCDF207F53E8007EB42D /* ConfigAPI.swift */,
+			);
+			path = ConfigAPI;
+			sourceTree = "<group>";
+		};
+		34A0BCE3207F5533007EB42D /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				34A0BCE1207F5500007EB42D /* Config.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		34A2B55B1EEA4AA30074525B /* Play */ = {
 			isa = PBXGroup;
 			children = (
@@ -628,8 +648,9 @@
 			children = (
 				8405CCC46689EA8AB1CE3519 /* OGSApiStore.swift */,
 				AD05A4E8F02D2F46F9BBF790 /* ChallengeAPI */,
-				3493D9041F08DE5300BE526E /* GameSocket */,
+				34A0BCDE207F53AD007EB42D /* ConfigAPI */,
 				34DF46891EFB55F4009EC397 /* GameAPI */,
+				3493D9041F08DE5300BE526E /* GameSocket */,
 				AD05A7441CAC96E005862E75 /* MeStore */,
 				341856A31EFF628E00DAF3CF /* Models */,
 				8405CB7FAC98CB122CF80A23 /* OauthStore */,
@@ -641,13 +662,14 @@
 		8405CB755432B62AFE49B7F6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				34A68CD61EFF982C0010EFA5 /* Types */,
 				AD05A6342D59CC3E80B17996 /* OGSLoginInfo.swift */,
 				8405C78D22DC4B4FB78797CA /* OGSSession.swift */,
 				AD05A619B90715ADEDAFC230 /* OGSUser.swift */,
 				8405C66D470818B9A9828DEE /* Challenges */,
+				34A0BCE3207F5533007EB42D /* Config */,
 				8405CDAFCC8C4C8565D8A86D /* Configuration */,
 				342EC8161EF8B6D900C3A7E7 /* Game */,
+				34A68CD61EFF982C0010EFA5 /* Types */,
 				8405C26D800A88F561D724BE /* UserSettings */,
 			);
 			path = Models;
@@ -1098,9 +1120,11 @@
 				34C3DDB21EFF2B41001C8AF4 /* TimeControlParametersType.swift in Sources */,
 				348F60D11F08C11000FA12F0 /* GridState.swift in Sources */,
 				341856A71EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift in Sources */,
+				34A0BCE2207F5500007EB42D /* Config.swift in Sources */,
 				AD05AE74C92DA8328A33761F /* OGSDiskManager.swift in Sources */,
 				34ACC8AB1EEBDF7900F2B376 /* BoardScene.swift in Sources */,
 				AD05A8548F5F603C37C45C57 /* OGSAppConfigurator.swift in Sources */,
+				34A0BCE0207F53E8007EB42D /* ConfigAPI.swift in Sources */,
 				346441501EE4BA06008718D7 /* SplashPresenter.swift in Sources */,
 				AD05AFC36181FFE0C0DB7889 /* OGSChooseGameListGamesWorker.swift in Sources */,
 				AD05AF2B9222BE964C87EC8D /* OGSAppDelegate.swift in Sources */,
