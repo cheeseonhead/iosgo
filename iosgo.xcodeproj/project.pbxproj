@@ -14,6 +14,7 @@
 		341856A51EFF62D300DAF3CF /* TimeControlParameters+Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341856A41EFF62D300DAF3CF /* TimeControlParameters+Unboxable.swift */; };
 		341856A71EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341856A61EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift */; };
 		341DFB9220891A24001B9394 /* GameInfoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 341DFB9120891A24001B9394 /* GameInfoViewController.storyboard */; };
+		341DFB9420891A5E001B9394 /* GameInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341DFB9320891A5E001B9394 /* GameInfoViewController.swift */; };
 		342EC8181EF8B70700C3A7E7 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EC8171EF8B70700C3A7E7 /* Game.swift */; };
 		342EC81A1EF8BC9B00C3A7E7 /* TimeControlType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EC8191EF8BC9B00C3A7E7 /* TimeControlType.swift */; };
 		342FACD71EFF805800960585 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342FACD61EFF805800960585 /* GameData.swift */; };
@@ -164,6 +165,7 @@
 		341856A41EFF62D300DAF3CF /* TimeControlParameters+Unboxable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeControlParameters+Unboxable.swift"; sourceTree = "<group>"; };
 		341856A61EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OGSChallenge+Unboxable.swift"; sourceTree = "<group>"; };
 		341DFB9120891A24001B9394 /* GameInfoViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GameInfoViewController.storyboard; sourceTree = "<group>"; };
+		341DFB9320891A5E001B9394 /* GameInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoViewController.swift; sourceTree = "<group>"; };
 		342EC8171EF8B70700C3A7E7 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		342EC8191EF8BC9B00C3A7E7 /* TimeControlType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControlType.swift; sourceTree = "<group>"; };
 		342FACD61EFF805800960585 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 			isa = PBXGroup;
 			children = (
 				341DFB9120891A24001B9394 /* GameInfoViewController.storyboard */,
+				341DFB9320891A5E001B9394 /* GameInfoViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1133,6 +1136,7 @@
 				34C3DDB41EFF2B79001C8AF4 /* TimeControlParametersFormatter.swift in Sources */,
 				8405C95C6D25905BDEEB6F5C /* OGSBetaConfiguration.swift in Sources */,
 				3452AAF01F01E5BF008F838E /* GameEngine.swift in Sources */,
+				341DFB9420891A5E001B9394 /* GameInfoViewController.swift in Sources */,
 				8405CD093E23DC1A0921DAA5 /* OGSConfigurationProtocol.swift in Sources */,
 				8405C33DABB22CF98928A07E /* OGSUserSettings.swift in Sources */,
 				8405C1BD724D953FE34DDC35 /* OGSSeekGraphSocket.swift in Sources */,
