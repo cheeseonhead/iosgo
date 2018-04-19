@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SnapKit
 import UIKit
 
 struct PlayerInfoViewModel {
@@ -23,6 +24,16 @@ class PlayerInfoView: UIView {
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var capturesLabel: UILabel!
 
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupFromIBDesignable()
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupFromIBDesignable()
+    }
+
     func setModel(_ model: PlayerInfoViewModel) {
         if let v = model.profile {
             profileImage.image = v
@@ -37,4 +48,16 @@ class PlayerInfoView: UIView {
 
 @IBDesignable
 class GameInfoView: UIView {
+    @IBOutlet var topInfoView: PlayerInfoView!
+    @IBOutlet var bottomInfoView: PlayerInfoView!
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupFromIBDesignable()
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupFromIBDesignable()
+    }
 }
