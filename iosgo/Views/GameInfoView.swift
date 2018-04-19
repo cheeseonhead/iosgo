@@ -34,3 +34,7 @@ class PlayerInfoView: UIView {
         capturesLabel.text = model.captures
     }
 }
+
+@IBDesignable
+class GameInfoView: UIView {
+}
