@@ -25,10 +25,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FJa-p9-gHl" userLabel="BoardHolder">
-                                <rect key="frame" x="358" y="20" width="646" height="748"/>
+                                <rect key="frame" x="276" y="20" width="728" height="748"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lpR-bj-bI4" customClass="SKView">
-                                        <rect key="frame" x="0.0" y="51" width="646" height="646"/>
+                                        <rect key="frame" x="0.0" y="10" width="728" height="728"/>
                                         <color key="backgroundColor" red="0.2544162425" green="0.95294117649999999" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="lpR-bj-bI4" secondAttribute="height" multiplier="1:1" id="bE5-gM-wBj"/>
@@ -48,7 +48,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1u-i6-BVX" userLabel="InfoHolder">
-                                <rect key="frame" x="20" y="20" width="338" height="748"/>
+                                <rect key="frame" x="20" y="20" width="256" height="748"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -58,7 +58,7 @@
                             <constraint firstItem="FJa-p9-gHl" firstAttribute="top" secondItem="Lax-IA-BKj" secondAttribute="bottom" id="9fD-18-Eap"/>
                             <constraint firstItem="m1u-i6-BVX" firstAttribute="top" secondItem="Lax-IA-BKj" secondAttribute="bottom" id="Fen-p6-eJn"/>
                             <constraint firstItem="Ekd-dw-25b" firstAttribute="top" secondItem="FJa-p9-gHl" secondAttribute="bottom" id="H2c-9m-8Fa"/>
-                            <constraint firstItem="m1u-i6-BVX" firstAttribute="width" secondItem="Ixe-Ay-EgB" secondAttribute="width" multiplier="0.33" id="Srg-cb-4ge"/>
+                            <constraint firstItem="m1u-i6-BVX" firstAttribute="width" secondItem="Ixe-Ay-EgB" secondAttribute="width" multiplier="1:4" id="Srg-cb-4ge"/>
                             <constraint firstItem="m1u-i6-BVX" firstAttribute="leading" secondItem="Ixe-Ay-EgB" secondAttribute="leadingMargin" id="VKg-93-AYh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FJa-p9-gHl" secondAttribute="trailing" id="fpA-lA-mgU"/>
                             <constraint firstItem="FJa-p9-gHl" firstAttribute="leading" secondItem="m1u-i6-BVX" secondAttribute="trailing" id="vbr-oe-eDr"/>

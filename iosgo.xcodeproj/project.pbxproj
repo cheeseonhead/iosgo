@@ -13,6 +13,7 @@
 		34177CC31EEE4CF100DDDD2F /* StoneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34177CC21EEE4CF100DDDD2F /* StoneNode.swift */; };
 		341856A51EFF62D300DAF3CF /* TimeControlParameters+Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341856A41EFF62D300DAF3CF /* TimeControlParameters+Unboxable.swift */; };
 		341856A71EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341856A61EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift */; };
+		341DFB9220891A24001B9394 /* GameInfoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 341DFB9120891A24001B9394 /* GameInfoViewController.storyboard */; };
 		342EC8181EF8B70700C3A7E7 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EC8171EF8B70700C3A7E7 /* Game.swift */; };
 		342EC81A1EF8BC9B00C3A7E7 /* TimeControlType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EC8191EF8BC9B00C3A7E7 /* TimeControlType.swift */; };
 		342FACD71EFF805800960585 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342FACD61EFF805800960585 /* GameData.swift */; };
@@ -162,6 +163,7 @@
 		34177CC21EEE4CF100DDDD2F /* StoneNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneNode.swift; sourceTree = "<group>"; };
 		341856A41EFF62D300DAF3CF /* TimeControlParameters+Unboxable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeControlParameters+Unboxable.swift"; sourceTree = "<group>"; };
 		341856A61EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OGSChallenge+Unboxable.swift"; sourceTree = "<group>"; };
+		341DFB9120891A24001B9394 /* GameInfoViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GameInfoViewController.storyboard; sourceTree = "<group>"; };
 		342EC8171EF8B70700C3A7E7 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		342EC8191EF8BC9B00C3A7E7 /* TimeControlType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControlType.swift; sourceTree = "<group>"; };
 		342FACD61EFF805800960585 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
@@ -359,6 +361,14 @@
 				34C3DDB31EFF2B79001C8AF4 /* TimeControlParametersFormatter.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		341DFB90208919F9001B9394 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				341DFB9120891A24001B9394 /* GameInfoViewController.storyboard */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		342EC8161EF8B6D900C3A7E7 /* Game */ = {
@@ -564,6 +574,7 @@
 		565D246D1E54A5A500EF62CD /* iosgo */ = {
 			isa = PBXGroup;
 			children = (
+				341DFB90208919F9001B9394 /* ViewControllers */,
 				565D24801E54A5A500EF62CD /* Info.plist */,
 				565D247B1E54A5A500EF62CD /* Assets.xcassets */,
 				AD05A9249FEBFC41418217D5 /* Additions */,
@@ -960,6 +971,7 @@
 				56BD88781E551C990098E50B /* Oswald-MediumItalic.ttf in Resources */,
 				565D247F1E54A5A500EF62CD /* LaunchScreen.storyboard in Resources */,
 				34A2B55E1EEA4AD90074525B /* BoardScene.sks in Resources */,
+				341DFB9220891A24001B9394 /* GameInfoViewController.storyboard in Resources */,
 				56BD88751E551C990098E50B /* Oswald-Light.ttf in Resources */,
 				346441541EE4BDF6008718D7 /* Splash.storyboard in Resources */,
 				56BD88761E551C990098E50B /* Oswald-LightItalic.ttf in Resources */,
