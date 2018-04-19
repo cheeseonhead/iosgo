@@ -14,6 +14,7 @@
 		341856A51EFF62D300DAF3CF /* TimeControlParameters+Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341856A41EFF62D300DAF3CF /* TimeControlParameters+Unboxable.swift */; };
 		341856A71EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341856A61EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift */; };
 		341DFB9420891A5E001B9394 /* GameInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341DFB9320891A5E001B9394 /* GameInfoView.swift */; };
+		341DFB9620891CA5001B9394 /* GameInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 341DFB9520891CA5001B9394 /* GameInfoView.xib */; };
 		342EC8181EF8B70700C3A7E7 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EC8171EF8B70700C3A7E7 /* Game.swift */; };
 		342EC81A1EF8BC9B00C3A7E7 /* TimeControlType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EC8191EF8BC9B00C3A7E7 /* TimeControlType.swift */; };
 		342FACD71EFF805800960585 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342FACD61EFF805800960585 /* GameData.swift */; };
@@ -164,6 +165,7 @@
 		341856A41EFF62D300DAF3CF /* TimeControlParameters+Unboxable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeControlParameters+Unboxable.swift"; sourceTree = "<group>"; };
 		341856A61EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OGSChallenge+Unboxable.swift"; sourceTree = "<group>"; };
 		341DFB9320891A5E001B9394 /* GameInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoView.swift; sourceTree = "<group>"; };
+		341DFB9520891CA5001B9394 /* GameInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameInfoView.xib; sourceTree = "<group>"; };
 		342EC8171EF8B70700C3A7E7 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		342EC8191EF8BC9B00C3A7E7 /* TimeControlType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControlType.swift; sourceTree = "<group>"; };
 		342FACD61EFF805800960585 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 			isa = PBXGroup;
 			children = (
 				341DFB9320891A5E001B9394 /* GameInfoView.swift */,
+				341DFB9520891CA5001B9394 /* GameInfoView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -977,6 +980,7 @@
 				56BD88711E551C990098E50B /* Oswald-Extra-LightItalic.ttf in Resources */,
 				56BD886D1E551C990098E50B /* Oswald-Bold.ttf in Resources */,
 				56BD88721E551C990098E50B /* Oswald-ExtraLight.ttf in Resources */,
+				341DFB9620891CA5001B9394 /* GameInfoView.xib in Resources */,
 				56BD886F1E551C990098E50B /* Oswald-Demi-BoldItalic.ttf in Resources */,
 				56FC0C071E9C62E500119D0C /* OGSChooseGameCollectionViewCell.xib in Resources */,
 				56BD886E1E551C990098E50B /* Oswald-BoldItalic.ttf in Resources */,
