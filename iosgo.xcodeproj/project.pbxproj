@@ -15,12 +15,12 @@
 		341856A71EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341856A61EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift */; };
 		341DFB9420891A5E001B9394 /* GameInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341DFB9320891A5E001B9394 /* GameInfoView.swift */; };
 		341DFB9620891CA5001B9394 /* GameInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 341DFB9520891CA5001B9394 /* GameInfoView.xib */; };
-		341DFB9B208922F5001B9394 /* PlayerInfoVIew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 341DFB9A208922F5001B9394 /* PlayerInfoVIew.xib */; };
 		341DFB9D208927CA001B9394 /* UIView+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341DFB9C208927CA001B9394 /* UIView+Load.swift */; };
 		342EC8181EF8B70700C3A7E7 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EC8171EF8B70700C3A7E7 /* Game.swift */; };
 		342EC81A1EF8BC9B00C3A7E7 /* TimeControlType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EC8191EF8BC9B00C3A7E7 /* TimeControlType.swift */; };
 		342FACD71EFF805800960585 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342FACD61EFF805800960585 /* GameData.swift */; };
 		34455DC71EFF75AE002199D0 /* UnboxFormatter+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34455DC61EFF75AE002199D0 /* UnboxFormatter+Dictionary.swift */; };
+		3448E10D20892B1700AF25B5 /* PlayerInfoVIew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 341DFB9A208922F5001B9394 /* PlayerInfoVIew.xib */; };
 		3452AAF01F01E5BF008F838E /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452AAEF1F01E5BF008F838E /* GameEngine.swift */; };
 		3452AAF21F01EBBE008F838E /* BoardPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452AAF11F01EBBE008F838E /* BoardPoint.swift */; };
 		3452AAF41F01F004008F838E /* GameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452AAF31F01F004008F838E /* GameError.swift */; };
@@ -998,7 +998,7 @@
 				56BD886F1E551C990098E50B /* Oswald-Demi-BoldItalic.ttf in Resources */,
 				56FC0C071E9C62E500119D0C /* OGSChooseGameCollectionViewCell.xib in Resources */,
 				56BD886E1E551C990098E50B /* Oswald-BoldItalic.ttf in Resources */,
-				341DFB9B208922F5001B9394 /* PlayerInfoVIew.xib in Resources */,
+				3448E10D20892B1700AF25B5 /* PlayerInfoVIew.xib in Resources */,
 				56BD88741E551C990098E50B /* Oswald-HeavyItalic.ttf in Resources */,
 				56BD88771E551C990098E50B /* Oswald-Medium.ttf in Resources */,
 				56BD88731E551C990098E50B /* Oswald-Heavy.ttf in Resources */,

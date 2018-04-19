@@ -17,7 +17,7 @@ struct PlayerInfoViewModel {
     let captures: String
 }
 
-@IBDesignable
+// @IBDesignable
 class PlayerInfoView: UIView {
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var timeLabel: UILabel!
@@ -46,7 +46,7 @@ class PlayerInfoView: UIView {
     }
 }
 
-@IBDesignable
+// @IBDesignable
 class GameInfoView: UIView {
     @IBOutlet var topInfoView: PlayerInfoView!
     @IBOutlet var bottomInfoView: PlayerInfoView!
