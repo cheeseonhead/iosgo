@@ -15,16 +15,15 @@ import UIKit
 protocol PlayPresentationLogic {
     func presentLoadScene(response: Play.LoadGame.Response)
     func presentUpdateGame(response: Play.UpdateGame.Response)
+    func presentUpdateGameInfo(response: Play.UpdateGameInfo.Response)
 }
 
 class PlayPresenter: PlayPresentationLogic {
-
     weak var viewController: PlayDisplayLogic?
 
     private var renderer = GameRenderer()
 
     func presentLoadScene(response: Play.LoadGame.Response) {
-
         let state = renderer.getState(from: response.state)
 
         let model = Play.LoadGame.ViewModel(state: state)
@@ -32,10 +31,32 @@ class PlayPresenter: PlayPresentationLogic {
     }
 
     func presentUpdateGame(response: Play.UpdateGame.Response) {
-
         let state = renderer.getState(from: response.state)
 
         let model = Play.UpdateGame.ViewModel(state: state)
         viewController?.displayUpdateGame(viewModel: model)
+    }
+
+    func presentUpdateGameInfo(response: Play.UpdateGameInfo.Response) {
+        let gameInfoVM = gameInfoResponseToModel(response)
+        let model = Play.UpdateGameInfo.ViewModel(gameInfoViewModel: gameInfoVM)
+
+        viewController?.displayUpdateGameInfo(viewModel: model)
+    }
+}
+
+private extension PlayPresenter {
+    func gameInfoResponseToModel(_ model: Play.UpdateGameInfo.Response) -> GameInfoViewModel.Game {
+        let black = gameInfoToGameModel(model.black)
+        let white = gameInfoToGameModel(model.white)
+
+        return GameInfoViewModel.Game(black: black, white: white)
+    }
+
+    func gameInfoToGameModel(_ model: Play.UpdateGameInfo.Response.GameInfo) -> PlayerInfoViewModel.Game {
+        let timeStr = "\(model.thinkTime)"
+        let captures = "\(model.captures) Captures"
+
+        return PlayerInfoViewModel.Game(timeStr: timeStr, captures: captures)
     }
 }
