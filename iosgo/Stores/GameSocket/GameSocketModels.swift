@@ -53,4 +53,6 @@ enum GameSocketModels {
             ]
         }
     }
+
+    typealias ReceivedClock = Clock
 }

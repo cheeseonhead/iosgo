@@ -77,6 +77,20 @@ extension SocketManager {
         }
     }
 
+    func on<T>(_ socketEventCreator: SocketEventCreating, classType: T.Type, closure: @escaping (T) -> Void) where T: Decodable {
+        socket.on(socketEventCreator.eventName) { data, _ in
+            do {
+                let dict = data[0] as! JSON
+                let model = try JSONDecoder().decode(classType, from: dict)
+                closure(model)
+            } catch let DecodingError.keyNotFound(key, context) {
+                print("Key not found: \(key), \(context)")
+            } catch {
+                print("Error occurred: \(error)")
+            }
+        }
+    }
+
     func once(event: SocketEvents, closure: @escaping NormalSocketCallback) {
         socket.once(event.rawValue) { data, _ in
             closure(data)

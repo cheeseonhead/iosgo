@@ -15,16 +15,15 @@ import UIKit
 protocol PlayPresentationLogic {
     func presentLoadScene(response: Play.LoadGame.Response)
     func presentUpdateGame(response: Play.UpdateGame.Response)
+    func presentUpdateClock(response: Play.UpdateClock.Response)
 }
 
 class PlayPresenter: PlayPresentationLogic {
-
     weak var viewController: PlayDisplayLogic?
 
     private var renderer = GameRenderer()
 
     func presentLoadScene(response: Play.LoadGame.Response) {
-
         let state = renderer.getState(from: response.state)
 
         let model = Play.LoadGame.ViewModel(state: state)
@@ -32,10 +31,22 @@ class PlayPresenter: PlayPresentationLogic {
     }
 
     func presentUpdateGame(response: Play.UpdateGame.Response) {
-
         let state = renderer.getState(from: response.state)
 
         let model = Play.UpdateGame.ViewModel(state: state)
         viewController?.displayUpdateGame(viewModel: model)
+    }
+
+    func presentUpdateClock(response: Play.UpdateClock.Response) {
+        let viewModel = clockVM(response)
+
+        viewController?.displayUpdateClock(viewModel: viewModel)
+    }
+}
+
+private extension PlayPresenter {
+    func clockVM(_ response: Play.UpdateClock.Response) -> Play.UpdateClock.ViewModel {
+        let vm = Play.UpdateClock.ViewModel(blackTimeStr: "\(String(describing: response.blackClock))", whiteTimeStr: "\(String(describing: response.whiteClock))")
+        return vm
     }
 }

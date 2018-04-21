@@ -41,4 +41,16 @@ enum Play {
             var move: GridPoint
         }
     }
+
+    enum UpdateClock {
+        struct Response {
+            let blackClock: Clock.TimeType?
+            let whiteClock: Clock.TimeType?
+        }
+
+        struct ViewModel {
+            let blackTimeStr: String
+            let whiteTimeStr: String
+        }
+    }
 }

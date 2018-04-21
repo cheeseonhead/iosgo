@@ -16,6 +16,7 @@ import UIKit
 protocol PlayDisplayLogic: class {
     func displayLoadScene(viewModel: Play.LoadGame.ViewModel)
     func displayUpdateGame(viewModel: Play.UpdateGame.ViewModel)
+    func displayUpdateClock(viewModel: Play.UpdateClock.ViewModel)
 }
 
 class PlayViewController: UIViewController {
@@ -23,6 +24,8 @@ class PlayViewController: UIViewController {
     var router: (NSObjectProtocol & PlayRoutingLogic & PlayDataPassing)?
 
     @IBOutlet var boardView: SKView!
+    @IBOutlet var gameInfoView: GameInfoView!
+
     var boardScene: BoardScene!
 
     // MARK: Object lifecycle
@@ -57,6 +60,13 @@ class PlayViewController: UIViewController {
 
         interactor?.loadScene(request: Play.LoadGame.Request())
     }
+
+    public override var traitCollection: UITraitCollection {
+        if UIDevice.current.userInterfaceIdiom == .pad && UIDevice.current.orientation.isPortrait {
+            return UITraitCollection(traitsFrom: [UITraitCollection(horizontalSizeClass: .compact), UITraitCollection(verticalSizeClass: .regular)])
+        }
+        return super.traitCollection
+    }
 }
 
 // MARK: - BoardScene Action Delegate
@@ -78,6 +88,10 @@ extension PlayViewController: PlayDisplayLogic {
 
     func displayUpdateGame(viewModel: Play.UpdateGame.ViewModel) {
         boardScene.render(viewModel.state)
+    }
+
+    func displayUpdateClock(viewModel: Play.UpdateClock.ViewModel) {
+        gameInfoView.setClocks(blackTime: viewModel.blackTimeStr, whiteTime: viewModel.whiteTimeStr)
     }
 }
 
