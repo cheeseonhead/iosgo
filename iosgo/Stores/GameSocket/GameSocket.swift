@@ -80,6 +80,6 @@ private extension GameSocket {
     }
 
     private func handleClock(model: Models.ReceivedClock) {
-        print(model)
+        delegate?.handleClock(model)
     }
 }
