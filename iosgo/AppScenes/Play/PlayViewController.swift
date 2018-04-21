@@ -23,6 +23,8 @@ class PlayViewController: UIViewController {
     var router: (NSObjectProtocol & PlayRoutingLogic & PlayDataPassing)?
 
     @IBOutlet var boardView: SKView!
+    @IBOutlet weak var gameInfoView: GameInfoView!
+    
     var boardScene: BoardScene!
 
     // MARK: Object lifecycle

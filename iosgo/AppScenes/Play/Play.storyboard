@@ -93,6 +93,7 @@
                     </view>
                     <connections>
                         <outlet property="boardView" destination="lpR-bj-bI4" id="M8t-0M-9mj"/>
+                        <outlet property="gameInfoView" destination="28x-4x-BHD" id="ZKB-Wn-dh3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d5X-wn-CbA" userLabel="First Responder" sceneMemberID="firstResponder"/>
