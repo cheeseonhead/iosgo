@@ -41,4 +41,14 @@ enum Play {
             var move: GridPoint
         }
     }
+
+    enum UpdateInfo {
+        struct Response {
+        }
+
+        struct ViewModel {
+            var black: PlayerInfoViewModel
+            var white: PlayerInfoViewModel
+        }
+    }
 }
