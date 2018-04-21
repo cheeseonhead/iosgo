@@ -17,7 +17,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="H1d-ua-pD7">
+        <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="H1d-ua-pD7">
             <rect key="frame" x="0.0" y="0.0" width="355" height="422"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
