@@ -11,8 +11,8 @@ import SnapKit
 import UIKit
 
 struct GameInfoViewModel {
-    let black: PlayerInfoViewModel
-    let white: PlayerInfoViewModel
+    let black: PlayerInfoViewModel.Game
+    let white: PlayerInfoViewModel.Game
 }
 
 class GameInfoView: UIView {
@@ -30,7 +30,7 @@ class GameInfoView: UIView {
     }
 
     func setModel(_ model: GameInfoViewModel) {
-        topInfoView.setModel(model.black)
-        bottomInfoView.setModel(model.white)
+        topInfoView.setGame(model.black)
+        bottomInfoView.setGame(model.white)
     }
 }
