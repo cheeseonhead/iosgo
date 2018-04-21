@@ -20,7 +20,6 @@
 		342EC81A1EF8BC9B00C3A7E7 /* TimeControlType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EC8191EF8BC9B00C3A7E7 /* TimeControlType.swift */; };
 		342FACD71EFF805800960585 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342FACD61EFF805800960585 /* GameData.swift */; };
 		34455DC71EFF75AE002199D0 /* UnboxFormatter+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34455DC61EFF75AE002199D0 /* UnboxFormatter+Dictionary.swift */; };
-		3448E10D20892B1700AF25B5 /* PlayerInfoVIew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 341DFB9A208922F5001B9394 /* PlayerInfoVIew.xib */; };
 		3452AAF01F01E5BF008F838E /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452AAEF1F01E5BF008F838E /* GameEngine.swift */; };
 		3452AAF21F01EBBE008F838E /* BoardPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452AAF11F01EBBE008F838E /* BoardPoint.swift */; };
 		3452AAF41F01F004008F838E /* GameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452AAF31F01F004008F838E /* GameError.swift */; };
@@ -67,6 +66,8 @@
 		34C3DDB41EFF2B79001C8AF4 /* TimeControlParametersFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C3DDB31EFF2B79001C8AF4 /* TimeControlParametersFormatter.swift */; };
 		34C3DDB61EFF2ED5001C8AF4 /* GameAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C3DDB51EFF2ED5001C8AF4 /* GameAPI.swift */; };
 		34DF468B1EFB5608009EC397 /* Game+Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DF468A1EFB5608009EC397 /* Game+Unboxable.swift */; };
+		34E6974C2089307700B6CC82 /* PlayerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E6974B2089307700B6CC82 /* PlayerInfoView.swift */; };
+		34E6974E208930BD00B6CC82 /* PlayerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E6974D208930BD00B6CC82 /* PlayerInfoView.xib */; };
 		34FEDDA71EFFF02F00EC1B5F /* PlayInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FEDDA21EFFF02F00EC1B5F /* PlayInteractor.swift */; };
 		34FEDDA81EFFF02F00EC1B5F /* PlayModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FEDDA31EFFF02F00EC1B5F /* PlayModels.swift */; };
 		34FEDDA91EFFF02F00EC1B5F /* PlayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FEDDA41EFFF02F00EC1B5F /* PlayPresenter.swift */; };
@@ -168,7 +169,6 @@
 		341856A61EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OGSChallenge+Unboxable.swift"; sourceTree = "<group>"; };
 		341DFB9320891A5E001B9394 /* GameInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoView.swift; sourceTree = "<group>"; };
 		341DFB9520891CA5001B9394 /* GameInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameInfoView.xib; sourceTree = "<group>"; };
-		341DFB9A208922F5001B9394 /* PlayerInfoVIew.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerInfoVIew.xib; sourceTree = "<group>"; };
 		341DFB9C208927CA001B9394 /* UIView+Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Load.swift"; sourceTree = "<group>"; };
 		342EC8171EF8B70700C3A7E7 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		342EC8191EF8BC9B00C3A7E7 /* TimeControlType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControlType.swift; sourceTree = "<group>"; };
@@ -220,6 +220,8 @@
 		34C3DDB31EFF2B79001C8AF4 /* TimeControlParametersFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControlParametersFormatter.swift; sourceTree = "<group>"; };
 		34C3DDB51EFF2ED5001C8AF4 /* GameAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAPI.swift; sourceTree = "<group>"; };
 		34DF468A1EFB5608009EC397 /* Game+Unboxable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+Unboxable.swift"; sourceTree = "<group>"; };
+		34E6974B2089307700B6CC82 /* PlayerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoView.swift; sourceTree = "<group>"; };
+		34E6974D208930BD00B6CC82 /* PlayerInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerInfoView.xib; sourceTree = "<group>"; };
 		34FEDDA21EFFF02F00EC1B5F /* PlayInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayInteractor.swift; sourceTree = "<group>"; };
 		34FEDDA31EFFF02F00EC1B5F /* PlayModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayModels.swift; sourceTree = "<group>"; };
 		34FEDDA41EFFF02F00EC1B5F /* PlayPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayPresenter.swift; sourceTree = "<group>"; };
@@ -374,7 +376,8 @@
 			children = (
 				341DFB9320891A5E001B9394 /* GameInfoView.swift */,
 				341DFB9520891CA5001B9394 /* GameInfoView.xib */,
-				341DFB9A208922F5001B9394 /* PlayerInfoVIew.xib */,
+				34E6974B2089307700B6CC82 /* PlayerInfoView.swift */,
+				34E6974D208930BD00B6CC82 /* PlayerInfoView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -992,13 +995,13 @@
 				346441541EE4BDF6008718D7 /* Splash.storyboard in Resources */,
 				56BD88761E551C990098E50B /* Oswald-LightItalic.ttf in Resources */,
 				56BD88711E551C990098E50B /* Oswald-Extra-LightItalic.ttf in Resources */,
+				34E6974E208930BD00B6CC82 /* PlayerInfoView.xib in Resources */,
 				56BD886D1E551C990098E50B /* Oswald-Bold.ttf in Resources */,
 				56BD88721E551C990098E50B /* Oswald-ExtraLight.ttf in Resources */,
 				341DFB9620891CA5001B9394 /* GameInfoView.xib in Resources */,
 				56BD886F1E551C990098E50B /* Oswald-Demi-BoldItalic.ttf in Resources */,
 				56FC0C071E9C62E500119D0C /* OGSChooseGameCollectionViewCell.xib in Resources */,
 				56BD886E1E551C990098E50B /* Oswald-BoldItalic.ttf in Resources */,
-				3448E10D20892B1700AF25B5 /* PlayerInfoVIew.xib in Resources */,
 				56BD88741E551C990098E50B /* Oswald-HeavyItalic.ttf in Resources */,
 				56BD88771E551C990098E50B /* Oswald-Medium.ttf in Resources */,
 				56BD88731E551C990098E50B /* Oswald-Heavy.ttf in Resources */,
@@ -1140,6 +1143,7 @@
 				8405C06692E15B7D16D86610 /* OGSNotificationCenter.swift in Sources */,
 				34FEDDA71EFFF02F00EC1B5F /* PlayInteractor.swift in Sources */,
 				AD05AF37C68CBA22A3DC256C /* OGSDispatcher.swift in Sources */,
+				34E6974C2089307700B6CC82 /* PlayerInfoView.swift in Sources */,
 				AD05A21671A192B337421704 /* String+Additions.swift in Sources */,
 				34A2B5A51EEBD46C0074525B /* GridNode.swift in Sources */,
 				34FEDDAB1EFFF02F00EC1B5F /* PlayViewController.swift in Sources */,
