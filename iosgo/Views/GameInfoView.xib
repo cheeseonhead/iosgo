@@ -25,17 +25,19 @@
                     <rect key="frame" x="0.0" y="0.0" width="355" height="422"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E5f-US-md5" customClass="PlayerInfoView" customModule="iosgo" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="355" height="211"/>
+                            <rect key="frame" x="0.0" y="0.0" width="177.5" height="422"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f6Z-Jb-8jD" customClass="PlayerInfoView" customModule="iosgo" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="211" width="355" height="211"/>
+                            <rect key="frame" x="177.5" y="0.0" width="177.5" height="422"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>
                     <constraints>
                         <constraint firstItem="E5f-US-md5" firstAttribute="height" secondItem="f6Z-Jb-8jD" secondAttribute="height" id="4gq-7Y-x5x"/>
+                        <constraint firstItem="E5f-US-md5" firstAttribute="width" secondItem="f6Z-Jb-8jD" secondAttribute="width" id="Udq-mG-BUf"/>
                     </constraints>
+                    <variation key="heightClass=regular-widthClass=compact" axis="horizontal"/>
                 </stackView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
