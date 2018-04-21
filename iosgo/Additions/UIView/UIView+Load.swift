@@ -13,11 +13,11 @@ extension UIView {
     func setupFromIBDesignable() {
         let contentView = loadViewFromNib()
 
+        addSubview(contentView)
+
         contentView.snp.makeConstraints { make in
             make.edges.equalTo(self)
         }
-
-        addSubview(contentView)
     }
 
     func loadViewFromNib() -> UIView {
