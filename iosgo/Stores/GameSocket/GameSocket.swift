@@ -29,12 +29,12 @@ class GameSocket {
     }
 
     func connect() {
-        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .receiveMove)) { data in
+        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .receiveMove)) { [weak self] data in
             guard let dict: JSON = data[0] as? JSON,
                 let moveModel = try? JSONDecoder().decode(Models.ReceivedMove.self, from: dict) else {
                 return
             }
-            self.handleMove(model: moveModel)
+            self?.handleMove(model: moveModel)
         }
 
         socket.on(GameSocketEventCreator(gameId: gameId, eventType: .gamedata)) { [weak self] data in
@@ -45,6 +45,15 @@ class GameSocket {
             }
 
             strongSelf.handleGameData(gameData: gameData)
+        }
+
+        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .clock)) { [weak self] data in
+            guard let dict = data[0] as? JSON,
+                let model = try? JSONDecoder().decode(Models.ReceiveClock.self, from: dict) else {
+                return
+            }
+
+            self?.handleClock(model: model)
         }
 
         socket.onConnect { [weak self] in
@@ -71,5 +80,9 @@ private extension GameSocket {
 
     private func handleGameData(gameData: GameData) {
         delegate?.updateGameData(gameData)
+    }
+
+    private func handleClock(model: Models.ReceiveClock) {
+        print(model)
     }
 }
