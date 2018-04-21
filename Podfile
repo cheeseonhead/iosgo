@@ -5,9 +5,9 @@ use_frameworks!
 
 target "iosgo" do
     pod 'SnapKit'
-    pod 'Starscream'
     pod 'Socket.IO-Client-Swift'
     pod 'Unbox'
+    pod 'PromiseKit'
 end
 
 target "iosgoTests" do
