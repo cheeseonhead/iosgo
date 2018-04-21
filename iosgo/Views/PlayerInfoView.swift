@@ -10,11 +10,16 @@ import Foundation
 import UIKit
 
 struct PlayerInfoViewModel {
-    let profile: UIImage?
-    let timeStr: String
-    let username: String?
-    let captures: String
-    let color: PlayerType
+    struct User {
+        let color: PlayerType
+        let username: String
+        let profile: UIImage
+    }
+
+    struct Game {
+        let timeStr: String
+        let captures: String
+    }
 }
 
 class PlayerInfoView: UIView {
@@ -33,14 +38,13 @@ class PlayerInfoView: UIView {
         setupFromIBDesignable()
     }
 
-    func setModel(_ model: PlayerInfoViewModel) {
-        if let v = model.profile {
-            profileImage.image = v
-        }
+    func setGame(_ model: PlayerInfoViewModel.Game) {
         timeLabel.text = model.timeStr
-        if let v = model.username {
-            usernameLabel.text = v
-        }
         capturesLabel.text = model.captures
+    }
+
+    func setUser(_ model: PlayerInfoViewModel.User) {
+        profileImage.image = model.profile
+        usernameLabel.text = model.username
     }
 }
