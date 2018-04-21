@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,12 +14,60 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlayerInfoView" customModule="iosgo" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="308" height="203"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uU2-j6-hHt">
+                    <rect key="frame" x="0.0" y="0.0" width="308" height="203"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9yX-Xz-TQp">
+                            <rect key="frame" x="0.0" y="0.0" width="308" height="162"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="700" verticalCompressionResistancePriority="700" image="Spaceship" translatesAutoresizingMaskIntoConstraints="NO" id="dx4-AA-hio">
+                                    <rect key="frame" x="0.0" y="0.0" width="162" height="162"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="dx4-AA-hio" secondAttribute="height" multiplier="1:1" id="DGo-mR-k43"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="38hrs" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qbr-TF-Kmv">
+                                    <rect key="frame" x="162" y="71" width="146" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="dx4-AA-hio" firstAttribute="height" secondItem="9yX-Xz-TQp" secondAttribute="height" id="o5s-Sb-SQS"/>
+                            </constraints>
+                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xho-8R-Iek">
+                            <rect key="frame" x="0.0" y="162" width="308" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="2 Captures" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fq6-j4-aHv">
+                            <rect key="frame" x="0.0" y="182.5" width="308" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="uU2-j6-hHt" secondAttribute="trailing" id="FJU-sQ-xqa"/>
+                <constraint firstItem="uU2-j6-hHt" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Iv3-5O-fEL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="uU2-j6-hHt" secondAttribute="bottom" id="PC6-lv-qr7"/>
+                <constraint firstItem="uU2-j6-hHt" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="zvI-WU-cd2"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="91.5" y="53.5"/>
+            <point key="canvasLocation" x="58" y="-178.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="Spaceship" width="394" height="347"/>
+    </resources>
 </document>
