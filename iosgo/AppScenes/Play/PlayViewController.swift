@@ -90,7 +90,7 @@ extension PlayViewController: PlayDisplayLogic {
     }
 
     func displayUpdateClock(viewModel: Play.UpdateGameInfo.ViewModel) {
-        gameInfoView.setModel(viewModel.gameInfoViewModel)
+        gameInfoView.setGame(viewModel.gameInfoViewModel)
     }
 }
 
