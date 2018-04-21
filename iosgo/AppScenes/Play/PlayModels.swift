@@ -47,8 +47,7 @@ enum Play {
         }
 
         struct ViewModel {
-            var black: PlayerInfoViewModel
-            var white: PlayerInfoViewModel
+            let gameInfoViewModel: GameInfoViewModel
         }
     }
 }

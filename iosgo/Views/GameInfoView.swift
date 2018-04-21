@@ -10,6 +10,11 @@ import Foundation
 import SnapKit
 import UIKit
 
+struct GameInfoViewModel {
+    let black: PlayerInfoViewModel
+    let white: PlayerInfoViewModel
+}
+
 class GameInfoView: UIView {
     @IBOutlet var topInfoView: PlayerInfoView!
     @IBOutlet var bottomInfoView: PlayerInfoView!
@@ -22,5 +27,10 @@ class GameInfoView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupFromIBDesignable()
+    }
+
+    func setModel(_ model: GameInfoViewModel) {
+        topInfoView.setModel(model.black)
+        bottomInfoView.setModel(model.white)
     }
 }
