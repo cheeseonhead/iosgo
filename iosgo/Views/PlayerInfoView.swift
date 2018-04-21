@@ -14,6 +14,7 @@ struct PlayerInfoViewModel {
     let timeStr: String
     let username: String?
     let captures: String
+    let color: PlayerType
 }
 
 class PlayerInfoView: UIView {
