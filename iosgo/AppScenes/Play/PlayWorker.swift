@@ -79,7 +79,7 @@ extension PlayWorker: GameSocketDelegate {
     }
 
     func handleClock(_ clock: Clock) {
-        let response = Play.UpdateClock.Response(blackThinkTime: clock.blackTime.thinkingTime, whiteThinkTime: clock.whiteTime.thinkingTime)
+        let response = Play.UpdateClock.Response(blackClock: clock.blackTime, whiteClock: clock.whiteTime)
 
         delegate?.gameClockUpdated(response)
     }

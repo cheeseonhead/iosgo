@@ -44,8 +44,8 @@ enum Play {
 
     enum UpdateClock {
         struct Response {
-            let blackThinkTime: Double
-            let whiteThinkTime: Double
+            let blackClock: Clock.TimeType
+            let whiteClock: Clock.TimeType
         }
 
         struct ViewModel {

@@ -46,7 +46,7 @@ class PlayPresenter: PlayPresentationLogic {
 
 private extension PlayPresenter {
     func clockVM(_ response: Play.UpdateClock.Response) -> Play.UpdateClock.ViewModel {
-        let vm = Play.UpdateClock.ViewModel(blackTimeStr: "\(response.blackThinkTime)", whiteTimeStr: "\(response.whiteThinkTime)")
+        let vm = Play.UpdateClock.ViewModel(blackTimeStr: "\(response.blackClock)", whiteTimeStr: "\(response.whiteClock)")
         return vm
     }
 }

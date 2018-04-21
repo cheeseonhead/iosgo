@@ -9,18 +9,53 @@
 import Foundation
 
 struct Clock: Decodable {
-    struct Time: Decodable {
-        let skipBonus: Bool?
-        let thinkingTime: Double
+    enum TimeType: Decodable {
+        case fischer(Fischer)
+        case simple
+        case byoyomi(Byoyomi)
+        case canadian
+        case absolute
+        case none
 
-        enum CodingKeys: String, CodingKey {
-            case skipBonus = "skip_bonus"
-            case thinkingTime = "thinking_time"
+        init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+
+            do {
+                let res = try container.decode(Fischer.self)
+                self = .fischer(res)
+            } catch DecodingError.keyNotFound {
+                let res = try container.decode(Byoyomi.self)
+                self = .byoyomi(res)
+            } catch {
+                fatalError()
+            }
+        }
+
+        struct Fischer: Decodable {
+            let skipBonus: Bool
+            let thinkingTime: Double
+
+            enum CodingKeys: String, CodingKey {
+                case skipBonus = "skip_bonus"
+                case thinkingTime = "thinking_time"
+            }
+        }
+
+        struct Byoyomi: Decodable {
+            let thinkingTime: Double
+            let periods: Int
+            let periodTime: Double
+
+            enum CodingKeys: String, CodingKey {
+                case thinkingTime = "thinking_time"
+                case periods
+                case periodTime = "period_time"
+            }
         }
     }
 
     let blackId: Int
-    let blackTime: Time
+    let blackTime: TimeType
     let currentPlayer: Int
     let expiration: Int
     let gameId: Int
@@ -29,7 +64,7 @@ struct Clock: Decodable {
     let pausedSince: Int?
     let title: String
     let whiteId: Int
-    let whiteTime: Time
+    let whiteTime: TimeType
 
     enum CodingKeys: String, CodingKey {
         case blackId = "black_player_id"
