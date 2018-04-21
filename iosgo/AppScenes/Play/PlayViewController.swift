@@ -23,8 +23,8 @@ class PlayViewController: UIViewController {
     var router: (NSObjectProtocol & PlayRoutingLogic & PlayDataPassing)?
 
     @IBOutlet var boardView: SKView!
-    @IBOutlet weak var gameInfoView: GameInfoView!
-    
+    @IBOutlet var gameInfoView: GameInfoView!
+
     var boardScene: BoardScene!
 
     // MARK: Object lifecycle
@@ -87,6 +87,10 @@ extension PlayViewController: PlayDisplayLogic {
 
     func displayUpdateGame(viewModel: Play.UpdateGame.ViewModel) {
         boardScene.render(viewModel.state)
+    }
+
+    func displayUpdateClock(viewModel: Play.UpdateGameInfo.ViewModel) {
+        gameInfoView.setModel(viewModel.gameInfoViewModel)
     }
 }
 
