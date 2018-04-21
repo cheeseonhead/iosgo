@@ -11,6 +11,7 @@ import Unbox
 
 protocol GameSocketDelegate: class {
     func handleMove(_ move: BoardPoint)
+    func handleClock(_ clock: Clock)
     func updateGameData(_ gameData: GameData)
 }
 
@@ -47,8 +48,9 @@ class GameSocket {
             strongSelf.handleGameData(gameData: gameData)
         }
 
-        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .clock), classType: Models.ReceiveClock.self) { [weak self] model in
+        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .clock), classType: Models.ReceivedClock.self) { [weak self] model in
             self?.handleClock(model: model)
+            return
         }
 
         socket.onConnect { [weak self] in
@@ -77,7 +79,7 @@ private extension GameSocket {
         delegate?.updateGameData(gameData)
     }
 
-    private func handleClock(model: Models.ReceiveClock) {
+    private func handleClock(model: Models.ReceivedClock) {
         print(model)
     }
 }

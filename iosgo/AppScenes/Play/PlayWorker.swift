@@ -77,6 +77,10 @@ extension PlayWorker: GameSocketDelegate {
         delegate?.gameUpdated(state: gameEngine.getState())
     }
 
+    func handleClock(_ clock: Clock) {
+        print(clock)
+    }
+
     func updateGameData(_ gameData: GameData) {
         gameEngine.update(with: gameData)
         delegate?.gameUpdated(state: gameEngine.getState())
