@@ -47,12 +47,7 @@ class GameSocket {
             strongSelf.handleGameData(gameData: gameData)
         }
 
-        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .clock)) { [weak self] data in
-            guard let dict = data[0] as? JSON,
-                let model = try? JSONDecoder().decode(Models.ReceiveClock.self, from: dict) else {
-                return
-            }
-
+        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .clock), classType: Models.ReceiveClock.self) { [weak self] model in
             self?.handleClock(model: model)
         }
 

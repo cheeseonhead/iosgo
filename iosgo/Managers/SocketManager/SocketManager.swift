@@ -77,6 +77,17 @@ extension SocketManager {
         }
     }
 
+    func on<T>(_ socketEventCreator: SocketEventCreating, classType: T.Type, closure: @escaping (T) -> Void) where T: Decodable {
+        socket.on(socketEventCreator.eventName) { data, _ in
+            guard let dict = data[0] as? JSON,
+                let model = try? JSONDecoder().decode(classType, from: dict) else {
+                return
+            }
+
+            closure(model)
+        }
+    }
+
     func once(event: SocketEvents, closure: @escaping NormalSocketCallback) {
         socket.once(event.rawValue) { data, _ in
             closure(data)
