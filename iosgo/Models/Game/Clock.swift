@@ -10,7 +10,7 @@ import Foundation
 
 struct Clock: Decodable {
     struct Time: Decodable {
-        let skipBonus: Bool
+        let skipBonus: Bool?
         let thinkingTime: Double
 
         enum CodingKeys: String, CodingKey {
@@ -26,7 +26,7 @@ struct Clock: Decodable {
     let gameId: Int
     let lastMove: Int
     let now: Int
-    let pausedSince: Int
+    let pausedSince: Int?
     let title: String
     let whiteId: Int
     let whiteTime: Time
