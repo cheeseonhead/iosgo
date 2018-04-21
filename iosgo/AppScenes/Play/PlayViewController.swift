@@ -57,6 +57,13 @@ class PlayViewController: UIViewController {
 
         interactor?.loadScene(request: Play.LoadGame.Request())
     }
+
+    public override var traitCollection: UITraitCollection {
+        if UIDevice.current.userInterfaceIdiom == .pad && UIDevice.current.orientation.isPortrait {
+            return UITraitCollection(traitsFrom: [UITraitCollection(horizontalSizeClass: .compact), UITraitCollection(verticalSizeClass: .regular)])
+        }
+        return super.traitCollection
+    }
 }
 
 // MARK: - BoardScene Action Delegate
