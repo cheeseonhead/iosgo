@@ -22,7 +22,7 @@ class PlayInteractor: PlayBusinessLogic, PlayDataStore {
     var playWorker = PlayWorker(gameStore: GameAPI(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
 
     func loadScene(request _: Play.LoadGame.Request) {
-        playWorker.loadGame(id: 3574) { result in
+        playWorker.loadGame(id: 3569) { result in
             switch result {
             case let .success(state):
                 let response = Play.LoadGame.Response(state: state)
