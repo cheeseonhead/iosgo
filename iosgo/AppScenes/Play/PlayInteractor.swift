@@ -47,4 +47,8 @@ extension PlayInteractor: PlayWorkerDelegate {
         let response = Play.UpdateGame.Response(state: state)
         presenter?.presentUpdateGame(response: response)
     }
+
+    func gameClockUpdated(_ response: Play.UpdateClock.Response) {
+        presenter?.presentUpdateClock(response: response)
+    }
 }

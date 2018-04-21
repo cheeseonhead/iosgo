@@ -15,11 +15,6 @@ struct PlayerInfoViewModel {
         let username: String
         let profile: UIImage
     }
-
-    struct Game {
-        let timeStr: String
-        let captures: String
-    }
 }
 
 class PlayerInfoView: UIView {
@@ -38,9 +33,8 @@ class PlayerInfoView: UIView {
         setupFromIBDesignable()
     }
 
-    func setGame(_ model: PlayerInfoViewModel.Game) {
-        timeLabel.text = model.timeStr
-        capturesLabel.text = model.captures
+    func setTime(_ time: String) {
+        timeLabel.text = time
     }
 
     func setUser(_ model: PlayerInfoViewModel.User) {

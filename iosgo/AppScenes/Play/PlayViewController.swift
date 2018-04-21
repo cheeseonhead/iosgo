@@ -16,7 +16,7 @@ import UIKit
 protocol PlayDisplayLogic: class {
     func displayLoadScene(viewModel: Play.LoadGame.ViewModel)
     func displayUpdateGame(viewModel: Play.UpdateGame.ViewModel)
-    func displayUpdateGameInfo(viewModel: Play.UpdateGameInfo.ViewModel)
+    func displayUpdateClock(viewModel: Play.UpdateClock.ViewModel)
 }
 
 class PlayViewController: UIViewController {
@@ -90,8 +90,8 @@ extension PlayViewController: PlayDisplayLogic {
         boardScene.render(viewModel.state)
     }
 
-    func displayUpdateGameInfo(viewModel: Play.UpdateGameInfo.ViewModel) {
-        gameInfoView.setGame(viewModel.gameInfoViewModel)
+    func displayUpdateClock(viewModel: Play.UpdateClock.ViewModel) {
+        gameInfoView.setClocks(blackTime: viewModel.blackTimeStr, whiteTime: viewModel.whiteTimeStr)
     }
 }
 

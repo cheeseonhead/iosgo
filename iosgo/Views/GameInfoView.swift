@@ -11,10 +11,6 @@ import SnapKit
 import UIKit
 
 struct GameInfoViewModel {
-    struct Game {
-        let black: PlayerInfoViewModel.Game
-        let white: PlayerInfoViewModel.Game
-    }
 }
 
 class GameInfoView: UIView {
@@ -31,8 +27,8 @@ class GameInfoView: UIView {
         setupFromIBDesignable()
     }
 
-    func setGame(_ model: GameInfoViewModel.Game) {
-        topInfoView.setGame(model.black)
-        bottomInfoView.setGame(model.white)
+    func setClocks(blackTime: String, whiteTime: String) {
+        topInfoView.setTime(blackTime)
+        bottomInfoView.setTime(whiteTime)
     }
 }

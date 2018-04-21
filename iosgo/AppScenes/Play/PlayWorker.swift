@@ -10,6 +10,7 @@ import Foundation
 
 protocol PlayWorkerDelegate: class {
     func gameUpdated(state: GoState)
+    func gameClockUpdated(_ response: Play.UpdateClock.Response)
 }
 
 class PlayWorker {
@@ -77,11 +78,19 @@ extension PlayWorker: GameSocketDelegate {
         delegate?.gameUpdated(state: gameEngine.getState())
     }
 
-    func handleClock(_: Clock) {
+    func handleClock(_ clock: Clock) {
+        let response = Play.UpdateClock.Response(blackThinkTime: clock.blackTime.thinkingTime, whiteThinkTime: clock.whiteTime.thinkingTime)
+
+        delegate?.gameClockUpdated(response)
     }
 
     func updateGameData(_ gameData: GameData) {
         gameEngine.update(with: gameData)
         delegate?.gameUpdated(state: gameEngine.getState())
     }
+}
+
+// MARK: - Helpers
+
+private extension PlayWorker {
 }

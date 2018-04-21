@@ -42,19 +42,15 @@ enum Play {
         }
     }
 
-    enum UpdateGameInfo {
+    enum UpdateClock {
         struct Response {
-            struct GameInfo {
-                let thinkTime: Double
-                let captures: Int
-            }
-
-            let black: GameInfo
-            let white: GameInfo
+            let blackThinkTime: Double
+            let whiteThinkTime: Double
         }
 
         struct ViewModel {
-            let gameInfoViewModel: GameInfoViewModel.Game
+            let blackTimeStr: String
+            let whiteTimeStr: String
         }
     }
 }
