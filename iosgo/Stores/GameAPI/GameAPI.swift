@@ -33,10 +33,3 @@ class GameAPI {
         return apiStore.request(toUrl: url, method: .GET, parameters: [:], resultType: Game.self)
     }
 }
-
-private extension GameAPI {
-    func createGame(payload: [String: Any]) throws -> Game {
-        let game: Game = try unbox(dictionary: payload)
-        return game
-    }
-}
