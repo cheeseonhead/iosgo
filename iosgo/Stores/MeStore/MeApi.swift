@@ -8,22 +8,12 @@ import Unbox
 import PromiseKit
 
 class MeApi {
-    struct Response {
-        var result: Result
-
-        enum Result {
-            case success(user: OGSUser)
-            case error(type: ApiError)
-        }
-    }
 
     let url = "api/v1/me/"
     var apiStore: OGSApiStore
-    var sessionController: OGSSessionController
 
-    required init(apiStore: OGSApiStore, sessionController: OGSSessionController) {
+    required init(apiStore: OGSApiStore) {
         self.apiStore = apiStore
-        self.sessionController = sessionController
     }
 
     func getUser(completion _: @escaping (Response) -> Void) -> Promise<OGSUser> {
