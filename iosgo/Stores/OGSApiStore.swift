@@ -34,32 +34,6 @@ enum HTTPStatusCodeError: Error {
     case unrecognized(code: Int)
 }
 
-enum ApiError: Error {
-    case badRequest
-    case unauthorized
-    case forbidden
-    case notFound
-    case tooManyRequests
-    case unknown
-
-    init(statusCode: HTTPStatusCode) {
-        switch statusCode {
-        case .badRequest:
-            self = .badRequest
-        case .unauthorized:
-            self = .unauthorized
-        case .forbidden:
-            self = .forbidden
-        case .notFound:
-            self = .notFound
-        case .tooManyRequests:
-            self = .tooManyRequests
-        default:
-            self = .unknown
-        }
-    }
-}
-
 enum ParseError: Error {
     case urlError(url: String)
     case wrongDataFormat(str: String)
@@ -154,7 +128,7 @@ class OGSApiStore {
             }
 
             guard statusCode.success() else {
-                throw ApiError(statusCode: statusCode)
+                throw ApiError(statusCode: statusCode, url: result.response.url?.absoluteString ?? "")
             }
 
             return result.data
