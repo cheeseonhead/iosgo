@@ -42,13 +42,13 @@ extension ApiError: LocalizedError {
         case let .unauthorized(url):
             return "Unauthorized request: \(url.cURL)"
         case let .forbidden(url):
-            return "Forbidden request: \(url)"
+            return "Forbidden request: \(url.cURL)"
         case let .notFound(url):
-            return "Could not find url for request:\(url)"
+            return "Could not find url for request:\(url.cURL)"
         case let .tooManyRequests(url):
-            return "Too many requests: \(url)"
-        case let .unknown(url):
-            return "An unknown error occurred while making request: \(url)"
+            return "Too many requests: \(url.cURL)"
+        case let .unknown(url.cURL):
+            return "An unknown error occurred while making request: \(url.cURL)"
         }
     }
 }
