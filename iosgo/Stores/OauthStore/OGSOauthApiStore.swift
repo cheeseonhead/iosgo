@@ -5,6 +5,7 @@
 
 import Foundation
 import Unbox
+import PromiseKit
 
 class OGSOauthApiStore {
     let URL = "oauth2/token/"
@@ -15,7 +16,8 @@ class OGSOauthApiStore {
         self.apiStore = apiStore
     }
 
-    func getToken(with username: String, password: String, completion: @escaping (OGSLoginInfo) -> Void) {
+    func getToken(with username: String, password: String, completion _: @escaping (OGSLoginInfo) -> Void) -> Promise<OGSLoginInfo> {
+
         let params: [String: String] = [
             "client_id": apiStore.clientID,
             "client_secret": apiStore.clientSecret,
@@ -24,52 +26,32 @@ class OGSOauthApiStore {
             "password": password,
         ]
 
-        sendRequest(toUrl: URL, method: .POST, parameters: params, completion: completion)
+        return sendRequest(toUrl: URL, method: .POST, parameters: params)
     }
 
-    func refreshTokens(completion: @escaping (OGSLoginInfo) -> Void) {
-        guard let refreshToken = apiStore.refreshToken else {
-            let loginInfo = OGSLoginInfo(result: .error(type: .unauthorized))
-            completion(loginInfo)
-            return
-        }
+    func refreshTokens(completion _: @escaping (OGSLoginInfo) -> Void) -> Promise<OGSLoginInfo> {
 
-        let params: [String: String] = [
-            "client_id": apiStore.clientID,
-            "client_secret": apiStore.clientSecret,
-            "grant_type": "refresh_token",
-            "refresh_token": refreshToken,
-        ]
-
-        sendRequest(toUrl: URL, method: .POST, parameters: params, completion: completion)
-    }
-
-    fileprivate func sendRequest(toUrl url: String, method: HTTPMethod, parameters: [String: String], completion: @escaping (OGSLoginInfo) -> Void) {
-        apiStore.request(toUrl: url, method: method, parameters: parameters) { statusCode, payload, _ in
-
-            var loginInfo = OGSLoginInfo(result: .error(type: ApiError(statusCode: statusCode)))
-
-            switch statusCode {
-            case .ok:
-                if let tokenInfo = try? self.createTokenInfo(from: payload!) {
-                    self.updateTokens(with: tokenInfo)
-                    loginInfo.result = .success
-                }
-            case .unauthorized:
-                loginInfo.result = .error(type: .unauthorized)
-            default: break
+        return firstly { () -> Promise<OGSLoginInfo> in
+            guard let refreshToken = apiStore.refreshToken else {
+                throw ApiError.unauthorized
             }
 
-            completion(loginInfo)
+            let params: [String: String] = [
+                "client_id": apiStore.clientID,
+                "client_secret": apiStore.clientSecret,
+                "grant_type": "refresh_token",
+                "refresh_token": refreshToken,
+            ]
+
+            return sendRequest(toUrl: URL, method: .POST, parameters: params)
         }
     }
 
-    fileprivate func createTokenInfo(from payload: [String: Any]) throws -> OGSLoginInfo.TokenInfo {
-        let tokenInfo: OGSLoginInfo.TokenInfo = try unbox(dictionary: payload)
-        return tokenInfo
+    fileprivate func sendRequest(toUrl url: String, method: HTTPMethod, parameters: [String: String]) -> Promise<OGSLoginInfo> {
+        return apiStore.request(toUrl: url, method: method, parameters: parameters, resultType: OGSLoginInfo.self)
     }
 
-    fileprivate func updateTokens(with tokenInfo: OGSLoginInfo.TokenInfo) {
+    fileprivate func updateTokens(with tokenInfo: OGSLoginInfo) {
         apiStore.accessToken = tokenInfo.accessToken
         apiStore.refreshToken = tokenInfo.refreshToken
     }
