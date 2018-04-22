@@ -23,15 +23,17 @@ class OGSSessionController {
     }
 
     func initialize() -> Promise<Empty> {
-        return getConfig().recover { error -> Promise<Config> in
+        return getCurrentUser().recover { error -> Promise<OGSUser> in
             switch error {
             case ApiError.unauthorized:
                 return self.refreshTokens().then { _ in
-                    self.getConfig()
+                    self.getCurrentUser()
                 }
             default:
                 throw error
             }
+        }.then { _ in
+            self.getConfig()
         }.map { _ in Empty()
         }
     }
@@ -40,6 +42,12 @@ class OGSSessionController {
         let oauthStore = OGSOauthApiStore(apiStore: apiStore)
 
         return oauthStore.refreshTokens().map { _ -> Empty in Empty() }
+    }
+
+    private func getCurrentUser() -> Promise<OGSUser> {
+        let meApi = MeApi(apiStore: apiStore)
+
+        return meApi.getUser()
     }
 
     fileprivate func getConfig() -> Promise<Config> {
