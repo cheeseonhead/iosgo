@@ -27,7 +27,7 @@ class SocketManager {
 
         _ = firstly {
             on(event: .connect)
-        }.done {
+        }.done { _ in
             self.websocketDidConnect(socket: self.socket)
 
             self.authenticate()
@@ -35,7 +35,7 @@ class SocketManager {
 
         _ = firstly {
             on(event: .disconnect)
-        }.done {
+        }.done { _ in
             self.websocketDidDisconnect(socket: self.socket)
         }
 
@@ -67,23 +67,23 @@ extension SocketManager {
 
         _ = firstly {
             on(event: .connect)
-        }.done {
+        }.done { _ in
             closure()
         }
     }
 
-    func on(event: SocketEvents) -> Guarantee<()> {
+    func on(event: SocketEvents) -> Guarantee<Any> {
         return on(rawEventName: event.rawValue)
     }
 
-    func on(_ socketEventCreator: SocketEventCreating) -> Guarantee<()> {
+    func on(_ socketEventCreator: SocketEventCreating) -> Guarantee<Any> {
         return on(rawEventName: socketEventCreator.eventName)
     }
 
-    private func on(rawEventName: SocketEvent) -> Guarantee<()> {
-        let guarantee = Guarantee<()> { resolve in
-            socket.on(rawEventName) { _, _ in
-                resolve(())
+    private func on(rawEventName: SocketEvent) -> Guarantee<Any> {
+        let guarantee = Guarantee<Any> { resolve in
+            socket.on(rawEventName) { data, _ in
+                resolve(data)
                 return
             }
         }
