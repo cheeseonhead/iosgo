@@ -17,14 +17,10 @@ class ChallengeAPI {
         self.apiStore = apiStore
     }
 
-    func acceptChallenge(id: Int) -> Promise<AcceptResponse> {
+    func acceptChallenge(id: Int) -> Promise<Empty> {
         let url = ChallengeURLGenerator.accept(challengeId: id)
 
         return apiStore.request(toUrl: url, method: .POST, parameters: [:], resultType: Empty.self)
-            .map { _ in
-                let response = AcceptResponse(success: true, errorMessage: nil)
-                return response
-            }
     }
 }
 
