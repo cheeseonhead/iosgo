@@ -25,10 +25,10 @@ class PlayPresenter: PlayPresentationLogic {
 
     func presentLoadScene(response: Play.LoadGame.Response) {
 
-        _ = response.promise.done { _ in
-            let state = renderer.getState(from: response.state)
+        _ = response.promise.done { goState in
+            let state = self.renderer.getState(from: goState)
             let model = Play.LoadGame.ViewModel(state: state)
-            viewController?.displayLoadScene(viewModel: model)
+            self.viewController?.displayLoadScene(viewModel: model)
         }
     }
 
