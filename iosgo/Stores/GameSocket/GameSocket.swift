@@ -8,6 +8,7 @@
 
 import Foundation
 import Unbox
+import PromiseKit
 
 protocol GameSocketDelegate: class {
     func handleMove(_ move: BoardPoint)
@@ -30,27 +31,26 @@ class GameSocket {
     }
 
     func connect() {
-        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .receiveMove)) { [weak self] data in
-            guard let dict: JSON = data[0] as? JSON,
-                let moveModel = try? JSONDecoder().decode(Models.ReceivedMove.self, from: dict) else {
-                return
-            }
-            self?.handleMove(model: moveModel)
+        _ = firstly {
+            socket.on(GameSocketEventCreator(gameId: gameId, eventType: .receiveMove), returnType: Models.ReceivedMove.self)
+        }.done { [weak self] model in
+            self?.handleMove(model: model)
+        }.catch {
+            print($0)
         }
 
-        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .gamedata)) { [weak self] data in
-            guard let strongSelf = self,
-                let dictionary = data[0] as? UnboxableDictionary,
-                let gameData: GameData = try? unbox(dictionary: dictionary) else {
-                return
-            }
-
-            strongSelf.handleGameData(gameData: gameData)
+        _ = firstly {
+            socket.on(GameSocketEventCreator(gameId: gameId, eventType: .gamedata), returnType: GameData.self)
+        }.done { [weak self] gameData in
+            self?.handleGameData(gameData: gameData)
+        }.catch {
+            print($0)
         }
 
-        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .clock), classType: Models.ReceivedClock.self) { [weak self] model in
+        _ = firstly {
+            socket.on(GameSocketEventCreator(gameId: gameId, eventType: .clock), returnType: Models.ReceivedClock.self)
+        }.done { [weak self] model in
             self?.handleClock(model: model)
-            return
         }
 
         socket.onConnect { [weak self] in
