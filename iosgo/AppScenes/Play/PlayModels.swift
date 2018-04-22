@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 enum Play {
     enum LoadGame {
@@ -18,7 +19,7 @@ enum Play {
         }
 
         struct Response {
-            var state: GoState
+            var promise: Promise<GoState>
         }
 
         struct ViewModel {

@@ -22,17 +22,13 @@ class PlayInteractor: PlayBusinessLogic, PlayDataStore {
     var playWorker = PlayWorker(gameStore: GameAPI(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
 
     func loadScene(request _: Play.LoadGame.Request) {
-        playWorker.loadGame(id: 3593) { result in
-            switch result {
-            case let .success(state):
-                let response = Play.LoadGame.Response(state: state)
-                self.presenter?.presentLoadScene(response: response)
 
-                self.playWorker.delegate = self
-            case let .error(message):
-                print(message)
-            }
+        let promise = playWorker.loadGame(id: 3593).get { _ in
+            self.playWorker.delegate = self
         }
+
+        let response = Play.LoadGame.Response(promise: promise)
+        presenter?.presentLoadScene(response: response)
     }
 
     func submitMove(request: Play.SubmitMove.Request) {

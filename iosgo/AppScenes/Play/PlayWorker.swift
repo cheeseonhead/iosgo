@@ -29,7 +29,7 @@ class PlayWorker {
         self.gameStore = gameStore
     }
 
-    func loadGame(id: Int, completion _: @escaping (LoadResult) -> Void) -> Promise<GoState> {
+    func loadGame(id: Int) -> Promise<GoState> {
 
         return gameStore.game(id: id).map { game in
             self.gameEngine = GameEngine(game: game)
