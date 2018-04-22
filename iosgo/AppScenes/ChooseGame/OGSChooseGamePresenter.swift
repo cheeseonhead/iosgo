@@ -14,7 +14,7 @@ import PromiseKit
 
 protocol OGSChooseGamePresenterInput {
     func presentListGames(response: OGSChooseGame.ListGames.Response)
-    func presentTouchGame(response: OGSChooseGame.TouchGame.Response)
+    func presentTouchGame(promise: Promise<OGSChooseGame.TouchGame.Response>)
 }
 
 protocol OGSChooseGamePresenterOutput: class {

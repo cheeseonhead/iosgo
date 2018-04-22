@@ -19,7 +19,7 @@ protocol OGSChooseGameInteractorInput {
 
 protocol OGSChooseGameInteractorOutput {
     func presentListGames(response: OGSChooseGame.ListGames.Response)
-    func presentTouchGame(promise: Promise<OGSChooseGame.TouchGames.Response>)
+    func presentTouchGame(promise: Promise<OGSChooseGame.TouchGame.Response>)
 }
 
 class OGSChooseGameInteractor: OGSChooseGameInteractorInput {

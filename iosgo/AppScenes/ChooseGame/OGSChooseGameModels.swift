@@ -53,7 +53,6 @@ struct OGSChooseGame {
 
         struct Response {
             var action: ActionType
-            var status: Status
         }
 
         struct ViewModel {
