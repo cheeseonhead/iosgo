@@ -134,7 +134,7 @@
 		AD05A8548F5F603C37C45C57 /* OGSAppConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AF6C8740956A2DA7A847 /* OGSAppConfigurator.swift */; };
 		AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */; };
 		AD05A9F1111278A031FEA546 /* ChallengeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AD1DB62CA191F038171D /* ChallengeWorker.swift */; };
-		AD05AB67C74B02B834E8CFA8 /* OGSMeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A640228B6DCB613DE7BA /* OGSMeStore.swift */; };
+		AD05AB67C74B02B834E8CFA8 /* MeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A640228B6DCB613DE7BA /* MeApi.swift */; };
 		AD05ABE155BC1FDEA29394EF /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05ADFB7AF57B9E129EBAFC /* SocketManager.swift */; };
 		AD05ADA1EA08A794B27AD4DB /* OGSSessionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AD7F65C8CB89B123BE4D /* OGSSessionWorker.swift */; };
 		AD05ADCD7A6778EA6AAF16D7 /* OGSRootViewControllerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A6413FABA7AABBEEC6FA /* OGSRootViewControllerTransition.swift */; };
@@ -284,7 +284,7 @@
 		AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Additions.swift"; sourceTree = "<group>"; };
 		AD05A619B90715ADEDAFC230 /* OGSUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSUser.swift; sourceTree = "<group>"; };
 		AD05A6342D59CC3E80B17996 /* OGSLoginInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginInfo.swift; sourceTree = "<group>"; };
-		AD05A640228B6DCB613DE7BA /* OGSMeStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSMeStore.swift; sourceTree = "<group>"; };
+		AD05A640228B6DCB613DE7BA /* MeApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeApi.swift; sourceTree = "<group>"; };
 		AD05A6413FABA7AABBEEC6FA /* OGSRootViewControllerTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSRootViewControllerTransition.swift; sourceTree = "<group>"; };
 		AD05A6E404C73D452A4B9148 /* OGSProdConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSProdConfiguration.swift; sourceTree = "<group>"; };
 		AD05A7F90F265AA6604A16CB /* SocketManagerTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketManagerTypes.swift; sourceTree = "<group>"; };
@@ -823,7 +823,7 @@
 		AD05A7441CAC96E005862E75 /* MeStore */ = {
 			isa = PBXGroup;
 			children = (
-				AD05A640228B6DCB613DE7BA /* OGSMeStore.swift */,
+				AD05A640228B6DCB613DE7BA /* MeApi.swift */,
 			);
 			path = MeStore;
 			sourceTree = "<group>";
@@ -1208,7 +1208,7 @@
 				AD05A01B448899472AAD4DBE /* OGSUser.swift in Sources */,
 				AD05ADCD7A6778EA6AAF16D7 /* OGSRootViewControllerTransition.swift in Sources */,
 				34934B761EF240320096D3C4 /* CGSize+Scalable.swift in Sources */,
-				AD05AB67C74B02B834E8CFA8 /* OGSMeStore.swift in Sources */,
+				AD05AB67C74B02B834E8CFA8 /* MeApi.swift in Sources */,
 				3464414F1EE4BA06008718D7 /* SplashModels.swift in Sources */,
 				AD05AE59A5BF1697CECE11D9 /* OGSUser+Unboxable.swift in Sources */,
 				3493D9081F08E2C300BE526E /* SocketEventCreating.swift in Sources */,

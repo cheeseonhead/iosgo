@@ -7,7 +7,7 @@ import Foundation
 import Unbox
 import PromiseKit
 
-class OGSMeStore {
+class MeApi {
     struct Response {
         var result: Result
 
