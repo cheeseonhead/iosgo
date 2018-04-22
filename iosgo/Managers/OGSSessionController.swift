@@ -10,6 +10,8 @@ class OGSSessionController {
 
     static let sharedInstance = OGSSessionController(session: OGSSession(configuration: OGSMockConfiguration()))
 
+    let queue = DispatchQueue(label: "com.okAystudios.iosgo.OGSSessionController")
+
     var current: OGSSession
     var apiStore: OGSApiStore!
 
@@ -38,6 +40,13 @@ class OGSSessionController {
         }
     }
 
+    func setTokens(accessToken: String, refreshToken: String) {
+        queue.sync {
+            current.accessToken = accessToken
+            current.refreshToken = refreshToken
+        }
+    }
+
     fileprivate func refreshTokens() -> Promise<Empty> {
         let oauthStore = OauthApi(apiStore: apiStore)
 
@@ -53,7 +62,7 @@ class OGSSessionController {
     fileprivate func getConfig() -> Promise<Config> {
         let configApi = ConfigAPI(apiStore: apiStore)
 
-        return configApi.config().get { config in
+        return configApi.config().get(on: queue) { config in
             self.current.userConfiguration = config
         }
     }
