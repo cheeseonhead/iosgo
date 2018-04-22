@@ -13,9 +13,9 @@ protocol OGSAuthenticationStoreProtocol {
 class OGSLoginWorker {
 
     var authStore: OGSAuthenticationStoreProtocol
-    var meStore: OGSMeStore
+    var meStore: MeApi
 
-    init(authStore: OGSAuthenticationStoreProtocol, meStore: OGSMeStore) {
+    init(authStore: OGSAuthenticationStoreProtocol, meStore: MeApi) {
         self.authStore = authStore
         self.meStore = meStore
     }
