@@ -14,10 +14,16 @@ enum TimeControlParametersType: Decodable {
     init(from decoder: Decoder) throws {
         let c = try decoder.singleValueContainer()
 
-        let paramStr = try c.decode(String.self)
-
-        guard let data = paramStr.data(using: .utf8) else {
-            throw ParseError.wrongDataFormat(str: paramStr)
+        var data: Data!
+        if let paramStr = try? c.decode(String.self) {
+            guard let d = paramStr.data(using: .utf8) else {
+                throw ParseError.wrongDataFormat(str: paramStr)
+            }
+            data = d
+        } else if let dict = try? c.decode(Data.self) {
+            data = dict
+        } else {
+            throw ParseError.typeMismatches(expected: [String.self, Data.self], actual: Void.self)
         }
 
         if let res = try? JSONDecoder().decode(Fischer.self, from: data) {

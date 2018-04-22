@@ -83,9 +83,4 @@ struct Game {
     enum Source: String, Codable {
         case play
     }
-
-    // MARK: - Derived
-    var moves: [BoardPoint] {
-        return gamedata.moves
-    }
 }

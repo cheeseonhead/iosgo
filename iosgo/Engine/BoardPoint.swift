@@ -17,6 +17,22 @@ struct BoardPoint: Codable {
         case above, below, left, right
     }
 
+    init(from decoder: Decoder) throws {
+        let c = try decoder.singleValueContainer()
+
+        if let array = try? c.decode([Int].self) {
+            row = array[0]
+            column = array[1]
+        } else {
+            throw ParseError.typeMismatches(expected: [[Int].self], actual: Void.self)
+        }
+    }
+
+    init(row: Int, column: Int) {
+        self.row = row
+        self.column = column
+    }
+
     func point(at direction: Direction) -> BoardPoint {
         switch direction {
         case .above:

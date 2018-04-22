@@ -13,8 +13,8 @@ struct GameData: Decodable {
 
     // MARK: - Basic
 
-    var blackId: Int // black_player_id
-    var whiteId: Int // white_player_id
+    var blackPlayerId: Int // black_player_id
+    var whitePlayerId: Int // white_player_id
     var `private`: Bool
     var ranked: Bool
     var gameId: Int
@@ -40,7 +40,7 @@ struct GameData: Decodable {
     // MARK: - Time
 
     var timeControl: TimeControlParametersType
-    //    var clock: Clock
+    var clock: Clock
     var startTime: Int
     var pausedSince: Int?
 
@@ -65,6 +65,7 @@ struct GameData: Decodable {
     // MARK: - Pause
 
     var pauseControl: [String: Bool]?
+    var pauseOnWeekends: Bool
 
     // MARK: - Scoring
 
@@ -77,6 +78,7 @@ struct GameData: Decodable {
     var superkoAlgorithm: String
     var whiteMustPassLast: Bool
     var scoreTerritory: Bool
+    var scoreHandicap: Bool
 
     // MARK: - Review
 
@@ -84,12 +86,7 @@ struct GameData: Decodable {
     struct Review: Codable {}
 
     // MARK: - Derived
-
-    var moves: [BoardPoint]
-}
-
-extension GameData {
-    static func createMoves(from genericMoves: [[Int]]) -> [BoardPoint] {
+    func moves() -> [BoardPoint] {
         var moves = [BoardPoint]()
 
         for genericMove in genericMoves {

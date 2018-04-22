@@ -19,7 +19,7 @@ extension GameData {
         case timeControl = "time_control"
         case freeHandicapPlacement = "free_handicap_placement"
         case agaHandicapScoring = "aga_handicap_scoring"
-        case move = "moves"
+        case genericMoves = "moves"
         case allowSuperko = "allow_superko"
         case scorePasses = "score_passes"
         case clock

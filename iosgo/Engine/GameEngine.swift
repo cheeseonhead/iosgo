@@ -41,7 +41,7 @@ class GameEngine {
         playingPlayer = (game.gamedata.initialPlayer == .black) ? .black : .white
         board = Board(size: BoardSize(height: game.height, width: game.width))
 
-        playMoves(game.gamedata.moves)
+        playMoves(game.gamedata.moves())
 
         triggerLazyInit()
     }
@@ -53,9 +53,10 @@ class GameEngine {
     }
 
     func update(with gameData: GameData) {
-        let currentMoves = game.gamedata.moves
-        if gameData.moves.count != currentMoves.count {
-            let newMoves = Array(gameData.moves[currentMoves.count ..< gameData.moves.count])
+        let currentMoves = game.gamedata.moves()
+        let newMoves = gameData.moves()
+        if newMoves.count != currentMoves.count {
+            let newMoves = Array(newMoves[currentMoves.count ..< newMoves.count])
             playMoves(newMoves)
         }
     }

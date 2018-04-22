@@ -64,6 +64,7 @@ enum ParseError: Error {
     case urlError(url: String)
     case wrongDataFormat(str: String)
     case wrongUrlResponseFormat(response: URLResponse)
+    case typeMismatches(expected: [Any.Type], actual: Any.Type)
     case typeMismatch(expected: Any.Type, actual: Any.Type)
     case wrongDateFormat(dateStr: String, format: String)
     case unknownEnumType(type: Any.Type)
@@ -158,21 +159,5 @@ class OGSApiStore {
 
             return result.data
         }
-
-        //        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-        //                    guard let httpResponse = response as? HTTPURLResponse, let data = data else {
-        //                completion(.clientError, nil, error)
-        //                return
-        //            }
-        //
-        //            do {
-        //                let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
-        //                completion(HTTPStatusCode(rawValue: httpResponse.statusCode)!, json, error)
-        //            } catch _ {
-        //                print("Error Occurred")
-        //            }
-        //        }
-        //
-        //        task.resume()
     }
 }

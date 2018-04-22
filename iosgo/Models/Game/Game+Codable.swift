@@ -8,6 +8,16 @@
 
 import Foundation
 
+extension Double {
+    init(str: String) throws {
+        guard let test = Double(str) else {
+            throw ParseError.typeMismatch(expected: Double.self, actual: String.self)
+        }
+
+        self = test
+    }
+}
+
 extension Game: Decodable {
     enum CodingKeys: String, CodingKey {
         case annulled
@@ -59,7 +69,7 @@ extension Game: Decodable {
         black = try c.decode(.black)
         blackLost = try c.decode(.blackLost)
         blackPlayerRank = try c.decode(.blackPlayerRank)
-        blackPlayerRating = try c.decode(.blackPlayerRating)
+        blackPlayerRating = try Double(str: try c.decode(.blackPlayerRating) as String)
         creator = try c.decode(.creator)
         disableAnalysis = try c.decode(.disableAnalysis)
         ended = nil
@@ -99,7 +109,7 @@ extension Game: Decodable {
         white = try c.decode(.white)
         whiteLost = try c.decode(.whiteLost)
         whitePlayerRank = try c.decode(.whitePlayerRank)
-        whitePlayerRating = try c.decode(.whitePlayerRating)
+        whitePlayerRating = try Double(str: try c.decode(.whitePlayerRating))
         width = try c.decode(.width)
     }
 }
