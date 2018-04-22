@@ -15,6 +15,7 @@ struct OGSChooseGame {
     struct ListGames {
         struct Request {
         }
+
         struct Response {
             var loggedIn: Bool
             var username: String
@@ -41,6 +42,10 @@ struct OGSChooseGame {
     }
 
     struct TouchGame {
+        enum TouchGameError: Error {
+            case challengeMissing
+        }
+
         struct Request {
             var indexPath: IndexPath
             var action: ActionType
@@ -53,11 +58,6 @@ struct OGSChooseGame {
             enum Status {
                 case success
                 case error(type: Error)
-            }
-
-            enum Error {
-                case challengeMissing
-                case other(message: String)
             }
         }
 

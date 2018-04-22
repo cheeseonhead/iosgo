@@ -10,6 +10,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 protocol OGSChooseGameInteractorInput {
     func listGames(request: OGSChooseGame.ListGames.Request)
@@ -18,7 +19,7 @@ protocol OGSChooseGameInteractorInput {
 
 protocol OGSChooseGameInteractorOutput {
     func presentListGames(response: OGSChooseGame.ListGames.Response)
-    func presentTouchGame(response: OGSChooseGame.TouchGame.Response)
+    func presentTouchGame(promise: Promise<Empty>)
 }
 
 class OGSChooseGameInteractor: OGSChooseGameInteractorInput {
@@ -51,25 +52,16 @@ class OGSChooseGameInteractor: OGSChooseGameInteractorInput {
 
 extension OGSChooseGameInteractor {
     func acceptChallenge(at indexPath: IndexPath) {
-        guard let challenge = listGamesWorker.challenge(at: indexPath) else {
-            let response = OGSChooseGame.TouchGame.Response(action: .accept, status: .error(type: .challengeMissing))
-            output.presentTouchGame(response: response)
-            return
-        }
 
-        var response = OGSChooseGame.TouchGame.Response(action: .accept, status: .success)
-
-        challengeWorker.acceptChallenge(id: challenge.id) { storeResponse in
-            if storeResponse.success {
-                self.selectedChallenge = challenge
-                response.status = .success
-            } else {
-                let errorMessage = storeResponse.errorMessage ?? "An Unknown Error Occured"
-                response.status = .error(type: .other(message: errorMessage))
+        let promise = firstly { () -> Promise<Empty> in
+            guard let challenge = listGamesWorker.challenge(at: indexPath) else {
+                throw OGSChooseGame.TouchGame.TouchGameError.challengeMissing
             }
 
-            self.output.presentTouchGame(response: response)
+            return challengeWorker.acceptChallenge(id: challenge.id)
         }
+
+        output.presentTouchGame(promise: promise)
     }
 }
 
