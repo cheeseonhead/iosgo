@@ -6,16 +6,12 @@
 import Foundation
 import PromiseKit
 
-protocol OGSAuthenticationStoreProtocol {
-    func getToken(with username: String, password: String) -> Promise<OGSLoginInfo>
-}
-
 class OGSLoginWorker {
 
-    var authStore: OGSAuthenticationStoreProtocol
+    var authStore: OauthApi
     var meStore: MeApi
 
-    init(authStore: OGSAuthenticationStoreProtocol, meStore: MeApi) {
+    init(authStore: OauthApi, meStore: MeApi) {
         self.authStore = authStore
         self.meStore = meStore
     }
@@ -23,6 +19,7 @@ class OGSLoginWorker {
     func loginWith(username: String, password: String) -> Promise<OGSLogin.Login.Response> {
 
         return authStore.getToken(with: username, password: password)
+            .tap { print($0) }
             .map { _ in OGSLogin.Login.Response() }
     }
 }

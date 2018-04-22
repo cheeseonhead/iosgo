@@ -39,7 +39,7 @@ class OGSSessionController {
     }
 
     fileprivate func refreshTokens() -> Promise<Empty> {
-        let oauthStore = OGSOauthApiStore(apiStore: apiStore)
+        let oauthStore = OauthApi(apiStore: apiStore)
 
         return oauthStore.refreshTokens().map { _ -> Empty in Empty() }
     }
