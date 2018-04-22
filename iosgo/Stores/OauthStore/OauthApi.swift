@@ -12,7 +12,7 @@ enum TokenError: Error {
     case accessTokenInvalid
 }
 
-class OGSOauthApiStore {
+class OauthApi {
     let URL = "oauth2/token/"
 
     fileprivate var apiStore: OGSApiStore
