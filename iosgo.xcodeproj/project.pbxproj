@@ -63,6 +63,7 @@
 		34B3572C208C900F00757A67 /* GameData+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B3572B208C900F00757A67 /* GameData+Codable.swift */; };
 		34C3DDB21EFF2B41001C8AF4 /* TimeControlParametersType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C3DDB11EFF2B41001C8AF4 /* TimeControlParametersType.swift */; };
 		34C3DDB61EFF2ED5001C8AF4 /* GameAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C3DDB51EFF2ED5001C8AF4 /* GameAPI.swift */; };
+		34C46A30208D30FB007893A5 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C46A2F208D30FB007893A5 /* ApiError.swift */; };
 		34E6974C2089307700B6CC82 /* PlayerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E6974B2089307700B6CC82 /* PlayerInfoView.swift */; };
 		34E6974E208930BD00B6CC82 /* PlayerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E6974D208930BD00B6CC82 /* PlayerInfoView.xib */; };
 		34FED50F208C304600CA2603 /* Game+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FED50E208C304600CA2603 /* Game+Codable.swift */; };
@@ -216,6 +217,7 @@
 		34B3572B208C900F00757A67 /* GameData+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameData+Codable.swift"; sourceTree = "<group>"; };
 		34C3DDB11EFF2B41001C8AF4 /* TimeControlParametersType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControlParametersType.swift; sourceTree = "<group>"; };
 		34C3DDB51EFF2ED5001C8AF4 /* GameAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAPI.swift; sourceTree = "<group>"; };
+		34C46A2F208D30FB007893A5 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		34E6974B2089307700B6CC82 /* PlayerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoView.swift; sourceTree = "<group>"; };
 		34E6974D208930BD00B6CC82 /* PlayerInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerInfoView.xib; sourceTree = "<group>"; };
 		34FED50E208C304600CA2603 /* Game+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+Codable.swift"; sourceTree = "<group>"; };
@@ -689,6 +691,7 @@
 			isa = PBXGroup;
 			children = (
 				8405CCC46689EA8AB1CE3519 /* OGSApiStore.swift */,
+				34C46A2F208D30FB007893A5 /* ApiError.swift */,
 				AD05A4E8F02D2F46F9BBF790 /* ChallengeAPI */,
 				34A0BCDE207F53AD007EB42D /* ConfigAPI */,
 				34DF46891EFB55F4009EC397 /* GameAPI */,
@@ -1146,6 +1149,7 @@
 				5612FD111E63C60B000B1973 /* OGSChooseGamePresenter.swift in Sources */,
 				5612FD101E63C60B000B1973 /* OGSChooseGameModels.swift in Sources */,
 				34970F091F00A67A00623ED0 /* GridStone.swift in Sources */,
+				34C46A30208D30FB007893A5 /* ApiError.swift in Sources */,
 				8405C06692E15B7D16D86610 /* OGSNotificationCenter.swift in Sources */,
 				34FEDDA71EFFF02F00EC1B5F /* PlayInteractor.swift in Sources */,
 				AD05AF37C68CBA22A3DC256C /* OGSDispatcher.swift in Sources */,
