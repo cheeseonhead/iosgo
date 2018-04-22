@@ -64,6 +64,8 @@ enum ParseError: Error {
     case urlError(url: String)
     case wrongJsonFormat(json: Any)
     case wrongUrlResponseFormat(response: URLResponse)
+    case stringNotANumber(str: String, type: Any.Type)
+    case wrongDateFormat(dateStr: String, format: String)
 }
 
 typealias OGSApiResultBlock = (_ statusCode: HTTPStatusCode, _ payload: [String: Any]?, _ error: Error?) -> Void
