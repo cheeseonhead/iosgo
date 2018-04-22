@@ -9,7 +9,7 @@
 import Foundation
 import Unbox
 
-struct GameData: Codable {
+struct GameData: Decodable {
 
     // MARK: - Basic
 
@@ -18,7 +18,8 @@ struct GameData: Codable {
     var `private`: Bool
     var ranked: Bool
     var gameId: Int
-    var players: [PlayerType: [String: Any]]
+    var players: [PlayerType: Player]
+    struct Player: Codable {}
 
     // MARK: - Info
 
@@ -31,7 +32,7 @@ struct GameData: Codable {
     var phase: Phase
     var initialPlayer: PlayerType
 
-    enum Phase: String, UnboxableEnum {
+    enum Phase: String, UnboxableEnum, Codable {
         case play, finished
         case stoneRemoval = "stone removal"
     }
@@ -57,9 +58,9 @@ struct GameData: Codable {
     // MARK: - Game
 
     var genericMoves: [[Int]]
-    var conditionalMoves: [Int: [String: Any?]]?
+    //    var conditionalMoves: [Int: [String: Any?]]?
     var initialState: [PlayerType: String]
-    var history: [Any]
+    //    var history: [Any]
 
     // MARK: - Pause
 
@@ -79,7 +80,8 @@ struct GameData: Codable {
 
     // MARK: - Review
 
-    var reviews: [String: Any]?
+    var reviews: [String: Review]?
+    struct Review: Codable {}
 
     // MARK: - Derived
 

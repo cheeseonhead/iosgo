@@ -89,15 +89,3 @@ struct Game {
         return gamedata.moves
     }
 }
-
-private extension Game {
-    func parseDate(_ str: String) throws -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'"
-
-        guard let res = dateFormatter.date(from: str) else {
-            throw ParseError.wrongDateFormat(dateStr: started, format: dateFormatter.dateFormat)
-        }
-        return res
-    }
-}

@@ -62,10 +62,11 @@ enum ApiError: Error {
 
 enum ParseError: Error {
     case urlError(url: String)
-    case wrongJsonFormat(json: Any)
+    case wrongDataFormat(str: String)
     case wrongUrlResponseFormat(response: URLResponse)
-    case stringNotANumber(str: String, type: Any.Type)
+    case typeMismatch(expected: Any.Type, actual: Any.Type)
     case wrongDateFormat(dateStr: String, format: String)
+    case unknownEnumType(type: Any.Type)
 }
 
 typealias OGSApiResultBlock = (_ statusCode: HTTPStatusCode, _ payload: [String: Any]?, _ error: Error?) -> Void

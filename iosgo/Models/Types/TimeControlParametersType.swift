@@ -9,7 +9,33 @@
 import Foundation
 import Unbox
 
-enum TimeControlParametersType: Codable {
+enum TimeControlParametersType: Decodable {
+
+    init(from decoder: Decoder) throws {
+        let c = try decoder.singleValueContainer()
+
+        let paramStr = try c.decode(String.self)
+
+        guard let data = paramStr.data(using: .utf8) else {
+            throw ParseError.wrongDataFormat(str: paramStr)
+        }
+
+        if let res = try? JSONDecoder().decode(Fischer.self, from: data) {
+            self = .fischer(parameters: res)
+        } else if let res = try? JSONDecoder().decode(Simple.self, from: data) {
+            self = .simple(parameters: res)
+        } else if let res = try? JSONDecoder().decode(Byoyomi.self, from: data) {
+            self = .byoyomi(parameters: res)
+        } else if let res = try? JSONDecoder().decode(Canadian.self, from: data) {
+            self = .canadian(parameters: res)
+        } else if let res = try? JSONDecoder().decode(Absolute.self, from: data) {
+            self = .absolute(parameters: res)
+        } else if let res = try? JSONDecoder().decode(None.self, from: data) {
+            self = .none(parameters: res)
+        } else {
+            throw ParseError.unknownEnumType(type: TimeControlParametersType.self)
+        }
+    }
 
     case fischer(parameters: Fischer)
     case simple(parameters: Simple)
@@ -20,8 +46,8 @@ enum TimeControlParametersType: Codable {
 
     struct Fischer: Codable {
         var pauseOnWeekends: Bool?
-        var speed: SpeedType?
-        var system: TimeControlType?
+        var speed: SpeedType
+        var system: TimeControlType
         var timeControl: TimeControlType
 
         var initialTime: Int
@@ -31,8 +57,8 @@ enum TimeControlParametersType: Codable {
 
     struct Simple: Codable {
         var pauseOnWeekends: Bool?
-        var speed: SpeedType?
-        var system: TimeControlType?
+        var speed: SpeedType
+        var system: TimeControlType
         var timeControl: TimeControlType
 
         var timePerMove: Int
@@ -40,8 +66,8 @@ enum TimeControlParametersType: Codable {
 
     struct Byoyomi: Codable {
         var pauseOnWeekends: Bool?
-        var speed: SpeedType?
-        var system: TimeControlType?
+        var speed: SpeedType
+        var system: TimeControlType
         var timeControl: TimeControlType
 
         var mainTime: Int
@@ -51,8 +77,8 @@ enum TimeControlParametersType: Codable {
 
     struct Canadian: Codable {
         var pauseOnWeekends: Bool?
-        var speed: SpeedType?
-        var system: TimeControlType?
+        var speed: SpeedType
+        var system: TimeControlType
         var timeControl: TimeControlType
 
         var mainTime: Int
@@ -62,8 +88,8 @@ enum TimeControlParametersType: Codable {
 
     struct Absolute: Codable {
         var pauseOnWeekends: Bool?
-        var speed: SpeedType?
-        var system: TimeControlType?
+        var speed: SpeedType
+        var system: TimeControlType
         var timeControl: TimeControlType
 
         var totalTime: Int
@@ -71,8 +97,8 @@ enum TimeControlParametersType: Codable {
 
     struct None: Codable {
         var pauseOnWeekends: Bool?
-        var speed: SpeedType?
-        var system: TimeControlType?
+        var speed: SpeedType
+        var system: TimeControlType
         var timeControl: TimeControlType
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Game: Codable {
+extension Game: Decodable {
     enum CodingKeys: String, CodingKey {
         case annulled
         case auth
@@ -62,6 +62,7 @@ extension Game: Codable {
         blackPlayerRating = try c.decode(.blackPlayerRating)
         creator = try c.decode(.creator)
         disableAnalysis = try c.decode(.disableAnalysis)
+        ended = nil
         if let str: String = try c.decodeIfPresent(.ended) {
             guard let date = dateFormatter.date(from: str) else {
                 throw ParseError.wrongDateFormat(dateStr: str, format: dateFormatter.dateFormat)
