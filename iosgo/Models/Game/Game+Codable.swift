@@ -11,7 +11,7 @@ import Foundation
 extension Double {
     init(str: String) throws {
         guard let test = Double(str) else {
-            throw ParseError.typeMismatch(expected: Double.self, actual: String.self)
+            throw ParseError.typeMismatch(expected: Double.self, container: str)
         }
 
         self = test
@@ -85,7 +85,7 @@ extension Game: Decodable {
         height = try c.decode(.height)
         historicalRatings = try c.decode(.historicalRatings)
         id = try c.decode(.id)
-        komi = try c.decode(.komi)
+        komi = try Double(str: try c.decode(.komi))
         ladder = try c.decodeIfPresent(.ladder)
         mode = try c.decode(.mode)
         name = try c.decode(.name)

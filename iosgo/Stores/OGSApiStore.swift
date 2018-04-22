@@ -64,8 +64,8 @@ enum ParseError: Error {
     case urlError(url: String)
     case wrongDataFormat(str: String)
     case wrongUrlResponseFormat(response: URLResponse)
-    case typeMismatches(expected: [Any.Type], actual: Any.Type)
-    case typeMismatch(expected: Any.Type, actual: Any.Type)
+    case typeMismatches(expected: [Any.Type], container: Any)
+    case typeMismatch(expected: Any.Type, container: Any)
     case wrongDateFormat(dateStr: String, format: String)
     case unknownEnumType(type: Any.Type)
 }

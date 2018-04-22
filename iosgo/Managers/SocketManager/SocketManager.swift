@@ -185,7 +185,7 @@ extension SocketManager {
 private extension SocketManager {
     func convert<T: Decodable>(to resultType: T.Type, from data: [Any]) throws -> T {
         guard let dict = data[0] as? JSON else {
-            throw ParseError.typeMismatch(expected: JSON.self, actual: type(of: data[0]))
+            throw ParseError.typeMismatch(expected: JSON.self, container: data[0])
         }
 
         let object = try JSONDecoder().decode(resultType.self, from: dict)

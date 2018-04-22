@@ -24,7 +24,7 @@ struct BoardPoint: Codable {
             row = array[0]
             column = array[1]
         } else {
-            throw ParseError.typeMismatches(expected: [[Int].self], actual: Void.self)
+            throw ParseError.typeMismatches(expected: [[Int].self], container: c)
         }
     }
 

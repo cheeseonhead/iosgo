@@ -18,7 +18,12 @@ struct GameData: Decodable {
     var `private`: Bool
     var ranked: Bool
     var gameId: Int
-    var players: [PlayerType: Player]
+    var players: Players
+    struct Players: Codable {
+        let black: Player
+        let white: Player
+    }
+
     struct Player: Codable {}
 
     // MARK: - Info
@@ -40,7 +45,7 @@ struct GameData: Decodable {
     // MARK: - Time
 
     var timeControl: TimeControlParametersType
-    var clock: Clock
+    //    var clock: Clock
     var startTime: Int
     var pausedSince: Int?
 
@@ -59,7 +64,7 @@ struct GameData: Decodable {
 
     var genericMoves: [[Int]]
     //    var conditionalMoves: [Int: [String: Any?]]?
-    var initialState: [PlayerType: String]
+    //    var initialState: [PlayerType: String]
     //    var history: [Any]
 
     // MARK: - Pause

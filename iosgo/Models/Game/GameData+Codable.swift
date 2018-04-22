@@ -22,12 +22,12 @@ extension GameData {
         case genericMoves = "moves"
         case allowSuperko = "allow_superko"
         case scorePasses = "score_passes"
-        case clock
+        //        case clock
         case blackPlayerId = "black_player_id"
         case pauseOnWeekends = "pause_on_weekends"
         case whitePlayerId = "white_player_id"
         case width
-        case initialState = "initial_state"
+        //        case initialState = "initial_state"
         case scoreTerritoryInSeki = "score_territory_in_seki"
         case automaticStoneRemoval = "automatic_stone_removal"
         case handicap
