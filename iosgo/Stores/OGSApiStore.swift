@@ -112,16 +112,15 @@ class OGSApiStore {
     }
 
     func request<T: Decodable>(toUrl url: String, method: HTTPMethod, parameters: [String: String], resultType: T.Type) -> Promise<T> {
-        return firstly {
+        return firstly { () -> Promise<Data> in
             guard let fullURL = URL(string: domainName.appending(url)) else {
                 throw ParseError.urlError(url: url)
             }
-
             let request = createRequest(fullURL: fullURL, method: method, parameters: parameters)
 
             return send(request: request)
-        }.map { data -> T in
-            let payload = try JSONDecoder().decode(resultType, from: data)
+        }.map { result -> T in
+            let payload = try JSONDecoder().decode(resultType, from: result)
             return payload
         }
     }
