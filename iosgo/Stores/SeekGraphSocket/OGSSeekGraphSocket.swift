@@ -5,7 +5,7 @@
 
 import UIKit
 import Unbox
-import Starscream
+import PromiseKit
 
 class OGSSeekGraphSocket {
     typealias Model = OGSSeekGraphSocketModels
@@ -21,8 +21,10 @@ class OGSSeekGraphSocket {
     var socketManager: SocketManager!
 
     func connect() {
-        socketManager.on(event: .seekGraphGlobal) { array in
-            self.process(data: array[0])
+        _ = firstly {
+            socketManager.on(event: .seekGraphGlobal)
+        }.done { [weak self] data in
+            self?.process(data: data)
         }
 
         socketManager.emit(event: .seekGraphConnect, with: ["channel": "global"])
