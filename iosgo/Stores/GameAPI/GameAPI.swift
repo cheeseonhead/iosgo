@@ -8,6 +8,7 @@
 
 import Foundation
 import Unbox
+import PromiseKit
 
 class GameAPI {
 
@@ -26,28 +27,10 @@ class GameAPI {
         self.apiStore = apiStore
     }
 
-    func game(id: Int, completion: @escaping (_ response: Response) -> Void) {
+    func game(id: Int, completion _: @escaping (_ response: Response) -> Void) -> Promise<Game> {
         let url = "/api/v1/games/\(String(id))"
 
-        apiStore.request(toUrl: url, method: .GET, parameters: [:]) { code, payload, _ in
-
-            var response = Response(result: .error(type: ApiError(statusCode: code)))
-
-            switch code {
-            case .ok:
-                do {
-                    let game = try self.createGame(payload: payload!)
-
-                    response.result = .success(game: game)
-                } catch {
-                    print(error)
-                }
-            default:
-                break
-            }
-
-            completion(response)
-        }
+        return apiStore.request(toUrl: url, method: .GET, parameters: [:], resultType: Game.self)
     }
 }
 
