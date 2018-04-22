@@ -19,17 +19,6 @@ struct OGSLogin {
         }
 
         struct Response {
-            enum LoadingStatus {
-                case loading, success
-                case error(ErrorType)
-            }
-
-            enum ErrorType {
-                case invalidLoginInfo
-                case generic(message: String)
-            }
-
-            var loadingStatus: LoadingStatus
         }
 
         struct ViewModel {

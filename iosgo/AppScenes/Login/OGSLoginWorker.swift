@@ -4,9 +4,10 @@
 //
 
 import Foundation
+import PromiseKit
 
 protocol OGSAuthenticationStoreProtocol {
-    func getToken(with username: String, password: String, completion: @escaping (OGSLoginInfo) -> Void)
+    func getToken(with username: String, password: String) -> Promise<OGSLoginInfo>
 }
 
 class OGSLoginWorker {
@@ -28,40 +29,9 @@ class OGSLoginWorker {
         self.meStore = meStore
     }
 
-    func loginWith(username: String, password: String, completion: @escaping (_: OGSLogin.Login.Response) -> Void) {
-        authStore.getToken(with: username, password: password) { loginInfo in
-            var response: OGSLogin.Login.Response!
+    func loginWith(username: String, password: String) -> Promise<OGSLogin.Login.Response> {
 
-            switch loginInfo.result {
-            case .success:
-                response = self.createLoginSuccessResponse()
-            case let .error(errorType):
-                response = self.createLoginErrorResponse(errorType: errorType)
-            }
-
-            completion(response)
-        }
-    }
-}
-
-fileprivate extension OGSLoginWorker {
-    func createLoginSuccessResponse() -> OGSLogin.Login.Response {
-        let response = OGSLogin.Login.Response(loadingStatus: .success)
-
-        return response
-    }
-
-    func createLoginErrorResponse(errorType: ApiError) -> OGSLogin.Login.Response {
-        var responseError: OGSLogin.Login.Response.ErrorType!
-
-        switch errorType {
-        case .unauthorized:
-            responseError = .invalidLoginInfo
-        case let .genericError(message):
-            responseError = .generic(message: message)
-        }
-
-        let response = OGSLogin.Login.Response(loadingStatus: .error(responseError))
-        return response
+        return authStore.getToken(with: username, password: password)
+            .map { _ in OGSLogin.Login.Response() }
     }
 }
