@@ -11,15 +11,6 @@ protocol OGSAuthenticationStoreProtocol {
 }
 
 class OGSLoginWorker {
-    enum LoginErrorType {
-        case usernameNotFound
-        case passwordIncorrect
-    }
-
-    struct LoginResult {
-        var success: Bool
-        var loginError: LoginErrorType
-    }
 
     var authStore: OGSAuthenticationStoreProtocol
     var meStore: OGSMeStore
