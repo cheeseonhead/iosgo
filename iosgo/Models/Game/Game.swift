@@ -19,73 +19,14 @@ struct Game {
 
     // MARK: - Basic
     var id: Int
-    var name: String
-    var creatorId: Int // creator
-    var blackId: Int // black
-    var whiteId: Int // white
 
     // MARK: - Info
     var height: Int
     var width: Int
 
-    var rules: RuleType
-    var ranked: Bool
-    var handicap: Int
-    var komi: Double?
-
-    var started: Date
-    var ended: Date?
+    // MARK: - Data
     var gameData: GameData
 
-    // MARK: - Gameplay
-    var disableAnalysis: Bool
-
-    // MARK: - Time
-    var timeControl: TimeControlType // time_control
-    var timeControlParameters: TimeControlParametersType
-    var timePerMove: Int
-    var pauseOnWeekends: Bool
-
-    // MARK: - Player
-    var blackPlayerRank: Int
-    var blackPlayerRating: Double
-    var whitePlayerRank: Int
-    var whitePlayerRating: Double
-    //    var players: [PlayerType: Player] // Needs its own model
-    //
-    //    enum PlayerType: String, Codable {
-    //        case black, white
-    //    }
-    //
-    //    // MARK: - Tournament
-    //    var tournament: Tournament?
-    //    var tournamentRound: Int
-    //
-    //    // MARK: - Ladder
-    //    var ladder: Ladder?
-    //
-    // MARK: - Result
-    var annulled: Bool
-    var outcome: String
-    var blackLost: Bool
-    var whiteLost: Bool
-    //
-    // MARK: - Server
-    var authToken: String? // auth
-    var gameChatToken: String?
-    //    var mode: Mode
-    //    var source: Source
-    var related: [String: String]
-    //
-    //    enum Mode: String, UnboxableEnum {
-    //        case game
-    //    }
-    //
-    //    enum Source: String, UnboxableEnum {
-    //        case play
-    //    }
-
-    // MARK: - Derived
     var moves: [BoardPoint] {
         return gameData.moves
     }
