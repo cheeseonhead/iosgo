@@ -38,10 +38,10 @@ class GameEngine {
 
     required init(game: Game) {
         self.game = game
-        playingPlayer = (game.gameData.initialPlayer == .black) ? .black : .white
+        playingPlayer = (game.gamedata.initialPlayer == .black) ? .black : .white
         board = Board(size: BoardSize(height: game.height, width: game.width))
 
-        playMoves(game.gameData.moves)
+        playMoves(game.gamedata.moves)
 
         triggerLazyInit()
     }
@@ -53,7 +53,7 @@ class GameEngine {
     }
 
     func update(with gameData: GameData) {
-        let currentMoves = game.gameData.moves
+        let currentMoves = game.gamedata.moves
         if gameData.moves.count != currentMoves.count {
             let newMoves = Array(gameData.moves[currentMoves.count ..< gameData.moves.count])
             playMoves(newMoves)
@@ -78,7 +78,7 @@ class GameEngine {
                 }
             }
             if piecesRemoved == 0, countLiberties(group: playerGroup) == 0 {
-                if game.gameData.allowSelfCapture || dontCheckForSuicide {
+                if game.gamedata.allowSelfCapture || dontCheckForSuicide {
                     piecesRemoved += captureGroup(playerGroup)
                 } else {
                     board.removeStone(at: point)
@@ -86,7 +86,7 @@ class GameEngine {
                 }
             }
 
-            if checkForKo, !game.gameData.allowKo, currentMove.moveNumber > 2 {
+            if checkForKo, !game.gamedata.allowKo, currentMove.moveNumber > 2 {
                 let currentState = getState()
                 if !currentMove.edited, currentState == currentMove.index(-1).state {
                     throw GameError.generic(message: "Illegal Ko Move")
@@ -97,7 +97,7 @@ class GameEngine {
             if !dontCheckForSuperKo {
                 boardIsRepeating = isBoardRepeating()
                 if boardIsRepeating {
-                    if errorOnSuperKo, !game.gameData.allowSuperko {
+                    if errorOnSuperKo, !game.gamedata.allowSuperko {
                         throw GameError.generic(message: "Illegal board repetition")
                     }
                 }
@@ -268,8 +268,8 @@ private extension GameEngine {
     }
 
     func handicapMovesLeft() -> Int {
-        if game.gameData.freeHandicapPlacement {
-            return max(0, game.gameData.handicap - currentMove.moveNumber)
+        if game.gamedata.freeHandicapPlacement {
+            return max(0, game.gamedata.handicap - currentMove.moveNumber)
         }
         return 0
     }
