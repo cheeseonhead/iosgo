@@ -4,6 +4,7 @@
 //
 
 import SocketIO
+import PromiseKit
 
 class SocketManager {
     static var sharedInstance = SocketManager()
@@ -24,13 +25,17 @@ class SocketManager {
             completion(true)
         }
 
-        on(event: .connect) { _ in
+        _ = firstly {
+            on(event: .connect)
+        }.done {
             self.websocketDidConnect(socket: self.socket)
 
             self.authenticate()
         }
 
-        on(event: .disconnect) { _ in
+        _ = firstly {
+            on(event: .disconnect)
+        }.done {
             self.websocketDidDisconnect(socket: self.socket)
         }
 
@@ -60,35 +65,53 @@ extension SocketManager {
             closure()
         }
 
-        on(event: .connect) { _ in
+        _ = firstly {
+            on(event: .connect)
+        }.done {
             closure()
         }
     }
 
-    func on(event: SocketEvents, closure: @escaping NormalSocketCallback) {
-        socket.on(event.rawValue) { data, _ in
-            closure(data)
-        }
+    func on(event: SocketEvents) -> Guarantee<()> {
+        return on(rawEventName: event.rawValue)
     }
 
-    func on(_ socketEventCreator: SocketEventCreating, closure: @escaping NormalSocketCallback) {
-        socket.on(socketEventCreator.eventName) { data, _ in
-            closure(data)
-        }
+    func on(_ socketEventCreator: SocketEventCreating) -> Guarantee<()> {
+        return on(rawEventName: socketEventCreator.eventName)
     }
 
-    func on<T>(_ socketEventCreator: SocketEventCreating, classType: T.Type, closure: @escaping (T) -> Void) where T: Decodable {
-        socket.on(socketEventCreator.eventName) { data, _ in
-            do {
-                let dict = data[0] as! JSON
-                let model = try JSONDecoder().decode(classType, from: dict)
-                closure(model)
-            } catch let DecodingError.keyNotFound(key, context) {
-                print("Key not found: \(key), \(context)")
-            } catch {
-                print("Error occurred: \(error)")
+    private func on(rawEventName: SocketEvent) -> Guarantee<()> {
+        let guarantee = Guarantee<()> { resolve in
+            socket.on(rawEventName) { _, _ in
+                resolve(())
+                return
             }
         }
+
+        return guarantee
+    }
+
+    func on<T: Decodable>(event: SocketEvents, returnType: T.Type) -> Promise<T> {
+        return on(rawEventName: event.rawValue, returnType: returnType)
+    }
+
+    func on<T: Decodable>(_ socketEventCreator: SocketEventCreating, returnType: T.Type) -> Promise<T> {
+        return on(rawEventName: socketEventCreator.eventName, returnType: returnType)
+    }
+
+    private func on<T: Decodable>(rawEventName: SocketEvent, returnType: T.Type) -> Promise<T> {
+        let promise = Promise<T> { seal in
+            socket.on(rawEventName) { data, _ in
+                do {
+                    let object = try self.convert(to: returnType, from: data)
+                    seal.fulfill(object)
+                } catch {
+                    seal.reject(error)
+                }
+            }
+        }
+
+        return promise
     }
 
     func once(event: SocketEvents, closure: @escaping NormalSocketCallback) {
@@ -127,5 +150,18 @@ extension SocketManager {
     }
 
     func websocketDidReceiveData(socket _: SocketIOClient, data _: Data) {
+    }
+}
+
+// MARK: - Helpers
+private extension SocketManager {
+    func convert<T: Decodable>(to resultType: T.Type, from data: [Any]) throws -> T {
+        guard let dict = data[0] as? JSON else {
+            throw ParseError.typeMismatch(expected: JSON.self, actual: type(of: data[0]))
+        }
+
+        let object = try JSONDecoder().decode(resultType.self, from: dict)
+
+        return object
     }
 }
