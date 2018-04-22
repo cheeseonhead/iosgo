@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PromiseKit
 
 class ConfigAPI {
     enum Result<T> {
@@ -20,28 +21,9 @@ class ConfigAPI {
         self.apiStore = apiStore
     }
 
-    func config(completion: @escaping (Result<Config>) -> Void) {
+    func config() -> Promise<Config> {
         let url = "api/v1/ui/config"
 
-        apiStore.request(toUrl: url, method: .GET, parameters: [:]) { code, payload, _ in
-
-            var result = Result<Config>.error(ApiError(statusCode: code))
-
-            switch code {
-            case .ok:
-                do {
-                    let config = try JSONDecoder().decode(Config.self, from: payload!)
-                    result = .success(config)
-                } catch let e {
-                    result = .error(.genericError(message: e.localizedDescription))
-                }
-            case .unauthorized:
-                result = .error(.unauthorized)
-            default:
-                break
-            }
-
-            completion(result)
-        }
+        return apiStore.request(toUrl: url, method: .GET, parameters: [:], resultType: Config.self)
     }
 }
