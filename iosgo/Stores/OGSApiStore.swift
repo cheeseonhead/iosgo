@@ -69,6 +69,8 @@ enum ParseError: Error {
     case unknownEnumType(type: Any.Type)
 }
 
+struct Empty: Codable {}
+
 typealias OGSApiResultBlock = (_ statusCode: HTTPStatusCode, _ payload: [String: Any]?, _ error: Error?) -> Void
 
 class OGSApiStore {

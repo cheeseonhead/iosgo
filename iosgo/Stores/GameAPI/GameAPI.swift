@@ -27,7 +27,7 @@ class GameAPI {
         self.apiStore = apiStore
     }
 
-    func game(id: Int, completion _: @escaping (_ response: Response) -> Void) -> Promise<Game> {
+    func game(id: Int) -> Promise<Game> {
         let url = "/api/v1/games/\(String(id))"
 
         return apiStore.request(toUrl: url, method: .GET, parameters: [:], resultType: Game.self)
