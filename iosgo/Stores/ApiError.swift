@@ -47,7 +47,7 @@ extension ApiError: LocalizedError {
             return "Could not find url for request:\(url.cURL)"
         case let .tooManyRequests(url):
             return "Too many requests: \(url.cURL)"
-        case let .unknown(url.cURL):
+        case let .unknown(url):
             return "An unknown error occurred while making request: \(url.cURL)"
         }
     }
