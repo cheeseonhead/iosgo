@@ -27,8 +27,16 @@ class SplashInteractor: SplashInteractorInput {
 
     func loadScene(request _: Splash.LoadScene.Request) {
         let configurator = OGSAppConfigurator(session: OGSSession(configuration: OGSBetaConfiguration()))
-        configurator.configureApp { result in
-            let response = Splash.LoadScene.Response(loggedIn: result == .loggedIn)
+
+        configurator.configureApp().done { _ in
+            let response = Splash.LoadScene.Response(loggedIn: true)
+
+            self.output.presentLoadScene(response: response)
+
+        }.catch { error in
+            print("SplashInteractor Error: \(error.localizedDescription)")
+
+            let response = Splash.LoadScene.Response(loggedIn: false)
 
             self.output.presentLoadScene(response: response)
         }
