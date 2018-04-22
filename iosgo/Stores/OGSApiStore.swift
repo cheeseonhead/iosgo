@@ -128,7 +128,7 @@ class OGSApiStore {
             }
 
             guard statusCode.success() else {
-                throw ApiError(statusCode: statusCode, url: result.response.url?.absoluteString ?? "")
+                throw ApiError(statusCode: statusCode, request: request)
             }
 
             return result.data

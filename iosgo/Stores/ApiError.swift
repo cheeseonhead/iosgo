@@ -9,27 +9,27 @@
 import Foundation
 
 enum ApiError: Error {
-    case badRequest(String)
-    case unauthorized(String)
-    case forbidden(String)
-    case notFound(String)
-    case tooManyRequests(String)
-    case unknown(String)
+    case badRequest(URLRequest)
+    case unauthorized(URLRequest)
+    case forbidden(URLRequest)
+    case notFound(URLRequest)
+    case tooManyRequests(URLRequest)
+    case unknown(URLRequest)
 
-    init(statusCode: HTTPStatusCode, url: String) {
+    init(statusCode: HTTPStatusCode, request: URLRequest) {
         switch statusCode {
         case .badRequest:
-            self = .badRequest(url)
+            self = .badRequest(request)
         case .unauthorized:
-            self = .unauthorized(url)
+            self = .unauthorized(request)
         case .forbidden:
-            self = .forbidden(url)
+            self = .forbidden(request)
         case .notFound:
-            self = .notFound(url)
+            self = .notFound(request)
         case .tooManyRequests:
-            self = .tooManyRequests(url)
+            self = .tooManyRequests(request)
         default:
-            self = .unknown(url)
+            self = .unknown(request)
         }
     }
 }
@@ -38,17 +38,17 @@ extension ApiError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case let .badRequest(url):
-            return "Bad request was made to url: \(url)"
+            return "Bad request: \(url.cURL)"
         case let .unauthorized(url):
-            return "Unauthorized request was made to url: \(url)"
+            return "Unauthorized request: \(url.cURL)"
         case let .forbidden(url):
-            return "Forbidden request was made to url: \(url)"
+            return "Forbidden request: \(url)"
         case let .notFound(url):
-            return "Could not find url:\(url)"
+            return "Could not find url for request:\(url)"
         case let .tooManyRequests(url):
-            return "Too many requests were made to \(url)"
+            return "Too many requests: \(url)"
         case let .unknown(url):
-            return "An unknown error occurred while making requests to url: \(url)"
+            return "An unknown error occurred while making request: \(url)"
         }
     }
 }
