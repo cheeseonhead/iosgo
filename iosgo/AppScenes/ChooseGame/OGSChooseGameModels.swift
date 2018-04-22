@@ -54,11 +54,6 @@ struct OGSChooseGame {
         struct Response {
             var action: ActionType
             var status: Status
-
-            enum Status {
-                case success
-                case error(type: Error)
-            }
         }
 
         struct ViewModel {

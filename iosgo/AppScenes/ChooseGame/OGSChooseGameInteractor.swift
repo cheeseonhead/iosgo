@@ -19,7 +19,7 @@ protocol OGSChooseGameInteractorInput {
 
 protocol OGSChooseGameInteractorOutput {
     func presentListGames(response: OGSChooseGame.ListGames.Response)
-    func presentTouchGame(promise: Promise<Empty>)
+    func presentTouchGame(promise: Promise<OGSChooseGame.TouchGames.Response>)
 }
 
 class OGSChooseGameInteractor: OGSChooseGameInteractorInput {
@@ -59,6 +59,9 @@ extension OGSChooseGameInteractor {
             }
 
             return challengeWorker.acceptChallenge(id: challenge.id)
+        }.map { _ -> OGSChooseGame.TouchGame.Response in
+            let response = OGSChooseGame.TouchGame.Response(action: .accept)
+            return response
         }
 
         output.presentTouchGame(promise: promise)
