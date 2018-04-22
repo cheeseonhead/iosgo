@@ -11,18 +11,20 @@ import Unbox
 
 struct Player {}
 
-struct Tournament {}
+struct Tournament: Codable {}
 
-struct Ladder {}
+struct Ladder: Codable {}
+
+struct HistoricalRatings: Codable {}
 
 struct Game {
 
     // MARK: - Basic
     var id: Int
     var name: String
-    var creatorId: Int // creator
-    var blackId: Int // black
-    var whiteId: Int // white
+    var creator: Int // creator id
+    var black: Int // black id
+    var white: Int // white
 
     // MARK: - Info
     var height: Int
@@ -31,11 +33,11 @@ struct Game {
     var rules: RuleType
     var ranked: Bool
     var handicap: Int
-    var komi: Double?
+    var komi: Double
 
     var started: Date
     var ended: Date?
-    var gameData: GameData
+    var gamedata: GameData
 
     // MARK: - Gameplay
     var disableAnalysis: Bool
@@ -43,7 +45,7 @@ struct Game {
     // MARK: - Time
     var timeControl: TimeControlType // time_control
     var timeControlParameters: TimeControlParametersType
-    var timePerMove: Int
+    var timePerMove: Double
     var pauseOnWeekends: Bool
 
     // MARK: - Player
@@ -51,19 +53,16 @@ struct Game {
     var blackPlayerRating: Double
     var whitePlayerRank: Int
     var whitePlayerRating: Double
-    //    var players: [PlayerType: Player] // Needs its own model
-    //
-    //    enum PlayerType: String, Codable {
-    //        case black, white
-    //    }
-    //
-    //    // MARK: - Tournament
-    //    var tournament: Tournament?
-    //    var tournamentRound: Int
-    //
-    //    // MARK: - Ladder
-    //    var ladder: Ladder?
-    //
+    var historicalRatings: HistoricalRatings
+    // "players"
+
+    // MARK: - Ladder
+    var ladder: Ladder?
+
+    // MARK: - Tournament
+    let tournament: Tournament?
+    let tournamentRound: Int
+
     // MARK: - Result
     var annulled: Bool
     var outcome: String
@@ -71,22 +70,34 @@ struct Game {
     var whiteLost: Bool
     //
     // MARK: - Server
-    var authToken: String? // auth
-    var gameChatToken: String?
-    //    var mode: Mode
-    //    var source: Source
+    var auth: String? // auth
+    var gameChatAuth: String? // game chat auth
+    var mode: Mode
+    var source: Source
     var related: [String: String]
-    //
-    //    enum Mode: String, UnboxableEnum {
-    //        case game
-    //    }
-    //
-    //    enum Source: String, UnboxableEnum {
-    //        case play
-    //    }
+
+    enum Mode: String, Codable {
+        case game
+    }
+
+    enum Source: String, Codable {
+        case play
+    }
 
     // MARK: - Derived
     var moves: [BoardPoint] {
-        return gameData.moves
+        return gamedata.moves
+    }
+}
+
+private extension Game {
+    func parseDate(_ str: String) throws -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'"
+
+        guard let res = dateFormatter.date(from: str) else {
+            throw ParseError.wrongDateFormat(dateStr: started, format: dateFormatter.dateFormat)
+        }
+        return res
     }
 }
