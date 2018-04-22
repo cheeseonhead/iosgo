@@ -7,6 +7,11 @@ import Foundation
 import Unbox
 import PromiseKit
 
+enum TokenError: Error {
+    case refreshTokenInvalid
+    case accessTokenInvalid
+}
+
 class OGSOauthApiStore {
     let URL = "oauth2/token/"
 
@@ -33,7 +38,7 @@ class OGSOauthApiStore {
 
         return firstly { () -> Promise<OGSLoginInfo> in
             guard let refreshToken = apiStore.refreshToken else {
-                throw ApiError.unauthorized
+                throw TokenError.refreshTokenInvalid
             }
 
             let params: [String: String] = [

@@ -4,20 +4,9 @@
 //
 
 import Foundation
+import PromiseKit
 
 class OGSSessionController {
-    enum Initialize {
-        enum Result {
-            case success
-            case error(type: Error)
-
-            enum Error {
-                case networkError(ApiError)
-                case accessTokenInvalid
-                case refreshTokenInvalid
-            }
-        }
-    }
 
     static let sharedInstance = OGSSessionController(session: OGSSession(configuration: OGSMockConfiguration()))
 
@@ -33,68 +22,31 @@ class OGSSessionController {
         apiStore = OGSApiStore(sessionController: self)
     }
 
-    func initialize(completion: @escaping (Initialize.Result) -> Void) {
-        guard current.tokensExists else {
-            completion(.error(type: .refreshTokenInvalid))
-            return
-        }
-
-        getConfig { result in
-            switch result {
-            case .success:
-                completion(.success)
-            case let .error(type):
-                switch type {
-                case .accessTokenInvalid:
-                    self.refreshTokens(completion: completion)
-                default:
-                    completion(.error(type: type))
+    func initialize() -> Promise<Empty> {
+        return getConfig().recover { error -> Promise<Config> in
+            switch error {
+            case ApiError.unauthorized:
+                return self.refreshTokens().then { _ in
+                    self.getConfig()
                 }
+            default:
+                throw error
             }
+        }.map { _ in Empty()
         }
     }
 
-    fileprivate func refreshTokens(completion: @escaping (Initialize.Result) -> Void) {
+    fileprivate func refreshTokens() -> Promise<Empty> {
         let oauthStore = OGSOauthApiStore(apiStore: apiStore)
 
-        oauthStore.refreshTokens { loginInfo in
-            switch loginInfo.result {
-            case .success:
-                self.getConfig { result in
-                    switch result {
-                    case .success:
-                        completion(.success)
-                    case .error:
-                        completion(result)
-                    }
-                }
-            case let .error(type):
-                switch type {
-                case .unauthorized:
-                    completion(.error(type: .refreshTokenInvalid))
-                default:
-                    completion(.error(type: .networkError(type)))
-                }
-            }
-        }
+        return oauthStore.refreshTokens().map { _ -> Empty in Empty() }
     }
 
-    fileprivate func getConfig(completion: @escaping (Initialize.Result) -> Void) {
+    fileprivate func getConfig() -> Promise<Config> {
         let configApi = ConfigAPI(apiStore: apiStore)
 
-        configApi.config { result in
-            switch result {
-            case let .success(config):
-                self.current.userConfiguration = config
-                completion(.success)
-            case let .error(type):
-                switch type {
-                case .unauthorized:
-                    completion(.error(type: .accessTokenInvalid))
-                default:
-                    completion(.error(type: .networkError(type)))
-                }
-            }
+        return configApi.config().get { config in
+            self.current.userConfiguration = config
         }
     }
 }
