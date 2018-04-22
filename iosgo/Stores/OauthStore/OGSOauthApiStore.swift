@@ -16,7 +16,7 @@ class OGSOauthApiStore {
         self.apiStore = apiStore
     }
 
-    func getToken(with username: String, password: String, completion _: @escaping (OGSLoginInfo) -> Void) -> Promise<OGSLoginInfo> {
+    func getToken(with username: String, password: String) -> Promise<OGSLoginInfo> {
 
         let params: [String: String] = [
             "client_id": apiStore.clientID,
@@ -29,7 +29,7 @@ class OGSOauthApiStore {
         return sendRequest(toUrl: URL, method: .POST, parameters: params)
     }
 
-    func refreshTokens(completion _: @escaping (OGSLoginInfo) -> Void) -> Promise<OGSLoginInfo> {
+    func refreshTokens() -> Promise<OGSLoginInfo> {
 
         return firstly { () -> Promise<OGSLoginInfo> in
             guard let refreshToken = apiStore.refreshToken else {
