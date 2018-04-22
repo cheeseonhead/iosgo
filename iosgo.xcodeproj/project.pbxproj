@@ -68,6 +68,7 @@
 		34DF468B1EFB5608009EC397 /* Game+Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DF468A1EFB5608009EC397 /* Game+Unboxable.swift */; };
 		34E6974C2089307700B6CC82 /* PlayerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E6974B2089307700B6CC82 /* PlayerInfoView.swift */; };
 		34E6974E208930BD00B6CC82 /* PlayerInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E6974D208930BD00B6CC82 /* PlayerInfoView.xib */; };
+		34FED50F208C304600CA2603 /* Game+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FED50E208C304600CA2603 /* Game+Codable.swift */; };
 		34FEDDA71EFFF02F00EC1B5F /* PlayInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FEDDA21EFFF02F00EC1B5F /* PlayInteractor.swift */; };
 		34FEDDA81EFFF02F00EC1B5F /* PlayModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FEDDA31EFFF02F00EC1B5F /* PlayModels.swift */; };
 		34FEDDA91EFFF02F00EC1B5F /* PlayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FEDDA41EFFF02F00EC1B5F /* PlayPresenter.swift */; };
@@ -222,6 +223,7 @@
 		34DF468A1EFB5608009EC397 /* Game+Unboxable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+Unboxable.swift"; sourceTree = "<group>"; };
 		34E6974B2089307700B6CC82 /* PlayerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoView.swift; sourceTree = "<group>"; };
 		34E6974D208930BD00B6CC82 /* PlayerInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerInfoView.xib; sourceTree = "<group>"; };
+		34FED50E208C304600CA2603 /* Game+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+Codable.swift"; sourceTree = "<group>"; };
 		34FEDDA21EFFF02F00EC1B5F /* PlayInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayInteractor.swift; sourceTree = "<group>"; };
 		34FEDDA31EFFF02F00EC1B5F /* PlayModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayModels.swift; sourceTree = "<group>"; };
 		34FEDDA41EFFF02F00EC1B5F /* PlayPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayPresenter.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				34310962208AF3CC00B47951 /* Clock.swift */,
 				342EC8171EF8B70700C3A7E7 /* Game.swift */,
 				342FACD61EFF805800960585 /* GameData.swift */,
+				34FED50E208C304600CA2603 /* Game+Codable.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -1155,6 +1158,7 @@
 				5612FD121E63C60B000B1973 /* OGSChooseGameRouter.swift in Sources */,
 				346441511EE4BA06008718D7 /* SplashRouter.swift in Sources */,
 				34FEDDA81EFFF02F00EC1B5F /* PlayModels.swift in Sources */,
+				34FED50F208C304600CA2603 /* Game+Codable.swift in Sources */,
 				34C3DDB41EFF2B79001C8AF4 /* TimeControlParametersFormatter.swift in Sources */,
 				8405C95C6D25905BDEEB6F5C /* OGSBetaConfiguration.swift in Sources */,
 				3452AAF01F01E5BF008F838E /* GameEngine.swift in Sources */,
