@@ -9,7 +9,7 @@ import Foundation
 internal extension JSONSerialization {
     static func unbox<T>(data: Data, options: ReadingOptions = []) throws -> T {
         do {
-            return try (self.jsonObject(with: data, options: options) as? T).orThrow(UnboxError.invalidData)
+            return try (jsonObject(with: data, options: options) as? T).orThrow(UnboxError.invalidData)
         } catch {
             throw UnboxError.invalidData
         }

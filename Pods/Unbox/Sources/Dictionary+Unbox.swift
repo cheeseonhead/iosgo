@@ -15,7 +15,7 @@ extension Dictionary: UnboxableCollection {
             return nil
         }
 
-        let keyTransform = try self.makeKeyTransform()
+        let keyTransform = try makeKeyTransform()
 
         return try dictionary.map(allowInvalidElements: allowInvalidElements) { key, value in
             guard let unboxedKey = keyTransform(key) else {

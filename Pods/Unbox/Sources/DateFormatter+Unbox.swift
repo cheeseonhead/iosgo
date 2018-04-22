@@ -9,6 +9,6 @@ import Foundation
 /// Extension making `DateFormatter` usable as an UnboxFormatter
 extension DateFormatter: UnboxFormatter {
     public func format(unboxedValue: String) -> Date? {
-        return self.date(from: unboxedValue)
+        return date(from: unboxedValue)
     }
 }
