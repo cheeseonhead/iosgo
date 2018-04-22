@@ -9,7 +9,7 @@
 import Foundation
 import Unbox
 
-struct GameData {
+struct GameData: Codable {
 
     // MARK: - Basic
 

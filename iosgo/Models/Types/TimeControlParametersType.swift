@@ -9,7 +9,7 @@
 import Foundation
 import Unbox
 
-enum TimeControlParametersType {
+enum TimeControlParametersType: Codable {
 
     case fischer(parameters: Fischer)
     case simple(parameters: Simple)
