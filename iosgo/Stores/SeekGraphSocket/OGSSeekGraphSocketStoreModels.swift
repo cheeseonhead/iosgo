@@ -24,8 +24,8 @@ struct OGSSeekGraphSocketModels {
             gameStarted = try unboxer.unbox(key: "game_started")
             timeControl = try unboxer.unbox(key: "time_control")
 
-            let parameters = unboxer.dictionary["time_control_parameters"] as! UnboxableDictionary
-            timeControlParameters = try TimeControlParametersFormatter().conditionalUnbox(dictionary: parameters)
+            let parameters = unboxer.dictionary["time_control_parameters"] as! JSON
+            timeControlParameters = try JSONDecoder().decode(TimeControlParametersType.self, from: parameters)
         }
 
         struct Player: Unboxable {
