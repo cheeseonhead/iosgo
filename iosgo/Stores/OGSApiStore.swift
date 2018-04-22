@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import PromiseKit
 
 enum HTTPMethod: String {
     case GET
@@ -18,6 +19,19 @@ enum HTTPStatusCode: Int {
     case forbidden = 403
     case notFound = 404
     case tooManyRequests = 429
+
+    func success() -> Bool {
+        switch self {
+        case .ok, .accepted:
+            return true
+        default:
+            return false
+        }
+    }
+}
+
+enum HTTPStatusCodeError: Error {
+    case unrecognized(code: Int)
 }
 
 enum ApiError: Error {
@@ -27,25 +41,29 @@ enum ApiError: Error {
     case notFound
     case tooManyRequests
     case unknown
-    //
-    //    init(statusCode: HTTPStatusCode) {
-    //        switch statusCode {
-    //        case .clientError:
-    //            self = .genericError(message: NSLocalizedString("Please check your internet connection and try again.", comment: ""))
-    //        case .badRequest:
-    //            self = .genericError(message: NSLocalizedString("The request could not be processed, please report as a bug to the developers", comment: ""))
-    //        case .unauthorized:
-    //            self = .genericError(message: NSLocalizedString("You are not authorized to do the request.", comment: ""))
-    //        case .forbidden:
-    //            self = .genericError(message: NSLocalizedString("You are forbidden to do this action", comment: ""))
-    //        case .notFound:
-    //            self = .genericError(message: NSLocalizedString("The action you are trying to do doesn't exist.", comment: ""))
-    //        case .tooManyRequests:
-    //            self = .genericError(message: NSLocalizedString("You are making too many requests.", comment: ""))
-    //        default:
-    //            self = .genericError(message: NSLocalizedString("An unknown error has Occured.", comment: ""))
-    //        }
-    //    }
+
+    init(statusCode: HTTPStatusCode) {
+        switch statusCode {
+        case .badRequest:
+            self = .badRequest
+        case .unauthorized:
+            self = .unauthorized
+        case .forbidden:
+            self = .forbidden
+        case .notFound:
+            self = .notFound
+        case .tooManyRequests:
+            self = .tooManyRequests
+        default:
+            self = .unknown
+        }
+    }
+}
+
+enum ParseError: Error {
+    case urlError(url: String)
+    case wrongJsonFormat(json: Any)
+    case wrongUrlResponseFormat(response: URLResponse)
 }
 
 typealias OGSApiResultBlock = (_ statusCode: HTTPStatusCode, _ payload: [String: Any]?, _ error: Error?) -> Void
@@ -90,12 +108,19 @@ class OGSApiStore {
         self.sessionController = sessionController
     }
 
-    func request(toUrl url: String, method: HTTPMethod, parameters: [String: String], completion: @escaping OGSApiResultBlock) {
-        guard let fullURL = URL(string: domainName.appending(url)) else { return }
+    func request<T: Decodable>(toUrl url: String, method: HTTPMethod, parameters: [String: String], resultType: T.Type) -> Promise<T> {
+        return firstly {
+            guard let fullURL = URL(string: domainName.appending(url)) else {
+                throw ParseError.urlError(url: url)
+            }
 
-        let request = createRequest(fullURL: fullURL, method: method, parameters: parameters)
+            let request = createRequest(fullURL: fullURL, method: method, parameters: parameters)
 
-        send(request: request, completion: completion)
+            return send(request: request)
+        }.map { data -> T in
+            let payload = try JSONDecoder().decode(resultType, from: data)
+            return payload
+        }
     }
 
     private func createRequest(fullURL: URL, method: HTTPMethod, parameters: [String: String]) -> URLRequest {
@@ -110,9 +135,28 @@ class OGSApiStore {
         return request
     }
 
-    private func send(request _: URLRequest, completion _: @escaping OGSApiResultBlock) {
+    private func send(request: URLRequest) -> Promise<Data> {
+        return firstly {
+            URLSession.shared.dataTask(.promise, with: request)
+        }.map { result -> (data: Data, response: HTTPURLResponse) in
+            guard let resp = result.response as? HTTPURLResponse else {
+                throw ParseError.wrongUrlResponseFormat(response: result.response)
+            }
+            return (data: result.data, response: resp)
+        }.map { result -> Data in
+            guard let statusCode = HTTPStatusCode(rawValue: result.response.statusCode) else {
+                throw HTTPStatusCodeError.unrecognized(code: result.response.statusCode)
+            }
+
+            guard statusCode.success() else {
+                throw ApiError(statusCode: statusCode)
+            }
+
+            return result.data
+        }
+
         //        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-        //            guard let httpResponse = response as? HTTPURLResponse, let data = data else {
+        //                    guard let httpResponse = response as? HTTPURLResponse, let data = data else {
         //                completion(.clientError, nil, error)
         //                return
         //            }
