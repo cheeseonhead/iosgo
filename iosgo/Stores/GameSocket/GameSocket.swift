@@ -42,6 +42,7 @@ class GameSocket {
         _ = firstly {
             socket.on(GameSocketEventCreator(gameId: gameId, eventType: .gamedata), returnType: GameData.self)
         }.done { [weak self] gameData in
+            print(gameData)
             self?.handleGameData(gameData: gameData)
         }.catch {
             print($0)
@@ -53,7 +54,8 @@ class GameSocket {
             self?.handleClock(model: model)
         }
 
-        socket.onConnect { [weak self] in
+        socket.onConnect().done { [weak self] _ in
+
             guard let strongSelf = self else { return }
 
             let connectData = Models.Connect(chat: true, gameId: strongSelf.gameId, playerId: strongSelf.playerId)
