@@ -5,6 +5,7 @@
 
 import Foundation
 import Unbox
+import PromiseKit
 
 class OGSMeStore {
     struct Response {
@@ -25,29 +26,7 @@ class OGSMeStore {
         self.sessionController = sessionController
     }
 
-    func getUser(completion: @escaping (Response) -> Void) {
-        apiStore.request(toUrl: url, method: .GET, parameters: [:]) { statusCode, payload, _ in
-            var response = Response(result: .error(type: ApiError(statusCode: statusCode)))
-
-            switch statusCode {
-            case .ok:
-                if let user = try? self.createUser(from: payload!) {
-                    response.result = .success(user: user)
-                }
-            case .unauthorized:
-                response.result = .error(type: .unauthorized)
-            default:
-                break
-            }
-
-            completion(response)
-        }
-    }
-}
-
-fileprivate extension OGSMeStore {
-    func createUser(from payload: [String: Any]) throws -> OGSUser {
-        let user: OGSUser = try unbox(dictionary: payload)
-        return user
+    func getUser(completion _: @escaping (Response) -> Void) -> Promise<OGSUser> {
+        return apiStore.request(toUrl: url, method: .GET, parameters: [:], resultType: OGSUser.self)
     }
 }
