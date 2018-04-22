@@ -21,10 +21,10 @@ class OGSSeekGraphSocket {
     var socketManager: SocketManager!
 
     func connect() {
-        _ = firstly {
-            socketManager.on(event: .seekGraphGlobal)
-        }.done { [weak self] data in
-            self?.process(data: data)
+        socketManager.on(event: .seekGraphGlobal) { guarantee in
+            guarantee.done { [weak self] data in
+                self?.process(data: data)
+            }
         }
 
         socketManager.emit(event: .seekGraphConnect, with: ["channel": "global"])

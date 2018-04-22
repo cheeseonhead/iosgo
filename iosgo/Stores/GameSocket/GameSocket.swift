@@ -31,30 +31,30 @@ class GameSocket {
     }
 
     func connect() {
-        _ = firstly {
-            socket.on(GameSocketEventCreator(gameId: gameId, eventType: .receiveMove), returnType: Models.ReceivedMove.self)
-        }.done { [weak self] model in
-            self?.handleMove(model: model)
-        }.catch {
-            print($0)
+        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .receiveMove), resultType: Models.ReceivedMove.self) { promise in
+            promise.done { [weak self] receivedMove in
+                self?.handleMove(model: receivedMove)
+
+            }.catch { print($0) }
         }
 
-        _ = firstly {
-            socket.on(GameSocketEventCreator(gameId: gameId, eventType: .gamedata), returnType: GameData.self)
-        }.done { [weak self] gameData in
-            print(gameData)
-            self?.handleGameData(gameData: gameData)
-        }.catch {
-            print($0)
+        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .gamedata), resultType: GameData.self) { promise in
+            promise.done { [weak self] gameData in
+                self?.handleGameData(gameData: gameData)
+            }.catch {
+                print($0)
+            }
         }
 
-        _ = firstly {
-            socket.on(GameSocketEventCreator(gameId: gameId, eventType: .clock), returnType: Models.ReceivedClock.self)
-        }.done { [weak self] model in
-            self?.handleClock(model: model)
+        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .clock), resultType: Models.ReceivedClock.self) { promise in
+            promise.done { [weak self] model in
+                self?.handleClock(model: model)
+            }.catch {
+                print($0)
+            }
         }
 
-        socket.onConnect().done { [weak self] _ in
+        socket.onceConnected().done { [weak self] _ in
 
             guard let strongSelf = self else { return }
 
@@ -71,7 +71,6 @@ class GameSocket {
 }
 
 // MARK: - Handlers
-
 private extension GameSocket {
     private func handleMove(model: Models.ReceivedMove) {
         delegate?.handleMove(model.move)

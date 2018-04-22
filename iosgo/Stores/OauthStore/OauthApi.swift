@@ -32,6 +32,9 @@ class OauthApi {
         ]
 
         return sendRequest(toUrl: URL, method: .POST, parameters: params)
+            .get { loginInfo in
+                self.apiStore.sessionController.setTokens(accessToken: loginInfo.accessToken, refreshToken: loginInfo.refreshToken)
+            }
     }
 
     func refreshTokens() -> Promise<OGSLoginInfo> {
@@ -49,6 +52,8 @@ class OauthApi {
             ]
 
             return sendRequest(toUrl: URL, method: .POST, parameters: params)
+        }.get { loginInfo in
+            self.apiStore.sessionController.setTokens(accessToken: loginInfo.accessToken, refreshToken: loginInfo.refreshToken)
         }
     }
 

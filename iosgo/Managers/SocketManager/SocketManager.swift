@@ -19,9 +19,9 @@ class SocketManager {
     private var manager: SocketIO.SocketManager!
     fileprivate var socket: SocketIOClient!
 
-    func connect() -> Promise<Bool> {
+    func connect() -> Promise<()> {
 
-        let promise = Promise<Bool> { seal in
+        let promise = Promise<()> { seal in
             guard let session = sessionController?.current else {
                 seal.reject(SocketError.noCurrentSession)
                 return
@@ -30,29 +30,23 @@ class SocketManager {
             manager = SocketIO.SocketManager(socketURL: URL(string: session.configuration.domainName)!, config: [.log(false), .forceWebsockets(true), .reconnects(true), .reconnectWait(5)])
             socket = manager.defaultSocket
 
-            _ = firstly {
-                once(event: .connect, resultType: Empty.self)
-            }.done { _ in
+            on(event: .connect) { [weak self] guarantee in
+                guarantee.done { _ in
+                    self?.websocketDidConnect()
+                    self?.authenticate()
+                }
             }
 
-            _ = firstly {
-                on(event: .connect)
-            }.done { _ in
-                self.websocketDidConnect(socket: self.socket)
-
-                self.authenticate()
-            }
-
-            _ = firstly {
-                on(event: .disconnect)
-            }.done { _ in
-                self.websocketDidDisconnect(socket: self.socket)
+            on(event: .disconnect) { [weak self] guarantee in
+                guarantee.done { _ in
+                    self?.websocketDidDisconnect()
+                }
             }
 
             socket.connect()
 
             socket.once(SocketEvents.connect.rawValue) { _, _ in
-                seal.fulfill(true)
+                seal.fulfill(())
             }
         }
 
@@ -68,7 +62,9 @@ class SocketManager {
     }
 }
 
+// MARK: - Emit
 extension SocketManager {
+
     func emit(event: SocketEvents, with data: SocketData) {
         emit(rawEvent: event.rawValue, with: data)
     }
@@ -76,80 +72,47 @@ extension SocketManager {
     func emit(_ socketEventCreator: SocketEventCreating, with data: SocketData) {
         emit(rawEvent: socketEventCreator.eventName, with: data)
     }
+}
 
-    func onConnect(closure: @escaping () -> Void) {
+// MARK: - On
+extension SocketManager {
+
+    func onceConnected() -> Guarantee<Any> {
         if socket.status == .connected {
-            closure()
-        }
-
-        _ = firstly {
-            on(event: .connect)
-        }.done { _ in
-            closure()
-        }
-    }
-
-    func on(event: SocketEvents) -> Guarantee<Any> {
-        return on(rawEventName: event.rawValue)
-    }
-
-    func on(_ socketEventCreator: SocketEventCreating) -> Guarantee<Any> {
-        return on(rawEventName: socketEventCreator.eventName)
-    }
-
-    private func on(rawEventName: SocketEvent) -> Guarantee<Any> {
-        let guarantee = Guarantee<Any> { resolve in
-            socket.on(rawEventName) { data, _ in
-                resolve(data)
-                return
+            return Guarantee<Any> { seal in
+                seal(())
             }
+        } else {
+            return once(event: .connect)
         }
-
-        return guarantee
     }
 
-    func on<T: Decodable>(event: SocketEvents, returnType: T.Type) -> Promise<T> {
-        return on(rawEventName: event.rawValue, returnType: returnType)
+    func on(event: SocketEvents, closure: @escaping (Guarantee<Any>) -> Void) {
+        on(rawEventName: event.rawValue, closure: closure)
     }
 
-    func on<T: Decodable>(_ socketEventCreator: SocketEventCreating, returnType: T.Type) -> Promise<T> {
-        return on(rawEventName: socketEventCreator.eventName, returnType: returnType)
+    func on(_ socketEventCreator: SocketEventCreating, closure: @escaping (Guarantee<Any>) -> Void) {
+        on(rawEventName: socketEventCreator.eventName, closure: closure)
     }
 
-    private func on<T: Decodable>(rawEventName: SocketEvent, returnType: T.Type) -> Promise<T> {
-        let promise = Promise<T> { seal in
-            socket.on(rawEventName) { data, _ in
-                do {
-                    let object = try self.convert(to: returnType, from: data)
-                    seal.fulfill(object)
-                } catch {
-                    seal.reject(error)
-                }
-            }
-        }
-
-        return promise
+    func once(event: SocketEvents) -> Guarantee<Any> {
+        return once(rawEventName: event.rawValue)
     }
 
-    func once<T: Decodable>(event: SocketEvents, resultType: T.Type) -> Promise<T> {
+    func on<T: Decodable>(event: SocketEvents, resultType: T.Type, closure: @escaping (Promise<T>) -> Void) {
+        on(rawEventName: event.rawValue, resultType: resultType, closure: closure)
+    }
 
-        let promise = Promise<T> { seal in
-            socket.once(event.rawValue) { data, _ in
-                do {
-                    let object = try self.convert(to: resultType, from: data)
-                    seal.fulfill(object)
-                } catch {
-                    seal.reject(error)
-                }
-            }
-        }
+    func on<T: Decodable>(_ socketEventCreator: SocketEventCreating, resultType: T.Type, closure: @escaping (Promise<T>) -> Void) {
+        on(rawEventName: socketEventCreator.eventName, resultType: resultType, closure: closure)
+    }
 
-        return promise
+    func once<T: Decodable>(event: SocketEvents, resultType _: T.Type) -> Promise<T> {
+        return once(rawEventName: event.rawValue, resultType: T.self)
     }
 }
 
-// MARK: - Private
-
+// MARK: - Any Raw
 private extension SocketManager {
     func emit(rawEvent: SocketEvent, with data: SocketData) {
         if !isConnected {
@@ -161,16 +124,66 @@ private extension SocketManager {
             socket.emit(rawEvent, data)
         }
     }
+
+    func on(rawEventName: SocketEvent, closure: @escaping (Guarantee<Any>) -> Void) {
+        var guarantee = once(rawEventName: rawEventName)
+
+        guarantee = guarantee.map { [weak self] data in
+            self?.on(rawEventName: rawEventName, closure: closure)
+            return data
+        }
+
+        closure(guarantee)
+    }
+
+    func once(rawEventName: SocketEvent) -> Guarantee<Any> {
+        let guarantee = Guarantee<Any> { resolver in
+            socket.once(rawEventName) { data, _ in
+                resolver(data)
+                return
+            }
+        }
+
+        return guarantee
+    }
+}
+
+// MARK: - Decodable Raw
+private extension SocketManager {
+    func once<T: Decodable>(rawEventName: SocketEvent, resultType: T.Type) -> Promise<T> {
+        let promise = Promise<T> { seal in
+            socket.once(rawEventName) { data, _ in
+                do {
+                    let object = try self.convert(to: resultType, from: data)
+                    seal.fulfill(object)
+                } catch {
+                    seal.reject(error)
+                }
+            }
+        }
+
+        return promise
+    }
+
+    func on<T: Decodable>(rawEventName: SocketEvent, resultType: T.Type, closure: @escaping (Promise<T>) -> Void) {
+        let promise = once(rawEventName: rawEventName, resultType: resultType)
+
+        let newPromise = promise.get { [weak self] _ in
+            self?.on(rawEventName: rawEventName, resultType: resultType, closure: closure)
+        }
+
+        closure(newPromise)
+    }
 }
 
 // MARK: - Handlers
 
 extension SocketManager {
-    func websocketDidConnect(socket _: SocketIOClient) {
+    func websocketDidConnect() {
         isConnected = true
     }
 
-    func websocketDidDisconnect(socket _: SocketIOClient) {
+    func websocketDidDisconnect() {
         isConnected = false
     }
 
