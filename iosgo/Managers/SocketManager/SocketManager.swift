@@ -6,6 +6,10 @@
 import SocketIO
 import PromiseKit
 
+enum SocketError: Error {
+    case noCurrentSession
+}
+
 class SocketManager {
     static var sharedInstance = SocketManager()
 
@@ -15,31 +19,44 @@ class SocketManager {
     private var manager: SocketIO.SocketManager!
     fileprivate var socket: SocketIOClient!
 
-    func connect(completion: @escaping (Bool) -> Void) {
-        guard let session = sessionController?.current else { return }
+    func connect() -> Promise<Bool> {
 
-        manager = SocketIO.SocketManager(socketURL: URL(string: session.configuration.domainName)!, config: [.log(false), .forceWebsockets(true), .reconnects(true), .reconnectWait(5)])
-        socket = manager.defaultSocket
+        let promise = Promise<Bool> { seal in
+            guard let session = sessionController?.current else {
+                seal.reject(SocketError.noCurrentSession)
+                return
+            }
 
-        once(event: .connect) { _ in
-            completion(true)
+            manager = SocketIO.SocketManager(socketURL: URL(string: session.configuration.domainName)!, config: [.log(false), .forceWebsockets(true), .reconnects(true), .reconnectWait(5)])
+            socket = manager.defaultSocket
+
+            _ = firstly {
+                once(event: .connect, resultType: Empty.self)
+            }.done { _ in
+            }
+
+            _ = firstly {
+                on(event: .connect)
+            }.done { _ in
+                self.websocketDidConnect(socket: self.socket)
+
+                self.authenticate()
+            }
+
+            _ = firstly {
+                on(event: .disconnect)
+            }.done { _ in
+                self.websocketDidDisconnect(socket: self.socket)
+            }
+
+            socket.connect()
+
+            socket.once(SocketEvents.connect.rawValue) { _, _ in
+                seal.fulfill(true)
+            }
         }
 
-        _ = firstly {
-            on(event: .connect)
-        }.done { _ in
-            self.websocketDidConnect(socket: self.socket)
-
-            self.authenticate()
-        }
-
-        _ = firstly {
-            on(event: .disconnect)
-        }.done { _ in
-            self.websocketDidDisconnect(socket: self.socket)
-        }
-
-        socket.connect()
+        return promise
     }
 
     func authenticate() {
@@ -114,10 +131,20 @@ extension SocketManager {
         return promise
     }
 
-    func once(event: SocketEvents, closure: @escaping NormalSocketCallback) {
-        socket.once(event.rawValue) { data, _ in
-            closure(data)
+    func once<T: Decodable>(event: SocketEvents, resultType: T.Type) -> Promise<T> {
+
+        let promise = Promise<T> { seal in
+            socket.once(event.rawValue) { data, _ in
+                do {
+                    let object = try self.convert(to: resultType, from: data)
+                    seal.fulfill(object)
+                } catch {
+                    seal.reject(error)
+                }
+            }
         }
+
+        return promise
     }
 }
 
@@ -126,7 +153,8 @@ extension SocketManager {
 private extension SocketManager {
     func emit(rawEvent: SocketEvent, with data: SocketData) {
         if !isConnected {
-            once(event: .connect) { _ in
+
+            _ = connect().done { _ in
                 self.socket.emit(rawEvent, data)
             }
         } else {
