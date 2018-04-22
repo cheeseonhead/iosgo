@@ -47,7 +47,7 @@ class OGSOauthApiStore {
     fileprivate func sendRequest(toUrl url: String, method: HTTPMethod, parameters: [String: String], completion: @escaping (OGSLoginInfo) -> Void) {
         apiStore.request(toUrl: url, method: method, parameters: parameters) { statusCode, payload, _ in
 
-            var loginInfo = OGSLoginInfo(result: .error(type: ApiErrorType.init(statusCode: statusCode)))
+            var loginInfo = OGSLoginInfo(result: .error(type: ApiError(statusCode: statusCode)))
 
             switch statusCode {
             case .ok:

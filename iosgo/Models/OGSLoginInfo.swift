@@ -5,18 +5,15 @@
 
 import Foundation
 
-struct OGSLoginInfo
-{
+struct OGSLoginInfo {
     var result: GetTokenResult
 
-    enum GetTokenResult
-    {
+    enum GetTokenResult {
         case success
-        case error(type: ApiErrorType)
+        case error(type: ApiError)
     }
 
-    struct TokenInfo
-    {
+    struct TokenInfo {
         var accessToken: String
         var tokenType: String
         var expiresIn: Int

@@ -11,7 +11,7 @@ import Foundation
 class ConfigAPI {
     enum Result<T> {
         case success(T)
-        case error(ApiErrorType)
+        case error(ApiError)
     }
 
     let apiStore: OGSApiStore
@@ -25,7 +25,7 @@ class ConfigAPI {
 
         apiStore.request(toUrl: url, method: .GET, parameters: [:]) { code, payload, _ in
 
-            var result = Result<Config>.error(ApiErrorType(statusCode: code))
+            var result = Result<Config>.error(ApiError(statusCode: code))
 
             switch code {
             case .ok:

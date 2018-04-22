@@ -12,7 +12,7 @@ class OGSMeStore {
 
         enum Result {
             case success(user: OGSUser)
-            case error(type: ApiErrorType)
+            case error(type: ApiError)
         }
     }
 
@@ -27,7 +27,7 @@ class OGSMeStore {
 
     func getUser(completion: @escaping (Response) -> Void) {
         apiStore.request(toUrl: url, method: .GET, parameters: [:]) { statusCode, payload, _ in
-            var response = Response(result: .error(type: ApiErrorType.init(statusCode: statusCode)))
+            var response = Response(result: .error(type: ApiError(statusCode: statusCode)))
 
             switch statusCode {
             case .ok:

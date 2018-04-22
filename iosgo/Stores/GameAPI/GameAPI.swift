@@ -17,7 +17,7 @@ class GameAPI {
 
     enum Result {
         case success(game: Game)
-        case error(type: ApiErrorType)
+        case error(type: ApiError)
     }
 
     private var apiStore: OGSApiStore
@@ -31,7 +31,7 @@ class GameAPI {
 
         apiStore.request(toUrl: url, method: .GET, parameters: [:]) { code, payload, _ in
 
-            var response = Response(result: .error(type: ApiErrorType.init(statusCode: code)))
+            var response = Response(result: .error(type: ApiError(statusCode: code)))
 
             switch code {
             case .ok:

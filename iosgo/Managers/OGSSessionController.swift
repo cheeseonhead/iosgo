@@ -12,7 +12,7 @@ class OGSSessionController {
             case error(type: Error)
 
             enum Error {
-                case networkError(ApiErrorType)
+                case networkError(ApiError)
                 case accessTokenInvalid
                 case refreshTokenInvalid
             }

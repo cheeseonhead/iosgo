@@ -51,13 +51,13 @@ fileprivate extension OGSLoginWorker {
         return response
     }
 
-    func createLoginErrorResponse(errorType: ApiErrorType) -> OGSLogin.Login.Response {
+    func createLoginErrorResponse(errorType: ApiError) -> OGSLogin.Login.Response {
         var responseError: OGSLogin.Login.Response.ErrorType!
 
         switch errorType {
         case .unauthorized:
             responseError = .invalidLoginInfo
-        case .genericError(let message):
+        case let .genericError(message):
             responseError = .generic(message: message)
         }
 
