@@ -24,10 +24,14 @@ class PlayPresenter: PlayPresentationLogic {
     private var renderer = GameRenderer()
 
     func presentLoadScene(response: Play.LoadGame.Response) {
-        let state = renderer.getState(from: response.state)
 
-        let model = Play.LoadGame.ViewModel(state: state)
-        viewController?.displayLoadScene(viewModel: model)
+        response.promise.done(on: DispatchQueue.main) { goState in
+            let state = self.renderer.getState(from: goState)
+            let model = Play.LoadGame.ViewModel(state: state)
+            self.viewController?.displayLoadScene(viewModel: model)
+        }.catch { error in
+            print(error.localizedDescription)
+        }
     }
 
     func presentUpdateGame(response: Play.UpdateGame.Response) {

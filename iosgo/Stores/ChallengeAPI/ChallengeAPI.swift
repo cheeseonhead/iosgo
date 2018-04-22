@@ -3,6 +3,8 @@
 // Copyright (c) 2017 Cheeseonhead. All rights reserved.
 //
 
+import PromiseKit
+
 class ChallengeAPI {
     struct AcceptResponse {
         var success: Bool
@@ -15,30 +17,10 @@ class ChallengeAPI {
         self.apiStore = apiStore
     }
 
-    func acceptChallenge(id: Int, completion: @escaping (_: AcceptResponse) -> Void) {
+    func acceptChallenge(id: Int) -> Promise<Empty> {
         let url = ChallengeURLGenerator.accept(challengeId: id)
 
-        apiStore.request(toUrl: url, method: .POST, parameters: [:]) { statusCode, payload, _ in
-            var success: Bool!
-
-            switch statusCode {
-            case .accepted:
-                success = true
-            default:
-                success = false
-            }
-
-            var errorMessage: String?
-            switch statusCode {
-            case .forbidden:
-                errorMessage = payload?["error"] as? String
-            default:
-                break
-            }
-
-            let response = AcceptResponse(success: success, errorMessage: errorMessage)
-            completion(response)
-        }
+        return apiStore.request(toUrl: url, method: .POST, parameters: [:], resultType: Empty.self)
     }
 }
 

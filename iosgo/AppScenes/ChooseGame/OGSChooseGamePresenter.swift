@@ -10,10 +10,11 @@
 //
 
 import UIKit
+import PromiseKit
 
 protocol OGSChooseGamePresenterInput {
     func presentListGames(response: OGSChooseGame.ListGames.Response)
-    func presentTouchGame(response: OGSChooseGame.TouchGame.Response)
+    func presentTouchGame(promise: Promise<OGSChooseGame.TouchGame.Response>)
 }
 
 protocol OGSChooseGamePresenterOutput: class {
@@ -36,35 +37,34 @@ class OGSChooseGamePresenter: OGSChooseGamePresenterInput {
         }
     }
 
-    func presentTouchGame(response: OGSChooseGame.TouchGame.Response) {
-        var nextAction: OGSChooseGame.TouchGame.ViewModel.NextAction!
+    func presentTouchGame(promise: Promise<OGSChooseGame.TouchGame.Response>) {
+        typealias TouchGame = OGSChooseGame.TouchGame
 
-        switch response.action {
-        case .accept:
-            switch response.status {
-            case .success:
+        var nextAction: TouchGame.ViewModel.NextAction!
+
+        _ = promise.done { response in
+            switch response.action {
+            case .accept:
                 nextAction = .navigate
-            case .error(let type):
-                switch type {
-                case .challengeMissing:
-                    nextAction = .alert(message: "The challenge you are trying to accept does not exist.")
-                case .other(let message):
-                    nextAction = .alert(message: message)
-                }
-            }
-        case .remove:
-            switch response.status {
-            case .error:
-                nextAction = .alert(message: errorMessage(for: response.action))
-            default:
+            case .remove:
                 break
             }
-        }
+            let viewModel = TouchGame.ViewModel(nextAction: nextAction)
 
-        let viewModel = OGSChooseGame.TouchGame.ViewModel(nextAction: nextAction)
-
-        OGSDispatcher.asyncMain {
-            self.output.displayTouchGame(viewModel: viewModel)
+            OGSDispatcher.asyncMain {
+                self.output.displayTouchGame(viewModel: viewModel)
+            }
+        }.catch { error in
+            switch error {
+            case TouchGame.TouchGameError.challengeMissing:
+                nextAction = .alert(message: "The challenge you are trying to accept does not exist.")
+            default:
+                nextAction = .alert(message: error.localizedDescription)
+            }
+            let viewModel = TouchGame.ViewModel(nextAction: nextAction)
+            OGSDispatcher.asyncMain {
+                self.output.displayTouchGame(viewModel: viewModel)
+            }
         }
     }
 }

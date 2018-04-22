@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import PromiseKit
 
 protocol OGSUserSettingsStoreProtocol {
     var accessToken: String? { get set }
@@ -25,31 +26,20 @@ class OGSAppConfigurator {
 // MARK: - Configure app
 
 extension OGSAppConfigurator {
-    func configureApp(completion: @escaping (ConfigureResult) -> Void) {
-        configureSessionController(completion: completion)
+    func configureApp() -> Promise<ConfigureResult> {
+        return configureSessionController()
     }
 
-    func configureSessionController(completion: @escaping (ConfigureResult) -> Void) {
+    func configureSessionController() -> Promise<ConfigureResult> {
         OGSSessionController.sharedInstance.current = session
-        OGSSessionController.sharedInstance.initialize { result in
-            switch result {
-            case .success:
-                self.configureSocketManager(completion: completion)
-            case .error:
-                completion(.loggedOut)
-            }
-        }
+
+        return OGSSessionController.sharedInstance.initialize()
+            .then { _ in self.configureSocketManager() }
     }
 
-    func configureSocketManager(completion: @escaping (ConfigureResult) -> Void) {
+    func configureSocketManager() -> Promise<ConfigureResult> {
         SocketManager.sharedInstance.sessionController = OGSSessionController.sharedInstance
 
-        SocketManager.sharedInstance.connect { success in
-            if success {
-                completion(.loggedIn)
-            } else {
-                completion(.loggedOut)
-            }
-        }
+        return SocketManager.sharedInstance.connect().map { _ in .loggedIn }
     }
 }

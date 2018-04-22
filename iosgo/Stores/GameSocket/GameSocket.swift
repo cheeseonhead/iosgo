@@ -8,6 +8,7 @@
 
 import Foundation
 import Unbox
+import PromiseKit
 
 protocol GameSocketDelegate: class {
     func handleMove(_ move: BoardPoint)
@@ -30,30 +31,31 @@ class GameSocket {
     }
 
     func connect() {
-        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .receiveMove)) { [weak self] data in
-            guard let dict: JSON = data[0] as? JSON,
-                let moveModel = try? JSONDecoder().decode(Models.ReceivedMove.self, from: dict) else {
-                return
+        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .receiveMove), resultType: Models.ReceivedMove.self) { promise in
+            promise.done { [weak self] receivedMove in
+                self?.handleMove(model: receivedMove)
+
+            }.catch { print($0) }
+        }
+
+        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .gamedata), resultType: GameData.self) { promise in
+            promise.done { [weak self] gameData in
+                self?.handleGameData(gameData: gameData)
+            }.catch {
+                print($0)
             }
-            self?.handleMove(model: moveModel)
         }
 
-        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .gamedata)) { [weak self] data in
-            guard let strongSelf = self,
-                let dictionary = data[0] as? UnboxableDictionary,
-                let gameData: GameData = try? unbox(dictionary: dictionary) else {
-                return
+        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .clock), resultType: Models.ReceivedClock.self) { promise in
+            promise.done { [weak self] model in
+                self?.handleClock(model: model)
+            }.catch {
+                print($0)
             }
-
-            strongSelf.handleGameData(gameData: gameData)
         }
 
-        socket.on(GameSocketEventCreator(gameId: gameId, eventType: .clock), classType: Models.ReceivedClock.self) { [weak self] model in
-            self?.handleClock(model: model)
-            return
-        }
+        socket.onceConnected().done { [weak self] _ in
 
-        socket.onConnect { [weak self] in
             guard let strongSelf = self else { return }
 
             let connectData = Models.Connect(chat: true, gameId: strongSelf.gameId, playerId: strongSelf.playerId)
@@ -69,7 +71,6 @@ class GameSocket {
 }
 
 // MARK: - Handlers
-
 private extension GameSocket {
     private func handleMove(model: Models.ReceivedMove) {
         delegate?.handleMove(model.move)

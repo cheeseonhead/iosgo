@@ -9,10 +9,10 @@
 import Foundation
 import Unbox
 
-enum PlayerType: String, UnboxableKey, UnboxableEnum {
+enum PlayerType: String, UnboxableKey, UnboxableEnum, Codable {
     case black, white
 
     static func transform(unboxedKey: String) -> PlayerType? {
-        return PlayerType.init(rawValue: unboxedKey)
+        return PlayerType(rawValue: unboxedKey)
     }
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 import Unbox
+import PromiseKit
 
 class GameAPI {
 
@@ -17,7 +18,7 @@ class GameAPI {
 
     enum Result {
         case success(game: Game)
-        case error(type: ApiErrorType)
+        case error(type: ApiError)
     }
 
     private var apiStore: OGSApiStore
@@ -26,34 +27,9 @@ class GameAPI {
         self.apiStore = apiStore
     }
 
-    func game(id: Int, completion: @escaping (_ response: Response) -> Void) {
+    func game(id: Int) -> Promise<Game> {
         let url = "/api/v1/games/\(String(id))"
 
-        apiStore.request(toUrl: url, method: .GET, parameters: [:]) { code, payload, _ in
-
-            var response = Response(result: .error(type: ApiErrorType.init(statusCode: code)))
-
-            switch code {
-            case .ok:
-                do {
-                    let game = try self.createGame(payload: payload!)
-
-                    response.result = .success(game: game)
-                } catch {
-                    print(error)
-                }
-            default:
-                break
-            }
-
-            completion(response)
-        }
-    }
-}
-
-private extension GameAPI {
-    func createGame(payload: [String: Any]) throws -> Game {
-        let game: Game = try unbox(dictionary: payload)
-        return game
+        return apiStore.request(toUrl: url, method: .GET, parameters: [:], resultType: Game.self)
     }
 }

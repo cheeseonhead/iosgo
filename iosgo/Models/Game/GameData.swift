@@ -9,16 +9,22 @@
 import Foundation
 import Unbox
 
-struct GameData {
+struct GameData: Decodable {
 
     // MARK: - Basic
 
-    var blackId: Int // black_player_id
-    var whiteId: Int // white_player_id
+    var blackPlayerId: Int // black_player_id
+    var whitePlayerId: Int // white_player_id
     var `private`: Bool
     var ranked: Bool
     var gameId: Int
-    var players: [PlayerType: [String: Any]]
+    var players: Players
+    struct Players: Codable {
+        let black: Player
+        let white: Player
+    }
+
+    struct Player: Codable {}
 
     // MARK: - Info
 
@@ -31,7 +37,7 @@ struct GameData {
     var phase: Phase
     var initialPlayer: PlayerType
 
-    enum Phase: String, UnboxableEnum {
+    enum Phase: String, UnboxableEnum, Codable {
         case play, finished
         case stoneRemoval = "stone removal"
     }
@@ -57,13 +63,14 @@ struct GameData {
     // MARK: - Game
 
     var genericMoves: [[Int]]
-    var conditionalMoves: [Int: [String: Any?]]?
-    var initialState: [PlayerType: String]
-    var history: [Any]
+    //    var conditionalMoves: [Int: [String: Any?]]?
+    //    var initialState: [PlayerType: String]
+    //    var history: [Any]
 
     // MARK: - Pause
 
     var pauseControl: [String: Bool]?
+    var pauseOnWeekends: Bool
 
     // MARK: - Scoring
 
@@ -76,18 +83,15 @@ struct GameData {
     var superkoAlgorithm: String
     var whiteMustPassLast: Bool
     var scoreTerritory: Bool
+    var scoreHandicap: Bool
 
     // MARK: - Review
 
-    var reviews: [String: Any]?
+    var reviews: [String: Review]?
+    struct Review: Codable {}
 
     // MARK: - Derived
-
-    var moves: [BoardPoint]
-}
-
-extension GameData {
-    static func createMoves(from genericMoves: [[Int]]) -> [BoardPoint] {
+    func moves() -> [BoardPoint] {
         var moves = [BoardPoint]()
 
         for genericMove in genericMoves {

@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import PromiseKit
 
 protocol ChallengeStoreProtocol {
     func acceptChallenge(id: Int, completion: () -> Void)
@@ -21,19 +22,7 @@ class ChallengeWorker {
         self.challengeStore = challengeStore
     }
 
-    func acceptChallenge(id: Int, completion: @escaping (AcceptResponse) -> Void) {
-        challengeStore.acceptChallenge(id: id) { storeResponse in
-            let response = self.acceptResponse(from: storeResponse)
-            completion(response)
-        }
-    }
-}
-
-// MARK: - Model Translation
-extension ChallengeWorker {
-    func acceptResponse(from storeResponse: ChallengeAPI.AcceptResponse) -> AcceptResponse {
-        let response = AcceptResponse(success: storeResponse.success, errorMessage: storeResponse.errorMessage)
-
-        return response
+    func acceptChallenge(id: Int) -> Promise<Empty> {
+        return challengeStore.acceptChallenge(id: id)
     }
 }

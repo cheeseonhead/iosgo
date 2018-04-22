@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PromiseKit
 
 protocol PlayWorkerDelegate: class {
     func gameUpdated(state: GoState)
@@ -28,25 +29,13 @@ class PlayWorker {
         self.gameStore = gameStore
     }
 
-    func loadGame(id: Int, completion: @escaping (LoadResult) -> Void) {
-        gameStore.game(id: id) { storeResponse in
+    func loadGame(id: Int) -> Promise<GoState> {
 
-            var loadResult: LoadResult!
+        return gameStore.game(id: id).map { game in
+            self.gameEngine = GameEngine(game: game)
+            self.connectSocket()
 
-            switch storeResponse.result {
-            case let .success(game):
-                self.gameEngine = GameEngine(game: game)
-                loadResult = .success(stones: self.gameEngine.getState())
-                self.connectSocket()
-            case let .error(type):
-                switch type {
-                case let .genericError(message):
-                    loadResult = .error(message: message)
-                default: break
-                }
-            }
-
-            completion(loadResult)
+            return self.gameEngine.getState()
         }
     }
 

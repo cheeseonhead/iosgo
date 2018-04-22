@@ -10,9 +10,10 @@
 //
 
 import UIKit
+import PromiseKit
 
 protocol OGSLoginPresenterInput {
-    func presentLogin(response: OGSLogin.Login.Response)
+    func presentLogin(response: Promise<OGSLogin.Login.Response>)
     func presentFieldsChange(response: OGSLogin.FieldsChanged.Response)
 }
 
@@ -24,14 +25,34 @@ protocol OGSLoginPresenterOutput: class {
 class OGSLoginPresenter: OGSLoginPresenterInput {
     weak var output: OGSLoginPresenterOutput!
 
-    func presentLogin(response: OGSLogin.Login.Response) {
-        let readyToNavigate = readyToNavigateFrom(response: response)
-        let userInputState = userInputStateFrom(response: response)
-        let errorLabelState = errorLabelStateFrom(response: response)
+    func presentLogin(response: Promise<OGSLogin.Login.Response>) {
 
-        let viewModel = OGSLogin.Login.ViewModel(readyToNavigate: readyToNavigate, userInputState: userInputState, errorLabelState: errorLabelState)
-        OGSDispatcher.asyncMain {
-            self.output.displayLogin(viewModel: viewModel)
+        _ = firstly { () -> Promise<OGSLogin.Login.Response> in
+            let viewModel = OGSLogin.Login.ViewModel(readyToNavigate: false, userInputState: .pending, errorLabelState: .hidden)
+            OGSDispatcher.asyncMain {
+                self.output.displayLogin(viewModel: viewModel)
+            }
+
+            return response
+        }.done { _ in
+            let viewModel = OGSLogin.Login.ViewModel(readyToNavigate: true, userInputState: .ready, errorLabelState: .hidden)
+            OGSDispatcher.asyncMain {
+                self.output.displayLogin(viewModel: viewModel)
+            }
+        }.catch { error in
+            var errorLabelState: OGSLogin.Login.ViewModel.ErrorLabelState!
+
+            switch error {
+            case ApiError.unauthorized:
+                errorLabelState = .showing(message: "Invalid username or password")
+            default:
+                errorLabelState = .showing(message: error.localizedDescription)
+            }
+
+            let viewModel = OGSLogin.Login.ViewModel(readyToNavigate: false, userInputState: .ready, errorLabelState: errorLabelState)
+            OGSDispatcher.asyncMain {
+                self.output.displayLogin(viewModel: viewModel)
+            }
         }
     }
 
@@ -46,40 +67,6 @@ class OGSLoginPresenter: OGSLoginPresenterInput {
 
         OGSDispatcher.asyncMain {
             self.output.displayFieldsChange(viewModel: viewModel)
-        }
-    }
-}
-
-fileprivate extension OGSLoginPresenter {
-    func readyToNavigateFrom(response: OGSLogin.Login.Response) -> Bool {
-        switch response.loadingStatus {
-        case .success:
-            return true
-        case .error, .loading:
-            return false
-        }
-    }
-
-    func userInputStateFrom(response: OGSLogin.Login.Response) -> OGSLogin.Login.ViewModel.UserInputState {
-        switch response.loadingStatus {
-        case .loading:
-            return .pending
-        case .error, .success:
-            return .ready
-        }
-    }
-
-    func errorLabelStateFrom(response: OGSLogin.Login.Response) -> OGSLogin.Login.ViewModel.ErrorLabelState {
-        switch response.loadingStatus {
-        case .success, .loading:
-            return .hidden
-        case .error(let type):
-            switch type {
-            case .invalidLoginInfo:
-                return .showing(message: "Invalid username or password")
-            case .generic(let message):
-                return .showing(message: message)
-            }
         }
     }
 }

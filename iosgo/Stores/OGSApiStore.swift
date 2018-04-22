@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import PromiseKit
 
 enum HTTPMethod: String {
     case GET
@@ -11,7 +12,6 @@ enum HTTPMethod: String {
 }
 
 enum HTTPStatusCode: Int {
-    case clientError = -1
     case ok = 200
     case accepted = 202
     case badRequest = 400
@@ -19,31 +19,32 @@ enum HTTPStatusCode: Int {
     case forbidden = 403
     case notFound = 404
     case tooManyRequests = 429
-}
 
-enum ApiErrorType {
-    case unauthorized
-    case genericError(message: String)
-
-    init(statusCode: HTTPStatusCode) {
-        switch statusCode {
-        case .clientError:
-            self = .genericError(message: NSLocalizedString("Please check your internet connection and try again.", comment: ""))
-        case .badRequest:
-            self = .genericError(message: NSLocalizedString("The request could not be processed, please report as a bug to the developers", comment: ""))
-        case .unauthorized:
-            self = .genericError(message: NSLocalizedString("You are not authorized to do the request.", comment: ""))
-        case .forbidden:
-            self = .genericError(message: NSLocalizedString("You are forbidden to do this action", comment: ""))
-        case .notFound:
-            self = .genericError(message: NSLocalizedString("The action you are trying to do doesn't exist.", comment: ""))
-        case .tooManyRequests:
-            self = .genericError(message: NSLocalizedString("You are making too many requests.", comment: ""))
+    func success() -> Bool {
+        switch self {
+        case .ok, .accepted:
+            return true
         default:
-            self = .genericError(message: NSLocalizedString("An unknown error has Occured.", comment: ""))
+            return false
         }
     }
 }
+
+enum HTTPStatusCodeError: Error {
+    case unrecognized(code: Int)
+}
+
+enum ParseError: Error {
+    case urlError(url: String)
+    case wrongDataFormat(str: String)
+    case wrongUrlResponseFormat(response: URLResponse)
+    case typeMismatches(expected: [Any.Type], container: Any)
+    case typeMismatch(expected: Any.Type, container: Any)
+    case wrongDateFormat(dateStr: String, format: String)
+    case unknownEnumType(type: Any.Type)
+}
+
+struct Empty: Codable {}
 
 typealias OGSApiResultBlock = (_ statusCode: HTTPStatusCode, _ payload: [String: Any]?, _ error: Error?) -> Void
 
@@ -52,15 +53,19 @@ class OGSApiStore {
     var session: OGSSession {
         return sessionController.current
     }
+
     var clientID: String {
         return session.configuration.clientID
     }
+
     var clientSecret: String! {
         return session.configuration.clientSecret
     }
+
     var domainName: String {
         return session.configuration.domainName
     }
+
     var accessToken: String? {
         get {
             return session.accessToken
@@ -69,6 +74,7 @@ class OGSApiStore {
             sessionController.current.accessToken = newValue
         }
     }
+
     var refreshToken: String? {
         get {
             return session.refreshToken
@@ -82,12 +88,18 @@ class OGSApiStore {
         self.sessionController = sessionController
     }
 
-    func request(toUrl url: String, method: HTTPMethod, parameters: [String: String], completion: @escaping OGSApiResultBlock) {
-        guard let fullURL = URL(string: domainName.appending(url)) else { return }
+    func request<T: Decodable>(toUrl url: String, method: HTTPMethod, parameters: [String: String], resultType: T.Type) -> Promise<T> {
+        return firstly { () -> Promise<Data> in
+            guard let fullURL = URL(string: domainName.appending(url)) else {
+                throw ParseError.urlError(url: url)
+            }
+            let request = createRequest(fullURL: fullURL, method: method, parameters: parameters)
 
-        let request = createRequest(fullURL: fullURL, method: method, parameters: parameters)
-
-        send(request: request, completion: completion)
+            return send(request: request)
+        }.map { result -> T in
+            let payload = try JSONDecoder().decode(resultType, from: result)
+            return payload
+        }
     }
 
     private func createRequest(fullURL: URL, method: HTTPMethod, parameters: [String: String]) -> URLRequest {
@@ -102,21 +114,24 @@ class OGSApiStore {
         return request
     }
 
-    private func send(request: URLRequest, completion: @escaping OGSApiResultBlock) {
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let httpResponse = response as? HTTPURLResponse, let data = data else {
-                completion(.clientError, nil, error)
-                return
+    private func send(request: URLRequest) -> Promise<Data> {
+        return firstly {
+            URLSession.shared.dataTask(.promise, with: request)
+        }.map { result -> (data: Data, response: HTTPURLResponse) in
+            guard let resp = result.response as? HTTPURLResponse else {
+                throw ParseError.wrongUrlResponseFormat(response: result.response)
+            }
+            return (data: result.data, response: resp)
+        }.map { result -> Data in
+            guard let statusCode = HTTPStatusCode(rawValue: result.response.statusCode) else {
+                throw HTTPStatusCodeError.unrecognized(code: result.response.statusCode)
             }
 
-            do {
-                let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
-                completion(HTTPStatusCode(rawValue: httpResponse.statusCode)!, json, error)
-            } catch _ {
-                print("Error Occurred")
+            guard statusCode.success() else {
+                throw ApiError(statusCode: statusCode, request: request)
             }
+
+            return result.data
         }
-
-        task.resume()
     }
 }
