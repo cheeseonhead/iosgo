@@ -27,7 +27,7 @@ class OGSLoginInteractor: OGSLoginInteractorInput {
     var loginWorker: OGSLoginWorker = {
         let sessionController = OGSSessionController.sharedInstance
         let apiStore = OGSApiStore(sessionController: sessionController)
-        return OGSLoginWorker(authStore: OGSOauthApiStore(apiStore: apiStore), meStore: MeApi(apiStore: apiStore, sessionController: sessionController))
+        return OGSLoginWorker(authStore: OGSOauthApiStore(apiStore: apiStore), meStore: MeApi(apiStore: apiStore))
     }()
 
     // MARK: - Business logic

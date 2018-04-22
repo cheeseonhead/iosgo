@@ -16,7 +16,7 @@ class MeApi {
         self.apiStore = apiStore
     }
 
-    func getUser(completion _: @escaping (Response) -> Void) -> Promise<OGSUser> {
+    func getUser() -> Promise<OGSUser> {
         return apiStore.request(toUrl: url, method: .GET, parameters: [:], resultType: OGSUser.self)
     }
 }
