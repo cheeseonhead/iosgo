@@ -9,8 +9,6 @@
 import Foundation
 import Unbox
 
-struct Player {}
-
 struct Tournament: Codable {}
 
 struct Ladder: Codable {}
@@ -54,7 +52,7 @@ struct Game {
     var whitePlayerRank: Int
     var whitePlayerRating: Double
     var historicalRatings: HistoricalRatings
-    // "players"
+    var players: [PlayerType: Player]
 
     // MARK: - Ladder
     var ladder: Ladder?
@@ -82,5 +80,45 @@ struct Game {
 
     enum Source: String, Codable {
         case play
+    }
+}
+
+extension Game {
+    struct Player: Codable {
+        //        var agaValid:
+        var country: String
+        var icon: String
+        var id: Int
+        var professional: Bool
+        var ranking: Int
+        var rankingBlitz: Int
+        var rankingCorrespondence: Int
+        var rankingLive: Int
+        var rating: Double
+        var ratingBlitz: Double
+        var ratingCorrespondence: Double
+        var ratingLive: Double
+        //        var ratings:
+        //        var uiClass: String
+        var username: String
+
+        enum CodingKeys: String, CodingKey {
+            //            case agaValid = "aga_valid"
+            case country
+            case icon
+            case id
+            case professional
+            case ranking
+            case rankingBlitz = "ranking_blitz"
+            case rankingCorrespondence = "ranking_correspondence"
+            case rankingLive = "ranking_live"
+            case rating
+            case ratingBlitz = "rating_blitz"
+            case ratingCorrespondence = "rating_correspondence"
+            case ratingLive = "rating_live"
+            //            case ratings
+            //            case uiClass = "ui_class"
+            case username
+        }
     }
 }
