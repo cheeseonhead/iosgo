@@ -84,6 +84,7 @@ extension PlayViewController: BoardSceneActionDelegate {
 extension PlayViewController: PlayDisplayLogic {
     func displayLoadScene(viewModel: Play.LoadGame.ViewModel) {
         boardScene.initialize(viewModel.state)
+        gameInfoView.setUsers(black: viewModel.black, white: viewModel.white)
     }
 
     func displayUpdateGame(viewModel: Play.UpdateGame.ViewModel) {

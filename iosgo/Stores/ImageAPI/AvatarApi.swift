@@ -16,13 +16,19 @@ class AvatarApi {
         self.apiStore = apiStore
     }
 
-    func getImage(fullUrl: String) -> Promise<UIImage> {
+    enum ServerType {
+        case gravatar
+        case ogs
+    }
+
+    func getImage(fullUrl: String, size: Int) -> Promise<UIImage> {
 
         return firstly { () -> Promise<Data> in
             guard let url = URL(string: fullUrl) else {
                 throw ParseError.urlError(url: fullUrl)
             }
-            var request = URLRequest(url: url)
+            let resizedURL = newURL(oldURL: url, size: size)
+            var request = URLRequest(url: resizedURL)
             request.httpMethod = HTTPMethod.GET.rawValue
 
             return apiStore.send(request: request)
@@ -33,5 +39,35 @@ class AvatarApi {
 
             return image
         }
+    }
+
+    private func newURL(oldURL: URL, size: Int) -> URL {
+
+        var components = URLComponents(url: oldURL, resolvingAgainstBaseURL: false)!
+
+        let type = typeOfUrl(url: oldURL)
+
+        switch type {
+        case .gravatar:
+            components.query = "s=\(size)&d=retro"
+            return components.url!
+        case .ogs:
+            let newString = ogsUrl(oldURL: oldURL.absoluteString, size: size)
+            return URL(string: newString)!
+        }
+    }
+
+    private func typeOfUrl(url: URL) -> ServerType {
+        if let host = url.host, host == "secure.gravatar.com" {
+            return .gravatar
+        } else {
+            return .ogs
+        }
+    }
+
+    private func ogsUrl(oldURL: String, size: Int) -> String {
+        let cutPoint = oldURL.index(oldURL.endIndex, offsetBy: -6)
+        let absString = oldURL.prefix(upTo: cutPoint)
+        return absString.appending("\(size).png")
     }
 }

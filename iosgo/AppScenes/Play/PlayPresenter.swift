@@ -27,7 +27,11 @@ class PlayPresenter: PlayPresentationLogic {
     func presentLoadScene(response: Promise<Play.LoadGame.Response>) {
         response.done(on: DispatchQueue.main) { response in
             let state = self.renderer.getState(from: response.state)
-            let model = Play.LoadGame.ViewModel(state: state)
+
+            let black = self.user(from: response.black)
+            let white = self.user(from: response.white)
+
+            let model = Play.LoadGame.ViewModel(state: state, black: black, white: white)
             self.viewController?.displayLoadScene(viewModel: model)
         }.catch { error in
             self.viewController?.errorAlert(error)
@@ -52,5 +56,9 @@ private extension PlayPresenter {
     func clockVM(_ response: Play.UpdateClock.Response) -> Play.UpdateClock.ViewModel {
         let vm = Play.UpdateClock.ViewModel(blackTimeStr: "\(String(describing: response.blackClock))", whiteTimeStr: "\(String(describing: response.whiteClock))")
         return vm
+    }
+
+    func user(from player: Play.LoadGame.Response.User) -> PlayerInfoViewModel.User {
+        return PlayerInfoViewModel.User(username: player.username, profile: player.icon)
     }
 }

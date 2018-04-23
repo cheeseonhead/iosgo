@@ -19,14 +19,17 @@ protocol PlayBusinessLogic {
 
 class PlayInteractor: PlayBusinessLogic, PlayDataStore {
     var presenter: PlayPresentationLogic?
-    var playWorker = PlayWorker(gameStore: GameAPI(apiStore: OGSApiStore(sessionController: OGSSessionController.sharedInstance)))
+    var playWorker: PlayWorker
+
+    required init() {
+        let apiStore = OGSApiStore(sessionController: OGSSessionController.sharedInstance)
+        playWorker = PlayWorker(gameStore: GameAPI(apiStore: apiStore), imageApi: AvatarApi(apiStore: apiStore))
+    }
 
     func loadScene(request _: Play.LoadGame.Request) {
 
         let promise = playWorker.loadGame(id: 3593).get { _ in
             self.playWorker.delegate = self
-        }.map { state in
-            Play.LoadGame.Response(state: state)
         }
 
         presenter?.presentLoadScene(response: promise)

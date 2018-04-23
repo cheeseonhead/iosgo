@@ -20,10 +20,19 @@ enum Play {
 
         struct Response {
             var state: GoState
+            var black: User
+            var white: User
+
+            struct User {
+                let username: String
+                let icon: UIImage
+            }
         }
 
         struct ViewModel {
             var state: GridState
+            var black: PlayerInfoViewModel.User
+            var white: PlayerInfoViewModel.User
         }
     }
 
