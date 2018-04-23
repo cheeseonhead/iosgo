@@ -64,6 +64,7 @@
 		34B57FB8208E50CD007F3003 /* Array+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B57FB7208E50CD007F3003 /* Array+Remove.swift */; };
 		34B57FBC208E511B007F3003 /* UIAlertController+Make.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B57FBB208E511B007F3003 /* UIAlertController+Make.swift */; };
 		34B57FBF208E54D7007F3003 /* Alerting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B57FBE208E54D7007F3003 /* Alerting.swift */; };
+		34B57FC2208E69F8007F3003 /* ImageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B57FC1208E69F8007F3003 /* ImageApi.swift */; };
 		34C3DDB21EFF2B41001C8AF4 /* TimeControlParametersType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C3DDB11EFF2B41001C8AF4 /* TimeControlParametersType.swift */; };
 		34C3DDB61EFF2ED5001C8AF4 /* GameAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C3DDB51EFF2ED5001C8AF4 /* GameAPI.swift */; };
 		34C46A30208D30FB007893A5 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C46A2F208D30FB007893A5 /* ApiError.swift */; };
@@ -222,6 +223,7 @@
 		34B57FB7208E50CD007F3003 /* Array+Remove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Remove.swift"; sourceTree = "<group>"; };
 		34B57FBB208E511B007F3003 /* UIAlertController+Make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Make.swift"; sourceTree = "<group>"; };
 		34B57FBE208E54D7007F3003 /* Alerting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerting.swift; sourceTree = "<group>"; };
+		34B57FC1208E69F8007F3003 /* ImageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageApi.swift; sourceTree = "<group>"; };
 		34C3DDB11EFF2B41001C8AF4 /* TimeControlParametersType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControlParametersType.swift; sourceTree = "<group>"; };
 		34C3DDB51EFF2ED5001C8AF4 /* GameAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAPI.swift; sourceTree = "<group>"; };
 		34C46A2F208D30FB007893A5 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
@@ -615,6 +617,14 @@
 			path = Alertable;
 			sourceTree = "<group>";
 		};
+		34B57FC0208E69EC007F3003 /* ImageAPI */ = {
+			isa = PBXGroup;
+			children = (
+				34B57FC1208E69F8007F3003 /* ImageApi.swift */,
+			);
+			path = ImageAPI;
+			sourceTree = "<group>";
+		};
 		34C46A31208D377D007893A5 /* URLRequest */ = {
 			isa = PBXGroup;
 			children = (
@@ -754,6 +764,7 @@
 		8405CA6ED574B6A9F2DF0E71 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				34B57FC0208E69EC007F3003 /* ImageAPI */,
 				8405CCC46689EA8AB1CE3519 /* OGSApiStore.swift */,
 				34C46A2F208D30FB007893A5 /* ApiError.swift */,
 				AD05A4E8F02D2F46F9BBF790 /* ChallengeAPI */,
@@ -1185,6 +1196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56BD888F1E5522530098E50B /* OGSButton.swift in Sources */,
+				34B57FC2208E69F8007F3003 /* ImageApi.swift in Sources */,
 				34A0BCD9207F1F0A007EB42D /* Character+FromInt.swift in Sources */,
 				34970F061F00A52A00623ED0 /* StoneType.swift in Sources */,
 				34A0BCD6207F1844007EB42D /* JSONDecoder+Dictionary.swift in Sources */,
