@@ -13,11 +13,10 @@
 import SpriteKit
 import UIKit
 
-protocol PlayDisplayLogic: class {
+protocol PlayDisplayLogic: class, Alerting {
     func displayLoadScene(viewModel: Play.LoadGame.ViewModel)
     func displayUpdateGame(viewModel: Play.UpdateGame.ViewModel)
     func displayUpdateClock(viewModel: Play.UpdateClock.ViewModel)
-    func displayError(_ error: Play.Error)
 }
 
 class PlayViewController: UIViewController {
@@ -93,9 +92,6 @@ extension PlayViewController: PlayDisplayLogic {
 
     func displayUpdateClock(viewModel: Play.UpdateClock.ViewModel) {
         gameInfoView.setClocks(blackTime: viewModel.blackTimeStr, whiteTime: viewModel.whiteTimeStr)
-    }
-
-    func displayError(_: Play.Error) {
     }
 }
 

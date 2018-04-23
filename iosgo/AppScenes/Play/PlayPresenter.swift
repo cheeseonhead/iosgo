@@ -30,7 +30,7 @@ class PlayPresenter: PlayPresentationLogic {
             let model = Play.LoadGame.ViewModel(state: state)
             self.viewController?.displayLoadScene(viewModel: model)
         }.catch { error in
-            print(error.localizedDescription)
+            self.viewController?.errorAlert(error)
         }
     }
 
