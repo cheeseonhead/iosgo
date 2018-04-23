@@ -22,7 +22,7 @@ extension GameData {
         case genericMoves = "moves"
         case allowSuperko = "allow_superko"
         case scorePasses = "score_passes"
-        //        case clock
+                case clock
         case blackPlayerId = "black_player_id"
         case pauseOnWeekends = "pause_on_weekends"
         case whitePlayerId = "white_player_id"
