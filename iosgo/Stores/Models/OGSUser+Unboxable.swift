@@ -6,7 +6,7 @@
 import Foundation
 import Unbox
 
-extension OGSUser: Unboxable {
+extension User: Unboxable {
     init(unboxer: Unboxer) throws {
         username = try unboxer.unbox(key: "username")
         rank = try unboxer.unbox(key: "ranking")

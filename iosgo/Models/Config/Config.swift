@@ -11,7 +11,7 @@ import Foundation
 struct Config: Codable {
     /// Despite the name, it's used for game authentication also.
     var chatAuth: String
-    var user: OGSUser
+    var user: User
 
     enum CodingKeys: String, CodingKey {
         case chatAuth = "chat_auth"

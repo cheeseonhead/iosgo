@@ -36,7 +36,7 @@ struct OGSSession {
 
     var userConfiguration: Config?
 
-    var user: OGSUser? {
+    var user: User? {
         return userConfiguration?.user
     }
 
