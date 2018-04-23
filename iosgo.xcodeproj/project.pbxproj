@@ -61,6 +61,7 @@
 		34A68CDC1EFF98BE0010EFA5 /* PlayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68CDB1EFF98BE0010EFA5 /* PlayerType.swift */; };
 		34ACC8AB1EEBDF7900F2B376 /* BoardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC8AA1EEBDF7900F2B376 /* BoardScene.swift */; };
 		34B3572C208C900F00757A67 /* GameData+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B3572B208C900F00757A67 /* GameData+Codable.swift */; };
+		34B57FB8208E50CD007F3003 /* Array+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B57FB7208E50CD007F3003 /* Array+Remove.swift */; };
 		34C3DDB21EFF2B41001C8AF4 /* TimeControlParametersType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C3DDB11EFF2B41001C8AF4 /* TimeControlParametersType.swift */; };
 		34C3DDB61EFF2ED5001C8AF4 /* GameAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C3DDB51EFF2ED5001C8AF4 /* GameAPI.swift */; };
 		34C46A30208D30FB007893A5 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C46A2F208D30FB007893A5 /* ApiError.swift */; };
@@ -216,6 +217,7 @@
 		34A68CDB1EFF98BE0010EFA5 /* PlayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerType.swift; sourceTree = "<group>"; };
 		34ACC8AA1EEBDF7900F2B376 /* BoardScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardScene.swift; sourceTree = "<group>"; };
 		34B3572B208C900F00757A67 /* GameData+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameData+Codable.swift"; sourceTree = "<group>"; };
+		34B57FB7208E50CD007F3003 /* Array+Remove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Remove.swift"; sourceTree = "<group>"; };
 		34C3DDB11EFF2B41001C8AF4 /* TimeControlParametersType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControlParametersType.swift; sourceTree = "<group>"; };
 		34C3DDB51EFF2ED5001C8AF4 /* GameAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAPI.swift; sourceTree = "<group>"; };
 		34C46A2F208D30FB007893A5 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
@@ -561,6 +563,38 @@
 			path = SKScenes;
 			sourceTree = "<group>";
 		};
+		34B57FB4208E5092007F3003 /* Dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */,
+			);
+			path = Dictionary;
+			sourceTree = "<group>";
+		};
+		34B57FB5208E509D007F3003 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				AD05A2B5931F24B08CD0F38B /* String+Additions.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		34B57FB6208E50A7007F3003 /* Array */ = {
+			isa = PBXGroup;
+			children = (
+				34B57FB7208E50CD007F3003 /* Array+Remove.swift */,
+			);
+			path = Array;
+			sourceTree = "<group>";
+		};
+		34B57FB9208E50DF007F3003 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
 		34C46A31208D377D007893A5 /* URLRequest */ = {
 			isa = PBXGroup;
 			children = (
@@ -864,19 +898,20 @@
 		AD05A9249FEBFC41418217D5 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				34C46A31208D377D007893A5 /* URLRequest */,
-				34FED510208C3E9800CA2603 /* KeyedDecodingContainer */,
-				341DFB9E208927CF001B9394 /* UIView */,
-				34A0BCD7207F1EF1007EB42D /* Character */,
-				34A0BCD4207F1828007EB42D /* JSONDecoder */,
-				34455DC51EFF7591002199D0 /* Unbox */,
-				34934B741EF23FE80096D3C4 /* CGSize */,
-				3414A6FE1EF22AF800E28D6D /* CGFloat */,
-				AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */,
 				8405CF5B5FD5BE2E3B1BFCDC /* Temp.swift */,
-				AD05A2B5931F24B08CD0F38B /* String+Additions.swift */,
-				AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */,
+				34B57FB6208E50A7007F3003 /* Array */,
+				3414A6FE1EF22AF800E28D6D /* CGFloat */,
+				34934B741EF23FE80096D3C4 /* CGSize */,
+				34A0BCD7207F1EF1007EB42D /* Character */,
+				34B57FB4208E5092007F3003 /* Dictionary */,
 				AD05A911B8B8BFFDC667BD24 /* Int */,
+				34A0BCD4207F1828007EB42D /* JSONDecoder */,
+				34FED510208C3E9800CA2603 /* KeyedDecodingContainer */,
+				34B57FB5208E509D007F3003 /* String */,
+				34B57FB9208E50DF007F3003 /* UIColor */,
+				341DFB9E208927CF001B9394 /* UIView */,
+				34455DC51EFF7591002199D0 /* Unbox */,
+				34C46A31208D377D007893A5 /* URLRequest */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -1132,6 +1167,7 @@
 				34970F061F00A52A00623ED0 /* StoneType.swift in Sources */,
 				34A0BCD6207F1844007EB42D /* JSONDecoder+Dictionary.swift in Sources */,
 				AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */,
+				34B57FB8208E50CD007F3003 /* Array+Remove.swift in Sources */,
 				34C46A33208D378E007893A5 /* URLRequest+cURL.swift in Sources */,
 				8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */,
 				3414A6FD1EF223BF00E28D6D /* StoneWorker.swift in Sources */,

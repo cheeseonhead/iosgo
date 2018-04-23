@@ -54,4 +54,8 @@ enum Play {
             let whiteTimeStr: String
         }
     }
+
+    struct Error {
+        let errorMessage: String
+    }
 }
