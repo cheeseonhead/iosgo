@@ -9,7 +9,7 @@
 import Foundation
 import PromiseKit
 
-class ImageApi {
+class AvatarApi {
     private var apiStore: OGSApiStore
 
     init(apiStore: OGSApiStore) {
