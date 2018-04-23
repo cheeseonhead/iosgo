@@ -12,6 +12,7 @@ enum HTTPMethod: String {
 }
 
 enum HTTPStatusCode: Int {
+    case timeout = -1
     case ok = 200
     case accepted = 202
     case badRequest = 400
@@ -115,8 +116,13 @@ class OGSApiStore {
     }
 
     private func send(request: URLRequest) -> Promise<Data> {
+
+        let timeout: Promise<(data: Data, response: URLResponse)> = firstly { after(seconds: 4) }.map { _ in
+            throw SocketError.connectTimedOut
+        }
+
         return firstly {
-            URLSession.shared.dataTask(.promise, with: request)
+            race(URLSession.shared.dataTask(.promise, with: request), timeout)
         }.map { result -> (data: Data, response: HTTPURLResponse) in
             guard let resp = result.response as? HTTPURLResponse else {
                 throw ParseError.wrongUrlResponseFormat(response: result.response)

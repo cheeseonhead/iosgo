@@ -9,12 +9,13 @@
 import Foundation
 
 enum ApiError: Error {
+    case timeout(URLRequest)
     case badRequest(URLRequest)
     case unauthorized(URLRequest)
     case forbidden(URLRequest)
     case notFound(URLRequest)
     case tooManyRequests(URLRequest)
-    case unknown(URLRequest)
+    case notFailure(URLRequest)
 
     init(statusCode: HTTPStatusCode, request: URLRequest) {
         switch statusCode {
@@ -28,8 +29,11 @@ enum ApiError: Error {
             self = .notFound(request)
         case .tooManyRequests:
             self = .tooManyRequests(request)
-        default:
-            self = .unknown(request)
+        case .timeout:
+            self = .timeout(request)
+        case .ok: fallthrough
+        case .accepted:
+            self = .notFailure(request)
         }
     }
 }
@@ -47,8 +51,10 @@ extension ApiError: LocalizedError {
             return "Could not find url for request:\(url.cURL)"
         case let .tooManyRequests(url):
             return "Too many requests: \(url.cURL)"
-        case let .unknown(url):
-            return "An unknown error occurred while making request: \(url.cURL)"
+        case let .timeout(url):
+            return "Timed out for request: \(url.cURL)"
+        case let .notFailure(url):
+            return "Not failure but still threw ApiError for request: \(url.cURL)"
         }
     }
 }
