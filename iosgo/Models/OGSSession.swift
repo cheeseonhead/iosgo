@@ -5,6 +5,17 @@
 
 import Foundation
 
+enum SessionError: Error, LocalizedError {
+    case noCurrentConfiguration
+
+    var errorDescription: String? {
+        switch self {
+        case .noCurrentConfiguration:
+            return "There isn't a user object in current session."
+        }
+    }
+}
+
 struct OGSSession {
     enum Key {
         static let user = "user"
