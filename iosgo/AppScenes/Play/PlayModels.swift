@@ -20,6 +20,7 @@ enum Play {
 
         struct Response {
             var state: GoState
+            var clock: GameData.Clock
             var black: User
             var white: User
 

@@ -17,7 +17,6 @@ extension GameData {
         let expiration: Int
         let gameId: Int
         let lastMove: Int
-        let now: Int
         let pausedSince: Int?
         let title: String
         let whiteId: Int
@@ -30,7 +29,6 @@ extension GameData {
             case expiration
             case gameId = "game_id"
             case lastMove = "last_move"
-            case now
             case pausedSince = "paused_since"
             case title
             case whiteId = "white_player_id"

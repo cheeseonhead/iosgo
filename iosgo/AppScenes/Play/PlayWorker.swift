@@ -20,7 +20,7 @@ class PlayWorker {
         case error(message: String)
     }
 
-    private let DefaultImageSize = 128
+    private let DefaultImageSize = 256
 
     private var gameStore: GameAPI
     private var imageApi: AvatarApi
@@ -80,7 +80,10 @@ private extension PlayWorker {
     func response(from game: Game, images: (black: UIImage, white: UIImage)) -> Play.LoadGame.Response {
         let blackUser = Play.LoadGame.Response.User(username: game.players.black.username, icon: images.black)
         let whiteUser = Play.LoadGame.Response.User(username: game.players.white.username, icon: images.white)
-        let response = Play.LoadGame.Response(state: gameEngine.getState(), black: blackUser, white: whiteUser)
+        let response = Play.LoadGame.Response(state: gameEngine.getState(),
+                                              clock: game.gamedata.clock,
+                                              black: blackUser,
+                                              white: whiteUser)
 
         return response
     }
