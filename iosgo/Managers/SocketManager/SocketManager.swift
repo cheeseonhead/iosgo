@@ -19,9 +19,9 @@ class SocketManager {
     private var manager: SocketIO.SocketManager!
     fileprivate var socket: SocketIOClient!
 
-    func connect() -> Promise<()> {
+    func connect() -> Promise<Any> {
 
-        let promise = Promise<()> { seal in
+        let promise = Promise<Any> { seal in
             guard let session = sessionController?.current else {
                 seal.reject(SocketError.noCurrentSession)
                 return
@@ -45,8 +45,8 @@ class SocketManager {
 
             socket.connect()
 
-            socket.once(SocketEvents.connect.rawValue) { _, _ in
-                seal.fulfill(())
+            socket.once(SocketEvents.connect.rawValue) { data, _ in
+                seal.fulfill(data)
             }
         }
 
@@ -77,13 +77,13 @@ extension SocketManager {
 // MARK: - On
 extension SocketManager {
 
-    func onceConnected() -> Guarantee<Any> {
+    func onceConnected() -> Promise<Any> {
         if socket.status == .connected {
-            return Guarantee<Any> { seal in
-                seal(())
+            return Promise<Any> { seal in
+                seal.fulfill(())
             }
         } else {
-            return once(event: .connect)
+            return connect()
         }
     }
 
