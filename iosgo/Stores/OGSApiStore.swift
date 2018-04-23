@@ -118,7 +118,7 @@ class OGSApiStore {
     private func send(request: URLRequest) -> Promise<Data> {
 
         let timeout: Promise<(data: Data, response: URLResponse)> = firstly { after(seconds: 4) }.map { _ in
-            throw SocketError.connectTimedOut
+            throw ApiError.timeout(request)
         }
 
         return firstly {
