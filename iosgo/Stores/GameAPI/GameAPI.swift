@@ -28,7 +28,7 @@ class GameAPI {
     }
 
     func game(id: Int) -> Promise<Game> {
-        let url = "/api/v1/games/\(String(id))"
+        let url = "api/v1/games/\(String(id))"
 
         return apiStore.request(toUrl: url, method: .GET, parameters: [:], resultType: Game.self)
     }
