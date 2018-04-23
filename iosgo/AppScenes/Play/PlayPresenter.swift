@@ -11,9 +11,10 @@
 //
 
 import UIKit
+import PromiseKit
 
 protocol PlayPresentationLogic {
-    func presentLoadScene(response: Play.LoadGame.Response)
+    func presentLoadScene(response: Promise<Play.LoadGame.Response>)
     func presentUpdateGame(response: Play.UpdateGame.Response)
     func presentUpdateClock(response: Play.UpdateClock.Response)
 }
@@ -23,10 +24,9 @@ class PlayPresenter: PlayPresentationLogic {
 
     private var renderer = GameRenderer()
 
-    func presentLoadScene(response: Play.LoadGame.Response) {
-
-        response.promise.done(on: DispatchQueue.main) { goState in
-            let state = self.renderer.getState(from: goState)
+    func presentLoadScene(response: Promise<Play.LoadGame.Response>) {
+        response.done(on: DispatchQueue.main) { response in
+            let state = self.renderer.getState(from: response.state)
             let model = Play.LoadGame.ViewModel(state: state)
             self.viewController?.displayLoadScene(viewModel: model)
         }.catch { error in

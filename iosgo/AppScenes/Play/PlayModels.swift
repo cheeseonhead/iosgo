@@ -19,7 +19,7 @@ enum Play {
         }
 
         struct Response {
-            var promise: Promise<GoState>
+            var state: GoState
         }
 
         struct ViewModel {
