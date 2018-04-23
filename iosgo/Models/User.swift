@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct OGSUser: Codable {
+struct User: Codable {
     var id: Int
     var username: String
     var rank: Int

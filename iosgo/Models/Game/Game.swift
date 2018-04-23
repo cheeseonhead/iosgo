@@ -9,8 +9,6 @@
 import Foundation
 import Unbox
 
-struct Player {}
-
 struct Tournament: Codable {}
 
 struct Ladder: Codable {}
@@ -54,7 +52,11 @@ struct Game {
     var whitePlayerRank: Int
     var whitePlayerRating: Double
     var historicalRatings: HistoricalRatings
-    // "players"
+    var players: Players
+    struct Players: Codable {
+        var white: Player
+        var black: Player
+    }
 
     // MARK: - Ladder
     var ladder: Ladder?
@@ -82,5 +84,63 @@ struct Game {
 
     enum Source: String, Codable {
         case play
+    }
+}
+
+extension Game {
+    struct Player: Codable {
+        //        var agaValid:
+        var country: String
+        var icon: String
+        var id: Int
+        var professional: Bool
+        var ranking: Int
+        var rankingBlitz: Int
+        var rankingCorrespondence: Int
+        var rankingLive: Int
+        var rating: Double
+        var ratingBlitz: Double
+        var ratingCorrespondence: Double
+        var ratingLive: Double
+        //        var ratings:
+        //        var uiClass: String
+        var username: String
+
+        enum CodingKeys: String, CodingKey {
+            //            case agaValid = "aga_valid"
+            case country
+            case icon
+            case id
+            case professional
+            case ranking
+            case rankingBlitz = "ranking_blitz"
+            case rankingCorrespondence = "ranking_correspondence"
+            case rankingLive = "ranking_live"
+            case rating
+            case ratingBlitz = "rating_blitz"
+            case ratingCorrespondence = "rating_correspondence"
+            case ratingLive = "rating_live"
+            //            case ratings
+            //            case uiClass = "ui_class"
+            case username
+        }
+
+        init(from decoder: Decoder) throws {
+            let c = try decoder.container(keyedBy: CodingKeys.self)
+
+            country = try c.decode(.country)
+            icon = try c.decode(.icon)
+            id = try c.decode(.id)
+            professional = try c.decode(.professional)
+            ranking = try c.decode(.ranking)
+            rankingBlitz = try c.decode(.rankingBlitz)
+            rankingCorrespondence = try c.decode(.rankingCorrespondence)
+            rankingLive = try c.decode(.rankingLive)
+            rating = try Double(str: c.decode(.rating))
+            ratingBlitz = try Double(str: c.decode(.ratingBlitz))
+            ratingCorrespondence = try Double(str: c.decode(.ratingCorrespondence))
+            ratingLive = try Double(str: c.decode(.ratingLive))
+            username = try c.decode(.username)
+        }
     }
 }

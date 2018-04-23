@@ -6,8 +6,18 @@
 import SocketIO
 import PromiseKit
 
-enum SocketError: Error {
+enum SocketError: LocalizedError {
     case noCurrentSession
+    case connectTimedOut
+
+    var errorDescription: String? {
+        switch self {
+        case .noCurrentSession:
+            return "The current session is empty."
+        case .connectTimedOut:
+            return "The socket timed out while trying to connect."
+        }
+    }
 }
 
 class SocketManager {
@@ -19,9 +29,9 @@ class SocketManager {
     private var manager: SocketIO.SocketManager!
     fileprivate var socket: SocketIOClient!
 
-    func connect() -> Promise<()> {
+    func connect() -> Promise<Any> {
 
-        let promise = Promise<()> { seal in
+        let connectPromise = Promise<Any> { seal in
             guard let session = sessionController?.current else {
                 seal.reject(SocketError.noCurrentSession)
                 return
@@ -45,12 +55,16 @@ class SocketManager {
 
             socket.connect()
 
-            socket.once(SocketEvents.connect.rawValue) { _, _ in
-                seal.fulfill(())
+            socket.once(SocketEvents.connect.rawValue) { data, _ in
+                seal.fulfill(data)
             }
         }
 
-        return promise
+        let timeout: Promise<Any> = firstly {
+            after(seconds: 4)
+        }.map { _ in throw SocketError.connectTimedOut }
+
+        return race(connectPromise, timeout)
     }
 
     func authenticate() {
@@ -77,13 +91,13 @@ extension SocketManager {
 // MARK: - On
 extension SocketManager {
 
-    func onceConnected() -> Guarantee<Any> {
+    func onceConnected() -> Promise<()> {
         if socket.status == .connected {
-            return Guarantee<Any> { seal in
-                seal(())
+            return Promise<()> { seal in
+                seal.fulfill(())
             }
         } else {
-            return once(event: .connect)
+            return connect().map { _ in () }
         }
     }
 

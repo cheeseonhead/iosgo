@@ -31,12 +31,10 @@ class PlayWorker {
 
     func loadGame(id: Int) -> Promise<GoState> {
 
-        return gameStore.game(id: id).map { game in
+        return gameStore.game(id: id).then { game -> Promise<()> in
             self.gameEngine = GameEngine(game: game)
-            self.connectSocket()
-
-            return self.gameEngine.getState()
-        }
+            return self.connectSocket()
+        }.map { _ in self.gameEngine.getState() }
     }
 
     func submitMove(_ move: GridPoint) {
@@ -48,14 +46,17 @@ class PlayWorker {
 // MARK: - Load Game Helpers
 
 private extension PlayWorker {
-    func connectSocket() {
-        guard let playerId = OGSSessionController.sharedInstance.current.user?.id else {
-            return
-        }
+    func connectSocket() -> Promise<()> {
+        let promise = firstly { () -> Promise<()> in
+            guard let playerId = OGSSessionController.sharedInstance.current.user?.id else {
+                throw SessionError.noCurrentConfiguration
+            }
 
-        gameSocket = GameSocket(socketManager: SocketManager.sharedInstance, gameId: gameEngine.game.id, playerId: playerId)
-        gameSocket.delegate = self
-        gameSocket.connect()
+            gameSocket = GameSocket(socketManager: SocketManager.sharedInstance, gameId: gameEngine.game.id, playerId: playerId)
+            gameSocket.delegate = self
+            return gameSocket.connect()
+        }
+        return promise
     }
 }
 

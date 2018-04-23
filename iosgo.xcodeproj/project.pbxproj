@@ -126,7 +126,7 @@
 		8405CF0DBD2A4DAB0A3A30E7 /* OGSLoginInfo+Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C723D11B0D56D6CFDD08 /* OGSLoginInfo+Unboxable.swift */; };
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
 		AD05A00EC3EF1F09DFBC5597 /* Dictionary+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */; };
-		AD05A01B448899472AAD4DBE /* OGSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A619B90715ADEDAFC230 /* OGSUser.swift */; };
+		AD05A01B448899472AAD4DBE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A619B90715ADEDAFC230 /* User.swift */; };
 		AD05A0EE97BB7404C7897307 /* ChallengeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05AF85A40E7F66F2217A8F /* ChallengeAPI.swift */; };
 		AD05A21671A192B337421704 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A2B5931F24B08CD0F38B /* String+Additions.swift */; };
 		AD05A2678BD4ECA68F40FE18 /* OGSProdConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A6E404C73D452A4B9148 /* OGSProdConfiguration.swift */; };
@@ -286,7 +286,7 @@
 		8405CF5B5FD5BE2E3B1BFCDC /* Temp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
 		AD05A2B5931F24B08CD0F38B /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Additions.swift"; sourceTree = "<group>"; };
-		AD05A619B90715ADEDAFC230 /* OGSUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSUser.swift; sourceTree = "<group>"; };
+		AD05A619B90715ADEDAFC230 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AD05A6342D59CC3E80B17996 /* OGSLoginInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSLoginInfo.swift; sourceTree = "<group>"; };
 		AD05A640228B6DCB613DE7BA /* MeApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeApi.swift; sourceTree = "<group>"; };
 		AD05A6413FABA7AABBEEC6FA /* OGSRootViewControllerTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSRootViewControllerTransition.swift; sourceTree = "<group>"; };
@@ -719,7 +719,7 @@
 			children = (
 				AD05A6342D59CC3E80B17996 /* OGSLoginInfo.swift */,
 				8405C78D22DC4B4FB78797CA /* OGSSession.swift */,
-				AD05A619B90715ADEDAFC230 /* OGSUser.swift */,
+				AD05A619B90715ADEDAFC230 /* User.swift */,
 				8405C66D470818B9A9828DEE /* Challenges */,
 				34A0BCE3207F5533007EB42D /* Config */,
 				8405CDAFCC8C4C8565D8A86D /* Configuration */,
@@ -1221,7 +1221,7 @@
 				3414A6FA1EF21B5800E28D6D /* StoneNodeFactory.swift in Sources */,
 				3452AAF41F01F004008F838E /* GameError.swift in Sources */,
 				34A68CDA1EFF98570010EFA5 /* RuleType.swift in Sources */,
-				AD05A01B448899472AAD4DBE /* OGSUser.swift in Sources */,
+				AD05A01B448899472AAD4DBE /* User.swift in Sources */,
 				AD05ADCD7A6778EA6AAF16D7 /* OGSRootViewControllerTransition.swift in Sources */,
 				34934B761EF240320096D3C4 /* CGSize+Scalable.swift in Sources */,
 				AD05AB67C74B02B834E8CFA8 /* MeApi.swift in Sources */,

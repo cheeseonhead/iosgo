@@ -91,7 +91,7 @@ extension Game: Decodable {
         name = try c.decode(.name)
         outcome = try c.decode(.outcome)
         pauseOnWeekends = try c.decode(.pauseOnWeekends)
-        // Players
+        players = try c.decode(.players)
         ranked = try c.decode(.ranked)
         related = try c.decode(.related)
         rules = try c.decode(.rules)
