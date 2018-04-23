@@ -30,7 +30,7 @@ class GameSocket {
         self.playerId = playerId
     }
 
-    func connect() {
+    func connect() -> Promise<()> {
         socket.on(GameSocketEventCreator(gameId: gameId, eventType: .receiveMove), resultType: Models.ReceivedMove.self) { promise in
             promise.done { [weak self] receivedMove in
                 self?.handleMove(model: receivedMove)
@@ -54,7 +54,7 @@ class GameSocket {
             }
         }
 
-        socket.onceConnected().done { [weak self] _ in
+        return socket.onceConnected().get { [weak self] _ in
 
             guard let strongSelf = self else { return }
 
