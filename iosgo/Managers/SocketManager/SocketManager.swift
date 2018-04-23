@@ -6,8 +6,18 @@
 import SocketIO
 import PromiseKit
 
-enum SocketError: Error {
+enum SocketError: LocalizedError {
     case noCurrentSession
+    case connectTimedOut
+
+    var errorDescription: String? {
+        switch self {
+        case .noCurrentSession:
+            return "The current session is empty."
+        case .connectTimedOut:
+            return "The socket timed out while trying to connect."
+        }
+    }
 }
 
 class SocketManager {
@@ -52,7 +62,7 @@ class SocketManager {
 
         let timeout: Promise<Any> = firstly {
             after(seconds: 4)
-        }.map { _ in () }
+        }.map { _ in throw SocketError.connectTimedOut }
 
         return race(connectPromise, timeout)
     }
