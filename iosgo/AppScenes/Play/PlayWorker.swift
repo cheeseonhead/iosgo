@@ -28,6 +28,8 @@ class PlayWorker {
     private var gameSocket: GameSocket!
     weak var delegate: PlayWorkerDelegate?
 
+    private var clocks: [PlayerType: Clock.TimeType]?
+
     init(gameStore: GameAPI, imageApi: AvatarApi) {
         self.gameStore = gameStore
         self.imageApi = imageApi
@@ -37,6 +39,10 @@ class PlayWorker {
 
         return gameStore.game(id: id).then { game -> Promise<Game> in
             self.gameEngine = GameEngine(game: game)
+
+            self.setClocks(game.gamedata.clock)
+            self.countDownLoop()
+
             return self.connectSocket().map { _ in game }
         }.then { game -> Promise<Play.LoadGame.Response> in
             self.getIcons(players: game.players).map { images in
@@ -52,7 +58,6 @@ class PlayWorker {
 }
 
 // MARK: - Load Game Helpers
-
 private extension PlayWorker {
     func connectSocket() -> Promise<()> {
         let promise = firstly { () -> Promise<()> in
@@ -90,7 +95,6 @@ private extension PlayWorker {
 }
 
 // MARK: - GameSocket Delegate
-
 extension PlayWorker: GameSocketDelegate {
     func handleMove(_ move: BoardPoint) {
         try? gameEngine.place(at: move)
@@ -109,7 +113,40 @@ extension PlayWorker: GameSocketDelegate {
     }
 }
 
-// MARK: - Helpers
-
+// MARK: - Clock Helpers
 private extension PlayWorker {
+    func setClocks(_ clock: Clock) {
+        if let bTime = clock.blackTime {
+            clocks = [:]
+            clocks?[.black] = bTime
+        }
+
+        if let wTime = clock.whiteTime {
+            clocks?[.white] = wTime
+        }
+    }
+
+    func countDownClocks(timePassed: TimeInterval) {
+        clocks?[.black]?.countDown(timePassed: timePassed)
+        clocks?[.white]?.countDown(timePassed: timePassed)
+    }
+
+    func updateClock() {
+        let response = Play.UpdateClock.Response(blackClock: clocks?[.black], whiteClock: clocks?[.white])
+
+        delegate?.gameClockUpdated(response)
+    }
+
+    func countDownLoop() {
+        var lastTime = Date()
+        delay(1) { [weak self] in
+            let now = Date()
+            self?.countDownClocks(timePassed: now.timeIntervalSince(lastTime))
+            lastTime = now
+
+            self?.updateClock()
+
+            self?.countDownLoop()
+        }
+    }
 }
