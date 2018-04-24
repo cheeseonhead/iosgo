@@ -62,7 +62,7 @@ class PlayViewController: UIViewController {
     }
 
     public override var traitCollection: UITraitCollection {
-        if UIDevice.current.userInterfaceIdiom == .pad && UIDevice.current.orientation.isPortrait {
+        if view.frame.size.width < view.frame.size.height {
             return UITraitCollection(traitsFrom: [UITraitCollection(horizontalSizeClass: .compact), UITraitCollection(verticalSizeClass: .regular)])
         }
         return super.traitCollection
