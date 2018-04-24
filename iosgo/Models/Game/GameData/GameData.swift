@@ -45,7 +45,7 @@ struct GameData: Decodable {
     // MARK: - Time
 
     var timeControl: TimeControlParametersType
-    //    var clock: Clock
+    var clock: Clock
     var startTime: Int
     var pausedSince: Int?
 

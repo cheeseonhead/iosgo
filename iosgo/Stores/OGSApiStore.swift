@@ -43,6 +43,7 @@ enum ParseError: Error {
     case typeMismatch(expected: Any.Type, container: Any)
     case wrongDateFormat(dateStr: String, format: String)
     case unknownEnumType(type: Any.Type)
+    case imageError(url: String)
 }
 
 struct Empty: Codable {}
@@ -115,7 +116,7 @@ class OGSApiStore {
         return request
     }
 
-    private func send(request: URLRequest) -> Promise<Data> {
+    func send(request: URLRequest) -> Promise<Data> {
 
         let timeout: Promise<(data: Data, response: URLResponse)> = firstly { after(seconds: 4) }.map { _ in
             throw ApiError.timeout(request)

@@ -12,15 +12,6 @@ import PromiseKit
 
 class GameAPI {
 
-    struct Response {
-        var result: Result
-    }
-
-    enum Result {
-        case success(game: Game)
-        case error(type: ApiError)
-    }
-
     private var apiStore: OGSApiStore
 
     required init(apiStore: OGSApiStore) {
@@ -28,7 +19,7 @@ class GameAPI {
     }
 
     func game(id: Int) -> Promise<Game> {
-        let url = "/api/v1/games/\(String(id))"
+        let url = "api/v1/games/\(String(id))"
 
         return apiStore.request(toUrl: url, method: .GET, parameters: [:], resultType: Game.self)
     }

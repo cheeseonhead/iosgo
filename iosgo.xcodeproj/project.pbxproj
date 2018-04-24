@@ -60,7 +60,12 @@
 		34A68CDA1EFF98570010EFA5 /* RuleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68CD91EFF98570010EFA5 /* RuleType.swift */; };
 		34A68CDC1EFF98BE0010EFA5 /* PlayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68CDB1EFF98BE0010EFA5 /* PlayerType.swift */; };
 		34ACC8AB1EEBDF7900F2B376 /* BoardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC8AA1EEBDF7900F2B376 /* BoardScene.swift */; };
+		34B27AD5208E849500BD26B0 /* GameData+Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B27AD4208E849500BD26B0 /* GameData+Clock.swift */; };
 		34B3572C208C900F00757A67 /* GameData+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B3572B208C900F00757A67 /* GameData+Codable.swift */; };
+		34B57FB8208E50CD007F3003 /* Array+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B57FB7208E50CD007F3003 /* Array+Remove.swift */; };
+		34B57FBC208E511B007F3003 /* UIAlertController+Make.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B57FBB208E511B007F3003 /* UIAlertController+Make.swift */; };
+		34B57FBF208E54D7007F3003 /* Alerting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B57FBE208E54D7007F3003 /* Alerting.swift */; };
+		34B57FC2208E69F8007F3003 /* AvatarApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B57FC1208E69F8007F3003 /* AvatarApi.swift */; };
 		34C3DDB21EFF2B41001C8AF4 /* TimeControlParametersType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C3DDB11EFF2B41001C8AF4 /* TimeControlParametersType.swift */; };
 		34C3DDB61EFF2ED5001C8AF4 /* GameAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C3DDB51EFF2ED5001C8AF4 /* GameAPI.swift */; };
 		34C46A30208D30FB007893A5 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C46A2F208D30FB007893A5 /* ApiError.swift */; };
@@ -215,7 +220,12 @@
 		34A68CD91EFF98570010EFA5 /* RuleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleType.swift; sourceTree = "<group>"; };
 		34A68CDB1EFF98BE0010EFA5 /* PlayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerType.swift; sourceTree = "<group>"; };
 		34ACC8AA1EEBDF7900F2B376 /* BoardScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardScene.swift; sourceTree = "<group>"; };
+		34B27AD4208E849500BD26B0 /* GameData+Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameData+Clock.swift"; sourceTree = "<group>"; };
 		34B3572B208C900F00757A67 /* GameData+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameData+Codable.swift"; sourceTree = "<group>"; };
+		34B57FB7208E50CD007F3003 /* Array+Remove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Remove.swift"; sourceTree = "<group>"; };
+		34B57FBB208E511B007F3003 /* UIAlertController+Make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Make.swift"; sourceTree = "<group>"; };
+		34B57FBE208E54D7007F3003 /* Alerting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerting.swift; sourceTree = "<group>"; };
+		34B57FC1208E69F8007F3003 /* AvatarApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarApi.swift; sourceTree = "<group>"; };
 		34C3DDB11EFF2B41001C8AF4 /* TimeControlParametersType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControlParametersType.swift; sourceTree = "<group>"; };
 		34C3DDB51EFF2ED5001C8AF4 /* GameAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAPI.swift; sourceTree = "<group>"; };
 		34C46A2F208D30FB007893A5 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
@@ -391,11 +401,10 @@
 		342EC8161EF8B6D900C3A7E7 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				34B27AD3208E847D00BD26B0 /* GameData */,
 				34310962208AF3CC00B47951 /* Clock.swift */,
 				342EC8171EF8B70700C3A7E7 /* Game.swift */,
-				342FACD61EFF805800960585 /* GameData.swift */,
 				34FED50E208C304600CA2603 /* Game+Codable.swift */,
-				34B3572B208C900F00757A67 /* GameData+Codable.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -561,6 +570,72 @@
 			path = SKScenes;
 			sourceTree = "<group>";
 		};
+		34B27AD3208E847D00BD26B0 /* GameData */ = {
+			isa = PBXGroup;
+			children = (
+				342FACD61EFF805800960585 /* GameData.swift */,
+				34B3572B208C900F00757A67 /* GameData+Codable.swift */,
+				34B27AD4208E849500BD26B0 /* GameData+Clock.swift */,
+			);
+			path = GameData;
+			sourceTree = "<group>";
+		};
+		34B57FB4208E5092007F3003 /* Dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */,
+			);
+			path = Dictionary;
+			sourceTree = "<group>";
+		};
+		34B57FB5208E509D007F3003 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				AD05A2B5931F24B08CD0F38B /* String+Additions.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		34B57FB6208E50A7007F3003 /* Array */ = {
+			isa = PBXGroup;
+			children = (
+				34B57FB7208E50CD007F3003 /* Array+Remove.swift */,
+			);
+			path = Array;
+			sourceTree = "<group>";
+		};
+		34B57FB9208E50DF007F3003 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
+		34B57FBA208E510C007F3003 /* UIAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				34B57FBB208E511B007F3003 /* UIAlertController+Make.swift */,
+			);
+			path = UIAlertController;
+			sourceTree = "<group>";
+		};
+		34B57FBD208E54C2007F3003 /* Alertable */ = {
+			isa = PBXGroup;
+			children = (
+				34B57FBE208E54D7007F3003 /* Alerting.swift */,
+			);
+			path = Alertable;
+			sourceTree = "<group>";
+		};
+		34B57FC0208E69EC007F3003 /* ImageAPI */ = {
+			isa = PBXGroup;
+			children = (
+				34B57FC1208E69F8007F3003 /* AvatarApi.swift */,
+			);
+			path = ImageAPI;
+			sourceTree = "<group>";
+		};
 		34C46A31208D377D007893A5 /* URLRequest */ = {
 			isa = PBXGroup;
 			children = (
@@ -700,6 +775,7 @@
 		8405CA6ED574B6A9F2DF0E71 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				34B57FC0208E69EC007F3003 /* ImageAPI */,
 				8405CCC46689EA8AB1CE3519 /* OGSApiStore.swift */,
 				34C46A2F208D30FB007893A5 /* ApiError.swift */,
 				AD05A4E8F02D2F46F9BBF790 /* ChallengeAPI */,
@@ -864,19 +940,22 @@
 		AD05A9249FEBFC41418217D5 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				34C46A31208D377D007893A5 /* URLRequest */,
-				34FED510208C3E9800CA2603 /* KeyedDecodingContainer */,
-				341DFB9E208927CF001B9394 /* UIView */,
-				34A0BCD7207F1EF1007EB42D /* Character */,
-				34A0BCD4207F1828007EB42D /* JSONDecoder */,
-				34455DC51EFF7591002199D0 /* Unbox */,
-				34934B741EF23FE80096D3C4 /* CGSize */,
-				3414A6FE1EF22AF800E28D6D /* CGFloat */,
-				AD05A8FFF7774E8C78F4B5C4 /* UIColor+Additions.swift */,
+				34B57FBD208E54C2007F3003 /* Alertable */,
+				34B57FBA208E510C007F3003 /* UIAlertController */,
 				8405CF5B5FD5BE2E3B1BFCDC /* Temp.swift */,
-				AD05A2B5931F24B08CD0F38B /* String+Additions.swift */,
-				AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */,
+				34B57FB6208E50A7007F3003 /* Array */,
+				3414A6FE1EF22AF800E28D6D /* CGFloat */,
+				34934B741EF23FE80096D3C4 /* CGSize */,
+				34A0BCD7207F1EF1007EB42D /* Character */,
+				34B57FB4208E5092007F3003 /* Dictionary */,
 				AD05A911B8B8BFFDC667BD24 /* Int */,
+				34A0BCD4207F1828007EB42D /* JSONDecoder */,
+				34FED510208C3E9800CA2603 /* KeyedDecodingContainer */,
+				34B57FB5208E509D007F3003 /* String */,
+				34B57FB9208E50DF007F3003 /* UIColor */,
+				341DFB9E208927CF001B9394 /* UIView */,
+				34455DC51EFF7591002199D0 /* Unbox */,
+				34C46A31208D377D007893A5 /* URLRequest */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -1128,10 +1207,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				56BD888F1E5522530098E50B /* OGSButton.swift in Sources */,
+				34B57FC2208E69F8007F3003 /* AvatarApi.swift in Sources */,
 				34A0BCD9207F1F0A007EB42D /* Character+FromInt.swift in Sources */,
 				34970F061F00A52A00623ED0 /* StoneType.swift in Sources */,
 				34A0BCD6207F1844007EB42D /* JSONDecoder+Dictionary.swift in Sources */,
 				AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */,
+				34B57FB8208E50CD007F3003 /* Array+Remove.swift in Sources */,
 				34C46A33208D378E007893A5 /* URLRequest+cURL.swift in Sources */,
 				8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */,
 				3414A6FD1EF223BF00E28D6D /* StoneWorker.swift in Sources */,
@@ -1156,6 +1237,7 @@
 				34FEDDA91EFFF02F00EC1B5F /* PlayPresenter.swift in Sources */,
 				56FC0C091E9C85F100119D0C /* OGSChooseGameCollectionViewCell.swift in Sources */,
 				5612FD0E1E63C60B000B1973 /* OGSChooseGameConfigurator.swift in Sources */,
+				34B57FBF208E54D7007F3003 /* Alerting.swift in Sources */,
 				34812E6C1F0461E1008AB95E /* MoveTree.swift in Sources */,
 				8405CEA1C88BF254C0A34A28 /* OauthApi.swift in Sources */,
 				5612FD111E63C60B000B1973 /* OGSChooseGamePresenter.swift in Sources */,
@@ -1222,6 +1304,7 @@
 				3452AAF41F01F004008F838E /* GameError.swift in Sources */,
 				34A68CDA1EFF98570010EFA5 /* RuleType.swift in Sources */,
 				AD05A01B448899472AAD4DBE /* User.swift in Sources */,
+				34B27AD5208E849500BD26B0 /* GameData+Clock.swift in Sources */,
 				AD05ADCD7A6778EA6AAF16D7 /* OGSRootViewControllerTransition.swift in Sources */,
 				34934B761EF240320096D3C4 /* CGSize+Scalable.swift in Sources */,
 				AD05AB67C74B02B834E8CFA8 /* MeApi.swift in Sources */,
@@ -1231,6 +1314,7 @@
 				AD05AE8F87A1E735676D8715 /* OGSRootViewControllerWorker.swift in Sources */,
 				3493D90A1F08E3E300BE526E /* GameSocketEventCreator.swift in Sources */,
 				348F60D31F08DB0800FA12F0 /* SocketEvents.swift in Sources */,
+				34B57FBC208E511B007F3003 /* UIAlertController+Make.swift in Sources */,
 				3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */,
 				346441521EE4BA06008718D7 /* SplashViewController.swift in Sources */,
 				AD05A0EE97BB7404C7897307 /* ChallengeAPI.swift in Sources */,

@@ -13,6 +13,7 @@ import UIKit
 struct GameInfoViewModel {
 }
 
+@IBDesignable
 class GameInfoView: UIView {
     @IBOutlet var topInfoView: PlayerInfoView!
     @IBOutlet var bottomInfoView: PlayerInfoView!
@@ -30,5 +31,10 @@ class GameInfoView: UIView {
     func setClocks(blackTime: String, whiteTime: String) {
         topInfoView.setTime(blackTime)
         bottomInfoView.setTime(whiteTime)
+    }
+
+    func setUsers(black: PlayerInfoViewModel.User, white: PlayerInfoViewModel.User) {
+        topInfoView.setUser(black, color: .black)
+        bottomInfoView.setUser(white, color: .white)
     }
 }

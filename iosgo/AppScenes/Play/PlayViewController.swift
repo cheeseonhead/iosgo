@@ -13,7 +13,7 @@
 import SpriteKit
 import UIKit
 
-protocol PlayDisplayLogic: class {
+protocol PlayDisplayLogic: class, Alerting {
     func displayLoadScene(viewModel: Play.LoadGame.ViewModel)
     func displayUpdateGame(viewModel: Play.UpdateGame.ViewModel)
     func displayUpdateClock(viewModel: Play.UpdateClock.ViewModel)
@@ -62,7 +62,7 @@ class PlayViewController: UIViewController {
     }
 
     public override var traitCollection: UITraitCollection {
-        if UIDevice.current.userInterfaceIdiom == .pad && UIDevice.current.orientation.isPortrait {
+        if view.frame.size.width < view.frame.size.height {
             return UITraitCollection(traitsFrom: [UITraitCollection(horizontalSizeClass: .compact), UITraitCollection(verticalSizeClass: .regular)])
         }
         return super.traitCollection
@@ -84,6 +84,7 @@ extension PlayViewController: BoardSceneActionDelegate {
 extension PlayViewController: PlayDisplayLogic {
     func displayLoadScene(viewModel: Play.LoadGame.ViewModel) {
         boardScene.initialize(viewModel.state)
+        gameInfoView.setUsers(black: viewModel.black, white: viewModel.white)
     }
 
     func displayUpdateGame(viewModel: Play.UpdateGame.ViewModel) {

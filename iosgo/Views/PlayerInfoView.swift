@@ -11,12 +11,12 @@ import UIKit
 
 struct PlayerInfoViewModel {
     struct User {
-        let color: PlayerType
         let username: String
         let profile: UIImage
     }
 }
 
+@IBDesignable
 class PlayerInfoView: UIView {
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var timeLabel: UILabel!
@@ -37,7 +37,7 @@ class PlayerInfoView: UIView {
         timeLabel.text = time
     }
 
-    func setUser(_ model: PlayerInfoViewModel.User) {
+    func setUser(_ model: PlayerInfoViewModel.User, color _: PlayerType) {
         profileImage.image = model.profile
         usernameLabel.text = model.username
     }

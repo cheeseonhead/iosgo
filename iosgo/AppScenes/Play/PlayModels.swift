@@ -19,11 +19,21 @@ enum Play {
         }
 
         struct Response {
-            var promise: Promise<GoState>
+            var state: GoState
+            var clock: GameData.Clock
+            var black: User
+            var white: User
+
+            struct User {
+                let username: String
+                let icon: UIImage
+            }
         }
 
         struct ViewModel {
             var state: GridState
+            var black: PlayerInfoViewModel.User
+            var white: PlayerInfoViewModel.User
         }
     }
 
