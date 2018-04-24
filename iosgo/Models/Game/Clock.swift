@@ -16,7 +16,7 @@ struct Clock: Decodable {
     let expiration: Int
     let gameId: Int
     let lastMove: Int
-    let now: Int
+    let now: Int?
     let pausedSince: Int?
     let title: String
     let whiteId: Int
@@ -35,46 +35,51 @@ struct Clock: Decodable {
         case whiteId = "white_player_id"
         case whiteTime = "white_time"
     }
-}
 
-extension Clock {
-    enum TimeType: Decodable {
-        case fischer(Fischer)
-        case simple(Simple)
-        case byoyomi(Byoyomi)
-        case canadian(Canadian)
-        case absolute(Absolute)
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
 
-        init(from decoder: Decoder) throws {
-            let container = try decoder.singleValueContainer()
+        blackId = try c.decode(.blackId)
+        blackTime = try TimeTypeFactory.createTimeType(from: c.decodeIfPresent(JSON.self, forKey: .blackTime))
+        currentPlayer = try c.decode(.currentPlayer)
+        expiration = try c.decode(.expiration)
+        gameId = try c.decode(.gameId)
+        lastMove = try c.decode(.lastMove)
+        now = try c.decodeIfPresent(.now)
+        pausedSince = try c.decodeIfPresent(.pausedSince)
+        title = try c.decode(.title)
+        whiteId = try c.decode(.whiteId)
+        whiteTime = try TimeTypeFactory.createTimeType(from: c.decodeIfPresent(JSON.self, forKey: .whiteTime))
+    }
 
-            if let res = try? container.decode(Fischer.self) {
-                self = .fischer(res)
-            } else if let res = try? container.decode(Byoyomi.self) {
-                self = .byoyomi(res)
-            } else if let res = try? container.decode(Simple.self) {
-                self = .simple(res)
-            } else if let res = try? container.decode(Canadian.self) {
-                self = .canadian(res)
-            } else if let res = try? container.decode(Absolute.self) {
-                self = .absolute(res)
-            } else {
-                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Could not decode TimeType \(container).")
-            }
+    class TimeType {
+        let thinkingTime: Double
+
+        init(thinkingTime: Double) {
+            self.thinkingTime = thinkingTime
         }
 
-        struct Fischer: Decodable {
+        func render() -> String {
+            return ""
+        }
+
+        class Fischer: TimeType, Decodable {
             let skipBonus: Bool
-            let thinkingTime: Double
 
             enum CodingKeys: String, CodingKey {
                 case skipBonus = "skip_bonus"
                 case thinkingTime = "thinking_time"
             }
+
+            required init(from decoder: Decoder) throws {
+                let c = try decoder.container(keyedBy: CodingKeys.self)
+
+                skipBonus = try c.decode(.skipBonus)
+                super.init(thinkingTime: try c.decode(.thinkingTime))
+            }
         }
 
-        struct Byoyomi: Decodable {
-            let thinkingTime: Double
+        class Byoyomi: TimeType, Decodable {
             let periods: Int
             let periodTime: Double
 
@@ -83,12 +88,25 @@ extension Clock {
                 case periods
                 case periodTime = "period_time"
             }
+
+            required init(from decoder: Decoder) throws {
+                let c = try decoder.container(keyedBy: CodingKeys.self)
+
+                periods = try c.decode(.periods)
+                periodTime = try c.decode(.periodTime)
+                super.init(thinkingTime: try c.decode(.thinkingTime))
+            }
         }
 
-        typealias Simple = Double
+        class Simple: TimeType, Decodable {
+            required init(from decoder: Decoder) throws {
+                let c = try decoder.singleValueContainer()
 
-        struct Canadian: Decodable {
-            let thinkingTime: Double
+                super.init(thinkingTime: try c.decode(Double.self))
+            }
+        }
+
+        class Canadian: TimeType, Decodable {
             let movesLeft: Int
             let blockTime: Double
 
@@ -97,13 +115,50 @@ extension Clock {
                 case movesLeft = "moves_left"
                 case thinkingTime = "thinking_time"
             }
+
+            required init(from decoder: Decoder) throws {
+                let c = try decoder.container(keyedBy: CodingKeys.self)
+
+                movesLeft = try c.decode(.movesLeft)
+                blockTime = try c.decode(.blockTime)
+                super.init(thinkingTime: try c.decode(.thinkingTime))
+            }
         }
 
-        struct Absolute: Decodable {
-            let thinkingTime: Double
-
+        class Absolute: TimeType, Decodable {
             enum CodingKeys: String, CodingKey {
                 case thinkingTime = "thinking_time"
+            }
+
+            required init(from decoder: Decoder) throws {
+                let c = try decoder.container(keyedBy: CodingKeys.self)
+
+                super.init(thinkingTime: try c.decode(.thinkingTime))
+            }
+        }
+    }
+
+    private class TimeTypeFactory {
+        static func createTimeType(from data: JSON?) throws -> TimeType? {
+
+            guard let data = data else {
+                return nil
+            }
+
+            let decoder = JSONDecoder()
+
+            if let res = try? decoder.decode(TimeType.Fischer.self, from: data) {
+                return res
+            } else if let res = try? decoder.decode(TimeType.Byoyomi.self, from: data) {
+                return res
+            } else if let res = try? decoder.decode(TimeType.Simple.self, from: data) {
+                return res
+            } else if let res = try? decoder.decode(TimeType.Canadian.self, from: data) {
+                return res
+            } else if let res = try? decoder.decode(TimeType.Absolute.self, from: data) {
+                return res
+            } else {
+                throw ParseError.typeMismatches(expected: [TimeType.Fischer.self, TimeType.Byoyomi.self, TimeType.Simple.self, TimeType.Canadian.self, TimeType.Absolute.self], container: data)
             }
         }
     }

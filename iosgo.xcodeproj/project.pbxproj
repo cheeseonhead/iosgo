@@ -61,7 +61,6 @@
 		34A68CDA1EFF98570010EFA5 /* RuleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68CD91EFF98570010EFA5 /* RuleType.swift */; };
 		34A68CDC1EFF98BE0010EFA5 /* PlayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68CDB1EFF98BE0010EFA5 /* PlayerType.swift */; };
 		34ACC8AB1EEBDF7900F2B376 /* BoardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34ACC8AA1EEBDF7900F2B376 /* BoardScene.swift */; };
-		34B27AD5208E849500BD26B0 /* GameData+Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B27AD4208E849500BD26B0 /* GameData+Clock.swift */; };
 		34B3572C208C900F00757A67 /* GameData+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B3572B208C900F00757A67 /* GameData+Codable.swift */; };
 		34B57FB8208E50CD007F3003 /* Array+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B57FB7208E50CD007F3003 /* Array+Remove.swift */; };
 		34B57FBC208E511B007F3003 /* UIAlertController+Make.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B57FBB208E511B007F3003 /* UIAlertController+Make.swift */; };
@@ -222,7 +221,6 @@
 		34A68CD91EFF98570010EFA5 /* RuleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleType.swift; sourceTree = "<group>"; };
 		34A68CDB1EFF98BE0010EFA5 /* PlayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerType.swift; sourceTree = "<group>"; };
 		34ACC8AA1EEBDF7900F2B376 /* BoardScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardScene.swift; sourceTree = "<group>"; };
-		34B27AD4208E849500BD26B0 /* GameData+Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameData+Clock.swift"; sourceTree = "<group>"; };
 		34B3572B208C900F00757A67 /* GameData+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameData+Codable.swift"; sourceTree = "<group>"; };
 		34B57FB7208E50CD007F3003 /* Array+Remove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Remove.swift"; sourceTree = "<group>"; };
 		34B57FBB208E511B007F3003 /* UIAlertController+Make.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Make.swift"; sourceTree = "<group>"; };
@@ -585,7 +583,6 @@
 			children = (
 				342FACD61EFF805800960585 /* GameData.swift */,
 				34B3572B208C900F00757A67 /* GameData+Codable.swift */,
-				34B27AD4208E849500BD26B0 /* GameData+Clock.swift */,
 			);
 			path = GameData;
 			sourceTree = "<group>";
@@ -1316,7 +1313,6 @@
 				3452AAF41F01F004008F838E /* GameError.swift in Sources */,
 				34A68CDA1EFF98570010EFA5 /* RuleType.swift in Sources */,
 				AD05A01B448899472AAD4DBE /* User.swift in Sources */,
-				34B27AD5208E849500BD26B0 /* GameData+Clock.swift in Sources */,
 				AD05ADCD7A6778EA6AAF16D7 /* OGSRootViewControllerTransition.swift in Sources */,
 				34934B761EF240320096D3C4 /* CGSize+Scalable.swift in Sources */,
 				AD05AB67C74B02B834E8CFA8 /* MeApi.swift in Sources */,
