@@ -27,6 +27,7 @@
 		3452AAF81F01F264008F838E /* BoardSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452AAF71F01F264008F838E /* BoardSize.swift */; };
 		3452AAFA1F01F6F9008F838E /* BoardStone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452AAF91F01F6F9008F838E /* BoardStone.swift */; };
 		3462CB80208F6D13005DC96B /* DecodingContainer+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3462CB7F208F6D13005DC96B /* DecodingContainer+JSON.swift */; };
+		3462CB82208F9367005DC96B /* TimeTypeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3462CB81208F9367005DC96B /* TimeTypeFormatter.swift */; };
 		3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441471EE4BA06008718D7 /* SplashConfigurator.swift */; };
 		3464414E1EE4BA06008718D7 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441481EE4BA06008718D7 /* SplashInteractor.swift */; };
 		3464414F1EE4BA06008718D7 /* SplashModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441491EE4BA06008718D7 /* SplashModels.swift */; };
@@ -187,6 +188,7 @@
 		3452AAF71F01F264008F838E /* BoardSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSize.swift; sourceTree = "<group>"; };
 		3452AAF91F01F6F9008F838E /* BoardStone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardStone.swift; sourceTree = "<group>"; };
 		3462CB7F208F6D13005DC96B /* DecodingContainer+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecodingContainer+JSON.swift"; sourceTree = "<group>"; };
+		3462CB81208F9367005DC96B /* TimeTypeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTypeFormatter.swift; sourceTree = "<group>"; };
 		346441471EE4BA06008718D7 /* SplashConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashConfigurator.swift; sourceTree = "<group>"; };
 		346441481EE4BA06008718D7 /* SplashInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		346441491EE4BA06008718D7 /* SplashModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashModels.swift; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 			isa = PBXGroup;
 			children = (
 				348F60CE1F08BCCE00FA12F0 /* GameRenderer.swift */,
+				3462CB81208F9367005DC96B /* TimeTypeFormatter.swift */,
 			);
 			path = Rendering;
 			sourceTree = "<group>";
@@ -691,7 +694,6 @@
 		565D246D1E54A5A500EF62CD /* iosgo */ = {
 			isa = PBXGroup;
 			children = (
-				341DFB90208919F9001B9394 /* Views */,
 				565D24801E54A5A500EF62CD /* Info.plist */,
 				565D247B1E54A5A500EF62CD /* Assets.xcassets */,
 				AD05A9249FEBFC41418217D5 /* Additions */,
@@ -704,6 +706,7 @@
 				8405CB755432B62AFE49B7F6 /* Models */,
 				34A7538A208021C700361352 /* SKScenes */,
 				8405CA6ED574B6A9F2DF0E71 /* Stores */,
+				341DFB90208919F9001B9394 /* Views */,
 				AD05AD1C933B7360B3025EF2 /* Workers */,
 			);
 			path = iosgo;
@@ -1224,6 +1227,7 @@
 				34C46A33208D378E007893A5 /* URLRequest+cURL.swift in Sources */,
 				8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */,
 				3414A6FD1EF223BF00E28D6D /* StoneWorker.swift in Sources */,
+				3462CB82208F9367005DC96B /* TimeTypeFormatter.swift in Sources */,
 				8405CDE4965C7493BA13D163 /* OGSLoginRouter.swift in Sources */,
 				8405C3C9E1790ACD829F597C /* OGSLoginWorker.swift in Sources */,
 				34FEDDAA1EFFF02F00EC1B5F /* PlayRouter.swift in Sources */,
