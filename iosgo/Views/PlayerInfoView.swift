@@ -16,6 +16,7 @@ struct PlayerInfoViewModel {
     }
 }
 
+@IBDesignable
 class PlayerInfoView: UIView {
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var timeLabel: UILabel!

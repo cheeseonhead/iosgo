@@ -13,6 +13,7 @@ import UIKit
 struct GameInfoViewModel {
 }
 
+@IBDesignable
 class GameInfoView: UIView {
     @IBOutlet var topInfoView: PlayerInfoView!
     @IBOutlet var bottomInfoView: PlayerInfoView!
