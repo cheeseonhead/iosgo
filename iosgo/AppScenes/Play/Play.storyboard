@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="goI-bh-4QP">
-    <device id="ipad9_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -17,17 +17,17 @@
             <objects>
                 <viewController storyboardIdentifier="PlayViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="goI-bh-4QP" customClass="PlayViewController" customModule="iosgo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ixe-Ay-EgB">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a82-Ic-lKv">
-                                <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="200" translatesAutoresizingMaskIntoConstraints="NO" id="FJa-p9-gHl" userLabel="BoardHolder">
-                                        <rect key="frame" x="0.0" y="0.0" width="468" height="1004"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" verticalHuggingPriority="200" translatesAutoresizingMaskIntoConstraints="NO" id="lpR-bj-bI4" customClass="SKView">
-                                                <rect key="frame" x="0.0" y="268.5" width="468" height="468"/>
+                                                <rect key="frame" x="0.33333333333334281" y="0.66666666666665719" width="375" height="375"/>
                                                 <color key="backgroundColor" red="0.2544162425" green="0.95294117649999999" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="lpR-bj-bI4" secondAttribute="height" multiplier="1:1" id="bE5-gM-wBj"/>
@@ -44,11 +44,11 @@
                                             <constraint firstItem="lpR-bj-bI4" firstAttribute="width" secondItem="FJa-p9-gHl" secondAttribute="width" priority="750" id="iz7-54-ffA"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="m1u-i6-BVX" userLabel="InfoHolder">
-                                        <rect key="frame" x="468" y="0.0" width="300" height="1004"/>
+                                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="m1u-i6-BVX" userLabel="InfoHolder">
+                                        <rect key="frame" x="0.0" y="375" width="375" height="359"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NvL-f5-tCa" userLabel="GameInfoView" customClass="GameInfoView" customModule="iosgo" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="8" width="284" height="192"/>
+                                                <rect key="frame" x="8" y="8" width="359" height="96"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
@@ -58,6 +58,7 @@
                                             <constraint firstItem="NvL-f5-tCa" firstAttribute="leading" secondItem="m1u-i6-BVX" secondAttribute="leadingMargin" id="REd-Xi-RyP"/>
                                             <constraint firstAttribute="width" constant="300" id="WeB-Sm-5Fe"/>
                                             <constraint firstAttribute="height" constant="250" id="fNn-SV-nFj"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="NvL-f5-tCa" secondAttribute="bottom" id="jLg-OI-zDv"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="NvL-f5-tCa" secondAttribute="trailing" id="kJH-ch-8Rx"/>
                                             <constraint firstItem="NvL-f5-tCa" firstAttribute="top" secondItem="m1u-i6-BVX" secondAttribute="topMargin" id="xpm-dW-lKL"/>
                                         </constraints>
@@ -95,7 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d5X-wn-CbA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-70" y="144"/>
+            <point key="canvasLocation" x="-71.200000000000003" y="143.3497536945813"/>
         </scene>
     </scenes>
 </document>
