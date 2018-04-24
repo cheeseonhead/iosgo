@@ -16,7 +16,7 @@ struct Clock: Decodable {
     let expiration: Int
     let gameId: Int
     let lastMove: Int
-    let now: Int?
+    let now: Double?
     let pausedSince: Int?
     let title: String
     let whiteId: Int
@@ -57,10 +57,6 @@ struct Clock: Decodable {
 
         init(thinkingTime: Double) {
             self.thinkingTime = thinkingTime
-        }
-
-        func render() -> String {
-            return ""
         }
 
         class Fischer: TimeType, Decodable {
@@ -151,12 +147,16 @@ struct Clock: Decodable {
                 return res
             } else if let res = try? decoder.decode(TimeType.Byoyomi.self, from: data) {
                 return res
+
             } else if let res = try? decoder.decode(TimeType.Simple.self, from: data) {
                 return res
+
             } else if let res = try? decoder.decode(TimeType.Canadian.self, from: data) {
                 return res
+
             } else if let res = try? decoder.decode(TimeType.Absolute.self, from: data) {
                 return res
+
             } else {
                 throw ParseError.typeMismatches(expected: [TimeType.Fischer.self, TimeType.Byoyomi.self, TimeType.Simple.self, TimeType.Canadian.self, TimeType.Absolute.self], container: data)
             }
