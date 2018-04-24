@@ -9,7 +9,6 @@
 import Foundation
 
 struct Clock: Decodable {
-
     let blackId: Int
     let blackTime: TimeType?
     let currentPlayer: Int
@@ -37,6 +36,7 @@ struct Clock: Decodable {
     }
 }
 
+// MARK: - TimeType
 extension Clock {
     enum TimeType: Decodable {
         case fischer(Fischer)
@@ -63,48 +63,119 @@ extension Clock {
             }
         }
 
-        struct Fischer: Decodable {
-            let skipBonus: Bool
-            let thinkingTime: Double
-
-            enum CodingKeys: String, CodingKey {
-                case skipBonus = "skip_bonus"
-                case thinkingTime = "thinking_time"
+        func countDown(timePassed: TimeInterval) {
+            switch self {
+            case let .fischer(tickable):
+                tickable.countDown(timePassed: timePassed)
+            case let .simple(tickable):
+                tickable.countDown(timePassed: timePassed)
+            case let .absolute(tickable):
+                tickable.countDown(timePassed: timePassed)
+            case let .byoyomi(tickable):
+                tickable.countDown(timePassed: timePassed)
+            case let .canadian(tickable):
+                tickable.countDown(timePassed: timePassed)
             }
         }
 
-        struct Byoyomi: Decodable {
-            let thinkingTime: Double
-            let periods: Int
-            let periodTime: Double
-
-            enum CodingKeys: String, CodingKey {
-                case thinkingTime = "thinking_time"
-                case periods
-                case periodTime = "period_time"
+        func getTickable() -> Tickable {
+            switch self {
+            case let .fischer(tickable):
+                return tickable
+            case let .simple(tickable):
+                return tickable
+            case let .absolute(tickable):
+                return tickable
+            case let .byoyomi(tickable):
+                return tickable
+            case let .canadian(tickable):
+                return tickable
             }
         }
+    }
+}
 
-        typealias Simple = Double
+protocol Tickable {
+    mutating func countDown(timePassed: TimeInterval)
+}
 
-        struct Canadian: Decodable {
-            let thinkingTime: Double
-            let movesLeft: Int
-            let blockTime: Double
+// MARK: - Different Types
+extension Clock {
+    class Fischer: Decodable, Tickable {
+        let skipBonus: Bool
+        var thinkingTime: Double
 
-            enum CodingKeys: String, CodingKey {
-                case blockTime = "block_time"
-                case movesLeft = "moves_left"
-                case thinkingTime = "thinking_time"
-            }
+        enum CodingKeys: String, CodingKey {
+            case skipBonus = "skip_bonus"
+            case thinkingTime = "thinking_time"
         }
 
-        struct Absolute: Decodable {
-            let thinkingTime: Double
+        func countDown(timePassed: TimeInterval) {
+            thinkingTime = max(thinkingTime - timePassed, 0)
+        }
+    }
 
-            enum CodingKeys: String, CodingKey {
-                case thinkingTime = "thinking_time"
+    class Byoyomi: Decodable, Tickable {
+        var thinkingTime: Double
+        var periods: Int
+        let periodTime: Double
+
+        enum CodingKeys: String, CodingKey {
+            case thinkingTime = "thinking_time"
+            case periods
+            case periodTime = "period_time"
+        }
+
+        func countDown(timePassed: TimeInterval) {
+            if thinkingTime > timePassed {
+                thinkingTime -= timePassed
+            } else if periods >= 1 {
+                let overshot = timePassed - thinkingTime
+                periods -= 1
+                thinkingTime = periodTime - overshot
+            } else {
+                thinkingTime = 0
             }
+        }
+    }
+
+    class Simple: Decodable, Tickable {
+        var thinkingTime: Double
+
+        required init(from decoder: Decoder) throws {
+            thinkingTime = try decoder.singleValueContainer().decode(Double.self)
+        }
+
+        func countDown(timePassed: TimeInterval) {
+            thinkingTime = max(thinkingTime - timePassed, 0)
+        }
+    }
+
+    class Canadian: Decodable, Tickable {
+        var thinkingTime: Double
+        let movesLeft: Int
+        let blockTime: Double
+
+        enum CodingKeys: String, CodingKey {
+            case blockTime = "block_time"
+            case movesLeft = "moves_left"
+            case thinkingTime = "thinking_time"
+        }
+
+        func countDown(timePassed: TimeInterval) {
+            thinkingTime = max(thinkingTime - timePassed, 0)
+        }
+    }
+
+    class Absolute: Decodable, Tickable {
+        var thinkingTime: Double
+
+        enum CodingKeys: String, CodingKey {
+            case thinkingTime = "thinking_time"
+        }
+
+        func countDown(timePassed: TimeInterval) {
+            thinkingTime = max(thinkingTime - timePassed, 0)
         }
     }
 }
