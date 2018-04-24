@@ -15,7 +15,7 @@ protocol Alerting {
 
 extension Alerting where Self: UIViewController {
     func errorAlert(_ error: Error) {
-        let controller = UIAlertController.simpleAlert(title: String(describing: type(of: error)), message: error.localizedDescription, actionText: "Ok")
+        let controller = UIAlertController.simpleAlert(title: String(describing: type(of: error)), message: error.localizedDescription, actionText: NSLocalizedString("Ok", comment: ""))
         present(controller, animated: true, completion: nil)
     }
 }
