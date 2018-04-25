@@ -12,6 +12,11 @@ protocol ClockControllerDelegate: class {
     func clockUpdated(_ clock: Clock)
 }
 
+/// A controller that takes in a clock object and calls delegate on clock updates.
+///
+/// It's the owner's responsibility to update the internal clock as this class has no concept of network calls.
+///
+/// It's possible to change the clock type midway, the controller is capable of counting down any clocks.
 class ClockController {
 
     enum Phase {
@@ -54,7 +59,7 @@ class ClockController {
     }
 
     func countDownLoop() {
-        delay(1) { [weak self] in
+        delay(0.001) { [weak self] in
             guard let s = self else { return }
             let now = Date()
             s.countDownClocks(secondsPassed: now.timeIntervalSince(s.lastTime))
