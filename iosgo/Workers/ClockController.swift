@@ -57,7 +57,7 @@ class ClockController {
         delay(1) { [weak self] in
             guard let s = self else { return }
             let now = Date()
-            s.countDownClocks(millisecondsPassed: now.timeIntervalSince(s.lastTime) * 1000)
+            s.countDownClocks(secondsPassed: now.timeIntervalSince(s.lastTime))
             s.lastTime = now
 
             s.updateClock()
@@ -68,12 +68,12 @@ class ClockController {
 }
 
 private extension ClockController {
-    func countDownClocks(millisecondsPassed: TimeInterval) {
+    func countDownClocks(secondsPassed: TimeInterval) {
         switch currentClock.playingPlayer() {
         case .black:
-            currentClock.blackTime?.countDown(millisecondsPassed: millisecondsPassed)
+            currentClock.blackTime?.countDown(secondsPassed: secondsPassed)
         case .white:
-            currentClock.whiteTime?.countDown(millisecondsPassed: millisecondsPassed)
+            currentClock.whiteTime?.countDown(secondsPassed: secondsPassed)
         }
     }
 
@@ -104,7 +104,7 @@ private extension ClockController {
             return .pregame(Clock.Pregame(thinkingTime: 600))
         }
 
-        let timeLeft = clock.expiration - now
+        let timeLeft = (clock.expiration - now) / 1000
         return .pregame(Clock.Pregame(thinkingTime: timeLeft))
     }
 }

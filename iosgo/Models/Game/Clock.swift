@@ -12,9 +12,11 @@ struct Clock: Decodable {
     let blackId: Int
     var blackTime: TimeType?
     let currentPlayer: Int
+    /// Expiration in **milliseconds**
     let expiration: Double
     let gameId: Int
     let lastMove: Int
+    /// Current time in **milliseconds**
     let now: Double?
     let pausedSince: Double?
     let title: String
@@ -72,21 +74,21 @@ extension Clock {
             }
         }
 
-        /// - parameter millisecondsPassed: The time interval in **milliseconds** that has passed.
-        func countDown(millisecondsPassed: TimeInterval) {
+        /// - parameter secondsPassed: The time interval in **seconds** that has passed.
+        func countDown(secondsPassed: TimeInterval) {
             switch self {
             case let .fischer(tickable):
-                tickable.countDown(timePassed: millisecondsPassed)
+                tickable.countDown(timePassed: secondsPassed)
             case let .simple(tickable):
-                tickable.countDown(timePassed: millisecondsPassed)
+                tickable.countDown(timePassed: secondsPassed)
             case let .absolute(tickable):
-                tickable.countDown(timePassed: millisecondsPassed)
+                tickable.countDown(timePassed: secondsPassed)
             case let .byoyomi(tickable):
-                tickable.countDown(timePassed: millisecondsPassed)
+                tickable.countDown(timePassed: secondsPassed)
             case let .canadian(tickable):
-                tickable.countDown(timePassed: millisecondsPassed)
+                tickable.countDown(timePassed: secondsPassed)
             case let .pregame(tickable):
-                tickable.countDown(timePassed: millisecondsPassed)
+                tickable.countDown(timePassed: secondsPassed)
             }
         }
 
