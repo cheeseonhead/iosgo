@@ -29,6 +29,7 @@
 		3462CB80208F6D13005DC96B /* DecodingContainer+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3462CB7F208F6D13005DC96B /* DecodingContainer+JSON.swift */; };
 		3462CB82208F9367005DC96B /* TimeTypeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3462CB81208F9367005DC96B /* TimeTypeFormatter.swift */; };
 		3462CB85208F95BD005DC96B /* DispatchQueue+Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3462CB84208F95BD005DC96B /* DispatchQueue+Delay.swift */; };
+		3462CB87208FF818005DC96B /* ClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3462CB86208FF818005DC96B /* ClockController.swift */; };
 		3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441471EE4BA06008718D7 /* SplashConfigurator.swift */; };
 		3464414E1EE4BA06008718D7 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441481EE4BA06008718D7 /* SplashInteractor.swift */; };
 		3464414F1EE4BA06008718D7 /* SplashModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441491EE4BA06008718D7 /* SplashModels.swift */; };
@@ -191,6 +192,7 @@
 		3462CB7F208F6D13005DC96B /* DecodingContainer+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecodingContainer+JSON.swift"; sourceTree = "<group>"; };
 		3462CB81208F9367005DC96B /* TimeTypeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTypeFormatter.swift; sourceTree = "<group>"; };
 		3462CB84208F95BD005DC96B /* DispatchQueue+Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Delay.swift"; sourceTree = "<group>"; };
+		3462CB86208FF818005DC96B /* ClockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockController.swift; sourceTree = "<group>"; };
 		346441471EE4BA06008718D7 /* SplashConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashConfigurator.swift; sourceTree = "<group>"; };
 		346441481EE4BA06008718D7 /* SplashInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		346441491EE4BA06008718D7 /* SplashModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashModels.swift; sourceTree = "<group>"; };
@@ -988,6 +990,7 @@
 				AD05AD1DB62CA191F038171D /* ChallengeWorker.swift */,
 				AD05AD7F65C8CB89B123BE4D /* OGSSessionWorker.swift */,
 				AD05A34A88DE4696CFFB31C0 /* ViewWorkers */,
+				3462CB86208FF818005DC96B /* ClockController.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -1233,6 +1236,7 @@
 				34A0BCD9207F1F0A007EB42D /* Character+FromInt.swift in Sources */,
 				34970F061F00A52A00623ED0 /* StoneType.swift in Sources */,
 				34A0BCD6207F1844007EB42D /* JSONDecoder+Dictionary.swift in Sources */,
+				3462CB87208FF818005DC96B /* ClockController.swift in Sources */,
 				AD05A98848DA928281D1EFE3 /* UIColor+Additions.swift in Sources */,
 				34B57FB8208E50CD007F3003 /* Array+Remove.swift in Sources */,
 				34C46A33208D378E007893A5 /* URLRequest+cURL.swift in Sources */,
