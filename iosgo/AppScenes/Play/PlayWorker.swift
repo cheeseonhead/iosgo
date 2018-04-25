@@ -93,14 +93,13 @@ extension PlayWorker: GameSocketDelegate {
     func handleMove(_ move: BoardPoint) {
         try? gameEngine.place(at: move)
         delegate?.gameUpdated(state: gameEngine.getState())
+
+        clockController?.changePhase(.playing)
     }
 
     func handleClock(_ clock: Clock) {
 
-        clockController?.setClock(clock, phase: ClockController.Phase(movesCount: gameEngine.game.gamedata.moves().count))
-        let response = Play.UpdateClock.Response(clock: clock)
-
-        delegate?.gameClockUpdated(response)
+        clockController?.setClock(clock, phase: ClockController.Phase(movesCount: gameEngine.currentMove.moveNumber))
     }
 
     func updateGameData(_ gameData: GameData) {
@@ -117,7 +116,7 @@ extension PlayWorker: ClockControllerDelegate {
             return
         }
 
-        clockController = ClockController(clock: game.gamedata.clock, phase: ClockController.Phase(movesCount: gameEngine.game.gamedata.moves().count))
+        clockController = ClockController(clock: game.gamedata.clock, phase: ClockController.Phase(movesCount: gameEngine.currentMove.moveNumber))
         clockController?.delegate = self
         clockController?.countDownLoop()
     }

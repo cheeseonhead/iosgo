@@ -28,21 +28,28 @@ class ClockController {
 
     weak var delegate: ClockControllerDelegate?
 
-    private var clock: Clock
+    private var currentClock: Clock
+    private var gameClock: Clock
     private var phase: Phase
     private var lastTime = Date()
 
     init(clock: Clock, phase: Phase) {
-        self.clock = clock
+        gameClock = clock
+        currentClock = gameClock
         self.phase = phase
-        changeClock(for: phase)
+        changePhase(phase)
     }
 
     func setClock(_ clock: Clock, phase: Phase) {
-        self.clock = clock
+        gameClock = clock
+        currentClock = gameClock
         self.phase = phase
 
         lastTime = Date()
+        changePhase(phase)
+    }
+
+    func changePhase(_ phase: Phase) {
         changeClock(for: phase)
     }
 
@@ -62,32 +69,34 @@ class ClockController {
 
 private extension ClockController {
     func countDownClocks(millisecondsPassed: TimeInterval) {
-        switch clock.playingPlayer() {
+        switch currentClock.playingPlayer() {
         case .black:
-            clock.blackTime?.countDown(millisecondsPassed: millisecondsPassed)
+            currentClock.blackTime?.countDown(millisecondsPassed: millisecondsPassed)
         case .white:
-            clock.whiteTime?.countDown(millisecondsPassed: millisecondsPassed)
+            currentClock.whiteTime?.countDown(millisecondsPassed: millisecondsPassed)
         }
     }
 
     func updateClock() {
-        delegate?.clockUpdated(clock)
+        delegate?.clockUpdated(currentClock)
     }
 
     func changeClock(for phase: Phase) {
         switch phase {
         case .waiting:
-            switch clock.playingPlayer() {
+            switch currentClock.playingPlayer() {
             case .black:
-                clock.blackTime = pregameWaitingTime(clock)
-                clock.whiteTime = nil
+                currentClock.blackTime = pregameWaitingTime(currentClock)
+                currentClock.whiteTime = nil
             case .white:
-                clock.blackTime = nil
-                clock.whiteTime = pregameWaitingTime(clock)
+                currentClock.blackTime = nil
+                currentClock.whiteTime = pregameWaitingTime(currentClock)
             }
         case .playing:
-            return
+            currentClock = gameClock
         }
+
+        updateClock()
     }
 
     func pregameWaitingTime(_ clock: Clock) -> Clock.TimeType {
