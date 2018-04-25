@@ -28,10 +28,9 @@ class PlayPresenter: PlayPresentationLogic {
         response.done(on: DispatchQueue.main) { response in
             let state = self.renderer.getState(from: response.state)
 
-            let black = self.user(from: response.black)
-            let white = self.user(from: response.white)
+            let playerInfoUsers = self.playerInfoUsers(from: response)
 
-            let model = Play.LoadGame.ViewModel(state: state, black: black, white: white)
+            let model = Play.LoadGame.ViewModel(state: state, black: playerInfoUsers.black, white: playerInfoUsers.white)
             self.viewController?.displayLoadScene(viewModel: model)
         }.catch { error in
             self.viewController?.errorAlert(error)
@@ -56,14 +55,17 @@ private extension PlayPresenter {
     func clockVM(_ response: Play.UpdateClock.Response) -> Play.UpdateClock.ViewModel {
         let formatter = TimeTypeFormatter()
 
-        let blackStr = formatter.string(from: response.blackClock)
-        let whiteStr = formatter.string(from: response.whiteClock)
+        let blackStr = formatter.string(from: response.clock.blackTime)
+        let whiteStr = formatter.string(from: response.clock.whiteTime)
 
         let vm = Play.UpdateClock.ViewModel(blackTimeStr: blackStr, whiteTimeStr: whiteStr)
         return vm
     }
 
-    func user(from player: Play.LoadGame.Response.User) -> PlayerInfoViewModel.User {
-        return PlayerInfoViewModel.User(username: player.username, profile: player.icon)
+    func playerInfoUsers(from response: Play.LoadGame.Response) -> (black: PlayerInfoViewModels.User, white: PlayerInfoViewModels.User) {
+        let black = PlayerInfoViewModels.User(username: response.game.players.black.username, profile: response.icons.black)
+        let white = PlayerInfoViewModels.User(username: response.game.players.white.username, profile: response.icons.white)
+
+        return (black, white)
     }
 }

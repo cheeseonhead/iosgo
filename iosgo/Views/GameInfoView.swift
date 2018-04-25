@@ -33,7 +33,7 @@ class GameInfoView: UIView {
         bottomInfoView.setTime(whiteTime)
     }
 
-    func setUsers(black: PlayerInfoViewModel.User, white: PlayerInfoViewModel.User) {
+    func setUsers(black: PlayerInfoViewModels.User, white: PlayerInfoViewModels.User) {
         topInfoView.setUser(black, color: .black)
         bottomInfoView.setUser(white, color: .white)
     }

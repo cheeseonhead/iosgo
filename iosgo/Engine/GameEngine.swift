@@ -59,6 +59,7 @@ class GameEngine {
             let newMoves = Array(newMoves[currentMoves.count ..< newMoves.count])
             playMoves(newMoves)
         }
+        game.gamedata = gameData
     }
 
     func place(at point: BoardPoint, checkForKo: Bool = false, errorOnSuperKo: Bool = false, dontCheckForSuperKo: Bool = false, dontCheckForSuicide: Bool = false, isTrunkMove: Bool = false) throws {

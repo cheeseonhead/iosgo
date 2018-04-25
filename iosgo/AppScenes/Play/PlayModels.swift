@@ -20,20 +20,14 @@ enum Play {
 
         struct Response {
             var state: GoState
-            var clock: Clock
-            var black: User
-            var white: User
-
-            struct User {
-                let username: String
-                let icon: UIImage
-            }
+            var game: Game
+            var icons: (black: UIImage, white: UIImage)
         }
 
         struct ViewModel {
             var state: GridState
-            var black: PlayerInfoViewModel.User
-            var white: PlayerInfoViewModel.User
+            var black: PlayerInfoViewModels.User
+            var white: PlayerInfoViewModels.User
         }
     }
 
@@ -55,8 +49,7 @@ enum Play {
 
     enum UpdateClock {
         struct Response {
-            let blackClock: Clock.TimeType?
-            let whiteClock: Clock.TimeType?
+            let clock: Clock
         }
 
         struct ViewModel {

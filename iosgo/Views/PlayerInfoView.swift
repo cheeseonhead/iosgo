@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct PlayerInfoViewModel {
+enum PlayerInfoViewModels {
     struct User {
         let username: String
         let profile: UIImage
@@ -37,7 +37,7 @@ class PlayerInfoView: UIView {
         timeLabel.text = time
     }
 
-    func setUser(_ model: PlayerInfoViewModel.User, color _: PlayerType) {
+    func setUser(_ model: PlayerInfoViewModels.User, color _: PlayerType) {
         profileImage.image = model.profile
         usernameLabel.text = model.username
     }

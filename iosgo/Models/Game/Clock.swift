@@ -10,16 +10,16 @@ import Foundation
 
 struct Clock: Decodable {
     let blackId: Int
-    let blackTime: TimeType?
+    var blackTime: TimeType?
     let currentPlayer: Int
-    let expiration: Int
+    let expiration: Double
     let gameId: Int
     let lastMove: Int
     let now: Double?
-    let pausedSince: Int?
+    let pausedSince: Double?
     let title: String
     let whiteId: Int
-    let whiteTime: TimeType?
+    var whiteTime: TimeType?
 
     enum CodingKeys: String, CodingKey {
         case blackId = "black_player_id"
@@ -34,6 +34,14 @@ struct Clock: Decodable {
         case whiteId = "white_player_id"
         case whiteTime = "white_time"
     }
+
+    func playingPlayer() -> PlayerType {
+        if blackId == currentPlayer {
+            return .black
+        } else {
+            return .white
+        }
+    }
 }
 
 // MARK: - TimeType
@@ -44,6 +52,7 @@ extension Clock {
         case byoyomi(Byoyomi)
         case canadian(Canadian)
         case absolute(Absolute)
+        case pregame(Pregame)
 
         init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
@@ -59,22 +68,25 @@ extension Clock {
             } else if let res = try? container.decode(Absolute.self) {
                 self = .absolute(res)
             } else {
-                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Could not decode TimeType \(container).")
+                throw ParseError.typeMismatches(expected: [Fischer.self, Byoyomi.self, Simple.self, Canadian.self, Absolute.self], container: container)
             }
         }
 
-        func countDown(timePassed: TimeInterval) {
+        /// - parameter millisecondsPassed: The time interval in **milliseconds** that has passed.
+        func countDown(millisecondsPassed: TimeInterval) {
             switch self {
             case let .fischer(tickable):
-                tickable.countDown(timePassed: timePassed)
+                tickable.countDown(timePassed: millisecondsPassed)
             case let .simple(tickable):
-                tickable.countDown(timePassed: timePassed)
+                tickable.countDown(timePassed: millisecondsPassed)
             case let .absolute(tickable):
-                tickable.countDown(timePassed: timePassed)
+                tickable.countDown(timePassed: millisecondsPassed)
             case let .byoyomi(tickable):
-                tickable.countDown(timePassed: timePassed)
+                tickable.countDown(timePassed: millisecondsPassed)
             case let .canadian(tickable):
-                tickable.countDown(timePassed: timePassed)
+                tickable.countDown(timePassed: millisecondsPassed)
+            case let .pregame(tickable):
+                tickable.countDown(timePassed: millisecondsPassed)
             }
         }
 
@@ -89,6 +101,8 @@ extension Clock {
             case let .byoyomi(tickable):
                 return tickable
             case let .canadian(tickable):
+                return tickable
+            case let .pregame(tickable):
                 return tickable
             }
         }
@@ -172,6 +186,18 @@ extension Clock {
 
         enum CodingKeys: String, CodingKey {
             case thinkingTime = "thinking_time"
+        }
+
+        func countDown(timePassed: TimeInterval) {
+            thinkingTime = max(thinkingTime - timePassed, 0)
+        }
+    }
+
+    class Pregame: Tickable {
+        var thinkingTime: Double
+
+        init(thinkingTime: Double) {
+            self.thinkingTime = thinkingTime
         }
 
         func countDown(timePassed: TimeInterval) {

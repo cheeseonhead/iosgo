@@ -18,8 +18,23 @@ class TimeTypeFormatter {
         switch timeType {
         case let .byoyomi(clock):
             return "\(clock.thinkingTime) + \(clock.periods) x \(clock.periodTime)"
+        case let .pregame(clock):
+            return pregameFormat(clock)
         default:
             return "Not implementated"
         }
+    }
+}
+
+private extension TimeTypeFormatter {
+    func pregameFormat(_ clock: Clock.Pregame) -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .abbreviated
+
+        let format = NSLocalizedString("Time to make first move: %@", comment: "")
+        let timeString = formatter.string(from: clock.thinkingTime / 1000)!
+
+        return String(format: format, timeString)
     }
 }

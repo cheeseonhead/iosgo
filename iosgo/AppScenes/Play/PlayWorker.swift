@@ -26,6 +26,7 @@ class PlayWorker {
     private var imageApi: AvatarApi
     private var gameEngine: GameEngine!
     private var gameSocket: GameSocket!
+    private var clockController: ClockController?
     weak var delegate: PlayWorkerDelegate?
 
     private var clocks: [PlayerType: Clock.TimeType]?
@@ -40,8 +41,7 @@ class PlayWorker {
         return gameStore.game(id: id).then { game -> Promise<Game> in
             self.gameEngine = GameEngine(game: game)
 
-            self.setClocks(game.gamedata.clock)
-            self.countDownLoop()
+            self.setupClockController(game)
 
             return self.connectSocket().map { _ in game }
         }.then { game -> Promise<Play.LoadGame.Response> in
@@ -73,22 +73,16 @@ private extension PlayWorker {
     }
 
     func getIcons(players: Game.Players) -> Promise<(black: UIImage, white: UIImage)> {
-        let blackURL = players.black.icon
-        let whiteURL = players.white.icon
+        let blackIconPromise = imageApi.getImage(fullUrl: players.black.icon, size: DefaultImageSize)
+        let whiteIconPromise = imageApi.getImage(fullUrl: players.white.icon, size: DefaultImageSize)
 
-        return when(fulfilled: [imageApi.getImage(fullUrl: blackURL, size: DefaultImageSize), imageApi.getImage(fullUrl: whiteURL, size: DefaultImageSize)]).map {
-            array in
-            (array[0], array[1])
+        return when(fulfilled: [blackIconPromise, whiteIconPromise]).map {
+            array in (array[0], array[1])
         }
     }
 
     func response(from game: Game, images: (black: UIImage, white: UIImage)) -> Play.LoadGame.Response {
-        let blackUser = Play.LoadGame.Response.User(username: game.players.black.username, icon: images.black)
-        let whiteUser = Play.LoadGame.Response.User(username: game.players.white.username, icon: images.white)
-        let response = Play.LoadGame.Response(state: gameEngine.getState(),
-                                              clock: game.gamedata.clock,
-                                              black: blackUser,
-                                              white: whiteUser)
+        let response = Play.LoadGame.Response(state: gameEngine.getState(), game: game, icons: images)
 
         return response
     }
@@ -102,7 +96,9 @@ extension PlayWorker: GameSocketDelegate {
     }
 
     func handleClock(_ clock: Clock) {
-        let response = Play.UpdateClock.Response(blackClock: clock.blackTime, whiteClock: clock.whiteTime)
+
+        clockController?.setClock(clock, phase: ClockController.Phase(movesCount: gameEngine.game.gamedata.moves().count))
+        let response = Play.UpdateClock.Response(clock: clock)
 
         delegate?.gameClockUpdated(response)
     }
@@ -113,40 +109,22 @@ extension PlayWorker: GameSocketDelegate {
     }
 }
 
-// MARK: - Clock Helpers
-private extension PlayWorker {
-    func setClocks(_ clock: Clock) {
-        if let bTime = clock.blackTime {
-            clocks = [:]
-            clocks?[.black] = bTime
+// MARK: - ClockController Delegate
+extension PlayWorker: ClockControllerDelegate {
+
+    func setupClockController(_ game: Game) {
+        guard game.ended == nil else {
+            return
         }
 
-        if let wTime = clock.whiteTime {
-            clocks?[.white] = wTime
-        }
+        clockController = ClockController(clock: game.gamedata.clock, phase: ClockController.Phase(movesCount: gameEngine.game.gamedata.moves().count))
+        clockController?.delegate = self
+        clockController?.countDownLoop()
     }
 
-    func countDownClocks(timePassed: TimeInterval) {
-        clocks?[.black]?.countDown(timePassed: timePassed)
-        clocks?[.white]?.countDown(timePassed: timePassed)
-    }
-
-    func updateClock() {
-        let response = Play.UpdateClock.Response(blackClock: clocks?[.black], whiteClock: clocks?[.white])
+    func clockUpdated(_ clock: Clock) {
+        let response = Play.UpdateClock.Response(clock: clock)
 
         delegate?.gameClockUpdated(response)
-    }
-
-    func countDownLoop() {
-        var lastTime = Date()
-        delay(1) { [weak self] in
-            let now = Date()
-            self?.countDownClocks(timePassed: now.timeIntervalSince(lastTime))
-            lastTime = now
-
-            self?.updateClock()
-
-            self?.countDownLoop()
-        }
     }
 }
