@@ -10,8 +10,8 @@
 //  see http://clean-swift.com
 //
 
-import UIKit
 import PromiseKit
+import UIKit
 
 protocol PlayPresentationLogic {
     func presentLoadScene(response: Promise<Play.LoadGame.Response>)
@@ -45,18 +45,22 @@ class PlayPresenter: PlayPresentationLogic {
     }
 
     func presentUpdateClock(response: Play.UpdateClock.Response) {
-        let viewModel = clockVM(response)
+        do {
+            let viewModel = try clockVM(response)
 
-        viewController?.displayUpdateClock(viewModel: viewModel)
+            viewController?.displayUpdateClock(viewModel: viewModel)
+        } catch {
+            viewController?.errorAlert(error)
+        }
     }
 }
 
 private extension PlayPresenter {
-    func clockVM(_ response: Play.UpdateClock.Response) -> Play.UpdateClock.ViewModel {
+    func clockVM(_ response: Play.UpdateClock.Response) throws -> Play.UpdateClock.ViewModel {
         let formatter = TimeTypeFormatter()
 
-        let blackStr = formatter.string(from: response.clock.blackTime)
-        let whiteStr = formatter.string(from: response.clock.whiteTime)
+        let blackStr = try formatter.string(from: response.clock.blackTime, type: response.clockType)
+        let whiteStr = try formatter.string(from: response.clock.whiteTime, type: response.clockType)
 
         let vm = Play.UpdateClock.ViewModel(blackTimeStr: blackStr, whiteTimeStr: whiteStr)
         return vm
