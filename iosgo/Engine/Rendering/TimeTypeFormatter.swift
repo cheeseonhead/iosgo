@@ -9,43 +9,43 @@
 import Foundation
 
 class TimeTypeFormatter {
-
-    func string(from timeType: Clock.TimeType?) -> String {
-        guard let timeType = timeType else {
-            return ""
-        }
-
-        switch timeType {
-        case let .byoyomi(clock):
-            return byoyomiFormat(clock)
-        case let .pregame(clock):
-            return pregameFormat(clock)
+    func string(from time: Clock.Time, type: TimeControlType) -> String? {
+        switch type {
+        case .byoyomi:
+            return byoyomiFormat(time)
+        case .pregame:
+            return pregameFormat(time)
         default:
-            return "Not implementated"
+            return "Not yet implemented"
         }
     }
 }
 
 private extension TimeTypeFormatter {
-    func pregameFormat(_ clock: Clock.Pregame) -> String {
+    func pregameFormat(_ time: Clock.Time) -> String? {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.day, .hour, .minute, .second]
         formatter.unitsStyle = .abbreviated
 
         let format = NSLocalizedString("Time to make first move: %@", comment: "")
-        let timeString = formatter.string(from: clock.thinkingTime)!
+        let timeString = formatter.string(from: time.thinkingTime)!
 
         return String(format: format, timeString)
     }
 
-    func byoyomiFormat(_ clock: Clock.Byoyomi) -> String {
+    func byoyomiFormat(_ time: Clock.Time) -> String? {
+        guard let periodTime = time.periodTime,
+            let periods = time.periods else {
+            return nil
+        }
+
         let formatter = getFormatter()
 
         let format = NSLocalizedString("%@ then %@ x %d", comment: "")
-        let mainTime = formatter.string(from: clock.thinkingTime)!
-        let periodTime = formatter.string(from: clock.periodTime)!
+        let mainTime = formatter.string(from: time.thinkingTime)!
+        let pdTime = formatter.string(from: periodTime)!
 
-        return String(format: format, mainTime, periodTime, clock.periods)
+        return String(format: format, mainTime, pdTime, periods)
     }
 
     func getFormatter() -> DateComponentsFormatter {
