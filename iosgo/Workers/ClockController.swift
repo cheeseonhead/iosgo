@@ -18,14 +18,15 @@ protocol ClockControllerDelegate: class {
 ///
 /// It's possible to change the clock type midway, the controller is capable of counting down any clocks.
 class ClockController {
-
     weak var delegate: ClockControllerDelegate?
 
     private var currentClock: Clock
+    private var type: TimeControlType
     private var lastTime = Date()
 
-    init(clock: Clock) {
+    init(clock: Clock, type: TimeControlType) {
         currentClock = clock
+        self.type = type
     }
 
     func setClock(_ clock: Clock) {
@@ -52,9 +53,11 @@ private extension ClockController {
     func countDownClocks(secondsPassed: TimeInterval) {
         switch currentClock.playingPlayer() {
         case .black:
-            currentClock.blackTime?.countDown(secondsPassed: secondsPassed)
+            guard let blackTime = currentClock.blackTime else { return }
+            currentClock.blackTime = TimeTicker().ticked(blackTime, secondsPassed: secondsPassed, type: type)
         case .white:
-            currentClock.whiteTime?.countDown(secondsPassed: secondsPassed)
+            guard let whiteTime = currentClock.whiteTime else { return }
+            currentClock.whiteTime = TimeTicker().ticked(whiteTime, secondsPassed: secondsPassed, type: type)
         }
     }
 
