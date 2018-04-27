@@ -1,5 +1,5 @@
 //
-//  ClockTicker.swift
+//  TimeTicker
 //  iosgo
 //
 //  Created by Jeffrey Wu on 2018-04-26.
