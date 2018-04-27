@@ -16,4 +16,5 @@ enum TimeControlType: String, UnboxableEnum, Codable {
     case canadian
     case absolute
     case none
+    case pregame
 }
