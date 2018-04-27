@@ -33,9 +33,11 @@ class ClockController {
         currentClock = clock
 
         lastTime = Date()
+        updateClock()
     }
 
     func countDownLoop() {
+        lastTime = Date()
         delay(0.001) { [weak self] in
             guard let s = self else { return }
             let now = Date()
