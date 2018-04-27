@@ -8,13 +8,21 @@
 
 import Foundation
 
+enum FormattingError: LocalizedError {
+    case propertiesMissingValue(Any.Type, [String])
+}
+
 class TimeTypeFormatter {
-    func string(from time: Clock.Time, type: TimeControlType) -> String? {
+    func string(from time: Clock.Time?, type: TimeControlType) throws -> String {
+        guard let time = time else {
+            return ""
+        }
+
         switch type {
         case .byoyomi:
-            return byoyomiFormat(time)
+            return try byoyomiFormat(time)
         case .pregame:
-            return pregameFormat(time)
+            return try pregameFormat(time)
         default:
             return "Not yet implemented"
         }
@@ -22,7 +30,7 @@ class TimeTypeFormatter {
 }
 
 private extension TimeTypeFormatter {
-    func pregameFormat(_ time: Clock.Time) -> String? {
+    func pregameFormat(_ time: Clock.Time) throws -> String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.day, .hour, .minute, .second]
         formatter.unitsStyle = .abbreviated
@@ -33,10 +41,10 @@ private extension TimeTypeFormatter {
         return String(format: format, timeString)
     }
 
-    func byoyomiFormat(_ time: Clock.Time) -> String? {
+    func byoyomiFormat(_ time: Clock.Time) throws -> String {
         guard let periodTime = time.periodTime,
             let periods = time.periods else {
-            return nil
+            throw FormattingError.propertiesMissingValue(Clock.Time.self, ["periodTime", "periods"])
         }
 
         let formatter = getFormatter()
