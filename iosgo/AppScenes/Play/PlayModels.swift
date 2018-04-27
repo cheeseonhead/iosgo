@@ -10,8 +10,8 @@
 //  see http://clean-swift.com
 //
 
-import UIKit
 import PromiseKit
+import UIKit
 
 enum Play {
     enum LoadGame {
@@ -50,6 +50,7 @@ enum Play {
     enum UpdateClock {
         struct Response {
             let clock: Clock
+            let clockType: TimeControlType
         }
 
         struct ViewModel {
