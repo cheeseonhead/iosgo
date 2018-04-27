@@ -17,7 +17,7 @@ struct Clock: Decodable {
     let gameId: Int
     let lastMove: Int
     /// Current time in **milliseconds**
-    let now: Double?
+    var now: Double?
     let pausedSince: Double?
     let title: String
     let whiteId: Int
