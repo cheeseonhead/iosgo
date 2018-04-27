@@ -61,14 +61,7 @@ class ClockController {
 
 private extension ClockController {
     func countDownClocks(secondsPassed: TimeInterval) {
-        switch gameClock.playingPlayer() {
-        case .black:
-            guard let blackTime = gameClock.blackTime else { return }
-            gameClock.blackTime = TimeTicker().ticked(blackTime, secondsPassed: secondsPassed, type: type)
-        case .white:
-            guard let whiteTime = gameClock.whiteTime else { return }
-            gameClock.whiteTime = TimeTicker().ticked(whiteTime, secondsPassed: secondsPassed, type: type)
-        }
+        gameClock = ClockTicker().ticked(gameClock, secondsPassed: secondsPassed, type: type)
     }
 
     func updateClock(currentTime: Date) {
