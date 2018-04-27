@@ -40,8 +40,6 @@ class PlayWorker {
         return gameStore.game(id: id).then { game -> Promise<Game> in
             self.gameEngine = GameEngine(game: game)
 
-            self.setupClockController(game)
-
             return self.connectSocket().map { _ in game }
         }.then { game -> Promise<Play.LoadGame.Response> in
             self.getIcons(players: game.players).map { images in
@@ -95,15 +93,18 @@ extension PlayWorker: GameSocketDelegate {
         try? gameEngine.place(at: move)
         delegate?.gameUpdated(state: gameEngine.getState())
 
-        clockController = ClockController(clock: gameEngine.game.gamedata.clock, type: gameEngine.game.timeControl)
+        clockController?.setTimeType(gameEngine.game.timeControl)
     }
 
     func handleClock(_ clock: Clock) {
-        clockController?.setClock(clock)
+        clockController?.setGameClock(clock)
     }
 
     func updateGameData(_ gameData: GameData) {
         gameEngine.update(with: gameData)
+
+        setupClockController(gameData)
+
         delegate?.gameUpdated(state: gameEngine.getState())
     }
 }
@@ -111,31 +112,23 @@ extension PlayWorker: GameSocketDelegate {
 // MARK: - ClockController Delegate
 
 extension PlayWorker: ClockControllerDelegate {
-    func setupClockController(_ game: Game) {
-        guard game.ended == nil else {
+    func setupClockController(_ gameData: GameData) {
+        guard gameEngine.game.ended == nil else {
             return
         }
 
         if gameEngine.currentMove.moveNumber > 0 {
-            clockController = ClockController(clock: game.gamedata.clock, type: game.timeControl)
+            clockController = ClockController(clock: gameData.clock, type: gameEngine.game.timeControl)
         } else {
-            do {
-                let pregameClock = try PregameClockCreator().create(from: game.gamedata.clock)
-
-                clockController = ClockController(clock: pregameClock, type: .pregame)
-            } catch PregameClockCreatingError.nowNotPresent {
-                return
-            } catch {
-                fatalError(error.localizedDescription)
-            }
-
-            clockController?.delegate = self
-            clockController?.countDownLoop()
+            clockController = ClockController(clock: gameData.clock, type: .pregame)
         }
+
+        clockController?.delegate = self
+        clockController?.countDownLoop()
     }
 
-    func clockUpdated(_ clock: Clock) {
-        let response = Play.UpdateClock.Response(clock: clock, clockType: gameEngine.game.timeControl)
+    func clockUpdated(_ clock: Clock, type: TimeControlType) {
+        let response = Play.UpdateClock.Response(clock: clock, clockType: type)
 
         delegate?.gameClockUpdated(response)
     }

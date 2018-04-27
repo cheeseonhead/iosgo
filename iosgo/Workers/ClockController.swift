@@ -9,31 +9,40 @@
 import Foundation
 
 protocol ClockControllerDelegate: class {
-    func clockUpdated(_ clock: Clock)
+    func clockUpdated(_ clock: Clock, type: TimeControlType)
 }
 
-/// A controller that takes in a clock object and calls delegate on clock updates.
-///
-/// It's the owner's responsibility to update the internal clock as this class has no concept of network calls.
-///
-/// It's possible to change the clock type midway, the controller is capable of counting down any clocks.
 class ClockController {
     weak var delegate: ClockControllerDelegate?
 
-    private var currentClock: Clock
+    private var gameClock: Clock
     private var type: TimeControlType
     private var lastTime = Date()
 
     init(clock: Clock, type: TimeControlType) {
-        currentClock = clock
+        gameClock = clock
         self.type = type
+
+        updateClock(currentTime: Date())
     }
 
-    func setClock(_ clock: Clock) {
-        currentClock = clock
+    func setGameClock(_ clock: Clock) {
+        setGameClock(clock, type: type)
+    }
 
-        lastTime = Date()
-        updateClock()
+    func setTimeType(_ type: TimeControlType) {
+        setGameClock(gameClock, type: type)
+    }
+
+    func setGameClock(_ clock: Clock, type: TimeControlType) {
+        gameClock = clock
+        self.type = type
+
+        updateClock(currentTime: Date())
+    }
+
+    func currentType() -> TimeControlType {
+        return type
     }
 
     func countDownLoop() {
@@ -42,9 +51,8 @@ class ClockController {
             guard let s = self else { return }
             let now = Date()
             s.countDownClocks(secondsPassed: now.timeIntervalSince(s.lastTime))
-            s.lastTime = now
 
-            s.updateClock()
+            s.updateClock(currentTime: now)
 
             s.countDownLoop()
         }
@@ -53,17 +61,18 @@ class ClockController {
 
 private extension ClockController {
     func countDownClocks(secondsPassed: TimeInterval) {
-        switch currentClock.playingPlayer() {
+        switch gameClock.playingPlayer() {
         case .black:
-            guard let blackTime = currentClock.blackTime else { return }
-            currentClock.blackTime = TimeTicker().ticked(blackTime, secondsPassed: secondsPassed, type: type)
+            guard let blackTime = gameClock.blackTime else { return }
+            gameClock.blackTime = TimeTicker().ticked(blackTime, secondsPassed: secondsPassed, type: type)
         case .white:
-            guard let whiteTime = currentClock.whiteTime else { return }
-            currentClock.whiteTime = TimeTicker().ticked(whiteTime, secondsPassed: secondsPassed, type: type)
+            guard let whiteTime = gameClock.whiteTime else { return }
+            gameClock.whiteTime = TimeTicker().ticked(whiteTime, secondsPassed: secondsPassed, type: type)
         }
     }
 
-    func updateClock() {
-        delegate?.clockUpdated(currentClock)
+    func updateClock(currentTime: Date) {
+        lastTime = currentTime
+        delegate?.clockUpdated(gameClock, type: type)
     }
 }
