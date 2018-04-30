@@ -44,6 +44,14 @@ struct Clock: Decodable {
             return .white
         }
     }
+
+    func secondsUntilExpiration() -> Double? {
+        guard let now = now else {
+            return nil
+        }
+
+        return (expiration - now) / 1000
+    }
 }
 
 // MARK: - TimeType
