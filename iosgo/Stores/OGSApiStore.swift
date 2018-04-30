@@ -44,6 +44,18 @@ enum ParseError: Error {
     case wrongDateFormat(dateStr: String, format: String)
     case unknownEnumType(type: Any.Type)
     case imageError(url: String)
+    case propertiesMissingValue([AnyKeyPath])
+}
+
+extension ParseError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case let .propertiesMissingValue(keypaths):
+            return "Keypaths are nil: \(keypaths)"
+        default:
+            return localizedDescription
+        }
+    }
 }
 
 struct Empty: Codable {}
@@ -117,7 +129,6 @@ class OGSApiStore {
     }
 
     func send(request: URLRequest) -> Promise<Data> {
-
         let timeout: Promise<(data: Data, response: URLResponse)> = firstly { after(seconds: 4) }.map { _ in
             throw ApiError.timeout(request)
         }
