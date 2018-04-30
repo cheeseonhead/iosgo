@@ -12,12 +12,23 @@ enum FormattingError: LocalizedError {
     case propertiesMissingValue(Any.Type, [String])
 }
 
-class TimeTypeFormatter {
+class ClockFormatter {
+    func string(from clock: Clock, type: TimeControlType) throws -> (black: String, white: String) {
+        let black = try string(from: clock.blackTime, type: type)
+        let white = try string(from: clock.whiteTime, type: type)
+        
+        return (black, white)
+    }
+}
+
+// MARK: - Format Time
+private extension ClockFormatter {
     func string(from time: Clock.Time?, type: TimeControlType) throws -> String {
+        
         guard let time = time else {
             return ""
         }
-
+        
         switch type {
         case .byoyomi:
             return try byoyomiFormat(time)
@@ -27,9 +38,7 @@ class TimeTypeFormatter {
             return "Not yet implemented"
         }
     }
-}
-
-private extension TimeTypeFormatter {
+    
     func pregameFormat(_ time: Clock.Time) throws -> String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.day, .hour, .minute, .second]

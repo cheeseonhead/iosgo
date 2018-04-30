@@ -29,7 +29,7 @@
 		3452AAF81F01F264008F838E /* BoardSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452AAF71F01F264008F838E /* BoardSize.swift */; };
 		3452AAFA1F01F6F9008F838E /* BoardStone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452AAF91F01F6F9008F838E /* BoardStone.swift */; };
 		3462CB80208F6D13005DC96B /* DecodingContainer+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3462CB7F208F6D13005DC96B /* DecodingContainer+JSON.swift */; };
-		3462CB82208F9367005DC96B /* TimeTypeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3462CB81208F9367005DC96B /* TimeTypeFormatter.swift */; };
+		3462CB82208F9367005DC96B /* ClockFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3462CB81208F9367005DC96B /* ClockFormatter.swift */; };
 		3462CB85208F95BD005DC96B /* DispatchQueue+Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3462CB84208F95BD005DC96B /* DispatchQueue+Delay.swift */; };
 		3462CB87208FF818005DC96B /* ClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3462CB86208FF818005DC96B /* ClockController.swift */; };
 		3464414D1EE4BA06008718D7 /* SplashConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346441471EE4BA06008718D7 /* SplashConfigurator.swift */; };
@@ -194,7 +194,7 @@
 		3452AAF71F01F264008F838E /* BoardSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSize.swift; sourceTree = "<group>"; };
 		3452AAF91F01F6F9008F838E /* BoardStone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardStone.swift; sourceTree = "<group>"; };
 		3462CB7F208F6D13005DC96B /* DecodingContainer+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecodingContainer+JSON.swift"; sourceTree = "<group>"; };
-		3462CB81208F9367005DC96B /* TimeTypeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTypeFormatter.swift; sourceTree = "<group>"; };
+		3462CB81208F9367005DC96B /* ClockFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockFormatter.swift; sourceTree = "<group>"; };
 		3462CB84208F95BD005DC96B /* DispatchQueue+Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Delay.swift"; sourceTree = "<group>"; };
 		3462CB86208FF818005DC96B /* ClockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockController.swift; sourceTree = "<group>"; };
 		346441471EE4BA06008718D7 /* SplashConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashConfigurator.swift; sourceTree = "<group>"; };
@@ -477,7 +477,7 @@
 			isa = PBXGroup;
 			children = (
 				348F60CE1F08BCCE00FA12F0 /* GameRenderer.swift */,
-				3462CB81208F9367005DC96B /* TimeTypeFormatter.swift */,
+				3462CB81208F9367005DC96B /* ClockFormatter.swift */,
 			);
 			path = Rendering;
 			sourceTree = "<group>";
@@ -1248,7 +1248,7 @@
 				34C46A33208D378E007893A5 /* URLRequest+cURL.swift in Sources */,
 				8405C25052BE507C9469A9FE /* OGSLoginModels.swift in Sources */,
 				3414A6FD1EF223BF00E28D6D /* StoneWorker.swift in Sources */,
-				3462CB82208F9367005DC96B /* TimeTypeFormatter.swift in Sources */,
+				3462CB82208F9367005DC96B /* ClockFormatter.swift in Sources */,
 				8405CDE4965C7493BA13D163 /* OGSLoginRouter.swift in Sources */,
 				8405C3C9E1790ACD829F597C /* OGSLoginWorker.swift in Sources */,
 				34FEDDAA1EFFF02F00EC1B5F /* PlayRouter.swift in Sources */,
