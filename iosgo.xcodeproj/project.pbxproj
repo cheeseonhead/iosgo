@@ -55,7 +55,7 @@
 		34970F061F00A52A00623ED0 /* StoneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F051F00A52A00623ED0 /* StoneType.swift */; };
 		34970F091F00A67A00623ED0 /* GridStone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F081F00A67A00623ED0 /* GridStone.swift */; };
 		349CFF68209814FE0098B893 /* ClockConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349CFF67209814FE0098B893 /* ClockConverter.swift */; };
-		349CFF6A2098AF830098B893 /* ClockConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349CFF692098AF830098B893 /* ClockConverterTests.swift */; };
+		349CFF6A2098AF830098B893 /* ClockConverterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349CFF692098AF830098B893 /* ClockConverterSpec.swift */; };
 		34A0BCD6207F1844007EB42D /* JSONDecoder+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A0BCD5207F1844007EB42D /* JSONDecoder+Dictionary.swift */; };
 		34A0BCD9207F1F0A007EB42D /* Character+FromInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A0BCD8207F1F0A007EB42D /* Character+FromInt.swift */; };
 		34A0BCDD207F477E007EB42D /* SocketManagerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A0BCDC207F477E007EB42D /* SocketManagerModels.swift */; };
@@ -221,7 +221,7 @@
 		34970F051F00A52A00623ED0 /* StoneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneType.swift; sourceTree = "<group>"; };
 		34970F081F00A67A00623ED0 /* GridStone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStone.swift; sourceTree = "<group>"; };
 		349CFF67209814FE0098B893 /* ClockConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockConverter.swift; sourceTree = "<group>"; };
-		349CFF692098AF830098B893 /* ClockConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockConverterTests.swift; sourceTree = "<group>"; };
+		349CFF692098AF830098B893 /* ClockConverterSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockConverterSpec.swift; sourceTree = "<group>"; };
 		34A0BCD5207F1844007EB42D /* JSONDecoder+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Dictionary.swift"; sourceTree = "<group>"; };
 		34A0BCD8207F1F0A007EB42D /* Character+FromInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+FromInt.swift"; sourceTree = "<group>"; };
 		34A0BCDC207F477E007EB42D /* SocketManagerModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManagerModels.swift; sourceTree = "<group>"; };
@@ -737,7 +737,7 @@
 			children = (
 				565D24891E54A5A500EF62CD /* iosgoTests.swift */,
 				565D248B1E54A5A500EF62CD /* Info.plist */,
-				349CFF692098AF830098B893 /* ClockConverterTests.swift */,
+				349CFF692098AF830098B893 /* ClockConverterSpec.swift */,
 			);
 			path = iosgoTests;
 			sourceTree = "<group>";
@@ -1373,7 +1373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				565D248A1E54A5A500EF62CD /* iosgoTests.swift in Sources */,
-				349CFF6A2098AF830098B893 /* ClockConverterTests.swift in Sources */,
+				349CFF6A2098AF830098B893 /* ClockConverterSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
