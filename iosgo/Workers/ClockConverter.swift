@@ -78,7 +78,7 @@ private extension ClockConverter {
 
     func byoyomiTime(from seconds: Double, time: Clock.Time) -> Clock.Time {
         guard let periods = time.periods, let periodTime = time.periodTime else {
-            fatalError("periods or periodTime not while trying to convert byoyomi time.")
+            fatalError("periods or periodTime not while trying to convert byoyomi time")
         }
 
         var periodsLeft = 0
