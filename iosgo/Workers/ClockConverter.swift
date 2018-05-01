@@ -14,7 +14,7 @@ import Foundation
 /// This is due to the **Clock** object given by the server not accurately
 /// calculating the remaining times. So we have to derive it from **now** and
 /// **expiration** properties.
-class TimeConverter {
+class ClockConverter {
     let type: TimeControlType
     
     required init(type: TimeControlType) {

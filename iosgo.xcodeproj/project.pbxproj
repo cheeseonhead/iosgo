@@ -54,7 +54,7 @@
 		34970F041EFFFBD800623ED0 /* SpeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68CD71EFF983E0010EFA5 /* SpeedType.swift */; };
 		34970F061F00A52A00623ED0 /* StoneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F051F00A52A00623ED0 /* StoneType.swift */; };
 		34970F091F00A67A00623ED0 /* GridStone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34970F081F00A67A00623ED0 /* GridStone.swift */; };
-		349CFF68209814FE0098B893 /* TimeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349CFF67209814FE0098B893 /* TimeConverter.swift */; };
+		349CFF68209814FE0098B893 /* ClockConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349CFF67209814FE0098B893 /* ClockConverter.swift */; };
 		34A0BCD6207F1844007EB42D /* JSONDecoder+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A0BCD5207F1844007EB42D /* JSONDecoder+Dictionary.swift */; };
 		34A0BCD9207F1F0A007EB42D /* Character+FromInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A0BCD8207F1F0A007EB42D /* Character+FromInt.swift */; };
 		34A0BCDD207F477E007EB42D /* SocketManagerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A0BCDC207F477E007EB42D /* SocketManagerModels.swift */; };
@@ -219,7 +219,7 @@
 		3493D90D1F098E9B00BE526E /* StoneDiffWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneDiffWorker.swift; sourceTree = "<group>"; };
 		34970F051F00A52A00623ED0 /* StoneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneType.swift; sourceTree = "<group>"; };
 		34970F081F00A67A00623ED0 /* GridStone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStone.swift; sourceTree = "<group>"; };
-		349CFF67209814FE0098B893 /* TimeConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeConverter.swift; sourceTree = "<group>"; };
+		349CFF67209814FE0098B893 /* ClockConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockConverter.swift; sourceTree = "<group>"; };
 		34A0BCD5207F1844007EB42D /* JSONDecoder+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Dictionary.swift"; sourceTree = "<group>"; };
 		34A0BCD8207F1F0A007EB42D /* Character+FromInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+FromInt.swift"; sourceTree = "<group>"; };
 		34A0BCDC207F477E007EB42D /* SocketManagerModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManagerModels.swift; sourceTree = "<group>"; };
@@ -999,7 +999,7 @@
 				342E7B94209271F5008BCC76 /* ClockTicker.swift */,
 				AD05A34A88DE4696CFFB31C0 /* ViewWorkers */,
 				3451D7BC20934D2A00E5161A /* PregameClockCreator.swift */,
-				349CFF67209814FE0098B893 /* TimeConverter.swift */,
+				349CFF67209814FE0098B893 /* ClockConverter.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -1351,7 +1351,7 @@
 				AD05AE59A5BF1697CECE11D9 /* OGSUser+Unboxable.swift in Sources */,
 				3493D9081F08E2C300BE526E /* SocketEventCreating.swift in Sources */,
 				AD05AE8F87A1E735676D8715 /* OGSRootViewControllerWorker.swift in Sources */,
-				349CFF68209814FE0098B893 /* TimeConverter.swift in Sources */,
+				349CFF68209814FE0098B893 /* ClockConverter.swift in Sources */,
 				3493D90A1F08E3E300BE526E /* GameSocketEventCreator.swift in Sources */,
 				348F60D31F08DB0800FA12F0 /* SocketEvents.swift in Sources */,
 				34B57FBC208E511B007F3003 /* UIAlertController+Make.swift in Sources */,
