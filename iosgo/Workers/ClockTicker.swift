@@ -30,14 +30,14 @@ class ClockTicker {
 }
 
 private extension ClockTicker {
-    func regularTicked(_ clock: Clock, secondsPassed _: TimeInterval, tickMethod _: (Clock.Time, TimeInterval) -> Clock.Time) -> Clock {
+    func regularTicked(_ clock: Clock, secondsPassed: TimeInterval, tickMethod _: (Clock.Time, TimeInterval) -> Clock.Time) -> Clock {
 
         guard let now = clock.now else {
             return clock
         }
 
         var copy = clock
-        copy.now = now * 1000
+        copy.now = now + secondsPassed * 1000
 
         //        switch clock.playingPlayer() {
         //        case .black:
