@@ -62,11 +62,11 @@ private extension ClockFormatter {
 
         let formatter = getFormatter()
 
-        let format = NSLocalizedString("%@ then %@ x %d", comment: "")
+        let format = NSLocalizedString("%@ then %d x %@", comment: "")
         let mainTime = formatter.string(from: time.thinkingTime)!
         let pdTime = formatter.string(from: periodTime)!
 
-        return String(format: format, mainTime, pdTime, periods)
+        return String(format: format, mainTime, periods, pdTime)
     }
     
     func pregameFormat(_ time: Clock.Time?) throws -> String {
