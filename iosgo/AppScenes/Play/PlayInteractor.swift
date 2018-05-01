@@ -27,7 +27,7 @@ class PlayInteractor: PlayBusinessLogic, PlayDataStore {
     }
 
     func loadScene(request _: Play.LoadGame.Request) {
-        let promise = playWorker.loadGame(id: 3647).get { _ in
+        let promise = playWorker.loadGame(id: 3673).get { _ in
             self.playWorker.delegate = self
         }
 
