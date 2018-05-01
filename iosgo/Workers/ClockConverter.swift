@@ -21,7 +21,40 @@ class ClockConverter {
         self.type = type
     }
     
-    func time(from seconds: Double, originalTime: Clock.Time?) throws -> Clock.Time? {
+    func actualClock(from clock: Clock) throws -> Clock? {
+        
+        guard let now = clock.now else {
+            return nil
+        }
+        
+        var copy = clock
+        
+        let seconds = (clock.expiration - now) / 1000
+        
+        switch clock.playingPlayer() {
+        case .black:
+            copy.blackTime = try playingPlayerTime(from: seconds, originalTime: clock.blackTime)
+            copy.whiteTime = waitingPlayerTime(from: clock.whiteTime)
+        case .white:
+            copy.blackTime = waitingPlayerTime(from: clock.blackTime)
+            copy.whiteTime = try playingPlayerTime(from: seconds, originalTime: clock.whiteTime)
+        }
+        
+        return copy
+    }
+}
+
+private extension ClockConverter {
+    func waitingPlayerTime(from originalTime: Clock.Time?) -> Clock.Time? {
+        switch type {
+        case .pregame:
+            return nil
+        default:
+            return originalTime
+        }
+    }
+    
+    func playingPlayerTime(from seconds: Double, originalTime: Clock.Time?) throws -> Clock.Time? {
         
         guard let time = originalTime else {
             return nil
