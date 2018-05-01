@@ -13,18 +13,68 @@ enum FormattingError: LocalizedError {
 }
 
 class ClockFormatter {
-    func string(from clock: Clock, type: TimeControlType) throws -> (black: String, white: String) {
-        switch type {
-        case .pregame:
-            return try pregameFormat(clock)
-        default:
-            break
+    
+    let type: TimeControlType
+    
+    required init(type: TimeControlType) {
+        self.type = type
+    }
+    
+    func string(from clock: Clock) throws -> (black: String, white: String) {
+        
+        guard let now = clock.now else {
+            throw ParseError.propertiesMissingValue([\Clock.now])
         }
-
-        let black = try string(from: clock.blackTime, type: type)
-        let white = try string(from: clock.whiteTime, type: type)
+        
+        let seconds = (clock.expiration - now) / 1000
+        
+        let blackPlaying = clock.playingPlayer() == .black
+        let black = try string(from: time(from: seconds, time: clock.blackTime, playing: blackPlaying))
+        let white = try string(from: time(from: seconds, time: clock.whiteTime, playing: !blackPlaying))
 
         return (black, white)
+    }
+}
+
+// MARK: - Create time from seconds left
+private extension ClockFormatter {
+    
+    func time(from seconds: Double, time: Clock.Time?, playing: Bool) throws -> Clock.Time? {
+        
+        guard let time = time else {
+            return nil
+        }
+        
+        switch type {
+        case .byoyomi:
+            return try byoyomiTime(from: seconds, time: time)
+        case .pregame:
+            if !playing {
+                return nil
+            }
+            fallthrough
+        default:
+            return regularTime(from: seconds)
+        }
+    }
+    
+    func regularTime(from seconds: Double) -> Clock.Time {
+        return Clock.Time(thinkingTime: seconds)
+    }
+    
+    func byoyomiTime(from seconds: Double, time: Clock.Time) throws -> Clock.Time {
+        guard let periods = time.periods, let periodTime = time.periodTime else {
+            throw ParseError.propertiesMissingValue([\Clock.Time.periods, \Clock.Time.periodTime])
+        }
+        
+        var periodsLeft = 0
+        var timeLeft = seconds
+        while periodsLeft < periods && timeLeft > periodTime {
+            periodsLeft += 1
+            timeLeft -= periodTime
+        }
+        
+        return Clock.Time(thinkingTime: timeLeft, periods: periodsLeft, periodTime: periodTime)
     }
 }
 
@@ -59,7 +109,7 @@ private extension ClockFormatter {
 // MARK: - Format Time
 
 private extension ClockFormatter {
-    func string(from time: Clock.Time?, type: TimeControlType) throws -> String {
+    func string(from time: Clock.Time?) throws -> String {
         guard let time = time else {
             return ""
         }
@@ -68,7 +118,7 @@ private extension ClockFormatter {
         case .byoyomi:
             return try byoyomiFormat(time)
         case .pregame:
-            return "Pregame is not formatted here."
+            return "Waiting..."
         default:
             return "Not yet implemented"
         }
