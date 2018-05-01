@@ -49,11 +49,27 @@ private extension ClockFormatter {
         switch type {
         case .byoyomi:
             return try byoyomiFormat(time)
-        default:
-            return "Not yet implemented"
+        case .canadian:
+            fallthrough
+        case .fischer:
+            fallthrough
+        case .absolute:
+            fallthrough
+        case .pregame:
+            fallthrough
+        case .simple:
+            return try regularFormat(time)
+        case .none:
+            return ""
         }
     }
 
+    func regularFormat(_ time: Clock.Time) throws -> String {
+        let formatter = getFormatter()
+        
+        return formatter.string(from: time.thinkingTime.rounded(.toNearestOrAwayFromZero))!
+    }
+    
     func byoyomiFormat(_ time: Clock.Time) throws -> String {
         guard let periodTime = time.periodTime,
             let periods = time.periods else {
@@ -63,7 +79,7 @@ private extension ClockFormatter {
         let formatter = getFormatter()
 
         let format = NSLocalizedString("%@ then %d x %@", comment: "")
-        let mainTime = formatter.string(from: time.thinkingTime)!
+        let mainTime = formatter.string(from: time.thinkingTime.rounded(.toNearestOrAwayFromZero))!
         let pdTime = formatter.string(from: periodTime)!
 
         return String(format: format, mainTime, periods, pdTime)
@@ -75,12 +91,10 @@ private extension ClockFormatter {
             return "Waiting..."
         }
         
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.day, .hour, .minute, .second]
-        formatter.unitsStyle = .abbreviated
+        let formatter = getFormatter()
         
-        let format = NSLocalizedString("Time to make first move: %@", comment: "")
-        let timeString = formatter.string(from: time.thinkingTime)!
+        let format = NSLocalizedString("First move: %@", comment: "")
+        let timeString = formatter.string(from: time.thinkingTime.rounded(.toNearestOrAwayFromZero))!
         
         return String(format: format, timeString)
     }
