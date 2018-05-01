@@ -124,7 +124,6 @@ extension PlayWorker: ClockControllerDelegate {
         }
 
         clockController?.delegate = self
-        clockController?.countDownLoop()
     }
 
     func clockUpdated(_ clock: Clock, type: TimeControlType) {

@@ -18,12 +18,19 @@ class ClockController {
     private var gameClock: Clock
     private var type: TimeControlType
     private var lastTime = Date()
+    private weak var timer: Timer?
 
     init(clock: Clock, type: TimeControlType) {
         gameClock = clock
         self.type = type
 
-        updateClock(currentTime: Date())
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { [weak self] timer in
+            guard self != nil else {
+                timer.invalidate()
+                return
+            }
+            self?.updateLoop()
+        })
     }
 
     func setGameClock(_ clock: Clock) {
@@ -38,24 +45,19 @@ class ClockController {
         gameClock = clock
         self.type = type
 
-        updateClock(currentTime: Date())
+        updateLoop()
     }
 
     func currentType() -> TimeControlType {
         return type
     }
 
-    func countDownLoop() {
-        lastTime = Date()
-        delay(0.001) { [weak self] in
-            guard let s = self else { return }
-            let now = Date()
-            s.countDownClocks(secondsPassed: now.timeIntervalSince(s.lastTime))
+    func updateLoop() {
+        let now = Date()
+        countDownClocks(secondsPassed: now.timeIntervalSince(lastTime))
+        lastTime = now
 
-            s.updateClock(currentTime: now)
-
-            s.countDownLoop()
-        }
+        updateClock()
     }
 }
 
@@ -64,8 +66,7 @@ private extension ClockController {
         gameClock = ClockTicker().ticked(gameClock, secondsPassed: secondsPassed, type: type)
     }
 
-    func updateClock(currentTime: Date) {
-        lastTime = currentTime
+    func updateClock() {
         delegate?.clockUpdated(gameClock, type: type)
     }
 }
