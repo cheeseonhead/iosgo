@@ -22,17 +22,18 @@ class ClockFormatter {
     
     func string(from clock: Clock) throws -> (black: String, white: String) {
         
-        guard let now = clock.now else {
-            throw ParseError.propertiesMissingValue([\Clock.now])
-        }
+//        guard let now = clock.now else {
+//            throw ParseError.propertiesMissingValue([\Clock.now])
+//        }
         
-        let seconds = (clock.expiration - now) / 1000
-        
-        let blackPlaying = clock.playingPlayer() == .black
-        let black = try string(from: time(from: seconds, originalTime: clock.blackTime, playing: blackPlaying))
-        let white = try string(from: time(from: seconds, originalTime: clock.whiteTime, playing: !blackPlaying))
-
-        return (black, white)
+//        let seconds = (clock.expiration - now) / 1000
+//
+//        let blackPlaying = clock.playingPlayer() == .black
+//        let black = try string(from: time(from: seconds, originalTime: clock.blackTime, playing: blackPlaying))
+//        let white = try string(from: time(from: seconds, originalTime: clock.whiteTime, playing: !blackPlaying))
+//
+//        return (black, white)
+        return ("", "")
     }
 }
 
