@@ -16,30 +16,30 @@ import Foundation
 /// **expiration** properties.
 class ClockConverter {
     let type: TimeControlType
-    
+
     required init(type: TimeControlType) {
         self.type = type
     }
-    
-    func actualClock(from clock: Clock) throws -> Clock? {
-        
+
+    func actualClock(from clock: Clock) -> Clock? {
+
         guard let now = clock.now else {
             return nil
         }
-        
+
         var copy = clock
-        
+
         let seconds = (clock.expiration - now) / 1000
-        
+
         switch clock.playingPlayer() {
         case .black:
-            copy.blackTime = try playingPlayerTime(from: seconds, originalTime: clock.blackTime)
+            copy.blackTime = playingPlayerTime(from: seconds, originalTime: clock.blackTime)
             copy.whiteTime = waitingPlayerTime(from: clock.whiteTime)
         case .white:
             copy.blackTime = waitingPlayerTime(from: clock.blackTime)
-            copy.whiteTime = try playingPlayerTime(from: seconds, originalTime: clock.whiteTime)
+            copy.whiteTime = playingPlayerTime(from: seconds, originalTime: clock.whiteTime)
         }
-        
+
         return copy
     }
 }
@@ -53,37 +53,41 @@ private extension ClockConverter {
             return originalTime
         }
     }
-    
-    func playingPlayerTime(from seconds: Double, originalTime: Clock.Time?) throws -> Clock.Time? {
-        
+
+    func playingPlayerTime(from seconds: Double, originalTime: Clock.Time?) -> Clock.Time? {
+
         guard let time = originalTime else {
             return nil
         }
-        
+
         switch type {
         case .byoyomi:
-            return try byoyomiTime(from: seconds, time: time)
+            return byoyomiTime(from: seconds, time: time)
         default:
-            return regularTime(from: seconds)
+            return regularTime(from: seconds, time: time)
         }
     }
-    
-    func regularTime(from seconds: Double) -> Clock.Time {
-        return Clock.Time(thinkingTime: seconds)
+
+    func regularTime(from seconds: Double, time: Clock.Time) -> Clock.Time {
+        var copy = time
+
+        copy.thinkingTime = seconds
+
+        return copy
     }
-    
-    func byoyomiTime(from seconds: Double, time: Clock.Time) throws -> Clock.Time {
+
+    func byoyomiTime(from seconds: Double, time: Clock.Time) -> Clock.Time {
         guard let periods = time.periods, let periodTime = time.periodTime else {
-            throw ParseError.propertiesMissingValue([\Clock.Time.periods, \Clock.Time.periodTime])
+            fatalError("periods or periodTime not while trying to convert byoyomi time.")
         }
-        
+
         var periodsLeft = 0
         var timeLeft = seconds
         while periodsLeft < periods && timeLeft > periodTime {
             periodsLeft += 1
             timeLeft -= periodTime
         }
-        
+
         return Clock.Time(thinkingTime: timeLeft, periods: periodsLeft, periodTime: periodTime)
     }
 }

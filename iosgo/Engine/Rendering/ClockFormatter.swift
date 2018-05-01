@@ -13,21 +13,21 @@ enum FormattingError: LocalizedError {
 }
 
 class ClockFormatter {
-    
+
     let type: TimeControlType
-    
+
     required init(type: TimeControlType) {
         self.type = type
     }
-    
-    func string(from clock: Clock?) throws -> (black: String, white: String) {
-        
+
+    func string(from clock: Clock?) -> (black: String, white: String) {
+
         guard let clock = clock else {
             return ("", "")
         }
-        
-        let black = try string(from: clock.blackTime)
-        let white = try string(from: clock.whiteTime)
+
+        let black = string(from: clock.blackTime)
+        let white = string(from: clock.whiteTime)
 
         return (black, white)
     }
@@ -36,21 +36,21 @@ class ClockFormatter {
 // MARK: - Format Time
 
 private extension ClockFormatter {
-    func string(from time: Clock.Time?) throws -> String {
-        
+    func string(from time: Clock.Time?) -> String {
+
         if type == .pregame {
-            return try pregameFormat(time)
+            return pregameFormat(time)
         }
-        
+
         guard let time = time else {
             return ""
         }
-        
+
         switch type {
         case .byoyomi:
-            return try byoyomiFormat(time)
+            return byoyomiFormat(time)
         case .canadian:
-            fallthrough
+            return canadianFormat(time)
         case .fischer:
             fallthrough
         case .absolute:
@@ -58,22 +58,22 @@ private extension ClockFormatter {
         case .pregame:
             fallthrough
         case .simple:
-            return try regularFormat(time)
+            return regularFormat(time)
         case .none:
             return ""
         }
     }
 
-    func regularFormat(_ time: Clock.Time) throws -> String {
+    func regularFormat(_ time: Clock.Time) -> String {
         let formatter = getFormatter()
-        
+
         return formatter.string(from: time.thinkingTime.rounded(.toNearestOrAwayFromZero))!
     }
-    
-    func byoyomiFormat(_ time: Clock.Time) throws -> String {
+
+    func byoyomiFormat(_ time: Clock.Time) -> String {
         guard let periodTime = time.periodTime,
             let periods = time.periods else {
-            throw ParseError.propertiesMissingValue([\Clock.Time.periodTime, \Clock.Time.periods])
+            fatalError("periodTime or periods is nil while using formatting byoyomi.")
         }
 
         let formatter = getFormatter()
@@ -84,19 +84,32 @@ private extension ClockFormatter {
 
         return String(format: format, mainTime, periods, pdTime)
     }
-    
-    func pregameFormat(_ time: Clock.Time?) throws -> String {
-        
+
+    func pregameFormat(_ time: Clock.Time?) -> String {
+
         guard let time = time else {
             return "Waiting..."
         }
-        
+
         let formatter = getFormatter()
-        
+
         let format = NSLocalizedString("First move: %@", comment: "")
         let timeString = formatter.string(from: time.thinkingTime.rounded(.toNearestOrAwayFromZero))!
-        
+
         return String(format: format, timeString)
+    }
+
+    func canadianFormat(_ time: Clock.Time) -> String {
+        guard let movesLeft = time.movesLeft else {
+            fatalError("movesLeft is nil")
+        }
+
+        let formatter = getFormatter()
+
+        let format = NSLocalizedString("%@ for %d stones", comment: "")
+        let mainTime = formatter.string(from: time.thinkingTime.rounded(.toNearestOrAwayFromZero))!
+
+        return String(format: format, mainTime, movesLeft)
     }
 
     func getFormatter() -> DateComponentsFormatter {

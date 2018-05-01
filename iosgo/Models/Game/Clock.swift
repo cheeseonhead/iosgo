@@ -58,7 +58,7 @@ struct Clock: Decodable {
 
 extension Clock {
     struct Time: Decodable {
-        let thinkingTime: Double
+        var thinkingTime: Double
 
         // MARK: Fischer
 

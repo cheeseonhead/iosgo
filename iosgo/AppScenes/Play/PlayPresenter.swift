@@ -45,21 +45,17 @@ class PlayPresenter: PlayPresentationLogic {
     }
 
     func presentUpdateClock(response: Play.UpdateClock.Response) {
-        do {
-            let viewModel = try clockVM(response)
+        let viewModel = clockVM(response)
 
-            viewController?.displayUpdateClock(viewModel: viewModel)
-        } catch {
-            viewController?.errorAlert(error)
-        }
+        viewController?.displayUpdateClock(viewModel: viewModel)
     }
 }
 
 private extension PlayPresenter {
-    func clockVM(_ response: Play.UpdateClock.Response) throws -> Play.UpdateClock.ViewModel {
+    func clockVM(_ response: Play.UpdateClock.Response) -> Play.UpdateClock.ViewModel {
         let converter = ClockConverter(type: response.clockType)
         let formatter = ClockFormatter(type: response.clockType)
-        let strings = try formatter.string(from: converter.actualClock(from: response.clock))
+        let strings = formatter.string(from: converter.actualClock(from: response.clock))
 
         let vm = Play.UpdateClock.ViewModel(blackTimeStr: strings.black, whiteTimeStr: strings.white)
         return vm
