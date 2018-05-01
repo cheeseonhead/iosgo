@@ -10,8 +10,8 @@
 //  see http://clean-swift.com
 //
 
-import UIKit
 import PromiseKit
+import UIKit
 
 protocol PlayPresentationLogic {
     func presentLoadScene(response: Promise<Play.LoadGame.Response>)
@@ -28,10 +28,9 @@ class PlayPresenter: PlayPresentationLogic {
         response.done(on: DispatchQueue.main) { response in
             let state = self.renderer.getState(from: response.state)
 
-            let black = self.user(from: response.black)
-            let white = self.user(from: response.white)
+            let playerInfoUsers = self.playerInfoUsers(from: response)
 
-            let model = Play.LoadGame.ViewModel(state: state, black: black, white: white)
+            let model = Play.LoadGame.ViewModel(state: state, black: playerInfoUsers.black, white: playerInfoUsers.white)
             self.viewController?.displayLoadScene(viewModel: model)
         }.catch { error in
             self.viewController?.errorAlert(error)
@@ -54,11 +53,18 @@ class PlayPresenter: PlayPresentationLogic {
 
 private extension PlayPresenter {
     func clockVM(_ response: Play.UpdateClock.Response) -> Play.UpdateClock.ViewModel {
-        let vm = Play.UpdateClock.ViewModel(blackTimeStr: "\(String(describing: response.blackClock))", whiteTimeStr: "\(String(describing: response.whiteClock))")
+        let converter = ClockConverter(type: response.clockType)
+        let formatter = ClockFormatter(type: response.clockType)
+        let strings = formatter.string(from: converter.actualClock(from: response.clock))
+
+        let vm = Play.UpdateClock.ViewModel(blackTimeStr: strings.black, whiteTimeStr: strings.white)
         return vm
     }
 
-    func user(from player: Play.LoadGame.Response.User) -> PlayerInfoViewModel.User {
-        return PlayerInfoViewModel.User(username: player.username, profile: player.icon)
+    func playerInfoUsers(from response: Play.LoadGame.Response) -> (black: PlayerInfoViewModels.User, white: PlayerInfoViewModels.User) {
+        let black = PlayerInfoViewModels.User(username: response.game.players.black.username, profile: response.icons.black)
+        let white = PlayerInfoViewModels.User(username: response.game.players.white.username, profile: response.icons.white)
+
+        return (black, white)
     }
 }

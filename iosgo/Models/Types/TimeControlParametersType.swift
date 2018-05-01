@@ -11,43 +11,43 @@ import Unbox
 
 enum TimeControlParametersType: Decodable {
 
-    init(from decoder: Decoder) throws {
-        let c = try decoder.singleValueContainer()
-
-        if let paramStr = try? c.decode(String.self) {
-            guard let data = paramStr.data(using: .utf8) else {
-                throw ParseError.wrongDataFormat(str: paramStr)
-            }
-
-            if let res = try? JSONDecoder().decode(Fischer.self, from: data) {
-                self = .fischer(parameters: res)
-            } else if let res = try? JSONDecoder().decode(Simple.self, from: data) {
-                self = .simple(parameters: res)
-            } else if let res = try? JSONDecoder().decode(Byoyomi.self, from: data) {
-                self = .byoyomi(parameters: res)
-            } else if let res = try? JSONDecoder().decode(Canadian.self, from: data) {
-                self = .canadian(parameters: res)
-            } else if let res = try? JSONDecoder().decode(Absolute.self, from: data) {
-                self = .absolute(parameters: res)
-            } else if let res = try? JSONDecoder().decode(None.self, from: data) {
-                self = .none(parameters: res)
-            } else {
-                throw ParseError.unknownEnumType(type: TimeControlParametersType.self)
-            }
-        } else if let res = try? c.decode(Fischer.self) {
+    init(from json: JSON) throws {
+        if let res = try? JSONDecoder().decode(Fischer.self, from: json) {
             self = .fischer(parameters: res)
-        } else if let res = try? c.decode(Simple.self) {
+        } else if let res = try? JSONDecoder().decode(Simple.self, from: json) {
             self = .simple(parameters: res)
-        } else if let res = try? c.decode(Byoyomi.self) {
+        } else if let res = try? JSONDecoder().decode(Byoyomi.self, from: json) {
             self = .byoyomi(parameters: res)
-        } else if let res = try? c.decode(Canadian.self) {
+        } else if let res = try? JSONDecoder().decode(Canadian.self, from: json) {
             self = .canadian(parameters: res)
-        } else if let res = try? c.decode(Absolute.self) {
+        } else if let res = try? JSONDecoder().decode(Absolute.self, from: json) {
             self = .absolute(parameters: res)
-        } else if let res = try? c.decode(None.self) {
+        } else if let res = try? JSONDecoder().decode(None.self, from: json) {
             self = .none(parameters: res)
         } else {
             throw ParseError.unknownEnumType(type: TimeControlParametersType.self)
+        }
+    }
+
+    init(from string: String) throws {
+        guard let data = string.data(using: .utf8),
+            let j = try? JSONSerialization.jsonObject(with: data, options: []),
+            let json = j as? JSON else {
+            throw ParseError.wrongDataFormat(str: string)
+        }
+
+        try self.init(from: json)
+    }
+
+    init(from decoder: Decoder) throws {
+        let c = try decoder.singleValueContainer()
+
+        if let str = try? c.decode(String.self) {
+            try self.init(from: str)
+        } else {
+            let d = try decoder.container(keyedBy: JSONCodingKeys.self)
+            let json = try d.decode(JSON.self)
+            try self.init(from: json)
         }
     }
 

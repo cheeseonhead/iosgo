@@ -26,7 +26,10 @@ class PlayWorker {
     private var imageApi: AvatarApi
     private var gameEngine: GameEngine!
     private var gameSocket: GameSocket!
+    private var clockController: ClockController?
     weak var delegate: PlayWorkerDelegate?
+
+    private var clocks: [PlayerType: Clock.Time]?
 
     init(gameStore: GameAPI, imageApi: AvatarApi) {
         self.gameStore = gameStore
@@ -34,9 +37,9 @@ class PlayWorker {
     }
 
     func loadGame(id: Int) -> Promise<Play.LoadGame.Response> {
-
         return gameStore.game(id: id).then { game -> Promise<Game> in
             self.gameEngine = GameEngine(game: game)
+
             return self.connectSocket().map { _ in game }
         }.then { game -> Promise<Play.LoadGame.Response> in
             self.getIcons(players: game.players).map { images in
@@ -68,22 +71,16 @@ private extension PlayWorker {
     }
 
     func getIcons(players: Game.Players) -> Promise<(black: UIImage, white: UIImage)> {
-        let blackURL = players.black.icon
-        let whiteURL = players.white.icon
+        let blackIconPromise = imageApi.getImage(fullUrl: players.black.icon, size: DefaultImageSize)
+        let whiteIconPromise = imageApi.getImage(fullUrl: players.white.icon, size: DefaultImageSize)
 
-        return when(fulfilled: [imageApi.getImage(fullUrl: blackURL, size: DefaultImageSize), imageApi.getImage(fullUrl: whiteURL, size: DefaultImageSize)]).map {
-            array in
-            (array[0], array[1])
+        return when(fulfilled: [blackIconPromise, whiteIconPromise]).map {
+            array in (array[0], array[1])
         }
     }
 
     func response(from game: Game, images: (black: UIImage, white: UIImage)) -> Play.LoadGame.Response {
-        let blackUser = Play.LoadGame.Response.User(username: game.players.black.username, icon: images.black)
-        let whiteUser = Play.LoadGame.Response.User(username: game.players.white.username, icon: images.white)
-        let response = Play.LoadGame.Response(state: gameEngine.getState(),
-                                              clock: game.gamedata.clock,
-                                              black: blackUser,
-                                              white: whiteUser)
+        let response = Play.LoadGame.Response(state: gameEngine.getState(), game: game, icons: images)
 
         return response
     }
@@ -95,21 +92,43 @@ extension PlayWorker: GameSocketDelegate {
     func handleMove(_ move: BoardPoint) {
         try? gameEngine.place(at: move)
         delegate?.gameUpdated(state: gameEngine.getState())
+
+        clockController?.setTimeType(gameEngine.game.timeControl)
     }
 
     func handleClock(_ clock: Clock) {
-        let response = Play.UpdateClock.Response(blackClock: clock.blackTime, whiteClock: clock.whiteTime)
-
-        delegate?.gameClockUpdated(response)
+        clockController?.setGameClock(clock)
     }
 
     func updateGameData(_ gameData: GameData) {
         gameEngine.update(with: gameData)
+
+        setupClockController(gameData)
+
         delegate?.gameUpdated(state: gameEngine.getState())
     }
 }
 
-// MARK: - Helpers
+// MARK: - ClockController Delegate
 
-private extension PlayWorker {
+extension PlayWorker: ClockControllerDelegate {
+    func setupClockController(_ gameData: GameData) {
+        guard gameEngine.game.ended == nil else {
+            return
+        }
+
+        if gameEngine.currentMove.moveNumber > 0 {
+            clockController = ClockController(clock: gameData.clock, type: gameEngine.game.timeControl)
+        } else {
+            clockController = ClockController(clock: gameData.clock, type: .pregame)
+        }
+
+        clockController?.delegate = self
+    }
+
+    func clockUpdated(_ clock: Clock, type: TimeControlType) {
+        let response = Play.UpdateClock.Response(clock: clock, clockType: type)
+
+        delegate?.gameClockUpdated(response)
+    }
 }
