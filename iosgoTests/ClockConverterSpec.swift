@@ -11,5 +11,7 @@ import Quick
 import Nimble
 
 class ClockConverterSpec: QuickSpec {
-    
+    override func spec() {
+        describe(<#T##description: String##String#>, closure: <#T##() -> Void#>)
+    }
 }

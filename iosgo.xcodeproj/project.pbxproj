@@ -1078,13 +1078,13 @@
 				TargetAttributes = {
 					565D246A1E54A5A500EF62CD = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 77Q2XB2RSV;
+						DevelopmentTeam = PL469KE6KQ;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					565D24841E54A5A500EF62CD = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 77Q2XB2RSV;
+						DevelopmentTeam = PL469KE6KQ;
 						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 565D246A1E54A5A500EF62CD;
@@ -1527,7 +1527,7 @@
 			baseConfigurationReference = 716E1A03A77525183735DD47 /* Pods-iosgo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 77Q2XB2RSV;
+				DEVELOPMENT_TEAM = PL469KE6KQ;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = iosgo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1544,7 +1544,7 @@
 			baseConfigurationReference = 01BA5FDBCD62AB45B53CC1A9 /* Pods-iosgo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 77Q2XB2RSV;
+				DEVELOPMENT_TEAM = PL469KE6KQ;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = iosgo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1561,7 +1561,7 @@
 			baseConfigurationReference = 3A3A74F5D326BE5E0E2D52ED /* Pods-iosgoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 77Q2XB2RSV;
+				DEVELOPMENT_TEAM = PL469KE6KQ;
 				INFOPLIST_FILE = iosgoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cheeseonhead.iosgoTests;
@@ -1577,7 +1577,7 @@
 			baseConfigurationReference = 2F833FBBB73B7CCEE7D54A54 /* Pods-iosgoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 77Q2XB2RSV;
+				DEVELOPMENT_TEAM = PL469KE6KQ;
 				INFOPLIST_FILE = iosgoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cheeseonhead.iosgoTests;
