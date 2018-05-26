@@ -136,6 +136,7 @@
 		8405CDE4965C7493BA13D163 /* OGSLoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CCBEDED129DD31C31BA8 /* OGSLoginRouter.swift */; };
 		8405CEA1C88BF254C0A34A28 /* OauthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CB3B6D134DFC861A3E6A /* OauthApi.swift */; };
 		8405CF0DBD2A4DAB0A3A30E7 /* OGSLoginInfo+Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C723D11B0D56D6CFDD08 /* OGSLoginInfo+Unboxable.swift */; };
+		9B4A7EF820B9240900062EB9 /* PlayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A7EF720B9240900062EB9 /* PlayModel.swift */; };
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
 		AD05A00EC3EF1F09DFBC5597 /* Dictionary+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */; };
 		AD05A01B448899472AAD4DBE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A619B90715ADEDAFC230 /* User.swift */; };
@@ -308,6 +309,7 @@
 		8405CE5732ACA22D3DD45431 /* OGSConfigurationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OGSConfigurationProtocol.swift; sourceTree = "<group>"; };
 		8405CF546D963204AC2350EC /* OGSLoginViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OGSLoginViewController.storyboard; sourceTree = "<group>"; };
 		8405CF5B5FD5BE2E3B1BFCDC /* Temp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
+		9B4A7EF720B9240900062EB9 /* PlayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayModel.swift; sourceTree = "<group>"; };
 		AD05A2B5931F24B08CD0F38B /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Additions.swift"; sourceTree = "<group>"; };
 		AD05A619B90715ADEDAFC230 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 		34A2B55B1EEA4AA30074525B /* Play */ = {
 			isa = PBXGroup;
 			children = (
+				9B4A7EF620B9231400062EB9 /* MVVM */,
 				34A2B5A81EEBDD500074525B /* Play.storyboard */,
 				34FEDDA21EFFF02F00EC1B5F /* PlayInteractor.swift */,
 				34FEDDA31EFFF02F00EC1B5F /* PlayModels.swift */,
@@ -904,6 +907,14 @@
 				AD05AFB1DFE099131696928E /* OGSSeekGraphSocketStoreModels.swift */,
 			);
 			path = SeekGraphSocket;
+			sourceTree = "<group>";
+		};
+		9B4A7EF620B9231400062EB9 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				9B4A7EF720B9240900062EB9 /* PlayModel.swift */,
+			);
+			name = MVVM;
 			sourceTree = "<group>";
 		};
 		AD05A033860BB552023EC1A1 /* CollectionView */ = {
@@ -1316,6 +1327,7 @@
 				348F60D11F08C11000FA12F0 /* GridState.swift in Sources */,
 				341856A71EFF637B00DAF3CF /* OGSChallenge+Unboxable.swift in Sources */,
 				34A0BCE2207F5500007EB42D /* Config.swift in Sources */,
+				9B4A7EF820B9240900062EB9 /* PlayModel.swift in Sources */,
 				AD05AE74C92DA8328A33761F /* OGSDiskManager.swift in Sources */,
 				34ACC8AB1EEBDF7900F2B376 /* BoardScene.swift in Sources */,
 				AD05A8548F5F603C37C45C57 /* OGSAppConfigurator.swift in Sources */,
