@@ -8,6 +8,8 @@ target "iosgo" do
     pod 'Socket.IO-Client-Swift'
     pod 'Unbox'
     pod 'PromiseKit'
+    pod 'RxSwift'
+    pod 'RxCocoa'
 end
 
 target "iosgoTests" do
