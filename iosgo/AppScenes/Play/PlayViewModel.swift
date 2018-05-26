@@ -7,3 +7,20 @@
 //
 
 import Foundation
+import RxSwift
+
+struct PlayViewModel {
+    let model: PlayModel
+
+    private let disposeBag = DisposeBag()
+
+    init(model: PlayModel) {
+        self.model = model
+
+        self.model.test.asObservable()
+            .subscribe { value in
+                print(value)
+            }
+            .disposed(by: disposeBag)
+    }
+}

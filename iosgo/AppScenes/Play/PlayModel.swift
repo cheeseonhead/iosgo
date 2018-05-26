@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import RxSwift
 
 struct PlayModel {
+    private let disposeBag = DisposeBag()
+    let test = Variable(5)
 }
