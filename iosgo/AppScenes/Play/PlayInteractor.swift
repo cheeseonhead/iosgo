@@ -26,8 +26,8 @@ class PlayInteractor: PlayBusinessLogic, PlayDataStore {
         playWorker = PlayWorker(gameStore: GameAPI(apiStore: apiStore), imageApi: AvatarApi(apiStore: apiStore))
     }
 
-    func loadScene(request _: Play.LoadGame.Request) {
-        let promise = playWorker.loadGame(id: 3673).get { _ in
+    func loadScene(request: Play.LoadGame.Request) {
+        let promise = playWorker.loadGame(id: request.id).get { _ in
             self.playWorker.delegate = self
         }
 

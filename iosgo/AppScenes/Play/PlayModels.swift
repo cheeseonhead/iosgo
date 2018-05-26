@@ -16,6 +16,7 @@ import UIKit
 enum Play {
     enum LoadGame {
         struct Request {
+            var id: Int
         }
 
         struct Response {

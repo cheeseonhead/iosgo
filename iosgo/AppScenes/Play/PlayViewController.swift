@@ -57,8 +57,24 @@ class PlayViewController: UIViewController {
 
         boardView.showsFPS = true
         boardView.showsNodeCount = true
+    }
 
-        interactor?.loadScene(request: Play.LoadGame.Request())
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let controller = UIAlertController(title: "Game ID", message: "", preferredStyle: .alert)
+        controller.addTextField { textfield in
+            textfield.placeholder = "ID"
+        }
+        let action = UIAlertAction(title: "OK", style: .default) { _ in
+            guard let passwordField = controller.textFields?.first else {
+                return
+            }
+            let id = Int(passwordField.text ?? "0")!
+            self.interactor?.loadScene(request: Play.LoadGame.Request(id: id))
+        }
+        controller.addAction(action)
+        present(controller, animated: true, completion: nil)
     }
 
     public override var traitCollection: UITraitCollection {
