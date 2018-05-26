@@ -137,6 +137,7 @@
 		8405CEA1C88BF254C0A34A28 /* OauthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CB3B6D134DFC861A3E6A /* OauthApi.swift */; };
 		8405CF0DBD2A4DAB0A3A30E7 /* OGSLoginInfo+Unboxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405C723D11B0D56D6CFDD08 /* OGSLoginInfo+Unboxable.swift */; };
 		9B4A7EF820B9240900062EB9 /* PlayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A7EF720B9240900062EB9 /* PlayModel.swift */; };
+		9B4A7EFB20B939C500062EB9 /* PlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4A7EFA20B939C500062EB9 /* PlayViewModel.swift */; };
 		A81193961154CC5984C35A80 /* Pods_iosgoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EF09D63764B4EEF1D623C0 /* Pods_iosgoTests.framework */; };
 		AD05A00EC3EF1F09DFBC5597 /* Dictionary+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */; };
 		AD05A01B448899472AAD4DBE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD05A619B90715ADEDAFC230 /* User.swift */; };
@@ -310,6 +311,7 @@
 		8405CF546D963204AC2350EC /* OGSLoginViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OGSLoginViewController.storyboard; sourceTree = "<group>"; };
 		8405CF5B5FD5BE2E3B1BFCDC /* Temp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
 		9B4A7EF720B9240900062EB9 /* PlayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayModel.swift; sourceTree = "<group>"; };
+		9B4A7EFA20B939C500062EB9 /* PlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewModel.swift; sourceTree = "<group>"; };
 		AD05A2B5931F24B08CD0F38B /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		AD05A4CA7ABF3FBE7FB32749 /* Dictionary+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Additions.swift"; sourceTree = "<group>"; };
 		AD05A619B90715ADEDAFC230 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -913,6 +915,7 @@
 			isa = PBXGroup;
 			children = (
 				9B4A7EF720B9240900062EB9 /* PlayModel.swift */,
+				9B4A7EFA20B939C500062EB9 /* PlayViewModel.swift */,
 			);
 			name = MVVM;
 			sourceTree = "<group>";
@@ -1370,6 +1373,7 @@
 				AD05AE59A5BF1697CECE11D9 /* OGSUser+Unboxable.swift in Sources */,
 				3493D9081F08E2C300BE526E /* SocketEventCreating.swift in Sources */,
 				AD05AE8F87A1E735676D8715 /* OGSRootViewControllerWorker.swift in Sources */,
+				9B4A7EFB20B939C500062EB9 /* PlayViewModel.swift in Sources */,
 				349CFF68209814FE0098B893 /* ClockConverter.swift in Sources */,
 				3493D90A1F08E3E300BE526E /* GameSocketEventCreator.swift in Sources */,
 				348F60D31F08DB0800FA12F0 /* SocketEvents.swift in Sources */,
