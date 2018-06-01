@@ -10,6 +10,8 @@
 //  see http://clean-swift.com
 //
 
+import RxCocoa
+import RxSwift
 import SpriteKit
 import UIKit
 
@@ -28,14 +30,29 @@ class PlayViewController: UIViewController {
 
     var boardScene: BoardScene!
 
+    private let infoSequence = BehaviorRelay(value: GameInfoView.ViewModel.default).skip(1)
+    private let timeSequence = BehaviorRelay(value: Play.UpdateClock.ViewModel(blackTimeStr: "None", whiteTimeStr: "None")).skip(1)
+    private let gameInfoSequence: Observable<GameInfoView.ViewModel>
+
     // MARK: Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        gameInfoSequence = BehaviorRelay.combineLatest(infoSequence, timeSequence, resultSelector: { a, b -> GameInfoView.ViewModel in
+            let one = PlayerInfoView.ViewModel(profile: a.one.profile, time: b.blackTimeStr, username: a.one.username, captures: a.one.captures)
+            let two = PlayerInfoView.ViewModel(profile: a.two.profile, time: b.whiteTimeStr, username: a.two.username, captures: a.two.captures)
+            return GameInfoView.ViewModel(one: one, two: two)
+        })
+
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
 
     required init?(coder aDecoder: NSCoder) {
+        gameInfoSequence = BehaviorRelay.combineLatest(infoSequence, timeSequence, resultSelector: { a, b -> GameInfoView.ViewModel in
+            let one = PlayerInfoView.ViewModel(profile: a.one.profile, time: b.blackTimeStr, username: a.one.username, captures: a.one.captures)
+            let two = PlayerInfoView.ViewModel(profile: a.two.profile, time: b.whiteTimeStr, username: a.two.username, captures: a.two.captures)
+            return GameInfoView.ViewModel(one: one, two: two)
+        })
         super.init(coder: aDecoder)
         setup()
     }
@@ -100,15 +117,19 @@ extension PlayViewController: BoardSceneActionDelegate {
 extension PlayViewController: PlayDisplayLogic {
     func displayLoadScene(viewModel: Play.LoadGame.ViewModel) {
         boardScene.initialize(viewModel.state)
-        gameInfoView.setUsers(black: viewModel.black, white: viewModel.white)
+
+        let gameInfoVM = GameInfoView.ViewModel(one: viewModel.black, two: viewModel.white)
+
+        gameInfoView.viewModel.accept(gameInfoVM)
+//        gameInfoView.setUsers(black: viewModel.black, white: viewModel.white)
     }
 
     func displayUpdateGame(viewModel: Play.UpdateGame.ViewModel) {
         boardScene.render(viewModel.state)
     }
 
-    func displayUpdateClock(viewModel: Play.UpdateClock.ViewModel) {
-        gameInfoView.setClocks(blackTime: viewModel.blackTimeStr, whiteTime: viewModel.whiteTimeStr)
+    func displayUpdateClock(viewModel _: Play.UpdateClock.ViewModel) {
+//        gameInfoView.setClocks(blackTime: viewModel.blackTimeStr, whiteTime: viewModel.whiteTimeStr)
     }
 }
 

@@ -27,8 +27,8 @@ enum Play {
 
         struct ViewModel {
             var state: GridState
-            var black: PlayerInfoViewModels.User
-            var white: PlayerInfoViewModels.User
+            var black: PlayerInfoView.ViewModel
+            var white: PlayerInfoView.ViewModel
         }
     }
 
