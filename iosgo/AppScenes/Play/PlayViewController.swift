@@ -128,7 +128,10 @@ extension PlayViewController: PlayDisplayLogic {
         boardScene.render(viewModel.state)
     }
 
-    func displayUpdateClock(viewModel _: Play.UpdateClock.ViewModel) {
+    func displayUpdateClock(viewModel: Play.UpdateClock.ViewModel) {
+        let timeVM = GameInfoView.TimeViewModel(one: viewModel.blackTimeStr, two: viewModel.whiteTimeStr)
+
+        gameInfoView.timeSequence.accept(timeVM)
         //        gameInfoView.setClocks(blackTime: viewModel.blackTimeStr, whiteTime: viewModel.whiteTimeStr)
     }
 }
