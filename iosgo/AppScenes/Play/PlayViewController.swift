@@ -37,9 +37,9 @@ class PlayViewController: UIViewController {
     // MARK: Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        gameInfoSequence = BehaviorRelay.combineLatest(infoSequence, timeSequence, resultSelector: { a, b -> GameInfoView.ViewModel in
-            let one = PlayerInfoView.ViewModel(profile: a.one.profile, time: b.blackTimeStr, username: a.one.username, captures: a.one.captures)
-            let two = PlayerInfoView.ViewModel(profile: a.two.profile, time: b.whiteTimeStr, username: a.two.username, captures: a.two.captures)
+        gameInfoSequence = BehaviorRelay.combineLatest(infoSequence, timeSequence, resultSelector: { a, _ -> GameInfoView.ViewModel in
+            let one = PlayerInfoView.ViewModel(profile: a.one.profile, username: a.one.username)
+            let two = PlayerInfoView.ViewModel(profile: a.two.profile, username: a.two.username)
             return GameInfoView.ViewModel(one: one, two: two)
         })
 
@@ -48,9 +48,9 @@ class PlayViewController: UIViewController {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        gameInfoSequence = BehaviorRelay.combineLatest(infoSequence, timeSequence, resultSelector: { a, b -> GameInfoView.ViewModel in
-            let one = PlayerInfoView.ViewModel(profile: a.one.profile, time: b.blackTimeStr, username: a.one.username, captures: a.one.captures)
-            let two = PlayerInfoView.ViewModel(profile: a.two.profile, time: b.whiteTimeStr, username: a.two.username, captures: a.two.captures)
+        gameInfoSequence = BehaviorRelay.combineLatest(infoSequence, timeSequence, resultSelector: { a, _ -> GameInfoView.ViewModel in
+            let one = PlayerInfoView.ViewModel(profile: a.one.profile, username: a.one.username)
+            let two = PlayerInfoView.ViewModel(profile: a.two.profile, username: a.two.username)
             return GameInfoView.ViewModel(one: one, two: two)
         })
         super.init(coder: aDecoder)
@@ -120,8 +120,8 @@ extension PlayViewController: PlayDisplayLogic {
 
         let gameInfoVM = GameInfoView.ViewModel(one: viewModel.black, two: viewModel.white)
 
-        gameInfoView.viewModel.accept(gameInfoVM)
-//        gameInfoView.setUsers(black: viewModel.black, white: viewModel.white)
+        gameInfoView.infoSequence.accept(gameInfoVM)
+        //        gameInfoView.setUsers(black: viewModel.black, white: viewModel.white)
     }
 
     func displayUpdateGame(viewModel: Play.UpdateGame.ViewModel) {
@@ -129,7 +129,7 @@ extension PlayViewController: PlayDisplayLogic {
     }
 
     func displayUpdateClock(viewModel _: Play.UpdateClock.ViewModel) {
-//        gameInfoView.setClocks(blackTime: viewModel.blackTimeStr, whiteTime: viewModel.whiteTimeStr)
+        //        gameInfoView.setClocks(blackTime: viewModel.blackTimeStr, whiteTime: viewModel.whiteTimeStr)
     }
 }
 

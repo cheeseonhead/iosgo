@@ -20,8 +20,18 @@ class GameInfoView: UIView {
 
         static let `default` = ViewModel(one: PlayerInfoView.ViewModel.default, two: PlayerInfoView.ViewModel.default)
     }
+    
+    struct TimeViewModel {
+        let one: String
+        let two: String
+        
+        private static let placeholder = NSLocalizedString("Loading...", comment: "GameInfoView.loading")
+        static let `default` = TimeViewModel(one: TimeViewModel.placeholder, two: TimeViewModel.placeholder)
+    }
 
-    let viewModel = BehaviorRelay(value: ViewModel.default)
+//    let viewModel = BehaviorRelay(value: ViewModel.default)
+    let infoSequence = BehaviorRelay(value: ViewModel.default)
+    let timeSequence = BehaviorRelay(value: TimeViewModel.default)
 
     @IBOutlet var topInfoView: PlayerInfoView!
     @IBOutlet var bottomInfoView: PlayerInfoView!
@@ -31,6 +41,7 @@ class GameInfoView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupFromIBDesignable()
+        setupBindings()
     }
 
     override init(frame: CGRect) {
@@ -40,16 +51,19 @@ class GameInfoView: UIView {
     }
 
     func setupBindings() {
-        viewModel.asDriver()
-            .flatMapLatest { model in
-                BehaviorRelay(value: model.one).asDriver()
-            }.drive(topInfoView.viewModel)
-            .disposed(by: disposeBag)
-
-        viewModel.asDriver()
-            .flatMapLatest { model in
-                BehaviorRelay(value: model.two).asDriver()
-            }.drive(bottomInfoView.viewModel)
+        drive(relay: topInfoView.infoRelay, with: infoSequence, keyPath: \ViewModel.one)
+        drive(relay: bottomInfoView.infoRelay, with: infoSequence, keyPath: \ViewModel.two)
+        
+        drive(relay: topInfoView.timeRelay, with: timeSequence, keyPath: \TimeViewModel.one)
+        drive(relay: bottomInfoView.timeRelay, with: timeSequence, keyPath: \TimeViewModel.two)
+    }
+    
+    func drive<T, U>(relay: BehaviorRelay<T>, with observable: BehaviorRelay<U>, keyPath: KeyPath<U, T>) {
+        observable.asDriver()
+            .debug("Tets", trimOutput: true)
+            .flatMapLatest { model -> Driver<T> in
+                BehaviorRelay(value: model[keyPath: keyPath]).asDriver()
+            }.drive(relay)
             .disposed(by: disposeBag)
     }
 

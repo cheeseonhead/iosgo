@@ -15,14 +15,13 @@ import UIKit
 class PlayerInfoView: UIView {
     struct ViewModel {
         let profile: UIImage
-        let time: String
         let username: String
-        let captures: String
 
-        static let `default` = ViewModel(profile: #imageLiteral(resourceName: "Spaceship"), time: "Loading...", username: "Loading...", captures: "0 Captured")
+        static let `default` = ViewModel(profile: #imageLiteral(resourceName: "Spaceship"), username: "Loading...")
     }
 
-    let viewModel = BehaviorRelay(value: ViewModel.default)
+    let infoRelay = BehaviorRelay(value: ViewModel.default)
+    let timeRelay = BehaviorRelay(value: "Loading...")
 
     private let disposeBag = DisposeBag()
 
@@ -44,22 +43,26 @@ class PlayerInfoView: UIView {
     }
 
     func setupBindings() {
-        viewModel.asDriver()
+        infoRelay.asDriver()
             .drive(onNext: { [unowned self] model in
-                self.capturesLabel.text = model.captures
-                self.timeLabel.text = model.time
                 self.usernameLabel.text = model.username
                 self.profileImage.image = model.profile
             })
             .disposed(by: disposeBag)
+
+        timeRelay.asDriver()
+            .drive(onNext: { [unowned self] timeStr in
+                self.timeLabel.text = timeStr
+            })
+            .disposed(by: disposeBag)
     }
 
-//    func setTime(_ time: String) {
-//        timeLabel.text = time
-//    }
-//
-//    func setUser(_ model: PlayerInfoViewModels.User, color _: PlayerType) {
-//        profileImage.image = model.profile
-//        usernameLabel.text = model.username
-//    }
+    //    func setTime(_ time: String) {
+    //        timeLabel.text = time
+    //    }
+    //
+    //    func setUser(_ model: PlayerInfoViewModels.User, color _: PlayerType) {
+    //        profileImage.image = model.profile
+    //        usernameLabel.text = model.username
+    //    }
 }

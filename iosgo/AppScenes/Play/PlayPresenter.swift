@@ -62,8 +62,8 @@ private extension PlayPresenter {
     }
 
     func playerInfoUsers(from response: Play.LoadGame.Response) -> (black: PlayerInfoView.ViewModel, white: PlayerInfoView.ViewModel) {
-        let black = PlayerInfoView.ViewModel(username: response.game.players.black.username, profile: response.icons.black)
-        let white = PlayerInfoView.ViewModel(username: response.game.players.white.username, profile: response.icons.white)
+        let black = PlayerInfoView.ViewModel(profile: response.icons.black, username: response.game.players.black.username)
+        let white = PlayerInfoView.ViewModel(profile: response.icons.white, username: response.game.players.white.username)
 
         return (black, white)
     }
