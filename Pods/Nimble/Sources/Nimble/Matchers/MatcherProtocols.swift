@@ -29,11 +29,11 @@ extension Matcher {
 }
 
 #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-/// Objective-C interface to the Swift variant of Matcher.
-@objc public protocol NMBMatcher {
-    func matches(_ actualBlock: @escaping () -> NSObject!, failureMessage: FailureMessage, location: SourceLocation) -> Bool
-    func doesNotMatch(_ actualBlock: @escaping () -> NSObject!, failureMessage: FailureMessage, location: SourceLocation) -> Bool
-}
+    /// Objective-C interface to the Swift variant of Matcher.
+    @objc public protocol NMBMatcher {
+        func matches(_ actualBlock: @escaping () -> NSObject?, failureMessage: FailureMessage, location: SourceLocation) -> Bool
+        func doesNotMatch(_ actualBlock: @escaping () -> NSObject?, failureMessage: FailureMessage, location: SourceLocation) -> Bool
+    }
 #endif
 
 /// Protocol for types that support contain() matcher.
@@ -42,8 +42,8 @@ public protocol NMBContainer {
 }
 
 #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-// FIXME: NSHashTable can not conform to NMBContainer since swift-DEVELOPMENT-SNAPSHOT-2016-04-25-a
-//extension NSHashTable : NMBContainer {} // Corelibs Foundation does not include this class yet
+    // FIXME: NSHashTable can not conform to NMBContainer since swift-DEVELOPMENT-SNAPSHOT-2016-04-25-a
+    // extension NSHashTable : NMBContainer {} // Corelibs Foundation does not include this class yet
 #endif
 
 extension NSArray: NMBContainer {}
@@ -55,8 +55,8 @@ public protocol NMBCollection {
 }
 
 #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-extension NSHashTable: NMBCollection {} // Corelibs Foundation does not include these classes yet
-extension NSMapTable: NMBCollection {}
+    extension NSHashTable: NMBCollection {} // Corelibs Foundation does not include these classes yet
+    extension NSMapTable: NMBCollection {}
 #endif
 
 extension NSSet: NMBCollection {}
@@ -105,13 +105,13 @@ private let dateFormatter: DateFormatter = {
 
 extension Date: NMBDoubleConvertible {
     public var doubleValue: CDouble {
-        return self.timeIntervalSinceReferenceDate
+        return timeIntervalSinceReferenceDate
     }
 }
 
 extension NSDate: NMBDoubleConvertible {
     public var doubleValue: CDouble {
-        return self.timeIntervalSinceReferenceDate
+        return timeIntervalSinceReferenceDate
     }
 }
 
@@ -123,7 +123,7 @@ extension Date: TestOutputStringConvertible {
 
 extension NSDate: TestOutputStringConvertible {
     public var testDescription: String {
-        return dateFormatter.string(from: Date(timeIntervalSinceReferenceDate: self.timeIntervalSinceReferenceDate))
+        return dateFormatter.string(from: Date(timeIntervalSinceReferenceDate: timeIntervalSinceReferenceDate))
     }
 }
 
@@ -132,14 +132,15 @@ extension NSDate: TestOutputStringConvertible {
 ///
 /// Types that conform to Swift's Comparable protocol will work implicitly too
 #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-@objc public protocol NMBComparable {
-    func NMB_compare(_ otherObject: NMBComparable!) -> ComparisonResult
-}
+    @objc public protocol NMBComparable {
+        func NMB_compare(_ otherObject: NMBComparable!) -> ComparisonResult
+    }
+
 #else
-// This should become obsolete once Corelibs Foundation adds Comparable conformance to NSNumber
-public protocol NMBComparable {
-    func NMB_compare(_ otherObject: NMBComparable!) -> ComparisonResult
-}
+    // This should become obsolete once Corelibs Foundation adds Comparable conformance to NSNumber
+    public protocol NMBComparable {
+        func NMB_compare(_ otherObject: NMBComparable!) -> ComparisonResult
+    }
 #endif
 
 extension NSNumber: NMBComparable {
@@ -147,6 +148,7 @@ extension NSNumber: NMBComparable {
         return compare(otherObject as! NSNumber)
     }
 }
+
 extension NSString: NMBComparable {
     public func NMB_compare(_ otherObject: NMBComparable!) -> ComparisonResult {
         return compare(otherObject as! String)

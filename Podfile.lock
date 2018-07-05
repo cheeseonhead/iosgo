@@ -1,20 +1,20 @@
 PODS:
-  - Nimble (7.1.1)
-  - PromiseKit (6.2.5):
-    - PromiseKit/CorePromise (= 6.2.5)
-    - PromiseKit/Foundation (= 6.2.5)
-    - PromiseKit/UIKit (= 6.2.5)
-  - PromiseKit/CorePromise (6.2.5)
-  - PromiseKit/Foundation (6.2.5):
+  - Nimble (7.1.2)
+  - PromiseKit (6.3.4):
+    - PromiseKit/CorePromise (= 6.3.4)
+    - PromiseKit/Foundation (= 6.3.4)
+    - PromiseKit/UIKit (= 6.3.4)
+  - PromiseKit/CorePromise (6.3.4)
+  - PromiseKit/Foundation (6.3.4):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.2.5):
+  - PromiseKit/UIKit (6.3.4):
     - PromiseKit/CorePromise
   - Quick (1.3.0)
   - SnapKit (4.0.0)
-  - Socket.IO-Client-Swift (13.1.3):
+  - Socket.IO-Client-Swift (13.2.1):
     - Starscream (~> 3.0.2)
   - Starscream (3.0.5)
-  - Unbox (2.5.0)
+  - Unbox (3.0.0)
 
 DEPENDENCIES:
   - Nimble
@@ -35,13 +35,13 @@ SPEC REPOS:
     - Unbox
 
 SPEC CHECKSUMS:
-  Nimble: 391f07782af4b37914f9bd7b2ffbb952731b8202
-  PromiseKit: a26828b0a8d5874960dfdb575b57a70790ec36f1
+  Nimble: 3835ba9f459daa6b347f8a8e110aaae8ca1920a8
+  PromiseKit: e1425568123ec844a944c93f2bcb29d511d39cf5
   Quick: 03278013f71aa05fe9ecabc94fbcc6835f1ee76f
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  Socket.IO-Client-Swift: d30d6fd08a38ad2a182b090936a043bf512ab2de
+  Socket.IO-Client-Swift: b94943e2fb916fe2f95244b9ed21828634002280
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
-  Unbox: 30e437e6151a6de16139375fd4e8dd9a664cfbf7
+  Unbox: 9ed33b2a31f7a8a049f54b94d40c4a52a28c4d9d
 
 PODFILE CHECKSUM: 3ea0d1f7fa47755fd980f318b664fc722081fb84
 

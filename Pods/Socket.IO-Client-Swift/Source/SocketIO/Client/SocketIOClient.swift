@@ -40,7 +40,7 @@ import Foundation
 ///
 /// **NOTE**: The client is not thread/queue safe, all interaction with the socket should be done on the `manager.handleQueue`
 ///
-open class SocketIOClient : NSObject, SocketIOClientSpec {
+open class SocketIOClient: NSObject, SocketIOClientSpec {
     // MARK: Properties
 
     /// The namespace that this socket is currently connected to.
@@ -58,7 +58,7 @@ open class SocketIOClient : NSObject, SocketIOClientSpec {
     }
 
     /// A handler that will be called on any event.
-    public private(set) var anyHandler: ((SocketAnyEvent) -> ())?
+    public private(set) var anyHandler: ((SocketAnyEvent) -> Void)?
 
     /// The array of handlers for this socket.
     public private(set) var handlers = [SocketEventHandler]()
@@ -66,6 +66,18 @@ open class SocketIOClient : NSObject, SocketIOClientSpec {
     /// The manager for this socket.
     @objc
     public private(set) weak var manager: SocketManagerSpec?
+
+    /// A view into this socket where emits do not check for binary data.
+    ///
+    /// Usage:
+    ///
+    /// ```swift
+    /// socket.rawEmitView.emit("myEvent", myObject)
+    /// ```
+    ///
+    /// **NOTE**: It is not safe to hold on to this view beyond the life of the socket.
+    @objc
+    public private(set) lazy var rawEmitView = SocketRawView(socket: self)
 
     /// The status of this client.
     @objc
@@ -117,7 +129,7 @@ open class SocketIOClient : NSObject, SocketIOClientSpec {
     ///                           has failed. Pass 0 to never timeout.
     /// - parameter handler: The handler to call when the client fails to connect.
     @objc
-    open func connect(timeoutAfter: Double, withHandler handler: (() -> ())?) {
+    open func connect(timeoutAfter: Double, withHandler handler: (() -> Void)?) {
         assert(timeoutAfter >= 0, "Invalid timeout: \(timeoutAfter)")
 
         guard let manager = self.manager, status != .connected else {
@@ -138,7 +150,7 @@ open class SocketIOClient : NSObject, SocketIOClientSpec {
 
         guard timeoutAfter != 0 else { return }
 
-        manager.handleQueue.asyncAfter(deadline: DispatchTime.now() + timeoutAfter) {[weak self] in
+        manager.handleQueue.asyncAfter(deadline: DispatchTime.now() + timeoutAfter) { [weak self] in
             guard let this = self, this.status == .connecting || this.status == .notConnected else { return }
 
             this.status = .disconnected
@@ -148,7 +160,7 @@ open class SocketIOClient : NSObject, SocketIOClientSpec {
         }
     }
 
-    private func createOnAck(_ items: [Any]) -> OnAckCallback {
+    func createOnAck(_ items: [Any], binary _: Bool = true) -> OnAckCallback {
         currentAck += 1
 
         return OnAckCallback(ackNumber: currentAck, items: items, socket: self)
@@ -202,11 +214,11 @@ open class SocketIOClient : NSObject, SocketIOClientSpec {
     open func emit(_ event: String, _ items: SocketData...) {
         do {
             try emit(event, with: items.map({ try $0.socketRepresentation() }))
-        } catch let err {
+        } catch {
             DefaultSocketLogger.Logger.error("Error creating socketRepresentation for emit: \(event), \(items)",
                                              type: logType)
 
-            handleClientEvent(.error, data: [event, items, err])
+            handleClientEvent(.error, data: [event, items, error])
         }
     }
 
@@ -216,11 +228,6 @@ open class SocketIOClient : NSObject, SocketIOClientSpec {
     /// - parameter items: The items to send with this event. Send an empty array to send no data.
     @objc
     open func emit(_ event: String, with items: [Any]) {
-        guard status == .connected else {
-            handleClientEvent(.error, data: ["Tried emitting \(event) when not connected"])
-            return
-        }
-
         emit([event] + items)
     }
 
@@ -246,11 +253,11 @@ open class SocketIOClient : NSObject, SocketIOClientSpec {
     open func emitWithAck(_ event: String, _ items: SocketData...) -> OnAckCallback {
         do {
             return emitWithAck(event, with: try items.map({ try $0.socketRepresentation() }))
-        } catch let err {
+        } catch {
             DefaultSocketLogger.Logger.error("Error creating socketRepresentation for emit: \(event), \(items)",
                                              type: logType)
 
-            handleClientEvent(.error, data: [event, items, err])
+            handleClientEvent(.error, data: [event, items, error])
 
             return OnAckCallback(ackNumber: -1, items: [], socket: self)
         }
@@ -277,16 +284,16 @@ open class SocketIOClient : NSObject, SocketIOClientSpec {
         return createOnAck([event] + items)
     }
 
-    func emit(_ data: [Any], ack: Int? = nil) {
+    func emit(_ data: [Any], ack: Int? = nil, binary: Bool = true, isAck: Bool = false) {
         guard status == .connected else {
             handleClientEvent(.error, data: ["Tried emitting when not connected"])
             return
         }
 
-        let packet = SocketPacket.packetFromEmit(data, id: ack ?? -1, nsp: nsp, ack: false)
+        let packet = SocketPacket.packetFromEmit(data, id: ack ?? -1, nsp: nsp, ack: isAck, checkForBinary: binary)
         let str = packet.packetString
 
-        DefaultSocketLogger.Logger.log("Emitting: \(str)", type: logType)
+        DefaultSocketLogger.Logger.log("Emitting: \(str), Ack: \(isAck)", type: logType)
 
         manager?.engine?.send(str, withData: packet.binary)
     }
@@ -298,14 +305,7 @@ open class SocketIOClient : NSObject, SocketIOClientSpec {
     /// - parameter ack: The ack number.
     /// - parameter with: The data for this ack.
     open func emitAck(_ ack: Int, with items: [Any]) {
-        guard status == .connected else { return }
-
-        let packet = SocketPacket.packetFromEmit(items, id: ack, nsp: nsp, ack: true)
-        let str = packet.packetString
-
-        DefaultSocketLogger.Logger.log("Emitting Ack: \(str)", type: logType)
-
-        manager?.engine?.send(str, withData: packet.binary)
+        emit(items, ack: ack, binary: true, isAck: true)
     }
 
     /// Called when socket.io has acked one of our emits. Causes the corresponding ack callback to be called.
@@ -472,7 +472,7 @@ open class SocketIOClient : NSObject, SocketIOClientSpec {
 
         let id = UUID()
 
-        let handler = SocketEventHandler(event: event, id: id) {[weak self] data, ack in
+        let handler = SocketEventHandler(event: event, id: id) { [weak self] data, ack in
             guard let this = self else { return }
             this.off(id: id)
             callback(data, ack)
@@ -487,14 +487,14 @@ open class SocketIOClient : NSObject, SocketIOClientSpec {
     ///
     /// - parameter handler: The callback that will execute whenever an event is received.
     @objc
-    open func onAny(_ handler: @escaping (SocketAnyEvent) -> ()) {
+    open func onAny(_ handler: @escaping (SocketAnyEvent) -> Void) {
         anyHandler = handler
     }
 
     /// Tries to reconnect to the server.
     @objc
     @available(*, unavailable, message: "Call the manager's reconnect method")
-    open func reconnect() { }
+    open func reconnect() {}
 
     /// Removes all handlers.
     ///

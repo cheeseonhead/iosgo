@@ -2,11 +2,11 @@ import Foundation
 
 internal func identityAsString(_ value: Any?) -> String {
     let anyObject: AnyObject?
-#if os(Linux)
-    anyObject = value as? AnyObject
-#else
-    anyObject = value as AnyObject?
-#endif
+    #if os(Linux)
+        anyObject = value as? AnyObject
+    #else
+        anyObject = value as AnyObject?
+    #endif
     if let value = anyObject {
         return NSString(format: "<%p>", unsafeBitCast(value, to: Int.self)).description
     } else {
@@ -61,13 +61,13 @@ extension NSNumber: TestOutputStringConvertible {
             // SeeAlso: https://bugs.swift.org/browse/SR-1464
             switch decimalPlaces.length {
             case 1:
-                return NSString(format: "%0.1f", self.doubleValue).description
+                return NSString(format: "%0.1f", doubleValue).description
             case 2:
-                return NSString(format: "%0.2f", self.doubleValue).description
+                return NSString(format: "%0.2f", doubleValue).description
             case 3:
-                return NSString(format: "%0.3f", self.doubleValue).description
+                return NSString(format: "%0.3f", doubleValue).description
             default:
-                return NSString(format: "%0.4f", self.doubleValue).description
+                return NSString(format: "%0.4f", doubleValue).description
             }
         }
         return self.description
@@ -76,14 +76,14 @@ extension NSNumber: TestOutputStringConvertible {
 
 extension Array: TestOutputStringConvertible {
     public var testDescription: String {
-        let list = self.map(Nimble.stringify).joined(separator: ", ")
+        let list = map(Nimble.stringify).joined(separator: ", ")
         return "[\(list)]"
     }
 }
 
 extension AnySequence: TestOutputStringConvertible {
     public var testDescription: String {
-        let generator = self.makeIterator()
+        let generator = makeIterator()
         var strings = [String]()
         var value: AnySequence.Iterator.Element?
 
@@ -144,7 +144,9 @@ extension Data: TestOutputStringConvertible {
 ///     will return the result of constructing a string from the value.
 ///
 /// - SeeAlso: `TestOutputStringConvertible`
-public func stringify<T>(_ value: T) -> String {
+public func stringify<T>(_ value: T?) -> String {
+    guard let value = value else { return "nil" }
+
     if let value = value as? TestOutputStringConvertible {
         return value.testDescription
     }
@@ -156,26 +158,18 @@ public func stringify<T>(_ value: T) -> String {
     return String(describing: value)
 }
 
-/// -SeeAlso: `stringify<T>(value: T)`
-public func stringify<T>(_ value: T?) -> String {
-    if let unboxed = value {
-        return stringify(unboxed)
-    }
-    return "nil"
-}
-
 #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-@objc public class NMBStringer: NSObject {
-    @objc public class func stringify(_ obj: Any?) -> String {
-        return Nimble.stringify(obj)
+    @objc public class NMBStringer: NSObject {
+        @objc public class func stringify(_ obj: Any?) -> String {
+            return Nimble.stringify(obj)
+        }
     }
-}
 #endif
 
 // MARK: Collection Type Stringers
 
 /// Attempts to generate a pretty type string for a given value. If the value is of a Objective-C
-/// collection type, or a subclass thereof, (e.g. `NSArray`, `NSDictionary`, etc.). 
+/// collection type, or a subclass thereof, (e.g. `NSArray`, `NSDictionary`, etc.).
 /// This function will return the type name of the root class of the class cluster for better
 /// readability (e.g. `NSArray` instead of `__NSArrayI`).
 ///

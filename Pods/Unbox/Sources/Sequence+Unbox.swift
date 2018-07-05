@@ -9,11 +9,11 @@ import Foundation
 internal extension Sequence {
     func map<T>(allowInvalidElements: Bool, transform: (Iterator.Element) throws -> T) throws -> [T] {
         if !allowInvalidElements {
-            return try self.map(transform)
+            return try map(transform)
         }
 
-        return self.flatMap {
-            return try? transform($0)
+        return compactMap {
+            try? transform($0)
         }
     }
 }

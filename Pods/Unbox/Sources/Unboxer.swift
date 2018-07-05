@@ -27,7 +27,7 @@ public final class Unboxer {
 
     /// Initialize an instance with binary data than can then be decoded using the `unbox()` methods. Throws `UnboxError` for invalid data.
     public init(data: Data) throws {
-        self.dictionary = try JSONSerialization.unbox(data: data)
+        dictionary = try JSONSerialization.unbox(data: data)
     }
 
     // MARK: - Custom unboxing API
@@ -53,150 +53,150 @@ public final class Unboxer {
 
     /// Unbox a required value by key
     public func unbox<T: UnboxCompatible>(key: String) throws -> T {
-        return try self.unbox(path: .key(key), transform: T.unbox)
+        return try unbox(path: .key(key), transform: T.unbox)
     }
 
     /// Unbox a required collection by key
     public func unbox<T: UnboxableCollection>(key: String, allowInvalidElements: Bool) throws -> T {
         let transform = T.makeTransform(allowInvalidElements: allowInvalidElements)
-        return try self.unbox(path: .key(key), transform: transform)
+        return try unbox(path: .key(key), transform: transform)
     }
 
     /// Unbox a required Unboxable type by key
     public func unbox<T: Unboxable>(key: String) throws -> T {
-        return try self.unbox(path: .key(key), transform: T.makeTransform())
+        return try unbox(path: .key(key), transform: T.makeTransform())
     }
 
     /// Unbox a required UnboxableWithContext type by key
     public func unbox<T: UnboxableWithContext>(key: String, context: T.UnboxContext) throws -> T {
-        return try self.unbox(path: .key(key), transform: T.makeTransform(context: context))
+        return try unbox(path: .key(key), transform: T.makeTransform(context: context))
     }
 
     /// Unbox a required collection of UnboxableWithContext values by key
     public func unbox<C: UnboxableCollection, V: UnboxableWithContext>(key: String, context: V.UnboxContext, allowInvalidElements: Bool = false) throws -> C where C.UnboxValue == V {
-        return try self.unbox(path: .key(key), transform: V.makeCollectionTransform(context: context, allowInvalidElements: allowInvalidElements))
+        return try unbox(path: .key(key), transform: V.makeCollectionTransform(context: context, allowInvalidElements: allowInvalidElements))
     }
 
     /// Unbox a required value using a formatter by key
     public func unbox<F: UnboxFormatter>(key: String, formatter: F) throws -> F.UnboxFormattedType {
-        return try self.unbox(path: .key(key), transform: formatter.makeTransform())
+        return try unbox(path: .key(key), transform: formatter.makeTransform())
     }
 
     /// Unbox a required collection of values using a formatter by key
     public func unbox<C: UnboxableCollection, F: UnboxFormatter>(key: String, formatter: F, allowInvalidElements: Bool = false) throws -> C where C.UnboxValue == F.UnboxFormattedType {
-        return try self.unbox(path: .key(key), transform: formatter.makeCollectionTransform(allowInvalidElements: allowInvalidElements))
+        return try unbox(path: .key(key), transform: formatter.makeCollectionTransform(allowInvalidElements: allowInvalidElements))
     }
 
     // MARK: - Unboxing required values (by key path)
 
     /// Unbox a required value by key path
     public func unbox<T: UnboxCompatible>(keyPath: String) throws -> T {
-        return try self.unbox(path: .keyPath(keyPath), transform: T.unbox)
+        return try unbox(path: .keyPath(keyPath), transform: T.unbox)
     }
 
     /// Unbox a required collection by key path
     public func unbox<T: UnboxCompatible>(keyPath: String, allowInvalidElements: Bool) throws -> T where T: Collection {
         let transform = T.makeTransform(allowInvalidElements: allowInvalidElements)
-        return try self.unbox(path: .keyPath(keyPath), transform: transform)
+        return try unbox(path: .keyPath(keyPath), transform: transform)
     }
 
     /// Unbox a required Unboxable by key path
     public func unbox<T: Unboxable>(keyPath: String) throws -> T {
-        return try self.unbox(path: .keyPath(keyPath), transform: T.makeTransform())
+        return try unbox(path: .keyPath(keyPath), transform: T.makeTransform())
     }
 
     /// Unbox a required UnboxableWithContext type by key path
     public func unbox<T: UnboxableWithContext>(keyPath: String, context: T.UnboxContext) throws -> T {
-        return try self.unbox(path: .keyPath(keyPath), transform: T.makeTransform(context: context))
+        return try unbox(path: .keyPath(keyPath), transform: T.makeTransform(context: context))
     }
 
     /// Unbox a required collection of UnboxableWithContext values by key path
     public func unbox<C: UnboxableCollection, V: UnboxableWithContext>(keyPath: String, context: V.UnboxContext, allowInvalidElements: Bool = false) throws -> C where C.UnboxValue == V {
-        return try self.unbox(path: .keyPath(keyPath), transform: V.makeCollectionTransform(context: context, allowInvalidElements: allowInvalidElements))
+        return try unbox(path: .keyPath(keyPath), transform: V.makeCollectionTransform(context: context, allowInvalidElements: allowInvalidElements))
     }
 
     /// Unbox a required value using a formatter by key path
     public func unbox<F: UnboxFormatter>(keyPath: String, formatter: F) throws -> F.UnboxFormattedType {
-        return try self.unbox(path: .keyPath(keyPath), transform: formatter.makeTransform())
+        return try unbox(path: .keyPath(keyPath), transform: formatter.makeTransform())
     }
 
     /// Unbox a required collection of values using a formatter by key path
     public func unbox<C: UnboxableCollection, F: UnboxFormatter>(keyPath: String, formatter: F, allowInvalidElements: Bool = false) throws -> C where C.UnboxValue == F.UnboxFormattedType {
-        return try self.unbox(path: .keyPath(keyPath), transform: formatter.makeCollectionTransform(allowInvalidElements: allowInvalidElements))
+        return try unbox(path: .keyPath(keyPath), transform: formatter.makeCollectionTransform(allowInvalidElements: allowInvalidElements))
     }
 
     // MARK: - Unboxing optional values (by key)
 
     /// Unbox an optional value by key
     public func unbox<T: UnboxCompatible>(key: String) -> T? {
-        return try? self.unbox(key: key)
+        return try? unbox(key: key)
     }
 
     /// Unbox an optional collection by key
     public func unbox<T: UnboxableCollection>(key: String, allowInvalidElements: Bool) -> T? {
-        return try? self.unbox(key: key, allowInvalidElements: allowInvalidElements)
+        return try? unbox(key: key, allowInvalidElements: allowInvalidElements)
     }
 
     /// Unbox an optional Unboxable type by key
     public func unbox<T: Unboxable>(key: String) -> T? {
-        return try? self.unbox(key: key)
+        return try? unbox(key: key)
     }
 
     /// Unbox an optional UnboxableWithContext type by key
     public func unbox<T: UnboxableWithContext>(key: String, context: T.UnboxContext) -> T? {
-        return try? self.unbox(key: key, context: context)
+        return try? unbox(key: key, context: context)
     }
 
     /// Unbox an optional collection of UnboxableWithContext values by key
     public func unbox<C: UnboxableCollection, V: UnboxableWithContext>(key: String, context: V.UnboxContext, allowInvalidElements: Bool = false) -> C? where C.UnboxValue == V {
-        return try? self.unbox(path: .key(key), transform: V.makeCollectionTransform(context: context, allowInvalidElements: allowInvalidElements))
+        return try? unbox(path: .key(key), transform: V.makeCollectionTransform(context: context, allowInvalidElements: allowInvalidElements))
     }
 
     /// Unbox an optional value using a formatter by key
     public func unbox<F: UnboxFormatter>(key: String, formatter: F) -> F.UnboxFormattedType? {
-        return try? self.unbox(key: key, formatter: formatter)
+        return try? unbox(key: key, formatter: formatter)
     }
 
     /// Unbox an optional collection of values using a formatter by key
     public func unbox<C: UnboxableCollection, F: UnboxFormatter>(key: String, formatter: F, allowInvalidElements: Bool = false) -> C? where C.UnboxValue == F.UnboxFormattedType {
-        return try? self.unbox(key: key, formatter: formatter, allowInvalidElements: allowInvalidElements)
+        return try? unbox(key: key, formatter: formatter, allowInvalidElements: allowInvalidElements)
     }
 
     // MARK: - Unboxing optional values (by key path)
 
     /// Unbox an optional value by key path
     public func unbox<T: UnboxCompatible>(keyPath: String) -> T? {
-        return try? self.unbox(keyPath: keyPath)
+        return try? unbox(keyPath: keyPath)
     }
 
     /// Unbox an optional collection by key path
     public func unbox<T: UnboxableCollection>(keyPath: String, allowInvalidElements: Bool) -> T? {
-        return try? self.unbox(keyPath: keyPath, allowInvalidElements: allowInvalidElements)
+        return try? unbox(keyPath: keyPath, allowInvalidElements: allowInvalidElements)
     }
 
     /// Unbox an optional Unboxable type by key path
     public func unbox<T: Unboxable>(keyPath: String) -> T? {
-        return try? self.unbox(keyPath: keyPath)
+        return try? unbox(keyPath: keyPath)
     }
 
     /// Unbox an optional UnboxableWithContext type by key path
     public func unbox<T: UnboxableWithContext>(keyPath: String, context: T.UnboxContext) -> T? {
-        return try? self.unbox(keyPath: keyPath, context: context)
+        return try? unbox(keyPath: keyPath, context: context)
     }
 
     /// Unbox an optional collection of UnboxableWithContext values by key path
     public func unbox<C: UnboxableCollection, V: UnboxableWithContext>(keyPath: String, context: V.UnboxContext, allowInvalidElements: Bool = false) -> C? where C.UnboxValue == V {
-        return try? self.unbox(path: .keyPath(keyPath), transform: V.makeCollectionTransform(context: context, allowInvalidElements: allowInvalidElements))
+        return try? unbox(path: .keyPath(keyPath), transform: V.makeCollectionTransform(context: context, allowInvalidElements: allowInvalidElements))
     }
 
     /// Unbox an optional value using a formatter by key path
     public func unbox<F: UnboxFormatter>(keyPath: String, formatter: F) -> F.UnboxFormattedType? {
-        return try? self.unbox(keyPath: keyPath, formatter: formatter)
+        return try? unbox(keyPath: keyPath, formatter: formatter)
     }
 
     /// Unbox an optional collection of values using a formatter by key path
     public func unbox<C: UnboxableCollection, F: UnboxFormatter>(keyPath: String, formatter: F, allowInvalidElements: Bool = false) -> C? where C.UnboxValue == F.UnboxFormattedType {
-        return try? self.unbox(keyPath: keyPath, formatter: formatter, allowInvalidElements: allowInvalidElements)
+        return try? unbox(keyPath: keyPath, formatter: formatter, allowInvalidElements: allowInvalidElements)
     }
 }
 
@@ -218,20 +218,19 @@ private extension Unboxer {
     func unbox<R>(path: UnboxPath, transform: UnboxTransform<R>) throws -> R {
         do {
             switch path {
-            case .key(let key):
-                let value = try self.dictionary[key].orThrow(UnboxPathError.missingKey(key))
+            case let .key(key):
+                let value = try dictionary[key].orThrow(UnboxPathError.missingKey(key))
                 return try transform(value).orThrow(UnboxPathError.invalidValue(value, key))
-            case .keyPath(let keyPath):
-                var node: UnboxPathNode = self.dictionary
+            case let .keyPath(keyPath):
+                var node: UnboxPathNode = dictionary
                 let components = keyPath.components(separatedBy: ".")
-                let lastKey = components.last
 
-                for key in components {
+                for (index, key) in components.enumerated() {
                     guard let nextValue = node.unboxPathValue(forKey: key) else {
                         throw UnboxPathError.missingKey(key)
                     }
 
-                    if key == lastKey {
+                    if index == components.index(before: components.endIndex) {
                         return try transform(nextValue).orThrow(UnboxPathError.invalidValue(nextValue, key))
                     }
 

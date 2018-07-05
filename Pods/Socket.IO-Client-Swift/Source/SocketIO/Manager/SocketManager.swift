@@ -43,7 +43,9 @@ import Foundation
 /// To disconnect a socket and remove it from the manager, either call `SocketIOClient.disconnect()` on the socket,
 /// or call one of the `disconnectSocket` methods on this class.
 ///
-open class SocketManager : NSObject, SocketManagerSpec, SocketParsable, SocketDataBufferable, ConfigSettable {
+/// **NOTE**: The manager is not thread/queue safe, all interaction with the manager should be done on the `handleQueue`
+///
+open class SocketManager: NSObject, SocketManagerSpec, SocketParsable, SocketDataBufferable, ConfigSettable {
     private static let logType = "SocketManager"
 
     // MARK: Properties
@@ -132,11 +134,11 @@ open class SocketManager : NSObject, SocketManagerSpec, SocketParsable, SocketDa
     /// - parameter socketURL: The url of the socket.io server.
     /// - parameter config: The config for this socket.
     public init(socketURL: URL, config: SocketIOClientConfiguration = []) {
-        self._config = config
+        _config = config
         self.socketURL = socketURL
 
         if socketURL.absoluteString.hasPrefix("https://") {
-            self._config.insert(.secure(true))
+            _config.insert(.secure(true))
         }
 
         super.init()
@@ -167,6 +169,9 @@ open class SocketManager : NSObject, SocketManagerSpec, SocketParsable, SocketDa
 
         engine?.engineQueue.sync {
             self.engine?.client = nil
+
+            // Close old engine so it will not leak because of URLSession if in polling mode
+            self.engine?.disconnect(reason: "Adding new engine")
         }
 
         engine = SocketEngine(client: self, url: socketURL, config: config)
@@ -210,7 +215,7 @@ open class SocketManager : NSObject, SocketManagerSpec, SocketParsable, SocketDa
     ///
     /// - parameter reason: The reason for the disconnection.
     open func didDisconnect(reason: String) {
-        forAll {socket in
+        forAll { socket in
             socket.didDisconnect(reason: reason)
         }
     }
@@ -257,7 +262,7 @@ open class SocketManager : NSObject, SocketManagerSpec, SocketParsable, SocketDa
     ///
     /// - parameter clientEvent: The event to emit.
     open func emitAll(clientEvent event: SocketClientEvent, data: [Any]) {
-        forAll {socket in
+        forAll { socket in
             socket.handleClientEvent(event, data: data)
         }
     }
@@ -284,7 +289,7 @@ open class SocketManager : NSObject, SocketManagerSpec, SocketParsable, SocketDa
     /// - parameter event: The event to send.
     /// - parameter items: The data to send with this event.
     open func emitAll(_ event: String, withItems items: [Any]) {
-        forAll {socket in
+        forAll { socket in
             socket.emit(event, with: items)
         }
     }
@@ -370,7 +375,7 @@ open class SocketManager : NSObject, SocketManagerSpec, SocketParsable, SocketDa
         emitAll(clientEvent: .ping, data: [])
     }
 
-    private func forAll(do: (SocketIOClient) throws -> ()) rethrows {
+    private func forAll(do: (SocketIOClient) throws -> Void) rethrows {
         for (_, socket) in nsps {
             try `do`(socket)
         }
@@ -439,7 +444,7 @@ open class SocketManager : NSObject, SocketManagerSpec, SocketParsable, SocketDa
         DefaultSocketLogger.Logger.log("Starting reconnect", type: SocketManager.logType)
 
         // Set status to connecting and emit reconnect for all sockets
-        forAll {socket in
+        forAll { socket in
             guard socket.status == .connected else { return }
 
             socket.setReconnecting(reason: reason)
@@ -471,13 +476,13 @@ open class SocketManager : NSObject, SocketManagerSpec, SocketParsable, SocketDa
         for option in config {
             switch option {
             case let .forceNew(new):
-                self.forceNew = new
+                forceNew = new
             case let .handleQueue(queue):
-                self.handleQueue = queue
+                handleQueue = queue
             case let .reconnects(reconnects):
                 self.reconnects = reconnects
             case let .reconnectAttempts(attempts):
-                self.reconnectAttempts = attempts
+                reconnectAttempts = attempts
             case let .reconnectWait(wait):
                 reconnectWait = abs(wait)
             case let .log(log):

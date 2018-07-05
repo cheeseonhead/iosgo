@@ -28,9 +28,21 @@ import Foundation
 /// A class that represents a waiting ack call.
 ///
 /// **NOTE**: You should not store this beyond the life of the event handler.
-public final class SocketAckEmitter : NSObject {
-    let socket: SocketIOClient
-    let ackNum: Int
+public final class SocketAckEmitter: NSObject {
+    private unowned let socket: SocketIOClient
+    private let ackNum: Int
+
+    /// A view into this emitter where emits do not check for binary data.
+    ///
+    /// Usage:
+    ///
+    /// ```swift
+    /// ack.rawEmitView.with(myObject)
+    /// ```
+    ///
+    /// **NOTE**: It is not safe to hold on to this view beyond the life of the socket.
+    @objc
+    public private(set) lazy var rawEmitView = SocketRawAckView(socket: socket, ackNum: ackNum)
 
     // MARK: Properties
 
@@ -63,8 +75,8 @@ public final class SocketAckEmitter : NSObject {
 
         do {
             socket.emitAck(ackNum, with: try items.map({ try $0.socketRepresentation() }))
-        } catch let err {
-            socket.handleClientEvent(.error, data: [ackNum, items, err])
+        } catch {
+            socket.handleClientEvent(.error, data: [ackNum, items, error])
         }
     }
 
@@ -77,7 +89,6 @@ public final class SocketAckEmitter : NSObject {
 
         socket.emitAck(ackNum, with: items)
     }
-
 }
 
 /// A class that represents an emit that will request an ack that has not yet been sent.
@@ -89,15 +100,18 @@ public final class SocketAckEmitter : NSObject {
 ///     ...
 /// }
 /// ```
-public final class OnAckCallback : NSObject {
+public final class OnAckCallback: NSObject {
     private let ackNumber: Int
+    private let binary: Bool
     private let items: [Any]
+
     private weak var socket: SocketIOClient?
 
-    init(ackNumber: Int, items: [Any], socket: SocketIOClient) {
+    init(ackNumber: Int, items: [Any], socket: SocketIOClient, binary: Bool = true) {
         self.ackNumber = ackNumber
         self.items = items
         self.socket = socket
+        self.binary = binary
     }
 
     deinit {
@@ -116,15 +130,14 @@ public final class OnAckCallback : NSObject {
         guard let socket = self.socket, ackNumber != -1 else { return }
 
         socket.ackHandlers.addAck(ackNumber, callback: callback)
-        socket.emit(items, ack: ackNumber)
+        socket.emit(items, ack: ackNumber, binary: binary)
 
         guard seconds != 0 else { return }
 
-        socket.manager?.handleQueue.asyncAfter(deadline: DispatchTime.now() + seconds) {[weak socket] in
+        socket.manager?.handleQueue.asyncAfter(deadline: DispatchTime.now() + seconds) { [weak socket] in
             guard let socket = socket else { return }
 
             socket.ackHandlers.timeoutAck(self.ackNumber)
         }
     }
-
 }
