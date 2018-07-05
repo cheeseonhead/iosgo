@@ -32,15 +32,15 @@ class ClockConverterSpec: QuickSpec {
                     }
 
                     it("has correct black time") {
-                        let res = try? target.actualClock(from: clock)
+                        let res = target.actualClock(from: clock)
 
-                        expect(res??.blackTime?.thinkingTime).to(equal(5))
+                        expect(res?.blackTime?.thinkingTime).to(equal(5))
                     }
 
                     it("has correct white time") {
-                        let res = try? target.actualClock(from: clock)
+                        let res = target.actualClock(from: clock)
 
-                        expect(res??.whiteTime?.thinkingTime).to(beNil())
+                        expect(res?.whiteTime?.thinkingTime).to(beNil())
                     }
                 }
 
@@ -50,15 +50,15 @@ class ClockConverterSpec: QuickSpec {
                     }
 
                     it("has correct black time") {
-                        let res = try? target.actualClock(from: clock)
+                        let res = target.actualClock(from: clock)
 
-                        expect(res??.blackTime?.thinkingTime).to(beNil())
+                        expect(res?.blackTime?.thinkingTime).to(beNil())
                     }
 
                     it("has correct white time") {
-                        let res = try? target.actualClock(from: clock)
+                        let res = target.actualClock(from: clock)
 
-                        expect(res??.whiteTime?.thinkingTime).to(equal(5))
+                        expect(res?.whiteTime?.thinkingTime).to(equal(5))
                     }
                 }
             }
@@ -79,17 +79,17 @@ class ClockConverterSpec: QuickSpec {
                     }
 
                     it("derived black time correctly") {
-                        let res = try? target.actualClock(from: clock)
+                        let res = target.actualClock(from: clock)
 
-                        expect(res??.blackTime?.thinkingTime).to(equal(50))
-                        expect(res??.blackTime?.periods).to(equal(5))
-                        expect(res??.blackTime?.periodTime).to(equal(30))
+                        expect(res?.blackTime?.thinkingTime).to(equal(50))
+                        expect(res?.blackTime?.periods).to(equal(5))
+                        expect(res?.blackTime?.periodTime).to(equal(30))
                     }
 
                     it("kept white time") {
-                        let res = try? target.actualClock(from: clock)
+                        let res = target.actualClock(from: clock)
 
-                        expect(res??.whiteTime?.thinkingTime).to(equal(waitingPlayerTime.thinkingTime))
+                        expect(res?.whiteTime?.thinkingTime).to(equal(waitingPlayerTime.thinkingTime))
                     }
 
                     context("used some periods") {
@@ -98,11 +98,11 @@ class ClockConverterSpec: QuickSpec {
                         }
 
                         it("derived black time correctly") {
-                            let res = try? target.actualClock(from: clock)
+                            let res = target.actualClock(from: clock)
 
-                            expect(res??.blackTime?.thinkingTime).to(equal(23))
-                            expect(res??.blackTime?.periods).to(equal(3))
-                            expect(res??.blackTime?.periodTime).to(equal(30))
+                            expect(res?.blackTime?.thinkingTime).to(equal(23))
+                            expect(res?.blackTime?.periods).to(equal(3))
+                            expect(res?.blackTime?.periodTime).to(equal(30))
                         }
                     }
                 }
@@ -114,17 +114,17 @@ class ClockConverterSpec: QuickSpec {
                     }
 
                     it("derived white time correctly") {
-                        let res = try? target.actualClock(from: clock)
+                        let res = target.actualClock(from: clock)
 
-                        expect(res??.whiteTime?.thinkingTime).to(equal(50))
-                        expect(res??.whiteTime?.periods).to(equal(5))
-                        expect(res??.whiteTime?.periodTime).to(equal(30))
+                        expect(res?.whiteTime?.thinkingTime).to(equal(50))
+                        expect(res?.whiteTime?.periods).to(equal(5))
+                        expect(res?.whiteTime?.periodTime).to(equal(30))
                     }
 
                     it("kept black time") {
-                        let res = try? target.actualClock(from: clock)
+                        let res = target.actualClock(from: clock)
 
-                        expect(res??.blackTime?.thinkingTime).to(equal(waitingPlayerTime.thinkingTime))
+                        expect(res?.blackTime?.thinkingTime).to(equal(waitingPlayerTime.thinkingTime))
                     }
                 }
             }
