@@ -39,7 +39,7 @@ extension Predicate {
     /// Like Predicate() constructor, but automatically guard against nil (actual) values
     public static func define(matcher: @escaping (Expression<T>) throws -> PredicateResult) -> Predicate<T> {
         return Predicate<T> { actual in
-            return try matcher(actual)
+            try matcher(actual)
         }.requireNonNil
     }
 
@@ -47,7 +47,7 @@ extension Predicate {
     /// Also ensures the predicate's actual value cannot pass with `nil` given.
     public static func define(_ msg: String, matcher: @escaping (Expression<T>, ExpectationMessage) throws -> PredicateResult) -> Predicate<T> {
         return Predicate<T> { actual in
-            return try matcher(actual, .expectedActualValueTo(msg))
+            try matcher(actual, .expectedActualValueTo(msg))
         }.requireNonNil
     }
 
@@ -55,7 +55,7 @@ extension Predicate {
     /// Unlike `define`, this allows nil values to succeed if the given closure chooses to.
     public static func defineNilable(_ msg: String, matcher: @escaping (Expression<T>, ExpectationMessage) throws -> PredicateResult) -> Predicate<T> {
         return Predicate<T> { actual in
-            return try matcher(actual, .expectedActualValueTo(msg))
+            try matcher(actual, .expectedActualValueTo(msg))
         }
     }
 }
@@ -67,7 +67,7 @@ extension Predicate {
     /// Also ensures the predicate's actual value cannot pass with `nil` given.
     public static func simple(_ msg: String, matcher: @escaping (Expression<T>) throws -> PredicateStatus) -> Predicate<T> {
         return Predicate<T> { actual in
-            return PredicateResult(status: try matcher(actual), message: .expectedActualValueTo(msg))
+            PredicateResult(status: try matcher(actual), message: .expectedActualValueTo(msg))
         }.requireNonNil
     }
 
@@ -77,7 +77,7 @@ extension Predicate {
     /// Unlike `simple`, this allows nil values to succeed if the given closure chooses to.
     public static func simpleNilable(_ msg: String, matcher: @escaping (Expression<T>) throws -> PredicateStatus) -> Predicate<T> {
         return Predicate<T> { actual in
-            return PredicateResult(status: try matcher(actual), message: .expectedActualValueTo(msg))
+            PredicateResult(status: try matcher(actual), message: .expectedActualValueTo(msg))
         }
     }
 }
@@ -103,7 +103,7 @@ public struct PredicateResult {
 
     /// Shorthand to PredicateResult(status: PredicateStatus(bool: bool), message: message)
     public init(bool: Bool, message: ExpectationMessage) {
-        self.status = PredicateStatus(bool: bool)
+        status = PredicateStatus(bool: bool)
         self.message = message
     }
 
@@ -191,13 +191,12 @@ extension Predicate: Matcher {
                 message: failureMessage.toExpectationMessage()
             )
         }
-
     }
 
     /// Compatibility layer for old Matcher API, deprecated.
     /// Same as calling .predicate on a MatcherFunc or NonNilMatcherFunc type.
     public static func fromDeprecatedMatcher<M>(_ matcher: M) -> Predicate where M: Matcher, M.ValueType == T {
-        return self.fromDeprecatedFullClosure(matcher.toClosure)
+        return fromDeprecatedFullClosure(matcher.toClosure)
     }
 
     /// Deprecated Matcher API, use satisfies(_:_) instead
@@ -242,107 +241,107 @@ extension Predicate {
 }
 
 #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-public typealias PredicateBlock = (_ actualExpression: Expression<NSObject>) -> NMBPredicateResult
+    public typealias PredicateBlock = (_ actualExpression: Expression<NSObject>) -> NMBPredicateResult
 
-public class NMBPredicate: NSObject {
-    private let predicate: PredicateBlock
+    public class NMBPredicate: NSObject {
+        private let predicate: PredicateBlock
 
-    public init(predicate: @escaping PredicateBlock) {
-        self.predicate = predicate
-    }
-
-    func satisfies(_ expression: @escaping () -> NSObject!, location: SourceLocation) -> NMBPredicateResult {
-        let expr = Expression(expression: expression, location: location)
-        return self.predicate(expr)
-    }
-}
-
-extension NMBPredicate: NMBMatcher {
-    public func matches(_ actualBlock: @escaping () -> NSObject!, failureMessage: FailureMessage, location: SourceLocation) -> Bool {
-        let result = satisfies(actualBlock, location: location).toSwift()
-        result.message.update(failureMessage: failureMessage)
-        return result.status.toBoolean(expectation: .toMatch)
-    }
-
-    public func doesNotMatch(_ actualBlock: @escaping () -> NSObject!, failureMessage: FailureMessage, location: SourceLocation) -> Bool {
-        let result = satisfies(actualBlock, location: location).toSwift()
-        result.message.update(failureMessage: failureMessage)
-        return result.status.toBoolean(expectation: .toNotMatch)
-    }
-}
-
-final public class NMBPredicateResult: NSObject {
-    public var status: NMBPredicateStatus
-    public var message: NMBExpectationMessage
-
-    public init(status: NMBPredicateStatus, message: NMBExpectationMessage) {
-        self.status = status
-        self.message = message
-    }
-
-    public init(bool success: Bool, message: NMBExpectationMessage) {
-        self.status = NMBPredicateStatus.from(bool: success)
-        self.message = message
-    }
-
-    public func toSwift() -> PredicateResult {
-        return PredicateResult(status: status.toSwift(),
-                               message: message.toSwift())
-    }
-}
-
-extension PredicateResult {
-    public func toObjectiveC() -> NMBPredicateResult {
-        return NMBPredicateResult(status: status.toObjectiveC(), message: message.toObjectiveC())
-    }
-}
-
-final public class NMBPredicateStatus: NSObject {
-    private let status: Int
-    private init(status: Int) {
-        self.status = status
-    }
-
-    public static let matches: NMBPredicateStatus = NMBPredicateStatus(status: 0)
-    public static let doesNotMatch: NMBPredicateStatus = NMBPredicateStatus(status: 1)
-    public static let fail: NMBPredicateStatus = NMBPredicateStatus(status: 2)
-
-    public override var hashValue: Int { return self.status.hashValue }
-
-    public override func isEqual(_ object: Any?) -> Bool {
-        guard let otherPredicate = object as? NMBPredicateStatus else {
-            return false
+        public init(predicate: @escaping PredicateBlock) {
+            self.predicate = predicate
         }
-        return self.status == otherPredicate.status
-    }
 
-    public static func from(status: PredicateStatus) -> NMBPredicateStatus {
-        switch status {
-        case .matches: return self.matches
-        case .doesNotMatch: return self.doesNotMatch
-        case .fail: return self.fail
+        func satisfies(_ expression: @escaping () -> NSObject?, location: SourceLocation) -> NMBPredicateResult {
+            let expr = Expression(expression: expression, location: location)
+            return predicate(expr)
         }
     }
 
-    public static func from(bool success: Bool) -> NMBPredicateStatus {
-        return self.from(status: PredicateStatus(bool: success))
-    }
+    extension NMBPredicate: NMBMatcher {
+        public func matches(_ actualBlock: @escaping () -> NSObject?, failureMessage: FailureMessage, location: SourceLocation) -> Bool {
+            let result = satisfies(actualBlock, location: location).toSwift()
+            result.message.update(failureMessage: failureMessage)
+            return result.status.toBoolean(expectation: .toMatch)
+        }
 
-    public func toSwift() -> PredicateStatus {
-        switch status {
-        case NMBPredicateStatus.matches.status: return .matches
-        case NMBPredicateStatus.doesNotMatch.status: return .doesNotMatch
-        case NMBPredicateStatus.fail.status: return .fail
-        default:
-            internalError("Unhandle status for NMBPredicateStatus")
+        public func doesNotMatch(_ actualBlock: @escaping () -> NSObject?, failureMessage: FailureMessage, location: SourceLocation) -> Bool {
+            let result = satisfies(actualBlock, location: location).toSwift()
+            result.message.update(failureMessage: failureMessage)
+            return result.status.toBoolean(expectation: .toNotMatch)
         }
     }
-}
 
-extension PredicateStatus {
-    public func toObjectiveC() -> NMBPredicateStatus {
-        return NMBPredicateStatus.from(status: self)
+    public final class NMBPredicateResult: NSObject {
+        public var status: NMBPredicateStatus
+        public var message: NMBExpectationMessage
+
+        public init(status: NMBPredicateStatus, message: NMBExpectationMessage) {
+            self.status = status
+            self.message = message
+        }
+
+        public init(bool success: Bool, message: NMBExpectationMessage) {
+            status = NMBPredicateStatus.from(bool: success)
+            self.message = message
+        }
+
+        public func toSwift() -> PredicateResult {
+            return PredicateResult(status: status.toSwift(),
+                                   message: message.toSwift())
+        }
     }
-}
+
+    extension PredicateResult {
+        public func toObjectiveC() -> NMBPredicateResult {
+            return NMBPredicateResult(status: status.toObjectiveC(), message: message.toObjectiveC())
+        }
+    }
+
+    public final class NMBPredicateStatus: NSObject {
+        private let status: Int
+        private init(status: Int) {
+            self.status = status
+        }
+
+        public static let matches: NMBPredicateStatus = NMBPredicateStatus(status: 0)
+        public static let doesNotMatch: NMBPredicateStatus = NMBPredicateStatus(status: 1)
+        public static let fail: NMBPredicateStatus = NMBPredicateStatus(status: 2)
+
+        public override var hashValue: Int { return status.hashValue }
+
+        public override func isEqual(_ object: Any?) -> Bool {
+            guard let otherPredicate = object as? NMBPredicateStatus else {
+                return false
+            }
+            return status == otherPredicate.status
+        }
+
+        public static func from(status: PredicateStatus) -> NMBPredicateStatus {
+            switch status {
+            case .matches: return matches
+            case .doesNotMatch: return doesNotMatch
+            case .fail: return fail
+            }
+        }
+
+        public static func from(bool success: Bool) -> NMBPredicateStatus {
+            return from(status: PredicateStatus(bool: success))
+        }
+
+        public func toSwift() -> PredicateStatus {
+            switch status {
+            case NMBPredicateStatus.matches.status: return .matches
+            case NMBPredicateStatus.doesNotMatch.status: return .doesNotMatch
+            case NMBPredicateStatus.fail.status: return .fail
+            default:
+                internalError("Unhandle status for NMBPredicateStatus")
+            }
+        }
+    }
+
+    extension PredicateStatus {
+        public func toObjectiveC() -> NMBPredicateStatus {
+            return NMBPredicateStatus.from(status: self)
+        }
+    }
 
 #endif

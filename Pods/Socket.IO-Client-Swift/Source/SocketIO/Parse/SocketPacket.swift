@@ -26,7 +26,7 @@
 import Foundation
 
 /// A struct that represents a socket.io packet.
-public struct SocketPacket : CustomStringConvertible {
+public struct SocketPacket: CustomStringConvertible {
     // MARK: Properties
 
     private static let logType = "SocketPacket"
@@ -142,7 +142,7 @@ public struct SocketPacket : CustomStringConvertible {
             if dict["_placeholder"] as? Bool ?? false {
                 return binary[dict["num"] as! Int]
             } else {
-                return dict.reduce(into: JSON(), {cur, keyValue in
+                return dict.reduce(into: JSON(), { cur, keyValue in
                     cur[keyValue.0] = _fillInPlaceholders(keyValue.1)
                 })
             }
@@ -200,11 +200,15 @@ extension SocketPacket {
         }
     }
 
-    static func packetFromEmit(_ items: [Any], id: Int, nsp: String, ack: Bool) -> SocketPacket {
-        let (parsedData, binary) = deconstructData(items)
+    static func packetFromEmit(_ items: [Any], id: Int, nsp: String, ack: Bool, checkForBinary: Bool = true) -> SocketPacket {
+        if checkForBinary {
+            let (parsedData, binary) = deconstructData(items)
 
-        return SocketPacket(type: findType(binary.count, ack: ack), data: parsedData, id: id, nsp: nsp,
-                            binary: binary)
+            return SocketPacket(type: findType(binary.count, ack: ack), data: parsedData, id: id, nsp: nsp,
+                                binary: binary)
+        } else {
+            return SocketPacket(type: findType(0, ack: ack), data: items, id: id, nsp: nsp)
+        }
     }
 }
 
@@ -219,9 +223,9 @@ private extension SocketPacket {
 
             return placeholder
         case let arr as [Any]:
-            return arr.map({shred($0, binary: &binary)})
+            return arr.map({ shred($0, binary: &binary) })
         case let dict as JSON:
-            return dict.reduce(into: JSON(), {cur, keyValue in
+            return dict.reduce(into: JSON(), { cur, keyValue in
                 cur[keyValue.0] = shred(keyValue.1, binary: &binary)
             })
         default:

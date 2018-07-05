@@ -6,12 +6,12 @@ internal func isCloseTo(_ actualValue: NMBDoubleConvertible?,
                         expectedValue: NMBDoubleConvertible,
                         delta: Double)
     -> PredicateResult {
-        let errorMessage = "be close to <\(stringify(expectedValue))> (within \(stringify(delta)))"
-        return PredicateResult(
-            bool: actualValue != nil &&
-                abs(actualValue!.doubleValue - expectedValue.doubleValue) < delta,
-            message: .expectedCustomValueTo(errorMessage, "<\(stringify(actualValue))>")
-        )
+    let errorMessage = "be close to <\(stringify(expectedValue))> (within \(stringify(delta)))"
+    return PredicateResult(
+        bool: actualValue != nil &&
+            abs(actualValue!.doubleValue - expectedValue.doubleValue) < delta,
+        message: .expectedCustomValueTo(errorMessage, "<\(stringify(actualValue))>")
+    )
 }
 
 /// A Nimble matcher that succeeds when a value is close to another. This is used for floating
@@ -20,7 +20,7 @@ internal func isCloseTo(_ actualValue: NMBDoubleConvertible?,
 /// @see equal
 public func beCloseTo(_ expectedValue: Double, within delta: Double = DefaultDelta) -> Predicate<Double> {
     return Predicate.define { actualExpression in
-        return isCloseTo(try actualExpression.evaluate(), expectedValue: expectedValue, delta: delta)
+        isCloseTo(try actualExpression.evaluate(), expectedValue: expectedValue, delta: delta)
     }
 }
 
@@ -30,49 +30,49 @@ public func beCloseTo(_ expectedValue: Double, within delta: Double = DefaultDel
 /// @see equal
 public func beCloseTo(_ expectedValue: NMBDoubleConvertible, within delta: Double = DefaultDelta) -> Predicate<NMBDoubleConvertible> {
     return Predicate.define { actualExpression in
-        return isCloseTo(try actualExpression.evaluate(), expectedValue: expectedValue, delta: delta)
+        isCloseTo(try actualExpression.evaluate(), expectedValue: expectedValue, delta: delta)
     }
 }
 
 #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-public class NMBObjCBeCloseToMatcher: NSObject, NMBMatcher {
-    var _expected: NSNumber
-    var _delta: CDouble
-    init(expected: NSNumber, within: CDouble) {
-        _expected = expected
-        _delta = within
+    public class NMBObjCBeCloseToMatcher: NSObject, NMBMatcher {
+        var _expected: NSNumber
+        var _delta: CDouble
+        init(expected: NSNumber, within: CDouble) {
+            _expected = expected
+            _delta = within
+        }
+
+        @objc public func matches(_ actualExpression: @escaping () -> NSObject?, failureMessage: FailureMessage, location: SourceLocation) -> Bool {
+            let actualBlock: () -> NMBDoubleConvertible? = {
+                actualExpression() as? NMBDoubleConvertible
+            }
+            let expr = Expression(expression: actualBlock, location: location)
+            let matcher = beCloseTo(_expected, within: _delta)
+            return try! matcher.matches(expr, failureMessage: failureMessage)
+        }
+
+        @objc public func doesNotMatch(_ actualExpression: @escaping () -> NSObject?, failureMessage: FailureMessage, location: SourceLocation) -> Bool {
+            let actualBlock: () -> NMBDoubleConvertible? = {
+                actualExpression() as? NMBDoubleConvertible
+            }
+            let expr = Expression(expression: actualBlock, location: location)
+            let matcher = beCloseTo(_expected, within: _delta)
+            return try! matcher.doesNotMatch(expr, failureMessage: failureMessage)
+        }
+
+        @objc public var within: (CDouble) -> NMBObjCBeCloseToMatcher {
+            return ({ delta in
+                NMBObjCBeCloseToMatcher(expected: self._expected, within: delta)
+            })
+        }
     }
 
-    @objc public func matches(_ actualExpression: @escaping () -> NSObject!, failureMessage: FailureMessage, location: SourceLocation) -> Bool {
-        let actualBlock: () -> NMBDoubleConvertible? = ({
-            return actualExpression() as? NMBDoubleConvertible
-        })
-        let expr = Expression(expression: actualBlock, location: location)
-        let matcher = beCloseTo(self._expected, within: self._delta)
-        return try! matcher.matches(expr, failureMessage: failureMessage)
+    extension NMBObjCMatcher {
+        @objc public class func beCloseToMatcher(_ expected: NSNumber, within: CDouble) -> NMBObjCBeCloseToMatcher {
+            return NMBObjCBeCloseToMatcher(expected: expected, within: within)
+        }
     }
-
-    @objc public func doesNotMatch(_ actualExpression: @escaping () -> NSObject!, failureMessage: FailureMessage, location: SourceLocation) -> Bool {
-        let actualBlock: () -> NMBDoubleConvertible? = ({
-            return actualExpression() as? NMBDoubleConvertible
-        })
-        let expr = Expression(expression: actualBlock, location: location)
-        let matcher = beCloseTo(self._expected, within: self._delta)
-        return try! matcher.doesNotMatch(expr, failureMessage: failureMessage)
-    }
-
-    @objc public var within: (CDouble) -> NMBObjCBeCloseToMatcher {
-        return ({ delta in
-            return NMBObjCBeCloseToMatcher(expected: self._expected, within: delta)
-        })
-    }
-}
-
-extension NMBObjCMatcher {
-    @objc public class func beCloseToMatcher(_ expected: NSNumber, within: CDouble) -> NMBObjCBeCloseToMatcher {
-        return NMBObjCBeCloseToMatcher(expected: expected, within: within)
-    }
-}
 #endif
 
 public func beCloseTo(_ expectedValues: [Double], within delta: Double = DefaultDelta) -> Predicate<[Double]> {
@@ -96,7 +96,7 @@ public func beCloseTo(_ expectedValues: [Double], within delta: Double = Default
 
 // MARK: - Operators
 
-infix operator ≈ : ComparisonPrecedence
+infix operator ≈: ComparisonPrecedence
 
 public func ≈(lhs: Expectation<[Double]>, rhs: [Double]) {
     lhs.to(beCloseTo(rhs))
@@ -120,7 +120,7 @@ precedencegroup PlusMinusOperatorPrecedence {
     higherThan: BitwiseShiftPrecedence
 }
 
-infix operator ± : PlusMinusOperatorPrecedence
+infix operator ±: PlusMinusOperatorPrecedence
 public func ±(lhs: NMBDoubleConvertible, rhs: Double) -> (expected: NMBDoubleConvertible, delta: Double) {
     return (expected: lhs, delta: rhs)
 }
